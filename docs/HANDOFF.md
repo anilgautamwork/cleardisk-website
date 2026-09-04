@@ -31,3 +31,17 @@ Free scans; planned cleanup license $10 once, 3 personally owned Macs, all 1.x u
 ## Dependency review
 
 Updated React and RSC packages to 19.2.8, Vinext to beta.9, its required RSC plugin to 0.5.34, and Vite to 8.2.2 to address runtime/build advisories. Remaining audit findings are in the pinned local tooling graph (Miniflare/Wrangler's undici 7.24.8 and esbuild 0.27.3, also shared through Shadcn's CLI dependencies); these modules are not present in the deployed server bundle. Upgrade that toolchain in a coordinated follow-up. No force or legacy peer resolution was used.
+
+## SEO foundation — 5 September 2026
+
+Organic acquisition is now the website priority. The shared ChatGPT research was read, reconciled with the approved ClearDisk name/product, and rechecked against current web sources. See docs/seo/2026-09-05-research.md and keyword-map.csv (91 candidates, unknown volumes left empty; the one Ahrefs value is historical July 2025).
+
+Page source stays here; production /api/* belongs solely to the sibling web/ license Worker. The private preview retains test-only checkout. Its licensed production replacement, embedded checkout, recovery, static export and one-Worker deployment are separate integration work. Do not copy dist/server into web/public and assume it is a static export.
+
+Added /guides and five articles: /clear-system-data-on-mac, /what-is-system-data-on-mac, /system-data-too-large, /system-data-keeps-growing, /mac-storage-full. Home now leads with Clear System Data on Mac. Guide records power routing, links and sitemap. Articles render as initial HTML with Article/BreadcrumbList data. Editorial publication/update dates are separate fields, and the visible date uses the registry.
+
+SITE_INDEXABLE is a BUILD-TIME switch defined by Vite. Default false, including deployed preview: noindex and empty sitemap. Only build with SITE_INDEXABLE=true for the reviewed cleardisk.app production release; runtime env changes alone do not enable indexing. Canonicals consistently target cleardisk.app. Checkout/return pages remain noindex in both modes. Public launch requires Search Console verification and sitemap submission; no ranking guarantees.
+
+Validation: npm test (12 tests), typecheck, lint and build. Start compiled site on port 3001; npm run test:seo:http checks 12 HTML routes, one H1 and distinct titles, canonicals, index policy, schema, related links, 404, robots/sitemap and DMG availability. Use SITE_CHECK_ORIGIN for another origin; SITE_CHECK_INDEXABLE=true asserts production mode. Restart the compiled Worker after rebuilding before testing a changed indexability flag. Both preview and production indexing behavior were checked locally; only noindex preview is published.
+
+Independent review found no blockers. Fixed two minor observations: date rendered from data, and snapshot copy now says the app reports a count, not a measured size. Browser interaction/visual QA was not performed. The parent handover contains the remaining ordered native and licensing plans; none is implied complete by this website milestone.

@@ -1,4 +1,3 @@
-'use client';
 import Link from 'next/link';
 import {
   ArrowUpRight,
@@ -68,12 +67,12 @@ export default function Home() {
               <ChevronRight size={13} />
             </Link>
             <h1>
-              More space.
+              Clear System Data
               <br />
-              <span>More possibilities.</span>
+              <span>on Mac.</span>
             </h1>
             <p className="hero-description">
-              Your Mac has room for more. Find what’s filling it,
+              See what’s filling your Mac. Understand what to keep,
               <br className="desktop-break" /> clear the clutter, and get back
               to what you love.
             </p>
@@ -392,6 +391,10 @@ export default function Home() {
               <br />
               <span>clarity.</span>
             </h2>
+            <p>Understand the files behind the number.</p>
+            <Link className="text-link" href="/what-is-system-data-on-mac">
+              What is System Data? <ArrowRight size={15} />
+            </Link>
             <p>Something else on your mind?</p>
             <a className="text-link" href="mailto:hello@cleardisk.app">
               Say hello <ArrowUpRight size={15} />
@@ -405,6 +408,44 @@ export default function Home() {
               </AccordionItem>
             ))}
           </Accordion>
+        </section>
+        <section className="section wrap home-guides">
+          <span className="eyebrow">CLARITY BEFORE CLEANUP</span>
+          <h2>Start with your question.</h2>
+          <div className="guide-grid">
+            <Link className="guide-card" href="/clear-system-data-on-mac">
+              <h3>How do I clear System Data?</h3>
+              <p>
+                Find the files, understand the tradeoffs, and review what to
+                remove.
+              </p>
+              <span>
+                Read the guide <ArrowRight size={16} />
+              </span>
+            </Link>
+            <Link className="guide-card" href="/mac-storage-full">
+              <h3>Why is my Mac still full?</h3>
+              <p>
+                A practical next step when deleting files has not solved the
+                problem.
+              </p>
+              <span>
+                Find an answer <ArrowRight size={16} />
+              </span>
+            </Link>
+            <Link className="guide-card" href="/system-data-keeps-growing">
+              <h3>Why does it keep growing?</h3>
+              <p>
+                Investigate what is producing new data before cleaning again.
+              </p>
+              <span>
+                Understand the cause <ArrowRight size={16} />
+              </span>
+            </Link>
+          </div>
+          <Link className="text-link" href="/guides">
+            Explore all storage guides <ArrowRight size={16} />
+          </Link>
         </section>
         <section className="closing wrap">
           <div className="closing-glow" />

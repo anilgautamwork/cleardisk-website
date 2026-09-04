@@ -12,7 +12,8 @@
     "lint": "oxlint",
     "format": "oxfmt",
     "test": "node --experimental-strip-types --test test/*.test.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:seo:http": "node --experimental-strip-types scripts/check-seo.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",
