@@ -1,3 +1,11 @@
+## Download analytics and article expansion — latest, 5 September 2026
+
+Deployed to https://cleardisk.app as Worker version `2d83a170-2791-4a82-89c9-242ae0c3650d`. Twelve new source-checked guides bring the library to 17; grouped hub, contextual related links, reading times, canonicals, Article/Breadcrumb schema and sitemap are integrated. Sitemap contains 20 URLs. Public checks passed all 24 HTML pages, real 404, robots and sitemap; DMG hash is unchanged. Typecheck, lint and 16 tests pass. Source and final integration review found no blocker.
+
+Private download graph: https://cleardisk.app/analytics; user `owner`, random password in local ignored `.env.analytics-owner` and Cloudflare secret `ANALYTICS_PASSWORD`. See [analytics operations](ANALYTICS.md). Counts are full successful requests, not installs or unique users. Website history begins at deployment; the first public read showed 0 website requests and 1 GitHub download. QA requests were excluded. SQLite Durable Objects are sharded by UTC day with aggregate counters and 366-day expiry. Default Sites build is unchanged; personal Cloudflare build exports the counter class and intercepts the DMG route. Do not remove the migration/binding when changing deployment config.
+
+Read [research and marketing plan](seo/2026-09-05-growth-research.md) and [45-keyword map](seo/growth-keywords.csv). All monthly search volumes are honestly marked unverified: no authenticated volume provider or Search Console access was available. Search Console verification/submission remains an owner-access step, not a claimed completed task. Test Stripe and Talivia pause remain unchanged. No outreach, social posting or paid ads were launched.
+
 ## Public Worker deployment and 0.1.4 preview — 5 September 2026 (latest status)
 
 The owner confirmed **cleardisk.app** (not diskclear.app), personal Cloudflare account `anil personal` (`449c51af2c638c0c3c88493d6175228b`). The site is deployed as Worker `cleardisk-website` on its custom domain. Initial deployment version: `4e26c98a-ed7b-4f0b-89ba-cab7a8dfd0ca`; the Stripe test secret was subsequently added through Wrangler encrypted secrets. Never commit `.dev.vars` or credentials.

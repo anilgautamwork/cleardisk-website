@@ -63,6 +63,26 @@ export default defineConfig(async () => {
         config: personalCloudflare
           ? {
               ...localBindingConfig,
+              main: './worker/index.ts',
+              assets: {
+                binding: 'ASSETS',
+                run_worker_first: [
+                  '/ClearDisk.dmg',
+                  '/analytics',
+                  '/api/analytics',
+                ],
+              },
+              durable_objects: {
+                bindings: [
+                  { name: 'DOWNLOAD_METRICS', class_name: 'DownloadMetrics' },
+                ],
+              },
+              migrations: [
+                {
+                  tag: 'download-metrics-v1',
+                  new_sqlite_classes: ['DownloadMetrics'],
+                },
+              ],
               name: 'cleardisk-website',
               account_id: '449c51af2c638c0c3c88493d6175228b',
               compatibility_date: '2026-05-22',

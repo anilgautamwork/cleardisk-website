@@ -17,7 +17,7 @@ await test('indexing is explicit and excludes transactional routes', () => {
   for (const path of ['/thanks', '/buy-now', '/recover', '/api/key'])
     assert.equal(shouldIndex(true, path), false);
 });
-await test('all five distinct problems have a complete discoverable guide', () => {
+await test('all published problems have complete discoverable guides', () => {
   const required = [
     'clear-system-data-on-mac',
     'what-is-system-data-on-mac',
@@ -26,10 +26,14 @@ await test('all five distinct problems have a complete discoverable guide', () =
     'mac-storage-full',
   ];
   for (const slug of required) assert.ok(getGuide(slug));
+  assert.equal(guides.length, 17);
   assert.equal(getGuide('not-a-real-guide'), undefined);
   assert.equal(new Set(guides.map((g) => g.slug)).size, guides.length);
   for (const guide of guides) {
     assert.ok(guide.sections.length >= 3);
+    assert.ok(guide.sources.length > 0);
+    for (const source of guide.sources)
+      assert.equal(new URL(source.url).protocol, 'https:');
     assert.equal(
       new Set(guide.sections.map((s) => s.id)).size,
       guide.sections.length,

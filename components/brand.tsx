@@ -32,7 +32,9 @@ export function Header() {
         <Link href="/#faq">FAQs</Link>
       </nav>
       <div className="header-actions">
-        <Link className="buy-link" href="/buy-now">Buy for $10</Link>
+        <Link className="buy-link" href="/buy-now">
+          Buy for $10
+        </Link>
         <DownloadButton compact />
       </div>
     </header>
@@ -41,14 +43,16 @@ export function Header() {
 export function DownloadButton({
   label = 'Download ClearDisk',
   compact = false,
+  source,
 }: {
   label?: string;
   compact?: boolean;
+  source?: 'guides';
 }) {
   return (
     <Link
       className={`button primary download-button${compact ? ' small' : ''}`}
-      href="/download"
+      href={source ? `/download?source=${source}` : '/download'}
     >
       <ArrowDownToLine size={compact ? 16 : 18} aria-hidden="true" />
       {label}

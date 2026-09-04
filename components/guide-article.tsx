@@ -73,7 +73,18 @@ export function GuideArticle({ guide }: { guide: Guide }) {
               }).format(new Date(guide.updated + 'T00:00:00Z'))}
             </time>
             <span>·</span>
-            <span>Mac storage guide</span>
+            <span>
+              {Math.max(
+                2,
+                Math.ceil(
+                  guide.sections
+                    .flatMap((s) => [...s.paragraphs, ...(s.items || [])])
+                    .join(' ')
+                    .split(/\s+/).length / 200,
+                ),
+              )}{' '}
+              min read
+            </span>
           </div>
         </header>
         <div className="guide-layout">
@@ -117,9 +128,9 @@ export function GuideArticle({ guide }: { guide: Guide }) {
             <section className="guide-references">
               <h2>References & further reading</h2>
               <p>
-                These guides combine Apple’s guidance with ClearDisk’s
-                documented behavior. Your files and app settings determine the
-                right next step.
+                These guides combine the linked official guidance with
+                ClearDisk’s documented behavior. Your files and app settings
+                determine the right next step.
               </p>
               <ul>
                 {guide.sources.map((source) => (
@@ -149,8 +160,8 @@ export function GuideArticle({ guide }: { guide: Guide }) {
             </p>
           </div>
           <div>
-            <DownloadButton label="Download free scanner" />
-            <small>macOS 15+ · 0.1.3 preview</small>
+            <DownloadButton label="Download free scanner" source="guides" />
+            <small>macOS 15+ · 0.1.4 preview</small>
             <Link href="/#pricing">
               Cleanup license: $10 once at launch <ArrowRight size={13} />
             </Link>

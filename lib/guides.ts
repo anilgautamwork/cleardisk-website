@@ -1,3 +1,5 @@
+import { storageGuides } from './guides-storage.ts';
+import { developerGuides } from './guides-developer.ts';
 export type GuideSection = {
   id: string;
   title: string;
@@ -28,7 +30,7 @@ const snapshots = {
   url: 'https://support.apple.com/en-euro/102154',
 };
 
-export const guides: Guide[] = [
+const foundationGuides: Guide[] = [
   {
     slug: 'clear-system-data-on-mac',
     title: 'How to clear System Data on Mac',
@@ -338,6 +340,39 @@ export const guides: Guide[] = [
     sources: [storage],
   },
 ];
+const deeperGuides: Record<string, string> = {
+  'clear-system-data-on-mac': 'find-large-files-on-mac',
+  'what-is-system-data-on-mac': 'clear-browser-cache-mac',
+  'system-data-too-large': 'delete-iphone-backups-on-mac',
+  'system-data-keeps-growing': 'clean-docker-disk-space-mac',
+  'mac-storage-full': 'purgeable-space-on-mac',
+};
+for (const guide of foundationGuides)
+  guide.related.push(deeperGuides[guide.slug]);
+export const guides: Guide[] = [
+  ...foundationGuides,
+  ...storageGuides,
+  ...developerGuides,
+];
+
+export const guideGroups = [
+  {
+    id: 'system-data',
+    title: 'System Data and a full Mac',
+    guides: foundationGuides,
+  },
+  {
+    id: 'files-and-backups',
+    title: 'Files, backups and cloud storage',
+    guides: storageGuides,
+  },
+  {
+    id: 'apps-and-developer-tools',
+    title: 'Apps and developer tools',
+    guides: developerGuides,
+  },
+];
+
 export function getGuide(slug: string): Guide | undefined {
   return guides.find((guide) => guide.slug === slug);
 }

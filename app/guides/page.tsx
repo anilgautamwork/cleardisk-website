@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { Header, Footer } from '@/components/brand';
-import { guides } from '@/lib/guides';
+import { guideGroups } from '@/lib/guides';
 import { pageMetadata } from '@/lib/seo';
 export const metadata = pageMetadata(
   'Mac storage guides — ClearDisk',
@@ -49,24 +49,33 @@ export default function Guides() {
             <small>Find what’s inside.</small>
           </div>
         </Link>
-        <div className="guide-grid">
-          {guides
-            .filter((g) => g.slug !== 'clear-system-data-on-mac')
-            .map((guide, i) => (
-              <Link
-                className="guide-card"
-                href={'/' + guide.slug}
-                key={guide.slug}
-              >
-                <span className="guide-number">0{i + 1}</span>
-                <h2>{guide.title}</h2>
-                <p>{guide.description}</p>
-                <span>
-                  Find clarity <ArrowRight size={16} />
-                </span>
-              </Link>
-            ))}
-        </div>
+        <nav className="guide-topic-nav" aria-label="Guide topics">
+          {guideGroups.map((group) => (
+            <a key={group.id} href={'#' + group.id}>
+              {group.title}
+            </a>
+          ))}
+        </nav>
+        {guideGroups.map((group) => (
+          <section id={group.id} key={group.id} className="guide-topic-section">
+            <h2>{group.title}</h2>
+            <div className="guide-grid">
+              {group.guides.map((guide) => (
+                <Link
+                  className="guide-card"
+                  href={'/' + guide.slug}
+                  key={guide.slug}
+                >
+                  <h3>{guide.title}</h3>
+                  <p>{guide.description}</p>
+                  <span>
+                    Read the guide <ArrowRight size={16} />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ))}
         <p className="guide-directory-note">
           A guide can help you decide. A local scan can show you the files.{' '}
           <Link href="/download">

@@ -66,5 +66,5 @@ const download = await fetch(new URL('/ClearDisk.dmg', origin), {
 });
 assert.equal(download.status, 200);
 console.log(
-  'SEO HTTP checks passed: 12 HTML routes, metadata, article schema, related links, 404, sitemap, robots and DMG.',
+  `SEO HTTP checks passed: ${pages.length} HTML routes, metadata, article schema, related links, 404, sitemap, robots and DMG.`,
 );

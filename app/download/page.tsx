@@ -1,3 +1,4 @@
+import { campaignSource } from '@/lib/download-metrics';
 import { pageMetadata } from '@/lib/seo';
 import { Header, Footer, Mark } from '@/components/brand';
 import { ArrowDownToLine, Apple, ShieldCheck, HardDrive } from 'lucide-react';
@@ -6,7 +7,19 @@ export const metadata = pageMetadata(
   'Download the free ClearDisk 0.1.4 preview for macOS 15+. Universal Apple silicon and Intel app. Explore local storage before cleanup.',
   '/download',
 );
-export default function Download() {
+export default async function Download({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const query = await searchParams;
+  const rawSource = query.utm_source || query.source;
+  const source = campaignSource(
+    typeof rawSource === 'string' ? rawSource : null,
+  );
+  const downloadURL = source
+    ? '/ClearDisk.dmg?source=' + encodeURIComponent(source.toLowerCase())
+    : '/ClearDisk.dmg';
   return (
     <>
       <Header />
@@ -33,7 +46,7 @@ export default function Download() {
             Notarized by Apple
           </span>
         </div>
-        <a className="button primary" href="/ClearDisk.dmg" download>
+        <a className="button primary" href={downloadURL} download>
           <ArrowDownToLine size={18} />
           Download free preview
         </a>

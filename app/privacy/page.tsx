@@ -22,9 +22,19 @@ export default function Privacy() {
         <h2>The website preview</h2>
         <p>
           The interactive Mac window uses example data. It does not read your
-          files or scan your device. This website does not include marketing
-          analytics or advertising pixels. The hosting provider may process
-          operational request logs.
+          files or scan your device. The hosting provider may process
+          operational request logs. We do not include advertising pixels or
+          Talivia tracking.
+        </p>
+        <h2>Download measurement</h2>
+        <p>
+          We count successful full download requests by UTC day and a fixed
+          source label, such as Google, Reddit or our website. We store those
+          aggregate counts for up to 366 days. This counter does not store your
+          IP address, filenames, raw referring URL or a unique visitor
+          identifier, and does not set analytics cookies. Counts are not proof
+          of installation or a count of unique people. GitHub separately reports
+          downloads from its releases.
         </p>
         <h2>Test payments</h2>
         <p>
