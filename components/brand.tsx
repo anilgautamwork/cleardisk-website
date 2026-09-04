@@ -27,7 +27,7 @@ export function Header() {
       </Link>
       <nav aria-label="Main navigation">
         <Link href="/#features">Why ClearDisk</Link>
-        <Link href="/#how-it-works">How it works</Link>
+        <Link href="/guides">Storage guides</Link>
         <Link href="/#pricing">Pricing</Link>
         <Link href="/#faq">FAQs</Link>
       </nav>
@@ -61,6 +61,7 @@ export function Footer() {
         <p>A little less clutter. A lot more possibility.</p>
       </div>
       <div className="footer-links">
+        <Link href="/guides">Storage guides</Link>
         <Link href="/download">Download</Link>
         <Link href="/privacy">Privacy</Link>
         <Link href="/terms">Terms & refunds</Link>
