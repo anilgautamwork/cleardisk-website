@@ -31,22 +31,24 @@ export function Header() {
         <Link href="/#pricing">Pricing</Link>
         <Link href="/#faq">FAQs</Link>
       </nav>
-      <Link className="button small light" href="/download">
-        Get ClearDisk <ArrowUpRight size={15} />
-      </Link>
+      <DownloadButton compact />
     </header>
   );
 }
 export function DownloadButton({
-  label = 'Download for Mac',
+  label = 'Download ClearDisk',
+  compact = false,
 }: {
   label?: string;
+  compact?: boolean;
 }) {
   return (
-    <Link className="button primary" href="/download">
-      <ArrowDownToLine size={18} />
+    <Link
+      className={`button primary download-button${compact ? ' small' : ''}`}
+      href="/download"
+    >
+      <ArrowDownToLine size={compact ? 16 : 18} aria-hidden="true" />
       {label}
-      <span className="button-free">Free</span>
     </Link>
   );
 }

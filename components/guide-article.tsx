@@ -150,7 +150,7 @@ export function GuideArticle({ guide }: { guide: Guide }) {
           </div>
           <div>
             <DownloadButton label="Download free scanner" />
-            <small>macOS 15+ · 0.1.0 preview</small>
+            <small>macOS 15+ · 0.1.1 preview</small>
             <Link href="/#pricing">
               Cleanup license: $10 once at launch <ArrowRight size={13} />
             </Link>

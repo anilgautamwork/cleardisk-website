@@ -114,7 +114,7 @@ svg {
   display: inline-flex;
   width: 34px;
   height: 34px;
-  background: linear-gradient(140deg, #c7b7ff, #7960ce);
+  background: linear-gradient(140deg, var(--brand-light), var(--brand-deep));
   color: white;
   border-radius: 10px;
   box-shadow:
@@ -160,8 +160,12 @@ svg {
   transform: translateY(-2px);
 }
 .button.primary {
-  background: linear-gradient(180deg, #c4b2ff, #aa91ec);
-  color: #1b132e;
+  background: linear-gradient(
+    180deg,
+    var(--brand-action-top),
+    var(--brand-action-bottom)
+  );
+  color: var(--brand-ink);
   box-shadow:
     inset 0 1px 0 #fff8,
     0 0 24px #9a71ee20;
@@ -2388,4 +2392,18 @@ svg {
   .guide-cta .button-free {
     display: none;
   }
+}
+
+:root {
+  --brand-light: #c7b7ff;
+  --brand-deep: #7960ce;
+  --brand-action-top: #c4b2ff;
+  --brand-action-bottom: #aa91ec;
+  --brand-ink: #1b132e;
+}
+.download-button {
+  white-space: nowrap;
+}
+.download-button.small {
+  border-radius: 9px;
 }

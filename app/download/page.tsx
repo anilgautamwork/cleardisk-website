@@ -3,7 +3,7 @@ import { Header, Footer, Mark } from '@/components/brand';
 import { ArrowDownToLine, Apple, ShieldCheck, HardDrive } from 'lucide-react';
 export const metadata = pageMetadata(
   'Download ClearDisk for Mac — Free preview',
-  'Download the free ClearDisk 0.1.0 preview for macOS 15+. Universal Apple silicon and Intel app. Explore local storage before cleanup.',
+  'Download the free ClearDisk 0.1.1 preview for macOS 15+. Universal Apple silicon and Intel app. Explore local storage before cleanup.',
   '/download',
 );
 export default function Download() {
@@ -37,7 +37,7 @@ export default function Download() {
           <ArrowDownToLine size={18} />
           Download free preview
         </a>
-        <small>ClearDisk 0.1.0 · DMG · 1.8 MB</small>
+        <small>ClearDisk 0.1.1 · DMG · 2.8 MB</small>
         <div className="notice">
           <strong>You’re getting the preview release.</strong>
           <p>

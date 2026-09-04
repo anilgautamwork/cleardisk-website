@@ -35,7 +35,7 @@ const faqs = [
   ],
   [
     'Is scanning really free?',
-    'Yes. Explore your storage, inspect the System Data breakdown and find your biggest files for free. The planned 1.0 cleanup license is $10 once. The currently available download is our 0.1.0 preview release.',
+    'Yes. Explore your storage, inspect the System Data breakdown and find your biggest files for free. The planned 1.0 cleanup license is $10 once. The currently available download is our 0.1.1 preview release.',
   ],
   [
     'Is this another subscription?',
