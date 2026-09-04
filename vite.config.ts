@@ -8,6 +8,7 @@ const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
   '00000000-0000-4000-8000-000000000000';
 
 const { d1, r2 } = hostingConfig;
+const personalCloudflare = process.env.DEPLOY_TARGET === 'cloudflare';
 
 // macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === 'seatbelt';
@@ -56,10 +57,21 @@ export default defineConfig(async () => {
       : undefined,
     plugins: [
       vinext(),
-      sites(),
+      ...(personalCloudflare ? [] : [sites()]),
       cloudflare({
         viteEnvironment: { name: 'rsc', childEnvironments: ['ssr'] },
-        config: localBindingConfig,
+        config: personalCloudflare
+          ? {
+              ...localBindingConfig,
+              name: 'cleardisk-website',
+              account_id: '449c51af2c638c0c3c88493d6175228b',
+              compatibility_date: '2026-05-22',
+              workers_dev: false,
+              preview_urls: false,
+              routes: [{ pattern: 'cleardisk.app', custom_domain: true }],
+              vars: { SITE_ORIGIN: 'https://cleardisk.app' },
+            }
+          : localBindingConfig,
       }),
     ],
   };

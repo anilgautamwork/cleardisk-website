@@ -36,7 +36,7 @@ const faqs = [
   ],
   [
     'Is scanning really free?',
-    'Yes. Explore your storage, inspect the System Data breakdown and find your biggest files for free. The planned 1.0 cleanup license is $10 once. The currently available download is our 0.1.3 preview release.',
+    'Yes. Explore your storage, inspect the System Data breakdown and find your biggest files for free. The planned 1.0 cleanup license is $10 once. The currently available download is our 0.1.4 preview release.',
   ],
   [
     'Is this another subscription?',
@@ -75,6 +75,9 @@ export default function Home() {
                 </p>
                 <div className="hero-ctas">
                   <DownloadButton />
+                  <Link className="button quiet" href="/buy-now">
+                    Buy for $10 <ArrowUpRight size={16} />
+                  </Link>
                   <a className="button quiet" href="#demo">
                     <Play size={14} /> Explore the app
                   </a>

@@ -31,7 +31,10 @@ export function Header() {
         <Link href="/#pricing">Pricing</Link>
         <Link href="/#faq">FAQs</Link>
       </nav>
-      <DownloadButton compact />
+      <div className="header-actions">
+        <Link className="buy-link" href="/buy-now">Buy for $10</Link>
+        <DownloadButton compact />
+      </div>
     </header>
   );
 }

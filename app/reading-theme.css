@@ -859,3 +859,12 @@ a:focus-visible {
     font-size: 11px;
   }
 }
+
+.header-actions { display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
+.buy-link { color: var(--brand, #6845bd); font-size: 14px; font-weight: 600; white-space: nowrap; }
+.buy-link:hover { text-decoration: underline; }
+@media (max-width: 600px) {
+  .header-actions { gap: 10px; }
+  .header-actions .download-button { font-size: 12px; padding: 10px 12px; }
+  .buy-link { font-size: 12px; }
+}
