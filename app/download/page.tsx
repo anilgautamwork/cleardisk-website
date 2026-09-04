@@ -1,6 +1,11 @@
+import { pageMetadata } from '@/lib/seo';
 import { Header, Footer, Mark } from '@/components/brand';
 import { ArrowDownToLine, Apple, ShieldCheck, HardDrive } from 'lucide-react';
-export const metadata = { title: 'Download ClearDisk for Mac — Free preview' };
+export const metadata = pageMetadata(
+  'Download ClearDisk for Mac — Free preview',
+  'Download the free ClearDisk 0.1.0 preview for macOS 15+. Universal Apple silicon and Intel app. Explore local storage before cleanup.',
+  '/download',
+);
 export default function Download() {
   return (
     <>

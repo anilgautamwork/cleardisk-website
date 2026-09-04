@@ -1,9 +1,11 @@
+import { pageMetadata } from '@/lib/seo';
 import { Header, Footer, DownloadButton } from '@/components/brand';
 import { PaymentResult } from '@/components/payment-result';
-export const metadata = {
-  title: 'ClearDisk — Test checkout status',
-  robots: { index: false, follow: false },
-};
+export const metadata = pageMetadata(
+  'ClearDisk — Test checkout status',
+  'Check a ClearDisk test checkout result. No active license is issued by this preview.',
+  '/thanks',
+);
 export default async function Thanks({
   searchParams,
 }: {

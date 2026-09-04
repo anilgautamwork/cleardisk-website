@@ -1,11 +1,13 @@
+import { pageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import { Header, Footer, Mark } from '@/components/brand';
 import { CheckoutButton } from '@/components/checkout-button';
 import { Check, ShieldCheck } from 'lucide-react';
-export const metadata = {
-  title: 'Get ClearDisk — $10 once',
-  robots: { index: false, follow: false },
-};
+export const metadata = pageMetadata(
+  'Get ClearDisk — $10 once',
+  'Preview the planned $10 one-time ClearDisk checkout. This is test mode; live licenses are not yet available.',
+  '/buy-now',
+);
 export default function Buy() {
   return (
     <>

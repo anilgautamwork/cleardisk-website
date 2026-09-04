@@ -1,22 +1,20 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
+import { pageMetadata, SITE_URL } from '@/lib/seo';
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
 });
 export const metadata: Metadata = {
-  title: 'ClearDisk — More space. More possibilities.',
-  description:
-    'Find what’s filling your Mac. Explore System Data, discover large files, and clear clutter with confidence. Free scanning. $10 one-time cleanup license.',
+  ...pageMetadata(
+    'ClearDisk — Clear System Data on Mac',
+    'Find what is filling your Mac with ClearDisk. Free local scanning, clear storage breakdowns and a planned $10 one-time cleanup license.',
+    '/',
+  ),
+  metadataBase: new URL(SITE_URL),
   icons: { icon: '/icon.svg' },
-  openGraph: {
-    title: 'ClearDisk — Make room for what matters',
-    description:
-      'A clearer picture of your Mac. Free scanning, thoughtful cleanup, no subscription.',
-    type: 'website',
-  },
 };
 export default function RootLayout({
   children,

@@ -1,5 +1,10 @@
+import { pageMetadata } from '@/lib/seo';
 import { Header, Footer } from '@/components/brand';
-export const metadata = { title: 'Privacy — ClearDisk' };
+export const metadata = pageMetadata(
+  'Privacy — ClearDisk',
+  'How ClearDisk handles local scans, website requests and planned license activation data.',
+  '/privacy',
+);
 export default function Privacy() {
   return (
     <>

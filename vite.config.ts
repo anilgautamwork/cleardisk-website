@@ -45,6 +45,11 @@ export default defineConfig(async () => {
   const { cloudflare } = await import('@cloudflare/vite-plugin');
 
   return {
+    define: {
+      'process.env.SITE_INDEXABLE': JSON.stringify(
+        process.env.SITE_INDEXABLE ?? 'false',
+      ),
+    },
     css: { postcss: { plugins: [tailwindcss()] } },
     server: isCodexSeatbeltSandbox
       ? { watch: { useFsEvents: false, usePolling: true } }

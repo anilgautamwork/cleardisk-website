@@ -1,5 +1,10 @@
+import { pageMetadata } from '@/lib/seo';
 import { Header, Footer } from '@/components/brand';
-export const metadata = { title: 'Terms & refunds — ClearDisk' };
+export const metadata = pageMetadata(
+  'Terms & refunds — ClearDisk',
+  'ClearDisk preview terms, planned $10 license details and the 30-day refund policy at launch.',
+  '/terms',
+);
 export default function Terms() {
   return (
     <>
