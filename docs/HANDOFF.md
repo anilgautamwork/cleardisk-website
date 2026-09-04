@@ -8,13 +8,13 @@ Node 22.13+, `npm install`, `npm run dev`. `npm test`, `npm run typecheck`, `npm
 
 ## What works
 
-Responsive landing page, ThreeUI Emerald Horizon shader, interactive storage demonstration, accessible checkbox/tabs/confirmation/FAQ controls, verified 0.1.1 preview DMG download, hosted Stripe test checkout and server-verified return page. No real cards or real charges. The payment API fixes $10 USD on the server and rejects live keys until fulfillment exists.
+Responsive landing page, ThreeUI Emerald Horizon shader, interactive storage demonstration, accessible checkbox/tabs/confirmation/FAQ controls, verified 0.1.3 preview DMG download, hosted Stripe test checkout and server-verified return page. No real cards or real charges. The payment API fixes $10 USD on the server and rejects live keys until fulfillment exists.
 
 ## Before accepting live purchases
 
 Integrate Claude's `web/` license worker from the approved production spec. It owns Stripe webhook verification, idempotent license issuance, signed activation receipts, email delivery and refunds/revocation. Replace this website's test-only checkout and thanks handlers with that production flow; keep `/buy-now`, `/thanks`, `/download`, `/privacy`, `/terms` stable. Connect `/recover` only after the backend is available. Do not just switch to a live secret: existing code intentionally fails closed for live keys.
 
-Replace public/ClearDisk.dmg with the signed and notarized 1.0 binary and update version/size/release wording. Current download is the notarized 0.1.1 preview, build 2, universal binary (2,787,215 bytes). Confirm support inbox delivery, real refund terms, final domain, and purchase → license → activation → refund end to end. The app is still being built separately.
+Replace public/ClearDisk.dmg with the signed and notarized 1.0 binary and update version/size/release wording. Current download is the notarized 0.1.3 preview, build 4, universal binary (2,999,122 bytes). Confirm support inbox delivery, real refund terms, final domain, and purchase → license → activation → refund end to end. The app is still being built separately.
 
 ## Visual attribution
 
@@ -51,3 +51,16 @@ Independent review found no blockers. Fixed two minor observations: date rendere
 Header and hero now share the lavender Download ClearDisk component, icon and label. Favicon and native app use the same violet C/sparkle identity; see BRANDING.md. Native light-mode controls use the accessible violet accent. The app sidebar now describes the planned $10 license and explicitly states this preview has no activation.
 
 public/ClearDisk.dmg is the freshly built 0.1.1 (build 2) universal macOS 15+ preview, 2,787,215 bytes. App and DMG are Developer ID signed, notarized and stapled; Gatekeeper accepts the DMG. SHA-256: c018a7284dca81640d84d3c9af5809d166968a39009e133acaad956ec24c6396. This is a branding release, not the completed 1.0 product. Worker licensing, final removal workflow, dark mode, two-pass scan and live checkout remain pending.
+
+
+## Experience, reading and access refresh — 5 September 2026
+
+Current website direction supersedes the earlier dark landing page: Apple-inspired pale reading surfaces, native system typography, centered headline, larger guide text and consistent violet download pills. Dark example storage surfaces remain. Read DESIGN.md and BRANDING.md. The user-supplied plugin87/ux-ui-agent-skills Apple reference and typography guidance were used; Raycast and UI UX Pro Max informed the preceding native/product refresh. No MyFonts tool was callable, so no paid font was downloaded. System fonts replace Geist downloads. Background shader is no longer mounted; source/license retained. Labelled scan illustration, one-time entrance animations and reduced-motion behavior remain.
+
+public/ClearDisk.dmg is 0.1.3 (build 4), universal arm64/x86_64, macOS15+, 2,999,122 bytes; SHA-256 bf00af0bb97d883be8f4cd9968e5c0634ac2b91176384734853fb866afc4b875. App and DMG signed with Developer ID, notarized, stapled and Gatekeeper accepted. Native code through edf4f0a plus Scripts/Info.plist version bump. New native graphite interface, honest scan stages and treemap loading/cancellation are included. Main CTA Scan my disk routes to inline Full Disk Access setup before root scanning; no automatic scan on settings return. Conservative permission detection cannot guarantee all macOS/iCloud prompts disappear. Installation instructions match this flow.
+
+Native25 tests pass and debug/universal builds pass; isolated native UI checked welcome, unconfirmed access, Check access and Back without altering OS permissions. Earlier experience QA completed a real home scan and treemap drill/back. Static website review found no blocker and fixed mobile CTA typography specificity. Root handover records final web build/HTTP and deployment evidence. Browser UI QA was not requested.
+
+Talivia explicitly paused until after launch; no tracker/service added. Design plugins Product Design, Frontend Design Premium and Figma installed and enabled; Figma account access not exercised. UI UX Pro Max and Frontend Design local skills also installed.
+
+Private site remains owner-only and noindex. All five SEO guides and test-only checkout retained. Full1.0 licensing, final removal flow, two-pass scan, appearance preferences and public/live launch remain separate handover work.

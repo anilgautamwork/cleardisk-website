@@ -13,7 +13,7 @@ export default function Terms() {
         <span className="eyebrow">SIMPLE AND UP FRONT</span>
         <h1>Terms & refunds.</h1>
         <p>
-          The download currently available is ClearDisk 0.1.1, a preview
+          The download currently available is ClearDisk 0.1.3, a preview
           release. Checkout on this website is a test and does not charge money
           or grant a paid license.
         </p>

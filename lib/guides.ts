@@ -66,7 +66,7 @@ export const guides: Guide[] = [
         title: '3. Remove a small, understood selection',
         paragraphs: [
           'Close the app that owns the files before cleanup. Review the selected paths, keep a backup of anything irreplaceable, and begin with items you know you can replace or no longer need.',
-          'ClearDisk uses Trash-first removal by default and asks for confirmation. This gives you a chance to review the outcome before permanent deletion. The current downloadable app is a 0.1.1 preview; the planned 1.0 cleanup license costs $10 once.',
+          'ClearDisk uses Trash-first removal by default and asks for confirmation. This gives you a chance to review the outcome before permanent deletion. The current downloadable app is a 0.1.3 preview; the planned 1.0 cleanup license costs $10 once.',
         ],
       },
       {

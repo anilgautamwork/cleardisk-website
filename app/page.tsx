@@ -16,8 +16,9 @@ import {
   Apple,
 } from 'lucide-react';
 import { Header, Footer, DownloadButton, Mark } from '@/components/brand';
+import { StoragePreview } from '@/components/storage-preview';
+import { PageMotion } from '@/components/motion';
 import { ProductDemo } from '@/components/product-demo';
-import { Horizon } from '@/components/threeui/horizon';
 import {
   Accordion,
   AccordionItem,
@@ -35,7 +36,7 @@ const faqs = [
   ],
   [
     'Is scanning really free?',
-    'Yes. Explore your storage, inspect the System Data breakdown and find your biggest files for free. The planned 1.0 cleanup license is $10 once. The currently available download is our 0.1.1 preview release.',
+    'Yes. Explore your storage, inspect the System Data breakdown and find your biggest files for free. The planned 1.0 cleanup license is $10 once. The currently available download is our 0.1.3 preview release.',
   ],
   [
     'Is this another subscription?',
@@ -54,45 +55,56 @@ export default function Home() {
   return (
     <>
       <Header />
+      <PageMotion />
       <main id="main-content" tabIndex={-1}>
         <section className="hero">
-          <div className="hero-atmosphere">
-            <Horizon />
-            <div className="orbit orbit-one" />
-            <div className="orbit orbit-two" />
-          </div>
           <div className="hero-content wrap">
-            <Link className="eyebrow-pill" href="/download">
-              <span className="live-dot" /> A lighter Mac starts here{' '}
-              <ChevronRight size={13} />
-            </Link>
-            <h1>
-              Clear System Data
-              <br />
-              <span>on Mac.</span>
-            </h1>
-            <p className="hero-description">
-              See what’s filling your Mac. Understand what to keep,
-              <br className="desktop-break" /> clear the clutter, and get back
-              to what you love.
-            </p>
-            <div className="hero-ctas">
-              <DownloadButton />
-              <a className="button quiet" href="#demo">
-                <span className="play-circle">
-                  <Play size={11} fill="currentColor" />
-                </span>
-                See it in action
-              </a>
+            <div className="hero-intro">
+              <div className="hero-copy" data-reveal>
+                <Link className="eyebrow-pill" href="/download">
+                  Built for your Mac <ChevronRight size={13} />
+                </Link>
+                <h1>
+                  Clear System Data.
+                  <br />
+                  <span>Make room for more.</span>
+                </h1>
+                <p className="hero-description">
+                  See what’s taking up space on your Mac. Understand your System
+                  Data. Choose what stays and make room for what’s next.
+                </p>
+                <div className="hero-ctas">
+                  <DownloadButton />
+                  <a className="button quiet" href="#demo">
+                    <Play size={14} /> Explore the app
+                  </a>
+                </div>
+                <div className="hero-details">
+                  <span>
+                    <Apple size={13} /> macOS 15+
+                  </span>
+                  <i />
+                  <span>Free to scan</span>
+                  <i />
+                  <span>Yours for $10 at launch</span>
+                </div>
+                <div className="hero-reassurance">
+                  <ShieldCheck size={16} />
+                  <span>Local by design. Your files stay on your Mac.</span>
+                </div>
+              </div>
+              <StoragePreview />
             </div>
-            <div className="hero-details">
-              <span>
-                <Apple size={13} /> macOS 15+
-              </span>
-              <i />
-              <span>Free to scan</span>
-              <i />
-              <span>$10 once at launch</span>
+            <div className="demo-intro" data-reveal>
+              <div>
+                <span className="eyebrow">A CLEARER VIEW</span>
+                <h2>Your storage. Without the mystery.</h2>
+              </div>
+              <p>
+                Try the interactive preview below.
+                <br />
+                Every choice stays in your hands.
+              </p>
             </div>
             <ProductDemo />
           </div>

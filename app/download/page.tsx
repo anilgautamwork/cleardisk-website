@@ -3,7 +3,7 @@ import { Header, Footer, Mark } from '@/components/brand';
 import { ArrowDownToLine, Apple, ShieldCheck, HardDrive } from 'lucide-react';
 export const metadata = pageMetadata(
   'Download ClearDisk for Mac — Free preview',
-  'Download the free ClearDisk 0.1.1 preview for macOS 15+. Universal Apple silicon and Intel app. Explore local storage before cleanup.',
+  'Download the free ClearDisk 0.1.3 preview for macOS 15+. Universal Apple silicon and Intel app. Explore local storage before cleanup.',
   '/download',
 );
 export default function Download() {
@@ -37,7 +37,7 @@ export default function Download() {
           <ArrowDownToLine size={18} />
           Download free preview
         </a>
-        <small>ClearDisk 0.1.1 · DMG · 2.8 MB</small>
+        <small>ClearDisk 0.1.3 · DMG · 3.0 MB</small>
         <div className="notice">
           <strong>You’re getting the preview release.</strong>
           <p>
@@ -51,8 +51,8 @@ export default function Download() {
           <li>Open the downloaded ClearDisk.dmg.</li>
           <li>Drag ClearDisk into your Applications folder.</li>
           <li>
-            Open ClearDisk, grant Full Disk Access when prompted, and scan your
-            home folder.
+            Open ClearDisk and choose “Scan my disk.” Enable Full Disk Access in
+            System Settings, then return to ClearDisk to start the scan.
           </li>
         </ol>
         <p>

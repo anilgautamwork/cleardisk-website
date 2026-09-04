@@ -75,7 +75,7 @@ export function ProductDemo() {
     .reduce((s, r) => s + r.size, 0);
   return (
     <div className="demo-stage" id="demo">
-      <div className="app-window">
+      <div className="app-window dark">
         <div className="window-bar">
           <span className="traffic">
             <i />
