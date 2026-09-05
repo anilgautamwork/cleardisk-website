@@ -1,6 +1,8 @@
 export type CheckoutEnvironment = {
   STRIPE_SECRET_KEY?: string;
   STRIPE_PRICE_ID?: string;
+  /** Present → Stripe's embedded form on /buy-now; absent → hosted redirect. */
+  STRIPE_PUBLISHABLE_KEY?: string;
   SITE_ORIGIN?: string;
 };
 // Every session this site creates carries this marker so other integrations
@@ -58,6 +60,10 @@ export async function startCheckout(
   }
   if (request.headers.get('origin') !== origin)
     return json({ error: 'Request origin not allowed.' }, 403);
+  // Embedded Checkout needs a publishable key of the same mode as the secret.
+  const publishable = secret(env.STRIPE_PUBLISHABLE_KEY);
+  const embedded = publishable.startsWith(`pk_${mode}_`);
+  const thanks = origin + '/thanks?session_id={CHECKOUT_SESSION_ID}';
   const form = new URLSearchParams({
     mode: 'payment',
     'line_items[0][price]': price,
@@ -70,8 +76,9 @@ export async function startCheckout(
     'payment_intent_data[statement_descriptor_suffix]': 'CLEARDISK',
     'payment_intent_data[metadata][product]': PRODUCT,
     'metadata[product]': PRODUCT,
-    success_url: origin + '/thanks?session_id={CHECKOUT_SESSION_ID}',
-    cancel_url: origin + '/buy-now?canceled=1',
+    ...(embedded
+      ? { ui_mode: 'embedded', return_url: thanks }
+      : { success_url: thanks, cancel_url: origin + '/buy-now?canceled=1' }),
   });
   try {
     const response = await requestFetch(
@@ -93,10 +100,22 @@ export async function startCheckout(
         502,
       );
     const session = (await response.json()) as {
-      url?: string;
+      url?: string | null;
+      client_secret?: string | null;
       livemode?: boolean;
     };
-    if (!session.url || session.livemode !== (mode === 'live'))
+    if (session.livemode !== (mode === 'live'))
+      return json({ error: 'Checkout could not be verified.' }, 502);
+    if (embedded) {
+      if (!session.client_secret?.startsWith(`cs_${mode}_`))
+        return json({ error: 'Checkout could not be verified.' }, 502);
+      return json({
+        clientSecret: session.client_secret,
+        publishableKey: publishable,
+        mode,
+      });
+    }
+    if (!session.url)
       return json({ error: 'Checkout could not be verified.' }, 502);
     const url = new URL(session.url);
     if (url.origin !== 'https://checkout.stripe.com')

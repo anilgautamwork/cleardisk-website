@@ -3022,3 +3022,12 @@ svg {
     display: none;
   }
 }
+.embedded-checkout {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  width: 100%;
+}
+.embedded-checkout > div:first-child {
+  min-height: 480px;
+}

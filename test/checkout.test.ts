@@ -47,6 +47,44 @@ void test('checkout sells the configured price with the fields an Indian seller 
     mode: 'test',
   });
 });
+void test('a publishable key of the same mode switches to embedded checkout', async () => {
+  const embeddedEnv = { ...env, STRIPE_PUBLISHABLE_KEY: 'pk_test_pub' };
+  const res = await startCheckout(request(), embeddedEnv, async (_, init) => {
+    const body = new URLSearchParams(init?.body as URLSearchParams);
+    assert.equal(body.get('ui_mode'), 'embedded');
+    assert.equal(
+      body.get('return_url'),
+      origin + '/thanks?session_id={CHECKOUT_SESSION_ID}',
+    );
+    assert.equal(body.get('success_url'), null);
+    assert.equal(body.get('cancel_url'), null);
+    return Response.json({
+      client_secret: 'cs_test_abc_secret_xyz',
+      url: null,
+      livemode: false,
+    });
+  });
+  assert.deepEqual(await res.json(), {
+    clientSecret: 'cs_test_abc_secret_xyz',
+    publishableKey: 'pk_test_pub',
+    mode: 'test',
+  });
+  const missing = await startCheckout(request(), embeddedEnv, async () =>
+    Response.json({ url: null, livemode: false }),
+  );
+  assert.equal(missing.status, 502);
+  const wrongMode = await startCheckout(
+    request(),
+    { ...env, STRIPE_PUBLISHABLE_KEY: 'pk_live_pub' },
+    async (_, init) => {
+      const body = new URLSearchParams(init?.body as URLSearchParams);
+      assert.equal(body.get('ui_mode'), null, 'falls back to hosted');
+      assert.ok(body.get('success_url'));
+      return session({ livemode: false });
+    },
+  );
+  assert.equal(wrongMode.status, 200);
+});
 void test('live keys open live sessions and a test session can never pass as live', async () => {
   const live = { ...env, STRIPE_SECRET_KEY: 'rk_live_example' };
   const ok = await startCheckout(request(), live, async () =>
