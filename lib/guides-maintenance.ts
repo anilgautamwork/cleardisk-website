@@ -226,10 +226,10 @@ export const maintenanceGuides: Guide[] = [
       },
     ],
     related: [
+      'best-free-mac-cleaner',
       'find-large-files-on-mac',
       'what-is-system-data-on-mac',
       'clear-system-data-on-mac',
-      'free-up-space-on-mac',
     ],
     sources: [
       storage,
@@ -552,6 +552,237 @@ export const maintenanceGuides: Guide[] = [
       {
         label: 'Apple: available, free and purgeable space in Disk Utility',
         url: 'https://support.apple.com/en-tm/guide/disk-utility/dskutl1005/mac',
+      },
+    ],
+  },
+  {
+    slug: 'check-disk-space-mac-terminal',
+    title: 'Check disk space on Mac in Terminal: measure, then decide',
+    description:
+      'Terminal commands that only measure: df for the whole disk, du to size Library and hidden folders, sort to rank them, and what Terminal cannot see.',
+    summary:
+      'Terminal is the fastest way to size the folders Finder hides. Use df and du, which only read, then remove files through Finder and the Trash so you can put them back.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'open-terminal',
+        title: '1. Open Terminal and understand the two safe commands',
+        paragraphs: [
+          'Apple’s guide gives two routes: open Launchpad and type Terminal, or open the /Applications/Utilities folder in Finder and double-click Terminal. Everything below uses two commands that only read the disk. df reports how full a volume is; du adds up the size of a folder. Neither changes a file.',
+          'Prefix nothing with sudo and do not paste commands that start with rm. This guide deliberately contains no deletion command, because the point of measuring in Terminal is to know what to remove in Finder, where the Trash gives you a way back.',
+        ],
+      },
+      {
+        id: 'size-the-whole-disk',
+        title: '2. Size the whole disk with df',
+        paragraphs: [
+          'Run df -h / and read the line for your startup volume: size, used, available and the percentage used. The available figure here is the free space; it does not include the purgeable space that Disk Utility and Storage settings fold into their available figure, which is why Terminal can show less room than System Settings does.',
+          'Write the used figure down. After any cleanup, run df -h / again; the difference is what you actually reclaimed, and it is the only number that settles arguments with a storage bar.',
+        ],
+      },
+      {
+        id: 'rank-library-folders',
+        title: '3. Rank the Library folders with du',
+        paragraphs: [
+          'Run du -sh ~/Library/* 2>/dev/null | sort -h to size every folder inside your user Library and list them smallest to largest; the last lines are the ones that matter. The 2>/dev/null part hides permission errors for folders macOS keeps private. To go one level deeper into a big one, repeat with its path, for example du -sh ~/Library/Caches/* 2>/dev/null | sort -h.',
+          'Expect Caches, Containers, Application Support, Developer, Mail and Messages near the bottom of the sorted list. The Library guide explains what each holds and which ones to leave alone; the numbers you have just produced tell you which of them to read about first.',
+        ],
+      },
+      {
+        id: 'find-hidden-home-folders',
+        title: '4. Find the hidden folders in your home folder',
+        paragraphs: [
+          'Developer tools keep caches in folders whose names start with a dot, which Finder hides. Run du -sh ~/.[!.]* 2>/dev/null | sort -h to size them. Typical entries are .npm, .cache, .cargo, .gradle and .docker, and on a developer Mac they can outweigh the Library.',
+          'For projects, du -sh ~/Projects/*/node_modules 2>/dev/null | sort -h, adjusted to your folder name, lists every node_modules by size in one command. The node_modules and package-cache guides cover what to do with them.',
+        ],
+      },
+      {
+        id: 'what-terminal-cannot-see',
+        title: '5. What Terminal cannot see, and where to go next',
+        paragraphs: [
+          'Terminal is limited by permissions like any app. Folders macOS protects return errors until you grant Terminal Full Disk Access under System Settings → Privacy & Security, and even then local snapshots, purgeable space and other volumes are not in a du total. If the folders you measured do not add up to the used figure from df, that gap is the explanation, not a hidden file.',
+          'Take the list to Finder: Go → Go to Folder with the path, review, move to the Trash, and empty it after the app has run again. A disk scanner produces the same list with allocated sizes and labels in one pass and adds a Reveal in Finder button, which is the step this guide does by hand. ClearDisk’s scan is free and runs locally; its cleanup is the same Trash-first move, from inside the app.',
+        ],
+      },
+    ],
+    related: [
+      'show-library-folder-mac',
+      'find-node-modules-folders-mac',
+      'clear-npm-cache-mac',
+      'purgeable-space-on-mac',
+    ],
+    sources: [
+      {
+        label: 'Apple: open or quit Terminal on Mac',
+        url: 'https://support.apple.com/guide/terminal/open-or-quit-terminal-apd5265185d-f365-44cb-8b09-71a064a42125/mac',
+      },
+      {
+        label: 'Apple: available, free and purgeable space in Disk Utility',
+        url: 'https://support.apple.com/en-tm/guide/disk-utility/dskutl1005/mac',
+      },
+      {
+        label: 'Apple: understand Storage settings',
+        url: 'https://support.apple.com/en-us/guide/mac-help/mchl3d437fbc/mac',
+      },
+    ],
+  },
+  {
+    slug: 'delete-macos-installer-mac',
+    title: 'Delete a macOS installer and leftover disk images on Mac',
+    description:
+      'Where the Install macOS app and old .dmg files hide, why an installer refuses to delete, when to keep one for a bootable drive, and how to get space back.',
+    summary:
+      'A full macOS installer is a multi-gigabyte app sitting in Applications after an upgrade, and every .dmg you ever opened is still in Downloads. Both are safe to remove once you know the rule for each.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'find-the-installers',
+        title: '1. Find the installers',
+        paragraphs: [
+          'Apple’s download page explains that a full installer from the App Store lands in your Applications folder as an app named Install macOS followed by the version name. Open Applications and sort by size; if it is there, it is usually the largest single item. Storage settings lists it under Applications too.',
+          'Disk images are the second source. Look in Downloads for .dmg, .pkg and .zip files. Each is a copy of an installer you already ran, and the app it installed lives in Applications, not inside the image.',
+        ],
+      },
+      {
+        id: 'delete-the-macos-installer',
+        title: '2. Delete the macOS installer',
+        paragraphs: [
+          'Once the upgrade has finished, drag Install macOS to the Trash. Apple provides every installer for download again, so keeping it is a bandwidth trade, not a safety one. The exception is a bootable installer: Apple’s guide for creating one requires the full installer in Applications, so keep it if you plan to make an installer drive for another Mac.',
+          'If macOS says the installer cannot be deleted because it is in use, the Installer app is still running or a volume it mounted is still attached. Quit Installer, eject anything it mounted from the Finder sidebar, and try again; if that fails, restart and delete it before opening anything else.',
+        ],
+      },
+      {
+        id: 'eject-then-delete-disk-images',
+        title: '3. Eject disk images, then delete them',
+        paragraphs: [
+          'A .dmg that is open appears as a volume in the Finder sidebar. Click the eject icon next to it first; a mounted image counts as in use and blocks deletion. Then move the .dmg in Downloads to the Trash. The installed app keeps working, because it was copied out of the image when you dragged it to Applications.',
+          'Package files (.pkg) work the same way: the installation is complete, and the package is a leftover. Keep only the ones a vendor asks you to keep, which is rare.',
+        ],
+      },
+      {
+        id: 'empty-the-trash',
+        title: '4. Empty the Trash and check',
+        paragraphs: [
+          'Apple’s storage guidance is explicit that a file’s space is not available until you empty the Trash. Empty it, then compare System Settings → General → Storage with the figure you started from. A single installer often returns more space than an afternoon in the Library.',
+          'When the Trash refuses, the Trash guide covers locked items, files in use and Delete Immediately.',
+        ],
+      },
+      {
+        id: 'keep-it-from-piling-up',
+        title: '5. Keep it from piling up',
+        paragraphs: [
+          'Two habits prevent the next pile. Use Software Update rather than a full installer for routine upgrades; Apple notes it can use less storage to download and install. And clear Downloads after each install, or set your browser to ask where to save so installers stop landing there by default.',
+          'A free local scan lists disk images and installer apps by allocated size wherever they ended up, including a second copy in a Desktop folder or an external drive. ClearDisk shows them, lets you reveal each in Finder, and moves what you choose to the Trash first.',
+        ],
+      },
+    ],
+    related: [
+      'not-enough-space-to-update-macos',
+      'free-up-space-on-mac',
+      'trash-wont-empty-mac',
+      'find-large-files-on-mac',
+    ],
+    sources: [
+      {
+        label: 'Apple: how to download and install macOS',
+        url: 'https://support.apple.com/en-us/102662',
+      },
+      {
+        label: 'Apple: create a bootable installer for macOS',
+        url: 'https://support.apple.com/en-us/101578',
+      },
+      {
+        label: 'Apple: free up storage space on Mac',
+        url: 'https://support.apple.com/en-us/102624',
+      },
+      {
+        label: 'Apple: delete files and folders on Mac',
+        url: 'https://support.apple.com/guide/mac-help/delete-files-and-folders-on-mac-mchlp1093/mac',
+      },
+    ],
+  },
+  {
+    slug: 'best-free-mac-cleaner',
+    title: 'Best free Mac cleaner: what macOS includes, then free apps',
+    description:
+      'The best free Mac cleaner is the one built in. What Storage settings does, which free apps cover the gaps according to their makers, and how to stay safe.',
+    summary:
+      'macOS ships with a storage manager, a large-file finder and a Trash with undo. Free apps add visual maps and app uninstalling. Pay only when you want in-app cleanup with a safety net.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'what-macos-already-includes',
+        title: 'What macOS already includes',
+        paragraphs: [
+          'Before installing anything, use the tools Apple documents in its storage guidance. System Settings → General → Storage shows the category bar with recommendations: Store in iCloud, Optimize Storage for TV downloads and email attachments, Empty Trash Automatically, and Reduce Clutter, which opens lists of large files, downloads and unsupported apps. Each category has its own information button for deleting device backups, apps and attachments.',
+          'Add Finder’s Get Info for sizes, the Trash with File → Put Back for undo, Disk Utility for the free-versus-purgeable distinction, and safe mode for a one-off cache clear before an update. For a Mac whose storage is mostly documents, photos and apps, this is the whole toolkit.',
+        ],
+      },
+      {
+        id: 'free-apps-by-job',
+        title: 'Free apps, by the job they do',
+        paragraphs: [
+          'These descriptions come from each maker’s own page as read on 6 September 2026. We make ClearDisk and have not tested the others side by side, so this is a map of what exists, not a ranking.',
+        ],
+        items: [
+          'OnyX (Titanium Software): a free multifunction maintenance utility that verifies system files, runs cleaning and maintenance tasks and uninstalls apps, with a separate build for each macOS version. Aimed at people who know which maintenance task they want.',
+          'GrandPerspective: a free, open-source tree map in which each file is a rectangle proportional to its size, so the biggest folders are visible at a glance. Files can be deleted from inside the app, so read a rectangle before clicking it.',
+          'OmniDiskSweeper (The Omni Group): a free list of your files from largest to smallest that lets you Trash or open them. The simplest way to find the ten biggest things on a disk.',
+          'AppCleaner (FreeMacSoft): a free uninstaller that finds the small files an app leaves around the system and deletes them with the app.',
+          'ClearDisk: free, unlimited local scanning with a System Data breakdown labelled Safe, Review or Leave it, a storage map, a largest-files list and Reveal in Finder. Cleanup from inside the app, Trash-first with undo, is a one-time license.',
+        ],
+      },
+      {
+        id: 'stay-safe',
+        title: 'How to stay safe with any cleaner',
+        paragraphs: [
+          'The category attracts bad actors. In January 2026, researchers documented sponsored search results for “mac cleaner” that led to malware. Download from the maker’s own site or the App Store, check that Gatekeeper accepts the app without a workaround, and be suspicious of any tool that promises a fixed amount of freed space, a faster Mac, or memory cleaning, none of which a file scanner can honestly guarantee.',
+          'Prefer tools that move files to the Trash rather than deleting immediately, that show you the path of every item before removal, and that tell you when they lacked permission to read a folder. A cleaner that silently skips protected locations produces a confident total that is wrong.',
+        ],
+      },
+      {
+        id: 'how-to-choose',
+        title: 'How to choose',
+        paragraphs: [
+          'Start free and specific. If Storage settings already explains your number, stop there. If System Data is large and unexplained, use a scanner that opens the Library and shows allocated sizes: GrandPerspective and OmniDiskSweeper for a picture, ClearDisk for the breakdown with labels. If old apps are the problem, an uninstaller does the job. If you want maintenance scripts, OnyX is built for that.',
+          'Pay only for the part you will use repeatedly. For most people that is either nothing, or a one-time license for in-app cleanup with a way back. Whatever you pick, the guides on this site work with Finder and Terminal alone, so the free path is always open.',
+        ],
+      },
+    ],
+    related: [
+      'disk-space-analyzer-mac',
+      'free-up-space-on-mac',
+      'what-is-system-data-on-mac',
+      'check-disk-space-mac-terminal',
+    ],
+    sources: [
+      {
+        label: 'Apple: free up storage space on Mac',
+        url: 'https://support.apple.com/en-us/102624',
+      },
+      {
+        label: 'Titanium Software: OnyX',
+        url: 'https://www.titanium-software.fr/en/onyx.html',
+      },
+      {
+        label: 'GrandPerspective',
+        url: 'https://grandperspectiv.sourceforge.net/',
+      },
+      {
+        label: 'The Omni Group: OmniDiskSweeper',
+        url: 'https://www.omnigroup.com/more',
+      },
+      {
+        label: 'FreeMacSoft: AppCleaner',
+        url: 'https://freemacsoft.net/appcleaner/',
+      },
+      {
+        label:
+          'AppleInsider: Mac malware in sponsored Google ads, January 2026',
+        url: 'https://appleinsider.com/articles/26/01/28/mac-malware-is-sneaking-into-some-sponsored-google-ads',
       },
     ],
   },

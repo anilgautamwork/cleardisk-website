@@ -93,6 +93,7 @@ const foundationGuides: Guide[] = [
       'what-is-system-data-on-mac',
       'system-data-keeps-growing',
       'mac-storage-full',
+      'check-disk-space-mac-terminal',
     ],
     sources: [storage, definition, snapshots],
   },
