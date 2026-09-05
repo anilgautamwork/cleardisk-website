@@ -2,6 +2,14 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 10 — 6 September 2026
+
+**Research.** "how to clear storage on mac" >1,000/month US and Easy, "clear storage on mac" >100: the free-up-space guide was retitled "How to clear storage on Mac: free up space step by step" rather than adding a near-duplicate page. "delete cache mac" >100 (covered by the cache guide); "move files to external hard drive mac", "iphone backup mac", "clean up mac" all <100 or empty; "external hard drive mac" is formatting intent, skipped. Google's `site:` count is still six URLs (home, hub, terms, privacy, two guides); none of tonight's pages has been picked up yet, which is normal within a day.
+
+**Shipped.** "Common questions" sections built from Google's People-also-ask boxes on the four biggest pages: what-is-system-data (clear it, is it safe, why so high, 100GB), clear-cache (is it safe, Safari, shortcut, system cache), uninstall-apps (why can't I delete, completely, force, Apple apps) and check-storage (free up, available, how many GB, still full after deleting). Retitle above. No new URLs; sitemap stays at 46.
+
+**Next candidates.** The volume-backed topic pool is thinning; future iterations should probe less and monitor more: re-check `site:` indexing, refresh dates only for real edits, and add pages only when a seed shows >100 and Easy.
+
 ## Iteration 9 — 6 September 2026
 
 **Research.** Ahrefs free tool, read through a compact page-script extractor to cut cost: "how to free up space on mac" >1,000 and Easy (already covered by `/free-up-space-on-mac`); "optimize storage mac" >100 Easy; "downloads folder mac" >100 Easy; "startup disk full mac", "macbook storage full" and "find large files mac" all <100; "disk utility mac" >1,000 but Medium and repair-intent, skipped. Apple's "Optimize storage space on your Mac" page confirmed the current Recommendations are Store in iCloud, Optimize Storage and Empty Trash Automatically; the older "Reduce Clutter" wording was removed from the free-tools guide accordingly.

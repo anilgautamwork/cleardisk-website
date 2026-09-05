@@ -148,6 +148,19 @@ const foundationGuides: Guide[] = [
           'The guides below separate three next steps: learning a cleanup workflow, diagnosing an unusually large total, and dealing with an urgent full-disk warning.',
         ],
       },
+      {
+        id: 'common-questions',
+        title: 'Common questions about System Data',
+        paragraphs: [
+          'The questions people ask alongside this one, answered briefly.',
+        ],
+        items: [
+          'How do I clear System Data on my Mac? Find the files behind the number first: caches, app containers, developer folders and device backups in your Library. The clear-System-Data guide gives the order; there is no single switch.',
+          'Is it okay to delete System Data on Mac? Some of it. Caches and old device backups can go; Application Support, Containers and anything macOS manages should stay. The category mixes both, which is why deleting by category is the wrong move.',
+          'Why is the System Data on my Mac so high? Usually one or two producers: a developer tool, a creative app’s caches, old iOS backups, or Mail and Messages attachments. The recurring-growth guide shows how to identify the producer.',
+          'How do I get rid of 100GB of System Data? Measure the Library and hidden folders, then remove the largest rebuildable items and backups you no longer need. The 100GB-or-more guide walks through it; expect the number to drop in steps, not all at once.',
+        ],
+      },
     ],
     related: [
       'clear-system-data-on-mac',

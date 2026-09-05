@@ -16,9 +16,9 @@ const trash = {
 export const maintenanceGuides: Guide[] = [
   {
     slug: 'free-up-space-on-mac',
-    title: 'How to free up space on Mac, step by step',
+    title: 'How to clear storage on Mac: free up space step by step',
     description:
-      'Free up space on Mac in a sensible order: check Storage settings, use Apple’s built-in recommendations, clear Downloads and Trash, then review large files.',
+      'Clear storage on Mac in a sensible order: check Storage settings, use Apple’s built-in recommendations, clear Downloads and Trash, then review large files.',
     summary:
       'Routine cleanup works best in order: measure first, use the controls macOS already offers, remove what you recognise, and only then investigate the categories you cannot explain.',
     published: '2026-09-05',
@@ -133,6 +133,19 @@ export const maintenanceGuides: Guide[] = [
           'Open the app once and confirm it behaves normally before you empty the Trash.',
           'Never edit the System folder or the top-level Library on a hunch; macOS protects them for a reason.',
           'Compare Storage settings before and after. If System Data climbs straight back, the guide on recurring growth explains how to find the app responsible.',
+        ],
+      },
+      {
+        id: 'common-questions',
+        title: 'Common questions about clearing the cache',
+        paragraphs: [
+          'The questions people ask alongside this one, answered briefly.',
+        ],
+        items: [
+          'Is it safe to delete caches on a Mac? Caches are rebuildable by definition, so removing one costs a slower first launch, not data. The risk is deleting the wrong folder next to it or clearing a cache while the app is running. Quit the app, clear only folders you can name, and use the Trash so you can put a folder back.',
+          'How do I clear the Safari cache? Apple’s route is Safari → Settings → Privacy → Manage Website Data → Remove All, which also removes cookies. To clear only the cache, enable the Develop menu under Safari’s Advanced settings and choose Develop → Empty Caches.',
+          'Is there a keyboard shortcut to clear cache and cookies? Not for cookies. With the Develop menu enabled, Option-Command-E empties Safari’s caches; website data and cookies are removed from the Privacy settings pane.',
+          'How do I clear the system cache? Not by hand. Apple’s supported route is starting up in safe mode, which clears certain system caches that macOS recreates as needed. User-level caches live in ~/Library/Caches and are covered above.',
         ],
       },
     ],
@@ -1035,6 +1048,19 @@ export const maintenanceGuides: Guide[] = [
           'A disk scanner does the same in one pass, with allocated sizes and a label for each folder. ClearDisk’s scan is free and local, shows the System Data folders Storage settings only totals, and lets you reveal any item in Finder before deciding what to do with it.',
         ],
       },
+      {
+        id: 'common-questions',
+        title: 'Common questions about Mac storage',
+        paragraphs: [
+          'The questions people ask alongside this one, answered briefly.',
+        ],
+        items: [
+          'How do I free up space on my Mac? Start with the clear-storage guide: empty the Trash, clear Downloads, use Apple’s recommendations, then review large files and System Data.',
+          'How do I check available storage? System Settings → General → Storage shows Available at the top of the bar; Disk Utility shows the same volume with free and purgeable space separated.',
+          'How many GB does my Mac have? Choose Apple menu → About This Mac and click More Info, then Storage, or open Disk Utility and select the startup volume; the capacity shown there is the full size of the disk.',
+          'Why is my Mac storage still full after deleting? Space returns only when the Trash is emptied, and Storage settings can lag; purgeable space and local snapshots can also hold the figure for a while. The storage-not-updating guide covers each case.',
+        ],
+      },
     ],
     related: [
       'what-is-system-data-on-mac',
@@ -1113,6 +1139,19 @@ export const maintenanceGuides: Guide[] = [
         paragraphs: [
           'Open System Settings → General → Login Items & Extensions and remove anything that belonged to the app; a leftover helper is the most common reason a deleted app still appears to run. Then empty the Trash and check System Settings → General → Storage.',
           'The Library guide explains those folders and which to leave alone. If you would rather not search by hand, the free-tools guide lists uninstallers that do this search for you, and ClearDisk’s free scan shows Application Support, Containers and Caches with allocated sizes so you can review a leftover before it goes to the Trash. Keep documents; only the app’s own data is the target.',
+        ],
+      },
+      {
+        id: 'common-questions',
+        title: 'Common questions about uninstalling',
+        paragraphs: [
+          'The questions people ask alongside this one, answered from Apple’s pages.',
+        ],
+        items: [
+          'Why can’t I delete an app on my Mac? Either it is part of macOS, which Apple says Finder cannot delete, or it is still running. Quit it, including any menu bar helper, and try again; Apple suggests restarting or safe mode if it stays in use.',
+          'How do I completely uninstall an app? Run the maker’s uninstaller if there is one, otherwise move the app to the Trash, then remove its leftovers in Application Support, Containers and Caches and any login item, as described above.',
+          'How do I force uninstall an app on macOS? There is no force option in Finder, and Terminal commands only remove the app bundle. Quit the app, remove its login items, restart if needed, then delete it normally. If the maker ships an uninstaller, that is the force option.',
+          'Can I uninstall Apple apps on Mac? Apps installed with macOS such as Mail, Music, Books and Notes cannot be deleted with Finder. Apple apps you got from the App Store, such as Pages or Keynote, can be removed like any other app.',
         ],
       },
     ],
