@@ -2,6 +2,14 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 8 — 6 September 2026
+
+**Research.** More head terms from Ahrefs' free tool: "how to clear cache on mac" >10,000/month US and Easy, "clear cache on mac" >1,000 (already covered by `/clear-cache-on-mac` and `/clear-browser-cache-mac`; extra inbound links added); "show hidden files mac" >1,000 and Easy with a long tail of Finder, Terminal and shortcut variants (no page existed); "empty trash mac" and "force empty trash mac" >100 (covered by the Trash guide); "how to delete files on mac" >100. Apple's shortcut list documents Shift-Command-G, Command-Delete and the Empty Trash shortcuts but not the Shift-Command-Period toggle, so the hidden-files guide says so plainly.
+
+**Shipped.** `/show-hidden-files-mac` (Finder toggle, Go to Folder, Terminal listing, which hidden folders hold space) and `/delete-files-on-mac` (Command-Delete, Put Back, Delete Immediately, 30-day auto-empty, what will not delete, deleting to free space). Related links from check-storage, Trash, Library and Terminal guides. Library: 40 guides, sitemap 44 URLs.
+
+**Next candidates.** Probe "macbook storage", "startup disk full", "purgeable", "other storage" phrasing for titles; consider whether `/clear-cache-on-mac` deserves a home-page link given its volume; second pass on hub copy.
+
 ## Iteration 7 — 6 September 2026
 
 **Research.** The two largest phrases found so far, both rated Easy by Ahrefs' free tool: "how to uninstall apps on mac" and "uninstall apps on mac" (>10,000/month US each) and "how to check storage on mac" (>1,000). "what is taking up space on my mac" and its many variants are each <100. Sources: Apple's "Delete or uninstall apps on Mac", the internet/disc install guide (vendor uninstallers), the App Store guide, and the Storage settings guide.

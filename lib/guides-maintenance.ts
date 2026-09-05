@@ -467,6 +467,7 @@ export const maintenanceGuides: Guide[] = [
     ],
     related: [
       'what-is-system-data-on-mac',
+      'show-hidden-files-mac',
       'clear-system-data-on-mac',
       'clear-cache-on-mac',
       'uninstall-apps-on-mac',
@@ -538,6 +539,7 @@ export const maintenanceGuides: Guide[] = [
       },
     ],
     related: [
+      'delete-files-on-mac',
       'mac-storage-not-updating-after-deleting-files',
       'purgeable-space-on-mac',
       'time-machine-snapshots',
@@ -620,6 +622,7 @@ export const maintenanceGuides: Guide[] = [
     ],
     related: [
       'show-library-folder-mac',
+      'show-hidden-files-mac',
       'find-node-modules-folders-mac',
       'clear-npm-cache-mac',
       'best-free-mac-cleaner',
@@ -1038,6 +1041,7 @@ export const maintenanceGuides: Guide[] = [
       'find-large-files-on-mac',
       'check-disk-space-mac-terminal',
       'free-up-space-on-mac',
+      'clear-cache-on-mac',
       'purgeable-space-on-mac',
     ],
     sources: [
@@ -1132,6 +1136,153 @@ export const maintenanceGuides: Guide[] = [
         label:
           'Apple: install and uninstall purchases from the App Store on Mac',
         url: 'https://support.apple.com/guide/app-store/install-and-uninstall-purchased-apps-fir0fb69db23/mac',
+      },
+      {
+        label: 'Apple: free up storage space on Mac',
+        url: 'https://support.apple.com/en-us/102624',
+      },
+    ],
+  },
+  {
+    slug: 'show-hidden-files-mac',
+    title: 'How to show hidden files on Mac, and which ones hold space',
+    description:
+      'Show hidden files on Mac with the Finder toggle, Go to Folder or Terminal, why dot folders and Library are hidden, and see which of them hold the space.',
+    summary:
+      'Finder hides dot folders and the Library to keep app data out of the way, not because it is small. Three routes reveal them; a scanner shows which ones are worth opening.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'toggle-hidden-files-in-finder',
+        title: '1. Toggle hidden files in Finder',
+        paragraphs: [
+          'In any Finder window, press Shift-Command-Period. Hidden files and folders appear greyed out; press the same keys again to hide them. Apple’s published shortcut list does not include this toggle, but it has been part of Finder since macOS Sierra and works in every current version, including in Open and Save dialogs.',
+          'What appears are items whose names begin with a dot, such as .DS_Store files in every folder and, in your home folder, developer folders like .npm, .cache, .docker and .gradle. The dot files scattered through documents are tiny; the dot folders in your home folder are the ones that can hold gigabytes.',
+        ],
+      },
+      {
+        id: 'open-a-hidden-folder-directly',
+        title: '2. Open a hidden folder directly',
+        paragraphs: [
+          'When you know the path, Apple’s Finder guide gives the direct route: choose Go → Go to Folder, or press Shift-Command-G, and type the path. A tilde stands for your home folder, so ~/Library opens your user Library and ~/.npm opens npm’s cache. Press Tab to accept a suggested path and Return to open it.',
+          'The Library folder is hidden by a different rule than dot folders: it has no dot but Finder hides it anyway. Holding Option while opening the Go menu adds a Library item, and the Library guide covers what is inside and what to leave alone.',
+        ],
+      },
+      {
+        id: 'list-hidden-items-in-terminal',
+        title: '3. List hidden items in Terminal',
+        paragraphs: [
+          'Terminal shows everything by default. ls -la ~ lists your home folder including dot items, and du -sh ~/.[!.]* 2>/dev/null | sort -h sizes each hidden folder and sorts them smallest to largest. Both commands only read. The Terminal guide covers the rest of the measuring commands.',
+        ],
+        code: ['ls -la ~', 'du -sh ~/.[!.]* 2>/dev/null | sort -h'],
+      },
+      {
+        id: 'which-hidden-folders-hold-space',
+        title: '4. Which hidden folders hold space',
+        paragraphs: [
+          'On most Macs the hidden folders that matter fall into three groups. Everything in this list is safe to measure; only some of it is safe to remove, and each group has its own guide.',
+        ],
+        items: [
+          'Package caches in your home folder: .npm, .cache (pip, pnpm, yarn and many tools), .cargo, .gradle, .m2. Rebuildable; each manager documents a command to clear it.',
+          'The user Library: Caches, Containers, Application Support, Developer, Mail and Messages. Review-only unless a guide says otherwise.',
+          '.docker and virtual machine folders: a single disk image can be tens of gigabytes and shrinks only through the app that owns it.',
+          '.Trash on each volume: the per-disk Trash. Empty it through Finder rather than deleting inside it.',
+        ],
+      },
+      {
+        id: 'hide-them-again',
+        title: '5. Hide them again, and measure before deleting',
+        paragraphs: [
+          'Press Shift-Command-Period again when you are done; a Finder full of greyed-out files makes ordinary work slower and accidental deletion easier. Nothing you reveal needs to stay revealed to be measured.',
+          'Measure before touching anything: Get Info on a folder, the Terminal commands above, or a disk scanner with Full Disk Access that lists hidden folders with allocated sizes and a label. ClearDisk’s free scan shows dot folders and the Library alongside everything else, and moves what you choose to the Trash first so you can put it back.',
+        ],
+      },
+    ],
+    related: [
+      'show-library-folder-mac',
+      'check-disk-space-mac-terminal',
+      'clear-npm-cache-mac',
+      'clean-docker-disk-space-mac',
+    ],
+    sources: [
+      {
+        label: 'Apple: go directly to a specific folder on Mac',
+        url: 'https://support.apple.com/guide/mac-help/mchlp1236/mac',
+      },
+      {
+        label: 'Apple: Mac keyboard shortcuts',
+        url: 'https://support.apple.com/en-us/102650',
+      },
+      {
+        label: 'Apple: understand Storage settings',
+        url: 'https://support.apple.com/en-us/guide/mac-help/mchl3d437fbc/mac',
+      },
+    ],
+  },
+  {
+    slug: 'delete-files-on-mac',
+    title: 'How to delete files on Mac and actually free the space',
+    description:
+      'Delete files on Mac the way Apple documents: Command-Delete, Put Back, Delete Immediately, 30-day auto-empty, and why space returns after emptying.',
+    summary:
+      'Deleting on a Mac is a two-step act: move to the Trash, then empty it. Everything between those steps is reversible, and the space comes back only at the end.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'move-to-the-trash',
+        title: '1. Move items to the Trash',
+        paragraphs: [
+          'Apple’s guide gives two equivalent moves: drag the item to the Trash in the Dock, or select it and press Command-Delete. Select several items with Command-click or Shift-click to delete them together. Apple’s shortcut list also includes Shift-Command-Delete to empty the Trash and Option-Shift-Command-Delete to empty it without the confirmation dialog.',
+          'Nothing has been removed yet. The file is in the Trash, still using its space, and can be returned. That is the point of the two-step design and the reason this guide does not start with a Terminal command.',
+        ],
+      },
+      {
+        id: 'put-back-anything-you-regret',
+        title: '2. Put back anything you regret',
+        paragraphs: [
+          'Open the Trash and drag an item out, or select it and choose File → Put Back, which returns it to the folder it came from. Apple documents both. Review the Trash before emptying when you have deleted in bulk; a single wrong item is easier to find now than after a restore from backup.',
+        ],
+      },
+      {
+        id: 'empty-the-trash-or-one-item',
+        title: '3. Empty the Trash, or delete one item immediately',
+        paragraphs: [
+          'Click Empty in the Trash window or choose Finder → Empty Trash. Apple’s storage guidance is explicit that a file’s space does not become available until you do this, which is why a Mac can feel just as full after an afternoon of deleting. For one item, Control-click it in the Trash and choose Delete Immediately; it goes without emptying everything else.',
+          'To make emptying automatic, open Finder → Settings → Advanced and select Remove items from the Trash after 30 days. Apple notes that items deleted from iCloud Drive are emptied after 30 days regardless of that setting.',
+        ],
+      },
+      {
+        id: 'files-that-will-not-delete',
+        title: '4. Files that will not delete',
+        paragraphs: [
+          'A locked file needs unlocking first: select it, press Command-I and clear the Locked checkbox. A file an app still has open needs the app quit. A file on an external drive goes into that drive’s own Trash, which empties only while the drive is connected. The Trash guide walks through each case and the permission prompts that come with them.',
+        ],
+      },
+      {
+        id: 'delete-to-free-space',
+        title: '5. Delete to free space, in the right order',
+        paragraphs: [
+          'When the goal is room rather than tidiness, delete by size. Storage settings lists large files and downloads under Documents; the large-files guide covers reviewing them, and the check-storage guide covers the categories. Empty the Trash after each round and compare the available figure.',
+          'Permanent deletion in the sense of overwriting is not offered by Finder; Apple removed Secure Empty Trash years ago because it is not meaningful on SSDs, and FileVault encryption is the supported protection. ClearDisk follows the same two-step pattern from inside the app: files you choose go to the Trash first, with undo, and permanent deletion is a separate, typed confirmation.',
+        ],
+      },
+    ],
+    related: [
+      'trash-wont-empty-mac',
+      'find-large-files-on-mac',
+      'how-to-check-storage-on-mac',
+      'mac-storage-not-updating-after-deleting-files',
+    ],
+    sources: [
+      {
+        label: 'Apple: delete files and folders on Mac',
+        url: 'https://support.apple.com/guide/mac-help/delete-files-and-folders-on-mac-mchlp1093/mac',
+      },
+      {
+        label: 'Apple: Mac keyboard shortcuts',
+        url: 'https://support.apple.com/en-us/102650',
       },
       {
         label: 'Apple: free up storage space on Mac',
