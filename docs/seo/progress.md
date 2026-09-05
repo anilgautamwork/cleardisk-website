@@ -2,6 +2,12 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 11 — 6 September 2026
+
+**Monitoring.** Google's `site:` result is unchanged at six URLs. Ahrefs probes: "application support folder mac" >100/month US and Easy (with "can i delete application support folder mac"), "where are iphone backups stored on mac" >100 and Easy, "macbook air storage" >100 but upgrade intent (skipped), "delete system storage mac" <100.
+
+**Shipped.** `/application-support-folder-mac` (what it holds, open and measure with a read-only du command, what grows, what is safe to delete after an app is gone, what never to delete), linked from the Library and uninstall guides. The iPhone-backups guide gained a common-questions section answering where backups live, how to delete one, whether they can be moved and how big they are, citing Apple's backup page. Library: 43 guides, sitemap 47 URLs.
+
 ## Iteration 10 — 6 September 2026
 
 **Research.** "how to clear storage on mac" >1,000/month US and Easy, "clear storage on mac" >100: the free-up-space guide was retitled "How to clear storage on Mac: free up space step by step" rather than adding a near-duplicate page. "delete cache mac" >100 (covered by the cache guide); "move files to external hard drive mac", "iphone backup mac", "clean up mac" all <100 or empty; "external hard drive mac" is formatting intent, skipped. Google's `site:` count is still six URLs (home, hub, terms, privacy, two guides); none of tonight's pages has been picked up yet, which is normal within a day.

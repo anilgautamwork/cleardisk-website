@@ -54,9 +54,10 @@ await test('all published problems have complete discoverable guides', () => {
     'delete-files-on-mac',
     'optimize-storage-mac',
     'clear-downloads-folder-mac',
+    'application-support-folder-mac',
   ];
   for (const slug of required) assert.ok(getGuide(slug));
-  assert.equal(guides.length, 42);
+  assert.equal(guides.length, 43);
   assert.equal(getGuide('not-a-real-guide'), undefined);
   assert.equal(new Set(guides.map((g) => g.slug)).size, guides.length);
   for (const guide of guides) {

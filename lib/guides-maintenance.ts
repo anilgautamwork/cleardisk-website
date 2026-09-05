@@ -481,8 +481,8 @@ export const maintenanceGuides: Guide[] = [
     related: [
       'what-is-system-data-on-mac',
       'show-hidden-files-mac',
+      'application-support-folder-mac',
       'clear-system-data-on-mac',
-      'clear-cache-on-mac',
       'uninstall-apps-on-mac',
     ],
     sources: [
@@ -1156,6 +1156,7 @@ export const maintenanceGuides: Guide[] = [
       },
     ],
     related: [
+      'application-support-folder-mac',
       'show-library-folder-mac',
       'best-free-mac-cleaner',
       'free-up-space-on-mac',
@@ -1494,6 +1495,88 @@ export const maintenanceGuides: Guide[] = [
       {
         label: 'Apple: Mac keyboard shortcuts',
         url: 'https://support.apple.com/en-us/102650',
+      },
+    ],
+  },
+  {
+    slug: 'application-support-folder-mac',
+    title: 'Application Support folder on Mac: what is safe to delete',
+    description:
+      'What the Application Support folder holds, why it grows, how to open and measure it, which subfolders can go after an app is gone, and what never to delete.',
+    summary:
+      'Application Support is where apps keep the data they need between launches: settings, databases, downloaded content, licenses. It is review-only while an app is installed and fair game for the folders of apps you removed.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'what-it-holds',
+        title: '1. What the folder holds',
+        paragraphs: [
+          'There are two Application Support folders. ~/Library/Application Support belongs to your account and holds the data of the apps you use: a subfolder per app or vendor with settings, small databases, downloaded content such as voices, templates and models, and licence files. /Library/Application Support holds the same kind of data for items shared by every user, often installed by drivers and larger suites.',
+          'Neither is a cache. An app that finds its Application Support folder missing does not simply rebuild it; it starts from scratch, which can mean lost settings, lost local data and a licence to re-enter. That is the difference from ~/Library/Caches and the reason this folder gets a guide of its own.',
+        ],
+      },
+      {
+        id: 'open-and-measure',
+        title: '2. Open it and measure it',
+        paragraphs: [
+          'Apple’s Finder guide gives the route: choose Go → Go to Folder, type ~/Library/Application Support and press Return, or hold Option, open the Go menu and choose Library. Switch to list view and click Size, or select a subfolder and press Command-I. In Terminal, one read-only command sizes every subfolder and sorts them smallest to largest.',
+          'Storage settings counts this folder inside System Data, which is why a large Application Support shows up as an unexplained category rather than as an app. The two or three biggest subfolders usually explain the whole number.',
+        ],
+        code: [
+          'du -sh ~/Library/Application\\ Support/* 2>/dev/null | sort -h',
+        ],
+      },
+      {
+        id: 'what-grows-and-why',
+        title: '3. What grows, and why',
+        paragraphs: [
+          'The large subfolders follow the apps you use. Each is managed by its app, and most apps offer a setting that shrinks it.',
+        ],
+        items: [
+          'Chat and collaboration apps: message and file caches per workspace. Their own settings usually offer a cache limit or a clear-cache button.',
+          'Creative and design suites: brushes, fonts, templates, media caches and sync data. Adjust in the app’s preferences; the Photoshop scratch guide covers the largest case.',
+          'Developer tools and editors: extensions, language servers, indexes and workspace storage. Uninstall extensions you no longer use.',
+          'Music and audio apps: sound libraries and instrument content, often tens of gigabytes, with an in-app download manager to remove them.',
+          'Browsers and launchers: profiles, updates and game libraries. Remove games and profiles inside the app rather than in Finder.',
+          'Folders named after apps you deleted: the only subfolders you can remove outright, because nothing reads them any more.',
+        ],
+      },
+      {
+        id: 'what-is-safe-to-delete',
+        title: '4. Decide what is safe to delete',
+        paragraphs: [
+          'Apply three rules. If the app is still installed, change the folder through the app, not Finder. If the app is gone, its subfolder can go to the Trash; Apple’s page on deleting apps notes that uninstalling does not remove files an app stored elsewhere, and this is where most of them are. If you cannot tell which app a folder belongs to, leave it, because vendors name folders after companies and bundle identifiers as well as products.',
+          'Move to the Trash rather than deleting immediately, run the apps you use once, and empty the Trash afterwards. Keep a Time Machine backup current before a large removal so a mistake costs minutes, not data.',
+        ],
+      },
+      {
+        id: 'what-never-to-delete',
+        title: '5. What never to delete',
+        paragraphs: [
+          'Do not delete the Application Support folder itself, anything under /Library/Application Support that you did not install, or subfolders named for Apple, CrashReporter, com.apple or iCloud; macOS and its services store data there. Do not delete a running app’s folder to fix a problem; reinstalling the app or using its reset option is the supported route.',
+          'A disk scanner takes the guesswork out of step two. ClearDisk’s free scan lists Application Support subfolders with allocated sizes and labels them Review, shows the path so you can match a folder to its app, and moves what you choose to the Trash first. It does not offer system and account folders for removal, which is the boundary this guide keeps by hand.',
+        ],
+      },
+    ],
+    related: [
+      'show-library-folder-mac',
+      'uninstall-apps-on-mac',
+      'what-is-system-data-on-mac',
+      'clear-cache-on-mac',
+    ],
+    sources: [
+      {
+        label: 'Apple: go directly to a specific folder on Mac',
+        url: 'https://support.apple.com/guide/mac-help/mchlp1236/mac',
+      },
+      {
+        label: 'Apple: delete or uninstall apps on Mac',
+        url: 'https://support.apple.com/en-us/102610',
+      },
+      {
+        label: 'Apple: understand Storage settings',
+        url: 'https://support.apple.com/en-us/guide/mac-help/mchl3d437fbc/mac',
       },
     ],
   },

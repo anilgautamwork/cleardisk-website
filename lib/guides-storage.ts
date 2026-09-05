@@ -139,6 +139,19 @@ export const storageGuides: Guide[] = [
           'Compare the Mac’s available space before considering another deletion. If the gain is smaller than expected, investigate the measurement with the related guide. Do not remove a second backup merely to make a category bar reach a target. If backups repeatedly exhaust the disk, plan where you will keep recovery copies before the next device replacement.',
         ],
       },
+      {
+        id: 'common-questions',
+        title: 'Common questions about iPhone backups on a Mac',
+        paragraphs: [
+          'The questions people ask alongside this one, answered from Apple’s backup page.',
+        ],
+        items: [
+          'Where are iPhone backups stored on Mac? Apple documents the folder ~/Library/Application Support/MobileSync/Backup, reachable with Finder’s Go to Folder. The reliable route is Finder → your device → General → Manage Backups, then right-click a backup and choose Show in Finder.',
+          'How do I delete an iPhone backup on Mac? Connect the device, open Finder → General → Manage Backups, right-click the backup and choose Delete. System Settings → General → Storage → iOS files lists the same backups with their sizes and dates.',
+          'Can I move iPhone backups to an external drive? Apple’s page covers locating, archiving and deleting backups, not relocating the folder, so treat the location as fixed. Free space by deleting superseded backups and keeping the newest one per device.',
+          'How much space does an iPhone backup take? About as much as the device’s used storage, minus what is already in iCloud. Storage settings → iOS files shows the size of each one.',
+        ],
+      },
     ],
     related: [
       'find-large-files-on-mac',
