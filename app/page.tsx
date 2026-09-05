@@ -46,7 +46,7 @@ const faqs = [
   ],
   [
     'Does ClearDisk upload my files?',
-    'Scanning and file analysis run locally on your Mac. Your files, file names and scan results are not uploaded. The 1.0 license service will use activation details to manage your license; payment is handled separately.',
+    'Scanning and file analysis run locally on your Mac. Your files, file names and scan results are not uploaded. License activation sends your key, a device identifier, your computer name and the app version to manage the three-Mac limit. Payment is handled by Stripe.',
   ],
   [
     'Will it work on my Mac?',
@@ -91,7 +91,7 @@ export default function Home() {
                   <i />
                   <span>Free to scan</span>
                   <i />
-                  <span>Yours for $10 at launch</span>
+                  <span>Yours for $10, once.</span>
                 </div>
                 <div className="hero-reassurance">
                   <ShieldCheck size={16} />
