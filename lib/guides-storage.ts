@@ -26,7 +26,7 @@ export const storageGuides: Guide[] = [
     slug: 'find-large-files-on-mac',
     title: 'How to find large files on Mac before deleting anything',
     description:
-      'Find large Mac files using Storage settings and Finder, then check their location, purpose and backup before deciding what to remove.',
+      'Find large files on Mac using Storage settings and Finder, then check each file’s location, purpose and backup before deciding what to remove.',
     summary:
       'Start with the Documents view in Storage settings, then inspect the largest results in Finder. A large file is a candidate for review, not proof that it is unnecessary.',
     published: '2026-09-05',
@@ -356,7 +356,7 @@ export const storageGuides: Guide[] = [
     slug: 'move-photos-library-to-external-drive',
     title: 'How to move your Photos library to an external drive',
     description:
-      'Move a Mac Photos library to a suitable external drive, verify the copied library and iCloud settings, then remove the original only after checking backup coverage.',
+      'Move your Mac Photos library to an external drive, verify the copied library and iCloud settings, and remove the original only after checking backups.',
     summary:
       'Use a directly connected Mac-formatted drive, copy the whole Photos library while Photos is closed, and open the destination library before removing the original. Keep a separate backup.',
     published: '2026-09-05',

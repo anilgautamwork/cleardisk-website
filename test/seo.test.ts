@@ -52,3 +52,12 @@ await test('sitemap advertises only canonical published pages when indexing enab
   for (const path of ['/thanks', '/buy-now', '/api/key'])
     assert.ok(!urls.includes(canonical(path)));
 });
+await test('guide titles and descriptions fit search snippets', () => {
+  for (const guide of guides) {
+    assert.ok(guide.title.length < 60, guide.slug + ': title under 60');
+    assert.ok(
+      guide.description.length >= 140 && guide.description.length <= 158,
+      guide.slug + ': description 140-158',
+    );
+  }
+});

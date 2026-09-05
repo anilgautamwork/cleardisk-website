@@ -11,11 +11,7 @@ export async function generateMetadata({ params }: Props) {
   const guide = getGuide(slug);
   if (!guide)
     return { title: 'Page not found — ClearDisk', robots: { index: false } };
-  return pageMetadata(
-    guide.title + ' — ClearDisk',
-    guide.description,
-    '/' + slug,
-  );
+  return pageMetadata(guide.title, guide.description, '/' + slug, 'article');
 }
 export default async function GuidePage({ params }: Props) {
   const { slug } = await params;

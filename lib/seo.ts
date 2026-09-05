@@ -26,6 +26,7 @@ export function pageMetadata(
   title: string,
   description: string,
   path: string,
+  type: 'website' | 'article' = 'website',
 ): Metadata {
   const url = canonical(path);
   return {
@@ -38,7 +39,7 @@ export function pageMetadata(
       description,
       url,
       siteName: 'ClearDisk',
-      type: 'website',
+      type,
       images: [
         {
           url: OG_IMAGE,

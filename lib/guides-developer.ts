@@ -5,7 +5,7 @@ export const developerGuides: Guide[] = [
     slug: 'clear-xcode-derived-data',
     title: 'How to clear Xcode Derived Data on Mac',
     description:
-      'Find Xcode Derived Data, remove a reviewed project cache, and keep source code, release archives and simulator data separate.',
+      'Clear Xcode Derived Data on Mac: find the folder, remove a reviewed project cache, and keep source code, release archives and simulator data separate.',
     summary:
       'Derived Data contains generated build products and indexes. Start with one inactive project, confirm its location, and expect Xcode to rebuild what you remove.',
     published: '2026-09-05',
@@ -76,7 +76,7 @@ export const developerGuides: Guide[] = [
     slug: 'remove-unused-ios-simulators',
     title: 'Remove unused iOS simulators and runtimes on Mac',
     description:
-      'Use Xcode to remove old simulator devices and operating-system runtimes, while keeping the versions and test data your projects need.',
+      'Remove unused iOS simulators and runtimes with Xcode on Mac, while keeping the device versions and test data your current projects still need.',
     summary:
       'A simulator device and its operating-system runtime are different things. Review both in Xcode, retain your testing requirements, and remove only the entries you no longer need.',
     published: '2026-09-05',
@@ -143,7 +143,7 @@ export const developerGuides: Guide[] = [
     slug: 'clean-docker-disk-space-mac',
     title: 'How to clean up Docker disk space on Mac',
     description:
-      'Inspect Docker Desktop storage, review containers and images, and distinguish disposable build cache from volumes containing databases.',
+      'Clean up Docker disk space on Mac: inspect Docker Desktop storage, review containers and images, and separate disposable build cache from volumes.',
     summary:
       'Use Docker’s own storage information before touching Docker.raw. Review unused objects individually, and protect volumes and container data that cannot be rebuilt.',
     published: '2026-09-05',
@@ -222,7 +222,7 @@ export const developerGuides: Guide[] = [
     slug: 'find-node-modules-folders-mac',
     title: 'Find large node_modules folders on Mac',
     description:
-      'Locate node_modules in old projects, measure their sizes, and check that dependencies can be restored before removing a selected folder.',
+      'Find large node_modules folders on Mac, measure their sizes, and check that each project’s dependencies can be restored before removing a folder.',
     summary:
       'Start inside your project directory, list node_modules without deleting anything, and keep source files and lockfiles. Reinstallation is only reliable when the dependencies remain available.',
     published: '2026-09-05',
@@ -293,7 +293,7 @@ export const developerGuides: Guide[] = [
     slug: 'clear-browser-cache-mac',
     title: 'Clear browser cache on Mac without clearing everything',
     description:
-      'Clear cached files in Safari, Chrome or Firefox while understanding the separate effects of removing cookies, history and site data.',
+      'Clear browser cache on Mac in Safari, Chrome or Firefox while understanding the separate effects of removing cookies, history and site data.',
     summary:
       'Use the browser’s own controls and select cached content deliberately. Cookies, browsing history, saved passwords and downloaded files are different categories with different consequences.',
     published: '2026-09-05',
@@ -368,7 +368,7 @@ export const developerGuides: Guide[] = [
     slug: 'photoshop-scratch-disk-full-mac',
     title: 'Photoshop scratch disk full on Mac: what to check',
     description:
-      'Identify Photoshop’s selected scratch drive, recover working space, and choose suitable scratch storage while protecting original projects.',
+      'Photoshop scratch disk full on Mac? Identify the selected scratch drive, recover working space, and choose suitable scratch storage without risking projects.',
     summary:
       'A scratch disk is Photoshop’s temporary working storage. Check the selected drive and its free space before deleting files or changing performance settings.',
     published: '2026-09-05',

@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { guides } from '../lib/guides.ts';
 const origin = process.env.SITE_CHECK_ORIGIN || 'http://localhost:3001';
 const indexable = process.env.SITE_CHECK_INDEXABLE === 'true';
+const site = 'https://cleardisk.app';
 const pages = [
   '/',
   '/guides',
@@ -12,22 +13,34 @@ const pages = [
   '/privacy',
   '/terms',
 ];
+const meta = (head, attr, name) =>
+  head.match(new RegExp(`<meta ${attr}="${name}" content="([^"]*)"`))?.[1];
 const titles = new Set();
+const descriptions = new Set();
 for (const path of pages) {
   const response = await fetch(new URL(path, origin));
   assert.equal(response.status, 200, path);
   const html = await response.text();
   assert.equal((html.match(/<h1[ >]/g) || []).length, 1, path + ': one H1');
-  const title = html.match(/<title>(.*?)<\/title>/)?.[1];
-  assert.ok(title && !titles.has(title), path + ': unique title');
+  // Everything below must sit inside <head>: vinext streams generateMetadata()
+  // output into <body> unless next.config marks the user agent HTML-limited.
+  const head = html.match(/<head>(.*?)<\/head>/s)?.[1] ?? '';
+  const title = head.match(/<title>(.*?)<\/title>/)?.[1];
+  assert.ok(title && !titles.has(title), path + ': unique title in head');
   titles.add(title);
-  const canonical = html.match(/<link rel="canonical" href="(.*?)"/)?.[1];
+  const description = meta(head, 'name', 'description');
+  assert.ok(
+    description && !descriptions.has(description),
+    path + ': unique description in head',
+  );
+  descriptions.add(description);
+  const canonical = head.match(/<link rel="canonical" href="(.*?)"/)?.[1];
   assert.equal(
     canonical?.replace(/\/$/, ''),
-    ('https://cleardisk.app' + path).replace(/\/$/, ''),
-    path,
+    (site + path).replace(/\/$/, ''),
+    path + ': canonical',
   );
-  const robots = html.match(/<meta name="robots" content="(.*?)"/)?.[1];
+  const robots = meta(head, 'name', 'robots');
   const privatePage = ['/buy-now', '/thanks'].includes(path);
   assert.ok(
     robots?.includes(!indexable || privatePage ? 'noindex' : 'index'),
@@ -35,16 +48,37 @@ for (const path of pages) {
   );
   if (indexable && !privatePage) assert.ok(!robots.includes('noindex'), path);
   const guide = guides.find((g) => '/' + g.slug === path);
+  assert.equal(meta(head, 'property', 'og:title'), title, path + ': og:title');
+  assert.equal(meta(head, 'property', 'og:description'), description, path);
+  assert.equal(meta(head, 'property', 'og:url'), canonical, path + ': og:url');
+  assert.equal(meta(head, 'property', 'og:site_name'), 'ClearDisk', path);
+  assert.equal(
+    meta(head, 'property', 'og:type'),
+    guide ? 'article' : 'website',
+    path + ': og:type',
+  );
+  assert.equal(meta(head, 'property', 'og:image'), site + '/og.png', path);
+  assert.equal(
+    meta(head, 'name', 'twitter:card'),
+    'summary_large_image',
+    path + ': twitter:card',
+  );
+  assert.equal(meta(head, 'name', 'twitter:title'), title, path);
+  assert.equal(meta(head, 'name', 'twitter:description'), description, path);
+  const schemas = [
+    ...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs),
+  ].flatMap((m) => JSON.parse(m[1]));
+  const ofType = (type) => schemas.filter((s) => s['@type'] === type);
   if (guide) {
+    assert.ok(title.length < 60, path + ': title under 60 chars');
+    assert.ok(
+      description.length >= 140 && description.length <= 158,
+      path + ': description 140-158 chars',
+    );
     assert.ok(html.includes('guide-body'), path + ': server article');
     assert.ok(html.includes(guide.sections[0].id), path + ': first section');
-    const json = html.match(
-      /<script type="application\/ld\+json">(.*?)<\/script>/s,
-    )?.[1];
-    const schema = JSON.parse(json || 'null');
-    assert.equal(schema[0]['@type'], 'Article');
-    assert.equal(schema[0].headline, guide.title);
-    assert.equal(schema[1]['@type'], 'BreadcrumbList');
+    assert.equal(ofType('Article')[0]?.headline, guide.title, path);
+    assert.equal(ofType('BreadcrumbList').length, 1, path + ': breadcrumb');
     for (const related of guide.related)
       assert.ok(html.includes('href="/' + related + '"'), path + ': related');
   }
@@ -61,10 +95,10 @@ for (const path of ['/thanks', '/buy-now', '/api'])
 const robots = await fetch(new URL('/robots.txt', origin));
 assert.equal(robots.status, 200);
 assert.ok((await robots.text()).includes('Disallow: /api/'));
-const download = await fetch(new URL('/ClearDisk.dmg', origin), {
-  method: 'HEAD',
-});
-assert.equal(download.status, 200);
+for (const asset of ['/ClearDisk.dmg', '/og.png']) {
+  const response = await fetch(new URL(asset, origin), { method: 'HEAD' });
+  assert.equal(response.status, 200, asset);
+}
 console.log(
-  `SEO HTTP checks passed: ${pages.length} HTML routes, metadata, article schema, related links, 404, sitemap, robots and DMG.`,
+  `SEO HTTP checks passed: ${pages.length} HTML routes, head metadata, schema, related links, 404, sitemap, robots, DMG and OG image.`,
 );

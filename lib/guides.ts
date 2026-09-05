@@ -35,7 +35,7 @@ const foundationGuides: Guide[] = [
     slug: 'clear-system-data-on-mac',
     title: 'How to clear System Data on Mac',
     description:
-      'A practical guide to reducing Mac System Data: identify the files, review what matters, and understand what cleanup can actually change.',
+      'A practical guide to clearing System Data on Mac: identify the files behind the number, review what matters, and understand what cleanup can change.',
     summary:
       'Start by finding the files behind the number. System Data is a storage category, not a single folder you can safely empty. Review identifiable files before removing anything.',
     published: '2026-09-05',
@@ -99,7 +99,7 @@ const foundationGuides: Guide[] = [
     slug: 'what-is-system-data-on-mac',
     title: 'What is System Data on Mac?',
     description:
-      'Understand what macOS calls System Data, why its size changes, and how to tell ordinary app files from storage you should leave alone.',
+      'What System Data on Mac actually contains, why its size keeps changing, and how to tell ordinary app files from storage you should leave alone.',
     summary:
       'System Data is macOS’s catch-all for files that do not fit its other storage categories. It can include caches, logs, app support files and runtime resources. It is not all junk.',
     published: '2026-09-05',
@@ -157,7 +157,7 @@ const foundationGuides: Guide[] = [
     slug: 'system-data-too-large',
     title: 'System Data taking up 100GB or more?',
     description:
-      'System Data using 100GB, 200GB or half your Mac storage? Identify the biggest contributors before deciding what to remove.',
+      'System Data using 100GB, 200GB or half your Mac storage? Identify the biggest contributors and review each one before deciding what to remove.',
     summary:
       'A number like 100GB or 200GB cannot tell you what is safe to delete. The useful question is which files account for it—and whether you still need them.',
     published: '2026-09-05',
@@ -221,7 +221,7 @@ const foundationGuides: Guide[] = [
     slug: 'system-data-keeps-growing',
     title: 'Why does Mac System Data keep growing?',
     description:
-      'Find what is recreating storage after cleanup. A repeatable way to compare scans, identify the responsible app, and stop cleaning blindly.',
+      'Why Mac System Data keeps growing after cleanup: a repeatable way to compare scans, identify the responsible app, and stop deleting blindly.',
     summary:
       'When space fills again, find what is producing new data. Deleting the same files repeatedly may hide the symptom without changing the cause.',
     published: '2026-09-05',
