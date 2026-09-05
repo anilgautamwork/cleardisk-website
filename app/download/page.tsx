@@ -58,14 +58,6 @@ export default async function Download({
             GitHub release, download mirror and checksum
           </a>
         </p>
-        <div className="notice">
-          <strong>You’re getting the preview release.</strong>
-          <p>
-            Explore the app today while ClearDisk 1.0 is being finished. The $10
-            license and checkout shown on this site are for the upcoming
-            release; you don’t need to purchase anything to try this preview.
-          </p>
-        </div>
         <h2>Three small steps. More clarity.</h2>
         <ol>
           <li>Open the downloaded ClearDisk.dmg.</li>

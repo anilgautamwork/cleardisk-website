@@ -43,11 +43,11 @@ export default function Privacy() {
           receive your name, email address, billing address and payment status
           to deliver your license key and handle refunds.
         </p>
-        <h2>License activation at launch</h2>
+        <h2>License activation</h2>
         <p>
-          The planned 1.0 activation service will process a license key, device
-          identifier, computer name and app version to manage the three-Mac
-          limit. Purchases will use your email to deliver a license. File
+          The activation service processes your license key, machine identifier,
+          computer name and app version to manage the three-Mac limit. Your
+          email address is used to deliver and recover your license key. File
           contents and scan results are not part of activation.
         </p>
         <h2>Questions about privacy</h2>

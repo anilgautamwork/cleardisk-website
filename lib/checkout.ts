@@ -66,7 +66,7 @@ export async function startCheckout(
     // the buyer's name, billing address and a description of what was sold.
     billing_address_collection: 'required',
     customer_creation: 'always',
-    'payment_intent_data[description]': 'ClearDisk 1.0 license (pre-order)',
+    'payment_intent_data[description]': 'ClearDisk 1.0 license',
     'payment_intent_data[statement_descriptor_suffix]': 'CLEARDISK',
     'payment_intent_data[metadata][product]': PRODUCT,
     'metadata[product]': PRODUCT,

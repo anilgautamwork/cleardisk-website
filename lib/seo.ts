@@ -84,7 +84,7 @@ export const softwareSchema = {
   name: 'ClearDisk',
   operatingSystem: 'macOS 15 or later',
   applicationCategory: 'UtilitiesApplication',
-  softwareVersion: '0.1.4',
+  softwareVersion: '1.0.0',
   url: SITE_URL,
   downloadUrl: SITE_URL + '/download',
   image: OG_IMAGE,
@@ -93,7 +93,7 @@ export const softwareSchema = {
     '@type': 'Offer',
     price: '10',
     priceCurrency: 'USD',
-    availability: 'https://schema.org/PreOrder',
+    availability: 'https://schema.org/InStock',
     url: SITE_URL + '/buy-now',
   },
 };

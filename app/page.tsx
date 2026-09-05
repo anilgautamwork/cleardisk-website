@@ -38,7 +38,7 @@ const faqs = [
   ],
   [
     'Is scanning really free?',
-    'Yes. Explore your storage, inspect the System Data breakdown and find your biggest files for free. The 1.0 cleanup license is $10 once and can be pre-ordered now. The currently available download is our 0.1.4 preview release.',
+    'Yes. Explore your storage, inspect the System Data breakdown and find your biggest files for free. Cleanup inside the app is a $10 one-time license.',
   ],
   [
     'Is this another subscription?',
@@ -364,7 +364,7 @@ export default function Home() {
               <div className="price">
                 $10<span>USD · pay once</span>
               </div>
-              <p>Unlock cleanup when ClearDisk 1.0 arrives.</p>
+              <p>Unlock cleanup inside the app.</p>
               <ul>
                 <li>
                   <Check />
@@ -388,11 +388,11 @@ export default function Home() {
                 </li>
               </ul>
               <Link className="button primary" href="/buy-now">
-                Pre-order for $10 <ArrowUpRight size={17} />
+                Buy for $10 <ArrowUpRight size={17} />
               </Link>
               <small>
                 <ShieldCheck size={13} />
-                Refund before delivery and for 30 days after
+                30-day money-back guarantee
               </small>
             </article>
           </div>

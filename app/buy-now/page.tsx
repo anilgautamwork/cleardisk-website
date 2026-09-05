@@ -4,8 +4,8 @@ import { Header, Footer, Mark } from '@/components/brand';
 import { CheckoutButton } from '@/components/checkout-button';
 import { Check, ShieldCheck } from 'lucide-react';
 export const metadata = pageMetadata(
-  'Pre-order ClearDisk — $10 once',
-  'Pre-order the ClearDisk 1.0 cleanup license for $10, paid once. Your key is emailed when 1.0 ships. Refund before delivery and for 30 days after.',
+  'Buy ClearDisk — $10 once',
+  'Buy the ClearDisk 1.0 cleanup license for $10, paid once. Your key arrives instantly on screen and by email. 30-day refund.',
   '/buy-now',
 );
 export default function Buy() {
@@ -31,12 +31,11 @@ export default function Buy() {
             once, get all 1.x updates, and leave the subscriptions behind.
           </p>
           <div className="notice">
-            <strong>Pre-order · ClearDisk 1.0 is in development</strong>
+            <strong>Instant license key</strong>
             <p>
-              You pay once today through Stripe. Your license key is emailed to
-              the address you enter at checkout when ClearDisk 1.0 ships. Until
-              then, keep exploring with the free preview. Refund any time before
-              your key is delivered, and for 30 days after.
+              You pay once through Stripe. Your license key appears on the next
+              page and is emailed to you. Paste it into ClearDisk and cleanup
+              unlocks on up to three Macs you own. 30-day refund, no questions.
             </p>
           </div>
           <CheckoutButton />
@@ -54,7 +53,7 @@ export default function Buy() {
         <aside className="purchase-summary">
           <Mark />
           <h2>ClearDisk 1.0</h2>
-          <span className="muted">Personal license · pre-order</span>
+          <span className="muted">Personal license · instant delivery</span>
           <div className="price">
             $10<span>USD · once</span>
           </div>
@@ -78,7 +77,7 @@ export default function Buy() {
           </ul>
           <div>
             <ShieldCheck size={16} />
-            Refund before delivery and for 30 days after
+            30-day money-back guarantee
           </div>
         </aside>
       </main>

@@ -2,7 +2,7 @@ import { pageMetadata } from '@/lib/seo';
 import { Header, Footer } from '@/components/brand';
 export const metadata = pageMetadata(
   'Terms & refunds — ClearDisk',
-  'ClearDisk 1.0 license terms, pre-order conditions, the seller of record and the refund policy.',
+  'ClearDisk 1.0 license terms, the seller of record and the refund policy.',
   '/terms',
 );
 export default function Terms() {
@@ -13,10 +13,9 @@ export default function Terms() {
         <span className="eyebrow">SIMPLE AND UP FRONT</span>
         <h1>Terms & refunds.</h1>
         <p>
-          The download currently available is ClearDisk 0.1.4, a preview
-          release. The $10 checkout on this website is a live pre-order of the
-          ClearDisk 1.0 license, sold by TechMarbles Web Solutions Pvt. Ltd.,
-          Mohali, India, the maker of ClearDisk.
+          The $10 checkout on this website sells the ClearDisk 1.0 license,
+          delivered instantly, by TechMarbles Web Solutions Pvt. Ltd., Mohali,
+          India, the maker of ClearDisk.
         </p>
         <h2>The 1.0 license</h2>
         <p>
@@ -28,8 +27,8 @@ export default function Terms() {
         </p>
         <h2>Refunds</h2>
         <p>
-          Request a refund any time before your key is delivered, and within 30
-          days after delivery, from the email address used at purchase. Contact{' '}
+          Request a refund within 30 days of purchase, from the email address
+          used at checkout. Contact{' '}
           <a href="mailto:hello@cleardisk.app">hello@cleardisk.app</a>. Refunds
           return to the original payment method, and a refunded license is
           disabled.

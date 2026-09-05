@@ -10,6 +10,7 @@ const pages = [
   '/download',
   '/buy-now',
   '/thanks',
+  '/recover',
   '/privacy',
   '/terms',
 ];
@@ -41,7 +42,7 @@ for (const path of pages) {
     path + ': canonical',
   );
   const robots = meta(head, 'name', 'robots');
-  const privatePage = ['/buy-now', '/thanks'].includes(path);
+  const privatePage = ['/buy-now', '/thanks', '/recover'].includes(path);
   assert.ok(
     robots?.includes(!indexable || privatePage ? 'noindex' : 'index'),
     path + ': robots',
