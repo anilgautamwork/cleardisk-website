@@ -6,7 +6,7 @@ import { JsonLd } from '@/components/json-ld';
 export const metadata: Metadata = {
   ...pageMetadata(
     'ClearDisk — Clear System Data on Mac',
-    'Find what is filling your Mac with ClearDisk. Free local scanning, clear storage breakdowns and a planned $10 one-time cleanup license.',
+    'Find what is filling your Mac with ClearDisk. Free local scanning, clear storage breakdowns and a $10 one-time cleanup license to pre-order.',
     '/',
   ),
   metadataBase: new URL(SITE_URL),

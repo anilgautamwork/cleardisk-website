@@ -2,7 +2,7 @@ import { pageMetadata } from '@/lib/seo';
 import { Header, Footer } from '@/components/brand';
 export const metadata = pageMetadata(
   'Privacy — ClearDisk',
-  'How ClearDisk handles local scans, website requests and planned license activation data.',
+  'How ClearDisk handles local scans, website requests, payments and license activation data.',
   '/privacy',
 );
 export default function Privacy() {
@@ -36,11 +36,12 @@ export default function Privacy() {
           of installation or a count of unique people. GitHub separately reports
           downloads from its releases.
         </p>
-        <h2>Test payments</h2>
+        <h2>Payments</h2>
         <p>
-          Checkout runs on Stripe’s test environment. Details you enter there
-          are processed by Stripe. Please use test details rather than a real
-          payment card. This preview does not deliver paid license keys.
+          Checkout is handled by Stripe on behalf of TechMarbles Web Solutions
+          Pvt. Ltd. Stripe processes your card details; we never see them. We
+          receive your name, email address, billing address and payment status
+          to deliver your license key and handle refunds.
         </p>
         <h2>License activation at launch</h2>
         <p>

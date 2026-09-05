@@ -4,8 +4,8 @@ import { Header, Footer, Mark } from '@/components/brand';
 import { CheckoutButton } from '@/components/checkout-button';
 import { Check, ShieldCheck } from 'lucide-react';
 export const metadata = pageMetadata(
-  'Get ClearDisk — $10 once',
-  'Preview the planned $10 one-time ClearDisk checkout. This is test mode; live licenses are not yet available.',
+  'Pre-order ClearDisk — $10 once',
+  'Pre-order the ClearDisk 1.0 cleanup license for $10, paid once. Your key is emailed when 1.0 ships. Refund before delivery and for 30 days after.',
   '/buy-now',
 );
 export default function Buy() {
@@ -27,22 +27,24 @@ export default function Buy() {
             Yours to keep.
           </h1>
           <p>
-            The planned ClearDisk 1.0 license unlocks cleanup on three Macs you
-            own. Pay once, get all 1.x updates, and leave the subscriptions
-            behind.
+            The ClearDisk 1.0 license unlocks cleanup on three Macs you own. Pay
+            once, get all 1.x updates, and leave the subscriptions behind.
           </p>
           <div className="notice">
-            <strong>Test checkout · no real payment</strong>
+            <strong>Pre-order · ClearDisk 1.0 is in development</strong>
             <p>
-              ClearDisk 1.0 is in development. This checkout uses Stripe’s test
-              environment. No money is charged and no active license is issued.
-              Use test card details only.
+              You pay once today through Stripe. Your license key is emailed to
+              the address you enter at checkout when ClearDisk 1.0 ships. Until
+              then, keep exploring with the free preview. Refund any time before
+              your key is delivered, and for 30 days after.
             </p>
           </div>
           <CheckoutButton />
           <small>
-            For testing: 4242 4242 4242 4242 · any future expiry · any
-            three-digit CVC.
+            Payments are processed by Stripe for TechMarbles Web Solutions Pvt.
+            Ltd., the maker of ClearDisk. Your statement shows CLEARDISK next to
+            the TechMarbles name. Prices appear in your local currency at
+            checkout.
           </small>
           <p className="purchase-free">
             Want to explore the app first?{' '}
@@ -52,7 +54,7 @@ export default function Buy() {
         <aside className="purchase-summary">
           <Mark />
           <h2>ClearDisk 1.0</h2>
-          <span className="muted">Personal license · planned release</span>
+          <span className="muted">Personal license · pre-order</span>
           <div className="price">
             $10<span>USD · once</span>
           </div>
@@ -76,7 +78,7 @@ export default function Buy() {
           </ul>
           <div>
             <ShieldCheck size={16} />
-            30-day refund policy at launch
+            Refund before delivery and for 30 days after
           </div>
         </aside>
       </main>

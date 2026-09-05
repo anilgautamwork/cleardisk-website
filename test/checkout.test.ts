@@ -2,44 +2,76 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { startCheckout, checkoutStatus } from '../lib/checkout.ts';
 const origin = 'https://cleardisk.example';
-const env = { STRIPE_SECRET_KEY: 'sk_test_example', SITE_ORIGIN: origin };
+const env = {
+  STRIPE_SECRET_KEY: 'sk_test_example',
+  STRIPE_PRICE_ID: 'price_test123',
+  SITE_ORIGIN: origin,
+};
 const request = () =>
   new Request(origin + '/api/checkout', {
     method: 'POST',
     headers: { origin },
   });
-void test('checkout fixes the price on the server and returns only a test Stripe URL', async () => {
+const session = (body: Record<string, unknown>) =>
+  Response.json({ url: 'https://checkout.stripe.com/c/pay/cs_x', ...body });
+void test('checkout sells the configured price with the fields an Indian seller needs', async () => {
   const fakeFetch: typeof fetch = async (input, init) => {
     assert.equal(input, 'https://api.stripe.com/v1/checkout/sessions');
     const body = new URLSearchParams(init?.body as URLSearchParams);
-    assert.equal(body.get('line_items[0][price_data][unit_amount]'), '1000');
     assert.equal(body.get('mode'), 'payment');
-    assert.equal(body.get('line_items[0][price_data][currency]'), 'usd');
+    assert.equal(body.get('line_items[0][price]'), 'price_test123');
+    assert.equal(body.get('line_items[0][quantity]'), '1');
+    assert.equal(body.get('billing_address_collection'), 'required');
+    assert.equal(body.get('customer_creation'), 'always');
+    assert.ok(body.get('payment_intent_data[description]'));
+    assert.equal(
+      body.get('payment_intent_data[statement_descriptor_suffix]'),
+      'CLEARDISK',
+    );
+    assert.equal(body.get('metadata[product]'), 'cleardisk');
+    assert.equal(
+      body.get('payment_intent_data[metadata][product]'),
+      'cleardisk',
+    );
+    assert.equal(body.get('currency'), null, 'Stripe localises the currency');
     assert.equal(
       body.get('success_url'),
       origin + '/thanks?session_id={CHECKOUT_SESSION_ID}',
     );
-    return Response.json({
-      url: 'https://checkout.stripe.com/c/pay/cs_test_example',
-      livemode: false,
-    });
+    return session({ livemode: false });
   };
   const res = await startCheckout(request(), env, fakeFetch);
   assert.equal(res.status, 200);
   assert.deepEqual(await res.json(), {
-    url: 'https://checkout.stripe.com/c/pay/cs_test_example',
+    url: 'https://checkout.stripe.com/c/pay/cs_x',
     mode: 'test',
   });
 });
-void test('rejects live keys until license fulfillment is integrated', async () => {
-  const res = await startCheckout(
-    request(),
-    { ...env, STRIPE_SECRET_KEY: 'sk_live_example' },
-    async () => {
-      throw Error('must not call Stripe');
-    },
+void test('live keys open live sessions and a test session can never pass as live', async () => {
+  const live = { ...env, STRIPE_SECRET_KEY: 'rk_live_example' };
+  const ok = await startCheckout(request(), live, async () =>
+    session({ livemode: true }),
   );
-  assert.equal(res.status, 503);
+  assert.deepEqual(await ok.json(), {
+    url: 'https://checkout.stripe.com/c/pay/cs_x',
+    mode: 'live',
+  });
+  const wrong = await startCheckout(request(), live, async () =>
+    session({ livemode: false }),
+  );
+  assert.equal(wrong.status, 502);
+});
+void test('fails closed without a valid key and price id', async () => {
+  const never: typeof fetch = async () => {
+    throw Error('must not call Stripe');
+  };
+  for (const broken of [
+    { ...env, STRIPE_PRICE_ID: undefined },
+    { ...env, STRIPE_PRICE_ID: 'prod_notaprice' },
+    { ...env, STRIPE_SECRET_KEY: 'pk_live_publishable' },
+    { ...env, SITE_ORIGIN: 'http://cleardisk.example' },
+  ])
+    assert.equal((await startCheckout(request(), broken, never)).status, 503);
 });
 void test('rejects cross-origin checkout requests before contacting Stripe', async () => {
   const req = new Request(origin + '/api/checkout', {
@@ -64,49 +96,46 @@ void test('rejects an unexpected checkout redirect host', async () => {
   );
   assert.equal(res.status, 502);
 });
+const statusRequest = (id = 'cs_test_example') =>
+  new Request(origin + '/api/checkout-status?session_id=' + id);
 void test('a success URL alone cannot claim payment; status is read from Stripe', async () => {
-  const req = new Request(
-    origin + '/api/checkout-status?session_id=cs_test_example',
-  );
-  const res = await checkoutStatus(req, env, async () =>
+  const res = await checkoutStatus(statusRequest(), env, async () =>
     Response.json({
       livemode: false,
       payment_status: 'unpaid',
-      amount_total: 1000,
-      currency: 'usd',
-      metadata: { product: 'cleardisk-preview' },
+      metadata: { product: 'cleardisk' },
     }),
   );
   assert.equal(res.status, 200);
   assert.equal(((await res.json()) as { paid: boolean }).paid, false);
 });
-void test('requires the correct paid test product and amount', async () => {
-  const req = new Request(
-    origin + '/api/checkout-status?session_id=cs_test_example',
-  );
-  const res = await checkoutStatus(req, env, async () =>
+void test('reports a paid ClearDisk session with the buyer email', async () => {
+  const res = await checkoutStatus(statusRequest(), env, async () =>
     Response.json({
       livemode: false,
       payment_status: 'paid',
-      amount_total: 1000,
-      currency: 'usd',
-      metadata: { product: 'cleardisk-preview' },
+      metadata: { product: 'cleardisk' },
+      customer_details: { email: 'buyer@example.com' },
     }),
   );
-  assert.deepEqual(await res.json(), { paid: true, mode: 'test' });
+  assert.deepEqual(await res.json(), {
+    paid: true,
+    mode: 'test',
+    email: 'buyer@example.com',
+  });
 });
-void test('never treats another product as a ClearDisk purchase', async () => {
-  const req = new Request(
-    origin + '/api/checkout-status?session_id=cs_test_example',
-  );
-  const res = await checkoutStatus(req, env, async () =>
+void test('never treats another product or the wrong mode as a ClearDisk purchase', async () => {
+  const other = await checkoutStatus(statusRequest(), env, async () =>
     Response.json({
       livemode: false,
       payment_status: 'paid',
-      amount_total: 1000,
-      currency: 'usd',
-      metadata: { product: 'different' },
+      metadata: { product: 'odoo-connector' },
     }),
   );
-  assert.equal(res.status, 404);
+  assert.equal(other.status, 404);
+  const live = { ...env, STRIPE_SECRET_KEY: 'sk_live_example' };
+  const testIdOnLive = await checkoutStatus(statusRequest(), live, async () => {
+    throw Error('must not call Stripe');
+  });
+  assert.equal(testIdOnLive.status, 400);
 });

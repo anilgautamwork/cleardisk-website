@@ -26,7 +26,7 @@ export function CheckoutButton() {
     <>
       <button className="button primary" disabled={pending} onClick={checkout}>
         {pending ? <LoaderCircle className="animate-spin" size={17} /> : null}
-        {pending ? 'Opening Stripe…' : 'Try the $10 test checkout'}
+        {pending ? 'Opening secure checkout…' : 'Pre-order ClearDisk 1.0 · $10'}
         <ArrowUpRight size={17} />
       </button>
       {error ? (

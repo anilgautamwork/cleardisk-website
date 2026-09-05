@@ -38,11 +38,11 @@ const faqs = [
   ],
   [
     'Is scanning really free?',
-    'Yes. Explore your storage, inspect the System Data breakdown and find your biggest files for free. The planned 1.0 cleanup license is $10 once. The currently available download is our 0.1.4 preview release.',
+    'Yes. Explore your storage, inspect the System Data breakdown and find your biggest files for free. The 1.0 cleanup license is $10 once and can be pre-ordered now. The currently available download is our 0.1.4 preview release.',
   ],
   [
     'Is this another subscription?',
-    'No. The $10 one-time license is planned to cover up to three Macs you own and all 1.x updates. There is no monthly or annual charge.',
+    'No. The $10 one-time license covers up to three Macs you own and all 1.x updates. There is no monthly or annual charge.',
   ],
   [
     'Does ClearDisk upload my files?',
@@ -388,11 +388,11 @@ export default function Home() {
                 </li>
               </ul>
               <Link className="button primary" href="/buy-now">
-                Preview $10 checkout <ArrowUpRight size={17} />
+                Pre-order for $10 <ArrowUpRight size={17} />
               </Link>
               <small>
                 <ShieldCheck size={13} />
-                30-day money-back policy at launch
+                Refund before delivery and for 30 days after
               </small>
             </article>
           </div>

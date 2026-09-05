@@ -2,7 +2,7 @@ import { pageMetadata } from '@/lib/seo';
 import { Header, Footer } from '@/components/brand';
 export const metadata = pageMetadata(
   'Terms & refunds — ClearDisk',
-  'ClearDisk preview terms, planned $10 license details and the 30-day refund policy at launch.',
+  'ClearDisk 1.0 license terms, pre-order conditions, the seller of record and the refund policy.',
   '/terms',
 );
 export default function Terms() {
@@ -14,23 +14,25 @@ export default function Terms() {
         <h1>Terms & refunds.</h1>
         <p>
           The download currently available is ClearDisk 0.1.4, a preview
-          release. Checkout on this website is a test and does not charge money
-          or grant a paid license.
+          release. The $10 checkout on this website is a live pre-order of the
+          ClearDisk 1.0 license, sold by TechMarbles Web Solutions Pvt. Ltd.,
+          Mohali, India, the maker of ClearDisk.
         </p>
-        <h2>The planned 1.0 license</h2>
+        <h2>The 1.0 license</h2>
         <p>
-          The intended price is $10 USD, paid once, for a personal,
-          non-transferable license on up to three Macs you own. It includes all
-          1.x updates. No subscription is required. License keys may not be
-          shared or resold.
+          The price is $10 USD, paid once and shown in your local currency at
+          checkout, for a personal, non-transferable license on up to three Macs
+          you own. It includes all 1.x updates. No subscription is required.
+          License keys may not be shared or resold. Your key is emailed to the
+          address used at checkout when ClearDisk 1.0 ships.
         </p>
-        <h2>30-day refund policy at launch</h2>
+        <h2>Refunds</h2>
         <p>
-          For live purchases when available, you can request a refund within 30
-          days from the email address used at purchase. Contact{' '}
-          <a href="mailto:hello@cleardisk.app">hello@cleardisk.app</a>. A
-          refunded license will be disabled. There is no refund to request for a
-          test payment.
+          Request a refund any time before your key is delivered, and within 30
+          days after delivery, from the email address used at purchase. Contact{' '}
+          <a href="mailto:hello@cleardisk.app">hello@cleardisk.app</a>. Refunds
+          return to the original payment method, and a refunded license is
+          disabled.
         </p>
         <h2>You choose what to remove</h2>
         <p>

@@ -1,3 +1,13 @@
+## Live pre-order checkout — 5 September 2026
+
+Owner decision: `/buy-now` now sells the ClearDisk 1.0 license as a **live pre-order** through Stripe hosted Checkout, superseding the earlier "test only until fulfillment" rule below. There is still no key-issuing backend; buyers see on the buy page, the confirmation page and the terms that the key is emailed when 1.0 ships, with a refund available any time before delivery and for 30 days after. The seller of record is TechMarbles Web Solutions Pvt. Ltd. (India), whose existing Stripe account is shared with the Odoo Connector product.
+
+`lib/checkout.ts` accepts `sk_`/`rk_` test or live keys and verifies every session against the key's mode. Sessions use the Dashboard price `STRIPE_PRICE_ID` (live: `price_1UC1KFSH0Xh3U2LGcghSdBPK`, USD 10 with EUR, GBP, AED and INR ₹599 options; Stripe localises the currency), `billing_address_collection=required`, `customer_creation=always`, a description and the statement suffix `CLEARDISK` (Indian export rules), and `metadata.product=cleardisk` on both the session and the PaymentIntent. Without a price id or a usable key the API answers 503, so a deploy before the secrets are set is safe.
+
+Secrets: `npx wrangler secret put STRIPE_PRICE_ID` and `STRIPE_SECRET_KEY` (a restricted live key is preferred) with `--config dist/server/wrangler.json`. No publishable key is needed for hosted Checkout. Dashboard prerequisites the owner controls: shortened statement descriptor (10 chars, e.g. `TECHMARBLE`) so statements read `TECHMARBLE* CLEARDISK`; export information enabled with a purpose code; customer receipt emails on; the Odoo Connector webhook must ignore sessions whose `metadata.product` is `cleardisk`.
+
+Fulfillment later: the license Worker (plan 01) can backfill keys for every paid Checkout Session with `metadata.product=cleardisk` because keys derive from the session id, then email them to `customer_details.email`.
+
 ## Download analytics and article expansion — latest, 5 September 2026
 
 Deployed to https://cleardisk.app as Worker version `2d83a170-2791-4a82-89c9-242ae0c3650d`. Twelve new source-checked guides bring the library to 17; grouped hub, contextual related links, reading times, canonicals, Article/Breadcrumb schema and sitemap are integrated. Sitemap contains 20 URLs. Public checks passed all 24 HTML pages, real 404, robots and sitemap; DMG hash is unchanged. Typecheck, lint and 16 tests pass. Source and final integration review found no blocker.

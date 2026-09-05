@@ -1,9 +1,10 @@
 'use client';
 import { useEffect, useState } from 'react';
+const checking = 'Checking your payment with Stripe…';
 export function PaymentResult({ sessionId }: { sessionId?: string }) {
   const [message, setMessage] = useState(
     sessionId
-      ? 'Checking the test payment with Stripe…'
+      ? checking
       : 'There is no checkout session to verify. No payment has been confirmed.',
   );
   const [retry, setRetry] = useState(0);
@@ -14,14 +15,21 @@ export function PaymentResult({ sessionId }: { sessionId?: string }) {
       signal: controller.signal,
     })
       .then(async (r) => {
-        const d = (await r.json()) as { paid?: boolean; error?: string };
+        const d = (await r.json()) as {
+          paid?: boolean;
+          mode?: string;
+          email?: string | null;
+          error?: string;
+        };
         if (!r.ok) throw Error(d.error || 'Could not verify checkout.');
-        if (!controller.signal.aborted)
-          setMessage(
-            d.paid
-              ? 'Your test payment was verified. No real money was charged. This test does not issue an active license.'
-              : 'Stripe has not confirmed this test payment yet. You can check again below.',
-          );
+        if (controller.signal.aborted) return;
+        const to = d.email ? d.email : 'the address you used at checkout';
+        setMessage(
+          (d.paid
+            ? `Payment confirmed. Your ClearDisk 1.0 license key will be emailed to ${to} when 1.0 ships. Questions: hello@cleardisk.app.`
+            : 'Stripe has not confirmed this payment yet. Some payment methods take a moment. You can check again below.') +
+            (d.mode === 'test' ? ' (Stripe test mode: no real charge.)' : ''),
+        );
       })
       .catch((e: unknown) => {
         if (!controller.signal.aborted)
@@ -38,7 +46,7 @@ export function PaymentResult({ sessionId }: { sessionId?: string }) {
         <button
           className="button secondary"
           onClick={() => {
-            setMessage('Checking the test payment with Stripe…');
+            setMessage(checking);
             setRetry((v) => v + 1);
           }}
         >
