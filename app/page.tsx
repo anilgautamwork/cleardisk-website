@@ -16,6 +16,7 @@ import {
   Apple,
 } from 'lucide-react';
 import { Header, Footer, DownloadButton, Mark } from '@/components/brand';
+import { visitorPrice } from '@/lib/visitor-price';
 import { JsonLd } from '@/components/json-ld';
 import { softwareSchema } from '@/lib/seo';
 import { StoragePreview } from '@/components/storage-preview';
@@ -53,7 +54,8 @@ const faqs = [
     'ClearDisk requires macOS 15 Sequoia or newer. The download includes both Apple silicon and Intel versions in one app. Grant Full Disk Access when prompted to see files macOS otherwise keeps private.',
   ],
 ];
-export default function Home() {
+export default async function Home() {
+  const price = await visitorPrice();
   return (
     <>
       <Header />
@@ -78,7 +80,7 @@ export default function Home() {
                 <div className="hero-ctas">
                   <DownloadButton />
                   <Link className="button quiet" href="/buy-now">
-                    Buy for $10 <ArrowUpRight size={16} />
+                    Buy for {price.display} <ArrowUpRight size={16} />
                   </Link>
                   <a className="button quiet" href="#demo">
                     <Play size={14} /> Explore the app
@@ -91,7 +93,7 @@ export default function Home() {
                   <i />
                   <span>Free to scan</span>
                   <i />
-                  <span>Yours for $10, once.</span>
+                  <span>Yours for {price.display}, once.</span>
                 </div>
                 <div className="hero-reassurance">
                   <ShieldCheck size={16} />
@@ -362,7 +364,8 @@ export default function Home() {
               </div>
               <h3>A lighter Mac, for keeps.</h3>
               <div className="price">
-                $10<span>USD · pay once</span>
+                {price.display}
+                <span>{price.code} · pay once</span>
               </div>
               <p>Unlock cleanup inside the app.</p>
               <ul>
@@ -388,7 +391,7 @@ export default function Home() {
                 </li>
               </ul>
               <Link className="button primary" href="/buy-now">
-                Buy for $10 <ArrowUpRight size={17} />
+                Buy for {price.display} <ArrowUpRight size={17} />
               </Link>
               <small>
                 <ShieldCheck size={13} />

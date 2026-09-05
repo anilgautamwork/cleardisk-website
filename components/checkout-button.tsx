@@ -41,7 +41,11 @@ type CheckoutResponse = {
   publishableKey?: string;
   error?: string;
 };
-export function CheckoutButton() {
+export function CheckoutButton({
+  label = 'Buy ClearDisk 1.0 · $10',
+}: {
+  label?: string;
+}) {
   const [pending, setPending] = useState(false);
   const [open, setOpen] = useState(false);
   const [error, setError] = useState('');
@@ -99,7 +103,7 @@ export function CheckoutButton() {
           onClick={checkout}
         >
           {pending ? <LoaderCircle className="animate-spin" size={17} /> : null}
-          {pending ? 'Opening secure checkout…' : 'Buy ClearDisk 1.0 · $10'}
+          {pending ? 'Opening secure checkout…' : label}
           <ArrowUpRight size={17} />
         </button>
       )}

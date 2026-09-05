@@ -2,13 +2,15 @@ import { pageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import { Header, Footer, Mark } from '@/components/brand';
 import { CheckoutButton } from '@/components/checkout-button';
+import { visitorPrice } from '@/lib/visitor-price';
 import { Check, ShieldCheck } from 'lucide-react';
 export const metadata = pageMetadata(
   'Buy ClearDisk — $10 once',
   'Buy the ClearDisk 1.0 cleanup license for $10, paid once. Your key arrives instantly on screen and by email. 30-day refund.',
   '/buy-now',
 );
-export default function Buy() {
+export default async function Buy() {
+  const price = await visitorPrice();
   return (
     <>
       <Header />
@@ -38,7 +40,7 @@ export default function Buy() {
               unlocks on up to three Macs you own. 30-day refund, no questions.
             </p>
           </div>
-          <CheckoutButton />
+          <CheckoutButton label={`Buy ClearDisk 1.0 · ${price.display}`} />
           <small>
             Payments are processed by Stripe for TechMarbles Web Solutions Pvt.
             Ltd., the maker of ClearDisk. Your statement shows CLEARDISK next to
@@ -55,7 +57,8 @@ export default function Buy() {
           <h2>ClearDisk 1.0</h2>
           <span className="muted">Personal license · instant delivery</span>
           <div className="price">
-            $10<span>USD · once</span>
+            {price.display}
+            <span>{price.code} · once</span>
           </div>
           <ul>
             <li>

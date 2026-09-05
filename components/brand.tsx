@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ArrowUpRight, ArrowDownToLine } from 'lucide-react';
+import { visitorPrice } from '@/lib/visitor-price';
 export function Mark({ large = false }: { large?: boolean }) {
   return (
     <span className={`brand-mark ${large ? 'large' : ''}`} aria-hidden="true">
@@ -18,7 +19,8 @@ export function Mark({ large = false }: { large?: boolean }) {
     </span>
   );
 }
-export function Header() {
+export async function Header() {
+  const price = await visitorPrice();
   return (
     <header className="header wrap">
       <Link className="brand" href="/" aria-label="ClearDisk home">
@@ -33,7 +35,7 @@ export function Header() {
       </nav>
       <div className="header-actions">
         <Link className="buy-link" href="/buy-now">
-          Buy for $10
+          Buy for {price.display}
         </Link>
         <DownloadButton compact />
       </div>

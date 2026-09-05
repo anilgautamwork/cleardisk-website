@@ -3,9 +3,11 @@ import { ArrowRight, ArrowUpRight, ShieldCheck } from 'lucide-react';
 import { Header, Footer, DownloadButton } from './brand';
 import { getGuide, type Guide } from '@/lib/guides';
 import { guideSchema } from '@/lib/seo';
+import { visitorPrice } from '@/lib/visitor-price';
 import { JsonLd } from './json-ld';
 
-export function GuideArticle({ guide }: { guide: Guide }) {
+export async function GuideArticle({ guide }: { guide: Guide }) {
+  const price = await visitorPrice();
   return (
     <>
       <Header />
@@ -119,7 +121,7 @@ export function GuideArticle({ guide }: { guide: Guide }) {
             <DownloadButton label="Download free scanner" source="guides" />
             <small>macOS 15+ · version 1.0</small>
             <Link href="/#pricing">
-              Cleanup license: $10 once <ArrowRight size={13} />
+              Cleanup license: {price.display} once <ArrowRight size={13} />
             </Link>
           </div>
         </section>
