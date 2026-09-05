@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { guides } from './guides.ts';
 export const SITE_URL = 'https://cleardisk.app';
+export const OG_IMAGE = SITE_URL + '/og.png';
 // Vite replaces this exact expression at build time; preview defaults closed.
 export const INDEXABLE = process.env.SITE_INDEXABLE === 'true';
 const publicPaths = [
@@ -38,7 +39,16 @@ export function pageMetadata(
       url,
       siteName: 'ClearDisk',
       type: 'website',
+      images: [
+        {
+          url: OG_IMAGE,
+          width: 1200,
+          height: 630,
+          alt: 'ClearDisk: Clear System Data on Mac',
+        },
+      ],
     },
+    twitter: { card: 'summary_large_image', title, description },
   };
 }
 export function sitemapEntries(indexable = INDEXABLE) {
