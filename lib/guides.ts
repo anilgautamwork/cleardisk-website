@@ -5,6 +5,7 @@ export type GuideSection = {
   id: string;
   title: string;
   paragraphs: string[];
+  code?: string[];
   items?: string[];
 };
 export type Guide = {
@@ -152,7 +153,7 @@ const foundationGuides: Guide[] = [
       'clear-system-data-on-mac',
       'show-library-folder-mac',
       'system-data-too-large',
-      'mac-storage-full',
+      'mac-storage-glossary',
     ],
     sources: [definition, snapshots],
   },

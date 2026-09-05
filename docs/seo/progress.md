@@ -2,6 +2,14 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 6 — 6 September 2026
+
+**Quality pass.** Re-read the fourteen guides written tonight against their sources. Two sentences were tightened: the Trash guide no longer claims macOS has "no force-empty command" (it says there is no Secure Empty Trash), and the installer guide says Apple provides "its installers" rather than "every installer" for re-download. Guide sections gained an optional code block, and the commands in the Terminal, Homebrew, npm/pnpm/Yarn/pip, Library, snapshots and post-update guides now render as copyable code instead of inline prose (14 blocks).
+
+**Shipped.** `/mac-storage-glossary`: plain definitions for System Data, Other, available versus free, purgeable space, local snapshots, caches, Optimize Storage, Library, containers, packages, disk images, per-disk Trash, allocated size, Full Disk Access, hidden folders, online-only files, node_modules, Derived Data, Docker.raw and package caches, each pointing at the guide that goes deeper. Related links from what-is-system-data and purgeable-space. Library: 36 guides, sitemap 40 URLs.
+
+**Next candidates.** Check Google's snippet refresh for the home page; consider per-guide OG images; Spotlight indexing; a "which guide do I need" decision page for the hub.
+
 ## Iteration 5 — 6 September 2026
 
 **Structure.** The guides hub now has four groups (System Data and a full Mac; Everyday cleanup and choosing tools; Files, backups and cloud storage; Apps and developer tools) instead of one 15-guide block. An inbound-link audit found two guides with no related links pointing at them (macOS installer, Photoshop scratch disk) and five with only one; related lists were adjusted so every guide has at least two inbound links besides the hub.

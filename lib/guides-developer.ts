@@ -455,6 +455,7 @@ export const developerGuides: Guide[] = [
           'Run brew --cache in Terminal. Homebrew’s FAQ says it prints the download cache location, usually ~/Library/Caches/Homebrew. Measure it with du -sh "$(brew --cache)". Both commands only read. Because the folder sits under ~/Library/Caches, macOS counts it inside System Data, which is why a developer Mac can show a large System Data figure with nothing obvious in Documents.',
           'Old versions of installed formulae live separately, inside Homebrew’s Cellar, and are the second thing cleanup removes. A disk scanner shows both locations next to npm, pip and Xcode directories, which helps when the cache is not the largest developer folder on the disk.',
         ],
+        code: ['brew --cache', 'du -sh "$(brew --cache)"'],
       },
       {
         id: 'preview-with-a-dry-run',
@@ -463,6 +464,7 @@ export const developerGuides: Guide[] = [
           'Run brew cleanup -n first. The manpage describes -n as showing what would be removed without removing anything, and the output ends with the total it would free. Cleanup targets stale lock files, outdated downloads for formulae and casks, and old versions of installed formulae. By default it only removes downloads older than 120 days; --prune=all removes all cache files regardless of age, and -s or --scrub also clears downloads for current versions, except those of installed formulae and casks.',
           'Read the dry run for anything you deliberately keep, such as an older version you pinned for a project. If it appears in the list, resolve that before running the real command rather than restoring it afterwards.',
         ],
+        code: ['brew cleanup -n'],
       },
       {
         id: 'run-it-and-re-measure',
@@ -470,6 +472,11 @@ export const developerGuides: Guide[] = [
         paragraphs: [
           'When the preview looks right, run brew cleanup. This is the modifying step: it deletes the files the dry run listed. Add --prune=all to remove every cached download, or -s to scrub downloads for current versions too. Then repeat du -sh "$(brew --cache)" and compare with the first figure. The difference is the real result; do not assume the dry-run total, because installed-formula downloads are kept.',
           'Homebrew already runs cleanup automatically after brew install, brew upgrade and brew reinstall unless HOMEBREW_NO_INSTALL_CLEANUP is set, and HOMEBREW_CLEANUP_MAX_AGE_DAYS changes the 120-day threshold. If the cache keeps growing on your Mac, check whether that variable is set in your shell profile.',
+        ],
+        code: [
+          'brew cleanup',
+          'brew cleanup --prune=all',
+          'du -sh "$(brew --cache)"',
         ],
       },
       {
@@ -479,6 +486,7 @@ export const developerGuides: Guide[] = [
           'Cleanup keeps everything that is installed, so the next saving comes from packages themselves. brew leaves lists formulae that nothing else depends on; brew autoremove -n lists dependencies that were only installed for a formula you have since removed, and brew autoremove uninstalls them. brew list shows every installed formula and cask, and brew uninstall removes one.',
           'Check before uninstalling a runtime such as Python, Node or Ruby: scripts and editors outside Homebrew may rely on it even when no formula does. Casks are ordinary apps; removing one with brew uninstall is the same decision as dragging the app to the Trash.',
         ],
+        code: ['brew leaves', 'brew autoremove -n', 'brew autoremove'],
       },
       {
         id: 'keep-it-from-growing-back',
@@ -523,6 +531,14 @@ export const developerGuides: Guide[] = [
           'Each manager can tell you where its cache lives, and du can measure it without changing anything. npm keeps its cache in ~/.npm on macOS, inside a folder named _cacache; npm config get cache prints the configured path. pnpm store path prints the shared package store. Modern Yarn keeps a global cache under ~/.yarn and a local cache per project; Yarn 1 prints its folder with yarn cache dir. pip cache dir prints pip’s folder and pip cache info reports its size.',
           'Measure with du -sh followed by the path, for example du -sh ~/.npm. These folders are hidden in Finder because their names start with a dot, which is why a developer Mac can lose tens of gigabytes to caches that never appear in Storage settings as anything but System Data. A disk scanner that shows hidden home folders with allocated sizes finds them in one pass.',
         ],
+        code: [
+          'npm config get cache',
+          'du -sh ~/.npm',
+          'pnpm store path',
+          'yarn cache dir',
+          'pip cache dir',
+          'pip cache info',
+        ],
       },
       {
         id: 'npm-verify-then-clean',
@@ -531,6 +547,7 @@ export const developerGuides: Guide[] = [
           'npm’s own documentation says its cache is self-healing and resistant to corruption, and that it should never be necessary to clear it for any reason other than reclaiming disk space. So start with npm cache verify, which garbage-collects unneeded data and checks the integrity of what remains. That alone can shrink the folder.',
           'To empty it, run npm cache clean --force. The --force flag is required precisely because clearing is rarely needed; without it the command refuses. The next install re-downloads what a project needs, so the only cost is bandwidth and a slower first install.',
         ],
+        code: ['npm cache verify', 'npm cache clean --force'],
       },
       {
         id: 'pnpm-prune-the-store',
@@ -539,6 +556,7 @@ export const developerGuides: Guide[] = [
           'pnpm keeps one content-addressable store that every project links into, so its cache is also its installation source. The documented cleanup is pnpm store prune, which removes unreferenced packages that no project on the system uses any more. Old versions accumulate there after upgrades, for example when a project moves from one release of a package to the next and nothing else needs the old one.',
           'Pruning is the supported route and pnpm re-downloads anything a later install needs. Deleting the store folder by hand is not: projects that still link into it may need a full reinstall.',
         ],
+        code: ['pnpm store prune'],
       },
       {
         id: 'yarn-and-pip',
@@ -546,6 +564,12 @@ export const developerGuides: Guide[] = [
         paragraphs: [
           'Modern Yarn documents yarn cache clean for the current project’s local cache, yarn cache clean --mirror for the global cache and --all for both. Yarn 1 uses yarn cache list to see what is stored and yarn cache clean to remove it. Check which Yarn a project uses before assuming the global folder is the large one.',
           'pip offers pip cache list to see stored package files, pip cache remove with a pattern for one package, and pip cache purge to remove everything. Virtual environments are a separate matter: each one holds its own copy of installed packages under the project, and the cache guide does not touch them.',
+        ],
+        code: [
+          'yarn cache clean',
+          'yarn cache clean --mirror',
+          'pip cache list',
+          'pip cache purge',
         ],
       },
       {

@@ -76,6 +76,11 @@ export async function GuideArticle({ guide }: { guide: Guide }) {
                 {section.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
+                {section.code && (
+                  <pre>
+                    <code>{section.code.join('\n')}</code>
+                  </pre>
+                )}
                 {section.items && (
                   <ul>
                     {section.items.map((item) => (

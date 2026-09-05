@@ -915,3 +915,16 @@ a:focus-visible {
   line-height: 1.25;
   letter-spacing: -0.025em;
 }
+
+.guide-body pre {
+  margin: 4px 0 22px;
+  padding: 16px 20px;
+  background: #f1eef7;
+  border: 1px solid #e0d8ee;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #2b2340;
+  white-space: pre;
+}

@@ -453,6 +453,7 @@ export const maintenanceGuides: Guide[] = [
           'Select a folder and choose File → Get Info to see its size, or run du -sh ~/Library/Caches in Terminal for a quick read-only figure. Both take time on a large folder. A disk scanner with Full Disk Access lists every Library folder at once with allocated sizes and a label, so you can compare Caches against Containers before opening either.',
           'Write down the two or three largest folders and the app each belongs to. That list, not the Library as a whole, is what you act on.',
         ],
+        code: ['du -sh ~/Library/Caches'],
       },
       {
         id: 'what-not-to-delete',
@@ -515,7 +516,7 @@ export const maintenanceGuides: Guide[] = [
         title: '3. Items in use: quit the app, then try again',
         paragraphs: [
           'A file that an app has open cannot be removed until the app lets go. Quit the app that created or opened it and empty the Trash again. When you are not sure which app it is, close everything, then log out and back in, or restart, and empty the Trash before opening anything else. This is our practical order; it clears the lock without touching the file system directly.',
-          'Modern macOS has no force-empty command, and the commands people paste from forums bypass the Trash rather than fixing the lock. Removing files outside the Trash removes the ability to put them back, and it does not release a file that a running process still holds.',
+          'Modern macOS has no Secure Empty Trash, and the commands people paste from forums bypass the Trash rather than fixing the lock. Removing files outside the Trash removes the ability to put them back, and it does not release a file that a running process still holds.',
         ],
       },
       {
@@ -581,6 +582,7 @@ export const maintenanceGuides: Guide[] = [
           'Run df -h / and read the line for your startup volume: size, used, available and the percentage used. The available figure here is the free space; it does not include the purgeable space that Disk Utility and Storage settings fold into their available figure, which is why Terminal can show less room than System Settings does.',
           'Write the used figure down. After any cleanup, run df -h / again; the difference is what you actually reclaimed, and it is the only number that settles arguments with a storage bar.',
         ],
+        code: ['df -h /'],
       },
       {
         id: 'rank-library-folders',
@@ -589,6 +591,10 @@ export const maintenanceGuides: Guide[] = [
           'Run du -sh ~/Library/* 2>/dev/null | sort -h to size every folder inside your user Library and list them smallest to largest; the last lines are the ones that matter. The 2>/dev/null part hides permission errors for folders macOS keeps private. To go one level deeper into a big one, repeat with its path, for example du -sh ~/Library/Caches/* 2>/dev/null | sort -h.',
           'Expect Caches, Containers, Application Support, Developer, Mail and Messages near the bottom of the sorted list. The Library guide explains what each holds and which ones to leave alone; the numbers you have just produced tell you which of them to read about first.',
         ],
+        code: [
+          'du -sh ~/Library/* 2>/dev/null | sort -h',
+          'du -sh ~/Library/Caches/* 2>/dev/null | sort -h',
+        ],
       },
       {
         id: 'find-hidden-home-folders',
@@ -596,6 +602,10 @@ export const maintenanceGuides: Guide[] = [
         paragraphs: [
           'Developer tools keep caches in folders whose names start with a dot, which Finder hides. Run du -sh ~/.[!.]* 2>/dev/null | sort -h to size them. Typical entries are .npm, .cache, .cargo, .gradle and .docker, and on a developer Mac they can outweigh the Library.',
           'For projects, du -sh ~/Projects/*/node_modules 2>/dev/null | sort -h, adjusted to your folder name, lists every node_modules by size in one command. The node_modules and package-cache guides cover what to do with them.',
+        ],
+        code: [
+          'du -sh ~/.[!.]* 2>/dev/null | sort -h',
+          'du -sh ~/Projects/*/node_modules 2>/dev/null | sort -h',
         ],
       },
       {
@@ -651,7 +661,7 @@ export const maintenanceGuides: Guide[] = [
         id: 'delete-the-macos-installer',
         title: '2. Delete the macOS installer',
         paragraphs: [
-          'Once the upgrade has finished, drag Install macOS to the Trash. Apple provides every installer for download again, so keeping it is a bandwidth trade, not a safety one. The exception is a bootable installer: Apple’s guide for creating one requires the full installer in Applications, so keep it if you plan to make an installer drive for another Mac.',
+          'Once the upgrade has finished, drag Install macOS to the Trash. Apple provides its installers for download again, so keeping it is a bandwidth trade, not a safety one. The exception is a bootable installer: Apple’s guide for creating one requires the full installer in Applications, so keep it if you plan to make an installer drive for another Mac.',
           'If macOS says the installer cannot be deleted because it is in use, the Installer app is still running or a volume it mounted is still attached. Quit Installer, eject anything it mounted from the Finder sidebar, and try again; if that fails, restart and delete it before opening anything else.',
         ],
       },
@@ -805,6 +815,7 @@ export const maintenanceGuides: Guide[] = [
           'Open System Settings → General → Storage and note the available figure and the System Data figure. Both can look worse for a day after an update than they will a week later, because some of what the update left behind is temporary by design. Write the numbers down and compare after 24 hours before removing anything.',
           'If you use Terminal, df -h / gives the used figure without purgeable space folded in, which makes the before-and-after comparison cleaner. The Terminal guide covers the read-only commands.',
         ],
+        code: ['df -h /'],
       },
       {
         id: 'the-pre-update-snapshot',
@@ -853,6 +864,109 @@ export const maintenanceGuides: Guide[] = [
       {
         label: 'Apple: how to download and install macOS',
         url: 'https://support.apple.com/en-us/102662',
+      },
+      {
+        label: 'Apple: free up storage space on Mac',
+        url: 'https://support.apple.com/en-us/102624',
+      },
+    ],
+  },
+  {
+    slug: 'mac-storage-glossary',
+    title: 'Mac storage glossary: System Data, purgeable space and more',
+    description:
+      'Plain definitions of the Mac storage terms that confuse cleanup: System Data, Other, purgeable space, local snapshots, allocated size, containers and more.',
+    summary:
+      'Most storage confusion is vocabulary. These are the terms macOS, Finder and cleanup tools use, what each one actually measures, and which guide picks up from there.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'the-storage-bar',
+        title: 'The storage bar',
+        paragraphs: [
+          'System Settings → General → Storage shows a bar divided into categories. Apple defines them in its Storage settings guide; the ones below cause the most questions.',
+        ],
+        items: [
+          'System Data: Apple’s general category for files that do not belong to any more specific category, such as caches, logs, app containers and developer files. It is a category, not a folder. See the What is System Data guide.',
+          'Other: the name older macOS versions used for roughly the same catch-all. Searches for “Other storage” and “System Data” describe the same problem.',
+          'Available: the space macOS is prepared to give you, which can include purgeable space it has not released yet. Free space is the part already released.',
+          'Used: everything on the volume, including files in the Trash until it is emptied.',
+        ],
+      },
+      {
+        id: 'space-that-comes-back',
+        title: 'Space that comes back on its own',
+        paragraphs: [
+          'Some of what looks used is space macOS manages for you. Counting it as removable is the most common cleanup mistake.',
+        ],
+        items: [
+          'Purgeable space: files macOS can remove when it needs the room, as Disk Utility describes. You cannot empty it by hand and it is already inside the available figure. See the purgeable space guide.',
+          'Local snapshot: an hourly copy of the startup disk that Time Machine keeps for 24 hours, plus one before a macOS update. Apple counts its space as available and thins it automatically. See the snapshots guide.',
+          'Cache: working files an app can rebuild. Safe to remove once the app is closed, and expected to come back.',
+          'Optimize Storage: a family of settings that keep originals in iCloud or on the server and smaller copies on the Mac. Photos, Mail and TV each have their own version.',
+        ],
+      },
+      {
+        id: 'where-files-live',
+        title: 'Where files live',
+        paragraphs: [
+          'Finder hides or bundles several of the places that hold the most space.',
+        ],
+        items: [
+          'Library: the folder that holds app data. There are three: ~/Library for your account, /Library for all users, and /System/Library for macOS, which is protected. See the Library folder guide.',
+          'Container: a sandboxed app’s private folder inside ~/Library/Containers, including the data for Mail and Messages. Change it through the app, not Finder.',
+          'Package: a folder that Finder shows as a single file, such as the Photos Library or an app bundle. Never edit inside one to save space.',
+          'Disk image: a .dmg file that mounts as a volume. The app you installed was copied out of it, so the image is a leftover once ejected.',
+          'Trash: one per disk. Items deleted from an external drive stay in that drive’s Trash and use its space until you empty the Trash with the drive connected.',
+        ],
+      },
+      {
+        id: 'sizes-and-permissions',
+        title: 'Sizes and permissions',
+        paragraphs: [
+          'Two tools can report different numbers for the same folder and both be right.',
+        ],
+        items: [
+          'Allocated size: the space a file actually occupies on disk. On APFS, cloned and sparse files can occupy far less than their logical size, which is the size Finder shows first.',
+          'Full Disk Access: the permission under System Settings → Privacy & Security that lets an app read folders macOS otherwise keeps private. Without it, a scanner sees less and should say so.',
+          'Hidden folder: a folder whose name begins with a dot, such as ~/.npm. Finder hides them; Terminal and scanners with Full Disk Access do not. See the Terminal guide.',
+        ],
+      },
+      {
+        id: 'cloud-and-developer-terms',
+        title: 'Cloud and developer terms',
+        paragraphs: [
+          'These come up whenever a Mac belongs to a developer or syncs with a cloud drive.',
+        ],
+        items: [
+          'Online-only, streamed or placeholder file: a file that lives in the cloud and takes no local space until opened. The opposite is mirrored or downloaded. See the cloud drive and iCloud guides.',
+          'node_modules: a per-project folder of installed JavaScript dependencies that can be recreated by reinstalling. See the node_modules guide.',
+          'Derived Data: Xcode’s rebuildable build output under ~/Library/Developer. See the Xcode guide.',
+          'Docker.raw: the single file that holds every Docker container, image and volume on a Mac; its allocated size grows and rarely shrinks on its own. See the Docker guide.',
+          'Package cache: downloads kept by npm, pnpm, Yarn, pip or Homebrew so a reinstall is faster. Each manager documents a command to clear it. See the cache guides.',
+        ],
+      },
+    ],
+    related: [
+      'what-is-system-data-on-mac',
+      'purgeable-space-on-mac',
+      'time-machine-snapshots',
+      'show-library-folder-mac',
+      'disk-space-analyzer-mac',
+    ],
+    sources: [
+      {
+        label: 'Apple: understand Storage settings',
+        url: 'https://support.apple.com/en-us/guide/mac-help/mchl3d437fbc/mac',
+      },
+      {
+        label: 'Apple: available, free and purgeable space in Disk Utility',
+        url: 'https://support.apple.com/en-tm/guide/disk-utility/dskutl1005/mac',
+      },
+      {
+        label: 'Apple: Time Machine local snapshots',
+        url: 'https://support.apple.com/en-us/102154',
       },
       {
         label: 'Apple: free up storage space on Mac',

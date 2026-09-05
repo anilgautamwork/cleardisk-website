@@ -283,7 +283,7 @@ export const storageGuides: Guide[] = [
     related: [
       'time-machine-snapshots',
       'mac-storage-not-updating-after-deleting-files',
-      'mac-storage-full',
+      'mac-storage-glossary',
       'what-is-system-data-on-mac',
     ],
     sources: [diskInfo, snapshots],
@@ -455,6 +455,7 @@ export const storageGuides: Guide[] = [
           'To see what exists, open Terminal and run tmutil listlocalsnapshots / with the trailing slash. The command only lists snapshot names with their dates; it changes nothing and reports no sizes. Disk Utility shows the same idea from the other side: available space can include both free space and purgeable space that macOS can free when it needs to.',
           'A cleanup app that shows a snapshot count is reporting the same list. ClearDisk reports how many local snapshots it finds, not a measured size, because macOS does not expose a reliable per-snapshot figure. Do not turn a count into an estimate of reclaimable gigabytes.',
         ],
+        code: ['tmutil listlocalsnapshots /'],
       },
       {
         id: 'what-macos-does-on-its-own',
