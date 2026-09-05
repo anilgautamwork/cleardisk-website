@@ -72,7 +72,10 @@ for (const path of pages) {
   ].flatMap((m) => JSON.parse(m[1]));
   const ofType = (type) => schemas.filter((s) => s['@type'] === type);
   assert.equal(ofType('Organization').length, 1, path + ': Organization');
-  if (path === '/') assert.equal(ofType('FAQPage').length, 1, 'home FAQPage');
+  if (path === '/') {
+    assert.equal(ofType('FAQPage').length, 1, 'home FAQPage');
+    assert.equal(ofType('WebSite').length, 1, 'home WebSite');
+  }
   if (path === '/' || path === '/download')
     assert.equal(ofType('SoftwareApplication')[0]?.offers?.price, '10', path);
   if (guide) {
@@ -88,7 +91,19 @@ for (const path of pages) {
     assert.equal(article.datePublished, guide.published, path);
     assert.equal(article.dateModified, guide.updated, path);
     assert.ok(article.publisher?.logo?.url, path + ': publisher logo');
-    assert.equal(ofType('BreadcrumbList')[0]?.itemListElement?.length, 2, path);
+    const crumbs = ofType('BreadcrumbList')[0]?.itemListElement;
+    assert.equal(crumbs?.length, 3, path + ': breadcrumbs');
+    assert.equal(crumbs[2].item, canonical, path + ': breadcrumb item');
+    assert.equal(
+      meta(head, 'property', 'article:published_time'),
+      guide.published,
+      path + ': article:published_time',
+    );
+    assert.equal(
+      meta(head, 'property', 'article:modified_time'),
+      guide.updated,
+      path + ': article:modified_time',
+    );
     const steps = guide.sections.filter((s) => /^\d+\. /.test(s.title));
     assert.equal(
       ofType('HowTo')[0]?.step?.length,

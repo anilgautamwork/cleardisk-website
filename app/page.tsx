@@ -13,12 +13,12 @@ import {
   Play,
   ChevronRight,
   Undo2,
-  Apple,
+  Laptop,
 } from 'lucide-react';
 import { Header, Footer, DownloadButton, Mark } from '@/components/brand';
 import { visitorPrice } from '@/lib/visitor-price';
 import { JsonLd } from '@/components/json-ld';
-import { softwareSchema } from '@/lib/seo';
+import { softwareSchema, websiteSchema } from '@/lib/seo';
 import { StoragePreview } from '@/components/storage-preview';
 import { PageMotion } from '@/components/motion';
 import { ProductDemo } from '@/components/product-demo';
@@ -103,9 +103,7 @@ export default async function Home() {
                   ClearDisk to the Trash.
                 </p>
                 <div className="hero-details">
-                  <span>
-                    <Apple size={13} /> macOS 15+
-                  </span>
+                  <span>macOS 15+</span>
                   <i />
                   <span>Free to scan</span>
                   <i />
@@ -134,7 +132,7 @@ export default async function Home() {
         </section>
         <section className="trust-strip wrap" aria-label="Product benefits">
           <span>
-            <Apple />
+            <Laptop />
             Native Mac app
           </span>
           <span>
@@ -497,6 +495,7 @@ export default async function Home() {
         </section>
       </main>
       <Footer />
+      <JsonLd data={websiteSchema} />
       <JsonLd data={softwareSchema} />
       <JsonLd data={faqSchema} />
     </>

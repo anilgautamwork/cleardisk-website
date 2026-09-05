@@ -16,6 +16,8 @@ export async function GuideArticle({ guide }: { guide: Guide }) {
           <Link href="/">ClearDisk</Link>
           <span>/</span>
           <Link href="/guides">Storage guides</Link>
+          <span>/</span>
+          <span aria-current="page">{guide.title}</span>
         </nav>
         <header className="guide-heading">
           <span className="eyebrow">A LITTLE MORE CLARITY</span>

@@ -74,6 +74,7 @@ export const storageGuides: Guide[] = [
     ],
     related: [
       'mac-storage-full',
+      'disk-space-analyzer-mac',
       'delete-iphone-backups-on-mac',
       'move-photos-library-to-external-drive',
     ],
@@ -278,6 +279,7 @@ export const storageGuides: Guide[] = [
       },
     ],
     related: [
+      'time-machine-snapshots',
       'mac-storage-not-updating-after-deleting-files',
       'mac-storage-full',
       'what-is-system-data-on-mac',
@@ -338,6 +340,7 @@ export const storageGuides: Guide[] = [
     ],
     related: [
       'purgeable-space-on-mac',
+      'time-machine-snapshots',
       'icloud-drive-taking-up-space-on-mac',
       'system-data-keeps-growing',
     ],
@@ -428,6 +431,74 @@ export const storageGuides: Guide[] = [
       {
         label: 'Apple: optimize storage in Photos',
         url: 'https://support.apple.com/en-ca/guide/photos/phta9b4673b4/mac',
+      },
+    ],
+  },
+  {
+    slug: 'time-machine-snapshots',
+    title: 'Time Machine local snapshots taking up space on Mac',
+    description:
+      'Why Time Machine local snapshots count as purgeable space on Mac, how macOS removes them on its own, and Apple’s supported way to reclaim room when needed.',
+    summary:
+      'Local snapshots are hourly recovery points macOS keeps on the startup disk. Apple counts their space as available and thins them automatically, so the figure you see is rarely space you need to fight for.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'check-whether-snapshots-matter',
+        title: '1. Check whether snapshots are part of your number',
+        paragraphs: [
+          'Open System Settings → General → Storage and note the available space. Apple documents that your Mac counts the space used by local snapshots as available storage, so snapshots can sit inside System Data or a purgeable figure without reducing the room macOS will give to a download or an installer.',
+          'To see what exists, open Terminal and run tmutil listlocalsnapshots / with the trailing slash. The command only lists snapshot names with their dates; it changes nothing and reports no sizes. Disk Utility shows the same idea from the other side: available space can include both free space and purgeable space that macOS can free when it needs to.',
+          'A cleanup app that shows a snapshot count is reporting the same list. ClearDisk reports how many local snapshots it finds, not a measured size, because macOS does not expose a reliable per-snapshot figure. Do not turn a count into an estimate of reclaimable gigabytes.',
+        ],
+      },
+      {
+        id: 'what-macos-does-on-its-own',
+        title: '2. Understand what macOS does on its own',
+        paragraphs: [
+          'Apple’s description is specific. Time Machine saves one snapshot of the startup disk roughly every hour and keeps it for 24 hours, plus an extra snapshot of the last successful backup that it keeps until space is needed. It stores snapshots only on disks with plenty of free space and deletes them as they age or as space is needed for other things.',
+          'That is why a large purgeable figure is not a to-do item. If a copy, download or update needs the room, macOS is designed to remove snapshots first. The reason to act manually is narrower: an operation is refusing to start even though the available figure looks sufficient, or you want a clean before-and-after measurement while diagnosing something else.',
+        ],
+        items: [
+          'What you lose by removing them: the ability to restore a file changed in the last 24 hours while your backup disk is disconnected. On a laptop that rarely meets its backup drive, that is the only recent backup.',
+          'What you do not gain: a permanent increase. Time Machine creates the next snapshot within about an hour, so the figure returns.',
+          'What is unaffected: the backups on your external Time Machine disk. Local snapshots and external backups are separate copies.',
+        ],
+      },
+      {
+        id: 'let-time-machine-thin-them',
+        title: '3. Use the supported route to remove them',
+        paragraphs: [
+          'Apple’s documented method is to pause automatic backups briefly. On macOS Ventura and later, open System Settings → General → Time Machine, click Options, and set the backup frequency to Manually. Apple says local snapshots are deleted after several minutes. Then set the frequency back so backups resume. The exact controls differ on older macOS versions; Apple’s snapshot article lists each one.',
+          'If your backup disk is available, connecting it and letting a backup complete is the gentler option. Time Machine keeps managing local snapshots on its own schedule afterwards. This guide does not supply a deletion command: the tmutil command line can delete named snapshots, but the settings route above is the one Apple documents for people who are not already comfortable with Terminal.',
+          'Do not leave Time Machine off to keep the space. The snapshots exist to protect the last day of your work, and disabling backups to hold on to a few gigabytes trades a recovery point for room that a full disk will consume again.',
+        ],
+      },
+      {
+        id: 'if-you-still-need-space',
+        title: '4. If the disk is still full afterwards',
+        paragraphs: [
+          'When removing snapshots changes little, snapshots were not the cause. Compare the available figure before and after a single change, then look at what actually grew. Files in the Trash keep their space until you empty it, and the storage-not-updating guide covers Trash, cloud placeholders and delayed figures.',
+          'For an unexplained System Data number, work through the files rather than the category. Storage settings shows large documents and downloads; a local scanner can show hidden Library folders, app containers and developer caches with their allocated sizes so you can review them one group at a time. ClearDisk’s free scan does this on your Mac without uploading anything, and lists snapshots as a count alongside the files it can read.',
+        ],
+      },
+    ],
+    related: [
+      'purgeable-space-on-mac',
+      'mac-storage-not-updating-after-deleting-files',
+      'what-is-system-data-on-mac',
+      'mac-storage-full',
+    ],
+    sources: [
+      snapshots,
+      {
+        label: 'Apple: back up your files with Time Machine on Mac',
+        url: 'https://support.apple.com/guide/mac-help/back-up-your-mac-with-time-machine-mh35860/mac',
+      },
+      {
+        label: 'Apple: available, free and purgeable space in Disk Utility',
+        url: 'https://support.apple.com/en-tm/guide/disk-utility/dskutl1005/mac',
       },
     ],
   },

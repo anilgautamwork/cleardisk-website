@@ -3,7 +3,13 @@ import { pageMetadata } from '@/lib/seo';
 import { Header, Footer, Mark } from '@/components/brand';
 import { JsonLd } from '@/components/json-ld';
 import { softwareSchema } from '@/lib/seo';
-import { ArrowDownToLine, ShieldCheck, HardDrive } from 'lucide-react';
+import Link from 'next/link';
+import {
+  ArrowDownToLine,
+  ArrowRight,
+  ShieldCheck,
+  HardDrive,
+} from 'lucide-react';
 export const metadata = pageMetadata(
   'Download ClearDisk for Mac',
   'Download ClearDisk 1.0 for macOS 15 and later. Universal Apple silicon and Intel app. Free scanning, $10 one-time cleanup license.',
@@ -75,6 +81,11 @@ export default async function Download({
           Review the findings before removing anything. Files moved to the Trash
           continue to use space until you empty it. To unlock cleanup, choose
           License… in the ClearDisk menu and paste your key.
+        </p>
+        <p>
+          <Link className="text-link" href="/disk-space-analyzer-mac">
+            What the scan shows, and what it does not <ArrowRight size={14} />
+          </Link>
         </p>
       </main>
       <Footer />

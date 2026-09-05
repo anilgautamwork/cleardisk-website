@@ -27,7 +27,7 @@ export function pageMetadata(
   title: string,
   description: string,
   path: string,
-  type: 'website' | 'article' = 'website',
+  article?: { published: string; updated: string },
 ): Metadata {
   const url = canonical(path);
   return {
@@ -40,7 +40,14 @@ export function pageMetadata(
       description,
       url,
       siteName: 'ClearDisk',
-      type,
+      ...(article
+        ? {
+            type: 'article' as const,
+            publishedTime: article.published,
+            modifiedTime: article.updated,
+            authors: ['ClearDisk'],
+          }
+        : { type: 'website' as const }),
       images: [
         {
           url: OG_IMAGE,
@@ -76,6 +83,24 @@ const organization = {
   url: SITE_URL,
   logo: { '@type': 'ImageObject', url: SITE_URL + '/icon.svg' },
   email: 'hello@cleardisk.app',
+  // Matches the About page; do not add ratings, reviews or people here.
+  legalName: 'TechMarbles Web Solutions Pvt. Ltd.',
+  foundingDate: '2018',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Mohali',
+    addressCountry: 'IN',
+  },
+  sameAs: ['https://github.com/anilgautamwork/cleardisk-app'],
+};
+// Lets Google pick "ClearDisk" as the site name in results.
+export const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': SITE_URL + '/#website',
+  name: 'ClearDisk',
+  url: SITE_URL,
+  publisher: { '@id': SITE_URL + '/#organization' },
 };
 export const organizationSchema = {
   '@context': 'https://schema.org',
@@ -128,6 +153,7 @@ export function guideSchema(guide: Guide) {
           name: 'Storage guides',
           item: canonical('/guides'),
         },
+        { '@type': 'ListItem', position: 3, name: guide.title, item: url },
       ],
     },
     // Explainers without numbered sections keep Article only; HowTo steps

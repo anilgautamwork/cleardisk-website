@@ -73,6 +73,7 @@ export const maintenanceGuides: Guide[] = [
     related: [
       'mac-storage-full',
       'find-large-files-on-mac',
+      'disk-space-analyzer-mac',
       'clear-system-data-on-mac',
     ],
     sources: [storage, settings, trash],
@@ -152,6 +153,91 @@ export const maintenanceGuides: Guide[] = [
         label: 'Apple: Safari Develop menu and Empty Caches',
         url: 'https://developer.apple.com/documentation/safari-developer-tools/develop-menu',
       },
+    ],
+  },
+  {
+    slug: 'disk-space-analyzer-mac',
+    title: 'Disk space analyzer for Mac: built-in tools and ClearDisk',
+    description:
+      'Choosing a disk space analyzer for Mac: what Storage settings and Finder show for free, when a scanner earns its place, and what ClearDisk’s free scan sees.',
+    summary:
+      'A disk space analyzer answers one question: which files hold the space. Start with what macOS shows for free, then add a scanner when you need file-level detail across the whole disk, including the folders macOS hides.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'what-an-analyzer-does',
+        title: 'What a disk space analyzer actually does',
+        paragraphs: [
+          'An analyzer reads the file system and adds up sizes by folder, type or app so you can see where the space went. That sounds like what Storage settings already does, and for documents, photos and apps it is. The difference appears in the folders Apple groups as System Data: caches, logs, app containers, device backups and developer files that no category names.',
+          'Two details separate a useful analyzer from a pretty chart. It should report the space a file actually occupies on disk, which on APFS can differ from the size Finder shows for cloned or sparse files. And it should say when it could not read a folder, because a scan that silently skips protected locations produces a confident, wrong total.',
+        ],
+      },
+      {
+        id: 'what-macos-gives-you-free',
+        title: 'What macOS already gives you for free',
+        paragraphs: [
+          'Before installing anything, use the built-in views. Apple documents each of them, and for many Macs they are enough.',
+        ],
+        items: [
+          'System Settings → General → Storage shows the category bar and, behind Documents, a Large Files list, a Downloads list and a File Browser sorted by size.',
+          'Finder’s Get Info and list view sorted by size work for any folder you can open, and File → Put Back restores anything you move to the Trash before emptying it.',
+          'Disk Utility separates available space into free and purgeable space, which explains why two tools can report different numbers for the same disk.',
+          'Terminal’s du command measures a folder without changing it, for example du -sh ~/Library/Caches. It reports what your account is allowed to read.',
+        ],
+      },
+      {
+        id: 'when-a-scanner-is-worth-it',
+        title: 'When a scanner earns its place',
+        paragraphs: [
+          'Install an analyzer when the built-in views stop explaining the number: System Data is large and Documents is not, storage grows back after cleanup, or you need to see inside ~/Library, application containers and developer directories in one pass. Those folders are where an hour of Finder browsing turns into a five-minute scan.',
+          'Expect a permission step. macOS keeps some locations private until you grant the app Full Disk Access in System Settings → Privacy & Security. Without it, an analyzer sees less and should say so. Also expect that iCloud files stored only in the cloud do not occupy local space, and that anything you move to the Trash keeps its space until the Trash is emptied.',
+        ],
+      },
+      {
+        id: 'what-cleardisk-shows',
+        title: 'What ClearDisk shows, and what it does not',
+        paragraphs: [
+          'ClearDisk is our own analyzer, so read this section as the maker’s description rather than a review. Scanning is free and unlimited, and everything runs on your Mac; file names and scan results are never uploaded.',
+        ],
+        items: [
+          'A System Data breakdown into named groups, each labelled Safe, Review or Leave it, with a plain explanation of what the files do.',
+          'A visual storage map and a largest-files list, with Reveal in Finder for anything you want to inspect before deciding.',
+          'Sizes reported as space allocated on disk, and protected system and account folders shown but never offered for removal.',
+          'Cleanup from inside the app is a one-time license: files go to the Trash first with undo, and permanent deletion is a separate, typed confirmation.',
+          'Limits: it needs macOS 15 or later, asks for Full Disk Access to read private folders, reports Time Machine local snapshots as a count rather than a size, and does not clean memory, remove malware, repair iCloud sync or find duplicates.',
+        ],
+      },
+      {
+        id: 'how-to-compare-tools',
+        title: 'How to compare tools honestly',
+        paragraphs: [
+          'We have not tested competing analyzers side by side, so this page does not rank them. These are the questions we would ask of any tool, including ours, before paying for it.',
+        ],
+        items: [
+          'Can you scan and see the results before paying, and is the price one-time or a subscription? How many Macs does it cover?',
+          'Does removal go to the Trash with a way back, or straight to permanent deletion?',
+          'Does the app upload file names or scan results anywhere? Read the privacy policy, not the marketing page.',
+          'Is the app notarized by Apple so Gatekeeper can check it, and can you remove it by dragging it to the Trash?',
+          'Does it show hidden folders and allocated sizes, and does it tell you when it lacked permission to read something?',
+          'What is the refund window, and is there a working support address?',
+        ],
+      },
+    ],
+    related: [
+      'find-large-files-on-mac',
+      'what-is-system-data-on-mac',
+      'clear-system-data-on-mac',
+      'free-up-space-on-mac',
+    ],
+    sources: [
+      storage,
+      settings,
+      {
+        label: 'Apple: available, free and purgeable space in Disk Utility',
+        url: 'https://support.apple.com/en-tm/guide/disk-utility/dskutl1005/mac',
+      },
+      trash,
     ],
   },
 ];
