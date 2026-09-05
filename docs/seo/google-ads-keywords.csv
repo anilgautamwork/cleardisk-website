@@ -1,0 +1,62 @@
+campaign,ad_group,keyword,match_type,landing_url,intent,priority,geo,notes
+CD-Search-SystemData,Clear System Data,clear system data mac,exact,https://cleardisk.app/clear-system-data-on-mac?source=google,how-to,P1,EN+IN,
+CD-Search-SystemData,Clear System Data,how to clear system data on mac,phrase,https://cleardisk.app/clear-system-data-on-mac?source=google,how-to,P1,EN+IN,
+CD-Search-SystemData,Clear System Data,delete system data mac,exact,https://cleardisk.app/clear-system-data-on-mac?source=google,how-to,P1,EN+IN,
+CD-Search-SystemData,Clear System Data,reduce system data mac,exact,https://cleardisk.app/clear-system-data-on-mac?source=google,how-to,P1,EN+IN,
+CD-Search-SystemData,Clear System Data,clear system storage mac,exact,https://cleardisk.app/clear-system-data-on-mac?source=google,how-to,P1,EN+IN,
+CD-Search-SystemData,System Data Too Large,system data 100gb mac,phrase,https://cleardisk.app/system-data-too-large?source=google,troubleshooting,P1,EN+IN,covers 150gb/200gb variants through close matching
+CD-Search-SystemData,System Data Too Large,mac system data huge,exact,https://cleardisk.app/system-data-too-large?source=google,troubleshooting,P1,EN+IN,
+CD-Search-SystemData,System Data Too Large,why is system data so high on mac,phrase,https://cleardisk.app/what-is-system-data-on-mac?source=google,explanation,P2,EN+IN,
+CD-Search-SystemData,System Data Keeps Growing,system data keeps growing mac,phrase,https://cleardisk.app/system-data-keeps-growing?source=google,troubleshooting,P1,EN+IN,
+CD-Search-SystemData,System Data Keeps Growing,mac storage filling up by itself,phrase,https://cleardisk.app/system-data-keeps-growing?source=google,troubleshooting,P2,EN+IN,
+CD-Search-StorageFull,Storage Full,mac storage full,exact,https://cleardisk.app/mac-storage-full?source=google,urgent,P1,EN+IN,
+CD-Search-StorageFull,Storage Full,macbook storage full,exact,https://cleardisk.app/mac-storage-full?source=google,urgent,P1,EN+IN,
+CD-Search-StorageFull,Storage Full,startup disk full mac,phrase,https://cleardisk.app/mac-storage-full?source=google,urgent,P1,EN+IN,
+CD-Search-StorageFull,Storage Full,your disk is almost full mac,phrase,https://cleardisk.app/mac-storage-full?source=google,urgent,P1,EN+IN,
+CD-Search-StorageFull,Storage Full,not enough disk space mac,phrase,https://cleardisk.app/mac-storage-full?source=google,urgent,P1,EN+IN,
+CD-Search-StorageFull,Free Up Space,free up space on mac,exact,https://cleardisk.app/mac-storage-full?source=google,how-to,P2,EN+IN,move to /free-up-space-on-mac once that guide exists
+CD-Search-StorageFull,Free Up Space,how to free up space on macbook air,phrase,https://cleardisk.app/mac-storage-full?source=google,how-to,P2,EN+IN,
+CD-Search-StorageFull,Large Files,find large files on mac,exact,https://cleardisk.app/find-large-files-on-mac?source=google,how-to,P2,EN+IN,
+CD-Search-StorageFull,Large Files,what is taking up space on my mac,phrase,https://cleardisk.app/find-large-files-on-mac?source=google,how-to,P1,EN+IN,
+CD-Search-Alternatives,One-Time Cleaners,mac cleaner one time purchase,phrase,https://cleardisk.app/?source=google,commercial,P1,EN,
+CD-Search-Alternatives,One-Time Cleaners,mac cleaner no subscription,phrase,https://cleardisk.app/?source=google,commercial,P1,EN,
+CD-Search-Alternatives,One-Time Cleaners,mac storage cleaner app,phrase,https://cleardisk.app/?source=google,commercial,P1,EN,
+CD-Search-Alternatives,One-Time Cleaners,disk space analyzer mac,exact,https://cleardisk.app/?source=google,commercial,P1,EN,
+CD-Search-Alternatives,One-Time Cleaners,mac storage analyzer,exact,https://cleardisk.app/?source=google,commercial,P2,EN,
+CD-Search-Alternatives,Competitor Alternatives,cleanmymac alternative,exact,https://cleardisk.app/?source=google,commercial,P1,EN,competitor name allowed as keyword; never in ad text
+CD-Search-Alternatives,Competitor Alternatives,cleanmymac alternative one time purchase,phrase,https://cleardisk.app/?source=google,commercial,P1,EN,
+CD-Search-Alternatives,Competitor Alternatives,daisydisk alternative,exact,https://cleardisk.app/?source=google,commercial,P2,EN,
+CD-Search-Alternatives,Competitor Alternatives,mackeeper alternative,exact,https://cleardisk.app/?source=google,commercial,P2,EN,
+CD-Search-Developer,Xcode,clear xcode derived data,exact,https://cleardisk.app/clear-xcode-derived-data?source=google,how-to,P2,EN+IN,
+CD-Search-Developer,Xcode,xcode taking up space mac,phrase,https://cleardisk.app/clear-xcode-derived-data?source=google,troubleshooting,P2,EN+IN,
+CD-Search-Developer,Xcode,delete ios simulators mac,phrase,https://cleardisk.app/remove-unused-ios-simulators?source=google,how-to,P2,EN+IN,exception to the ios negative for this campaign
+CD-Search-Developer,Docker,docker taking up space mac,phrase,https://cleardisk.app/clean-docker-disk-space-mac?source=google,troubleshooting,P2,EN+IN,
+CD-Search-Developer,Docker,docker.raw size mac,phrase,https://cleardisk.app/clean-docker-disk-space-mac?source=google,troubleshooting,P2,EN+IN,
+CD-Search-Developer,node_modules,node_modules taking up space mac,phrase,https://cleardisk.app/find-node-modules-folders-mac?source=google,how-to,P2,EN+IN,
+CD-Search-Brand,Brand,cleardisk,exact,https://cleardisk.app/?source=google,brand,P3,ALL,start only after competitors bid on the name
+CD-Search-Brand,Brand,cleardisk mac app,phrase,https://cleardisk.app/?source=google,brand,P3,ALL,
+NEGATIVE,Account-level,iphone,phrase,,exclusion,,,except CD-Search-Developer
+NEGATIVE,Account-level,ipad,phrase,,exclusion,,,
+NEGATIVE,Account-level,ios,phrase,,exclusion,,,except CD-Search-Developer
+NEGATIVE,Account-level,windows,phrase,,exclusion,,,
+NEGATIVE,Account-level,pc,phrase,,exclusion,,,
+NEGATIVE,Account-level,android,phrase,,exclusion,,,
+NEGATIVE,Account-level,linux,phrase,,exclusion,,,
+NEGATIVE,Account-level,free download,phrase,,exclusion,,,paid intent only; the free scan is still mentioned in ads
+NEGATIVE,Account-level,crack,phrase,,exclusion,,,
+NEGATIVE,Account-level,torrent,phrase,,exclusion,,,
+NEGATIVE,Account-level,ram,phrase,,exclusion,,,memory cleaning is out of scope
+NEGATIVE,Account-level,memory,phrase,,exclusion,,,
+NEGATIVE,Account-level,battery,phrase,,exclusion,,,
+NEGATIVE,Account-level,icloud storage,phrase,,exclusion,,,cloud plans are a different product
+NEGATIVE,Account-level,icloud full,phrase,,exclusion,,,
+NEGATIVE,Account-level,google drive,phrase,,exclusion,,,
+NEGATIVE,Account-level,dropbox,phrase,,exclusion,,,
+NEGATIVE,Account-level,data recovery,phrase,,exclusion,,,
+NEGATIVE,Account-level,malware,phrase,,exclusion,,,ClearDisk is not an antivirus
+NEGATIVE,Account-level,virus,phrase,,exclusion,,,
+NEGATIVE,Account-level,reddit,phrase,,exclusion,,,
+NEGATIVE,Account-level,youtube,phrase,,exclusion,,,
+NEGATIVE,Account-level,jobs,phrase,,exclusion,,,
+NEGATIVE,Account-level,clear history,phrase,,exclusion,,,
+NEGATIVE,Account-level,clear cookies,phrase,,exclusion,,,
