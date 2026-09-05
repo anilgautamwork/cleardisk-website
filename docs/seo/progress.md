@@ -2,6 +2,14 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 9 — 6 September 2026
+
+**Research.** Ahrefs free tool, read through a compact page-script extractor to cut cost: "how to free up space on mac" >1,000 and Easy (already covered by `/free-up-space-on-mac`); "optimize storage mac" >100 Easy; "downloads folder mac" >100 Easy; "startup disk full mac", "macbook storage full" and "find large files mac" all <100; "disk utility mac" >1,000 but Medium and repair-intent, skipped. Apple's "Optimize storage space on your Mac" page confirmed the current Recommendations are Store in iCloud, Optimize Storage and Empty Trash Automatically; the older "Reduce Clutter" wording was removed from the free-tools guide accordingly.
+
+**Shipped.** `/optimize-storage-mac` (what each recommendation changes, costs, how to undo each in its own app) and `/clear-downloads-folder-mac` (sort by size, decide by type, Safari and Mail settings that refill it, the other downloads folders). The home page's guide cards now show the four highest-volume pages in a two-column grid: clear System Data, check storage, clear cache, uninstall apps. `/mac-storage-full` retitled to "Mac storage full: first steps when the disk is almost full" to cover the startup-disk phrasing. Library: 42 guides, sitemap 46 URLs.
+
+**Next candidates.** Probe "system data mac" question phrasings for FAQ-style additions; consider per-guide OG images; re-check `site:cleardisk.app` for the newest pages.
+
 ## Iteration 8 — 6 September 2026
 
 **Research.** More head terms from Ahrefs' free tool: "how to clear cache on mac" >10,000/month US and Easy, "clear cache on mac" >1,000 (already covered by `/clear-cache-on-mac` and `/clear-browser-cache-mac`; extra inbound links added); "show hidden files mac" >1,000 and Easy with a long tail of Finder, Terminal and shortcut variants (no page existed); "empty trash mac" and "force empty trash mac" >100 (covered by the Trash guide); "how to delete files on mac" >100. Apple's shortcut list documents Shift-Command-G, Command-Delete and the Empty Trash shortcuts but not the Shift-Command-Period toggle, so the hidden-files guide says so plainly.

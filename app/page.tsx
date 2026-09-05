@@ -466,14 +466,14 @@ export default async function Home() {
                 Read the guide <ArrowRight size={16} />
               </span>
             </Link>
-            <Link className="guide-card" href="/mac-storage-full">
-              <h3>Why is my Mac still full?</h3>
+            <Link className="guide-card" href="/clear-cache-on-mac">
+              <h3>How do I clear the cache?</h3>
               <p>
-                A practical next step when deleting files has not solved the
-                problem.
+                Safari, Chrome, app caches and the Library folder, without
+                deleting what apps still need.
               </p>
               <span>
-                Find an answer <ArrowRight size={16} />
+                Clear it safely <ArrowRight size={16} />
               </span>
             </Link>
             <Link className="guide-card" href="/how-to-check-storage-on-mac">
@@ -484,6 +484,16 @@ export default async function Home() {
               </p>
               <span>
                 Check your storage <ArrowRight size={16} />
+              </span>
+            </Link>
+            <Link className="guide-card" href="/uninstall-apps-on-mac">
+              <h3>How do I uninstall an app properly?</h3>
+              <p>
+                The uninstaller first, then Finder, then the files an app leaves
+                in your Library.
+              </p>
+              <span>
+                Remove it fully <ArrowRight size={16} />
               </span>
             </Link>
           </div>

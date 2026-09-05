@@ -928,3 +928,12 @@ a:focus-visible {
   color: #2b2340;
   white-space: pre;
 }
+
+.home-guides .guide-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 720px) {
+  .home-guides .guide-grid {
+    grid-template-columns: 1fr;
+  }
+}

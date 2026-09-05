@@ -733,7 +733,7 @@ export const maintenanceGuides: Guide[] = [
         id: 'what-macos-already-includes',
         title: 'What macOS already includes',
         paragraphs: [
-          'Before installing anything, use the tools Apple documents in its storage guidance. System Settings → General → Storage shows the category bar with recommendations: Store in iCloud, Optimize Storage for TV downloads and email attachments, Empty Trash Automatically, and Reduce Clutter, which opens lists of large files, downloads and unsupported apps. Each category has its own information button for deleting device backups, apps and attachments.',
+          'Before installing anything, use the tools Apple documents in its storage guidance. System Settings → General → Storage shows the category bar with recommendations: Store in iCloud, Optimize Storage for TV downloads and email attachments, and Empty Trash Automatically. Each category has its own information button: Documents opens Large Files, Downloads and a File Browser sorted by size, and the others list apps, device backups and attachments for deletion.',
           'Add Finder’s Get Info for sizes, the Trash with File → Put Back for undo, Disk Utility for the free-versus-purgeable distinction, and safe mode for a one-off cache clear before an update. For a Mac whose storage is mostly documents, photos and apps, this is the whole toolkit.',
         ],
       },
@@ -1271,6 +1271,7 @@ export const maintenanceGuides: Guide[] = [
     ],
     related: [
       'trash-wont-empty-mac',
+      'clear-downloads-folder-mac',
       'find-large-files-on-mac',
       'how-to-check-storage-on-mac',
       'mac-storage-not-updating-after-deleting-files',
@@ -1287,6 +1288,173 @@ export const maintenanceGuides: Guide[] = [
       {
         label: 'Apple: free up storage space on Mac',
         url: 'https://support.apple.com/en-us/102624',
+      },
+    ],
+  },
+  {
+    slug: 'optimize-storage-mac',
+    title: 'Optimize Storage on Mac: what each recommendation does',
+    description:
+      'What Apple’s Store in iCloud, Optimize Storage and Empty Trash Automatically recommendations actually change, when to turn them on, and how to undo each one.',
+    summary:
+      'The recommendations in Storage settings are three separate switches with three different costs. Two move your files into the cloud on demand; one empties the Trash on a timer.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'where-the-recommendations-live',
+        title: '1. Where the recommendations live',
+        paragraphs: [
+          'Open System Settings → General → Storage. Apple’s page on optimizing storage space describes the Recommendations shown there and adds a line people miss: when space is needed, macOS also clears caches and logs that are safe to delete on its own. So the recommendations are about your files, not about System Data.',
+          'The words are reused elsewhere, which causes confusion. Photos has its own Optimize Mac Storage setting, iCloud Drive has one too, and the recommendation called Optimize Storage is a third thing. This guide takes the three recommendations in order and says which other settings each one flips.',
+        ],
+      },
+      {
+        id: 'store-in-icloud',
+        title: '2. Store in iCloud',
+        paragraphs: [
+          'Apple’s description: store files from your Desktop and Documents folders in iCloud Drive, store photos and videos in iCloud Photos, store messages and attachments in iCloud, and optimize storage by keeping only recently opened files on your Mac when space is needed. It is the biggest saving and the biggest change, because it turns on three syncs at once and lets macOS evict older files to the cloud.',
+          'Three costs follow. Everything now counts against your iCloud storage plan. A file that was evicted needs a connection to open, which matters on a laptop used offline; Apple documents the Download Now and Remove Download controls in iCloud Drive for managing that by hand. And deleting a synced file deletes it everywhere. Apple notes you can adjust the pieces later in the iCloud pane of Apple Account settings, in Photos settings and in Messages settings.',
+        ],
+      },
+      {
+        id: 'optimize-storage',
+        title: '3. Optimize Storage',
+        paragraphs: [
+          'Apple’s description: save space by automatically removing Apple TV movies and TV shows you have already watched, and by keeping only recent email attachments on this Mac when storage space is needed. Both are cheap and reversible. A watched purchase downloads again from the TV app, and older attachments stay on the mail server; Mail fetches one when you open it.',
+          'The attachment half is the same control as Mail’s Download Attachments setting, which the Mail guide covers. If Mail is a large part of your storage, that setting does the work whether or not you use the recommendation.',
+        ],
+      },
+      {
+        id: 'empty-trash-automatically',
+        title: '4. Empty Trash Automatically',
+        paragraphs: [
+          'Apple’s description: automatically erase items that have been in the Trash for more than 30 days. It is the same option as Finder → Settings → Advanced → Remove items from the Trash after 30 days, and Apple says you can change it there later. Apple also notes that items deleted from iCloud Drive are emptied after 30 days regardless of the setting.',
+          'The cost is the safety net. Put Back works only while an item is still in the Trash, so with this on, anything you deleted more than a month ago is gone. Turn it on if you never look in the Trash anyway; leave it off if you use the Trash as a holding area.',
+        ],
+      },
+      {
+        id: 'turning-them-off',
+        title: '5. Turning each one off, and what none of them do',
+        paragraphs: [
+          'Each recommendation is undone in the app it changed rather than in Storage settings.',
+        ],
+        items: [
+          'Desktop and Documents in iCloud, and on-demand files: the iCloud pane of Apple Account settings, under iCloud Drive. Download anything you need offline first.',
+          'Photos: Photos → Settings → iCloud, choose Download Originals to this Mac. Apple’s Photos guide covers the two options.',
+          'Messages: Messages → Settings → iCloud, where Messages in iCloud can be turned off.',
+          'Email attachments: Mail → Settings → Accounts → Account Information, set Download Attachments to All.',
+          'Trash: Finder → Settings → Advanced, clear Remove items from the Trash after 30 days.',
+          'None of these touch developer caches, app containers or the rest of System Data. For that part, the System Data and Library guides apply, and a free local scan such as ClearDisk’s shows those folders with allocated sizes and moves what you choose to the Trash first.',
+        ],
+      },
+    ],
+    related: [
+      'free-up-space-on-mac',
+      'icloud-drive-taking-up-space-on-mac',
+      'photos-library-taking-up-space-mac',
+      'mail-taking-up-space-on-mac',
+      'delete-files-on-mac',
+    ],
+    sources: [
+      {
+        label: 'Apple: optimize storage space on your Mac',
+        url: 'https://support.apple.com/guide/mac-help/sysp4ee93ca4/mac',
+      },
+      {
+        label: 'Apple: work with folders and files in iCloud Drive',
+        url: 'https://support.apple.com/guide/mac-help/mchl1a02d711/mac',
+      },
+      {
+        label: 'Apple: optimize storage in Photos on Mac',
+        url: 'https://support.apple.com/guide/photos/optimize-storage-in-photos-on-mac-phta9b4673b4/mac',
+      },
+      {
+        label: 'Apple: delete files and folders on Mac',
+        url: 'https://support.apple.com/guide/mac-help/delete-files-and-folders-on-mac-mchlp1093/mac',
+      },
+    ],
+  },
+  {
+    slug: 'clear-downloads-folder-mac',
+    title: 'Clear the Downloads folder on Mac without losing anything',
+    description:
+      'Sort the Mac Downloads folder by size, spot installers, archives and duplicates you can drop, empty the Trash, and set Safari and Mail so it stops refilling.',
+    summary:
+      'Downloads is the one folder on a Mac that fills itself. Most of it is installers and archives whose job is done; a few items are the only copy you have. Sort by size, decide by type, and empty the Trash.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'open-downloads-sorted-by-size',
+        title: '1. Open Downloads sorted by size',
+        paragraphs: [
+          'Apple’s storage guidance lists deleting files in your Downloads folder among its first suggestions. Open the folder from the Dock or Finder’s sidebar, switch to list view, and click the Size column so the largest items sit at the top. System Settings → General → Storage offers the same list under Documents → Downloads, sorted by size with a Show in Finder option.',
+          'Note the total before you start. Finder shows it at the bottom of the window in list view, or select everything and press Command-I; the Terminal command du -sh ~/Downloads reads it without changing anything.',
+        ],
+        code: ['du -sh ~/Downloads'],
+      },
+      {
+        id: 'decide-by-type',
+        title: '2. Decide by type, not by name',
+        paragraphs: [
+          'Most of the folder falls into a few categories, and each has a clear answer.',
+        ],
+        items: [
+          'Installers and disk images (.dmg, .pkg): the app is already in Applications; the image is a leftover. Eject any mounted image first, then delete it. The installer guide covers the exceptions.',
+          'Archives (.zip) you have already expanded: the expanded folder sits beside them; keep one copy, and only if you still need it.',
+          'Documents and exports you saved here by accident: move them to Documents or the project folder they belong to. Moving does not free space, but it keeps them out of the next cleanup.',
+          'Media you downloaded to watch or listen once: delete, or move to an external drive if you want it later.',
+          'Anything you cannot identify: open it, or leave it for a second pass. Unknown does not mean disposable.',
+        ],
+      },
+      {
+        id: 'delete-and-empty',
+        title: '3. Delete, then empty the Trash',
+        paragraphs: [
+          'Select what goes and press Command-Delete, which Apple documents as the move-to-Trash shortcut. Nothing is freed yet: Apple’s guidance is explicit that space returns only when you empty the Trash. Review the Trash once, then choose Finder → Empty Trash and compare the Downloads total with your first measurement.',
+          'If a file refuses to delete, it is usually a disk image still mounted or a file an app still has open. The Trash guide walks through those cases.',
+        ],
+      },
+      {
+        id: 'stop-it-refilling',
+        title: '4. Stop it refilling',
+        paragraphs: [
+          'Two settings decide how fast the folder grows again. In Safari, Apple’s guide describes Safari → Settings → General, where File download location sets the folder and Remove download list items decides when entries leave the list. Choosing Ask for each download makes you decide a destination every time, which is what keeps installers out of Downloads. Other browsers have the same setting under their own downloads preferences.',
+          'Mail saves attachments to Downloads by default; Apple notes you can pick a different folder under Mail → Settings → General. The Downloads list under Documents in Storage settings gives the same view whenever you want a quick check.',
+        ],
+      },
+      {
+        id: 'downloads-elsewhere',
+        title: '5. The other downloads folders',
+        paragraphs: [
+          'Downloads is not the only place downloads land. Mail keeps attachments you opened in a Mail Downloads folder inside its container in your Library, browsers keep their own caches, and messaging apps store received files in their containers. The Mail and Library guides cover those; the check-storage guide shows how the categories add up.',
+          'A free local scan lists every one of those folders with allocated sizes, so you can see whether the Downloads folder was the real problem or only the visible one. ClearDisk shows them, lets you reveal each in Finder, and moves what you choose to the Trash first.',
+        ],
+      },
+    ],
+    related: [
+      'free-up-space-on-mac',
+      'delete-macos-installer-mac',
+      'delete-files-on-mac',
+      'mail-taking-up-space-on-mac',
+    ],
+    sources: [
+      {
+        label: 'Apple: free up storage space on Mac',
+        url: 'https://support.apple.com/en-us/102624',
+      },
+      {
+        label: 'Apple: download items from the web using Safari on Mac',
+        url: 'https://support.apple.com/guide/safari/download-items-from-the-web-sfri40598/mac',
+      },
+      {
+        label: 'Apple: view, save, or delete email attachments in Mail on Mac',
+        url: 'https://support.apple.com/guide/mail/view-save-or-delete-email-attachments-mlhlp1123/mac',
+      },
+      {
+        label: 'Apple: Mac keyboard shortcuts',
+        url: 'https://support.apple.com/en-us/102650',
       },
     ],
   },

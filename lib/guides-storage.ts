@@ -75,7 +75,7 @@ export const storageGuides: Guide[] = [
     related: [
       'mac-storage-full',
       'disk-space-analyzer-mac',
-      'delete-iphone-backups-on-mac',
+      'clear-downloads-folder-mac',
       'move-photos-library-to-external-drive',
     ],
     sources: [
@@ -214,8 +214,8 @@ export const storageGuides: Guide[] = [
     ],
     related: [
       'cloud-drive-taking-up-space-on-mac',
+      'optimize-storage-mac',
       'photos-library-taking-up-space-mac',
-      'find-large-files-on-mac',
       'move-photos-library-to-external-drive',
     ],
     sources: [
@@ -704,8 +704,8 @@ export const storageGuides: Guide[] = [
     ],
     related: [
       'move-photos-library-to-external-drive',
+      'optimize-storage-mac',
       'icloud-drive-taking-up-space-on-mac',
-      'find-large-files-on-mac',
       'delete-iphone-backups-on-mac',
     ],
     sources: [

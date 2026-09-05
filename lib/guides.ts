@@ -282,7 +282,7 @@ const foundationGuides: Guide[] = [
   },
   {
     slug: 'mac-storage-full',
-    title: 'Mac storage full? Start here.',
+    title: 'Mac storage full: first steps when the disk is almost full',
     description:
       'A practical sequence for a full Mac startup disk: check usable space, review large files, understand Trash, and investigate what keeps filling it.',
     summary:
