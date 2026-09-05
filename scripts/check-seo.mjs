@@ -109,7 +109,7 @@ for (const path of ['/thanks', '/buy-now', '/recover', '/api'])
 const robots = await fetch(new URL('/robots.txt', origin));
 assert.equal(robots.status, 200);
 assert.ok((await robots.text()).includes('Disallow: /api/'));
-for (const asset of ['/ClearDisk.dmg', '/og.png']) {
+for (const asset of ['/ClearDisk.dmg', '/SHA256SUMS.txt', '/og.png']) {
   const response = await fetch(new URL(asset, origin), { method: 'HEAD' });
   assert.equal(response.status, 200, asset);
 }

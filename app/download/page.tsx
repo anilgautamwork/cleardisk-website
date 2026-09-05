@@ -54,8 +54,8 @@ export default async function Download({
         </a>
         <small>ClearDisk 1.0.0 · DMG · 3.1 MB</small>
         <p>
-          <a href="https://github.com/anilgautamwork/cleardisk-app/releases/tag/v1.0.0">
-            GitHub release, download mirror and checksum
+          <a href="https://cleardisk.app/SHA256SUMS.txt">
+            SHA-256 checksum for this download
           </a>
         </p>
         <h2>Three small steps. More clarity.</h2>
