@@ -106,6 +106,55 @@ export async function startCheckout(
     return json({ error: 'Could not reach Stripe. Please try again.' }, 502);
   }
 }
+// Shared by the checkout-status page and the license-issuing routes: fetches
+// a session from Stripe and returns it only once it is confirmed to belong to
+// this product and to the key's mode. Any ambiguity (malformed id, wrong
+// mode, wrong product, Stripe error) collapses to `null` so callers fail
+// closed instead of guessing.
+export async function retrieveSession(
+  sessionId: string,
+  env: CheckoutEnvironment,
+  requestFetch: typeof fetch = fetch,
+): Promise<{
+  id: string;
+  paid: boolean;
+  email: string | null;
+  paymentIntent: string | null;
+} | null> {
+  const key = secret(env.STRIPE_SECRET_KEY);
+  const mode = keyMode(key);
+  if (!mode || !new RegExp(`^cs_${mode}_[A-Za-z0-9_]{1,200}$`).test(sessionId))
+    return null;
+  try {
+    const response = await requestFetch(
+      'https://api.stripe.com/v1/checkout/sessions/' +
+        encodeURIComponent(sessionId),
+      {
+        headers: stripeHeaders(key),
+        signal: AbortSignal.timeout(12000),
+      },
+    );
+    if (!response.ok) return null;
+    const s = (await response.json()) as {
+      livemode?: boolean;
+      payment_status?: string;
+      payment_intent?: string;
+      metadata?: { product?: string };
+      customer_details?: { email?: string | null };
+    };
+    if (s.livemode !== (mode === 'live') || s.metadata?.product !== PRODUCT)
+      return null;
+    return {
+      id: sessionId,
+      paid: s.payment_status === 'paid',
+      email: s.customer_details?.email ?? null,
+      paymentIntent:
+        typeof s.payment_intent === 'string' ? s.payment_intent : null,
+    };
+  } catch {
+    return null;
+  }
+}
 export async function checkoutStatus(
   request: Request,
   env: CheckoutEnvironment,
@@ -120,31 +169,7 @@ export async function checkoutStatus(
     !new RegExp(`^cs_${mode}_[A-Za-z0-9_]{1,200}$`).test(sessionId)
   )
     return json({ error: 'Valid checkout session required.' }, 400);
-  try {
-    const response = await requestFetch(
-      'https://api.stripe.com/v1/checkout/sessions/' +
-        encodeURIComponent(sessionId),
-      {
-        headers: stripeHeaders(key),
-        signal: AbortSignal.timeout(12000),
-      },
-    );
-    if (!response.ok)
-      return json({ error: 'Could not verify this checkout.' }, 404);
-    const s = (await response.json()) as {
-      livemode?: boolean;
-      payment_status?: string;
-      metadata?: { product?: string };
-      customer_details?: { email?: string | null };
-    };
-    if (s.livemode !== (mode === 'live') || s.metadata?.product !== PRODUCT)
-      return json({ error: 'ClearDisk purchase not found.' }, 404);
-    return json({
-      paid: s.payment_status === 'paid',
-      mode,
-      email: s.customer_details?.email ?? null,
-    });
-  } catch {
-    return json({ error: 'Could not verify payment. Please try again.' }, 502);
-  }
+  const session = await retrieveSession(sessionId, env, requestFetch);
+  if (!session) return json({ error: 'ClearDisk purchase not found.' }, 404);
+  return json({ paid: session.paid, mode, email: session.email });
 }

@@ -105,6 +105,34 @@ void test('paid ClearDisk sessions issue a key and email it; other products are 
     'ignored',
   );
 });
+void test('a second delivery of the same paid event is ignored and does not re-email', async () => {
+  const kv = memoryKV();
+  const sent: string[] = [];
+  const deps = {
+    kv,
+    keySecret: 's',
+    sendKey: async (email: string, key: string) => {
+      sent.push(email + ' ' + key);
+    },
+  };
+  const paid = {
+    type: 'checkout.session.completed',
+    data: {
+      object: {
+        id: 'cs_live_dup',
+        payment_status: 'paid',
+        metadata: { product: 'cleardisk' },
+        payment_intent: 'pi_dup',
+        customer_details: { email: 'dup@example.com' },
+      },
+    },
+  };
+  assert.equal(await handleStripeEvent(paid, deps), 'issued');
+  assert.equal(await handleStripeEvent(paid, deps), 'ignored');
+  assert.deepEqual(sent, [
+    'dup@example.com ' + (await deriveKey('s', 'cs_live_dup')),
+  ]);
+});
 void test('full refunds and disputes revoke; partial refunds do not', async () => {
   const kv = memoryKV();
   const deps = { kv, keySecret: 's', sendKey: async () => {} };

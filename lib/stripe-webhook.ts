@@ -52,6 +52,10 @@ export async function handleStripeEvent(
       typeof o.id !== 'string'
     )
       return 'ignored';
+    // The thanks page can issue a key itself before this event arrives (and
+    // Stripe can redeliver the same event); either way the session is
+    // already recorded, so skip re-issuing and re-emailing.
+    if (await deps.kv.get('session:' + o.id)) return 'ignored';
     const email =
       (o.customer_details as { email?: string } | undefined)?.email ?? null;
     const record = await issueKey(deps.kv, deps.keySecret, {

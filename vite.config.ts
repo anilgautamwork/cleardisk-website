@@ -83,6 +83,10 @@ export default defineConfig(async () => {
                   new_sqlite_classes: ['DownloadMetrics'],
                 },
               ],
+              kv_namespaces: [
+                { binding: 'LICENSES', id: 'c73aeb1e1928447780447d9ce14652dd' },
+              ],
+              send_email: [{ name: 'EMAIL' }],
               name: 'cleardisk-website',
               account_id: '449c51af2c638c0c3c88493d6175228b',
               compatibility_date: '2026-05-22',

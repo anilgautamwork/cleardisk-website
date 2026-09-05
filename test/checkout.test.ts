@@ -1,6 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { startCheckout, checkoutStatus } from '../lib/checkout.ts';
+import {
+  startCheckout,
+  checkoutStatus,
+  retrieveSession,
+} from '../lib/checkout.ts';
 const origin = 'https://cleardisk.example';
 const env = {
   STRIPE_SECRET_KEY: 'sk_test_example',
@@ -155,4 +159,29 @@ void test('never treats another product or the wrong mode as a ClearDisk purchas
     throw Error('must not call Stripe');
   });
   assert.equal(testIdOnLive.status, 400);
+});
+void test('retrieveSession returns null for another product and paid details for cleardisk', async () => {
+  const other = await retrieveSession('cs_test_example', env, async () =>
+    Response.json({
+      livemode: false,
+      payment_status: 'paid',
+      metadata: { product: 'odoo' },
+    }),
+  );
+  assert.equal(other, null);
+  const session = await retrieveSession('cs_test_example', env, async () =>
+    Response.json({
+      livemode: false,
+      payment_status: 'paid',
+      metadata: { product: 'cleardisk' },
+      customer_details: { email: 'buyer@example.com' },
+      payment_intent: 'pi_1',
+    }),
+  );
+  assert.deepEqual(session, {
+    id: 'cs_test_example',
+    paid: true,
+    email: 'buyer@example.com',
+    paymentIntent: 'pi_1',
+  });
 });
