@@ -1,3 +1,7 @@
+## Autonomous SEO loop — 6 September 2026
+
+The owner asked for continuous SEO work overnight. The loop researches (Chrome SERPs, Ahrefs free keyword generator, competitor sitemaps), publishes source-checked guides, verifies, commits, deploys and appends to [docs/seo/progress.md](seo/progress.md). Iteration 1 added `/not-enough-space-to-update-macos`, `/mail-taking-up-space-on-mac` and `/clean-homebrew-cache-mac` (24 guides, 28 sitemap URLs) and recorded the first real keyword volumes in [docs/seo/ahrefs-free-2026-09-06.csv](seo/ahrefs-free-2026-09-06.csv). Rules unchanged: Apple or vendor sources on every guide, no doorway pages, no competitor feature claims without hands-on testing, no external posting without the owner.
+
 ## SEO plan follow-through — 6 September 2026
 
 Closed the two remaining P2 content gaps from [the Ads and SEO research](seo/2026-09-05-google-ads-and-seo-research.md): `/time-machine-snapshots` (storage group; Apple's local-snapshot, Time Machine and Disk Utility pages as sources, no deletion command) and `/disk-space-analyzer-mac` (maintenance group; commercial intent, describes ClearDisk as the maker's own description, no competitor ranking because none were tested). Library is 21 guides, sitemap 25 URLs. Related links added from purgeable-space, storage-not-updating, find-large-files and free-up-space; the download page links the analyzer guide.

@@ -335,8 +335,9 @@ const foundationGuides: Guide[] = [
     ],
     related: [
       'clear-system-data-on-mac',
-      'system-data-keeps-growing',
+      'not-enough-space-to-update-macos',
       'system-data-too-large',
+      'purgeable-space-on-mac',
     ],
     sources: [storage],
   },

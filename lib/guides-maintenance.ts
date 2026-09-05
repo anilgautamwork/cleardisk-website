@@ -74,6 +74,7 @@ export const maintenanceGuides: Guide[] = [
       'mac-storage-full',
       'find-large-files-on-mac',
       'disk-space-analyzer-mac',
+      'mail-taking-up-space-on-mac',
       'clear-system-data-on-mac',
     ],
     sources: [storage, settings, trash],
@@ -238,6 +239,168 @@ export const maintenanceGuides: Guide[] = [
         url: 'https://support.apple.com/en-tm/guide/disk-utility/dskutl1005/mac',
       },
       trash,
+    ],
+  },
+  {
+    slug: 'not-enough-space-to-update-macos',
+    title: 'Not enough space to update macOS: what to free first',
+    description:
+      'When a macOS update says there is not enough space: why it needs more room than the download, what to clear first, and Apple’s safe mode trick for more room.',
+    summary:
+      'The update needs more room than its download size because the installer unpacks and macOS stages files. Clear what you recognise first, prefer Software Update to a full installer, and let macOS thin its own caches and snapshots.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'read-the-number',
+        title: '1. Read the number in the message, then check Storage',
+        paragraphs: [
+          'The update dialog states how much space it needs. Compare that with System Settings → General → Storage. Apple’s update-error page is blunt about this case: if the message says your Mac does not have enough storage space, free up storage space. There is no setting that makes the installer smaller.',
+          'If Storage shows more available space than the message asks for, remember what the figure includes. Disk Utility explains that available space can include purgeable space, which macOS frees only when it needs to, and files sitting in the Trash keep their space until you empty it. The installer also needs more than its download size, because it unpacks and macOS keeps staging copies while it installs. Treat the number in the message as the real requirement.',
+        ],
+      },
+      {
+        id: 'clear-what-you-recognise',
+        title: '2. Clear what you can recognise',
+        paragraphs: [
+          'Start with the items Apple lists in its storage guidance, in the order that returns the most space with the least risk.',
+        ],
+        items: [
+          'Empty the Trash. Apple notes that a file’s space does not become available until you do.',
+          'Clear the Downloads folder of installers, disk images and archives you have already used.',
+          'Look in Applications for an “Install macOS …” app from an earlier upgrade. A full installer is a multi-gigabyte file that can be downloaded again from Apple, so it can go to the Trash once you no longer need it.',
+          'Review iPhone and iPad backups stored on the Mac. Keep the most recent one per device and remove superseded ones through Finder.',
+          'Check the Large Files list under Documents in Storage settings for exports, videos and archives you can move to another drive.',
+        ],
+      },
+      {
+        id: 'prefer-software-update',
+        title: '3. Prefer Software Update to a full installer',
+        paragraphs: [
+          'Apple’s download-and-install page says Software Update is the fastest and easiest way to get macOS updates and upgrades, and that it can use less storage space to download and install them. A full installer from the App Store lands in your Applications folder as a separate multi-gigabyte app and needs room of its own before the update even begins.',
+          'So if you have both a partly downloaded update in Software Update and a full installer in Applications, keep one route. Apple only recommends deleting and re-downloading an installer when it is damaged, so do not chase the problem by downloading again unless installation fails for that reason.',
+        ],
+      },
+      {
+        id: 'safe-mode',
+        title: '4. Use safe mode for a temporary boost',
+        paragraphs: [
+          'Apple’s storage guidance describes a specific trick for this situation. Starting your Mac in safe mode clears certain system caches, which are created again as needed, and that can provide enough space to complete a task that needs more space only while it is underway, such as installing a macOS update. Apple’s update-error page separately suggests installing from safe mode when you use the App Store or Software Update.',
+          'On a Mac with Apple silicon: shut down, press and hold the power button until “Loading startup options” appears, select your startup disk, then press and hold Shift and click Continue in Safe Mode. On an Intel Mac, restart and hold Shift until the login window appears. “Safe Boot” shows in the menu bar. Run the update from there, then restart normally afterwards.',
+        ],
+      },
+      {
+        id: 'if-it-still-will-not-fit',
+        title: '5. If it still will not fit',
+        paragraphs: [
+          'Local Time Machine snapshots are counted as available space and macOS removes them as it needs room, so they rarely block an update. The snapshots guide covers Apple’s supported way to thin them if you want a clean measurement. Do not disable backups permanently to hold on to a few gigabytes.',
+          'When the shortfall lives inside System Data, work through the files rather than the category: hidden Library folders, app caches, developer directories and old device backups. ClearDisk’s free scan lists them with allocated sizes on your Mac, marks system and account folders as Leave it, and moves anything you choose to the Trash first so you can empty it once the update has finished. If the message is not about storage at all, Apple’s update-error page lists the other fixes: a stable connection, installing from macOS Recovery, and repairing the startup disk.',
+        ],
+      },
+    ],
+    related: [
+      'mac-storage-full',
+      'free-up-space-on-mac',
+      'time-machine-snapshots',
+      'delete-iphone-backups-on-mac',
+    ],
+    sources: [
+      {
+        label: 'Apple: if an error occurred while updating or installing macOS',
+        url: 'https://support.apple.com/en-us/102531',
+      },
+      {
+        label: 'Apple: free up storage space on Mac',
+        url: 'https://support.apple.com/en-us/102624',
+      },
+      {
+        label: 'Apple: how to download and install macOS',
+        url: 'https://support.apple.com/en-us/102662',
+      },
+      {
+        label: 'Apple: start up your Mac in safe mode',
+        url: 'https://support.apple.com/guide/mac-help/start-up-your-mac-in-safe-mode-mh21245/mac',
+      },
+      {
+        label: 'Apple: available, free and purgeable space in Disk Utility',
+        url: 'https://support.apple.com/en-tm/guide/disk-utility/dskutl1005/mac',
+      },
+    ],
+  },
+  {
+    slug: 'mail-taking-up-space-on-mac',
+    title: 'Mail taking up space on Mac: attachments and old messages',
+    description:
+      'Why Apple Mail can use gigabytes on a Mac, how to stop downloading every attachment, remove saved ones, erase deleted messages, and what not to touch by hand.',
+    summary:
+      'Mail keeps a local copy of your messages and, by default, most attachments. Its own settings can shrink that without breaking a mailbox. Deleting folders inside your Library cannot.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'see-how-much-mail-uses',
+        title: '1. See how much Mail is really using',
+        paragraphs: [
+          'Open System Settings → General → Storage and look for Mail in the category list. The figure covers the local copies of your messages and the attachments Mail has downloaded. A disk scanner shows the same thing from the file side: the Mail folder inside your Library and Mail’s container, which also holds a Mail Downloads folder for attachments you opened without saving.',
+          'Apple notes that attachments you save are put in the Downloads folder by default, or in a folder you choose under Mail → Settings → General. So the same PDF can exist three times: inside the message, in Mail Downloads, and in Downloads. The steps below shrink each copy through Mail rather than around it.',
+        ],
+      },
+      {
+        id: 'stop-downloading-every-attachment',
+        title: '2. Stop Mail downloading every attachment',
+        paragraphs: [
+          'Choose Mail → Settings → Accounts, select the account, and open Account Information. The Download Attachments menu offers All, Recent and None. Apple describes Recent as attachments received within the past 15 months and None as no automatic download. Mail always downloads media attachments such as images, PDFs, video and audio; the menu applies to other types like spreadsheets and zipped files.',
+          'Recent is the sensible setting for a laptop with a small SSD. Messages and attachments stay on the server for iCloud and other IMAP accounts, so Mail fetches an older attachment when you open it. Repeat the setting for each account; it is per account, not global.',
+        ],
+      },
+      {
+        id: 'remove-attachments-you-keep',
+        title: '3. Remove attachments from messages you keep',
+        paragraphs: [
+          'Select a message and choose Message → Remove Attachments. Apple’s guide says the message stays in the mailbox with a note that attachments were removed. The warning matters: for IMAP accounts the attachment is deleted from the mail server permanently, so save anything you still need first, then remove it.',
+          'Work through the biggest messages rather than everything. In Mail, sort a mailbox by size or search for messages with attachments, save the files you want to keep to a folder you control, and remove the rest. Do not run this across a whole mailbox in one pass; the deletion is permanent on the server.',
+        ],
+      },
+      {
+        id: 'erase-deleted-and-junk',
+        title: '4. Erase deleted and junk messages',
+        paragraphs: [
+          'Deleted messages are not gone until they are erased. Choose Mailbox → Erase Deleted Items and pick an account, or Control-click a Trash mailbox in the sidebar and choose Erase Deleted Items. Apple’s storage guidance lists this step too. The Junk mailbox has its own Erase Junk Mail command.',
+          'To make it routine, open Mail → Settings → Accounts, select the account and click Mailbox Behaviors. The Trash Mailbox menu sets where deleted messages are kept, and the erase option sets when they are removed for good. POP accounts have separate retention settings under Advanced; check them before assuming an old message is safe on the server.',
+        ],
+      },
+      {
+        id: 'what-not-to-do',
+        title: '5. What not to delete by hand',
+        paragraphs: [
+          'Do not delete folders inside ~/Library/Mail or Mail’s container in Finder. They hold your mailboxes and the index Mail uses to search them. Removing them can lose messages that were never on a server, and for IMAP accounts Mail simply downloads everything again. Use the settings above, and treat those folders as review-only when a scanner lists them.',
+          'If Mail is still large afterwards, the size is the messages themselves. Create mailboxes and use Rules under Mail → Settings to sort mail automatically, export anything you need offline with File → Save As or File → Export as PDF, and delete the rest. A local scan can confirm where the space went and whether the Downloads folder holds saved attachments you have already dealt with.',
+        ],
+      },
+    ],
+    related: [
+      'free-up-space-on-mac',
+      'clear-cache-on-mac',
+      'what-is-system-data-on-mac',
+      'mac-storage-full',
+    ],
+    sources: [
+      {
+        label: 'Apple: delete emails and manage storage in Mail on Mac',
+        url: 'https://support.apple.com/guide/mail/delete-emails-and-manage-storage-mlhlp1001/mac',
+      },
+      {
+        label: 'Apple: view, save, or delete email attachments in Mail on Mac',
+        url: 'https://support.apple.com/guide/mail/view-save-or-delete-email-attachments-mlhlp1123/mac',
+      },
+      {
+        label: 'Apple: change Account Information settings in Mail on Mac',
+        url: 'https://support.apple.com/guide/mail/change-account-information-settings-cpmlprefacctinfo/mac',
+      },
+      {
+        label: 'Apple: free up storage space on Mac',
+        url: 'https://support.apple.com/en-us/102624',
+      },
     ],
   },
 ];

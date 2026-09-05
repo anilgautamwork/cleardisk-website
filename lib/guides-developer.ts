@@ -54,6 +54,7 @@ export const developerGuides: Guide[] = [
     ],
     related: [
       'remove-unused-ios-simulators',
+      'clean-homebrew-cache-mac',
       'system-data-keeps-growing',
       'clear-system-data-on-mac',
     ],
@@ -192,6 +193,7 @@ export const developerGuides: Guide[] = [
     ],
     related: [
       'find-node-modules-folders-mac',
+      'clean-homebrew-cache-mac',
       'system-data-keeps-growing',
       'mac-storage-full',
     ],
@@ -272,6 +274,7 @@ export const developerGuides: Guide[] = [
     related: [
       'clean-docker-disk-space-mac',
       'clear-xcode-derived-data',
+      'clean-homebrew-cache-mac',
       'system-data-too-large',
     ],
     sources: [
@@ -432,6 +435,74 @@ export const developerGuides: Guide[] = [
       {
         label: 'Apple: free up storage space on Mac',
         url: 'https://support.apple.com/en-us/102624',
+      },
+    ],
+  },
+  {
+    slug: 'clean-homebrew-cache-mac',
+    title: 'Clean the Homebrew cache on Mac with brew cleanup',
+    description:
+      'Measure Homebrew’s download cache and old versions, preview what brew cleanup would remove, run it safely, and keep the cache from growing back on your Mac.',
+    summary:
+      'Homebrew keeps downloads and old versions around by design. brew cleanup removes them, and its dry run shows the size before anything changes.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'find-and-measure-the-cache',
+        title: '1. Find the cache and measure it',
+        paragraphs: [
+          'Run brew --cache in Terminal. Homebrew’s FAQ says it prints the download cache location, usually ~/Library/Caches/Homebrew. Measure it with du -sh "$(brew --cache)". Both commands only read. Because the folder sits under ~/Library/Caches, macOS counts it inside System Data, which is why a developer Mac can show a large System Data figure with nothing obvious in Documents.',
+          'Old versions of installed formulae live separately, inside Homebrew’s Cellar, and are the second thing cleanup removes. A disk scanner shows both locations next to npm, pip and Xcode directories, which helps when the cache is not the largest developer folder on the disk.',
+        ],
+      },
+      {
+        id: 'preview-with-a-dry-run',
+        title: '2. Preview what cleanup would remove',
+        paragraphs: [
+          'Run brew cleanup -n first. The manpage describes -n as showing what would be removed without removing anything, and the output ends with the total it would free. Cleanup targets stale lock files, outdated downloads for formulae and casks, and old versions of installed formulae. By default it only removes downloads older than 120 days; --prune=all removes all cache files regardless of age, and -s or --scrub also clears downloads for current versions, except those of installed formulae and casks.',
+          'Read the dry run for anything you deliberately keep, such as an older version you pinned for a project. If it appears in the list, resolve that before running the real command rather than restoring it afterwards.',
+        ],
+      },
+      {
+        id: 'run-it-and-re-measure',
+        title: '3. Run it, then measure again',
+        paragraphs: [
+          'When the preview looks right, run brew cleanup. This is the modifying step: it deletes the files the dry run listed. Add --prune=all to remove every cached download, or -s to scrub downloads for current versions too. Then repeat du -sh "$(brew --cache)" and compare with the first figure. The difference is the real result; do not assume the dry-run total, because installed-formula downloads are kept.',
+          'Homebrew already runs cleanup automatically after brew install, brew upgrade and brew reinstall unless HOMEBREW_NO_INSTALL_CLEANUP is set, and HOMEBREW_CLEANUP_MAX_AGE_DAYS changes the 120-day threshold. If the cache keeps growing on your Mac, check whether that variable is set in your shell profile.',
+        ],
+      },
+      {
+        id: 'remove-packages-you-no-longer-need',
+        title: '4. Remove packages you no longer need',
+        paragraphs: [
+          'Cleanup keeps everything that is installed, so the next saving comes from packages themselves. brew leaves lists formulae that nothing else depends on; brew autoremove -n lists dependencies that were only installed for a formula you have since removed, and brew autoremove uninstalls them. brew list shows every installed formula and cask, and brew uninstall removes one.',
+          'Check before uninstalling a runtime such as Python, Node or Ruby: scripts and editors outside Homebrew may rely on it even when no formula does. Casks are ordinary apps; removing one with brew uninstall is the same decision as dragging the app to the Trash.',
+        ],
+      },
+      {
+        id: 'keep-it-from-growing-back',
+        title: '5. Keep it from growing back',
+        paragraphs: [
+          'Leave automatic cleanup enabled and run brew cleanup --prune=all every few months on a small SSD. Do not delete the Cellar or the cache folder by hand in Finder; the FAQ’s supported routes are cleanup and uninstall, and brew uninstall --force is described there as destructive because it removes every installed version at once.',
+          'Homebrew is usually one of several developer caches. The related guides cover node_modules folders, Xcode’s Derived Data and Docker’s disk image, which are the other places a developer Mac hides tens of gigabytes. A free local scan lists them together with allocated sizes so you can decide which one is worth the time.',
+        ],
+      },
+    ],
+    related: [
+      'find-node-modules-folders-mac',
+      'clear-xcode-derived-data',
+      'clean-docker-disk-space-mac',
+      'remove-unused-ios-simulators',
+    ],
+    sources: [
+      {
+        label: 'Homebrew manpage: brew cleanup, brew --cache, brew autoremove',
+        url: 'https://docs.brew.sh/Manpage',
+      },
+      {
+        label: 'Homebrew FAQ: cache location and removing old versions',
+        url: 'https://docs.brew.sh/FAQ',
       },
     ],
   },
