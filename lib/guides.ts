@@ -273,8 +273,9 @@ const foundationGuides: Guide[] = [
     ],
     related: [
       'system-data-too-large',
-      'mac-storage-full',
+      'mac-storage-full-after-macos-update',
       'clear-system-data-on-mac',
+      'clean-docker-disk-space-mac',
     ],
     sources: [storage, snapshots],
   },
@@ -338,8 +339,8 @@ const foundationGuides: Guide[] = [
     related: [
       'clear-system-data-on-mac',
       'not-enough-space-to-update-macos',
+      'mac-storage-full-after-macos-update',
       'system-data-too-large',
-      'purgeable-space-on-mac',
     ],
     sources: [storage],
   },
@@ -364,7 +365,12 @@ export const guideGroups = [
   {
     id: 'system-data',
     title: 'System Data and a full Mac',
-    guides: [...foundationGuides, ...maintenanceGuides],
+    guides: foundationGuides,
+  },
+  {
+    id: 'everyday-cleanup',
+    title: 'Everyday cleanup and choosing tools',
+    guides: maintenanceGuides,
   },
   {
     id: 'files-and-backups',

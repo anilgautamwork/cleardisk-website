@@ -275,7 +275,7 @@ export const developerGuides: Guide[] = [
       'clean-docker-disk-space-mac',
       'clear-xcode-derived-data',
       'clean-homebrew-cache-mac',
-      'system-data-too-large',
+      'remove-unused-ios-simulators',
     ],
     sources: [
       {

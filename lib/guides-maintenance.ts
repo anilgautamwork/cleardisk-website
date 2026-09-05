@@ -138,6 +138,7 @@ export const maintenanceGuides: Guide[] = [
     related: [
       'clear-browser-cache-mac',
       'clear-system-data-on-mac',
+      'photoshop-scratch-disk-full-mac',
       'system-data-keeps-growing',
     ],
     sources: [
@@ -301,8 +302,8 @@ export const maintenanceGuides: Guide[] = [
     related: [
       'mac-storage-full',
       'free-up-space-on-mac',
+      'delete-macos-installer-mac',
       'time-machine-snapshots',
-      'delete-iphone-backups-on-mac',
     ],
     sources: [
       {
@@ -610,6 +611,7 @@ export const maintenanceGuides: Guide[] = [
       'show-library-folder-mac',
       'find-node-modules-folders-mac',
       'clear-npm-cache-mac',
+      'best-free-mac-cleaner',
       'purgeable-space-on-mac',
     ],
     sources: [
@@ -783,6 +785,78 @@ export const maintenanceGuides: Guide[] = [
         label:
           'AppleInsider: Mac malware in sponsored Google ads, January 2026',
         url: 'https://appleinsider.com/articles/26/01/28/mac-malware-is-sneaking-into-some-sponsored-google-ads',
+      },
+    ],
+  },
+  {
+    slug: 'mac-storage-full-after-macos-update',
+    title: 'Mac storage full after a macOS update: what changed',
+    description:
+      'Why free space drops after a macOS update: the pre-update snapshot, an installer left in Applications, rebuilt caches, and how long to wait before acting.',
+    summary:
+      'An update leaves three things behind: a local snapshot of the previous system, the installer app if you used one, and caches the system rebuilds. Most of it clears itself within days; the installer does not.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'measure-before-you-judge',
+        title: '1. Measure before you judge',
+        paragraphs: [
+          'Open System Settings → General → Storage and note the available figure and the System Data figure. Both can look worse for a day after an update than they will a week later, because some of what the update left behind is temporary by design. Write the numbers down and compare after 24 hours before removing anything.',
+          'If you use Terminal, df -h / gives the used figure without purgeable space folded in, which makes the before-and-after comparison cleaner. The Terminal guide covers the read-only commands.',
+        ],
+      },
+      {
+        id: 'the-pre-update-snapshot',
+        title: '2. The snapshot taken before the update',
+        paragraphs: [
+          'Apple’s local-snapshots page states that another snapshot is saved before installing any macOS update. That snapshot holds the previous system state so an update can be undone, and its space is counted as available: macOS deletes snapshots as they age or as space is needed for other things. Apple does not publish a fixed retention for the pre-update snapshot, so treat it as temporary rather than as a folder to clear.',
+          'If the number matters today, the snapshots guide describes Apple’s supported route for thinning local snapshots. Do not use a third-party tool to force it; the space returns on its own, and the snapshot is the only easy way back if the update misbehaves.',
+        ],
+      },
+      {
+        id: 'the-installer',
+        title: '3. The installer, if you used one',
+        paragraphs: [
+          'Software Update leaves no app behind. A full installer from the App Store does: Apple’s download page notes it lands in Applications as Install macOS followed by the version name, and it stays there after the upgrade. It is often the single largest item on the disk and it is safe to move to the Trash once the upgrade is done, unless you plan to make a bootable installer.',
+          'The installer guide covers the exceptions and what to do if the app refuses to delete because it is still in use.',
+        ],
+      },
+      {
+        id: 'caches-and-re-downloads',
+        title: '4. Caches being rebuilt and content coming back',
+        paragraphs: [
+          'Apple’s storage guidance explains that macOS recreates certain system caches as needed, which is why they can look like growth after an update: the system and your apps rebuild what the upgrade invalidated. Background work in the first day, such as indexing and iCloud or Photos re-syncing optimized copies, also uses space temporarily.',
+          'None of this is cleanup material. Let the Mac idle on power for a night, then measure again. What remains after that is the real change.',
+        ],
+      },
+      {
+        id: 'if-it-does-not-settle',
+        title: '5. If it does not settle',
+        paragraphs: [
+          'When System Data is still far above its pre-update level after a few days, the update is no longer the cause. Work through the files rather than the category: the Library guide explains what the large folders hold, and the recurring-growth guide shows how to find the app producing new data.',
+          'A free local scan lists Library folders, developer directories and installers with allocated sizes so you can compare them with the numbers you wrote down in step one. ClearDisk labels what it finds Safe, Review or Leave it, moves anything you choose to the Trash first, and reports snapshots as a count so you do not mistake them for removable files.',
+        ],
+      },
+    ],
+    related: [
+      'time-machine-snapshots',
+      'delete-macos-installer-mac',
+      'system-data-keeps-growing',
+      'not-enough-space-to-update-macos',
+    ],
+    sources: [
+      {
+        label: 'Apple: Time Machine local snapshots',
+        url: 'https://support.apple.com/en-us/102154',
+      },
+      {
+        label: 'Apple: how to download and install macOS',
+        url: 'https://support.apple.com/en-us/102662',
+      },
+      {
+        label: 'Apple: free up storage space on Mac',
+        url: 'https://support.apple.com/en-us/102624',
       },
     ],
   },

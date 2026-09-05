@@ -142,6 +142,7 @@ export const storageGuides: Guide[] = [
     ],
     related: [
       'find-large-files-on-mac',
+      'messages-taking-up-space-on-mac',
       'mac-storage-not-updating-after-deleting-files',
       'mac-storage-full',
     ],
@@ -213,9 +214,9 @@ export const storageGuides: Guide[] = [
     ],
     related: [
       'cloud-drive-taking-up-space-on-mac',
+      'photos-library-taking-up-space-mac',
       'find-large-files-on-mac',
       'move-photos-library-to-external-drive',
-      'mac-storage-full',
     ],
     sources: [
       cloudFiles,
@@ -343,7 +344,7 @@ export const storageGuides: Guide[] = [
       'purgeable-space-on-mac',
       'time-machine-snapshots',
       'trash-wont-empty-mac',
-      'system-data-keeps-growing',
+      'cloud-drive-taking-up-space-on-mac',
     ],
     sources: [
       storage,
@@ -488,9 +489,9 @@ export const storageGuides: Guide[] = [
     ],
     related: [
       'purgeable-space-on-mac',
+      'time-machine-backup-disk-full',
       'mac-storage-not-updating-after-deleting-files',
       'what-is-system-data-on-mac',
-      'mac-storage-full',
     ],
     sources: [
       snapshots,
@@ -722,6 +723,78 @@ export const storageGuides: Guide[] = [
       {
         label: 'Apple: free up storage space on Mac',
         url: 'https://support.apple.com/en-us/102624',
+      },
+    ],
+  },
+  {
+    slug: 'time-machine-backup-disk-full',
+    title: 'Time Machine backup disk full: what happens and what to do',
+    description:
+      'What Time Machine does when its backup disk fills up, why the oldest backups disappear, how to exclude folders, and when a larger disk is the answer.',
+    summary:
+      'Time Machine is designed to fill its disk and then thin the oldest backups. A full backup disk is normal; a Mac that can no longer complete a backup is the problem to fix.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'what-full-means',
+        title: '1. Know what “full” means for Time Machine',
+        paragraphs: [
+          'Apple’s Time Machine page sets the expectation: it makes hourly backups for the past 24 hours, daily backups for the past month and weekly backups for all previous months, and the oldest backups are deleted when your backup disk is full. Apple’s full-disk page says the same in the present tense: as the disk fills up, Time Machine deletes older backups to make room for new ones.',
+          'So a backup disk that shows almost no free space is in its normal working state. The number to watch is not free space on the backup disk but the date of the latest successful backup.',
+        ],
+      },
+      {
+        id: 'check-backups-still-complete',
+        title: '2. Check that backups are still completing',
+        paragraphs: [
+          'Open System Settings → General → Time Machine and read the latest backup time, or click the Time Machine icon in the menu bar. A recent timestamp means the thinning is working. A backup that fails with a message about space means one new backup no longer fits even after the oldest were removed, which happens when the data you back up has grown past what the disk can hold.',
+          'Before changing anything, work out what grew. A new Photos library, virtual machine images, video projects or a developer folder full of build output are the usual causes, and each is easier to exclude or move than to shrink the backup.',
+        ],
+      },
+      {
+        id: 'exclude-what-you-do-not-need',
+        title: '3. Exclude what you do not need backed up',
+        paragraphs: [
+          'Apple documents the control: in Time Machine settings, click Options and add items to the exclusion list. Good candidates are things you can rebuild or download again: node_modules folders, Xcode’s Derived Data, package caches, Docker’s disk image and virtual machines you snapshot elsewhere. Keep documents, photos and anything without another copy.',
+          'Excluding a folder stops future backups of it but does not remove it from existing backups; that space returns only as those older backups age out. Measure the folders first so you exclude the ones that matter, and prefer a few large exclusions to many small ones.',
+        ],
+      },
+      {
+        id: 'when-a-larger-disk-is-the-answer',
+        title: '4. When a larger disk is the answer',
+        paragraphs: [
+          'Apple’s advice when you run out of space is direct: connect a new backup disk, open Time Machine settings and select it as your backup disk. Time Machine begins a fresh history on the new disk; keep the old one as an archive of the history it holds rather than erasing it on day one.',
+          'How much larger depends on how far back you want to reach. More capacity than the data you back up buys history; the same capacity buys only the latest state. If the backup disk is also used for other files, that shared space is what Time Machine is competing with.',
+        ],
+      },
+      {
+        id: 'what-not-to-delete-by-hand',
+        title: '5. What not to delete by hand',
+        paragraphs: [
+          'Do not delete backup folders on the backup disk in Finder. Time Machine tracks what each backup shares with the next, and removing pieces by hand can leave the remaining backups unusable. Let Time Machine thin the disk, exclude what you do not need, or replace the disk.',
+          'The local snapshots on your Mac’s own disk are a separate mechanism covered in the snapshots guide; a full backup disk does not fill your Mac, and a full Mac does not fill the backup disk. ClearDisk scans the Mac’s internal storage, not the backup volume, and reports snapshots as a count so you can keep the two questions apart.',
+        ],
+      },
+    ],
+    related: [
+      'time-machine-snapshots',
+      'find-node-modules-folders-mac',
+      'move-photos-library-to-external-drive',
+      'mac-storage-full',
+    ],
+    sources: [
+      {
+        label: 'Apple: back up your Mac with Time Machine',
+        url: 'https://support.apple.com/en-us/104984',
+      },
+      {
+        label: 'Apple: if the Time Machine backup disk for your Mac is full',
+        url: 'https://support.apple.com/guide/mac-help/mh15137/mac',
+      },
+      {
+        label: 'Apple: Time Machine local snapshots',
+        url: 'https://support.apple.com/en-us/102154',
       },
     ],
   },

@@ -2,6 +2,16 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 5 — 6 September 2026
+
+**Structure.** The guides hub now has four groups (System Data and a full Mac; Everyday cleanup and choosing tools; Files, backups and cloud storage; Apps and developer tools) instead of one 15-guide block. An inbound-link audit found two guides with no related links pointing at them (macOS installer, Photoshop scratch disk) and five with only one; related lists were adjusted so every guide has at least two inbound links besides the hub.
+
+**Research.** Apple's Time Machine pages (backup frequency, oldest backups deleted when the disk is full, exclusions, connect a new disk) and the local-snapshots page (a snapshot is saved before installing any macOS update). Ahrefs: "time machine backup disk full" <100; "mac storage full after update" returned no ideas, so that page serves the cluster rather than a measured query.
+
+**Shipped.** `/time-machine-backup-disk-full` (storage group) and `/mac-storage-full-after-macos-update` (everyday group). Related links from time-machine-snapshots, mac-storage-full and system-data-keeps-growing. Library: 35 guides, sitemap 39 URLs. IndexNow pinged after deploy.
+
+**Next candidates.** Spotlight indexing after an update; "storage numbers do not match" explainer; a short glossary page for storage terms; check the home page snippet refresh in Google; consider a second OG image for guide pages.
+
 ## Iteration 4 — 6 September 2026
 
 **Indexing check.** A `site:cleardisk.app` search from Chrome shows Google has already indexed the home page, the guides hub, terms, privacy and at least two guides ("System Data taking up 100GB or more?" and the Photoshop scratch-disk guide, both crawled within the last day), without Search Console. Home and hub snippets still show old descriptions from an earlier crawl; they will refresh. Added an IndexNow key file and started pinging Bing's IndexNow endpoint after each deploy so the non-Google engines pick pages up quickly too.
