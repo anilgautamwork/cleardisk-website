@@ -490,10 +490,10 @@ export const developerGuides: Guide[] = [
       },
     ],
     related: [
+      'clear-npm-cache-mac',
       'find-node-modules-folders-mac',
       'clear-xcode-derived-data',
       'clean-docker-disk-space-mac',
-      'remove-unused-ios-simulators',
     ],
     sources: [
       {
@@ -503,6 +503,86 @@ export const developerGuides: Guide[] = [
       {
         label: 'Homebrew FAQ: cache location and removing old versions',
         url: 'https://docs.brew.sh/FAQ',
+      },
+    ],
+  },
+  {
+    slug: 'clear-npm-cache-mac',
+    title: 'Clear the npm cache on Mac, plus pnpm, Yarn and pip',
+    description:
+      'Where npm, pnpm, Yarn and pip keep their caches on a Mac, how to measure each one, the commands their own docs give for clearing them, and what grows back.',
+    summary:
+      'Package caches are meant to be disposable: every manager documents a command that empties or prunes its own. Measure first, use the documented command, and expect the folder to refill on the next install.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'find-and-measure',
+        title: '1. Find the caches and measure them',
+        paragraphs: [
+          'Each manager can tell you where its cache lives, and du can measure it without changing anything. npm keeps its cache in ~/.npm on macOS, inside a folder named _cacache; npm config get cache prints the configured path. pnpm store path prints the shared package store. Modern Yarn keeps a global cache under ~/.yarn and a local cache per project; Yarn 1 prints its folder with yarn cache dir. pip cache dir prints pip’s folder and pip cache info reports its size.',
+          'Measure with du -sh followed by the path, for example du -sh ~/.npm. These folders are hidden in Finder because their names start with a dot, which is why a developer Mac can lose tens of gigabytes to caches that never appear in Storage settings as anything but System Data. A disk scanner that shows hidden home folders with allocated sizes finds them in one pass.',
+        ],
+      },
+      {
+        id: 'npm-verify-then-clean',
+        title: '2. npm: verify first, clean only for disk space',
+        paragraphs: [
+          'npm’s own documentation says its cache is self-healing and resistant to corruption, and that it should never be necessary to clear it for any reason other than reclaiming disk space. So start with npm cache verify, which garbage-collects unneeded data and checks the integrity of what remains. That alone can shrink the folder.',
+          'To empty it, run npm cache clean --force. The --force flag is required precisely because clearing is rarely needed; without it the command refuses. The next install re-downloads what a project needs, so the only cost is bandwidth and a slower first install.',
+        ],
+      },
+      {
+        id: 'pnpm-prune-the-store',
+        title: '3. pnpm: prune the store instead of deleting it',
+        paragraphs: [
+          'pnpm keeps one content-addressable store that every project links into, so its cache is also its installation source. The documented cleanup is pnpm store prune, which removes unreferenced packages that no project on the system uses any more. Old versions accumulate there after upgrades, for example when a project moves from one release of a package to the next and nothing else needs the old one.',
+          'Pruning is the supported route and pnpm re-downloads anything a later install needs. Deleting the store folder by hand is not: projects that still link into it may need a full reinstall.',
+        ],
+      },
+      {
+        id: 'yarn-and-pip',
+        title: '4. Yarn and pip',
+        paragraphs: [
+          'Modern Yarn documents yarn cache clean for the current project’s local cache, yarn cache clean --mirror for the global cache and --all for both. Yarn 1 uses yarn cache list to see what is stored and yarn cache clean to remove it. Check which Yarn a project uses before assuming the global folder is the large one.',
+          'pip offers pip cache list to see stored package files, pip cache remove with a pattern for one package, and pip cache purge to remove everything. Virtual environments are a separate matter: each one holds its own copy of installed packages under the project, and the cache guide does not touch them.',
+        ],
+      },
+      {
+        id: 'what-grows-back',
+        title: '5. What grows back, and what is worth more',
+        paragraphs: [
+          'All four caches refill as you install, which is the intended behaviour. Clearing them is a quick, reversible way to reclaim space before a build or an update, not a permanent fix. If the same folder returns to the same size within a week, the cost is your install habits rather than the cache.',
+          'The larger developer footprints are usually elsewhere: node_modules folders inside every project, Xcode’s Derived Data, Docker’s disk image and Homebrew’s downloads. The related guides cover each with the same measure-first approach, and a free local scan lists them together so you can start with the biggest.',
+        ],
+      },
+    ],
+    related: [
+      'find-node-modules-folders-mac',
+      'clean-homebrew-cache-mac',
+      'clear-xcode-derived-data',
+      'clean-docker-disk-space-mac',
+    ],
+    sources: [
+      {
+        label: 'npm docs: npm cache (clean, verify, cache location)',
+        url: 'https://docs.npmjs.com/cli/v11/commands/npm-cache',
+      },
+      {
+        label: 'pnpm docs: pnpm store (path, prune)',
+        url: 'https://pnpm.io/cli/store',
+      },
+      {
+        label: 'Yarn docs: yarn cache clean',
+        url: 'https://yarnpkg.com/cli/cache/clean',
+      },
+      {
+        label: 'Yarn 1 docs: yarn cache',
+        url: 'https://classic.yarnpkg.com/en/docs/cli/cache',
+      },
+      {
+        label: 'pip docs: pip cache',
+        url: 'https://pip.pypa.io/en/stable/cli/pip_cache/',
       },
     ],
   },

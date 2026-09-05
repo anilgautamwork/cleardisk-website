@@ -212,6 +212,7 @@ export const storageGuides: Guide[] = [
       },
     ],
     related: [
+      'cloud-drive-taking-up-space-on-mac',
       'find-large-files-on-mac',
       'move-photos-library-to-external-drive',
       'mac-storage-full',
@@ -499,6 +500,151 @@ export const storageGuides: Guide[] = [
       {
         label: 'Apple: available, free and purgeable space in Disk Utility',
         url: 'https://support.apple.com/en-tm/guide/disk-utility/dskutl1005/mac',
+      },
+    ],
+  },
+  {
+    slug: 'messages-taking-up-space-on-mac',
+    title: 'Messages taking up space on Mac: delete attachments',
+    description:
+      'How to see what Messages stores on your Mac, delete photos and videos from conversations, set Keep Messages to expire old chats, and what iCloud sync changes.',
+    summary:
+      'Years of photos, videos and voice notes inside conversations add up. Messages can delete them selectively or on a schedule, and the space returns after the Recently Deleted window.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'see-what-messages-stores',
+        title: '1. See what Messages is storing',
+        paragraphs: [
+          'Open System Settings → General → Storage. Apple’s storage guidance lists Messages among the categories with their own management options; its information button opens the attachments Messages holds, sorted by size, and lets you select and delete the ones you no longer want.',
+          'From the file side, a disk scanner shows the Messages folder inside your Library, where the app keeps its database and an Attachments folder. Treat it as review-only. The safe way to shrink it is through the app, because the database tracks every file and a deletion in Finder leaves conversations pointing at attachments that no longer exist.',
+        ],
+      },
+      {
+        id: 'delete-attachments-in-a-conversation',
+        title: '2. Delete attachments inside a conversation',
+        paragraphs: [
+          'Open the conversation and show its details. Apple’s guide describes scrolling to the categories such as Photos, Shift-clicking to select several items, then Control-clicking and choosing Delete. This removes the attachment from the conversation while keeping the messages around it.',
+          'Deleted messages and attachments stay in Recently Deleted for up to 30 days, so the space does not return immediately. That window is the safety net; it also means a large cleanup shows up in Storage settings only after it expires.',
+        ],
+      },
+      {
+        id: 'expire-old-conversations',
+        title: '3. Set old conversations to expire',
+        paragraphs: [
+          'Choose Messages → Settings → General and open the Keep messages menu. Apple’s warning is worth quoting in spirit: pick anything other than Forever and conversations, including all attachments, are removed automatically once the period passes. For a Mac that only mirrors an iPhone, one year is a reasonable setting; for a Mac that holds the only copy of something, keep Forever and delete by hand.',
+          'This is the setting that stops the folder growing back. Deleting attachments once is a cleanup; a retention period is maintenance.',
+        ],
+      },
+      {
+        id: 'what-icloud-changes',
+        title: '4. Understand what Messages in iCloud changes',
+        paragraphs: [
+          'With Messages in iCloud turned on, Apple’s guide states that deleting a message or conversation on your Mac deletes it from every device where the feature is on. Deleted items can be recovered for 30 days and are permanently removed from iCloud after 40 days. Delete with that in mind; the Mac is not a spare copy of your iPhone’s history.',
+          'If you want the Mac to hold less while the iPhone keeps everything, deleting is the wrong tool. Leave the conversations in place and rely on the retention setting only where you accept the loss on all devices.',
+        ],
+      },
+      {
+        id: 'check-the-result',
+        title: '5. Check the result',
+        paragraphs: [
+          'Compare the Messages figure in Storage settings after the Recently Deleted window, or after clearing Recently Deleted from the conversation list. Rescan with a disk tool to confirm the Attachments folder actually shrank; if it did not, the items are still within their 30 days.',
+          'When Messages was not the largest category after all, the guides on System Data, Mail and large files cover the usual next places. ClearDisk’s free scan shows the Messages and Mail folders with allocated sizes but does not offer them for removal, because their apps own the data.',
+        ],
+      },
+    ],
+    related: [
+      'mail-taking-up-space-on-mac',
+      'free-up-space-on-mac',
+      'delete-iphone-backups-on-mac',
+      'what-is-system-data-on-mac',
+    ],
+    sources: [
+      {
+        label: 'Apple: delete messages and conversations in Messages on Mac',
+        url: 'https://support.apple.com/guide/messages/delete-messages-and-conversations-icht1035/mac',
+      },
+      {
+        label: 'Apple: free up storage space on Mac',
+        url: 'https://support.apple.com/en-us/102624',
+      },
+    ],
+  },
+  {
+    slug: 'cloud-drive-taking-up-space-on-mac',
+    title: 'Google Drive, Dropbox or OneDrive taking up space on Mac',
+    description:
+      'Why a cloud drive fills a Mac’s disk, how to switch Google Drive to streaming, make Dropbox files online-only, and free space with OneDrive Files On-Demand.',
+    summary:
+      'Every desktop sync app can keep a full local copy or a cloud-only placeholder. The space comes back when you switch modes through the app, never by deleting inside a synced folder.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'which-mode-is-the-drive-in',
+        title: '1. Work out which mode the drive is in',
+        paragraphs: [
+          'Storage settings does not separate cloud caches from documents, so start in Finder. Each sync app marks files with a status: a cloud icon means the file lives online and takes no local space, a check mark or similar badge means a full copy is on the disk. A folder full of check marks is the reason the drive is large.',
+          'A disk scanner shows the actual local bytes per folder. On current macOS, apps built on Apple’s File Provider keep their local copies under a CloudStorage folder inside your Library, so that is where the size appears. Note the figure before changing anything so you can confirm the result.',
+        ],
+      },
+      {
+        id: 'google-drive-stream-not-mirror',
+        title: '2. Google Drive: stream instead of mirror',
+        paragraphs: [
+          'Google documents two modes. Mirrored files are always stored on your computer and in the cloud; streamed files are primarily stored in the cloud and made available offline only when you open them. Switch in Drive for desktop under Settings → Preferences → Folders from Drive → My Drive syncing options, and choose Stream files.',
+          'Streaming still keeps a local copy of anything you have opened, so the folder does not drop to zero. Google notes that shared files can fill a hard drive if you sync them even though they never count against your Google storage, which is worth checking if a shared drive is mirrored.',
+        ],
+      },
+      {
+        id: 'dropbox-online-only',
+        title: '3. Dropbox: make folders online-only',
+        paragraphs: [
+          'Dropbox’s help page describes the step on Mac: open the Dropbox folder in Finder, right-click a file or folder, and choose Make online-only. An online-only file is stored in the cloud and does not take up storage on your computer; it still appears in Finder and downloads when you open it.',
+          'Selective sync is the older alternative and removes a folder from the Mac entirely while keeping it in your account. Dropbox’s troubleshooting page notes that Basic users can only make files online-only on the latest Dropbox for macOS built on File Provider, while selective sync works on every plan. If the menu item is missing, that is usually why.',
+        ],
+      },
+      {
+        id: 'onedrive-free-up-space',
+        title: '4. OneDrive: use Free up space',
+        paragraphs: [
+          'Microsoft’s Files On-Demand page for Mac gives the step: right-click a file or folder in the OneDrive folder and choose Free up space. The item becomes online-only, shown with a cloud icon, and downloads when opened. Always Keep on This Device does the opposite and pins a full copy; a green check mark means a copy is currently on the disk.',
+          'Microsoft documents cases where a pinned item can exist both as a placeholder and as a cached copy, which is why measuring afterwards matters more than trusting the icon.',
+        ],
+      },
+      {
+        id: 'measure-and-what-not-to-do',
+        title: '5. Measure again, and never delete inside a synced folder',
+        paragraphs: [
+          'After switching modes, rescan. Space returns as the app releases local copies, which can take a while for a large folder. Files you open afterwards come back down, so a working set of recent documents will always occupy some room.',
+          'Do not delete files inside a synced folder to save space: the deletion syncs to the cloud and to every other device. Use the app’s online-only or streaming controls instead. iCloud Drive has its own version of this behaviour, covered in the iCloud guide. ClearDisk shows these folders with allocated sizes so you can see which drive is holding the space, but it does not change sync settings and does not offer synced folders for removal.',
+        ],
+      },
+    ],
+    related: [
+      'icloud-drive-taking-up-space-on-mac',
+      'mac-storage-not-updating-after-deleting-files',
+      'find-large-files-on-mac',
+      'mac-storage-full',
+    ],
+    sources: [
+      {
+        label: 'Google: stream and mirror files with Drive for desktop',
+        url: 'https://support.google.com/drive/answer/13401938?hl=en',
+      },
+      {
+        label: 'Dropbox: free up space with online-only files',
+        url: 'https://help.dropbox.com/sync/make-files-online-only',
+      },
+      {
+        label: 'Dropbox: how to troubleshoot disk space issues',
+        url: 'https://help.dropbox.com/storage-space/low-disk-space',
+      },
+      {
+        label:
+          'Microsoft: save disk space with OneDrive Files On-Demand for Mac',
+        url: 'https://support.microsoft.com/en-us/office/save-disk-space-with-onedrive-files-on-demand-for-mac-529f6d53-e572-4922-a585-e7a318c135f0',
       },
     ],
   },

@@ -379,10 +379,10 @@ export const maintenanceGuides: Guide[] = [
       },
     ],
     related: [
+      'messages-taking-up-space-on-mac',
       'free-up-space-on-mac',
       'clear-cache-on-mac',
       'what-is-system-data-on-mac',
-      'mac-storage-full',
     ],
     sources: [
       {
