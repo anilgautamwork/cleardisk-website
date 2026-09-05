@@ -73,6 +73,23 @@ void test('fails closed without a valid key and price id', async () => {
   ])
     assert.equal((await startCheckout(request(), broken, never)).status, 503);
 });
+void test('tolerates whitespace pasted around the secrets', async () => {
+  const padded = {
+    ...env,
+    STRIPE_SECRET_KEY: ' sk_test_example\n',
+    STRIPE_PRICE_ID: 'price_test123 ',
+  };
+  const res = await startCheckout(request(), padded, async (_, init) => {
+    const body = new URLSearchParams(init?.body as URLSearchParams);
+    assert.equal(body.get('line_items[0][price]'), 'price_test123');
+    assert.equal(
+      new Headers(init?.headers).get('Authorization'),
+      'Bearer sk_test_example',
+    );
+    return session({ livemode: false });
+  });
+  assert.equal(res.status, 200);
+});
 void test('rejects cross-origin checkout requests before contacting Stripe', async () => {
   const req = new Request(origin + '/api/checkout', {
     method: 'POST',

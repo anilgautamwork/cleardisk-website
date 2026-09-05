@@ -26,12 +26,13 @@ function configuredOrigin(env: CheckoutEnvironment) {
 }
 // Test and live keys are both accepted; every Stripe object is then checked
 // against the key's mode so a test session can never pass as a live purchase.
-function keyMode(env: CheckoutEnvironment): 'live' | 'test' | null {
-  const key = env.STRIPE_SECRET_KEY || '';
+function keyMode(key: string): 'live' | 'test' | null {
   if (/^(sk|rk)_live_/.test(key)) return 'live';
   if (/^(sk|rk)_test_/.test(key)) return 'test';
   return null;
 }
+// Secrets are pasted by hand; tolerate stray whitespace around them.
+const secret = (value: string | undefined) => (value || '').trim();
 const stripeHeaders = (key: string) => ({
   Authorization: `Bearer ${key}`,
   'Stripe-Version': '2024-06-20',
@@ -42,18 +43,24 @@ export async function startCheckout(
   requestFetch: typeof fetch = fetch,
 ): Promise<Response> {
   const origin = configuredOrigin(env);
-  const mode = keyMode(env);
-  if (
-    !origin ||
-    !mode ||
-    !/^price_[A-Za-z0-9]+$/.test(env.STRIPE_PRICE_ID || '')
-  )
+  const key = secret(env.STRIPE_SECRET_KEY);
+  const price = secret(env.STRIPE_PRICE_ID);
+  const mode = keyMode(key);
+  if (!origin || !mode || !/^price_[A-Za-z0-9]+$/.test(price)) {
+    // Read with `wrangler tail`; key prefixes and price ids are not secrets.
+    console.warn('checkout unavailable', {
+      origin: Boolean(origin),
+      key: key.slice(0, 7) || 'unset',
+      price: price.slice(0, 6) || 'unset',
+      priceLength: price.length,
+    });
     return unavailable();
+  }
   if (request.headers.get('origin') !== origin)
     return json({ error: 'Request origin not allowed.' }, 403);
   const form = new URLSearchParams({
     mode: 'payment',
-    'line_items[0][price]': env.STRIPE_PRICE_ID!,
+    'line_items[0][price]': price,
     'line_items[0][quantity]': '1',
     // The seller is an Indian company: international card payments must carry
     // the buyer's name, billing address and a description of what was sold.
@@ -72,7 +79,7 @@ export async function startCheckout(
       {
         method: 'POST',
         headers: {
-          ...stripeHeaders(env.STRIPE_SECRET_KEY!),
+          ...stripeHeaders(key),
           'Content-Type': 'application/x-www-form-urlencoded',
           'Idempotency-Key': crypto.randomUUID(),
         },
@@ -104,7 +111,8 @@ export async function checkoutStatus(
   env: CheckoutEnvironment,
   requestFetch: typeof fetch = fetch,
 ): Promise<Response> {
-  const mode = keyMode(env);
+  const key = secret(env.STRIPE_SECRET_KEY);
+  const mode = keyMode(key);
   if (!mode) return unavailable();
   const sessionId = new URL(request.url).searchParams.get('session_id');
   if (
@@ -117,7 +125,7 @@ export async function checkoutStatus(
       'https://api.stripe.com/v1/checkout/sessions/' +
         encodeURIComponent(sessionId),
       {
-        headers: stripeHeaders(env.STRIPE_SECRET_KEY!),
+        headers: stripeHeaders(key),
         signal: AbortSignal.timeout(12000),
       },
     );
