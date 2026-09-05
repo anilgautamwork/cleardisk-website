@@ -16,9 +16,9 @@ export default function Guides() {
         <header>
           <span className="eyebrow">THE STORAGE FIELD GUIDE</span>
           <h1>
-            Less mystery.
+            Mac storage guides.
             <br />
-            <span>More room.</span>
+            <span>Less mystery. More room.</span>
           </h1>
           <p>
             A full disk starts with a question.

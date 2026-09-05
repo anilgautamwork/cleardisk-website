@@ -28,8 +28,8 @@ export default async function Download({
       <main id="main-content" tabIndex={-1} className="wrap subpage">
         <Mark large />
         <h1>
-          A little more room.
-          <br />A little less effort.
+          Download ClearDisk for Mac.
+          <br />A little more room, a little less effort.
         </h1>
         <p>
           Download ClearDisk and discover what’s filling your Mac. Your files
