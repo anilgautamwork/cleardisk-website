@@ -2,6 +2,12 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 12 — 6 September 2026
+
+**Monitoring.** Google's `site:` result still lists six URLs. Ahrefs probes: "group containers folder mac" >100/month US and Easy; "caches folder mac", "spotlight index mac" and "mac log files" all <100 (Spotlight and logs skipped, no volume and thin sources).
+
+**Shipped.** `/containers-folder-mac` (what Containers and Group Containers are, from Apple's developer pages on app data containers and app group containers; measuring with read-only commands; what is usually large; what can go when an app is gone; what never to delete), linked from the Application Support guide. Library: 44 guides, sitemap 48 URLs.
+
 ## Iteration 11 — 6 September 2026
 
 **Monitoring.** Google's `site:` result is unchanged at six URLs. Ahrefs probes: "application support folder mac" >100/month US and Easy (with "can i delete application support folder mac"), "where are iphone backups stored on mac" >100 and Easy, "macbook air storage" >100 but upgrade intent (skipped), "delete system storage mac" <100.

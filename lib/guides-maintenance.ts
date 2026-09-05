@@ -1560,6 +1560,7 @@ export const maintenanceGuides: Guide[] = [
       },
     ],
     related: [
+      'containers-folder-mac',
       'show-library-folder-mac',
       'uninstall-apps-on-mac',
       'what-is-system-data-on-mac',
@@ -1577,6 +1578,94 @@ export const maintenanceGuides: Guide[] = [
       {
         label: 'Apple: understand Storage settings',
         url: 'https://support.apple.com/en-us/guide/mac-help/mchl3d437fbc/mac',
+      },
+    ],
+  },
+  {
+    slug: 'containers-folder-mac',
+    title: 'Group Containers and Containers on Mac: safe to delete?',
+    description:
+      'What the Containers and Group Containers folders in a Mac’s Library hold, why an app’s container can be huge, and which ones can go when the app is gone.',
+    summary:
+      'Containers are the private home folders macOS gives sandboxed apps; Group Containers are the shared ones a developer’s apps use together. Both are review-only while the apps are installed, and both are protected by macOS for a reason.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'what-they-are',
+        title: '1. What the two folders are',
+        paragraphs: [
+          'Apple’s developer documentation describes app data containers as folders the system creates for apps that use the App Sandbox; the container is where the app’s files live, and it carries System Integrity Protection so other software cannot quietly modify them. On your Mac they sit in ~/Library/Containers, one folder per app, named by the app’s bundle identifier such as com.apple.mail, though Finder often shows the app’s name and icon instead.',
+          'Group Containers, in ~/Library/Group Containers, are shared by a group of apps and extensions from one developer. Apple notes that in macOS 15 and later these also get System Integrity Protection, and that any app outside the group that tries to read one triggers a prompt asking you to authorize access. That prompt is the one that says an app wants to access data from other apps; it is the same protection seen from the other side.',
+        ],
+      },
+      {
+        id: 'open-and-measure',
+        title: '2. Open them and measure them',
+        paragraphs: [
+          'Choose Go → Go to Folder in Finder and type ~/Library/Containers or ~/Library/Group Containers. Inside a container you will find a Data folder that mirrors a home folder, with its own Library, Documents and Downloads; that structure is why the folder can be large and why it confuses a first look. In Terminal, one read-only command sizes every container and sorts them.',
+          'Storage settings counts both folders inside System Data. A handful of entries usually explain the total, and they belong to the apps you would expect.',
+        ],
+        code: [
+          'du -sh ~/Library/Containers/* 2>/dev/null | sort -h | tail -15',
+          'du -sh ~/Library/Group\\ Containers/* 2>/dev/null | sort -h | tail -15',
+        ],
+      },
+      {
+        id: 'what-is-usually-large',
+        title: '3. What is usually large',
+        paragraphs: [
+          'The names on your Mac will differ, but the pattern is consistent: containers grow where an app stores mail, messages, media or offline copies.',
+        ],
+        items: [
+          'Mail’s container: opened attachments in its Mail Downloads folder. Shrink it through Mail, as the Mail guide describes.',
+          'Office and productivity suites: a group container shared by the suite, often holding a mail client’s profile and cached content. Manage it inside the apps.',
+          'Chat, meeting and collaboration apps: caches of files and media per workspace, with a cache limit or clear-cache control in the app’s own settings.',
+          'iCloud-related group containers: local state for iCloud Drive and syncing. Leave them; the cloud drive guides cover the actual space.',
+          'Containers named for apps you deleted: the only entries that can go outright, because nothing reads them any more.',
+        ],
+      },
+      {
+        id: 'decide-what-can-go',
+        title: '4. Decide what can go',
+        paragraphs: [
+          'While an app is installed, change its container through the app: clear its cache, lower its limits, sign out of a workspace, remove downloaded content. Deleting the container underneath a running app corrupts its state and, for a sandboxed app, wipes settings and local data it cannot rebuild from anywhere.',
+          'When an app is gone, its container and any group container that only that app used are leftovers. Apple’s page on deleting apps notes that uninstalling does not remove data an app stored elsewhere, and containers are the main such place. Move them to the Trash, keep the Trash for a few days, then empty it. If a group container name matches a suite you still use, leave it; the other apps in the group depend on it.',
+        ],
+      },
+      {
+        id: 'what-never-to-delete',
+        title: '5. What never to delete',
+        paragraphs: [
+          'Never delete containers named com.apple or group.com.apple; they belong to macOS apps and services and are protected for a reason. Do not delete the Containers or Group Containers folders themselves, and do not remove the protection by copying data out and back with Terminal to get around a prompt.',
+          'ClearDisk’s free scan shows both folders with allocated sizes and marks them Review, which means it lists them with their paths but does not offer system and account containers for removal. That is the same boundary this guide asks you to keep by hand: measure freely, change through the app, delete only what belongs to an app that is already gone.',
+        ],
+      },
+    ],
+    related: [
+      'application-support-folder-mac',
+      'show-library-folder-mac',
+      'uninstall-apps-on-mac',
+      'mail-taking-up-space-on-mac',
+    ],
+    sources: [
+      {
+        label:
+          'Apple Developer: protecting local app data using containers on macOS',
+        url: 'https://developer.apple.com/documentation/xcode/protecting-local-app-data-using-containers',
+      },
+      {
+        label:
+          'Apple Developer: accessing app group containers in your existing macOS app',
+        url: 'https://developer.apple.com/documentation/xcode/accessing-app-group-containers',
+      },
+      {
+        label: 'Apple: go directly to a specific folder on Mac',
+        url: 'https://support.apple.com/guide/mac-help/mchlp1236/mac',
+      },
+      {
+        label: 'Apple: delete or uninstall apps on Mac',
+        url: 'https://support.apple.com/en-us/102610',
       },
     ],
   },
