@@ -403,4 +403,156 @@ export const maintenanceGuides: Guide[] = [
       },
     ],
   },
+  {
+    slug: 'show-library-folder-mac',
+    title: 'How to show the Library folder on Mac, and what is inside',
+    description:
+      'Apple’s ways to open the hidden Library folder on Mac, what its Caches, Application Support and Containers folders hold, and which of them to leave alone.',
+    summary:
+      'The user Library is where most of System Data lives. Finder hides it to protect app settings and data, not because everything in it is junk. Open it, measure it, and only then decide.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'open-it-from-the-go-menu',
+        title: '1. Open it from the Go menu',
+        paragraphs: [
+          'Apple’s Finder guide gives the two quickest routes. In Finder, press and hold the Option key, open the Go menu, and Library appears between Home and Computer; choose it. Or choose Go → Go to Folder and type ~/Library, where the tilde stands for your home folder. Press Return and the folder opens.',
+          'There are three Library folders and only one is yours. ~/Library belongs to your user account and holds app data. /Library, at the top of the disk, holds items shared by every user. /System/Library belongs to macOS and is protected; nothing in this guide applies to it.',
+        ],
+      },
+      {
+        id: 'keep-it-visible',
+        title: '2. Keep it visible if you visit often',
+        paragraphs: [
+          'Open your home folder in Finder, choose View → Show View Options, and select Show Library Folder. The folder then appears alongside Documents and Downloads until you clear the checkbox. It is a convenience, not a change to what the folder contains.',
+          'Add it to the Finder sidebar by dragging it there if you prefer. Either way, keep the habit of measuring before deleting; visibility is what makes accidental deletion possible.',
+        ],
+      },
+      {
+        id: 'what-the-big-folders-hold',
+        title: '3. What the big folders hold',
+        paragraphs: [
+          'Sizes vary by what you use, but the same folders dominate most Macs. Apple’s Storage settings count most of this as System Data, which is why the category grows without any file you remember saving.',
+        ],
+        items: [
+          'Caches: rebuildable working files per app. Safe to review once the app is closed; expect the app to recreate what it needs.',
+          'Application Support: settings, databases and licenses for apps. Review only; deleting a folder resets or breaks its app.',
+          'Containers and Group Containers: data for sandboxed apps, including Mail and Messages. Leave them and use the app’s own controls.',
+          'Developer: Xcode’s Derived Data, archives and simulators. Covered by the Xcode and simulator guides.',
+          'Mail and Messages: message stores and attachments. Covered by their own guides; never trim them in Finder.',
+          'Mobile Documents and CloudStorage: local copies of iCloud Drive and other cloud drives. Change sync settings, not files.',
+          'Logs and Saved Application State: usually small; rarely worth attention.',
+        ],
+      },
+      {
+        id: 'measure-before-you-touch',
+        title: '4. Measure before you touch anything',
+        paragraphs: [
+          'Select a folder and choose File → Get Info to see its size, or run du -sh ~/Library/Caches in Terminal for a quick read-only figure. Both take time on a large folder. A disk scanner with Full Disk Access lists every Library folder at once with allocated sizes and a label, so you can compare Caches against Containers before opening either.',
+          'Write down the two or three largest folders and the app each belongs to. That list, not the Library as a whole, is what you act on.',
+        ],
+      },
+      {
+        id: 'what-not-to-delete',
+        title: '5. What not to delete',
+        paragraphs: [
+          'Never touch /System/Library, and do not delete Application Support, Containers or Preferences wholesale. Remove cache folders only for apps you have quit, move them to the Trash rather than deleting immediately, and empty the Trash after the app has run once and behaved. If a folder returns to the same size within days, the app is producing it deliberately; the recurring-growth guide covers how to trace that.',
+          'ClearDisk’s free scan opens the same folders with the same labels, Safe, Review and Leave it, and moves selections to the Trash first. It shows protected system and account folders but does not offer them for removal, which is the boundary this guide recommends you keep by hand as well.',
+        ],
+      },
+    ],
+    related: [
+      'what-is-system-data-on-mac',
+      'clear-system-data-on-mac',
+      'clear-cache-on-mac',
+      'system-data-keeps-growing',
+    ],
+    sources: [
+      {
+        label: 'Apple: go directly to a specific folder on Mac',
+        url: 'https://support.apple.com/guide/mac-help/mchlp1236/mac',
+      },
+      {
+        label: 'Apple: understand Storage settings',
+        url: 'https://support.apple.com/en-us/guide/mac-help/mchl3d437fbc/mac',
+      },
+      {
+        label: 'Apple: free up storage space on Mac',
+        url: 'https://support.apple.com/en-us/102624',
+      },
+    ],
+  },
+  {
+    slug: 'trash-wont-empty-mac',
+    title: 'Trash won’t empty on Mac: locked, in use or on another disk',
+    description:
+      'When the Mac Trash will not empty: unlock items with Get Info, quit the app using the file, use Delete Immediately, and handle the Trash on external disks.',
+    summary:
+      'The Trash refuses for a reason it usually names: a locked file, a file an app still has open, or an item that lives on a disk that is not connected. Fix the reason and the normal Empty command works again.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'read-the-message',
+        title: '1. Read the message first',
+        paragraphs: [
+          'When emptying fails, macOS says why: the item is locked, in use, or you do not have permission. That sentence decides the fix, so do not skip it and reach for a command from a forum. Apple’s storage guidance also explains why this matters for space: a file moved to the Trash keeps its storage until the Trash is emptied.',
+          'Open the Trash and look at what is there. A single stubborn item often blocks the whole operation, and it is usually recognisable: an installer that is still mounted, a document open in an app, a virtual machine, or a folder copied from an external disk.',
+        ],
+      },
+      {
+        id: 'locked-items',
+        title: '2. Locked items: unlock with Get Info',
+        paragraphs: [
+          'Apple’s guide gives the step: select the item, choose File → Get Info or press Command-I, and deselect the Locked checkbox. If the checkbox is greyed out, click the lock at the bottom of the window and enter an administrator name and password first. Then empty the Trash again.',
+          'Files copied from another Mac or restored from a backup can arrive locked. Unlocking them changes nothing else about the file, so it is safe to do before you decide whether to delete.',
+        ],
+      },
+      {
+        id: 'items-in-use',
+        title: '3. Items in use: quit the app, then try again',
+        paragraphs: [
+          'A file that an app has open cannot be removed until the app lets go. Quit the app that created or opened it and empty the Trash again. When you are not sure which app it is, close everything, then log out and back in, or restart, and empty the Trash before opening anything else. This is our practical order; it clears the lock without touching the file system directly.',
+          'Modern macOS has no force-empty command, and the commands people paste from forums bypass the Trash rather than fixing the lock. Removing files outside the Trash removes the ability to put them back, and it does not release a file that a running process still holds.',
+        ],
+      },
+      {
+        id: 'delete-one-stubborn-item',
+        title: '4. Delete a single stubborn item',
+        paragraphs: [
+          'Apple documents a per-item route: Control-click the item in the Trash and choose Delete Immediately. It removes that item permanently and leaves the rest of the Trash where it is, so use File → Put Back on anything you want to keep first.',
+          'If Delete Immediately also fails with an in-use message, the lock is real and the app or process behind it still needs to quit. Restart and try again before anything else.',
+        ],
+      },
+      {
+        id: 'external-disks-and-space',
+        title: '5. Trash on external disks, and what still counts',
+        paragraphs: [
+          'Each disk keeps its own Trash. Items you deleted from an external drive appear in the Trash only while that drive is connected, and the space they use is on that drive, not your Mac. Connect the disk, then empty the Trash; ejecting it does not free anything. A backup disk used by Time Machine is managed by Time Machine, and its backups are not meant to be deleted through the Trash at all.',
+          'After the Trash empties, check System Settings → General → Storage. If the available figure has not moved, the snapshots and storage-not-updating guides explain purgeable space and delayed figures. ClearDisk’s own removal is Trash-first for exactly this reason: files go where you can still put them back, and the space returns when you empty the Trash yourself.',
+        ],
+      },
+    ],
+    related: [
+      'mac-storage-not-updating-after-deleting-files',
+      'purgeable-space-on-mac',
+      'time-machine-snapshots',
+      'mac-storage-full',
+    ],
+    sources: [
+      {
+        label: 'Apple: delete files and folders on Mac',
+        url: 'https://support.apple.com/guide/mac-help/delete-files-and-folders-on-mac-mchlp1093/mac',
+      },
+      {
+        label: 'Apple: free up storage space on Mac',
+        url: 'https://support.apple.com/en-us/102624',
+      },
+      {
+        label: 'Apple: available, free and purgeable space in Disk Utility',
+        url: 'https://support.apple.com/en-tm/guide/disk-utility/dskutl1005/mac',
+      },
+    ],
+  },
 ];

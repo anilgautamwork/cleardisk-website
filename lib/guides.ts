@@ -149,6 +149,7 @@ const foundationGuides: Guide[] = [
     ],
     related: [
       'clear-system-data-on-mac',
+      'show-library-folder-mac',
       'system-data-too-large',
       'mac-storage-full',
     ],

@@ -342,7 +342,7 @@ export const storageGuides: Guide[] = [
     related: [
       'purgeable-space-on-mac',
       'time-machine-snapshots',
-      'icloud-drive-taking-up-space-on-mac',
+      'trash-wont-empty-mac',
       'system-data-keeps-growing',
     ],
     sources: [
@@ -408,6 +408,7 @@ export const storageGuides: Guide[] = [
       },
     ],
     related: [
+      'photos-library-taking-up-space-mac',
       'find-large-files-on-mac',
       'mac-storage-not-updating-after-deleting-files',
       'icloud-drive-taking-up-space-on-mac',
@@ -645,6 +646,82 @@ export const storageGuides: Guide[] = [
         label:
           'Microsoft: save disk space with OneDrive Files On-Demand for Mac',
         url: 'https://support.microsoft.com/en-us/office/save-disk-space-with-onedrive-files-on-demand-for-mac-529f6d53-e572-4922-a585-e7a318c135f0',
+      },
+    ],
+  },
+  {
+    slug: 'photos-library-taking-up-space-mac',
+    title: 'Photos library taking up space on Mac: what to change',
+    description:
+      'Why the Photos library grows, how Optimize Mac Storage keeps originals in iCloud, what deleting does across devices, and when to move it to another drive.',
+    summary:
+      'The Photos library is one package that holds every original. Optimize Mac Storage trades local originals for iCloud copies; moving the library trades the internal disk for an external one. Deleting is the only option that removes photos, everywhere.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'see-the-library-size',
+        title: '1. See the library size',
+        paragraphs: [
+          'System Settings → General → Storage lists Photos as its own category. In Finder, the library is a single file called Photos Library in your Pictures folder; select it and choose File → Get Info for the size. It is a package, not a folder to browse, so never open it and delete files inside.',
+          'A disk scanner reports the same package with its allocated size and can show whether other copies exist: exported albums, an old iPhoto library, or a second library from a migration. Those duplicates are often the easy saving.',
+        ],
+      },
+      {
+        id: 'optimize-mac-storage',
+        title: '2. Turn on Optimize Mac Storage',
+        paragraphs: [
+          'Apple’s Photos guide describes the setting: choose Photos → Settings → iCloud, make sure iCloud Photos is on, and select Optimize Mac Storage. Optimize stores smaller versions of your photos on the Mac when storage space is limited and keeps the original, full-size photos in iCloud. Download Originals to this Mac does the opposite and restores the full-size versions.',
+          'Two conditions apply. iCloud Photos has to be on, which means the whole library counts against your iCloud storage as well as device storage. And Optimize works when space is limited rather than immediately, so the library shrinks over time, not the moment you click.',
+        ],
+      },
+      {
+        id: 'delete-with-sync-rules-in-mind',
+        title: '3. Delete with the sync rules in mind',
+        paragraphs: [
+          'Apple’s iCloud Photos page is clear: when you delete photos on one device, they are deleted everywhere you use iCloud Photos. Deleted items stay in Recently Deleted for 30 days, so the space returns after that window or after you delete them from Recently Deleted too.',
+          'Delete for the right reason. Screenshots, burst duplicates and screen recordings are common candidates; originals of edited photos are not, because the edit depends on them.',
+        ],
+      },
+      {
+        id: 'move-the-library',
+        title: '4. Move the library instead of shrinking it',
+        paragraphs: [
+          'When you want every original at hand but not on the internal disk, move the library to an external drive. Apple documents the procedure, and the move-photos guide walks through the drive requirements and the verification step before you remove the original.',
+          'Moving is the right choice for large video libraries and for Macs with a small SSD and a permanently connected drive. It is the wrong choice for a laptop that leaves the drive at home, because Photos needs the library present to open at all.',
+        ],
+      },
+      {
+        id: 'what-not-to-do',
+        title: '5. What not to do',
+        paragraphs: [
+          'Do not edit inside the Photos Library package, do not delete its caches by hand, and do not turn off iCloud Photos to save space without first downloading originals. Turning it off only stops syncing; it does not remove the local library.',
+          'ClearDisk shows the Photos Library package with its allocated size but does not offer it for removal, because Photos owns the data. Use the scan to find duplicate libraries and large exports outside it; use Photos for everything inside.',
+        ],
+      },
+    ],
+    related: [
+      'move-photos-library-to-external-drive',
+      'icloud-drive-taking-up-space-on-mac',
+      'find-large-files-on-mac',
+      'delete-iphone-backups-on-mac',
+    ],
+    sources: [
+      {
+        label: 'Apple: optimize storage in Photos on Mac',
+        url: 'https://support.apple.com/guide/photos/optimize-storage-in-photos-on-mac-phta9b4673b4/mac',
+      },
+      {
+        label: 'Apple: set up and use iCloud Photos',
+        url: 'https://support.apple.com/en-us/108782',
+      },
+      {
+        label: 'Apple: move your Photos library to save space on your Mac',
+        url: 'https://support.apple.com/en-us/108345',
+      },
+      {
+        label: 'Apple: free up storage space on Mac',
+        url: 'https://support.apple.com/en-us/102624',
       },
     ],
   },
