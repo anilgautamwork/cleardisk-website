@@ -151,8 +151,8 @@ const foundationGuides: Guide[] = [
     ],
     related: [
       'clear-system-data-on-mac',
+      'how-to-check-storage-on-mac',
       'show-library-folder-mac',
-      'system-data-too-large',
       'mac-storage-glossary',
     ],
     sources: [definition, snapshots],
@@ -339,9 +339,9 @@ const foundationGuides: Guide[] = [
     ],
     related: [
       'clear-system-data-on-mac',
+      'how-to-check-storage-on-mac',
       'not-enough-space-to-update-macos',
       'mac-storage-full-after-macos-update',
-      'system-data-too-large',
     ],
     sources: [storage],
   },

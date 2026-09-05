@@ -2,6 +2,14 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 7 — 6 September 2026
+
+**Research.** The two largest phrases found so far, both rated Easy by Ahrefs' free tool: "how to uninstall apps on mac" and "uninstall apps on mac" (>10,000/month US each) and "how to check storage on mac" (>1,000). "what is taking up space on my mac" and its many variants are each <100. Sources: Apple's "Delete or uninstall apps on Mac", the internet/disc install guide (vendor uninstallers), the App Store guide, and the Storage settings guide.
+
+**Shipped.** `/how-to-check-storage-on-mac` (Storage settings walkthrough, categories, Disk Utility, what the categories hide) and `/uninstall-apps-on-mac` (uninstaller first, Finder, apps that will not delete, Library leftovers, login items). The home page's third guide card now points at the check-storage guide; related links added from free-up-space, mac-storage-full, what-is-system-data, Library and free-tools guides. Library: 38 guides, sitemap 42 URLs.
+
+**Next candidates.** Watch whether the two high-volume pages get indexed; probe more head terms (clear cache macbook, macbook storage, delete files on mac); consider a short "app leftovers" companion for the uninstall guide if it draws traffic.
+
 ## Iteration 6 — 6 September 2026
 
 **Quality pass.** Re-read the fourteen guides written tonight against their sources. Two sentences were tightened: the Trash guide no longer claims macOS has "no force-empty command" (it says there is no Secure Empty Trash), and the installer guide says Apple provides "its installers" rather than "every installer" for re-download. Guide sections gained an optional code block, and the commands in the Terminal, Homebrew, npm/pnpm/Yarn/pip, Library, snapshots and post-update guides now render as copyable code instead of inline prose (14 blocks).

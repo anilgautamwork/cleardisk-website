@@ -72,8 +72,9 @@ export const maintenanceGuides: Guide[] = [
     ],
     related: [
       'mac-storage-full',
+      'how-to-check-storage-on-mac',
       'find-large-files-on-mac',
-      'disk-space-analyzer-mac',
+      'uninstall-apps-on-mac',
       'mail-taking-up-space-on-mac',
       'clear-system-data-on-mac',
     ],
@@ -468,7 +469,7 @@ export const maintenanceGuides: Guide[] = [
       'what-is-system-data-on-mac',
       'clear-system-data-on-mac',
       'clear-cache-on-mac',
-      'system-data-keeps-growing',
+      'uninstall-apps-on-mac',
     ],
     sources: [
       {
@@ -766,6 +767,7 @@ export const maintenanceGuides: Guide[] = [
     ],
     related: [
       'disk-space-analyzer-mac',
+      'uninstall-apps-on-mac',
       'free-up-space-on-mac',
       'what-is-system-data-on-mac',
       'check-disk-space-mac-terminal',
@@ -967,6 +969,169 @@ export const maintenanceGuides: Guide[] = [
       {
         label: 'Apple: Time Machine local snapshots',
         url: 'https://support.apple.com/en-us/102154',
+      },
+      {
+        label: 'Apple: free up storage space on Mac',
+        url: 'https://support.apple.com/en-us/102624',
+      },
+    ],
+  },
+  {
+    slug: 'how-to-check-storage-on-mac',
+    title: 'How to check storage on Mac and see what uses the space',
+    description:
+      'Open Storage settings, read the bar, drill into Applications, Documents and Messages, check a single drive, and find what the categories hide.',
+    summary:
+      'Storage settings answers the first question in one screen and the categories answer the second. The last part, what sits inside System Data, needs Terminal or a scanner.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'open-storage-settings',
+        title: '1. Open Storage settings',
+        paragraphs: [
+          'Apple’s guide gives the path: choose Apple menu → System Settings, click General in the sidebar, then click Storage. On macOS versions before Ventura, Apple’s storage page points to Apple menu → About This Mac → Storage instead. The steps are the same on a MacBook Air, MacBook Pro, iMac or Mac mini.',
+          'Give the screen a minute. The bar appears immediately but the categories keep refining while macOS finishes counting, so the first numbers you see can shift before they settle.',
+        ],
+      },
+      {
+        id: 'read-the-bar',
+        title: '2. Read the bar',
+        paragraphs: [
+          'Apple describes the coloured bar as the storage used by different apps and file types, with the amount of free storage shown as Available. Hover over a segment to see its name and size. The categories are macOS’s classification, not folders: a file counts once, under whichever category fits it best.',
+          'Two segments confuse most people. System Data is Apple’s catch-all for files that fit no other category, which its guide says primarily includes system files such as logs, caches and runtime resources. Available can include purgeable space that macOS has not released yet, which Disk Utility separates from free space. The related guides cover both in detail.',
+        ],
+      },
+      {
+        id: 'open-a-category',
+        title: '3. Open a category with its information button',
+        paragraphs: [
+          'Apple’s guide notes that categories such as Applications, Documents, Messages, Mail, iOS files and Trash have an information button that opens them. This is where the useful lists live.',
+        ],
+        items: [
+          'Applications: every app sorted by size, with a column showing where it came from and whether it is still supported.',
+          'Documents: three views, Large Files, Downloads and a File Browser, each sortable by size with a Show in Finder option.',
+          'Messages and Mail: attachments by size, deletable from the list. The Mail and Messages guides explain what deleting does to your accounts.',
+          'iOS files: iPhone and iPad backups stored on the Mac, with their dates.',
+          'Trash: what is waiting to be emptied, and how much space emptying it returns.',
+        ],
+      },
+      {
+        id: 'check-a-single-drive',
+        title: '4. Check a single disk or an external drive',
+        paragraphs: [
+          'Storage settings describes the startup disk. For any volume, open Disk Utility, select it and read the capacity, used and available figures; Apple’s Disk Utility guide explains that available can include both free space and purgeable space. In Finder, select a drive and choose File → Get Info for the same numbers.',
+          'External drives keep their own Trash, so a drive that looks full after you deleted files needs its Trash emptied while it is connected. The Trash guide covers the cases where that refuses.',
+        ],
+      },
+      {
+        id: 'see-what-the-categories-hide',
+        title: '5. See what the categories hide',
+        paragraphs: [
+          'System Data has no information button and no list, which is the point where Storage settings stops helping. The next layer is the folders themselves: the Library guide explains what is in there, the Terminal guide gives the read-only commands that size every folder, and the large-files guide covers documents that Storage settings misses because they sit outside your home folder.',
+          'A disk scanner does the same in one pass, with allocated sizes and a label for each folder. ClearDisk’s scan is free and local, shows the System Data folders Storage settings only totals, and lets you reveal any item in Finder before deciding what to do with it.',
+        ],
+      },
+    ],
+    related: [
+      'what-is-system-data-on-mac',
+      'find-large-files-on-mac',
+      'check-disk-space-mac-terminal',
+      'free-up-space-on-mac',
+      'purgeable-space-on-mac',
+    ],
+    sources: [
+      {
+        label: 'Apple: change Storage settings on Mac',
+        url: 'https://support.apple.com/en-us/guide/mac-help/mchl3d437fbc/mac',
+      },
+      {
+        label: 'Apple: free up storage space on Mac',
+        url: 'https://support.apple.com/en-us/102624',
+      },
+      {
+        label: 'Apple: available, free and purgeable space in Disk Utility',
+        url: 'https://support.apple.com/en-tm/guide/disk-utility/dskutl1005/mac',
+      },
+    ],
+  },
+  {
+    slug: 'uninstall-apps-on-mac',
+    title: 'How to uninstall apps on Mac, and remove what they leave',
+    description:
+      'Uninstall Mac apps the way Apple documents: the app’s own uninstaller or Finder, when an app will not delete, and how to find the files it leaves in Library.',
+    summary:
+      'Dragging an app to the Trash removes the app but not its settings, caches or login items. Use the maker’s uninstaller when there is one, then review what stays behind in your Library.',
+    published: '2026-09-06',
+    updated: '2026-09-06',
+    sections: [
+      {
+        id: 'check-for-an-uninstaller',
+        title: '1. Check for the app’s own uninstaller first',
+        paragraphs: [
+          'Apple’s page on deleting apps is direct: find out whether the app includes an Uninstall or Uninstaller app, because that is the best way to delete it, and some apps offer removal as a menu item or setting instead. Apple’s guide for apps installed from the internet adds the practical step: if the app is in a folder, open the folder and look for Uninstall [App] or [App] Uninstaller, then double-click it.',
+          'Uninstallers matter for suites that install more than one thing: creative and office suites, security software, drivers and anything with a menu bar helper. Apple notes they help remove login items, extensions and other data the app stored, which Finder cannot see.',
+        ],
+      },
+      {
+        id: 'delete-the-app',
+        title: '2. Delete the app with Finder or from its icon',
+        paragraphs: [
+          'For an app without an uninstaller, Apple’s steps are to drag it from the Applications folder to the Trash, or select it and choose File → Move to Trash, entering an administrator name and password if asked. For apps from the App Store, Apple’s App Store guide describes pressing and holding the app’s icon until it jiggles and clicking the delete button, in Launchpad or the Apps window that replaces it on recent macOS.',
+          'Then choose Finder → Empty Trash. Until you do, the app still occupies its space, and a large app such as a game or a creative suite can be tens of gigabytes.',
+        ],
+      },
+      {
+        id: 'if-an-app-will-not-delete',
+        title: '3. If an app will not delete',
+        paragraphs: [
+          'Two causes cover almost every case. Apple states that you cannot use Finder to delete apps required by your Mac, including many installed by macOS such as Mail, Music, Books and Notes; they are part of the system and are not taking space you can reclaim. The second is an app that is still in use: quit it, including any helper it runs in the menu bar, and try again. Apple’s page suggests restarting, or starting up in safe mode, when the app stays in use.',
+          'Do not delete an app’s folder from inside a package or force it with Terminal. If the maker ships an uninstaller and the app will not go, run the uninstaller; that is what it is for.',
+        ],
+      },
+      {
+        id: 'find-what-the-app-left-behind',
+        title: '4. Find what the app left behind',
+        paragraphs: [
+          'Apple’s page makes the limit clear: deleting or uninstalling an app does not remove documents or other files you created. It also leaves behind support data unless an uninstaller cleaned it. The usual places are inside your Library, named after the app or its maker.',
+        ],
+        items: [
+          'Application Support: settings, databases and downloaded content, under the app or vendor name.',
+          'Containers and Group Containers: data for sandboxed apps, named by bundle identifier such as com.vendor.app.',
+          'Caches: rebuildable working files, also by bundle identifier. Safe to remove once the app is gone.',
+          'Preferences: small .plist files. Harmless to leave; remove only if you want a fresh start on reinstall.',
+          'Logs, Saved Application State and LaunchAgents: usually tiny, worth checking for a helper that keeps launching.',
+        ],
+      },
+      {
+        id: 'login-items-and-the-last-check',
+        title: '5. Login items, extensions and the last check',
+        paragraphs: [
+          'Open System Settings → General → Login Items & Extensions and remove anything that belonged to the app; a leftover helper is the most common reason a deleted app still appears to run. Then empty the Trash and check System Settings → General → Storage.',
+          'The Library guide explains those folders and which to leave alone. If you would rather not search by hand, the free-tools guide lists uninstallers that do this search for you, and ClearDisk’s free scan shows Application Support, Containers and Caches with allocated sizes so you can review a leftover before it goes to the Trash. Keep documents; only the app’s own data is the target.',
+        ],
+      },
+    ],
+    related: [
+      'show-library-folder-mac',
+      'best-free-mac-cleaner',
+      'free-up-space-on-mac',
+      'trash-wont-empty-mac',
+    ],
+    sources: [
+      {
+        label: 'Apple: delete or uninstall apps on Mac',
+        url: 'https://support.apple.com/en-us/102610',
+      },
+      {
+        label:
+          'Apple: install and uninstall apps from the internet or a disc on Mac',
+        url: 'https://support.apple.com/guide/mac-help/mh35835/mac',
+      },
+      {
+        label:
+          'Apple: install and uninstall purchases from the App Store on Mac',
+        url: 'https://support.apple.com/guide/app-store/install-and-uninstall-purchased-apps-fir0fb69db23/mac',
       },
       {
         label: 'Apple: free up storage space on Mac',

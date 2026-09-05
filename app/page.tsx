@@ -476,13 +476,14 @@ export default async function Home() {
                 Find an answer <ArrowRight size={16} />
               </span>
             </Link>
-            <Link className="guide-card" href="/system-data-keeps-growing">
-              <h3>Why does it keep growing?</h3>
+            <Link className="guide-card" href="/how-to-check-storage-on-mac">
+              <h3>How do I check what is using space?</h3>
               <p>
-                Investigate what is producing new data before cleaning again.
+                Read Storage settings, open each category, and see what the bar
+                hides.
               </p>
               <span>
-                Understand the cause <ArrowRight size={16} />
+                Check your storage <ArrowRight size={16} />
               </span>
             </Link>
           </div>
