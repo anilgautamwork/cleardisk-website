@@ -3,7 +3,7 @@ import { pageMetadata } from '@/lib/seo';
 import { Header, Footer, Mark } from '@/components/brand';
 import { JsonLd } from '@/components/json-ld';
 import { softwareSchema } from '@/lib/seo';
-import { ArrowDownToLine, Apple, ShieldCheck, HardDrive } from 'lucide-react';
+import { ArrowDownToLine, ShieldCheck, HardDrive } from 'lucide-react';
 export const metadata = pageMetadata(
   'Download ClearDisk for Mac',
   'Download ClearDisk 1.0 for macOS 15 and later. Universal Apple silicon and Intel app. Free scanning, $10 one-time cleanup license.',
@@ -36,9 +36,7 @@ export default async function Download({
           stay on your computer, right where they belong.
         </p>
         <div className="release-meta">
-          <span>
-            <Apple size={15} /> macOS 15+
-          </span>
+          <span>macOS 15+</span>
           <span>
             <HardDrive size={15} />
             Apple silicon + Intel
@@ -53,6 +51,12 @@ export default async function Download({
           Download ClearDisk
         </a>
         <small>ClearDisk 1.0.0 · DMG · 3.1 MB</small>
+        <p className="software-disclosure">
+          ClearDisk is a downloadable Mac app. It scans your disk on your Mac,
+          shows what uses space and lets you move files you choose to the Trash.
+          It does not change system settings, install extensions or upload your
+          files. Remove it by moving ClearDisk to the Trash.
+        </p>
         <p>
           <a href="https://cleardisk.app/SHA256SUMS.txt">
             SHA-256 checksum for this download

@@ -3,6 +3,7 @@ import './globals.css';
 import './reading-theme.css';
 import { organizationSchema, pageMetadata, SITE_URL } from '@/lib/seo';
 import { JsonLd } from '@/components/json-ld';
+import { ClickAttribution } from '@/components/click-attribution';
 export const metadata: Metadata = {
   ...pageMetadata(
     'ClearDisk — Clear System Data on Mac',
@@ -24,6 +25,7 @@ export default function RootLayout({
           Skip to content
         </a>
         {children}
+        <ClickAttribution />
         <JsonLd data={organizationSchema} />
       </body>
     </html>

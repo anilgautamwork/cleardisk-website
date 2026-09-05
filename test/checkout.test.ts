@@ -128,6 +128,34 @@ void test('tolerates whitespace pasted around the secrets', async () => {
   });
   assert.equal(res.status, 200);
 });
+void test('forwards clean ad attribution into session metadata and drops the rest', async () => {
+  const req = new Request(origin + '/api/checkout', {
+    method: 'POST',
+    headers: { origin, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      attribution: {
+        gclid: 'Cj0KCQjw-abc_123',
+        utm_source: 'google',
+        gbraid: 'bad value!',
+        evil: 'x',
+      },
+    }),
+  });
+  const res = await startCheckout(req, env, async (_, init) => {
+    const body = new URLSearchParams(init?.body as URLSearchParams);
+    assert.equal(body.get('metadata[gclid]'), 'Cj0KCQjw-abc_123');
+    assert.equal(body.get('metadata[utm_source]'), 'google');
+    assert.equal(
+      body.get('payment_intent_data[metadata][gclid]'),
+      'Cj0KCQjw-abc_123',
+    );
+    assert.equal(body.get('metadata[gbraid]'), null);
+    assert.equal(body.get('metadata[evil]'), null);
+    assert.equal(body.get('metadata[product]'), 'cleardisk');
+    return session({ livemode: false });
+  });
+  assert.equal(res.status, 200);
+});
 void test('rejects cross-origin checkout requests before contacting Stripe', async () => {
   const req = new Request(origin + '/api/checkout', {
     method: 'POST',

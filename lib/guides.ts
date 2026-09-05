@@ -1,5 +1,6 @@
 import { storageGuides } from './guides-storage.ts';
 import { developerGuides } from './guides-developer.ts';
+import { maintenanceGuides } from './guides-maintenance.ts';
 export type GuideSection = {
   id: string;
   title: string;
@@ -351,6 +352,7 @@ for (const guide of foundationGuides)
   guide.related.push(deeperGuides[guide.slug]);
 export const guides: Guide[] = [
   ...foundationGuides,
+  ...maintenanceGuides,
   ...storageGuides,
   ...developerGuides,
 ];
@@ -359,7 +361,7 @@ export const guideGroups = [
   {
     id: 'system-data',
     title: 'System Data and a full Mac',
-    guides: foundationGuides,
+    guides: [...foundationGuides, ...maintenanceGuides],
   },
   {
     id: 'files-and-backups',

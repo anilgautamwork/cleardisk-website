@@ -8,6 +8,7 @@ const publicPaths = [
   '/',
   '/guides',
   '/download',
+  '/about',
   '/privacy',
   '/terms',
   ...guides.map((g) => '/' + g.slug),
@@ -55,7 +56,9 @@ export function pageMetadata(
 export function sitemapEntries(indexable = INDEXABLE) {
   if (!indexable) return [];
   return [
-    ...['/', '/guides', '/download'].map((path) => ({ url: canonical(path) })),
+    ...['/', '/guides', '/download', '/about'].map((path) => ({
+      url: canonical(path),
+    })),
     ...guides.map((guide) => ({
       url: canonical('/' + guide.slug),
       lastModified: guide.updated,

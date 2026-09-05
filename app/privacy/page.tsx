@@ -36,6 +36,13 @@ export default function Privacy() {
           of installation or a count of unique people. GitHub separately reports
           downloads from its releases.
         </p>
+        <h2>Ad measurement</h2>
+        <p>
+          If you arrive from an ad, the click identifier in the link, such as
+          Google’s gclid, and the campaign labels are kept in your browser for
+          90 days and attached to a purchase so we can tell which ads lead to
+          sales. No advertising pixel or third-party script is loaded for this.
+        </p>
         <h2>Payments</h2>
         <p>
           Checkout is handled by Stripe on behalf of TechMarbles Web Solutions

@@ -3064,3 +3064,12 @@ svg {
   justify-items: center;
   padding: 32px 16px;
 }
+
+.hero .software-disclosure,
+.subpage p.software-disclosure {
+  max-width: 60ch;
+  margin: 14px 0 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #62626b;
+}

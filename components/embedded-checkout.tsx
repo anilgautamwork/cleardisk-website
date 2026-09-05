@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, LoaderCircle } from 'lucide-react';
+import { storedAttribution } from './click-attribution';
 type EmbeddedCheckout = { mount(target: HTMLElement): void; destroy(): void };
 type StripeJs = (publishableKey: string) => {
   initEmbeddedCheckout(options: {
@@ -54,7 +55,11 @@ export function EmbeddedCheckoutCard({ label }: { label: string }) {
     setStatus('loading');
     setError('');
     try {
-      const r = await fetch('/api/checkout', { method: 'POST' });
+      const r = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ attribution: storedAttribution() }),
+      });
       const data = (await r.json()) as CheckoutResponse;
       if (!r.ok) throw Error(data.error || 'Checkout is unavailable.');
       if (data.clientSecret && data.publishableKey) {

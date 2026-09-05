@@ -1,3 +1,4 @@
+import { cleanAttribution } from './attribution.ts';
 export type CheckoutEnvironment = {
   STRIPE_SECRET_KEY?: string;
   STRIPE_PRICE_ID?: string;
@@ -80,6 +81,16 @@ export async function startCheckout(
       ? { ui_mode: 'embedded', return_url: thanks }
       : { success_url: thanks, cancel_url: origin + '/buy-now?canceled=1' }),
   });
+  // Ad click ids and campaign labels ride along so a sale can be matched to
+  // its ad later (offline conversion import); nothing is sent to Google here.
+  const body = await request.json().catch(() => null);
+  const attribution = cleanAttribution(
+    (body as { attribution?: unknown } | null)?.attribution,
+  );
+  for (const [key, value] of Object.entries(attribution)) {
+    form.set(`metadata[${key}]`, value);
+    form.set(`payment_intent_data[metadata][${key}]`, value);
+  }
   try {
     const response = await requestFetch(
       'https://api.stripe.com/v1/checkout/sessions',

@@ -8,6 +8,7 @@ const pages = [
   '/guides',
   ...guides.map((g) => '/' + g.slug),
   '/download',
+  '/about',
   '/buy-now',
   '/thanks',
   '/recover',
@@ -71,6 +72,7 @@ for (const path of pages) {
   ].flatMap((m) => JSON.parse(m[1]));
   const ofType = (type) => schemas.filter((s) => s['@type'] === type);
   assert.equal(ofType('Organization').length, 1, path + ': Organization');
+  if (path === '/') assert.equal(ofType('FAQPage').length, 1, 'home FAQPage');
   if (path === '/' || path === '/download')
     assert.equal(ofType('SoftwareApplication')[0]?.offers?.price, '10', path);
   if (guide) {
@@ -103,7 +105,7 @@ const sitemap = await fetch(new URL('/sitemap.xml', origin));
 assert.equal(sitemap.status, 200);
 const xml = await sitemap.text();
 const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
-assert.equal(urls.length, indexable ? guides.length + 3 : 0);
+assert.equal(urls.length, indexable ? guides.length + 4 : 0);
 for (const path of ['/thanks', '/buy-now', '/recover', '/api'])
   assert.ok(!urls.some((url) => url.includes(path)));
 const robots = await fetch(new URL('/robots.txt', origin));

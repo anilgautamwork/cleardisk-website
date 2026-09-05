@@ -75,6 +75,7 @@ export function Footer() {
         <Link href="/guides">Storage guides</Link>
         <Link href="/download">Download</Link>
         <Link href="/recover">Lost your key?</Link>
+        <Link href="/about">About</Link>
         <Link href="/privacy">Privacy</Link>
         <Link href="/terms">Terms & refunds</Link>
         <a href="mailto:hello@cleardisk.app">

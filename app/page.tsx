@@ -54,6 +54,15 @@ const faqs = [
     'ClearDisk requires macOS 15 Sequoia or newer. The download includes both Apple silicon and Intel versions in one app. Grant Full Disk Access when prompted to see files macOS otherwise keeps private.',
   ],
 ];
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(([question, answer]) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: { '@type': 'Answer', text: answer },
+  })),
+};
 export default async function Home() {
   const price = await visitorPrice();
   return (
@@ -86,6 +95,13 @@ export default async function Home() {
                     <Play size={14} /> Explore the app
                   </a>
                 </div>
+                <p className="software-disclosure">
+                  ClearDisk is a downloadable Mac app. It scans your disk on
+                  your Mac, shows what uses space and lets you move files you
+                  choose to the Trash. It does not change system settings,
+                  install extensions or upload your files. Remove it by moving
+                  ClearDisk to the Trash.
+                </p>
                 <div className="hero-details">
                   <span>
                     <Apple size={13} /> macOS 15+
@@ -482,6 +498,7 @@ export default async function Home() {
       </main>
       <Footer />
       <JsonLd data={softwareSchema} />
+      <JsonLd data={faqSchema} />
     </>
   );
 }
