@@ -40,12 +40,11 @@ export default function Terms() {
           important files. Files in the Trash still occupy storage until
           permanently removed.
         </p>
-        <h2>Preview software</h2>
+        <h2>Software warranty</h2>
         <p>
-          The preview is provided as is, without warranties to the extent
-          permitted by applicable law. Features and availability may change
-          before the 1.0 release. Nothing here limits any rights you have under
-          applicable consumer law.
+          ClearDisk is provided as is, without warranties to the extent
+          permitted by applicable law. Features may change between releases.
+          Nothing here limits any rights you have under applicable consumer law.
         </p>
       </main>
       <Footer />

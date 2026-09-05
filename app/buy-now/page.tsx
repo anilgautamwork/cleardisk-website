@@ -47,7 +47,7 @@ export default function Buy() {
           </small>
           <p className="purchase-free">
             Want to explore the app first?{' '}
-            <Link href="/download">Download the free preview.</Link>
+            <Link href="/download">Download ClearDisk and scan for free.</Link>
           </p>
         </div>
         <aside className="purchase-summary">

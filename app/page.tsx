@@ -351,7 +351,7 @@ export default function Home() {
                 </li>
               </ul>
               <Link className="button secondary" href="/download">
-                Download free preview <ArrowUpRight size={17} />
+                Download ClearDisk <ArrowUpRight size={17} />
               </Link>
               <small>No card. No account. Just clarity.</small>
             </article>
@@ -397,7 +397,7 @@ export default function Home() {
             </article>
           </div>
           <p className="price-note">
-            Start with the free preview. Upgrade when you’re ready.
+            Start with a free scan. Upgrade when you’re ready.
           </p>
         </section>
         <section className="section wrap faq-section" id="faq">

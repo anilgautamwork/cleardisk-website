@@ -68,7 +68,7 @@ const foundationGuides: Guide[] = [
         title: '3. Remove a small, understood selection',
         paragraphs: [
           'Close the app that owns the files before cleanup. Review the selected paths, keep a backup of anything irreplaceable, and begin with items you know you can replace or no longer need.',
-          'ClearDisk uses Trash-first removal by default and asks for confirmation. This gives you a chance to review the outcome before permanent deletion. The current downloadable app is a 0.1.4 preview; the ClearDisk 1.0 cleanup license costs $10 once.',
+          'ClearDisk uses Trash-first removal by default and asks for confirmation. This gives you a chance to review the outcome before permanent deletion. ClearDisk 1.0 is available now; the cleanup license costs $10 once.',
         ],
       },
       {
@@ -240,7 +240,7 @@ const foundationGuides: Guide[] = [
         title: '2. Compare after a normal activity',
         paragraphs: [
           'Do one ordinary piece of work, then scan again. For example, compare before and after building a project, importing media or downloading content in an app. Look for a path that grew, not just a larger combined category.',
-          'ClearDisk helps inspect paths and sizes, but the current preview does not automatically diagnose the responsible process or maintain a growth-history dashboard. This comparison is a manual workflow.',
+          'ClearDisk helps inspect paths and sizes, but the current release does not automatically diagnose the responsible process or maintain a growth-history dashboard. This comparison is a manual workflow.',
         ],
       },
       {

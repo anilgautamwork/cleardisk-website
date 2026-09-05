@@ -5,8 +5,8 @@ import { JsonLd } from '@/components/json-ld';
 import { softwareSchema } from '@/lib/seo';
 import { ArrowDownToLine, Apple, ShieldCheck, HardDrive } from 'lucide-react';
 export const metadata = pageMetadata(
-  'Download ClearDisk for Mac — Free preview',
-  'Download the free ClearDisk 0.1.4 preview for macOS 15+. Universal Apple silicon and Intel app. Explore local storage before cleanup.',
+  'Download ClearDisk for Mac',
+  'Download ClearDisk 1.0 for macOS 15 and later. Universal Apple silicon and Intel app. Free scanning, $10 one-time cleanup license.',
   '/download',
 );
 export default async function Download({
@@ -50,11 +50,11 @@ export default async function Download({
         </div>
         <a className="button primary" href={downloadURL} download>
           <ArrowDownToLine size={18} />
-          Download free preview
+          Download ClearDisk
         </a>
-        <small>ClearDisk 0.1.4 · DMG · 3.0 MB</small>
+        <small>ClearDisk 1.0.0 · DMG · 3.1 MB</small>
         <p>
-          <a href="https://github.com/anilgautamwork/cleardisk-app/releases/tag/v0.1.4">
+          <a href="https://github.com/anilgautamwork/cleardisk-app/releases/tag/v1.0.0">
             GitHub release, download mirror and checksum
           </a>
         </p>
@@ -69,7 +69,8 @@ export default async function Download({
         </ol>
         <p>
           Review the findings before removing anything. Files moved to the Trash
-          continue to use space until you empty it.
+          continue to use space until you empty it. To unlock cleanup, choose
+          License… in the ClearDisk menu and paste your key.
         </p>
       </main>
       <Footer />
