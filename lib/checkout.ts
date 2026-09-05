@@ -4,9 +4,9 @@ export type CheckoutEnvironment = {
   SITE_ORIGIN?: string;
 };
 // Every session this site creates carries this marker so other integrations
-// sharing the Stripe account (and our own status check) can tell it apart.
+// sharing the Stripe account (and our own session lookups) can tell it apart.
 export const PRODUCT = 'cleardisk';
-const json = (body: unknown, status = 200) =>
+export const json = (body: unknown, status = 200) =>
   Response.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
 const unavailable = () =>
   json(
@@ -26,13 +26,13 @@ function configuredOrigin(env: CheckoutEnvironment) {
 }
 // Test and live keys are both accepted; every Stripe object is then checked
 // against the key's mode so a test session can never pass as a live purchase.
-function keyMode(key: string): 'live' | 'test' | null {
+export function keyMode(key: string): 'live' | 'test' | null {
   if (/^(sk|rk)_live_/.test(key)) return 'live';
   if (/^(sk|rk)_test_/.test(key)) return 'test';
   return null;
 }
 // Secrets are pasted by hand; tolerate stray whitespace around them.
-const secret = (value: string | undefined) => (value || '').trim();
+export const secret = (value: string | undefined) => (value || '').trim();
 const stripeHeaders = (key: string) => ({
   Authorization: `Bearer ${key}`,
   'Stripe-Version': '2024-06-20',
@@ -106,11 +106,10 @@ export async function startCheckout(
     return json({ error: 'Could not reach Stripe. Please try again.' }, 502);
   }
 }
-// Shared by the checkout-status page and the license-issuing routes: fetches
-// a session from Stripe and returns it only once it is confirmed to belong to
-// this product and to the key's mode. Any ambiguity (malformed id, wrong
-// mode, wrong product, Stripe error) collapses to `null` so callers fail
-// closed instead of guessing.
+// Shared by the license-issuing routes: fetches a session from Stripe and
+// returns it only once it is confirmed to belong to this product and to the
+// key's mode. Any ambiguity (malformed id, wrong mode, wrong product, Stripe
+// error) collapses to `null` so callers fail closed instead of guessing.
 export async function retrieveSession(
   sessionId: string,
   env: CheckoutEnvironment,
@@ -154,22 +153,4 @@ export async function retrieveSession(
   } catch {
     return null;
   }
-}
-export async function checkoutStatus(
-  request: Request,
-  env: CheckoutEnvironment,
-  requestFetch: typeof fetch = fetch,
-): Promise<Response> {
-  const key = secret(env.STRIPE_SECRET_KEY);
-  const mode = keyMode(key);
-  if (!mode) return unavailable();
-  const sessionId = new URL(request.url).searchParams.get('session_id');
-  if (
-    !sessionId ||
-    !new RegExp(`^cs_${mode}_[A-Za-z0-9_]{1,200}$`).test(sessionId)
-  )
-    return json({ error: 'Valid checkout session required.' }, 400);
-  const session = await retrieveSession(sessionId, env, requestFetch);
-  if (!session) return json({ error: 'ClearDisk purchase not found.' }, 404);
-  return json({ paid: session.paid, mode, email: session.email });
 }

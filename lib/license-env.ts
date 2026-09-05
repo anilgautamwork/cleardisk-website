@@ -1,5 +1,6 @@
-import type { CheckoutEnvironment } from './checkout.ts';
+import { json, type CheckoutEnvironment } from './checkout.ts';
 import { keyEmail } from './license.ts';
+export { json };
 export type LicenseEnv = CheckoutEnvironment & {
   LICENSES?: KVNamespace;
   EMAIL?: {
@@ -15,8 +16,6 @@ export type LicenseEnv = CheckoutEnvironment & {
   LICENSE_SIGNING_KEY?: string;
   STRIPE_WEBHOOK_SECRET?: string;
 };
-export const json = (body: unknown, status = 200) =>
-  Response.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
 // Delivery is best-effort: a failed or unconfigured send must never fail the
 // request that triggered it, so this always resolves.
 export async function sendKeyEmail(

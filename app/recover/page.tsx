@@ -18,6 +18,11 @@ export default function Recover() {
           purchase, the key is on its way.
         </p>
         <RecoverForm />
+        <p>
+          If nothing arrives within a few minutes, email{' '}
+          <a href="mailto:hello@cleardisk.app">hello@cleardisk.app</a> from the
+          address you used at checkout and we will send the key by hand.
+        </p>
       </main>
       <Footer />
     </>

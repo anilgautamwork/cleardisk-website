@@ -6,24 +6,13 @@ import {
   deriveKey,
   issueKey,
   keyEmail,
+  keyForSession,
   normalizeKey,
   revokeByPaymentIntent,
   signReceipt,
   verifyReceipt,
-  type KVLike,
 } from '../lib/license.ts';
-const memoryKV = (): KVLike & { store: Map<string, string> } => {
-  const store = new Map<string, string>();
-  return {
-    store,
-    async get(k) {
-      return store.get(k) ?? null;
-    },
-    async put(k, v) {
-      store.set(k, v);
-    },
-  };
-};
+import { memoryKV } from './helpers.ts';
 const session = {
   id: 'cs_live_abc123',
   email: 'Buyer@Example.com',
@@ -43,15 +32,23 @@ void test('keys are deterministic, canonical and normalize from sloppy input', a
   assert.equal(normalizeKey('CLDK-1234'), null);
   assert.equal(normalizeKey(''), null);
 });
-void test('issueKey writes four entries once and is idempotent', async () => {
+void test('issueKey writes four entries once and repairs missing indexes on retry', async () => {
   const kv = memoryKV();
   const first = await issueKey(kv, 'secret', session);
+  assert.equal(kv.store.get('email:buyer@example.com'), first.key);
+  assert.equal(kv.store.get('pi:pi_1'), first.key);
+  assert.equal(kv.store.get('session:cs_live_abc123'), first.key);
+  assert.equal(JSON.parse(kv.store.get('key:' + first.key)!).status, 'active');
+  // A failed earlier call can leave the record written but the indexes
+  // missing; a retry with the same session must self-heal them.
+  kv.store.delete('session:cs_live_abc123');
+  kv.store.delete('email:buyer@example.com');
+  kv.store.delete('pi:pi_1');
   const second = await issueKey(kv, 'secret', session);
   assert.deepEqual(second, first);
   assert.equal(kv.store.get('email:buyer@example.com'), first.key);
   assert.equal(kv.store.get('pi:pi_1'), first.key);
   assert.equal(kv.store.get('session:cs_live_abc123'), first.key);
-  assert.equal(JSON.parse(kv.store.get('key:' + first.key)!).status, 'active');
 });
 void test('activate: 400, 404, 403, same machine twice, fourth machine 409', async () => {
   const kv = memoryKV();
@@ -104,6 +101,94 @@ void test('receipts verify only for the signed key and machine', async () => {
     await verifyReceipt(raw, 'CLDK-AAAA-AAAA-AAAA-AAAB', 'machine-1', sig),
     false,
   );
+});
+void test('keyForSession: a malformed session id is rejected without calling retrieve', async () => {
+  const kv = memoryKV();
+  let called = false;
+  const result = await keyForSession(
+    kv,
+    'secret',
+    'not-a-session',
+    async () => {
+      called = true;
+      return null;
+    },
+  );
+  assert.equal(result.status, 400);
+  assert.equal(called, false);
+});
+void test('keyForSession: an active session: hit is served without calling retrieve', async () => {
+  const kv = memoryKV();
+  const first = await issueKey(kv, 'secret', session);
+  let called = false;
+  const result = await keyForSession(kv, 'secret', session.id, async () => {
+    called = true;
+    return null;
+  });
+  assert.equal(called, false);
+  assert.equal(result.status, 200);
+  if (result.status !== 200) throw new Error('unreachable');
+  assert.deepEqual(result.body, { key: first.key, email: first.email });
+  assert.equal(result.issued, false);
+});
+void test('keyForSession: a revoked record behind session: is reported not found', async () => {
+  const kv = memoryKV();
+  await issueKey(kv, 'secret', session);
+  await revokeByPaymentIntent(kv, 'pi_1');
+  const result = await keyForSession(
+    kv,
+    'secret',
+    session.id,
+    async () => null,
+  );
+  assert.equal(result.status, 404);
+  assert.deepEqual(result.body, { error: 'ClearDisk purchase not found.' });
+});
+void test('keyForSession: a null retrieve is reported not found', async () => {
+  const kv = memoryKV();
+  const result = await keyForSession(
+    kv,
+    'secret',
+    'cs_live_missing',
+    async () => null,
+  );
+  assert.equal(result.status, 404);
+  assert.deepEqual(result.body, { error: 'ClearDisk purchase not found.' });
+});
+void test('keyForSession: an unpaid session reports pending', async () => {
+  const kv = memoryKV();
+  const result = await keyForSession(
+    kv,
+    'secret',
+    'cs_live_unpaid',
+    async () => ({
+      id: 'cs_live_unpaid',
+      paid: false,
+      email: null,
+      paymentIntent: null,
+    }),
+  );
+  assert.equal(result.status, 404);
+  assert.deepEqual(result.body, {
+    error: 'Payment not confirmed yet.',
+    status: 'pending',
+  });
+});
+void test('keyForSession: a paid session issues a key and writes all four entries', async () => {
+  const kv = memoryKV();
+  const result = await keyForSession(kv, 'secret', 'cs_live_new', async () => ({
+    id: 'cs_live_new',
+    paid: true,
+    email: 'new@example.com',
+    paymentIntent: 'pi_new',
+  }));
+  assert.equal(result.status, 200);
+  if (result.status !== 200) throw new Error('unreachable');
+  assert.equal(result.issued, true);
+  assert.equal(kv.store.get('session:cs_live_new'), result.body.key);
+  assert.equal(kv.store.get('email:new@example.com'), result.body.key);
+  assert.equal(kv.store.get('pi:pi_new'), result.body.key);
+  assert.ok(kv.store.get('key:' + result.body.key));
 });
 void test('key email carries the key, the activate link and support address', () => {
   const mail = keyEmail('CLDK-AAAA-AAAA-AAAA-AAAA');

@@ -1,10 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import {
-  startCheckout,
-  checkoutStatus,
-  retrieveSession,
-} from '../lib/checkout.ts';
+import { startCheckout, retrieveSession } from '../lib/checkout.ts';
 const origin = 'https://cleardisk.example';
 const env = {
   STRIPE_SECRET_KEY: 'sk_test_example',
@@ -116,49 +112,6 @@ void test('rejects an unexpected checkout redirect host', async () => {
     Response.json({ url: 'https://malicious.example', livemode: false }),
   );
   assert.equal(res.status, 502);
-});
-const statusRequest = (id = 'cs_test_example') =>
-  new Request(origin + '/api/checkout-status?session_id=' + id);
-void test('a success URL alone cannot claim payment; status is read from Stripe', async () => {
-  const res = await checkoutStatus(statusRequest(), env, async () =>
-    Response.json({
-      livemode: false,
-      payment_status: 'unpaid',
-      metadata: { product: 'cleardisk' },
-    }),
-  );
-  assert.equal(res.status, 200);
-  assert.equal(((await res.json()) as { paid: boolean }).paid, false);
-});
-void test('reports a paid ClearDisk session with the buyer email', async () => {
-  const res = await checkoutStatus(statusRequest(), env, async () =>
-    Response.json({
-      livemode: false,
-      payment_status: 'paid',
-      metadata: { product: 'cleardisk' },
-      customer_details: { email: 'buyer@example.com' },
-    }),
-  );
-  assert.deepEqual(await res.json(), {
-    paid: true,
-    mode: 'test',
-    email: 'buyer@example.com',
-  });
-});
-void test('never treats another product or the wrong mode as a ClearDisk purchase', async () => {
-  const other = await checkoutStatus(statusRequest(), env, async () =>
-    Response.json({
-      livemode: false,
-      payment_status: 'paid',
-      metadata: { product: 'odoo-connector' },
-    }),
-  );
-  assert.equal(other.status, 404);
-  const live = { ...env, STRIPE_SECRET_KEY: 'sk_live_example' };
-  const testIdOnLive = await checkoutStatus(statusRequest(), live, async () => {
-    throw Error('must not call Stripe');
-  });
-  assert.equal(testIdOnLive.status, 400);
 });
 void test('retrieveSession returns null for another product and paid details for cleardisk', async () => {
   const other = await retrieveSession('cs_test_example', env, async () =>

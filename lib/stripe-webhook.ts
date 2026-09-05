@@ -33,6 +33,7 @@ export async function verifyStripeSignature(
 type Deps = {
   kv: KVLike;
   keySecret: string;
+  live: boolean;
   sendKey: (email: string, key: string) => Promise<void>;
 };
 export async function handleStripeEvent(
@@ -41,10 +42,18 @@ export async function handleStripeEvent(
 ): Promise<'issued' | 'revoked' | 'ignored'> {
   const e = event as {
     type?: string;
+    livemode?: unknown;
     data?: { object?: Record<string, unknown> };
   };
+  // A test-mode event must never be able to issue or revoke a live license,
+  // and vice versa; check this before touching KV at all.
+  if (typeof e.livemode !== 'boolean' || e.livemode !== deps.live)
+    return 'ignored';
   const o = e.data?.object ?? {};
-  if (e.type === 'checkout.session.completed') {
+  if (
+    e.type === 'checkout.session.completed' ||
+    e.type === 'checkout.session.async_payment_succeeded'
+  ) {
     const meta = o.metadata as { product?: string } | undefined;
     if (
       o.payment_status !== 'paid' ||

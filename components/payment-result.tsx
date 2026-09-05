@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 const checking = 'Checking your payment with Stripe…';
-const notConfirmed = 'Payment not confirmed yet.';
 const maxAutoRetries = 10;
 const retryDelayMs = 3000;
 type Result =
@@ -33,13 +33,11 @@ export function PaymentResult({ sessionId }: { sessionId?: string }) {
           key?: string;
           email?: string;
           error?: string;
+          status?: string;
         };
         if (!r.ok) {
           const message = d.error || 'Could not verify checkout.';
-          if (
-            message === notConfirmed &&
-            autoRetries.current < maxAutoRetries
-          ) {
+          if (d.status === 'pending' && autoRetries.current < maxAutoRetries) {
             autoRetries.current += 1;
             setResult({ status: 'waiting', message });
             timer = setTimeout(() => setRetry((v) => v + 1), retryDelayMs);
@@ -93,6 +91,9 @@ export function PaymentResult({ sessionId }: { sessionId?: string }) {
           {email
             ? `We also emailed it to ${email}. Keep it somewhere safe.`
             : 'Keep it somewhere safe.'}
+        </p>
+        <p>
+          <Link href="/recover">Lost it later? Recover your key.</Link>
         </p>
       </div>
     );

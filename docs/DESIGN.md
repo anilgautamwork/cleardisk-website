@@ -23,4 +23,4 @@ Native scan progress represents measured files and allocated bytes, with explici
 
 ## Scope retained
 
-Five server-rendered SEO guides, canonical metadata, schema and internal links remain. Private preview is noindex with an empty sitemap; public indexing is a launch step. Free scans; planned $10 one-time license for three personally owned Macs and 1.x updates, 30-day refund at launch. Preview download is not completed 1.0. Checkout stays test-only until licensing and fulfillment exist. Talivia is paused by the owner until after launch.
+Five server-rendered SEO guides, canonical metadata, schema and internal links remain. Private preview is noindex with an empty sitemap; public indexing is a launch step. Free scans; $10 one-time license for three personally owned Macs and 1.x updates, 30-day refund at launch. Preview download is not completed 1.0. The $10 license has been sold live and delivered instantly since 1.0.0. Talivia is paused by the owner until after launch.

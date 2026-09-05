@@ -84,22 +84,79 @@ export async function issueKey(
 ): Promise<LicenseRecord> {
   const key = await deriveKey(secret, session.id);
   const existing = await readRecord(kv, key);
-  if (existing) return existing;
-  const email = (session.email ?? '').trim().toLowerCase();
-  const record: LicenseRecord = {
+  const record: LicenseRecord = existing ?? {
     key,
-    email,
+    email: (session.email ?? '').trim().toLowerCase(),
     sessionId: session.id,
     paymentIntent: session.paymentIntent,
     status: 'active',
     createdAt: new Date().toISOString(),
     activations: [],
   };
-  await writeRecord(kv, record);
+  if (!existing) await writeRecord(kv, record);
+  // Always re-put the indexes, even on a repeat call: a failed earlier call
+  // can leave the record written but an index missing, and this self-heals it.
   await kv.put('session:' + session.id, key);
-  if (email) await kv.put('email:' + email, key);
-  if (session.paymentIntent) await kv.put('pi:' + session.paymentIntent, key);
+  if (record.email) await kv.put('email:' + record.email, key);
+  if (record.paymentIntent) await kv.put('pi:' + record.paymentIntent, key);
   return record;
+}
+type StripeSession = {
+  id: string;
+  paid: boolean;
+  email: string | null;
+  paymentIntent: string | null;
+};
+type KeySessionResult =
+  | { status: 400; body: { error: string } }
+  | { status: 404; body: { error: string; status?: 'pending' } }
+  | {
+      status: 200;
+      body: { key: string; email: string };
+      issued: boolean;
+      record: LicenseRecord;
+    };
+// Core of GET /api/key, testable without Stripe or a real KV: resolves a
+// checkout session id to a license, issuing one on first paid confirmation.
+// `retrieve` is only ever called past the KV fast path, so a cached session
+// never triggers a Stripe round trip.
+export async function keyForSession(
+  kv: KVLike,
+  secret: string,
+  sessionId: string,
+  retrieve: (id: string) => Promise<StripeSession | null>,
+): Promise<KeySessionResult> {
+  if (!/^cs_(live|test)_[A-Za-z0-9_]{1,200}$/.test(sessionId))
+    return { status: 400, body: { error: 'Valid checkout session required.' } };
+  const existingKey = await kv.get('session:' + sessionId);
+  if (existingKey) {
+    const record = await readRecord(kv, existingKey);
+    // A revoked key (refund/dispute) must not be handed back to a stale
+    // thanks-page link even though the old session: mapping still exists.
+    if (!record || record.status !== 'active')
+      return { status: 404, body: { error: 'ClearDisk purchase not found.' } };
+    return {
+      status: 200,
+      body: { key: existingKey, email: record.email },
+      issued: false,
+      record,
+    };
+  }
+  const session = await retrieve(sessionId);
+  if (!session)
+    return { status: 404, body: { error: 'ClearDisk purchase not found.' } };
+  if (!session.paid)
+    return {
+      status: 404,
+      body: { error: 'Payment not confirmed yet.', status: 'pending' },
+    };
+  const record = await issueKey(kv, secret, session);
+  return {
+    status: 200,
+    body: { key: record.key, email: record.email },
+    issued: true,
+    record,
+  };
 }
 export async function revokeByPaymentIntent(
   kv: KVLike,

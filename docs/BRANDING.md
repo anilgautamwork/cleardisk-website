@@ -15,7 +15,7 @@ Use one website DownloadButton component. Header uses its compact size; home her
 
 The 0.1.3 native preview uses an explicit graphite dark appearance. Automatic light/dark switching and the full Plan 03 appearance settings are still separate work. Safety states retain green/amber/gray, destructive actions retain red, and file categories retain meaningful category colors.
 
-Do not change the brand back to MacClear, ClearDesk or DissectMac. Do not imply scanning uploads files or that the browser demonstration examines the visitor's Mac. Preview releases are clearly marked; $10 licensing is planned for 1.0 and test checkout is not live fulfillment.
+Do not change the brand back to MacClear, ClearDesk or DissectMac. Do not imply scanning uploads files or that the browser demonstration examines the visitor's Mac. Preview releases are clearly marked; the $10 license has been sold live and delivered instantly since 1.0.0.
 
 ## Branding review, 5 September 2026
 

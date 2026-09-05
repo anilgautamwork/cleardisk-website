@@ -104,7 +104,7 @@ assert.equal(sitemap.status, 200);
 const xml = await sitemap.text();
 const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
 assert.equal(urls.length, indexable ? guides.length + 3 : 0);
-for (const path of ['/thanks', '/buy-now', '/api'])
+for (const path of ['/thanks', '/buy-now', '/recover', '/api'])
   assert.ok(!urls.some((url) => url.includes(path)));
 const robots = await fetch(new URL('/robots.txt', origin));
 assert.equal(robots.status, 200);
