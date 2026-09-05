@@ -14,7 +14,13 @@ export async function POST(request: Request) {
     ))
   )
     return json({ error: 'Invalid signature.' }, 400);
-  const result = await handleStripeEvent(JSON.parse(payload), {
+  let event: unknown;
+  try {
+    event = JSON.parse(payload);
+  } catch {
+    return json({ error: 'Invalid payload.' }, 400);
+  }
+  const result = await handleStripeEvent(event, {
     kv: e.LICENSES,
     keySecret: e.KEY_SECRET,
     sendKey: (to, key) => sendKeyEmail(e, to, key),

@@ -8,11 +8,17 @@ export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
   const r = await activate(e.LICENSES, body);
   if (r.status !== 200) return json(r.body, r.status);
-  const signature = await signReceipt(
-    e.LICENSE_SIGNING_KEY,
-    r.record.key,
-    r.machineId,
-  );
+  let signature: string;
+  try {
+    signature = await signReceipt(
+      e.LICENSE_SIGNING_KEY,
+      r.record.key,
+      r.machineId,
+    );
+  } catch (err) {
+    console.error('signReceipt failed', err);
+    return json({ error: 'License service is not configured.' }, 503);
+  }
   return json({
     key: r.record.key,
     email: r.record.email,

@@ -71,7 +71,7 @@ export type LicenseRecord = {
   revokedAt?: string;
   activations: Activation[];
 };
-const readRecord = async (kv: KVLike, key: string) => {
+export const readRecord = async (kv: KVLike, key: string) => {
   const raw = await kv.get('key:' + key);
   return raw ? (JSON.parse(raw) as LicenseRecord) : null;
 };

@@ -1,6 +1,6 @@
 import { env } from 'cloudflare:workers';
 import { retrieveSession } from '@/lib/checkout';
-import { issueKey, type LicenseRecord } from '@/lib/license';
+import { issueKey, readRecord } from '@/lib/license';
 import { json, sendKeyEmail, type LicenseEnv } from '@/lib/license-env';
 export async function GET(request: Request) {
   const e = env as LicenseEnv;
@@ -10,9 +10,12 @@ export async function GET(request: Request) {
   if (!sessionId) return json({ error: 'ClearDisk purchase not found.' }, 404);
   const existingKey = await e.LICENSES.get('session:' + sessionId);
   if (existingKey) {
-    const raw = await e.LICENSES.get('key:' + existingKey);
-    const record = raw ? (JSON.parse(raw) as LicenseRecord) : null;
-    return json({ key: existingKey, email: record ? record.email : null });
+    const record = await readRecord(e.LICENSES, existingKey);
+    // A revoked key (refund/dispute) must not be handed back to a stale
+    // thanks-page link even though the old session: mapping still exists.
+    if (!record || record.status !== 'active')
+      return json({ error: 'ClearDisk purchase not found.' }, 404);
+    return json({ key: existingKey, email: record.email });
   }
   const session = await retrieveSession(sessionId, e);
   if (!session) return json({ error: 'ClearDisk purchase not found.' }, 404);
