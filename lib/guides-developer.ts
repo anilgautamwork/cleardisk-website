@@ -294,7 +294,7 @@ export const developerGuides: Guide[] = [
   },
   {
     slug: 'clear-browser-cache-mac',
-    title: 'Clear browser cache on Mac without clearing everything',
+    title: 'Clear Safari or Chrome cache on Mac, keep your logins',
     description:
       'Clear browser cache on Mac in Safari, Chrome or Firefox while understanding the separate effects of removing cookies, history and site data.',
     summary:
