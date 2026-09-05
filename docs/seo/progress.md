@@ -2,6 +2,10 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 13 — 6 September 2026 (monitoring only)
+
+Google's `site:` result is still six URLs. Ahrefs probes: "clear safari cache mac" >100 but Medium and already covered by the browser-cache guide; "mac mini storage" is upgrade intent; "chrome cache mac" and "xcode taking up space" <100. No page added, nothing deployed.
+
 ## Iteration 12 — 6 September 2026
 
 **Monitoring.** Google's `site:` result still lists six URLs. Ahrefs probes: "group containers folder mac" >100/month US and Easy; "caches folder mac", "spotlight index mac" and "mac log files" all <100 (Spotlight and logs skipped, no volume and thin sources).
