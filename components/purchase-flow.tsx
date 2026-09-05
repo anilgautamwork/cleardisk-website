@@ -1,6 +1,13 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight, LoaderCircle } from 'lucide-react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from 'react';
+import { ArrowLeft, ArrowUpRight, LoaderCircle } from 'lucide-react';
 type EmbeddedCheckout = { mount(target: HTMLElement): void; destroy(): void };
 type StripeJs = (publishableKey: string) => {
   initEmbeddedCheckout(options: {
@@ -41,10 +48,18 @@ type CheckoutResponse = {
   publishableKey?: string;
   error?: string;
 };
-export function CheckoutButton({
-  label = 'Buy ClearDisk 1.0 · $10',
+type Flow = { pending: boolean; error: string; start: () => void };
+const FlowContext = createContext<Flow | null>(null);
+/**
+ * Wraps the buy page. Closed: renders the marketing columns. Open: replaces
+ * them with a single centred checkout stage at the top of the page.
+ */
+export function PurchaseFlow({
+  stageHeader,
+  children,
 }: {
-  label?: string;
+  stageHeader: ReactNode;
+  children: ReactNode;
 }) {
   const [pending, setPending] = useState(false);
   const [open, setOpen] = useState(false);
@@ -52,11 +67,12 @@ export function CheckoutButton({
   const mountRef = useRef<HTMLDivElement>(null);
   const embeddedRef = useRef<EmbeddedCheckout | null>(null);
   useEffect(() => {
-    if (open && mountRef.current && embeddedRef.current)
-      embeddedRef.current.mount(mountRef.current);
+    if (!open || !mountRef.current || !embeddedRef.current) return;
+    embeddedRef.current.mount(mountRef.current);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [open]);
   useEffect(() => () => embeddedRef.current?.destroy(), []);
-  async function checkout() {
+  async function start() {
     if (pending) return;
     setPending(true);
     setError('');
@@ -81,35 +97,49 @@ export function CheckoutButton({
       setPending(false);
     }
   }
-  function close() {
+  function back() {
     embeddedRef.current?.destroy();
     embeddedRef.current = null;
     setOpen(false);
     setPending(false);
   }
-  return (
-    <>
-      {open ? (
-        <div className="embedded-checkout">
-          <div ref={mountRef} />
-          <button className="button secondary" onClick={close}>
-            Cancel
+  if (open)
+    return (
+      <section className="checkout-stage" aria-label="Checkout">
+        <div className="checkout-stage-head">
+          <div>{stageHeader}</div>
+          <button type="button" className="checkout-back" onClick={back}>
+            <ArrowLeft size={15} /> Back
           </button>
         </div>
-      ) : (
-        <button
-          className="button primary"
-          disabled={pending}
-          onClick={checkout}
-        >
-          {pending ? <LoaderCircle className="animate-spin" size={17} /> : null}
-          {pending ? 'Opening secure checkout…' : label}
-          <ArrowUpRight size={17} />
-        </button>
-      )}
-      {error ? (
+        <div ref={mountRef} className="checkout-mount" />
+      </section>
+    );
+  return (
+    <FlowContext.Provider value={{ pending, error, start }}>
+      {children}
+    </FlowContext.Provider>
+  );
+}
+export function CheckoutButton({ label }: { label: string }) {
+  const flow = useContext(FlowContext);
+  if (!flow) return null;
+  return (
+    <>
+      <button
+        className="button primary"
+        disabled={flow.pending}
+        onClick={flow.start}
+      >
+        {flow.pending ? (
+          <LoaderCircle className="animate-spin" size={17} />
+        ) : null}
+        {flow.pending ? 'Opening secure checkout…' : label}
+        <ArrowUpRight size={17} />
+      </button>
+      {flow.error ? (
         <p role="alert" className="checkout-error">
-          {error}
+          {flow.error}
         </p>
       ) : null}
     </>

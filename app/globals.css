@@ -3022,12 +3022,46 @@ svg {
     display: none;
   }
 }
-.embedded-checkout {
-  display: grid;
-  gap: 1rem;
-  margin-top: 1.25rem;
+.checkout-stage {
+  grid-column: 1 / -1;
   width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+  display: grid;
+  gap: 18px;
 }
-.embedded-checkout > div:first-child {
-  min-height: 480px;
+.checkout-stage-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 15px;
+}
+.checkout-stage-head > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.checkout-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 0;
+  padding: 6px 0;
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.75;
+}
+.checkout-back:hover {
+  opacity: 1;
+}
+.checkout-mount {
+  min-height: 520px;
+  background: #fff;
+  border: 1px solid #bc93e52b;
+  border-radius: 16px;
+  padding: 12px;
 }
