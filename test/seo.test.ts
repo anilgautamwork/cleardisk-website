@@ -1,6 +1,11 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { canonical, shouldIndex, sitemapEntries } from '../lib/seo.ts';
+import {
+  canonical,
+  guideSchema,
+  shouldIndex,
+  sitemapEntries,
+} from '../lib/seo.ts';
 import { guides, getGuide } from '../lib/guides.ts';
 
 await test('canonicals use the production domain and omit query data', () => {
@@ -60,4 +65,35 @@ await test('guide titles and descriptions fit search snippets', () => {
       guide.slug + ': description 140-158',
     );
   }
+});
+type SchemaNode = {
+  '@type': string;
+  datePublished?: string;
+  publisher?: { logo: { url: string } };
+  step?: { name: string }[];
+};
+await test('guide schema derives HowTo steps only from numbered sections', () => {
+  for (const guide of guides) {
+    const schema = guideSchema(guide) as SchemaNode[];
+    const article = schema.find((s) => s['@type'] === 'Article');
+    assert.equal(article?.datePublished, guide.published, guide.slug);
+    assert.equal(
+      article?.publisher?.logo.url,
+      'https://cleardisk.app/icon.svg',
+    );
+    const howTo = schema.find((s) => s['@type'] === 'HowTo');
+    const numbered = guide.sections.filter((s) => /^\d+\. /.test(s.title));
+    if (numbered.length < 3) assert.equal(howTo, undefined, guide.slug);
+    else
+      assert.deepEqual(
+        howTo?.step?.map((s) => s.name),
+        numbered.map((s) => s.title.replace(/^\d+\. /, '')),
+        guide.slug,
+      );
+  }
+  const explainer = guideSchema(getGuide('what-is-system-data-on-mac')!);
+  assert.equal(
+    explainer.some((s) => s['@type'] === 'HowTo'),
+    false,
+  );
 });

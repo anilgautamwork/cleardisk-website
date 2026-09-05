@@ -2,54 +2,10 @@ import Link from 'next/link';
 import { ArrowRight, ArrowUpRight, ShieldCheck } from 'lucide-react';
 import { Header, Footer, DownloadButton } from './brand';
 import { getGuide, type Guide } from '@/lib/guides';
-import { canonical, jsonLd } from '@/lib/seo';
+import { guideSchema } from '@/lib/seo';
+import { JsonLd } from './json-ld';
 
 export function GuideArticle({ guide }: { guide: Guide }) {
-  const data = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Article',
-      headline: guide.title,
-      description: guide.description,
-      datePublished: guide.published,
-      dateModified: guide.updated,
-      mainEntityOfPage: canonical('/' + guide.slug),
-      author: {
-        '@type': 'Organization',
-        name: 'ClearDisk',
-        url: canonical('/'),
-      },
-      publisher: {
-        '@type': 'Organization',
-        name: 'ClearDisk',
-        url: canonical('/'),
-      },
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'ClearDisk',
-          item: canonical('/'),
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Storage guides',
-          item: canonical('/guides'),
-        },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: guide.title,
-          item: canonical('/' + guide.slug),
-        },
-      ],
-    },
-  ];
   return (
     <>
       <Header />
@@ -187,10 +143,7 @@ export function GuideArticle({ guide }: { guide: Guide }) {
         </section>
       </main>
       <Footer />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLd(data) }}
-      />
+      <JsonLd data={guideSchema(guide)} />
     </>
   );
 }

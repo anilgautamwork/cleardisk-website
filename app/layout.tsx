@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import './reading-theme.css';
-import { pageMetadata, SITE_URL } from '@/lib/seo';
+import { organizationSchema, pageMetadata, SITE_URL } from '@/lib/seo';
+import { JsonLd } from '@/components/json-ld';
 export const metadata: Metadata = {
   ...pageMetadata(
     'ClearDisk — Clear System Data on Mac',
@@ -23,6 +24,7 @@ export default function RootLayout({
           Skip to content
         </a>
         {children}
+        <JsonLd data={organizationSchema} />
       </body>
     </html>
   );

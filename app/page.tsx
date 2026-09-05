@@ -16,6 +16,8 @@ import {
   Apple,
 } from 'lucide-react';
 import { Header, Footer, DownloadButton, Mark } from '@/components/brand';
+import { JsonLd } from '@/components/json-ld';
+import { softwareSchema } from '@/lib/seo';
 import { StoragePreview } from '@/components/storage-preview';
 import { PageMotion } from '@/components/motion';
 import { ProductDemo } from '@/components/product-demo';
@@ -476,6 +478,7 @@ export default function Home() {
         </section>
       </main>
       <Footer />
+      <JsonLd data={softwareSchema} />
     </>
   );
 }

@@ -1,6 +1,8 @@
 import { campaignSource } from '@/lib/download-metrics';
 import { pageMetadata } from '@/lib/seo';
 import { Header, Footer, Mark } from '@/components/brand';
+import { JsonLd } from '@/components/json-ld';
+import { softwareSchema } from '@/lib/seo';
 import { ArrowDownToLine, Apple, ShieldCheck, HardDrive } from 'lucide-react';
 export const metadata = pageMetadata(
   'Download ClearDisk for Mac — Free preview',
@@ -79,6 +81,7 @@ export default async function Download({
         </p>
       </main>
       <Footer />
+      <JsonLd data={softwareSchema} />
     </>
   );
 }

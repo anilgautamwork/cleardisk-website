@@ -69,6 +69,9 @@ for (const path of pages) {
     ...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs),
   ].flatMap((m) => JSON.parse(m[1]));
   const ofType = (type) => schemas.filter((s) => s['@type'] === type);
+  assert.equal(ofType('Organization').length, 1, path + ': Organization');
+  if (path === '/' || path === '/download')
+    assert.equal(ofType('SoftwareApplication')[0]?.offers?.price, '10', path);
   if (guide) {
     assert.ok(title.length < 60, path + ': title under 60 chars');
     assert.ok(
@@ -77,8 +80,18 @@ for (const path of pages) {
     );
     assert.ok(html.includes('guide-body'), path + ': server article');
     assert.ok(html.includes(guide.sections[0].id), path + ': first section');
-    assert.equal(ofType('Article')[0]?.headline, guide.title, path);
-    assert.equal(ofType('BreadcrumbList').length, 1, path + ': breadcrumb');
+    const article = ofType('Article')[0];
+    assert.equal(article?.headline, guide.title, path + ': Article');
+    assert.equal(article.datePublished, guide.published, path);
+    assert.equal(article.dateModified, guide.updated, path);
+    assert.ok(article.publisher?.logo?.url, path + ': publisher logo');
+    assert.equal(ofType('BreadcrumbList')[0]?.itemListElement?.length, 2, path);
+    const steps = guide.sections.filter((s) => /^\d+\. /.test(s.title));
+    assert.equal(
+      ofType('HowTo')[0]?.step?.length,
+      steps.length >= 3 ? steps.length : undefined,
+      path + ': HowTo',
+    );
     for (const related of guide.related)
       assert.ok(html.includes('href="/' + related + '"'), path + ': related');
   }
