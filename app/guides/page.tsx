@@ -5,7 +5,7 @@ import { guideGroups } from '@/lib/guides';
 import { pageMetadata } from '@/lib/seo';
 export const metadata = pageMetadata(
   'Mac storage guides — ClearDisk',
-  'Understand System Data, investigate a full Mac, and find a practical next step. Clear answers before cleanup.',
+  'Mac storage guides from ClearDisk: what System Data is, why a Mac stays full after deleting files, how to find large files, and cleanup for Xcode and Docker.',
   '/guides',
 );
 export default function Guides() {

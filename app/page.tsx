@@ -174,6 +174,9 @@ export default async function Home() {
                   <br />
                   See exactly what’s taking up room—and what to do with it.
                 </p>
+                <Link className="text-link" href="/system-data-too-large">
+                  Is your System Data too large? <ArrowRight size={14} />
+                </Link>
               </div>
               <div className="breakdown-art">
                 <div className="breakdown-top">
@@ -224,6 +227,9 @@ export default async function Home() {
                 <br />
                 Find them in a glance, not a folder hunt.
               </p>
+              <Link className="text-link" href="/find-large-files-on-mac">
+                How to find large files <ArrowRight size={14} />
+              </Link>
               <div className="mini-map" aria-hidden="true">
                 <div>
                   Videos<span>24.6 GB</span>
@@ -249,6 +255,9 @@ export default async function Home() {
                   <br />
                   Keep your projects. Reclaim the space around them.
                 </p>
+                <Link className="text-link" href="/clear-xcode-derived-data">
+                  Clear Xcode Derived Data <ArrowRight size={14} />
+                </Link>
               </div>
               <div className="code-stack" aria-hidden="true">
                 <span>
