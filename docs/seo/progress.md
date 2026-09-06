@@ -2,6 +2,10 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 21 — 6 September 2026 (monitoring only)
+
+Google's `site:` sample shows six URLs this time; the FAQ pages have not appeared yet. "free up space macbook" and its variants are all <100 and already covered by the clear-storage guide. No changes deployed.
+
 ## Iteration 20 — 6 September 2026 (monitoring only)
 
 Google's `site:` sample fluctuates between six and ten URLs from query to query, which is normal for a young site; the FAQ pages have not appeared yet. "mac cleaner no subscription" returned no ideas. No changes deployed.
