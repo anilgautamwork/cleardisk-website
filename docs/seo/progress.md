@@ -2,6 +2,10 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 18 — 6 September 2026 (monitoring only)
+
+Google's coverage is growing: a targeted `site:` query now returns ten URLs, including the download page and the what-is-System-Data, keeps-growing, Xcode and iCloud Drive guides. The FAQ pages were deployed minutes ago and are not expected yet. No changes deployed.
+
 ## FAQ pages — 6 September 2026 (owner request)
 
 The owner asked for FAQ pages as their own URLs so Google can index the questions and surface the articles. Added a hub at `/faq` and six topic pages: `/faq/system-data`, `/faq/mac-storage-full`, `/faq/clear-cache`, `/faq/uninstall-apps`, `/faq/backups-cloud-photos` and `/faq/cleardisk`, 58 questions in all. Each question is an H2 with a short answer and a link to the guide that goes deeper; every page carries FAQPage and BreadcrumbList schema, sits in the sitemap, and is linked from the header (FAQs), footer, home FAQ section and the guides hub. Data lives in `lib/faqs.ts`; HTTP checks verify the schema and every guide link. Sitemap: 55 URLs.
