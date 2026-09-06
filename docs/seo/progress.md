@@ -2,6 +2,10 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 17 — 6 September 2026 (monitoring only)
+
+Targeted `site:` queries show Google has also indexed `/system-data-keeps-growing`, so the plain `site:` list understates coverage; none of the pages published tonight appears yet. No changes deployed.
+
 ## Iteration 16 — 6 September 2026 (monitoring only)
 
 Google's `site:` result is unchanged at six URLs. Probes for "delete old backups mac" and "mac storage other" (including "other volumes in container") were all <100. No changes deployed.
