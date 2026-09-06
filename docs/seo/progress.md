@@ -2,6 +2,10 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 14 — 6 September 2026 (monitoring only)
+
+Google's `site:` result is unchanged at six URLs. Ahrefs probes for "docker taking up space mac", "node_modules mac", "purgeable mac" and "icloud drive taking up space" returned nothing above 100/month; all are already covered. No changes deployed.
+
 ## Iteration 13 — 6 September 2026 (monitoring only)
 
 Google's `site:` result is still six URLs. Ahrefs probes: "clear safari cache mac" >100 but Medium and already covered by the browser-cache guide; "mac mini storage" is upgrade intent; "chrome cache mac" and "xcode taking up space" <100. No page added. The browser-cache guide was retitled "Clear Safari or Chrome cache on Mac, keep your logins" so it names the two browsers people search for ("clear safari cache mac" and "how to clear cache on mac chrome" are both >100/month).
