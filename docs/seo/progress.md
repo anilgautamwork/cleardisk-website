@@ -2,6 +2,10 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 22 — 6 September 2026 (monitoring only)
+
+Google lists ten URLs again; the FAQ pages and the guides published overnight are still waiting to be picked up. The free keyword tool has been probed across roughly fifty seeds and every in-scope phrase above 100 searches a month now has a page, so the loop moves to hourly indexing checks and publishes only if a new phrase surfaces. No changes deployed.
+
 ## Iteration 21 — 6 September 2026 (monitoring only)
 
 Google's `site:` sample shows six URLs this time; the FAQ pages have not appeared yet. "free up space macbook" and its variants are all <100 and already covered by the clear-storage guide. No changes deployed.
