@@ -2,6 +2,10 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 20 — 6 September 2026 (monitoring only)
+
+Google's `site:` sample fluctuates between six and ten URLs from query to query, which is normal for a young site; the FAQ pages have not appeared yet. "mac cleaner no subscription" returned no ideas. No changes deployed.
+
 ## Iteration 19 — 6 September 2026 (monitoring only)
 
 Google still lists ten URLs (home, hub, download, terms, privacy, five guides). "how much storage does macos take" and variants are all <100. No changes deployed.
