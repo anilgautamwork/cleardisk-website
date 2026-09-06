@@ -2,6 +2,10 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 19 — 6 September 2026 (monitoring only)
+
+Google still lists ten URLs (home, hub, download, terms, privacy, five guides). "how much storage does macos take" and variants are all <100. No changes deployed.
+
 ## Iteration 18 — 6 September 2026 (monitoring only)
 
 Google's coverage is growing: a targeted `site:` query now returns ten URLs, including the download page and the what-is-System-Data, keeps-growing, Xcode and iCloud Drive guides. The FAQ pages were deployed minutes ago and are not expected yet. No changes deployed.
