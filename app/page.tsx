@@ -438,6 +438,10 @@ export default async function Home() {
             <Link className="text-link" href="/what-is-system-data-on-mac">
               What is System Data? <ArrowRight size={15} />
             </Link>
+            <p>More questions, with short answers.</p>
+            <Link className="text-link" href="/faq">
+              Browse the FAQ <ArrowRight size={15} />
+            </Link>
             <p>Something else on your mind?</p>
             <a className="text-link" href="mailto:hello@cleardisk.app">
               Say hello <ArrowUpRight size={15} />

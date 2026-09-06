@@ -7,6 +7,7 @@ import {
   sitemapEntries,
 } from '../lib/seo.ts';
 import { guides, getGuide } from '../lib/guides.ts';
+import { faqTopics, getFaqTopic } from '../lib/faqs.ts';
 
 await test('canonicals use the production domain and omit query data', () => {
   assert.equal(
@@ -123,4 +124,21 @@ await test('guide schema derives HowTo steps only from numbered sections', () =>
     explainer.some((s) => s['@type'] === 'HowTo'),
     false,
   );
+});
+await test('faq topics are unique, link to real guides and sit in the sitemap', () => {
+  assert.equal(new Set(faqTopics.map((t) => t.slug)).size, faqTopics.length);
+  const urls = sitemapEntries(true).map((entry) => entry.url);
+  assert.ok(urls.includes(canonical('/faq')));
+  for (const topic of faqTopics) {
+    assert.ok(urls.includes(canonical('/faq/' + topic.slug)));
+    assert.ok(topic.title.length < 60, topic.slug + ': title under 60');
+    assert.ok(topic.description.length <= 158, topic.slug + ': description');
+    assert.equal(
+      new Set(topic.questions.map((q) => q.id)).size,
+      topic.questions.length,
+    );
+    for (const q of topic.questions)
+      if (q.guide) assert.ok(getGuide(q.guide), topic.slug + ': ' + q.guide);
+  }
+  assert.equal(getFaqTopic('not-a-topic'), undefined);
 });

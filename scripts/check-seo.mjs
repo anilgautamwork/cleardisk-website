@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { guides } from '../lib/guides.ts';
+import { faqTopics } from '../lib/faqs.ts';
 const origin = process.env.SITE_CHECK_ORIGIN || 'http://localhost:3001';
 const indexable = process.env.SITE_CHECK_INDEXABLE === 'true';
 const site = 'https://cleardisk.app';
@@ -7,6 +8,8 @@ const pages = [
   '/',
   '/guides',
   ...guides.map((g) => '/' + g.slug),
+  '/faq',
+  ...faqTopics.map((t) => '/faq/' + t.slug),
   '/download',
   '/about',
   '/buy-now',
@@ -76,6 +79,25 @@ for (const path of pages) {
     assert.equal(ofType('FAQPage').length, 1, 'home FAQPage');
     assert.equal(ofType('WebSite').length, 1, 'home WebSite');
   }
+  const faq = faqTopics.find((t) => '/faq/' + t.slug === path);
+  if (faq) {
+    assert.equal(
+      ofType('FAQPage')[0]?.mainEntity?.length,
+      faq.questions.length,
+      path + ': FAQPage',
+    );
+    assert.equal(
+      ofType('BreadcrumbList')[0]?.itemListElement?.length,
+      3,
+      path + ': breadcrumbs',
+    );
+    for (const q of faq.questions)
+      if (q.guide)
+        assert.ok(
+          html.includes('href="/' + q.guide + '"'),
+          path + ': ' + q.guide,
+        );
+  }
   if (path === '/' || path === '/download')
     assert.equal(ofType('SoftwareApplication')[0]?.offers?.price, '10', path);
   if (guide) {
@@ -120,7 +142,10 @@ const sitemap = await fetch(new URL('/sitemap.xml', origin));
 assert.equal(sitemap.status, 200);
 const xml = await sitemap.text();
 const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
-assert.equal(urls.length, indexable ? guides.length + 4 : 0);
+assert.equal(
+  urls.length,
+  indexable ? guides.length + 4 + 1 + faqTopics.length : 0,
+);
 for (const path of ['/thanks', '/buy-now', '/recover', '/api'])
   assert.ok(!urls.some((url) => url.includes(path)));
 const robots = await fetch(new URL('/robots.txt', origin));

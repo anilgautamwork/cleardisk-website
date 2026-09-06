@@ -2,6 +2,10 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## FAQ pages — 6 September 2026 (owner request)
+
+The owner asked for FAQ pages as their own URLs so Google can index the questions and surface the articles. Added a hub at `/faq` and six topic pages: `/faq/system-data`, `/faq/mac-storage-full`, `/faq/clear-cache`, `/faq/uninstall-apps`, `/faq/backups-cloud-photos` and `/faq/cleardisk`, 58 questions in all. Each question is an H2 with a short answer and a link to the guide that goes deeper; every page carries FAQPage and BreadcrumbList schema, sits in the sitemap, and is linked from the header (FAQs), footer, home FAQ section and the guides hub. Data lives in `lib/faqs.ts`; HTTP checks verify the schema and every guide link. Sitemap: 55 URLs.
+
 ## Iteration 17 — 6 September 2026 (monitoring only)
 
 Targeted `site:` queries show Google has also indexed `/system-data-keeps-growing`, so the plain `site:` list understates coverage; none of the pages published tonight appears yet. No changes deployed.

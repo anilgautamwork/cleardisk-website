@@ -77,6 +77,12 @@ export default function Guides() {
           </section>
         ))}
         <p className="guide-directory-note">
+          Want the short version first?{' '}
+          <Link href="/faq">
+            Read the FAQ <ArrowRight size={14} />
+          </Link>
+        </p>
+        <p className="guide-directory-note">
           A guide can help you decide. A local scan can show you the files.{' '}
           <Link href="/download">
             Try ClearDisk for free <ArrowRight size={14} />

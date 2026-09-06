@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { guides, type Guide } from './guides.ts';
+import { faqTopics, type FaqTopic } from './faqs.ts';
 export const SITE_URL = 'https://cleardisk.app';
 export const OG_IMAGE = SITE_URL + '/og.png';
 // Vite replaces this exact expression at build time; preview defaults closed.
@@ -11,7 +12,9 @@ const publicPaths = [
   '/about',
   '/privacy',
   '/terms',
+  '/faq',
   ...guides.map((g) => '/' + g.slug),
+  ...faqTopics.map((t) => '/faq/' + t.slug),
 ];
 export function canonical(path: string): string {
   if (!path.startsWith('/') || path.startsWith('//') || path.includes('\\'))
@@ -69,6 +72,11 @@ export function sitemapEntries(indexable = INDEXABLE) {
     ...guides.map((guide) => ({
       url: canonical('/' + guide.slug),
       lastModified: guide.updated,
+    })),
+    { url: canonical('/faq') },
+    ...faqTopics.map((topic) => ({
+      url: canonical('/faq/' + topic.slug),
+      lastModified: topic.updated,
     })),
   ];
 }
@@ -175,5 +183,33 @@ export function guideSchema(guide: Guide) {
           },
         ]
       : []),
+  ];
+}
+export function faqSchema(topic: FaqTopic) {
+  const url = canonical('/faq/' + topic.slug);
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: topic.questions.map((q) => ({
+        '@type': 'Question',
+        name: q.question,
+        acceptedAnswer: { '@type': 'Answer', text: q.answer },
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'ClearDisk', item: SITE_URL },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'FAQ',
+          item: canonical('/faq'),
+        },
+        { '@type': 'ListItem', position: 3, name: topic.title, item: url },
+      ],
+    },
   ];
 }

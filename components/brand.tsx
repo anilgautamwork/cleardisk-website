@@ -31,7 +31,7 @@ export async function Header() {
         <Link href="/#features">Why ClearDisk</Link>
         <Link href="/guides">Storage guides</Link>
         <Link href="/#pricing">Pricing</Link>
-        <Link href="/#faq">FAQs</Link>
+        <Link href="/faq">FAQs</Link>
       </nav>
       <div className="header-actions">
         <Link className="buy-link" href="/buy-now">
@@ -74,6 +74,7 @@ export function Footer() {
       <div className="footer-links">
         <Link href="/guides">Storage guides</Link>
         <Link href="/download">Download</Link>
+        <Link href="/faq">FAQ</Link>
         <Link href="/recover">Lost your key?</Link>
         <Link href="/about">About</Link>
         <Link href="/privacy">Privacy</Link>
