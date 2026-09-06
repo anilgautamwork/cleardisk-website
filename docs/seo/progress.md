@@ -2,6 +2,10 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 16 — 6 September 2026 (monitoring only)
+
+Google's `site:` result is unchanged at six URLs. Probes for "delete old backups mac" and "mac storage other" (including "other volumes in container") were all <100. No changes deployed.
+
 ## Iteration 15 — 6 September 2026 (monitoring only)
 
 Google's `site:` result is unchanged at six URLs; Bing's `site:` shows nothing yet despite the IndexNow submissions (Bing normally takes days, and verifying the site in Bing Webmaster Tools would speed it up; that is an owner step). Probes for "is it safe to delete system data mac" (no ideas) and "why is my mac storage full" (<100) added nothing. No changes deployed.
