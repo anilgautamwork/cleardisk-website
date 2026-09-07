@@ -2,6 +2,10 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 27 — 6 September 2026 (monitoring only)
+
+Google's coverage is unchanged at the same ten URLs; the overnight guides and FAQ pages are still waiting. No changes deployed.
+
 ## Iteration 26 — 6 September 2026 (monitoring only)
 
 Google's coverage is unchanged; none of the overnight guides or the FAQ pages has appeared yet. No changes deployed.
