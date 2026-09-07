@@ -2,6 +2,10 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 25 — 6 September 2026 (monitoring only)
+
+Google's coverage is unchanged at eleven distinct URLs across queries (home, hub, download, terms, privacy, and the System Data, keeps-growing, too-large, Xcode, iCloud Drive and Photoshop guides). None of the overnight pages or the FAQ pages has appeared yet. No changes deployed.
+
 ## Iteration 24 — 6 September 2026 (monitoring only)
 
 Google still lists the same ten URLs. The "cleanmymac alternative" probe returned no ideas from the free tool (competitor-name phrases are excluded from our pages anyway under the Ads trademark rule). No changes deployed.
