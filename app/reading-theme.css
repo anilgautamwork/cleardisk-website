@@ -937,3 +937,19 @@ a:focus-visible {
     grid-template-columns: 1fr;
   }
 }
+
+/* Small phones: brand and one Download button; the buy link lives in the hero. */
+.download-button .label-short {
+  display: none;
+}
+@media (max-width: 600px) {
+  .buy-link {
+    display: none;
+  }
+  .download-button.small .label-full {
+    display: none;
+  }
+  .download-button.small .label-short {
+    display: inline;
+  }
+}

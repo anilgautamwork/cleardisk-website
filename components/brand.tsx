@@ -57,7 +57,14 @@ export function DownloadButton({
       href={source ? `/download?source=${source}` : '/download'}
     >
       <ArrowDownToLine size={compact ? 16 : 18} aria-hidden="true" />
-      {label}
+      {compact ? (
+        <>
+          <span className="label-full">{label}</span>
+          <span className="label-short">Download</span>
+        </>
+      ) : (
+        label
+      )}
     </Link>
   );
 }
