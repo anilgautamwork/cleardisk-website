@@ -2,6 +2,10 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Iteration 29 — 6 September 2026 (monitoring only)
+
+Google's coverage is unchanged at the same ten URLs. Earlier today the owner asked for a smaller header on phones; the header now shows only the brand and a Download button below 600px (deployed as Worker version 109fa1bf). No SEO changes this tick.
+
 ## Iteration 28 — 6 September 2026 (monitoring only)
 
 Google's coverage is unchanged at the same ten URLs. No changes deployed.
