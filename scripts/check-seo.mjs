@@ -150,7 +150,7 @@ const xml = await sitemap.text();
 const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
 assert.equal(
   urls.length,
-  indexable ? guides.length + 4 + 1 + faqTopics.length : 0,
+  indexable ? guides.length + 5 + 1 + faqTopics.length : 0,
 );
 for (const path of ['/thanks', '/buy-now', '/recover', '/api'])
   assert.ok(!urls.some((url) => url.includes(path)));

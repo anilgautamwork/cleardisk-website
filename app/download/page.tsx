@@ -56,7 +56,7 @@ export default async function Download({
           <ArrowDownToLine size={18} />
           Download ClearDisk
         </a>
-        <small>ClearDisk 1.0.0 · DMG · 3.1 MB</small>
+        <small>ClearDisk 1.1.0 · DMG · 4.1 MB</small>
         <p className="software-disclosure">
           ClearDisk is a downloadable Mac app. It scans your disk on your Mac,
           shows what uses space and lets you move files you choose to the Trash.

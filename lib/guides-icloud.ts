@@ -336,7 +336,7 @@ export const icloudGuides: Guide[] = [
         title: 'Verify the archive, including its limits',
         paragraphs: [
           'Open the copied document from the destination path and check the content you need. For a collection, compare the expected members rather than judging success from one folder name or matching total size. Keep an independent backup of the archive if it matters.',
-          'ClearDisk 1.1’s Archive to Mac workflow copies supported regular files to a checked nonsynced destination, verifies bytes and source stability, and retains the cloud original. Unsupported items or uncertain destinations are refused. An incomplete copy must not be treated as a verified archive.',
+          'ClearDisk 1.1’s Archive to Mac workflow copies supported documents and data-only folders or document packages into ~/ClearDisk Archives. It verifies bytes and source stability and retains the cloud original. Close the owning app first. Executable files and unsupported file metadata are refused with Finder guidance. The destination excludes known cloud locations; check that no other sync client watches it. An incomplete copy is not a verified archive.',
         ],
       },
       {

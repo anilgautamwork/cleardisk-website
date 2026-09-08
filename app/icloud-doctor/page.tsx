@@ -132,8 +132,8 @@ export default function ICloudDoctor() {
               <div>
                 <h3>Make a verified independent copy.</h3>
                 <p>
-                  Archive supported regular files to a checked nonsynced
-                  destination. ClearDisk verifies contents and source stability
+                  Archive supported documents and data-only folders to
+                  your dedicated ClearDisk Archives folder. ClearDisk verifies contents and source stability
                   while retaining the original. Review any later cloud deletion
                   yourself in Finder.
                 </p>
