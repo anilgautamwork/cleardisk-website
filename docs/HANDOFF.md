@@ -1,3 +1,15 @@
+## iCloud Doctor 1.1.0 — 9 September 2026 (current status)
+
+ClearDisk 1.1.0 build 7 integrates the repository-local SyncDoctorCore and an independent iCloud Doctor section. Metadata scans, history, search/filter/folder totals, raw inspection, explicit downloads, licensed local-copy removal and verified document archives are implemented. Sources and partial archives are retained; executable/semantic-metadata files are refused. Cloud originals are never deleted by this section. See ../Sources/SyncDoctorCore/ORIGIN.md and docs/superpowers/specs/2026-09-09-icloud-doctor-integration.md for limits.
+
+The universal arm64/x86_64 app and DMG are Developer ID signed, Apple-notarized and stapled. Release: https://github.com/anilgautamwork/cleardisk-app/releases/tag/v1.1.0 . Public download: https://cleardisk.app/download . DMG bytes 4080467; SHA256 46d891de92a2790cef567d223916c65b2ab8c0ccb73b572f56994344aa55a233. Exact source/artifact binding is releases/v1.1.0.json. Original dist backup is /tmp/cleardisk-before-icloud-release/dist.
+
+Validation: 63 Swift tests pass; independent review corrected unknown-locality and history labels; native pre-scan entry and a read-only metadata scan passed. No live cloud mutations were exercised. Website: 42 tests, typecheck/lint/build, desktop/390px checks, 69 live HTML SEO checks, public DMG hash and private analytics 401 checks passed.
+
+Website now has 52 guides, eight new iCloud articles and /icloud-doctor; sitemap has 64 URLs. Google Search Console HTTPS URL-prefix property is verified under anilgautamwork@gmail.com using the homepage HTML tag; sitemap processed successfully with 64 discovered pages on 9 September. Discovery is not indexing. Domain-wide DNS property remains unverified; it is not required for the canonical HTTPS property. Preserve the public Google verification tag. No Cloudflare DNS records were changed.
+
+Current checkout/license configuration is preserved. Older test-only/preview statements below are historical, not instructions to revert payment settings. Talivia remains paused. The September 13 10:00 IST 30-day marketing schedule is unchanged; its prompt now uses current release/payment state and the current guide registry. Separate website research: docs/research/2026-09-09-icloud-content.md. No keyword volumes were invented, and no external social messages or paid ads were sent.
+
 ## Autonomous SEO loop — 6 September 2026
 
 The owner asked for continuous SEO work overnight. The loop researches (Chrome SERPs, Ahrefs free keyword generator, competitor sitemaps), publishes source-checked guides, verifies, commits, deploys and appends to [docs/seo/progress.md](seo/progress.md). Iteration 1 added `/not-enough-space-to-update-macos`, `/mail-taking-up-space-on-mac` and `/clean-homebrew-cache-mac` (24 guides, 28 sitemap URLs) and recorded the first real keyword volumes in [docs/seo/ahrefs-free-2026-09-06.csv](seo/ahrefs-free-2026-09-06.csv). Rules unchanged: Apple or vendor sources on every guide, no doorway pages, no competitor feature claims without hands-on testing, no external posting without the owner.

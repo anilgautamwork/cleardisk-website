@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 export const metadata = pageMetadata(
   'Download ClearDisk for Mac',
-  'Download ClearDisk 1.0 for macOS 15 and later. Universal Apple silicon and Intel app. Free scanning, $10 one-time cleanup license.',
+  'Download ClearDisk 1.1 for macOS 15 and later. Universal Apple silicon and Intel app. Free scanning, $10 one-time cleanup license.',
   '/download',
 );
 export default async function Download({

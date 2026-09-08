@@ -153,7 +153,10 @@ assert.equal(
   indexable ? guides.length + 5 + 1 + faqTopics.length : 0,
 );
 for (const path of ['/thanks', '/buy-now', '/recover', '/api'])
-  assert.ok(!urls.some((url) => url.includes(path)));
+  assert.ok(!urls.some((url) => {
+    const pathname = new URL(url).pathname;
+    return pathname === path || pathname.startsWith(path + '/');
+  }));
 const robots = await fetch(new URL('/robots.txt', origin));
 assert.equal(robots.status, 200);
 assert.ok((await robots.text()).includes('Disallow: /api/'));

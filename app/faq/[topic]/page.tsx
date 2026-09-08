@@ -85,7 +85,7 @@ export default async function FaqTopicPage({ params }: Props) {
           </div>
           <div>
             <DownloadButton label="Download free scanner" source="guides" />
-            <small>macOS 15+ · version 1.0</small>
+            <small>macOS 15+ · version 1.1</small>
           </div>
         </section>
         <section className="related-guides">
