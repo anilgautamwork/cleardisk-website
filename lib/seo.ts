@@ -9,6 +9,9 @@ const publicPaths = [
   '/',
   '/guides',
   '/icloud-doctor',
+  '/features',
+  '/pricing',
+  '/support',
   '/download',
   '/about',
   '/privacy',
@@ -67,11 +70,18 @@ export function pageMetadata(
 export function sitemapEntries(indexable = INDEXABLE) {
   if (!indexable) return [];
   return [
-    ...['/', '/guides', '/icloud-doctor', '/download', '/about'].map(
-      (path) => ({
-        url: canonical(path),
-      }),
-    ),
+    ...[
+      '/',
+      '/guides',
+      '/icloud-doctor',
+      '/download',
+      '/about',
+      '/features',
+      '/pricing',
+      '/support',
+    ].map((path) => ({
+      url: canonical(path),
+    })),
     ...guides.map((guide) => ({
       url: canonical('/' + guide.slug),
       lastModified: guide.updated,

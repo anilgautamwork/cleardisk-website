@@ -134,7 +134,7 @@ export async function GuideArticle({ guide }: { guide: Guide }) {
           <div>
             <DownloadButton label="Download free scanner" source="guides" />
             <small>macOS 15+ · version 1.1</small>
-            <Link href="/#pricing">
+            <Link href="/pricing">
               Cleanup license: {price.display} once <ArrowRight size={13} />
             </Link>
           </div>

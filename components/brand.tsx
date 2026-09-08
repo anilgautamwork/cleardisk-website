@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { ArrowUpRight, ArrowDownToLine } from 'lucide-react';
+import { SiteNavigation } from './site-navigation';
+import { ArrowDownToLine } from 'lucide-react';
 import { visitorPrice } from '@/lib/visitor-price';
 export function Mark({ large = false }: { large?: boolean }) {
   return (
@@ -27,12 +28,7 @@ export async function Header() {
         <Mark />
         ClearDisk
       </Link>
-      <nav aria-label="Main navigation">
-        <Link href="/icloud-doctor">iCloud Doctor</Link>
-        <Link href="/guides">Storage guides</Link>
-        <Link href="/#pricing">Pricing</Link>
-        <Link href="/faq">FAQs</Link>
-      </nav>
+      <SiteNavigation />
       <div className="header-actions">
         <Link className="buy-link" href="/buy-now">
           Buy for {price.display}
@@ -78,19 +74,53 @@ export function Footer() {
         </Link>
         <p>A little less clutter. A lot more possibility.</p>
       </div>
-      <div className="footer-links">
-        <Link href="/guides">Storage guides</Link>
-        <Link href="/icloud-doctor">iCloud Doctor</Link>
-        <Link href="/download">Download</Link>
-        <Link href="/faq">FAQ</Link>
-        <Link href="/recover">Lost your key?</Link>
-        <Link href="/about">About</Link>
-        <Link href="/privacy">Privacy</Link>
-        <Link href="/terms">Terms & refunds</Link>
-        <a href="mailto:hello@cleardisk.app">
-          Contact <ArrowUpRight size={13} />
-        </a>
-      </div>
+      <nav className="footer-groups" aria-label="Footer navigation">
+        {[
+          {
+            title: 'Product',
+            links: [
+              ['Features', '/features'],
+              ['iCloud Doctor', '/icloud-doctor'],
+              ['Download', '/download'],
+              ['Pricing', '/pricing'],
+            ],
+          },
+          {
+            title: 'Learn',
+            links: [
+              ['Storage guides', '/guides'],
+              ['FAQs', '/faq'],
+              ['About ClearDisk', '/about'],
+              ['Sitemap', '/sitemap.xml'],
+            ],
+          },
+          {
+            title: 'Support',
+            links: [
+              ['Get help', '/support'],
+              ['Recover your license', '/recover'],
+              ['Purchase a license', '/buy-now'],
+              ['Contact us', 'mailto:hello@cleardisk.app'],
+            ],
+          },
+          {
+            title: 'Legal',
+            links: [
+              ['Privacy policy', '/privacy'],
+              ['Terms & refunds', '/terms'],
+            ],
+          },
+        ].map((group) => (
+          <section key={group.title}>
+            <h2>{group.title}</h2>
+            {group.links.map(([label, href]) => (
+              <Link key={href} href={href}>
+                {label}
+              </Link>
+            ))}
+          </section>
+        ))}
+      </nav>
       <div className="footer-bottom">
         <span>© 2026 ClearDisk</span>
         <span>Made for the Mac you already love.</span>
