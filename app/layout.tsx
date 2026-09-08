@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     'Find what is filling your Mac with ClearDisk. Free local scanning, clear storage breakdowns and a $10 one-time cleanup license.',
     '/',
   ),
+  verification: { google: 'w3gXqPIEHaBWE1faIs43-l-ZJhzy5RO7sLLwcObUlQE' },
   metadataBase: new URL(SITE_URL),
   icons: { icon: '/icon.svg' },
 };

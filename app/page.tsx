@@ -109,6 +109,12 @@ export default async function Home() {
                   <i />
                   <span>Yours for {price.display}, once.</span>
                 </div>
+                <p className="icloud-home-note">
+                  Also in ClearDisk 1.1:{' '}
+                  <Link href="/icloud-doctor">
+                    understand iCloud Drive sync and local storage →
+                  </Link>
+                </p>
                 <div className="hero-reassurance">
                   <ShieldCheck size={16} />
                   <span>Local by design. Your files stay on your Mac.</span>

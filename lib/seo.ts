@@ -8,6 +8,7 @@ export const INDEXABLE = process.env.SITE_INDEXABLE === 'true';
 const publicPaths = [
   '/',
   '/guides',
+  '/icloud-doctor',
   '/download',
   '/about',
   '/privacy',
@@ -66,9 +67,11 @@ export function pageMetadata(
 export function sitemapEntries(indexable = INDEXABLE) {
   if (!indexable) return [];
   return [
-    ...['/', '/guides', '/download', '/about'].map((path) => ({
-      url: canonical(path),
-    })),
+    ...['/', '/guides', '/icloud-doctor', '/download', '/about'].map(
+      (path) => ({
+        url: canonical(path),
+      }),
+    ),
     ...guides.map((guide) => ({
       url: canonical('/' + guide.slug),
       lastModified: guide.updated,

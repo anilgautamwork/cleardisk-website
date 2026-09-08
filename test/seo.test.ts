@@ -59,7 +59,7 @@ await test('all published problems have complete discoverable guides', () => {
     'containers-folder-mac',
   ];
   for (const slug of required) assert.ok(getGuide(slug));
-  assert.equal(guides.length, 44);
+  assert.equal(guides.length, 52);
   assert.equal(getGuide('not-a-real-guide'), undefined);
   assert.equal(new Set(guides.map((g) => g.slug)).size, guides.length);
   for (const guide of guides) {
@@ -141,4 +141,44 @@ await test('faq topics are unique, link to real guides and sit in the sitemap', 
       if (q.guide) assert.ok(getGuide(q.guide), topic.slug + ': ' + q.guide);
   }
   assert.equal(getFaqTopic('not-a-topic'), undefined);
+});
+
+await test('iCloud landing and all eight distinct guides are discoverable', () => {
+  assert.equal(shouldIndex(true, '/icloud-doctor'), true);
+  assert.ok(
+    sitemapEntries(true).some(
+      (entry) => entry.url === canonical('/icloud-doctor'),
+    ),
+  );
+  const slugs = [
+    'icloud-drive-stuck-uploading-mac',
+    'icloud-drive-status-icons-mac',
+    'icloud-storage-full-but-not-mac',
+    'icloud-remove-download-missing-mac',
+    'keep-icloud-files-downloaded-mac',
+    'archive-icloud-drive-to-mac',
+    'icloud-desktop-documents-files-missing-mac',
+    'recover-deleted-icloud-drive-files-mac',
+  ];
+  for (const slug of slugs) {
+    const guide = getGuide(slug)!;
+    assert.ok(guide, slug);
+    assert.ok(
+      guide.sections
+        .flatMap((section) => section.paragraphs)
+        .join(' ')
+        .split(/\s+/).length >= 280,
+      slug + ': substantive distinct guidance',
+    );
+    assert.ok(
+      guide.sources.every((source) =>
+        ['support.apple.com', 'www.apple.com'].includes(
+          new URL(source.url).hostname,
+        ),
+      ),
+    );
+    const schema = guideSchema(guide);
+    assert.ok(schema.some((node) => node['@type'] === 'Article'));
+    assert.ok(schema.some((node) => node['@type'] === 'BreadcrumbList'));
+  }
 });

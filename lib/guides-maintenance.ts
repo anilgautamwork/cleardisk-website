@@ -207,7 +207,7 @@ export const maintenanceGuides: Guide[] = [
         title: 'When a scanner earns its place',
         paragraphs: [
           'Install an analyzer when the built-in views stop explaining the number: System Data is large and Documents is not, storage grows back after cleanup, or you need to see inside ~/Library, application containers and developer directories in one pass. Those folders are where an hour of Finder browsing turns into a five-minute scan.',
-          'Expect a permission step. macOS keeps some locations private until you grant the app Full Disk Access in System Settings → Privacy & Security. Without it, an analyzer sees less and should say so. Also expect that iCloud files stored only in the cloud do not occupy local space, and that anything you move to the Trash keeps its space until the Trash is emptied.',
+          'Expect a permission step. macOS keeps some locations private until you grant the app Full Disk Access in System Settings → Privacy & Security. Without it, an analyzer sees less and should say so. Also expect that iCloud files stored only in the cloud do not have their full contents stored locally, and that anything you move to the Trash keeps its space until the Trash is emptied.',
         ],
       },
       {
@@ -221,7 +221,7 @@ export const maintenanceGuides: Guide[] = [
           'A visual storage map and a largest-files list, with Reveal in Finder for anything you want to inspect before deciding.',
           'Sizes reported as space allocated on disk, and protected system and account folders shown but never offered for removal.',
           'Cleanup from inside the app is a one-time license: files go to the Trash first with undo, and permanent deletion is a separate, typed confirmation.',
-          'Limits: it needs macOS 15 or later, asks for Full Disk Access to read private folders, reports Time Machine local snapshots as a count rather than a size, and does not clean memory, remove malware, repair iCloud sync or find duplicates.',
+          'Limits: it needs macOS 15 or later, asks for Full Disk Access to read private folders, reports Time Machine local snapshots as a count rather than a size, and does not clean memory, remove malware, guarantee iCloud sync repair or find duplicates. iCloud Doctor in 1.1 inspects accessible Drive metadata and local copies.',
         ],
       },
       {
@@ -958,7 +958,7 @@ export const maintenanceGuides: Guide[] = [
           'These come up whenever a Mac belongs to a developer or syncs with a cloud drive.',
         ],
         items: [
-          'Online-only, streamed or placeholder file: a file that lives in the cloud and takes no local space until opened. The opposite is mirrored or downloaded. See the cloud drive and iCloud guides.',
+          'Online-only, streamed or placeholder file: a file that has its contents in the cloud while local metadata can still occupy space. The opposite is mirrored or downloaded. See the cloud drive and iCloud guides.',
           'node_modules: a per-project folder of installed JavaScript dependencies that can be recreated by reinstalling. See the node_modules guide.',
           'Derived Data: Xcode’s rebuildable build output under ~/Library/Developer. See the Xcode guide.',
           'Docker.raw: the single file that holds every Docker container, image and volume on a Mac; its allocated size grows and rarely shrinks on its own. See the Docker guide.',

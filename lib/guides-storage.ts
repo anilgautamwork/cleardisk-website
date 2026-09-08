@@ -182,7 +182,7 @@ export const storageGuides: Guide[] = [
     summary:
       'iCloud Drive can keep local copies for offline work. To reduce local storage while keeping a synced file, check its upload status and use Remove Download instead of deleting it.',
     published: '2026-09-05',
-    updated: '2026-09-05',
+    updated: '2026-09-09',
     sections: [
       {
         id: 'check-status',
@@ -220,12 +220,15 @@ export const storageGuides: Guide[] = [
         title: '4. Investigate missing controls or a small storage change',
         paragraphs: [
           'If Remove Download is unavailable, recheck that you are inspecting an iCloud Drive item and review its status. Do not work around the missing control by deleting hidden synchronization folders. Record the macOS version and status message for Apple support if the state remains unexplained.',
+          'ClearDisk 1.1’s iCloud Doctor filters local copies and cloud-only items, reports allocated local bytes, and rechecks metadata before confirmed local-download removal. It keeps cloud originals protected. Archive to Mac verifies a supported file copy; original deletion remains a separate Finder decision.',
           'Compare local available space after the operation. Our diagnostic inference is that a large apparent document collection need not represent the same amount of removable local data: some entries may already be cloud-only. The correct next step is checking their status, not deleting more of the collection.',
           'iCloud Photos uses its own library and storage settings. If the large item is a Photos library, use the Photos guide rather than treating that package as an ordinary iCloud Drive document.',
         ],
       },
     ],
     related: [
+      'icloud-remove-download-missing-mac',
+      'icloud-drive-stuck-uploading-mac',
       'cloud-drive-taking-up-space-on-mac',
       'optimize-storage-mac',
       'photos-library-taking-up-space-mac',

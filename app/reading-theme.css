@@ -953,3 +953,150 @@ a:focus-visible {
     display: inline;
   }
 }
+
+/* iCloud Doctor extends the established pale, system-font reading surfaces. */
+.icloud-heading {
+  text-align: center;
+  padding: 72px 0 96px;
+}
+.icloud-heading h1 {
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+  font-weight: 600;
+  margin: 24px 0;
+}
+.icloud-heading > p {
+  max-width: 650px;
+  margin: 0 auto 28px;
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--reading-text);
+}
+.icloud-heading .hero-ctas {
+  justify-content: center;
+}
+.icloud-heading small {
+  display: block;
+  margin-top: 22px;
+  color: var(--muted-foreground);
+}
+.icloud-overview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  padding: 64px 0 96px;
+  border-top: 1px solid var(--border);
+}
+.icloud-page h2 {
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.12;
+  font-weight: 600;
+  margin: 18px 0 24px;
+  letter-spacing: -0.035em;
+}
+.icloud-overview p,
+.icloud-action-list p,
+.icloud-boundary p {
+  color: var(--reading-text);
+  font-size: 19px;
+  line-height: 1.65;
+  margin: 16px 0;
+}
+.icloud-states {
+  margin: 0;
+  padding: 12px 28px;
+  background: #f0eff4;
+  border-radius: 20px;
+}
+.icloud-states > div {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+}
+.icloud-states > div:last-child {
+  border: 0;
+}
+.icloud-states dt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 19px;
+}
+.icloud-states dd {
+  margin: 10px 0 0 32px;
+  color: var(--reading-text);
+  line-height: 1.55;
+}
+.icloud-actions {
+  padding: 20px 0 72px;
+}
+.icloud-action-list {
+  margin-top: 32px;
+}
+.icloud-action-list article {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 24px;
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+}
+.icloud-action-list article > span {
+  font-size: 24px;
+  color: var(--reading-link);
+}
+.icloud-action-list h3 {
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0;
+}
+.icloud-action-list p {
+  max-width: 780px;
+}
+.icloud-boundary {
+  padding: 36px 44px;
+  background: #f0eff4;
+  border-radius: 20px;
+}
+.icloud-boundary h2 {
+  font-size: 30px;
+}
+.icloud-page .related-guides > p {
+  font-size: 19px;
+  margin-bottom: 28px;
+  color: var(--reading-text);
+}
+.icloud-page a:not(.button):not(.guide-card),
+.icloud-home-note a {
+  color: var(--reading-link);
+}
+.icloud-home-note {
+  margin: 26px 0 0;
+  font-size: 17px;
+}
+@media (max-width: 700px) {
+  .icloud-heading {
+    padding: 44px 0 60px;
+  }
+  .icloud-heading > p {
+    font-size: 19px;
+  }
+  .icloud-overview {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 44px 0;
+  }
+  .icloud-states {
+    padding: 8px 22px;
+  }
+  .icloud-action-list article {
+    grid-template-columns: 32px 1fr;
+    gap: 14px;
+  }
+  .icloud-action-list h3 {
+    font-size: 23px;
+  }
+  .icloud-boundary {
+    padding: 24px;
+  }
+}

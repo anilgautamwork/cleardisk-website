@@ -1,3 +1,4 @@
+import { icloudGuides } from './guides-icloud.ts';
 import { storageGuides } from './guides-storage.ts';
 import { developerGuides } from './guides-developer.ts';
 import { maintenanceGuides } from './guides-maintenance.ts';
@@ -373,9 +374,15 @@ export const guides: Guide[] = [
   ...maintenanceGuides,
   ...storageGuides,
   ...developerGuides,
+  ...icloudGuides,
 ];
 
 export const guideGroups = [
+  {
+    id: 'icloud-drive',
+    title: 'iCloud Drive: sync, storage and recovery',
+    guides: icloudGuides,
+  },
   {
     id: 'system-data',
     title: 'System Data and a full Mac',

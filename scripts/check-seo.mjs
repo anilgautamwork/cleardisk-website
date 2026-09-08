@@ -7,6 +7,7 @@ const site = 'https://cleardisk.app';
 const pages = [
   '/',
   '/guides',
+  '/icloud-doctor',
   ...guides.map((g) => '/' + g.slug),
   '/faq',
   ...faqTopics.map((t) => '/faq/' + t.slug),
@@ -76,6 +77,11 @@ for (const path of pages) {
   const ofType = (type) => schemas.filter((s) => s['@type'] === type);
   assert.equal(ofType('Organization').length, 1, path + ': Organization');
   if (path === '/') {
+    assert.equal(
+      meta(head, 'name', 'google-site-verification'),
+      'w3gXqPIEHaBWE1faIs43-l-ZJhzy5RO7sLLwcObUlQE',
+      'Search Console verification in initial head',
+    );
     assert.equal(ofType('FAQPage').length, 1, 'home FAQPage');
     assert.equal(ofType('WebSite').length, 1, 'home WebSite');
   }

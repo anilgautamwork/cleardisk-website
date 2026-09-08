@@ -28,7 +28,7 @@ export async function Header() {
         ClearDisk
       </Link>
       <nav aria-label="Main navigation">
-        <Link href="/#features">Why ClearDisk</Link>
+        <Link href="/icloud-doctor">iCloud Doctor</Link>
         <Link href="/guides">Storage guides</Link>
         <Link href="/#pricing">Pricing</Link>
         <Link href="/faq">FAQs</Link>
@@ -80,6 +80,7 @@ export function Footer() {
       </div>
       <div className="footer-links">
         <Link href="/guides">Storage guides</Link>
+        <Link href="/icloud-doctor">iCloud Doctor</Link>
         <Link href="/download">Download</Link>
         <Link href="/faq">FAQ</Link>
         <Link href="/recover">Lost your key?</Link>

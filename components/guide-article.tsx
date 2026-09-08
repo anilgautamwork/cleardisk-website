@@ -110,6 +110,13 @@ export async function GuideArticle({ guide }: { guide: Guide }) {
             </section>
           </article>
         </div>
+        {guide.slug.includes('icloud') && (
+          <p className="icloud-home-note">
+            <Link href="/icloud-doctor">
+              Explore iCloud Doctor inside ClearDisk →
+            </Link>
+          </p>
+        )}
         <section className="guide-cta">
           <div>
             <span className="eyebrow">FROM A NUMBER TO AN ANSWER</span>

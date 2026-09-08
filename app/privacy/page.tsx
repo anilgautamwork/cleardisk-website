@@ -19,6 +19,16 @@ export default function Privacy() {
           ClearDisk scans and analyzes files locally on your Mac. Your files,
           file names and scan results are not uploaded by the scanner.
         </p>
+        <h2>iCloud Doctor</h2>
+        <p>
+          iCloud Drive scans inspect locally available file metadata. They do
+          not download cloud-only contents just to list them. Scan history is
+          stored locally and can be cleared in the app. A download happens only
+          when you explicitly request it. Archive to Mac reads file contents
+          locally to copy and verify them; it retains the cloud original. File
+          names, contents and reports are not sent to website analytics. Apple’s
+          own iCloud synchronization operates separately.
+        </p>
         <h2>The website preview</h2>
         <p>
           The interactive Mac window uses example data. It does not read your
