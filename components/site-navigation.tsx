@@ -23,6 +23,10 @@ const groups = [
 ];
 export function SiteNavigation() {
   const root = useRef<HTMLElement>(null);
+  const closeMenus = () =>
+    root.current
+      ?.querySelectorAll('details[open]')
+      .forEach((el) => el.removeAttribute('open'));
   useEffect(() => {
     const close = () =>
       root.current
@@ -46,17 +50,7 @@ export function SiteNavigation() {
     };
   }, []);
   return (
-    <nav
-      ref={root}
-      className="site-navigation"
-      aria-label="Main navigation"
-      onClick={(e) => {
-        if ((e.target as HTMLElement).closest('a'))
-          root.current
-            ?.querySelectorAll('details[open]')
-            .forEach((el) => el.removeAttribute('open'));
-      }}
-    >
+    <nav ref={root} className="site-navigation" aria-label="Main navigation">
       <div className="desktop-navigation">
         {groups.map((group) => (
           <details
@@ -70,15 +64,19 @@ export function SiteNavigation() {
             </summary>
             <div className="nav-panel">
               {group.links.map(([label, href]) => (
-                <Link key={href} href={href}>
+                <Link onClick={closeMenus} key={href} href={href}>
                   {label}
                 </Link>
               ))}
             </div>
           </details>
         ))}
-        <Link href="/pricing">Pricing</Link>
-        <Link href="/support">Support</Link>
+        <Link onClick={closeMenus} href="/pricing">
+          Pricing
+        </Link>
+        <Link onClick={closeMenus} href="/support">
+          Support
+        </Link>
       </div>
       <details className="mobile-navigation">
         <summary aria-label="Open navigation menu">
@@ -89,7 +87,7 @@ export function SiteNavigation() {
             <section key={group.label}>
               <h2>{group.label}</h2>
               {group.links.map(([label, href]) => (
-                <Link key={href} href={href}>
+                <Link onClick={closeMenus} key={href} href={href}>
                   {label}
                 </Link>
               ))}
@@ -97,9 +95,15 @@ export function SiteNavigation() {
           ))}
           <section>
             <h2>Get ClearDisk</h2>
-            <Link href="/pricing">Pricing</Link>
-            <Link href="/support">Support</Link>
-            <Link href="/buy-now">Buy a license</Link>
+            <Link onClick={closeMenus} href="/pricing">
+              Pricing
+            </Link>
+            <Link onClick={closeMenus} href="/support">
+              Support
+            </Link>
+            <Link onClick={closeMenus} href="/buy-now">
+              Buy a license
+            </Link>
           </section>
         </div>
       </details>
