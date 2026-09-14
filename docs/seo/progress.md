@@ -2,6 +2,16 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Published content refresh — 15 September 2026
+
+Cloudflare authentication was restored. Deployed the previously pending safety corrections and a plain-language edit of the Application Support and Containers guides to cleardisk.app. Live Worker version: f1f6a440-c016-4b4e-9682-068513d52329. Updated pages: /application-support-folder-mac, /containers-folder-mac, /uninstall-apps-on-mac and /faq/uninstall-apps. No duplicate articles were added; the library remains 52 guides and the sitemap 67 URLs. This entry supersedes the deployment blocker below.
+
+Humanize pass: no local approved voice profile exists, so the owner’s broad editing authorization was applied as a generic edit in the established site tone. Replaced abstract introductions and long explanations with the reader’s immediate problem, concrete actions and clearer limits. Kept important uncertainty and file-safety instructions. Editorial assessment of the selected passages: 20/69 before (Tier 1: 4, Tier 2: 11, Tier 3: 5), estimated 9/69 after (2, 5, 2), moderate edit. These are subjective editing scores, not AI-detector results or a claim to reproduce the owner’s personal voice. Apple’s uninstall guidance and container-protection documentation were checked again; no new unsupported product features were added.
+
+Validation: 43 tests, typecheck, lint and production build passed. Live Chrome showed the new opening and updated date; the 393×852 phone layout retains the Download button and mobile menu without crowding. Google’s prior indexing confirmation applies to the URL, not confirmation that this new wording has been reindexed. Sitemap submission already succeeded earlier today.
+
+Resumed the existing ClearDisk 30-day publishing plan at its saved daily 10:00 Asia/Kolkata schedule. Added explicit Humanize editing and progress-log instructions. Work remains free, prioritizes meaningful existing-page improvements and distinct reader questions, verifies sources and live deployment, and reports meaningful results or blockers. No duplicate automation was created.
+
 ## Crawlability and content audit — 15 September 2026
 
 **Production and Google evidence.** The HTTPS URL-prefix property opens under anilgautamwork@gmail.com. ClearDisk’s existing verification tag is present in the initial HTML and remains unchanged. Production passed all 72 HTML-route SEO checks: public indexing metadata, private checkout/thanks/recovery noindex, canonicals, structured data, internal related links, robots, sitemap, assets and 404 handling. The sitemap lists 67 URLs, including 52 existing guides and the dedicated product/FAQ pages. Before resubmission, Search Console showed Success, last read 14 September, 67 discovered pages. Resubmitted the current sitemap successfully on 15 September; this is the current production sitemap, not the pending content revision.

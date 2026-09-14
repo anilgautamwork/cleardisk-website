@@ -1504,7 +1504,7 @@ export const maintenanceGuides: Guide[] = [
     description:
       'What the Application Support folder holds, how to measure it, and why removing an app does not make its saved documents, databases or shared data disposable.',
     summary:
-      'Application Support is where apps keep the data they need between launches: settings, databases, downloaded content, licenses. Removing an app does not make its saved data disposable. Check what a folder holds and preserve anything you need before considering removal.',
+      'Found a large Application Support folder? Start by checking which app owns it. It may hold downloaded content, but it can also hold your saved work. Even after you uninstall the app, keep any data you still need.',
     published: '2026-09-06',
     updated: '2026-09-15',
     sections: [
@@ -1513,14 +1513,14 @@ export const maintenanceGuides: Guide[] = [
         title: '1. What the folder holds',
         paragraphs: [
           'There are two Application Support folders. ~/Library/Application Support belongs to your account and holds the data of the apps you use: a subfolder per app or vendor with settings, small databases, downloaded content such as voices, templates and models, and licence files. /Library/Application Support holds the same kind of data for items shared by every user, often installed by drivers and larger suites.',
-          'Neither is a cache. An app that finds its Application Support folder missing does not simply rebuild it; it starts from scratch, which can mean lost settings, lost local data and a licence to re-enter. That is the difference from ~/Library/Caches and the reason this folder gets a guide of its own.',
+          'Treat Application Support as app data, not a cache you can empty. Some files can be downloaded again; others may be your only copy. Deleting a folder can reset settings or erase local work.',
         ],
       },
       {
         id: 'open-and-measure',
         title: '2. Open it and measure it',
         paragraphs: [
-          'Apple’s Finder guide gives the route: choose Go → Go to Folder, type ~/Library/Application Support and press Return, or hold Option, open the Go menu and choose Library. Switch to list view and click Size, or select a subfolder and press Command-I. In Terminal, one read-only command sizes every subfolder and sorts them smallest to largest.',
+          'In Finder, choose Go → Go to Folder, enter ~/Library/Application Support and press Return. Select a subfolder and press Command-I to check its size. If you prefer Terminal, the command below measures readable subfolders and sorts them from smallest to largest. It does not delete files; inaccessible entries are omitted.',
           'Some app support data can appear in System Data. Apple defines that category as files that do not fit a more specific category; it is not a direct measurement of this folder. Compare the folder sizes you can read instead of assuming they explain the entire total.',
         ],
         code: [
@@ -1531,7 +1531,7 @@ export const maintenanceGuides: Guide[] = [
         id: 'what-grows-and-why',
         title: '3. What grows, and why',
         paragraphs: [
-          'The large subfolders follow the apps you use. Each is managed by its app, and most apps offer a setting that shrinks it.',
+          'Start with the largest folder you recognize. Open the app that owns it and look for storage, downloads or cache settings. The options depend on the app.',
         ],
         items: [
           'Chat and collaboration apps: message and file caches per workspace. Their own settings usually offer a cache limit or a clear-cache button.',
@@ -1587,7 +1587,7 @@ export const maintenanceGuides: Guide[] = [
     description:
       'What Containers and Group Containers hold on a Mac, how to measure their size, and how to review saved work and shared app data before considering deletion.',
     summary:
-      'Containers are the private home folders macOS gives sandboxed apps; Group Containers are the shared ones a developer’s apps use together. Both can hold saved work after an app is removed. Check their contents and shared use before considering deletion.',
+      'A large container can hold an app’s saved work as well as its downloads. Group Containers can belong to several apps at once. Before removing anything, find out who uses it and whether you need the data.',
     published: '2026-09-06',
     updated: '2026-09-15',
     sections: [
@@ -1615,7 +1615,7 @@ export const maintenanceGuides: Guide[] = [
         id: 'what-is-usually-large',
         title: '3. What is usually large',
         paragraphs: [
-          'The names on your Mac will differ, but the pattern is consistent: containers grow where an app stores mail, messages, media or offline copies.',
+          'Look for the apps you use for mail, messages and offline media. Their containers may be large because they store content you asked to keep on your Mac.',
         ],
         items: [
           'Mail’s container: opened attachments in its Mail Downloads folder. Shrink it through Mail, as the Mail guide describes.',
@@ -1629,7 +1629,7 @@ export const maintenanceGuides: Guide[] = [
         id: 'decide-what-can-go',
         title: '4. Decide what can go',
         paragraphs: [
-          'While an app is installed, change its container through the app: clear its cache, lower its limits, sign out of a workspace, remove downloaded content. Deleting the container underneath a running app corrupts its state and, for a sandboxed app, wipes settings and local data it cannot rebuild from anywhere.',
+          'Use the app’s own controls to clear caches or remove downloaded content. Read any confirmation carefully, especially when sync is involved. Deleting a container while its app is running can damage settings or erase local work.',
           'Removing an app leaves a separate decision about its saved data. Apple recommends the maker’s uninstaller when available; its instructions can explain which support files belong to the app. Before removing a container, check for local documents or databases, save anything you need and confirm that no installed app or extension uses it. A shared suite container can still be needed after one app is uninstalled. If ownership or contents are unclear, leave it.',
         ],
       },
