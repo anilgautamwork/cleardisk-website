@@ -1093,7 +1093,7 @@ export const maintenanceGuides: Guide[] = [
     summary:
       'Dragging an app to the Trash removes the app but not its settings, caches or login items. Use the maker’s uninstaller when there is one, then review what stays behind in your Library.',
     published: '2026-09-06',
-    updated: '2026-09-06',
+    updated: '2026-09-15',
     sections: [
       {
         id: 'check-for-an-uninstaller',
@@ -1138,7 +1138,7 @@ export const maintenanceGuides: Guide[] = [
         title: '5. Login items, extensions and the last check',
         paragraphs: [
           'Open System Settings → General → Login Items & Extensions and remove anything that belonged to the app; a leftover helper is the most common reason a deleted app still appears to run. Then empty the Trash and check System Settings → General → Storage.',
-          'The Library guide explains those folders and which to leave alone. If you would rather not search by hand, the free-tools guide lists uninstallers that do this search for you, and ClearDisk’s free scan shows Application Support, Containers and Caches with allocated sizes so you can review a leftover before it goes to the Trash. Keep documents; only the app’s own data is the target.',
+          'The Library guide explains those folders and which to leave alone. If you would rather not search by hand, the free-tools guide lists uninstallers that do this search for you, and ClearDisk’s free scan shows Application Support, Containers and Caches with allocated sizes so you can review a leftover before it goes to the Trash. Keep documents and any app database you still need. ClearDisk blocks general Application Support and container data from removal; use the maker’s instructions for those folders.',
         ],
       },
       {
@@ -1502,11 +1502,11 @@ export const maintenanceGuides: Guide[] = [
     slug: 'application-support-folder-mac',
     title: 'Application Support folder on Mac: what is safe to delete',
     description:
-      'What the Application Support folder holds, why it grows, how to open and measure it, which subfolders can go after an app is gone, and what never to delete.',
+      'What the Application Support folder holds, how to measure it, and why removing an app does not make its saved documents, databases or shared data disposable.',
     summary:
-      'Application Support is where apps keep the data they need between launches: settings, databases, downloaded content, licenses. It is review-only while an app is installed and fair game for the folders of apps you removed.',
+      'Application Support is where apps keep the data they need between launches: settings, databases, downloaded content, licenses. Removing an app does not make its saved data disposable. Check what a folder holds and preserve anything you need before considering removal.',
     published: '2026-09-06',
-    updated: '2026-09-06',
+    updated: '2026-09-15',
     sections: [
       {
         id: 'what-it-holds',
@@ -1521,7 +1521,7 @@ export const maintenanceGuides: Guide[] = [
         title: '2. Open it and measure it',
         paragraphs: [
           'Apple’s Finder guide gives the route: choose Go → Go to Folder, type ~/Library/Application Support and press Return, or hold Option, open the Go menu and choose Library. Switch to list view and click Size, or select a subfolder and press Command-I. In Terminal, one read-only command sizes every subfolder and sorts them smallest to largest.',
-          'Storage settings counts this folder inside System Data, which is why a large Application Support shows up as an unexplained category rather than as an app. The two or three biggest subfolders usually explain the whole number.',
+          'Some app support data can appear in System Data. Apple defines that category as files that do not fit a more specific category; it is not a direct measurement of this folder. Compare the folder sizes you can read instead of assuming they explain the entire total.',
         ],
         code: [
           'du -sh ~/Library/Application\\ Support/* 2>/dev/null | sort -h',
@@ -1539,15 +1539,15 @@ export const maintenanceGuides: Guide[] = [
           'Developer tools and editors: extensions, language servers, indexes and workspace storage. Uninstall extensions you no longer use.',
           'Music and audio apps: sound libraries and instrument content, often tens of gigabytes, with an in-app download manager to remove them.',
           'Browsers and launchers: profiles, updates and game libraries. Remove games and profiles inside the app rather than in Finder.',
-          'Folders named after apps you deleted: the only subfolders you can remove outright, because nothing reads them any more.',
+          'Folders named after apps you deleted: review their contents and the maker’s removal instructions. They can still hold documents, databases or data shared with other apps.',
         ],
       },
       {
         id: 'what-is-safe-to-delete',
         title: '4. Decide what is safe to delete',
         paragraphs: [
-          'Apply three rules. If the app is still installed, change the folder through the app, not Finder. If the app is gone, its subfolder can go to the Trash; Apple’s page on deleting apps notes that uninstalling does not remove files an app stored elsewhere, and this is where most of them are. If you cannot tell which app a folder belongs to, leave it, because vendors name folders after companies and bundle identifiers as well as products.',
-          'Move to the Trash rather than deleting immediately, run the apps you use once, and empty the Trash afterwards. Keep a Time Machine backup current before a large removal so a mistake costs minutes, not data.',
+          'Use the app’s storage controls or its maker’s uninstaller first. Uninstalling an app does not prove that its remaining data is disposable: a folder can contain a local database, saved work or resources shared with another app. Identify the owner, check the contents and export or back up anything you need before considering removal. Leave unfamiliar folders alone.',
+          'For example, a folder named after a removed note-taking app may hold your only copy of old notes. Reinstall the app and export them if necessary. Only move a folder to the Trash after confirming that its data is unwanted and no installed app depends on it. Verify your backup before emptying the Trash; simply waiting a few days does not establish that deletion is safe.',
         ],
       },
       {
@@ -1555,7 +1555,7 @@ export const maintenanceGuides: Guide[] = [
         title: '5. What never to delete',
         paragraphs: [
           'Do not delete the Application Support folder itself, anything under /Library/Application Support that you did not install, or subfolders named for Apple, CrashReporter, com.apple or iCloud; macOS and its services store data there. Do not delete a running app’s folder to fix a problem; reinstalling the app or using its reset option is the supported route.',
-          'A disk scanner takes the guesswork out of step two. ClearDisk’s free scan lists Application Support subfolders with allocated sizes and labels them Review, shows the path so you can match a folder to its app, and moves what you choose to the Trash first. It does not offer system and account folders for removal, which is the boundary this guide keeps by hand.',
+          'ClearDisk’s free scan helps you inspect paths and sizes. Its removal guard blocks general Application Support data; local device backups have a separate exception. Review ordinary app data through the owning app or its maker’s instructions. A large folder is not necessarily disposable.',
         ],
       },
     ],
@@ -1585,11 +1585,11 @@ export const maintenanceGuides: Guide[] = [
     slug: 'containers-folder-mac',
     title: 'Group Containers and Containers on Mac: safe to delete?',
     description:
-      'What the Containers and Group Containers folders in a Mac’s Library hold, why an app’s container can be huge, and which ones can go when the app is gone.',
+      'What Containers and Group Containers hold on a Mac, how to measure their size, and how to review saved work and shared app data before considering deletion.',
     summary:
-      'Containers are the private home folders macOS gives sandboxed apps; Group Containers are the shared ones a developer’s apps use together. Both are review-only while the apps are installed, and both are protected by macOS for a reason.',
+      'Containers are the private home folders macOS gives sandboxed apps; Group Containers are the shared ones a developer’s apps use together. Both can hold saved work after an app is removed. Check their contents and shared use before considering deletion.',
     published: '2026-09-06',
-    updated: '2026-09-06',
+    updated: '2026-09-15',
     sections: [
       {
         id: 'what-they-are',
@@ -1604,7 +1604,7 @@ export const maintenanceGuides: Guide[] = [
         title: '2. Open them and measure them',
         paragraphs: [
           'Choose Go → Go to Folder in Finder and type ~/Library/Containers or ~/Library/Group Containers. Inside a container you will find a Data folder that mirrors a home folder, with its own Library, Documents and Downloads; that structure is why the folder can be large and why it confuses a first look. In Terminal, one read-only command sizes every container and sorts them.',
-          'Storage settings counts both folders inside System Data. A handful of entries usually explain the total, and they belong to the apps you would expect.',
+          'Some container data can appear in System Data, but the category is not a direct measurement of these folders. The commands only report readable entries; access restrictions can leave files out.',
         ],
         code: [
           'du -sh ~/Library/Containers/* 2>/dev/null | sort -h | tail -15',
@@ -1622,7 +1622,7 @@ export const maintenanceGuides: Guide[] = [
           'Office and productivity suites: a group container shared by the suite, often holding a mail client’s profile and cached content. Manage it inside the apps.',
           'Chat, meeting and collaboration apps: caches of files and media per workspace, with a cache limit or clear-cache control in the app’s own settings.',
           'iCloud-related group containers: local state for iCloud Drive and syncing. Leave them; the cloud drive guides cover the actual space.',
-          'Containers named for apps you deleted: the only entries that can go outright, because nothing reads them any more.',
+          'Containers named for apps you deleted: check for saved documents and databases before considering removal. Group Containers may still serve other apps or extensions.',
         ],
       },
       {
@@ -1630,7 +1630,7 @@ export const maintenanceGuides: Guide[] = [
         title: '4. Decide what can go',
         paragraphs: [
           'While an app is installed, change its container through the app: clear its cache, lower its limits, sign out of a workspace, remove downloaded content. Deleting the container underneath a running app corrupts its state and, for a sandboxed app, wipes settings and local data it cannot rebuild from anywhere.',
-          'When an app is gone, its container and any group container that only that app used are leftovers. Apple’s page on deleting apps notes that uninstalling does not remove data an app stored elsewhere, and containers are the main such place. Move them to the Trash, keep the Trash for a few days, then empty it. If a group container name matches a suite you still use, leave it; the other apps in the group depend on it.',
+          'Removing an app leaves a separate decision about its saved data. Apple recommends the maker’s uninstaller when available; its instructions can explain which support files belong to the app. Before removing a container, check for local documents or databases, save anything you need and confirm that no installed app or extension uses it. A shared suite container can still be needed after one app is uninstalled. If ownership or contents are unclear, leave it.',
         ],
       },
       {
@@ -1638,7 +1638,7 @@ export const maintenanceGuides: Guide[] = [
         title: '5. What never to delete',
         paragraphs: [
           'Never delete containers named com.apple or group.com.apple; they belong to macOS apps and services and are protected for a reason. Do not delete the Containers or Group Containers folders themselves, and do not remove the protection by copying data out and back with Terminal to get around a prompt.',
-          'ClearDisk’s free scan shows both folders with allocated sizes and marks them Review, which means it lists them with their paths but does not offer system and account containers for removal. That is the same boundary this guide asks you to keep by hand: measure freely, change through the app, delete only what belongs to an app that is already gone.',
+          'ClearDisk can help you inspect paths and sizes. Its removal guard blocks Containers and Group Containers, including their contents. Use the owning app or its maker’s instructions to manage that data; a scan result is not permission to delete it.',
         ],
       },
     ],

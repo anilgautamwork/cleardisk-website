@@ -266,7 +266,7 @@ export const faqTopics: FaqTopic[] = [
       'Short answers about removing Mac apps: why an app will not delete, how to uninstall completely, what is left in the Library, and whether Apple apps can go.',
     intro:
       'Dragging an app to the Trash removes the app but not everything it stored. These answers cover the questions that follow, from stubborn apps to the folders they leave behind.',
-    updated: '2026-09-06',
+    updated: '2026-09-15',
     questions: [
       {
         id: 'cant-delete-app',
@@ -279,7 +279,7 @@ export const faqTopics: FaqTopic[] = [
         id: 'completely',
         question: 'How do I completely uninstall an app?',
         answer:
-          'Run the maker’s uninstaller if there is one, otherwise move the app to the Trash, then remove its leftovers in Application Support, Containers and Caches and any login item it installed.',
+          'Use the maker’s uninstaller when available. Otherwise, quit the app and move it to the Trash. Review remaining support data separately: it may contain saved work or be shared with other apps. Back up anything needed and follow the maker’s removal instructions.',
         guide: 'uninstall-apps-on-mac',
       },
       {
@@ -300,21 +300,21 @@ export const faqTopics: FaqTopic[] = [
         id: 'leftovers',
         question: 'What does an app leave behind after uninstalling?',
         answer:
-          'Its settings, databases and downloaded content in Application Support, its sandbox data in Containers, its caches, preferences, and sometimes a login item or launch agent. None of it is removed by deleting the app.',
+          'Dragging an app to the Trash can leave settings, databases, downloaded content, containers and helpers. A maker’s uninstaller may remove some of these. Check its instructions and preserve saved work before removing remaining data.',
         guide: 'application-support-folder-mac',
       },
       {
         id: 'application-support',
         question: 'Can I delete the Application Support folder?',
         answer:
-          'Not the folder itself, and not the subfolders of apps you still use. Subfolders named for apps you have already removed can go to the Trash; anything you cannot match to an app should stay.',
+          'Do not delete the whole folder. Even a removed app’s subfolder may hold documents, databases or shared data. Check its contents, preserve anything needed and follow the maker’s instructions. Leave it alone if you cannot establish what it holds.',
         guide: 'application-support-folder-mac',
       },
       {
         id: 'containers',
         question: 'Can I delete the Containers or Group Containers folders?',
         answer:
-          'Never the folders themselves or anything named com.apple. A container for an app you have removed is a leftover and can go; a group container shared by a suite you still use must stay.',
+          'Do not delete the folders themselves or Apple service containers. Removing an app does not make its container disposable: saved work may remain, and other apps or extensions may use a group container. Identify and back up needed data before following the maker’s removal instructions.',
         guide: 'containers-folder-mac',
       },
       {
