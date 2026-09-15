@@ -2,6 +2,14 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Campaign day 3 — 15 September 2026
+
+Published a focused correction to https://cleardisk.app/recover-deleted-icloud-drive-files-mac . Added concrete Drive/iWork and other-app recovery steps and Apple's warning not to edit/delete Drive data during recovery. Simplified one abstract paragraph; generic edit in the existing tone, no approved personal voice profile used. Source rechecked: https://support.apple.com/en-euro/guide/icloud/-mmae56ea1ca5/icloud . No new guides, search-volume claims or feature promises.
+
+Worker217563f5-aab8-4bf9-a978-4e89b4e2727d deployed.43tests,typecheck,lint,build and72liveHTML SEO checks passed; exact changed copy,sitemap lastmod,DMGchecksum and bothanalytics401 checked. Metadata and sitemap date updated; no fresh Google indexing confirmation is claimed. Earlier same-day Search Console audit remains the latest recorded Google evidence.
+
+Created marketing-progress.md without resetting the owner's September13–October12 schedule. Baseline at10:03UTC: website26requests across last30UTCdays,8acrosslast7; GitHub2cumulative separately. Counts are requests, not installs or revenue. No paid tools, social messages or account changes. Next: improve existing guides and prepare disposable-data demo outlines for campaigndays4–7.
+
 ## Published content refresh — 15 September 2026
 
 Cloudflare authentication was restored. Deployed the previously pending safety corrections and a plain-language edit of the Application Support and Containers guides to cleardisk.app. Live Worker version: f1f6a440-c016-4b4e-9682-068513d52329. Updated pages: /application-support-folder-mac, /containers-folder-mac, /uninstall-apps-on-mac and /faq/uninstall-apps. No duplicate articles were added; the library remains 52 guides and the sitemap 67 URLs. This entry supersedes the deployment blocker below.

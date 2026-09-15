@@ -435,22 +435,23 @@ export const icloudGuides: Guide[] = [
     summary:
       'Stop further cleanup and check the recoverable locations first. Recovery depends on what was deleted, when it happened, and whether it was permanently removed.',
     published: '2026-09-09',
-    updated: '2026-09-09',
+    updated: '2026-09-15',
     sections: [
       {
         id: '1-distinguish-deletion-from-a-removed-download',
         title: 'Distinguish deletion from a removed download',
         paragraphs: [
           'If the item is still visible in iCloud Drive with a cloud-only state, its local content may simply need downloading. That is different from a document missing from the folder after a delete action.',
-          'Our first check is the filename, expected folder and intended account. Search carefully for renamed or moved copies before restoring an older version over current work. A missing item in a local scanner does not establish that the cloud original was deleted.',
+          'Check the filename, folder and Apple Account first. Search for renamed or moved copies before restoring an older version over current work. If a local scanner cannot find a file, that alone does not mean the cloud original was deleted.',
         ],
       },
       {
         id: '2-check-trash-and-web-recovery',
         title: 'Check Trash and web recovery',
         paragraphs: [
-          'Look in the Mac’s Trash for the document. Apple also documents recovery of eligible deleted files through iCloud.com within 30 days. In iCloud Drive on the web, inspect Recently Deleted; other supported app files may appear through Data Recovery.',
-          'Permanently removed files cannot be recovered through that Apple recovery workflow. Do not promise yourself a second chance before emptying Trash or choosing permanent deletion. If the item is recoverable, restore it and check its original folder.',
+          'Check the Mac’s Trash first. For iCloud Drive or iWork files, sign in at iCloud.com, open Drive and choose Recently Deleted. Select the files, then choose Recover. Apple allows recovery of eligible files deleted within the last 30 days.',
+          'For files from other supported apps, open Data Recovery on iCloud.com, choose Restore Files, select the items and choose Restore Files again. Recovered files return to their original folders. Files you permanently removed cannot be restored through this workflow.',
+          'Wait until recovery finishes before editing or deleting anything in iCloud Drive. Apple warns that changes during recovery can interrupt it. Do not start another cleanup while you wait.',
         ],
       },
       {
