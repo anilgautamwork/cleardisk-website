@@ -1,3 +1,4 @@
+import { verifiedPurchase, type AdsPurchase } from './ads-purchase.ts';
 import { cleanAttribution } from './attribution.ts';
 export type CheckoutEnvironment = {
   STRIPE_SECRET_KEY?: string;
@@ -84,10 +85,14 @@ export async function startCheckout(
   // Ad click ids and campaign labels ride along so a sale can be matched to
   // its ad later (offline conversion import); nothing is sent to Google here.
   const body = await request.json().catch(() => null);
+  const adsConsent =
+    (body as { adsConsent?: unknown } | null)?.adsConsent === 'granted';
+  form.set('metadata[ads_consent]', adsConsent ? 'granted' : 'denied');
   const attribution = cleanAttribution(
     (body as { attribution?: unknown } | null)?.attribution,
   );
   for (const [key, value] of Object.entries(attribution)) {
+    if (['gclid', 'gbraid', 'wbraid'].includes(key) && !adsConsent) continue;
     form.set(`metadata[${key}]`, value);
     form.set(`payment_intent_data[metadata][${key}]`, value);
   }
@@ -149,6 +154,7 @@ export async function retrieveSession(
   paid: boolean;
   email: string | null;
   paymentIntent: string | null;
+  purchase: AdsPurchase | null;
 } | null> {
   const key = secret(env.STRIPE_SECRET_KEY);
   const mode = keyMode(key);
@@ -174,6 +180,7 @@ export async function retrieveSession(
     if (s.livemode !== (mode === 'live') || s.metadata?.product !== PRODUCT)
       return null;
     return {
+      purchase: await verifiedPurchase(s as Record<string, unknown>),
       id: sessionId,
       paid: s.payment_status === 'paid',
       email: s.customer_details?.email ?? null,

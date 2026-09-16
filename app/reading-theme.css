@@ -1151,3 +1151,41 @@ a:focus-visible {
   .product-sections { grid-template-columns: 1fr; gap: 36px; margin-top: 40px; }
   .product-page > p { font-size: 19px; }
 }
+
+.ads-consent {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 100;
+  max-width: 760px;
+  margin-inline: auto;
+  padding: 20px;
+  border: 1px solid #d8d8e0;
+  border-radius: 16px;
+  background: #fafafc;
+  color: #222;
+  box-shadow: 0 8px 32px #0002;
+}
+.ads-consent p {
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.ads-consent > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.ads-consent .button {
+  min-height: 44px;
+}
+.ads-preferences {
+  display: block;
+  margin: 16px auto;
+  padding: 12px;
+  text-decoration: underline;
+  color: #51515b;
+  cursor: pointer;
+}

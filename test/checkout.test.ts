@@ -133,6 +133,7 @@ void test('forwards clean ad attribution into session metadata and drops the res
     method: 'POST',
     headers: { origin, 'Content-Type': 'application/json' },
     body: JSON.stringify({
+      adsConsent: 'granted',
       attribution: {
         gclid: 'Cj0KCQjw-abc_123',
         utm_source: 'google',
@@ -199,6 +200,7 @@ void test('retrieveSession returns null for another product and paid details for
   );
   assert.deepEqual(session, {
     id: 'cs_test_example',
+    purchase: null,
     paid: true,
     email: 'buyer@example.com',
     paymentIntent: 'pi_1',

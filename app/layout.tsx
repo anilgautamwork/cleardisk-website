@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { GoogleAds } from '@/components/google-ads';
 import './reading-theme.css';
 import { organizationSchema, pageMetadata, SITE_URL } from '@/lib/seo';
 import { JsonLd } from '@/components/json-ld';
@@ -26,6 +27,7 @@ export default function RootLayout({
           Skip to content
         </a>
         {children}
+        <GoogleAds />
         <ClickAttribution />
         <JsonLd data={organizationSchema} />
       </body>

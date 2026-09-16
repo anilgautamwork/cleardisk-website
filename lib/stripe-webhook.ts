@@ -1,3 +1,4 @@
+import { recordOfflinePurchase } from './ads-purchase.ts';
 import { issueKey, revokeByPaymentIntent, type KVLike } from './license.ts';
 const enc = new TextEncoder();
 const hex = (buf: ArrayBuffer) =>
@@ -41,6 +42,7 @@ export async function handleStripeEvent(
   deps: Deps,
 ): Promise<'issued' | 'revoked' | 'ignored'> {
   const e = event as {
+    created?: number;
     type?: string;
     livemode?: unknown;
     data?: { object?: Record<string, unknown> };
@@ -61,6 +63,7 @@ export async function handleStripeEvent(
       typeof o.id !== 'string'
     )
       return 'ignored';
+    if (deps.live) await recordOfflinePurchase(deps.kv, o, e.created);
     // The thanks page can issue a key itself before this event arrives (and
     // Stripe can redeliver the same event); either way the session is
     // already recorded, so skip re-issuing and re-emailing.

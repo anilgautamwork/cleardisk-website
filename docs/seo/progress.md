@@ -2,6 +2,14 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Google Ads purchase measurement — 16 September 2026
+
+Implemented consent-gated Google Ads tracking with the owner's verified destination `AW-10925384709/MoykCO79r_kcEIXI0Nko`. Events require a fresh backend Stripe check of a live, complete, paid ClearDisk session; actual currency/amount and a stable hashed transaction ID are sent. No emails, license keys, sandbox orders, download clicks or success-page visits count as purchases. No GA4 integration exists; no duplicate conversion action was created.
+
+Added consented click attribution in checkout metadata and a signed-webhook purchase ledger with authenticated GCLID CSV export for buyers who never return. Google import action/mapping and delivery remain to be configured; this is not automatic server-to-Google tracking. Full configuration, changed files and Tag Assistant procedure: [purchase tracking report](../analytics/google-ads-purchases.md).
+
+Deployed Worker `1101539b-0f4b-4b4f-9af7-c50e91ae3b4d`. Passed 48 tests, typecheck, lint, build and 72 live HTML SEO-route checks. Chrome mobile/desktop consent checks passed; production loaded one tag after Allow and none after Decline/reload. Empty/sandbox purchase lookups returned null and unauthenticated export returned 401. No real payment made; genuine purchase receipt/attribution still needs observation.
+
 ## Campaign day 3 — 15 September 2026
 
 Published a focused correction to https://cleardisk.app/recover-deleted-icloud-drive-files-mac . Added concrete Drive/iWork and other-app recovery steps and Apple's warning not to edit/delete Drive data during recovery. Simplified one abstract paragraph; generic edit in the existing tone, no approved personal voice profile used. Source rechecked: https://support.apple.com/en-euro/guide/icloud/-mmae56ea1ca5/icloud . No new guides, search-volume claims or feature promises.

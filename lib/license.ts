@@ -52,7 +52,11 @@ export function normalizeKey(raw: string): string | null {
 }
 export type KVLike = {
   get(key: string): Promise<string | null>;
-  put(key: string, value: string): Promise<void>;
+  put(
+    key: string,
+    value: string,
+    options?: { expirationTtl?: number },
+  ): Promise<void>;
 };
 export type Activation = {
   machineId: string;

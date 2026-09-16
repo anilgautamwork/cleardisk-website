@@ -33,8 +33,8 @@ export default function Privacy() {
         <p>
           The interactive Mac window uses example data. It does not read your
           files or scan your device. The hosting provider may process
-          operational request logs. We do not include advertising pixels or
-          Talivia tracking.
+          operational request logs. Optional Google Ads measurement is described
+          below. Talivia tracking remains disabled.
         </p>
         <h2>Download measurement</h2>
         <p>
@@ -48,10 +48,18 @@ export default function Privacy() {
         </p>
         <h2>Ad measurement</h2>
         <p>
-          If you arrive from an ad, the click identifier in the link, such as
-          Google’s gclid, and the campaign labels are kept in your browser for
-          90 days and attached to a purchase so we can tell which ads lead to
-          sales. No advertising pixel or third-party script is loaded for this.
+          Google Ads loads only if you choose Allow measurement. Your choice is
+          saved in this browser and can be changed using Ad privacy settings. If
+          allowed, ad click identifiers and campaign labels are stored locally
+          for up to 90 days and attached to Stripe checkout. After a verified
+          live payment, Google receives the order value, currency and an
+          anonymous order identifier. We do not send your email, payment details
+          or license key. We do not enable personalized ads or enhanced
+          conversions. Declining clears our stored ad attribution and stops new
+          purchase events. Consented ad-linked orders are also retained on our
+          server for up to 90 days for offline conversion reconciliation when a
+          buyer does not return from Stripe; changing your browser choice does
+          not undo records already collected.
         </p>
         <h2>Payments</h2>
         <p>

@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, LoaderCircle } from 'lucide-react';
+import { adsConsent, CONSENT_EVENT } from '@/lib/ads-client';
 import { storedAttribution } from './click-attribution';
 type EmbeddedCheckout = { mount(target: HTMLElement): void; destroy(): void };
 type StripeJs = (publishableKey: string) => {
@@ -42,10 +43,10 @@ type CheckoutResponse = {
   publishableKey?: string;
   error?: string;
 };
-type Status = 'loading' | 'ready' | 'hosted' | 'error';
+type Status = 'privacy' | 'loading' | 'ready' | 'hosted' | 'error';
 /** Mounts Stripe's embedded checkout as soon as the buy page loads. */
 export function EmbeddedCheckoutCard({ label }: { label: string }) {
-  const [status, setStatus] = useState<Status>('loading');
+  const [status, setStatus] = useState<Status>('privacy');
   const [error, setError] = useState('');
   const [hostedUrl, setHostedUrl] = useState('');
   const [checkout, setCheckout] = useState<EmbeddedCheckout | null>(null);
@@ -58,7 +59,10 @@ export function EmbeddedCheckoutCard({ label }: { label: string }) {
       const r = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ attribution: storedAttribution() }),
+        body: JSON.stringify({
+          attribution: storedAttribution(),
+          adsConsent: adsConsent(),
+        }),
       });
       const data = (await r.json()) as CheckoutResponse;
       if (!r.ok) throw Error(data.error || 'Checkout is unavailable.');
@@ -82,9 +86,14 @@ export function EmbeddedCheckoutCard({ label }: { label: string }) {
     }
   }
   useEffect(() => {
-    if (started.current) return;
-    started.current = true;
-    void start();
+    const begin = () => {
+      if (started.current || adsConsent() === null) return;
+      started.current = true;
+      void start();
+    };
+    begin();
+    window.addEventListener(CONSENT_EVENT, begin);
+    return () => window.removeEventListener(CONSENT_EVENT, begin);
   }, []);
   useEffect(() => {
     if (!checkout || !mountRef.current) return;
@@ -95,6 +104,12 @@ export function EmbeddedCheckoutCard({ label }: { label: string }) {
   return (
     <div className="checkout-card">
       <div ref={mountRef} />
+      {status === 'privacy' ? (
+        <p>
+          Choose Allow or Decline in the privacy notice to load checkout. Both
+          choices let you buy ClearDisk.
+        </p>
+      ) : null}
       {status === 'loading' ? (
         <p className="checkout-loading" aria-live="polite">
           <LoaderCircle className="animate-spin" size={18} />

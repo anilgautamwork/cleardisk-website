@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { PurchaseTracking } from './purchase-tracking';
 const checking = 'Checking your payment with Stripe…';
 const maxAutoRetries = 10;
 const retryDelayMs = 3000;
@@ -79,6 +80,7 @@ export function PaymentResult({ sessionId }: { sessionId?: string }) {
     }
     return (
       <div className="notice">
+        {sessionId ? <PurchaseTracking sessionId={sessionId} /> : null}
         <h2>Your license key</h2>
         <code className="license-key">{key}</code>
         <button className="button secondary" onClick={copyKey}>
