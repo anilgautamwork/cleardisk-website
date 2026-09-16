@@ -2,6 +2,10 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Campaign day 4 — 16 September 2026 (local drafts only)
+
+Prepared docs/seo/demos/2026-09-16-recording-scripts.md: two 45-second demo scripts, captions, sample-data setup and no-deletion ending. Verified instructions against SystemDataView.swift, LargeFilesView.swift, FileRows.swift and DeleteForever.swift; checked the three linked website destinations return200. No recording, public content edit or deployment today from this campaign run; existing homepage changes recorded below are separate completed work. No new indexing confirmation or search-volume research claimed. Aggregate request metrics remain26website/30days,8website/7days,2GitHub cumulative separately. See marketing-progress.md for next steps. No owner action needed yet.
+
 ## Homepage keyword alignment — 16 September 2026
 
 Applied the owner-approved search title, “Mac Cleaner for System Data & Caches | ClearDisk”, and H1, “A Mac cleaner that puts you in control. Find the clutter. Choose what goes.” Updated the description and supporting copy around System Data, caches, large files and MacBook compatibility. Retained localized one-time cleanup pricing and the primary download action. Existing cache and System Data guides remain linked; no duplicate keyword pages or meta-keywords tag were added. The supplied 1,000–10,000 US search ranges are not treated as confirmed exact volume, ranking difficulty or conversion evidence.

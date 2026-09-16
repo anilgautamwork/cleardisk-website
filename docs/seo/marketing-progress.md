@@ -2,6 +2,14 @@
 
 Campaign schedule: 13 September–12 October 2026, 30 calendar days. The owner explicitly chose 13 September. This ledger was first created on 15 September (campaign day 3); no earlier scheduled-run completion is inferred. Preserve the original end date rather than extending the campaign when a ledger is missing. Prior manual work is in progress.md.
 
+## Day 4 — 16 September 2026
+
+Prepared two local 45-second recording scripts and caption drafts: [System Data and large-file review](demos/2026-09-16-recording-scripts.md). Checked UI labels, home-scan requirement, large-file threshold, review dialog and license gate against app source. Recording and external publication remain pending; no personal files scanned or deleted. Three destination URLs passed HTTP HEAD checks after correcting a draft URL typo. No app or website runtime changes, so no build/deployment was necessary.
+
+Read today's existing homepage and purchase-measurement entries before work; did not repeat those completed changes. No fresh indexing or ranking claims. No current Search Console query dataset was retrieved this run; the September 15 verified crawl audit remains the latest recorded evidence. Content/source work today concerns the app's own UI, verified against repository code; no new Apple troubleshooting advice or measured performance claims were added.
+
+Metrics at 2026-09-16T10:02:31.922Z: website last30 UTC days 26 requests; last7 8; GitHub 2 cumulative, separately. Counts unchanged since day3 and are not installs or sales. Existing deployed URLs unchanged. Next: record the scripts using a dedicated demo account and sample files, then review timing and privacy before requesting approval for external posting. Continue targeted existing-guide corrections when a concrete gap is found; do not add filler.
+
 ## Day 3 — 15 September 2026
 
 Reviewed the latest handoff and today's completed content work; did not repeat the Application Support/Containers refresh. Improved the existing /recover-deleted-icloud-drive-files-mac guide with concrete recovery controls and Apple's missing warning to avoid edits/deletions during recovery. Generic plain-language edit, no personal voice imitation or invented scoring. Date/Article metadata/sitemap lastmod updated; no new article or duplicate URL.
