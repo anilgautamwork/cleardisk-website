@@ -10,8 +10,6 @@ import {
   Code2,
   FolderOpen,
   FileSearch,
-  Play,
-  ChevronRight,
   Undo2,
   Laptop,
 } from 'lucide-react';
@@ -74,53 +72,52 @@ export default async function Home() {
           <div className="hero-content wrap">
             <div className="hero-intro">
               <div className="hero-copy" data-reveal>
-                <Link className="eyebrow-pill" href="/download">
-                  Built for your Mac <ChevronRight size={13} />
-                </Link>
                 <h1>
-                  Clear System Data.
+                  Mac running out of space?
                   <br />
-                  <span>Make room for more.</span>
+                  <span>See what you can clear.</span>
                 </h1>
                 <p className="hero-description">
-                  See what’s taking up space on your Mac. Understand your System
-                  Data. Choose what stays and make room for what’s next.
+                  Understand System Data, find large files and review what to
+                  remove. ClearDisk scans locally. You choose what goes.
                 </p>
                 <div className="hero-ctas">
-                  <DownloadButton />
+                  <DownloadButton label="Download for Mac" />
                   <Link className="button quiet" href="/buy-now">
                     Buy for {price.display} <ArrowUpRight size={16} />
                   </Link>
-                  <a className="button quiet" href="#demo">
-                    <Play size={14} /> Explore the app
-                  </a>
                 </div>
-                <p className="software-disclosure">
-                  ClearDisk is a downloadable Mac app. It scans your disk on
-                  your Mac, shows what uses space and lets you move files you
-                  choose to the Trash. It does not change system settings,
-                  install extensions or upload your files. Remove it by moving
-                  ClearDisk to the Trash.
+                <p className="hero-offer">
+                  Free to scan. <strong>Cleanup is {price.display}, once.</strong>
+                  {' '}No subscription.
                 </p>
                 <div className="hero-details">
                   <span>macOS 15+</span>
                   <i />
-                  <span>Free to scan</span>
+                  <span>Apple silicon &amp; Intel</span>
                   <i />
-                  <span>Yours for {price.display}, once.</span>
-                </div>
-                <p className="icloud-home-note">
-                  Also in ClearDisk 1.1:{' '}
-                  <Link href="/icloud-doctor">
-                    understand iCloud Drive sync and local storage →
-                  </Link>
-                </p>
-                <div className="hero-reassurance">
-                  <ShieldCheck size={16} />
-                  <span>Local by design. Your files stay on your Mac.</span>
+                  <span>Files stay on your Mac</span>
                 </div>
               </div>
               <StoragePreview />
+            </div>
+            <div className="landing-details">
+              <p>
+                <ShieldCheck size={18} aria-hidden="true" />
+                Review first. Move selected files to the Trash.
+              </p>
+              <details>
+                <summary>What does ClearDisk install?</summary>
+                <p className="software-disclosure">
+                  ClearDisk is a downloadable Mac app. It does not change system
+                  settings, install extensions or upload your files. To uninstall,
+                  move ClearDisk to the Trash.
+                </p>
+              </details>
+              <Link href="/icloud-doctor">
+                Also includes iCloud Drive sync and storage diagnostics
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
             </div>
             <div className="demo-intro" data-reveal>
               <div>

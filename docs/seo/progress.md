@@ -2,6 +2,12 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Ad landing page refinement — 16 September 2026
+
+Shortened the homepage hero for ad visitors: a problem-led headline, Download for Mac as the primary action, a secondary localized purchase link, and explicit free scan / one-time cleanup pricing. Removed the third competing hero action and redundant introductory lines. Moved the app preview up, grouped compatibility details, and kept software installation/uninstallation information in an accessible native disclosure. iCloud diagnostics remains linked below the preview. Branding, navigation, analytics consent and verified-purchase tracking are preserved.
+
+Deployed Worker `7803be4f-7fc6-4012-aa4e-9767a6fa8e35`. Typecheck, lint, production build and 72 local and production route SEO checks passed. Live homepage copy was verified. Chrome desktop (1440×1000) and narrow (393×852) visual checks passed, with no horizontal overflow and working disclosure. This is a usability improvement, not a measured conversion-rate increase.
+
 ## Google Ads purchase measurement — 16 September 2026
 
 Implemented consent-gated Google Ads tracking with the owner's verified destination `AW-10925384709/MoykCO79r_kcEIXI0Nko`. Events require a fresh backend Stripe check of a live, complete, paid ClearDisk session; actual currency/amount and a stable hashed transaction ID are sent. No emails, license keys, sandbox orders, download clicks or success-page visits count as purchases. No GA4 integration exists; no duplicate conversion action was created.
