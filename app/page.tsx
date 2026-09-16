@@ -73,13 +73,14 @@ export default async function Home() {
             <div className="hero-intro">
               <div className="hero-copy" data-reveal>
                 <h1>
-                  Mac running out of space?
+                  A Mac cleaner that puts you in control.
                   <br />
-                  <span>See what you can clear.</span>
+                  <span>Find the clutter. Choose what goes.</span>
                 </h1>
                 <p className="hero-description">
-                  Understand System Data, find large files and review what to
-                  remove. ClearDisk scans locally. You choose what goes.
+                  ClearDisk helps you understand System Data, review app caches
+                  and find large files on your MacBook or desktop Mac. Scan for
+                  free. Choose what to remove.
                 </p>
                 <div className="hero-ctas">
                   <DownloadButton label="Download for Mac" />
@@ -171,7 +172,7 @@ export default async function Home() {
                 <span className="icon-tile">
                   <Layers3 />
                 </span>
-                <h3>The mystery, solved.</h3>
+                <h3>See what’s inside your Mac’s System Data.</h3>
                 <p>
                   Caches. Old backups. Years of app leftovers.
                   <br />
@@ -474,7 +475,7 @@ export default async function Home() {
               </span>
             </Link>
             <Link className="guide-card" href="/clear-cache-on-mac">
-              <h3>How do I clear the cache?</h3>
+              <h3>Review app caches before you clear them.</h3>
               <p>
                 Safari, Chrome, app caches and the Library folder, without
                 deleting what apps still need.

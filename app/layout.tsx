@@ -7,8 +7,8 @@ import { JsonLd } from '@/components/json-ld';
 import { ClickAttribution } from '@/components/click-attribution';
 export const metadata: Metadata = {
   ...pageMetadata(
-    'ClearDisk — Clear System Data on Mac',
-    'Find what is filling your Mac with ClearDisk. Free local scanning, clear storage breakdowns and a $10 one-time cleanup license.',
+    'Mac Cleaner for System Data & Caches | ClearDisk',
+    'Understand System Data, review caches and find large files with ClearDisk, a Mac cleanup app. Free local scans. One-time paid cleanup. No subscription.',
     '/',
   ),
   verification: { google: 'w3gXqPIEHaBWE1faIs43-l-ZJhzy5RO7sLLwcObUlQE' },

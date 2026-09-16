@@ -17,7 +17,7 @@ export default function Features() {
           Choose what stays.
         </h1>
         <p>
-          ClearDisk brings your Mac’s storage into view, from large downloads to
+          ClearDisk is a Mac cleanup app that brings your storage into view, from large downloads to
           the files behind System Data. Scan for free, inspect the details, and
           review every cleanup.
         </p>
@@ -79,8 +79,8 @@ export default function Features() {
           <section>
             <h2>Built for your Mac</h2>
             <p>
-              ClearDisk 1.1 runs on macOS 15 and later, on Apple silicon and
-              Intel. Scan results stay on your Mac. Existing ClearDisk licenses
+              For MacBook Air, MacBook Pro and desktop Macs running macOS 15
+              or later. ClearDisk supports Apple silicon and Intel. Scan results stay on your Mac. Existing ClearDisk licenses
               include the iCloud Doctor actions.
             </p>
             <Link href="/pricing">Compare free scanning and the license</Link>

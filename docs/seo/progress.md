@@ -2,6 +2,12 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Homepage keyword alignment — 16 September 2026
+
+Applied the owner-approved search title, “Mac Cleaner for System Data & Caches | ClearDisk”, and H1, “A Mac cleaner that puts you in control. Find the clutter. Choose what goes.” Updated the description and supporting copy around System Data, caches, large files and MacBook compatibility. Retained localized one-time cleanup pricing and the primary download action. Existing cache and System Data guides remain linked; no duplicate keyword pages or meta-keywords tag were added. The supplied 1,000–10,000 US search ranges are not treated as confirmed exact volume, ranking difficulty or conversion evidence.
+
+Deployed Worker `12665a00-58c3-4c68-9c36-fee6ee533ebc`. Typecheck, lint, production build and 72 local and live route checks passed. Production title and H1 were verified. Desktop and 393px mobile copy checks passed with no horizontal overflow. Google recrawl, ranking and conversion changes remain unverified.
+
 ## Ad landing page refinement — 16 September 2026
 
 Shortened the homepage hero for ad visitors: a problem-led headline, Download for Mac as the primary action, a secondary localized purchase link, and explicit free scan / one-time cleanup pricing. Removed the third competing hero action and redundant introductory lines. Moved the app preview up, grouped compatibility details, and kept software installation/uninstallation information in an accessible native disclosure. iCloud diagnostics remains linked below the preview. Branding, navigation, analytics consent and verified-purchase tracking are preserved.
