@@ -254,21 +254,21 @@ export const icloudGuides: Guide[] = [
     summary:
       'Download Now requests a local copy. Keep Downloaded asks Finder to retain selected content. Prepare and verify the files your work needs before losing your connection.',
     published: '2026-09-09',
-    updated: '2026-09-09',
+    updated: '2026-09-18',
     sections: [
       {
         id: '1-make-an-offline-working-set',
         title: 'Make an offline working set',
         paragraphs: [
           'List the documents needed for the actual task: a presentation, its source images, reference PDFs and any linked assets. A main document that opens is not sufficient if its references remain unavailable.',
-          'Our suggested approach is a small, named working set. Avoid selecting your entire Drive as a shortcut, especially if the Mac is already short of space. Check available local capacity before requesting a large collection. Include any app-specific credentials or licenses your workflow needs separately; downloading documents does not make a web-only app work offline.',
+          'Choose the project folders you need rather than downloading your entire Drive. Check free space on the Mac before requesting a large collection. Open the apps you plan to use and check their offline requirements, including sign-in or license checks. Downloading a document will not make a web-only app work offline.',
         ],
       },
       {
         id: '2-choose-the-right-finder-control',
         title: 'Choose the right Finder control',
         paragraphs: [
-          'Apple documents Download Now for retrieving content and Keep Downloaded for retaining selected items despite storage optimization. Finder’s wording and availability depend on the macOS version and current file state.',
+          'Open Finder and select iCloud Drive in the sidebar. Control-click an online-only file and choose Download Now to retrieve it. To retain a file or folder when Optimize Mac Storage is enabled, Control-click it and choose Keep Downloaded. Look for the Keep Downloaded icon beside its name. Available controls depend on your macOS version and the current file state.',
           'ClearDisk 1.1’s download action requests retrieval; it is not persistent pinning. Use Finder for Keep Downloaded. If you need retention beyond the current session, make that choice explicitly instead of assuming every downloaded file will stay forever.',
         ],
       },
@@ -276,7 +276,7 @@ export const icloudGuides: Guide[] = [
         id: '3-verify-with-the-work-itself',
         title: 'Verify with the work itself',
         paragraphs: [
-          'Wait for the download state to finish, then open the needed documents and their supporting resources. Our recommended offline check is to save work, temporarily disconnect, and confirm that the task can be completed from the local copies.',
+          'Wait for downloads to finish, then open the documents and their supporting files. Before travelling, save your work and briefly disconnect from the internet to rehearse the task. For a presentation, check that linked images appear and embedded videos play. Reconnect afterward so any saved changes can sync.',
           'Do not treat that check as a backup test. A locally available document still participates in synchronization when the connection returns. Keep a separate backup for work that needs independent retention.',
         ],
       },
@@ -284,7 +284,7 @@ export const icloudGuides: Guide[] = [
         id: '4-review-the-working-set-afterward',
         title: 'Review the working set afterward',
         paragraphs: [
-          'When the trip or project ends, revisit the files you retained. Decide which still need offline access and which you can retrieve later. Age alone is not proof a document is unused.',
+          'After the trip, review which files still need offline access. For an item you no longer need to retain, Control-click it in Finder and choose Keep Downloaded again to clear the checkmark. This changes the retention setting; do not assume it immediately frees disk space.',
           'If you choose to reduce local copies, confirm their latest edits are uploaded first. Removing a local download affects offline availability and Mac storage; deleting the original affects the synced document. Use the local-storage guide for that separate decision.',
         ],
       },
