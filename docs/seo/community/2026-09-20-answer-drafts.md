@@ -37,3 +37,11 @@ The r/MacOS rules URL redirected to a moderator rules page without readable rule
 If a later reply mentions ClearDisk or links our guides, explicitly disclose “I make ClearDisk” and only include the link if it directly helps and the community permits it. These native-step drafts need no product link.
 
 Next: find a fresh unresolved iCloud question and verify both communities' rules before adapting these drafts for owner review. Do not publish near-identical replies across threads.
+
+## Rule research update — 21 September 2026
+
+Opened the [r/MacOS moderator announcement](https://www.reddit.com/r/MacOS/comments/1ntopuw/new_rules_for_app_self_promotion/). Its September 2025 policy limits self-promotion to Mac App Store apps and explicitly excludes other distribution. ClearDisk's recorded release uses direct DMG distribution; do not plan a ClearDisk promotional post there on the basis of notarization. Helpful native-only answers are still drafts, not permission to distribute promotional links.
+
+Also opened the [r/macapps Phase 3 moderator announcement](https://www.reddit.com/r/macapps/comments/1ryaeex/rmacapps_mods_went_too_far_whats_changing_phase_3/). It describes problem/comparison/pricing content and trust/transparency paths or a megathread. The post explicitly calls its tier scheme an experiment for the following month, so this six-month-old announcement does not establish today's eligibility. Do not assert that we qualify or invent competitor comparisons. Check current rules and the actual posting account before proposing a destination.
+
+Direct old.reddit rules pages were inaccessible through the research tool. r/mac rules remain unverified. No fresh suitable iCloud question was established by today's search. Keep the older shared-folder case as research; no revival or external posting recommended.
