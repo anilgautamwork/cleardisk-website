@@ -203,3 +203,22 @@ void test('key email carries the key, the activate link and support address', ()
     assert.ok(part.includes('hello@cleardisk.app'));
   }
 });
+
+void test('developer alias requires an active record and obeys machine limits', async () => {
+  const kv = memoryKV();
+  const key = 'CLDK-0000-0001-2345-6789';
+  const body = { key: '123456789', machineId: 'dev-1' };
+  assert.equal(normalizeKey(' 123456789 '), key);
+  assert.equal(normalizeKey('123456788'), null);
+  assert.equal((await activate(kv, body)).status, 404);
+  const record = { key, email: 'Developer testing', sessionId: 'manual-developer',
+    paymentIntent: null, status: 'active', createdAt: new Date().toISOString(), activations: [] };
+  await kv.put('key:' + key, JSON.stringify(record));
+  for (const machineId of ['dev-1', 'dev-2', 'dev-3'])
+    assert.equal((await activate(kv, { ...body, machineId })).status, 200);
+  assert.equal((await activate(kv, { ...body, machineId: 'dev-4' })).status, 409);
+  const saved = JSON.parse((await kv.get('key:' + key))!);
+  saved.status = 'revoked';
+  await kv.put('key:' + key, JSON.stringify(saved));
+  assert.equal((await activate(kv, body)).status, 403);
+});

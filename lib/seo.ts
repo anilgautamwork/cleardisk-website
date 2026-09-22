@@ -133,7 +133,7 @@ export const softwareSchema = {
   name: 'ClearDisk',
   operatingSystem: 'macOS 15 or later',
   applicationCategory: 'UtilitiesApplication',
-  softwareVersion: '1.1.0',
+  softwareVersion: '1.1.1',
   url: SITE_URL,
   downloadUrl: SITE_URL + '/download',
   image: OG_IMAGE,
