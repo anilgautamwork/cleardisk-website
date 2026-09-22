@@ -1,8 +1,8 @@
 ## Current release — 22 September 2026
 
-The production website serves ClearDisk 1.1.1 build 8. See [the release record](releases-1.1.1.md) for signing, notarization, the owner-approved developer-license behavior and validation. Paid licenses retain the existing $10 pricing and three-Mac limit. Preserve the current payment configuration.
+The production website serves ClearDisk 1.1.1 build 9. See [the release record](releases-1.1.1.md) for signing, notarization, the owner-approved developer-license behavior and validation. Paid licenses retain the existing $10 pricing and three-Mac limit. Preserve the current payment configuration.
 
-Campaign verification at 10:03 UTC: /download reports 1.1.1; public DMG is 4,080,490 bytes and SHA256 c6bcc9ed671ae922618947f4dfa6283904afa5c1a0ac2a1f9e27b946b900a862. GitHub's latest published release is still v1.1.0, so do not describe GitHub assets as 1.1.1. The canonical website download is current. Sitemap contains 67 URLs; both private analytics routes reject anonymous access with 401. No fresh Search Console indexing evidence was obtained today.
+Latest release verification (supersedes the 10:03 UTC build8 check): /download reports 1.1.1; public DMG is 4,052,016 bytes and SHA256 37eed6bab6bf809a1c568043015db6ec5cafdd062c587b8f8fc3979658b18d75. GitHub's latest published release is still v1.1.0, so do not describe GitHub assets as 1.1.1. The canonical website download is current. Sitemap contains 67 URLs; both private analytics routes reject anonymous access with 401. No fresh Search Console indexing evidence was obtained today.
 
 ## Full product navigation — 9 September 2026
 
