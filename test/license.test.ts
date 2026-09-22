@@ -204,7 +204,7 @@ void test('key email carries the key, the activate link and support address', ()
   }
 });
 
-void test('developer alias requires an active record and obeys machine limits', async () => {
+void test('developer alias requires an active record but has no machine limit', async () => {
   const kv = memoryKV();
   const key = 'CLDK-0000-0001-2345-6789';
   const body = { key: '123456789', machineId: 'dev-1' };
@@ -216,7 +216,8 @@ void test('developer alias requires an active record and obeys machine limits', 
   await kv.put('key:' + key, JSON.stringify(record));
   for (const machineId of ['dev-1', 'dev-2', 'dev-3'])
     assert.equal((await activate(kv, { ...body, machineId })).status, 200);
-  assert.equal((await activate(kv, { ...body, machineId: 'dev-4' })).status, 409);
+  for (let i = 4; i <= 10; i++)
+    assert.equal((await activate(kv, { ...body, machineId: 'dev-' + i })).status, 200);
   const saved = JSON.parse((await kv.get('key:' + key))!);
   saved.status = 'revoked';
   await kv.put('key:' + key, JSON.stringify(saved));

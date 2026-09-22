@@ -208,7 +208,10 @@ export async function activate(kv: KVLike, body: unknown, now = new Date()) {
   const existing = record.activations.find((a) => a.machineId === machineId);
   if (existing)
     Object.assign(existing, { machineName, appVersion, lastSeenAt: at });
-  else if (record.activations.length >= MAX_ACTIVATIONS)
+  else if (
+    key !== 'CLDK-0000-0001-2345-6789' &&
+    record.activations.length >= MAX_ACTIVATIONS
+  )
     return {
       status: 409 as const,
       body: {
