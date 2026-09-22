@@ -1,0 +1,6 @@
+/updates/appcast.xml
+  Cache-Control: no-cache, max-age=0, must-revalidate
+  X-Robots-Tag: noindex
+
+/updates/*
+  X-Robots-Tag: noindex

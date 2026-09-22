@@ -1,4 +1,12 @@
-## Current release — 22 September 2026
+## Current release — ClearDisk 2.0.0 (11), 22 September 2026
+
+Supersedes the 1.1.1 records below. Production DMG: 6,048,127 bytes; SHA256 375d29ab6f6586aff751389acdfbd165bf88e2f15594e0aaec81b45029be1903. App source e5c123b; deployed Worker 7714de32-4b91-471d-b065-cf6a5fdef577. See [release details](releases-2.0.0.md).
+
+The removal dialog requires lowercase `delete` instead of the filename. ClearDisk menu → Check for Updates now uses Sparkle with a signed HTTPS feed and verified archives. Updates install only with the user's choice. Users on1.1.1 or earlier need one manual download. Existing paid licenses and the owner-authorized developer key continue to work. The branded DMG shows the app, a down arrow and a real Applications folder link.
+
+Release scripts stage public/updates/appcast.xml and immutable versioned DMGs together. Keep previously published archives, the pinned verification key and the feed URL stable. Updater archive requests bypass new-download metrics. Both analytics routes remain private. Current payment mode, $10 pricing, Google verification and Talivia pause are unchanged. No new indexing claim.
+
+## Earlier release — 22 September 2026
 
 The production website serves ClearDisk 1.1.1 build 9. See [the release record](releases-1.1.1.md) for signing, notarization, the owner-approved developer-license behavior and validation. Paid licenses retain the existing $10 pricing and three-Mac limit. Preserve the current payment configuration.
 

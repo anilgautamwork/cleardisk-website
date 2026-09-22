@@ -1,0 +1,48 @@
+<?xml version="1.0" standalone="yes"?>
+<!-- sparkle-sign-warning:
+IMPORTANT: This file was signed by Sparkle. Any modifications to this file requires re-signing this file with generate_appcast or sign_update! The signed signature will be embedded at the end of this file.
+-->
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>ClearDisk</title>
+        <item>
+            <title>2.0.0</title>
+            <pubDate>Tue, 22 Sep 2026 18:28:42 +0530</pubDate>
+            <link>https://cleardisk.app/download</link>
+            <sparkle:version>11</sparkle:version>
+            <sparkle:shortVersionString>2.0.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h2>ClearDisk 2.0.0</h2>
+<ul>
+<li>Type <strong>delete</strong> to confirm permanent removal, without retyping long filenames. Move to Trash remains available.</li>
+<li>Check for Updates in the ClearDisk menu. Future releases download, verify, install and relaunch from the app when you choose.</li>
+<li>Updates are signed and verified before installation. Restart waits until active cleanup or iCloud file operations finish.</li>
+<li>A clearer drag-to-Applications installer with ClearDisk branding.</li>
+</ul>
+<p>Your existing license continues to work. ClearDisk 1.1.1 users need one manual download to get the new updater.</p>
+]]></description>
+            <enclosure url="https://cleardisk.app/updates/ClearDisk-2.0.0-11.dmg" length="6048127" type="application/octet-stream" sparkle:edSignature="M3edZhzc1GxBy3jsnoXkHtXYW+PHexgwT1op2RlJE4L3liwD6S1MIzKoMtZvg9MAH0DKFcpGMlEVnUAa8hrkDA=="/>
+        </item>
+        <item>
+            <title>2.0.0</title>
+            <pubDate>Tue, 22 Sep 2026 18:20:15 +0530</pubDate>
+            <link>https://cleardisk.app/download</link>
+            <sparkle:version>10</sparkle:version>
+            <sparkle:shortVersionString>2.0.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h2>ClearDisk 2.0.0</h2>
+<ul>
+<li>Type <strong>delete</strong> to confirm permanent removal, without retyping long filenames. Move to Trash remains available.</li>
+<li>Check for Updates in the ClearDisk menu. Future releases download, verify, install and relaunch from the app when you choose.</li>
+<li>Updates are signed and verified before installation. Restart waits until active cleanup or iCloud file operations finish.</li>
+</ul>
+<p>Your existing license continues to work. ClearDisk 1.1.1 users need one manual download to get the new updater.</p>
+]]></description>
+            <enclosure url="https://cleardisk.app/updates/ClearDisk-2.0.0-10.dmg" length="5133890" type="application/octet-stream" sparkle:edSignature="mMW7jXiTgXLcD13UTA23oAlAC8/bBhI0ykl1vFNzJTcUpxRtMmRZ8ipq50mPwdt2/uF6yw5M+58ZE5dKfd+lAw=="/>
+        </item>
+    </channel>
+</rss>
+<!-- sparkle-signatures:
+edSignature: EqzkCUZ4h02xcAwt6wG6sITnp79iN763OfotfIYDUiIslb+b3Zk4FRlF7mifbPNB9v6GFgk3Nvy8F6D6NQr2CA==
+length: 2982
+-->

@@ -56,7 +56,7 @@ export default async function Download({
           <ArrowDownToLine size={18} />
           Download ClearDisk
         </a>
-        <small>ClearDisk 1.1.1 · DMG · 4.1 MB</small>
+        <small>ClearDisk 2.0.0 · DMG</small>
         <p className="software-disclosure">
           ClearDisk is a downloadable Mac app. It scans your disk on your Mac,
           shows what uses space and lets you move files you choose to the Trash.
@@ -67,6 +67,17 @@ export default async function Download({
           <a href="https://cleardisk.app/SHA256SUMS.txt">
             SHA-256 checksum for this download
           </a>
+        </p>
+        <h2>New in 2.0.0</h2>
+        <p>
+          Type “delete” to confirm permanent removal, without retyping long
+          filenames. Move to Trash is still available. The new installer shows
+          exactly where to drag the app.
+        </p>
+        <p>
+          For future releases, choose ClearDisk → Check for Updates… to download
+          and install a signed update from the app. If you have 1.1.1 or earlier,
+          download 2.0.0 here once to get the updater. Your license stays valid.
         </p>
         <h2>Three small steps. More clarity.</h2>
         <ol>
