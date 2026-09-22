@@ -1,8 +1,14 @@
+## Current release — 22 September 2026
+
+The production website serves ClearDisk 1.1.1 build 8. See [the release record](releases-1.1.1.md) for signing, notarization, the owner-approved developer-license behavior and validation. Paid licenses retain the existing $10 pricing and three-Mac limit. Preserve the current payment configuration.
+
+Campaign verification at 10:03 UTC: /download reports 1.1.1; public DMG is 4,080,490 bytes and SHA256 c6bcc9ed671ae922618947f4dfa6283904afa5c1a0ac2a1f9e27b946b900a862. GitHub's latest published release is still v1.1.0, so do not describe GitHub assets as 1.1.1. The canonical website download is current. Sitemap contains 67 URLs; both private analytics routes reject anonymous access with 401. No fresh Search Console indexing evidence was obtained today.
+
 ## Full product navigation — 9 September 2026
 
 Added /features, /pricing and /support with dedicated metadata and sitemap coverage. Header uses Features/Learn menus, direct Pricing/Support destinations and a mobile menu. Footer groups Product, Learn, Support and Legal. Existing guide and topic FAQ pages remain canonical; no duplicate FAQ content was created. AGENTS.md records the owner’s preference for full page navigation rather than /#pricing links. Desktop and 390px menu QA passed, as did 43 tests, typecheck/lint/build and 72-route production HTTP SEO checks. Sitemap now contains 67 URLs. App artifact, payment configuration and Google verification tag unchanged.
 
-## iCloud Doctor 1.1.0 — 9 September 2026 (current status)
+## iCloud Doctor 1.1.0 — 9 September 2026 (historical release)
 
 ClearDisk 1.1.0 build 7 integrates the repository-local SyncDoctorCore and an independent iCloud Doctor section. Metadata scans, history, search/filter/folder totals, raw inspection, explicit downloads, licensed local-copy removal and verified document archives are implemented. Sources and partial archives are retained; executable/semantic-metadata files are refused. Cloud originals are never deleted by this section. See ../Sources/SyncDoctorCore/ORIGIN.md and docs/superpowers/specs/2026-09-09-icloud-doctor-integration.md for limits.
 
