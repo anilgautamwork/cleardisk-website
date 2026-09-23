@@ -425,10 +425,10 @@ export const storageGuides: Guide[] = [
       },
     ],
     related: [
+      'format-external-hard-drive-mac',
       'photos-library-taking-up-space-mac',
+      'external-hard-drive-not-showing-up-mac',
       'find-large-files-on-mac',
-      'mac-storage-not-updating-after-deleting-files',
-      'icloud-drive-taking-up-space-on-mac',
     ],
     sources: [
       {

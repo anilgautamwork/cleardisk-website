@@ -2,6 +2,7 @@ import { icloudGuides } from './guides-icloud.ts';
 import { storageGuides } from './guides-storage.ts';
 import { developerGuides } from './guides-developer.ts';
 import { maintenanceGuides } from './guides-maintenance.ts';
+import { driveGuides } from './guides-drives.ts';
 export type GuideSection = {
   id: string;
   title: string;
@@ -375,6 +376,7 @@ export const guides: Guide[] = [
   ...storageGuides,
   ...developerGuides,
   ...icloudGuides,
+  ...driveGuides,
 ];
 
 export const guideGroups = [
@@ -402,6 +404,11 @@ export const guideGroups = [
     id: 'apps-and-developer-tools',
     title: 'Apps and developer tools',
     guides: developerGuides,
+  },
+  {
+    id: 'external-drives',
+    title: 'External drives and Disk Utility',
+    guides: driveGuides,
   },
 ];
 
