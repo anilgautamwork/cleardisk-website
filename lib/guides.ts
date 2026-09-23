@@ -3,6 +3,12 @@ import { storageGuides } from './guides-storage.ts';
 import { developerGuides } from './guides-developer.ts';
 import { maintenanceGuides } from './guides-maintenance.ts';
 import { driveGuides } from './guides-drives.ts';
+import { moreDeveloperGuides } from './guides-developer-more.ts';
+import { creativeGuides } from './guides-creative.ts';
+import { everydayAppGuides } from './guides-everyday-apps.ts';
+import { systemFolderGuides } from './guides-system-folders.ts';
+import { memoryDriveGuides } from './guides-memory-drives.ts';
+import { moreFileGuides } from './guides-files-more.ts';
 export type GuideSection = {
   id: string;
   title: string;
@@ -377,6 +383,12 @@ export const guides: Guide[] = [
   ...developerGuides,
   ...icloudGuides,
   ...driveGuides,
+  ...moreDeveloperGuides,
+  ...creativeGuides,
+  ...everydayAppGuides,
+  ...systemFolderGuides,
+  ...memoryDriveGuides,
+  ...moreFileGuides,
 ];
 
 export const guideGroups = [
@@ -398,7 +410,7 @@ export const guideGroups = [
   {
     id: 'files-and-backups',
     title: 'Files, backups and cloud storage',
-    guides: storageGuides,
+    guides: [...storageGuides, ...moreFileGuides],
   },
   {
     id: 'apps-and-developer-tools',
@@ -409,6 +421,31 @@ export const guideGroups = [
     id: 'external-drives',
     title: 'External drives and Disk Utility',
     guides: driveGuides,
+  },
+  {
+    id: 'storage-categories',
+    title: 'Storage categories and system folders',
+    guides: systemFolderGuides,
+  },
+  {
+    id: 'developer-caches',
+    title: 'Developer caches, toolchains and VMs',
+    guides: moreDeveloperGuides,
+  },
+  {
+    id: 'creative-apps',
+    title: 'Video, photo and music apps',
+    guides: creativeGuides,
+  },
+  {
+    id: 'everyday-apps',
+    title: 'Chat, streaming and game apps',
+    guides: everydayAppGuides,
+  },
+  {
+    id: 'memory-and-startup',
+    title: 'Memory, speed and startup disks',
+    guides: memoryDriveGuides,
   },
 ];
 
