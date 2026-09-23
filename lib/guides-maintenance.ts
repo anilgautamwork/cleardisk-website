@@ -581,7 +581,7 @@ export const maintenanceGuides: Guide[] = [
     summary:
       'Terminal is the fastest way to size the folders Finder hides. Use df and du, which only read, then remove files through Finder and the Trash so you can put them back.',
     published: '2026-09-06',
-    updated: '2026-09-06',
+    updated: '2026-09-24',
     sections: [
       {
         id: 'open-terminal',
@@ -595,10 +595,10 @@ export const maintenanceGuides: Guide[] = [
         id: 'size-the-whole-disk',
         title: '2. Size the whole disk with df',
         paragraphs: [
-          'Run df -h / and read the line for your startup volume: size, used, available and the percentage used. The available figure here is the free space; it does not include the purgeable space that Disk Utility and Storage settings fold into their available figure, which is why Terminal can show less room than System Settings does.',
-          'Write the used figure down. After any cleanup, run df -h / again; the difference is what you actually reclaimed, and it is the only number that settles arguments with a storage bar.',
+          'Run df -h / and read the Avail column. On current macOS, / is the sealed system volume, so its Used figure counts only macOS itself and barely moves; Avail is the free space every volume on the disk shares. It does not include the purgeable space that Disk Utility and Storage settings fold into their available figure, which is why Terminal can show less room than System Settings does. Add /System/Volumes/Data to see what your own files and apps use.',
+          'Write the Avail figure down. After any cleanup, run the same command again; the change in Avail is what you actually reclaimed, and it is the only number that settles arguments with a storage bar.',
         ],
-        code: ['df -h /'],
+        code: ['df -h / /System/Volumes/Data'],
       },
       {
         id: 'rank-library-folders',
@@ -824,14 +824,14 @@ export const maintenanceGuides: Guide[] = [
     summary:
       'An update leaves three things behind: a local snapshot of the previous system, the installer app if you used one, and caches the system rebuilds. Most of it clears itself within days; the installer does not.',
     published: '2026-09-06',
-    updated: '2026-09-06',
+    updated: '2026-09-24',
     sections: [
       {
         id: 'measure-before-you-judge',
         title: '1. Measure before you judge',
         paragraphs: [
           'Open System Settings → General → Storage and note the available figure and the System Data figure. Both can look worse for a day after an update than they will a week later, because some of what the update left behind is temporary by design. Write the numbers down and compare after 24 hours before removing anything.',
-          'If you use Terminal, df -h / gives the used figure without purgeable space folded in, which makes the before-and-after comparison cleaner. The Terminal guide covers the read-only commands.',
+          'If you use Terminal, the Avail column of df -h / gives free space without purgeable space folded in, which makes the before-and-after comparison cleaner. The Terminal guide covers the read-only commands.',
         ],
         code: ['df -h /'],
       },

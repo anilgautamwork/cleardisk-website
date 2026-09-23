@@ -59,7 +59,7 @@ await test('all published problems have complete discoverable guides', () => {
     'containers-folder-mac',
   ];
   for (const slug of required) assert.ok(getGuide(slug));
-  assert.equal(guides.length, 114);
+  assert.equal(guides.length, 152);
   assert.equal(getGuide('not-a-real-guide'), undefined);
   assert.equal(new Set(guides.map((g) => g.slug)).size, guides.length);
   for (const guide of guides) {

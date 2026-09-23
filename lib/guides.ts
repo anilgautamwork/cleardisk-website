@@ -9,6 +9,11 @@ import { everydayAppGuides } from './guides-everyday-apps.ts';
 import { systemFolderGuides } from './guides-system-folders.ts';
 import { memoryDriveGuides } from './guides-memory-drives.ts';
 import { moreFileGuides } from './guides-files-more.ts';
+import { dockerGuides } from './guides-docker.ts';
+import { devQaGuides } from './guides-dev-qa.ts';
+import { fileQaGuides } from './guides-qa-files.ts';
+import { systemQaGuides } from './guides-qa-system.ts';
+import { spaceQaGuides } from './guides-qa-space.ts';
 export type GuideSection = {
   id: string;
   title: string;
@@ -389,6 +394,11 @@ export const guides: Guide[] = [
   ...systemFolderGuides,
   ...memoryDriveGuides,
   ...moreFileGuides,
+  ...dockerGuides,
+  ...devQaGuides,
+  ...fileQaGuides,
+  ...systemQaGuides,
+  ...spaceQaGuides,
 ];
 
 export const guideGroups = [
@@ -446,6 +456,31 @@ export const guideGroups = [
     id: 'memory-and-startup',
     title: 'Memory, speed and startup disks',
     guides: memoryDriveGuides,
+  },
+  {
+    id: 'docker',
+    title: 'Docker disk space on Mac',
+    guides: dockerGuides,
+  },
+  {
+    id: 'uninstall-developer-tools',
+    title: 'Uninstall and reset developer tools',
+    guides: devQaGuides,
+  },
+  {
+    id: 'chrome-trash-hidden-files',
+    title: 'Chrome, Trash and hidden files',
+    guides: fileQaGuides,
+  },
+  {
+    id: 'macos-questions',
+    title: 'macOS processes, memory and disks',
+    guides: systemQaGuides,
+  },
+  {
+    id: 'planning-space',
+    title: 'Planning space and backups',
+    guides: spaceQaGuides,
   },
 ];
 

@@ -289,3 +289,13 @@ Google's `site:` result is still six URLs. Ahrefs probes: "clear safari cache ma
 **Next candidates.** Messages attachments; Google Drive/Dropbox/OneDrive local caches; Trash will not empty; npm/pnpm/yarn and pip caches; old macOS installer; a "best free Mac cleaner" round-up built from official documentation only.
 
 **Owner still needed for.** Search Console verification and sitemap submission (the single biggest lever for getting these pages indexed quickly), Bing Webmaster import, directory listings, and any community posting. No orders can arrive from search until Google indexes the pages; verifying Search Console and requesting indexing for the home page and the System Data guides is the fastest way to shorten that wait.
+
+## 2026-09-24 — Library 52 → 152 guides
+
+**Round 1 (58 guides, a652174).** Topics from 667 Google autocomplete suggestions (`google-autocomplete-2026-09-24.csv`, hl=en gl=us, no volumes): developer caches and VMs, creative apps, chat/streaming/game apps, storage categories and system folders, memory and startup disks, file management.
+
+**Round 2 (38 question articles).** Picked from the top-voted Stack Overflow / Ask Different / Super User questions (`stackexchange-top-questions-2026-09-24.csv`, score and views as of today): Docker commands (delete images 1,179 votes; remove containers 1,504), uninstalling Node.js (1,798 votes, 3.1M views), Anaconda, Homebrew; Chrome disk use and its on-device AI model; Trash from Terminal; `free`/`purge`/mds_stores; Time Machine drive size and deleting old backups (266 votes, 755k views). Reddit blocks scripted and in-app-browser access, so Reddit/Quora phrasing was not measured.
+
+Also fixed `check-disk-space-mac-terminal` and `mac-storage-full-after-macos-update`: on current macOS `df -h /` Used is the sealed system volume, so compare Avail.
+
+Rules kept: vendor/Apple sources fetched and checked, read-only commands tested on macOS 26.6.2, no deletes run, no invented volumes, ClearDisk claims limited to what 2.0 does. Validation: 49 tests, typecheck, lint, build, HTTP SEO check (172 routes). Not deployed from this session. **Next candidates:** remaining high-vote questions in the Stack Exchange CSV (Xcode indexing/storage, kernel_task memory, Safari hard refresh), per-app caches (Zoom, Outlook, VS Code, Cursor), Reddit/Quora phrasing once a reachable source exists.
