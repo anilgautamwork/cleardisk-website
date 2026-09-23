@@ -179,7 +179,7 @@ export const maintenanceGuides: Guide[] = [
     summary:
       'A disk space analyzer answers one question: which files hold the space. Start with what macOS shows for free, then add a scanner when you need file-level detail across the whole disk, including the folders macOS hides.',
     published: '2026-09-06',
-    updated: '2026-09-06',
+    updated: '2026-09-23',
     sections: [
       {
         id: 'what-an-analyzer-does',
@@ -206,7 +206,7 @@ export const maintenanceGuides: Guide[] = [
         id: 'when-a-scanner-is-worth-it',
         title: 'When a scanner earns its place',
         paragraphs: [
-          'Install an analyzer when the built-in views stop explaining the number: System Data is large and Documents is not, storage grows back after cleanup, or you need to see inside ~/Library, application containers and developer directories in one pass. Those folders are where an hour of Finder browsing turns into a five-minute scan.',
+          'Install an analyzer when the built-in views stop explaining the number: System Data is large and Documents is not, storage grows back after cleanup, or you need to see inside ~/Library, application containers and developer directories in one pass. A scanner can help you compare those folders in one view.',
           'Expect a permission step. macOS keeps some locations private until you grant the app Full Disk Access in System Settings → Privacy & Security. Without it, an analyzer sees less and should say so. Also expect that iCloud files stored only in the cloud do not have their full contents stored locally, and that anything you move to the Trash keeps its space until the Trash is emptied.',
         ],
       },
@@ -220,8 +220,8 @@ export const maintenanceGuides: Guide[] = [
           'A System Data breakdown into named groups, each labelled Safe, Review or Leave it, with a plain explanation of what the files do.',
           'A visual storage map and a largest-files list, with Reveal in Finder for anything you want to inspect before deciding.',
           'Sizes reported as space allocated on disk, and protected system and account folders shown but never offered for removal.',
-          'Cleanup from inside the app is a one-time license: files go to the Trash first with undo, and permanent deletion is a separate, typed confirmation.',
-          'Limits: it needs macOS 15 or later, asks for Full Disk Access to read private folders, reports Time Machine local snapshots as a count rather than a size, and does not clean memory, remove malware, guarantee iCloud sync repair or find duplicates. iCloud Doctor in 1.1 inspects accessible Drive metadata and local copies.',
+          'The $10 one-time cleanup license unlocks Move to Trash and Remove Permanently. In version 2.0.0, type delete and click the red button to confirm permanent removal. This skips the Trash; only the Trash option supports undo while the items remain there.',
+          'Limits: it needs macOS 15 or later, asks for Full Disk Access to read private folders, reports Time Machine local snapshots as a count rather than a size, and does not clean memory, remove malware, guarantee iCloud sync repair or find duplicates. iCloud Doctor inspects accessible Drive metadata and local copies.',
         ],
       },
       {
@@ -1266,9 +1266,9 @@ export const maintenanceGuides: Guide[] = [
     description:
       'Delete files on Mac the way Apple documents: Command-Delete, Put Back, Delete Immediately, 30-day auto-empty, and why space returns after emptying.',
     summary:
-      'Deleting on a Mac is a two-step act: move to the Trash, then empty it. Everything between those steps is reversible, and the space comes back only at the end.',
+      'Move unwanted local files to the Trash, review them, then empty it when you are ready. Permanent removal skips that chance to put files back. If available space does not increase as expected, check snapshots and storage accounting before deleting more.',
     published: '2026-09-06',
-    updated: '2026-09-06',
+    updated: '2026-09-23',
     sections: [
       {
         id: 'move-to-the-trash',
@@ -1297,7 +1297,7 @@ export const maintenanceGuides: Guide[] = [
         id: 'files-that-will-not-delete',
         title: '4. Files that will not delete',
         paragraphs: [
-          'A locked file needs unlocking first: select it, press Command-I and clear the Locked checkbox. A file an app still has open needs the app quit. A file on an external drive goes into that drive’s own Trash, which empties only while the drive is connected. The Trash guide walks through each case and the permission prompts that come with them.',
+          'For a locked file, Finder may ask you to confirm the move to Trash. You can also select the file, press Command-I and clear the Locked checkbox first. A file an app still has open needs the app quit. A file on an external drive goes into that drive’s own Trash, which empties only while the drive is connected. The Trash guide walks through each case and the permission prompts that come with them.',
         ],
       },
       {
@@ -1305,7 +1305,7 @@ export const maintenanceGuides: Guide[] = [
         title: '5. Delete to free space, in the right order',
         paragraphs: [
           'When the goal is room rather than tidiness, delete by size. Storage settings lists large files and downloads under Documents; the large-files guide covers reviewing them, and the check-storage guide covers the categories. Empty the Trash after each round and compare the available figure.',
-          'Permanent deletion in the sense of overwriting is not offered by Finder; Apple removed Secure Empty Trash years ago because it is not meaningful on SSDs, and FileVault encryption is the supported protection. ClearDisk follows the same two-step pattern from inside the app: files you choose go to the Trash first, with undo, and permanent deletion is a separate, typed confirmation.',
+          'ClearDisk 2.0.0 lets you choose Move to Trash or Remove Permanently in its review dialog. For permanent removal, type delete and click the red Remove Permanently button. You do not need to type a long filename. Check the selected paths first: this action skips Trash and cannot be undone. Move to Trash remains available if you want to keep a way back.',
         ],
       },
     ],

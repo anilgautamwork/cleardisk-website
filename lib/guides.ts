@@ -42,7 +42,7 @@ const foundationGuides: Guide[] = [
     summary:
       'Start by finding the files behind the number. System Data is a storage category, not a single folder you can safely empty. Review identifiable files before removing anything.',
     published: '2026-09-05',
-    updated: '2026-09-05',
+    updated: '2026-09-23',
     sections: [
       {
         id: 'start-with-the-number',
@@ -71,7 +71,7 @@ const foundationGuides: Guide[] = [
         title: '3. Remove a small, understood selection',
         paragraphs: [
           'Close the app that owns the files before cleanup. Review the selected paths, keep a backup of anything irreplaceable, and begin with items you know you can replace or no longer need.',
-          'ClearDisk uses Trash-first removal by default and asks for confirmation. This gives you a chance to review the outcome before permanent deletion. ClearDisk 1.0 is available now; the cleanup license costs $10 once.',
+          'ClearDisk’s review dialog offers Move to Trash and Remove Permanently. Choose Move to Trash if you want the option to undo while the files remain there. In ClearDisk 2.0.0, permanent removal requires typing delete, then clicking the red Remove Permanently button. It skips the Trash and cannot be undone. Scanning is free; the cleanup license costs $10 once.',
         ],
       },
       {

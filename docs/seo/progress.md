@@ -2,6 +2,20 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Campaign day 11 — 23 September 2026 (guide corrections ready; deployment blocked)
+
+Updated existing /clear-system-data-on-mac, /disk-space-analyzer-mac and /delete-files-on-mac guides for the released 2.0.0 removal dialog: Move to Trash remains reversible while items remain there; permanent removal skips Trash and requires lowercase delete plus the red button. Removed a stale 1.0 availability reference and an unmeasured five-minute scan comparison. Corrected the locked-file paragraph to allow Finder confirmation, and qualified the deletion summary rather than promising immediate space recovery. Three guide dates changed to 2026-09-23; registry remains 52 guides and sitemap 67 URLs. No new filler article.
+
+Primary source checked: https://support.apple.com/en-euro/guide/mac-help/mchlp1093/mac (Finder locked-file confirmation, Trash, permanent removal). Product behavior checked against Sources/Core/RemovalBatch.swift and Sources/ClearDiskApp/DeleteForever.swift. Generic Humanize edit authorized by campaign; no approved personal voice profile used. Subjective pattern assessment for edited copy: 9/69 before (2 statistical, 4 composition, 3 document), estimated 6/69 after (1, 2, 3); surgical edit, not a classifier result.
+
+Validation: 49 tests, typecheck, lint, production build and 72 local compiled-Worker HTML SEO checks passed. Live /download reports 2.0.0 and returns 200; /sitemap.xml returns 200; public DMG SHA256 remains 375d29ab6f6586aff751389acdfbd165bf88e2f15594e0aaec81b45029be1903. Anonymous /analytics and /api/analytics return 401. Verification used ClearDisk-QA to exclude downloads. GitHub latest release API still reports v1.1.0; this is distinct from the current website download.
+
+Metrics at 2026-09-23T10:05:10.668Z: website 51 requests over last30 UTC days, 24 over last7; GitHub 2 cumulative separately. Requests are not unique people, completed downloads, installs or sales. No new Search Console session/query/indexing data obtained; September15 remains the latest recorded evidence. No search-volume or attribution claims.
+
+Publication blocked: Wrangler deployments list failed because no valid Cloudflare authentication is available in this non-interactive session (requires CLOUDFLARE_API_TOKEN or renewed Wrangler login). No deployment was attempted with different credentials or to another account. These three edits are committed for review but NOT published; existing production remains the prior release deployment 7714de32-4b91-471d-b065-cf6a5fdef577 as last recorded, not freshly confirmed through the deployment API. Payment mode, licenses, app artifacts and Talivia pause preserved. No external messages sent.
+
+Next: restore personal-account Cloudflare authentication, deploy the tested changes, then verify these three live routes, sitemap lastmod, unchanged DMG and analytics protection. Do not repeat the edits or claim them indexed. Existing community and demo drafts remain pending review/recording.
+
 ## Campaign day 10 — 22 September 2026 (release and measurement reconciliation)
 
 Reconciled the handoff with today's separately completed 1.1.1 production release; retained older release entries as history. Verified /download and /sitemap.xml return 200, the download page reports 1.1.1, and the sitemap contains 67 URLs. Public DMG matches the recorded 4,080,490-byte notarized artifact and SHA256 c6bcc9ed671ae922618947f4dfa6283904afa5c1a0ac2a1f9e27b946b900a862. Verification used ClearDisk-QA to exclude the download from metrics. Anonymous /analytics and /api/analytics return 401. GitHub API still reports v1.1.0 as latest; do not equate it with the newer website artifact.
