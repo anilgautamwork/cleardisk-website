@@ -2,6 +2,20 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Campaign day 12 — 24 September 2026 (publication verified; blocker resolved)
+
+Cloudflare authentication is available again. Wrangler deployment history confirms the personal account deployed Worker 11b9bf05-d0c8-41e1-89ce-aa11c35fa6c7 at 16:22 UTC today. Other work since day11 added 100 guides and the owner analytics funnel (current source/main 70f3537). Preserved those changes; no redundant deployment or additional article today.
+
+Verified yesterday’s corrections are now published at https://cleardisk.app/clear-system-data-on-mac, https://cleardisk.app/disk-space-analyzer-mac and https://cleardisk.app/delete-files-on-mac. Each returns 200 with the 2.0.0 removal choices, and sitemap lastmod is 2026-09-23. All 172 live HTML SEO checks pass, including head metadata, schema, internal links, robots, real 404 and sitemap. Registry has 152 guides; sitemap has 167 URLs. This validates delivery/technical structure, not the editorial accuracy of all newly added guides or Google indexing.
+
+Live /download reports 2.0.0; DMG SHA256 remains 375d29ab6f6586aff751389acdfbd165bf88e2f15594e0aaec81b45029be1903. Both private analytics endpoints reject anonymous access with 401. Artifact verification used ClearDisk-QA, excluded from download metrics. GitHub latest-release API still reports v1.1.0 separately.
+
+Private aggregate snapshot at 2026-09-24T16:31:20.707Z: website download requests 59 over last30 UTC days and 32 over last7; GitHub 2 cumulative separately. New visits, transfer-finished and checkout counters each report zero since instrumentation began today; those zeros are not historical absence of activity. The dashboard reports 2 live-session license records all time; this is not verified net sales or revenue, refunds are not subtracted, and no campaign attribution is inferred. Download requests are not unique people or installs.
+
+Sources checked this run: live pages/sitemap/artifact, Cloudflare deployment history, GitHub release API, current analytics code and docs/ANALYTICS.md. No new technical advice or content rewrite, so no fresh Apple research/Humanize pass was necessary. No fresh Search Console query/indexing access; September15 remains the latest recorded evidence. No new keyword volume, ranking or indexing claim. No external posts/messages; Talivia remains paused and payment/license implementation preserved.
+
+Next: audit newly added guides for overlapping intent and source-supported advice before adding more. Existing community drafts still require destination-rule verification and owner authorization before posting. Record demos using disposable data when a dedicated demo environment is available. Do not repeat the now-resolved authentication blocker.
+
 ## Campaign day 11 — 23 September 2026 (guide corrections ready; deployment blocked)
 
 Updated existing /clear-system-data-on-mac, /disk-space-analyzer-mac and /delete-files-on-mac guides for the released 2.0.0 removal dialog: Move to Trash remains reversible while items remain there; permanent removal skips Trash and requires lowercase delete plus the red button. Removed a stale 1.0 availability reference and an unmeasured five-minute scan comparison. Corrected the locked-file paragraph to allow Finder confirmation, and qualified the deletion summary rather than promising immediate space recovery. Three guide dates changed to 2026-09-23; registry remains 52 guides and sitemap 67 URLs. No new filler article.

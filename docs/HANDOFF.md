@@ -1,3 +1,7 @@
+## Campaign verification — 24 September 2026
+
+The day11 Cloudflare authentication blocker is resolved. Current deployment is 11b9bf05-d0c8-41e1-89ce-aa11c35fa6c7 (16:22 UTC), verified through Wrangler. The three 2.0.0 cleanup-guide corrections are live. Other sessions expanded the registry to 152 guides / 167 sitemap URLs and added the owner funnel described in ANALYTICS.md. All 172 live HTML SEO checks passed; this does not establish editorial quality or indexing for every new guide. DMG hash remains the 2.0.0 build11 value below, and both analytics endpoints remain protected. See seo/marketing-progress.md day12 for metrics and limits. No redundant deployment from this campaign run.
+
 ## Current release — ClearDisk 2.0.0 (11), 22 September 2026
 
 Supersedes the 1.1.1 records below. Production DMG: 6,048,127 bytes; SHA256 375d29ab6f6586aff751389acdfbd165bf88e2f15594e0aaec81b45029be1903. App source e5c123b; deployed Worker 7714de32-4b91-471d-b065-cf6a5fdef577. See [release details](releases-2.0.0.md).
