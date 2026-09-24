@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import {
   downloadEvent,
+  visitEvent,
   authorized,
   recentDays,
   aggregateDays,
@@ -81,5 +82,31 @@ await test('UTC daily series spans months and fills missing days with zero', () 
       (x) => x.count,
     ),
     [0, 2, 0],
+  );
+});
+await test('visit beacons count only same-origin, non-bot POSTs and reduce to a fixed label', async () => {
+  const beacon = (body: unknown, headers: Record<string, string> = {}) =>
+    visitEvent(
+      new Request('https://cleardisk.app/api/visit', {
+        method: 'POST',
+        headers: { Origin: 'https://cleardisk.app', ...headers },
+        body: JSON.stringify(body),
+      }),
+    );
+  assert.equal((await beacon({ host: 'www.google.com' }))?.source, 'Google');
+  assert.equal(
+    (await beacon({ host: 'news.ycombinator.com', source: 'reddit' }))?.source,
+    'Reddit',
+  );
+  assert.equal((await beacon({ host: '' }))?.source, 'Direct / unknown');
+  assert.equal(
+    (await beacon({ host: 'example.org' }))?.source,
+    'Other referral',
+  );
+  assert.equal(await beacon({}, { Origin: 'https://evil.test' }), null);
+  assert.equal(await beacon({}, { 'User-Agent': 'HeadlessChrome/1' }), null);
+  assert.equal(
+    await visitEvent(new Request('https://cleardisk.app/api/visit')),
+    null,
   );
 });

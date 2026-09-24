@@ -5,6 +5,7 @@ import './reading-theme.css';
 import { organizationSchema, pageMetadata, SITE_URL } from '@/lib/seo';
 import { JsonLd } from '@/components/json-ld';
 import { ClickAttribution } from '@/components/click-attribution';
+import { VisitBeacon } from '@/components/visit-beacon';
 export const metadata: Metadata = {
   ...pageMetadata(
     'Mac Cleaner for System Data & Caches | ClearDisk',
@@ -29,6 +30,7 @@ export default function RootLayout({
         {children}
         <GoogleAds />
         <ClickAttribution />
+        <VisitBeacon />
         <JsonLd data={organizationSchema} />
       </body>
     </html>

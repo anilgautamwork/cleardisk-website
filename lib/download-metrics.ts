@@ -27,36 +27,24 @@ export function campaignSource(value: string | null): Source | null {
     ? map[value.toLowerCase()]
     : null;
 }
-export function downloadEvent(
-  request: Request,
-  status: number,
-): { source: Source } | null {
-  if (
-    request.method !== 'GET' ||
-    status !== 200 ||
-    request.headers.has('range') ||
-    /bot|crawler|spider|preview|headless|monitor|cleardisk-qa/i.test(
-      request.headers.get('user-agent') || '',
-    ) ||
-    /prefetch/i.test(
-      [request.headers.get('purpose'), request.headers.get('sec-purpose')].join(
-        ' ',
-      ),
-    )
-  )
-    return null;
-  const campaign = campaignSource(
-    new URL(request.url).searchParams.get('source'),
+/** Funnel stages, each stored as one counter object per UTC day ('<kind>:<day>'). */
+export const kinds = [
+  'visits',
+  'downloads',
+  'downloads-done',
+  'checkouts',
+] as const;
+export type Kind = (typeof kinds)[number];
+const automated = (request: Request) =>
+  /bot|crawler|spider|preview|headless|monitor|cleardisk-qa/i.test(
+    request.headers.get('user-agent') || '',
   );
-  if (campaign) return { source: campaign };
-  let host = '';
-  try {
-    host = new URL(request.headers.get('referer') || '').hostname;
-  } catch {
-    /* No referrer is normal. */
-  }
+/** Reduces a campaign value and a referrer host to one fixed label. */
+export function classify(campaign: string | null, host: string): Source {
+  const labelled = campaignSource(campaign);
+  if (labelled) return labelled;
   const domain = (name: string) => host === name || host.endsWith('.' + name);
-  const source: Source = domain('google.com')
+  return domain('google.com')
     ? 'Google'
     : domain('bing.com')
       ? 'Bing'
@@ -71,7 +59,56 @@ export function downloadEvent(
               : host
                 ? 'Other referral'
                 : 'Direct / unknown';
-  return { source };
+}
+export function downloadEvent(
+  request: Request,
+  status: number,
+): { source: Source } | null {
+  if (
+    request.method !== 'GET' ||
+    status !== 200 ||
+    request.headers.has('range') ||
+    automated(request) ||
+    /prefetch/i.test(
+      [request.headers.get('purpose'), request.headers.get('sec-purpose')].join(
+        ' ',
+      ),
+    )
+  )
+    return null;
+  let host = '';
+  try {
+    host = new URL(request.headers.get('referer') || '').hostname;
+  } catch {
+    /* No referrer is normal. */
+  }
+  return {
+    source: classify(new URL(request.url).searchParams.get('source'), host),
+  };
+}
+/** A same-origin beacon sent once per arrival from outside the site. */
+export async function visitEvent(
+  request: Request,
+): Promise<{ source: Source } | null> {
+  if (
+    request.method !== 'POST' ||
+    automated(request) ||
+    request.headers.get('origin') !== new URL(request.url).origin ||
+    Number(request.headers.get('content-length') || 0) > 1024
+  )
+    return null;
+  try {
+    const body = JSON.parse(await request.text()) as {
+      host?: unknown;
+      source?: unknown;
+    };
+    const host =
+      typeof body.host === 'string' && body.host.length < 256 ? body.host : '';
+    const source = typeof body.source === 'string' ? body.source : null;
+    return { source: classify(source, host.toLowerCase()) };
+  } catch {
+    return null;
+  }
 }
 export async function authorized(
   request: Request,

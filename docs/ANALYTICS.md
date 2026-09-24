@@ -1,8 +1,17 @@
-# Download measurement
+# Owner dashboard: visitors to purchases
 
 Owner dashboard: https://cleardisk.app/analytics. Username: `owner`. The randomly generated password is in the ignored local `.env.analytics-owner` file (mode 0600) and the Worker encrypted secret `ANALYTICS_PASSWORD`. Never put it in a URL or commit it. A browser prompts for HTTP Basic credentials over HTTPS. Credentials may remain cached until its browser session closes. `/api/analytics` provides the same data as JSON with the same authentication. Both endpoints are noindex and no-store; neither is in the sitemap.
 
-## What is counted
+## Funnel (added 2026-09-24)
+
+Five steps, each a separate UTC daily counter (Durable Object `<kind>:<day>` via the existing `DownloadMetrics` class, no new migration):
+
+- **Visitors** (`visits`): `components/visit-beacon.tsx` sends one same-origin `sendBeacon` to `/api/visit` per page load whose referrer is not this site. Body is only the referring hostname and campaign label; the Worker reduces both to a fixed source label. Bot user agents and cross-origin posts are ignored. Arrivals, not unique people; anyone can post the beacon, so treat it as indicative.
+- **Tried to download** (`downloads`): unchanged full DMG request counter below.
+- **Downloaded** (`downloads-done`): the Worker pipes the DMG through a `FixedLengthStream` and counts when the last byte is handed to the connection. Cancelled transfers count only as started. The asset binding omits `Content-Length`, so the build injects the DMG size (`process.env.DMG_BYTES` in `vite.config.ts`) to keep browser progress bars.
+- **Tried to purchase** (`checkouts`): any successful `POST /api/checkout` (session created), test mode included.
+- **Purchased**: count of `session:cs_live_*` keys in the `LICENSES` KV, all time. Refunds are not subtracted.
+
 
 The existing `/ClearDisk.dmg` URL remains unchanged. Worker-first routing observes a full GET when the asset handler returns 200. HEAD, Range/resume, non-200, prefetch and recognized bot requests are excluded. No request history, IP address, visitor identifier, analytics cookie or raw referrer is stored. Only a UTC daily count by fixed source label is persisted; each daily SQLite Durable Object expires after 366 days. The dashboard shows the latest 30 days plus today/7-day totals, exact accessible daily values and source totals.
 

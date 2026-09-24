@@ -4,7 +4,11 @@ import {
   aggregateDays,
   authorized,
   downloadEvent,
+  kinds,
   recentDays,
+  visitEvent,
+  type Kind,
+  type Source,
 } from '../lib/download-metrics';
 import { dashboard } from './dashboard';
 export { DownloadMetrics };
@@ -12,7 +16,32 @@ type Env = {
   ASSETS: Fetcher;
   DOWNLOAD_METRICS: DurableObjectNamespace<DownloadMetrics>;
   ANALYTICS_PASSWORD?: string;
+  LICENSES?: KVNamespace;
 };
+const today = () => new Date().toISOString().slice(0, 10);
+function count(env: Env, ctx: ExecutionContext, kind: Kind, source: Source) {
+  ctx.waitUntil(
+    env.DOWNLOAD_METRICS.getByName(kind + ':' + today())
+      .record(source)
+      .catch(() => console.error('Metrics write failed: ' + kind)),
+  );
+}
+/** Live licenses issued from Stripe sessions, all time. Refunds are not subtracted. */
+async function purchaseCount(kv?: KVNamespace): Promise<number | null> {
+  if (!kv) return null;
+  try {
+    let n = 0,
+      cursor: string | undefined;
+    do {
+      const page = await kv.list({ prefix: 'session:cs_live_', cursor });
+      n += page.keys.length;
+      cursor = page.list_complete ? undefined : page.cursor;
+    } while (cursor);
+    return n;
+  } catch {
+    return null;
+  }
+}
 const privateHeaders = {
   'Cache-Control': 'private, no-store',
   'X-Robots-Tag': 'noindex, nofollow',
@@ -80,17 +109,31 @@ const worker = {
         return new Response(null, { headers: privateHeaders });
       try {
         const days = recentDays();
-        const [counts, github] = await Promise.all([
+        // ponytail: 4 kinds x 30 days = 120 small reads; fold into one object per day if this gets slow.
+        const [series, github, purchases] = await Promise.all([
           Promise.all(
-            days.map((day) =>
-              env.DOWNLOAD_METRICS.getByName('downloads:' + day).counts(),
-            ),
+            kinds.map(async (kind) => [
+              kind,
+              aggregateDays(
+                days,
+                await Promise.all(
+                  days.map((day) =>
+                    env.DOWNLOAD_METRICS.getByName(kind + ':' + day).counts(),
+                  ),
+                ),
+              ),
+            ]),
           ),
           githubCount(),
+          purchaseCount(env.LICENSES),
         ]);
         const data = {
-          days: aggregateDays(days, counts),
+          ...(Object.fromEntries(series) as Record<
+            Kind,
+            ReturnType<typeof aggregateDays>
+          >),
           github,
+          purchases,
           updated: new Date().toISOString(),
         };
         if (path === '/api/analytics')
@@ -113,19 +156,33 @@ const worker = {
     if (path === '/ClearDisk.dmg') {
       const response = await env.ASSETS.fetch(request);
       const event = downloadEvent(request, response.status);
-      if (event)
-        ctx.waitUntil(
-          Promise.resolve()
-            .then(() =>
-              env.DOWNLOAD_METRICS.getByName(
-                'downloads:' + new Date().toISOString().slice(0, 10),
-              ).record(event.source),
-            )
-            .catch(() => console.error('Download metrics write failed')),
-        );
-      return response;
+      if (!event || !response.body) return response;
+      count(env, ctx, 'downloads', event.source);
+      // Pipe the file through so the last byte reaching the visitor counts as a finished download.
+      const length = Number(
+        response.headers.get('content-length') || process.env.DMG_BYTES,
+      );
+      const { readable, writable } =
+        length > 0 ? new FixedLengthStream(length) : new TransformStream();
+      ctx.waitUntil(
+        response.body
+          .pipeTo(writable)
+          .then(() => count(env, ctx, 'downloads-done', event.source))
+          .catch(() => {
+            /* Cancelled or dropped transfer: started, not finished. */
+          }),
+      );
+      return new Response(readable, response);
     }
-    return handler.fetch(request, env, ctx);
+    if (path === '/api/visit') {
+      const event = await visitEvent(request);
+      if (event) count(env, ctx, 'visits', event.source);
+      return new Response(null, { status: 204, headers: privateHeaders });
+    }
+    const response = await handler.fetch(request, env, ctx);
+    if (path === '/api/checkout' && request.method === 'POST' && response.ok)
+      count(env, ctx, 'checkouts', 'Website');
+    return response;
   },
 };
 

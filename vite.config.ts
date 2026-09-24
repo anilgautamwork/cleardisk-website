@@ -1,6 +1,7 @@
 import { sites } from '@openai/sites-vite-plugin';
 import tailwindcss from '@tailwindcss/postcss';
 import vinext from 'vinext';
+import { existsSync, statSync } from 'node:fs';
 import { defineConfig } from 'vite';
 import hostingConfig from './.openai/hosting.json';
 
@@ -49,6 +50,15 @@ export default defineConfig(async () => {
     define: {
       'process.env.SITE_INDEXABLE': JSON.stringify(
         process.env.SITE_INDEXABLE ?? 'false',
+      ),
+      // The asset binding streams the DMG without a Content-Length header; the
+      // Worker needs the size to keep browser download progress when counting.
+      'process.env.DMG_BYTES': JSON.stringify(
+        String(
+          existsSync('public/ClearDisk.dmg')
+            ? statSync('public/ClearDisk.dmg').size
+            : 0,
+        ),
       ),
     },
     css: { postcss: { plugins: [tailwindcss()] } },

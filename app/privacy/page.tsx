@@ -36,14 +36,15 @@ export default function Privacy() {
           operational request logs. Optional Google Ads measurement is described
           below. Talivia tracking remains disabled.
         </p>
-        <h2>Download measurement</h2>
+        <h2>Visit and download measurement</h2>
         <p>
-          We count successful full download requests by UTC day and a fixed
-          source label, such as Google, Reddit or our website. We store those
-          aggregate counts for up to 366 days. This counter does not store your
-          IP address, filenames, raw referring URL or a unique visitor
-          identifier, and does not set analytics cookies. Counts are not proof
-          of installation or a count of unique people. GitHub separately reports
+          We count arrivals on this site from elsewhere, download requests,
+          completed downloads and opened checkouts by UTC day and a fixed source
+          label, such as Google, Reddit or our website. We store those aggregate
+          counts for up to 366 days. This counter does not store your IP
+          address, filenames, raw referring URL or a unique visitor identifier,
+          and does not set analytics cookies. Counts are not proof of
+          installation or a count of unique people. GitHub separately reports
           downloads from its releases.
         </p>
         <h2>Ad measurement</h2>
