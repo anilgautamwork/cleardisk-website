@@ -312,35 +312,35 @@ export const fileQaGuides: Guide[] = [
   },
   {
     slug: 'operation-not-permitted-terminal-mac',
-    title: '“Operation not permitted” in Mac Terminal: the fix',
+    title: '“Operation not permitted” in Mac Terminal: what to check',
     description:
-      'Why Mac Terminal says “Operation not permitted” for ~/.Trash and other folders even with sudo, how Full Disk Access fixes it, and what SIP still blocks.',
+      'Check why Mac Terminal says “Operation not permitted”: app privacy access, locked files and system protections, with read-only commands to narrow the cause.',
     summary:
-      'It is macOS privacy protection, not file permissions: Terminal hasn’t been given access to that location, and sudo doesn’t change that. Add Terminal under System Settings → Privacy & Security → Full Disk Access, quit and reopen it, and the command works. System folders protected by SIP stay read-only even then.',
+      'Start with the path and the action that failed. macOS privacy controls can block Terminal from reading protected data, but Full Disk Access does not override every restriction. Check app access, file locks and system protections before retrying anything that changes files.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-09-25',
     sections: [
       {
         id: 'what-it-means',
         title: 'What the message actually means',
         paragraphs: [
-          'Run ls ~/.Trash in a fresh Terminal window and macOS answers “Operation not permitted,” even though the folder is in your home folder and you own it. The block comes from macOS’s privacy controls, which decide per app which protected locations it may read. Terminal is the app in question, and until you grant it access, the commands it runs can’t read those places.',
-          'That is why sudo doesn’t help. sudo changes the user a command runs as, but the privacy decision is about the app the command runs in, so sudo ls ~/.Trash fails the same way. Your Trash is one protected location, as the message shows; Apple’s description of Full Disk Access names others, including Mail, Messages and Safari data and Time Machine backups. Desktop, Documents, Downloads and removable drives work differently: macOS asks the first time an app tries to use them.',
+          'If ls ~/.Trash returns “Operation not permitted,” app privacy access is one thing to check. Owning a folder does not, by itself, give Terminal access through macOS privacy controls. Record the exact path and whether you were listing, copying or deleting: the message alone does not identify which protection blocked the operation.',
+          'For a privacy-access denial, sudo does not solve the problem. It changes the user running a command, not the app’s privacy authorization. Your Trash is one protected location, as the message shows; Apple’s description of Full Disk Access names others, including Mail, Messages and Safari data and Time Machine backups. Desktop, Documents, Downloads and removable drives work differently: macOS asks the first time an app tries to use them.',
         ],
       },
       {
         id: 'grant-full-disk-access',
-        title: '1. Give Terminal Full Disk Access',
+        title: '1. Check the app’s privacy access',
         paragraphs: [
-          'Choose Apple menu → System Settings, click Privacy & Security in the sidebar, then click Full Disk Access. Click the add button (+), go to Applications → Utilities, select Terminal and click Open, then make sure its switch is on. macOS asks for your password or Touch ID. On macOS 12 and earlier, the same list is in System Preferences → Security & Privacy → Privacy.',
+          'For Desktop, Documents or Downloads, check the terminal app under System Settings → Privacy & Security → Files & Folders first. If your task requires broader access to protected data, open Full Disk Access in the same settings pane. Click the add button (+), go to Applications → Utilities, select Terminal and click Open, then make sure its switch is on. macOS asks for your password or Touch ID. On macOS 12 and earlier, the same list is in System Preferences → Security & Privacy → Privacy.',
           'Quit Terminal completely and open it again; the change applies after a relaunch, and System Settings may offer to quit it for you. If you use a different terminal, such as iTerm2 or the one built into VS Code, add that app instead, because the permission follows whichever app runs the command.',
         ],
       },
       {
         id: 'check-again',
-        title: '2. Run the command again',
+        title: '2. Test with a read-only command',
         paragraphs: [
-          'With access granted, the command that failed should now work. Both lines below only read: the first lists what is in your Trash, the second shows how much space it uses. Items in the Trash still count against your disk until you empty it, and emptying is best done in Finder, where you can see what is going.',
+          'After relaunching Terminal, test access without changing files. Do not automatically repeat a deletion or other modifying command. Both lines below only read: the first lists what is in your Trash, the second shows how much space it uses. Items in the Trash still count against your disk until you empty it, and emptying is best done in Finder, where you can see what is going.',
           'If you only wanted a look, you may not need Terminal at all: the Trash in the Dock shows the same files, and Finder shows hidden items with Shift-Command-Period. The hidden-files guide covers the other dot folders you’re likely to look at next.',
         ],
         code: ['ls -la ~/.Trash', 'du -sh ~/.Trash'],
@@ -359,7 +359,7 @@ export const fileQaGuides: Guide[] = [
         title: 'Other causes of the same message',
         paragraphs: [
           'A locked file gives the same error when you try to delete or change it, because the lock is a file flag. ls -lO shows uchg in the flags column for a locked item. Clear it in Finder with File → Get Info and the Locked checkbox, or in Terminal with chflags nouchg followed by the file name, then try again.',
-          'Files on a network share, or on a drive another system formatted, can refuse changes for reasons of their own. If Terminal still says “Operation not permitted” after Full Disk Access and a relaunch, check the flags and the location before reaching for sudo.',
+          'Files on a network share, or on a drive another system formatted, can refuse changes for reasons of their own. If a read-only check still fails after granting the required access and relaunching, check the location and file permissions. On a managed Mac, ask your administrator about restrictions. Keep SIP enabled.',
         ],
       },
       {

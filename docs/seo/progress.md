@@ -2,6 +2,18 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Campaign day 13 — 25 September 2026 (Terminal guide corrected; deployment blocked)
+
+Reviewed the new question-guide collection and corrected /operation-not-permitted-terminal-mac. Its introduction promised Full Disk Access would make a failed command work. The revised title, description and summary distinguish app privacy access from other restrictions; the steps check Files & Folders before broader access, test with read-only commands, and do not automatically retry deletion. Removed an unconditional claim that a fresh Terminal window always fails to list Trash. Updated the article date to 2026-09-25. No new URL, layout change or duplicate article.
+
+Sources checked today: Apple Privacy & Security settings (https://support.apple.com/en-euro/guide/mac-help/mchl211c911f/mac), Apple Platform Security file-access controls (https://support.apple.com/en-gb/guide/security/secddd1d86a6/web), and the Apple Developer file-access search excerpt (https://developer.apple.com/documentation/security/accessing-files-from-the-macos-app-sandbox; full rendered page unavailable without JavaScript). Generic Humanize edit in established tone; no personal profile imitation. Subjective edited-passage pattern score 8/69 before (2 statistical, 4 composition, 2 document), estimated 5/69 after (1, 2, 2); surgical correction, not an AI-classifier result.
+
+Validation: 50 tests, typecheck, lint, production build and all172 compiled local HTML SEO checks passed. Source diff checked. Publication is blocked again: Wrangler deployments list requires CLOUDFLARE_API_TOKEN or renewed login in this non-interactive session. No deployment performed; changed article and 2026-09-25 lastmod are NOT claimed live. Last verified production remains yesterday’s 11b9bf05-d0c8-41e1-89ce-aa11c35fa6c7; no fresh deployment-API confirmation today. GitHub latest release remains v1.1.0; the website 2.0.0 artifact is unchanged locally. No app, license or payment changes. Talivia stays paused.
+
+Metrics at 2026-09-25T10:03:18.481Z: website download requests 59 over last30 UTC days, 30 over last7; GitHub2 cumulative separately. New funnel records 3 arrivals, 0 transfer-finished events and 1 checkout session in its available window. Checkout includes test mode; these numbers do not establish unique users, completed downloads or sales. There are still2 live-session license records all time, with refunds not subtracted. Anonymous analytics endpoints both return401. No download GET required on this unchanged publication. No new Search Console/query/indexing dataset; September15 remains latest recorded evidence. No paid research or external posts/messages.
+
+Next: restore personal-account Cloudflare credentials and deploy this tested correction; then verify the changed live route, sitemap lastmod, unchanged DMG and analytics protection. Continue auditing existing guides before adding more. Community drafts remain unposted; creator-shortlist stage begins day15.
+
 ## Campaign day 12 — 24 September 2026 (publication verified; blocker resolved)
 
 Cloudflare authentication is available again. Wrangler deployment history confirms the personal account deployed Worker 11b9bf05-d0c8-41e1-89ce-aa11c35fa6c7 at 16:22 UTC today. Other work since day11 added 100 guides and the owner analytics funnel (current source/main 70f3537). Preserved those changes; no redundant deployment or additional article today.
