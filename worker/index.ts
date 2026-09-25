@@ -10,7 +10,7 @@ import {
   type Kind,
   type Source,
 } from '../lib/download-metrics';
-import { dashboard } from './dashboard';
+import { dashboard, type DashboardData } from './dashboard';
 export { DownloadMetrics };
 type Env = {
   ASSETS: Fetcher;
@@ -19,12 +19,28 @@ type Env = {
   LICENSES?: KVNamespace;
 };
 const today = () => new Date().toISOString().slice(0, 10);
-function count(env: Env, ctx: ExecutionContext, kind: Kind, source: Source) {
-  ctx.waitUntil(
-    env.DOWNLOAD_METRICS.getByName(kind + ':' + today())
-      .record(source)
-      .catch(() => console.error('Metrics write failed: ' + kind)),
-  );
+/** Country breakdowns are kept for these steps, as '<kind>-country:<day>' counters. */
+const countryKinds = ['visits', 'downloads', 'checkouts'] as const;
+function count(
+  env: Env,
+  ctx: ExecutionContext,
+  kind: Kind,
+  source: Source,
+  request: Request,
+) {
+  const country = (request.cf?.country as string | undefined) || 'XX';
+  const writes: [string, string][] = [[kind, source]];
+  if ((countryKinds as readonly string[]).includes(kind))
+    writes.push([
+      kind + '-country',
+      /^[A-Z][A-Z0-9]$/.test(country) ? country : 'XX',
+    ]);
+  for (const [name, label] of writes)
+    ctx.waitUntil(
+      env.DOWNLOAD_METRICS.getByName(name + ':' + today())
+        .record(label)
+        .catch(() => console.error('Metrics write failed: ' + name)),
+    );
 }
 /** Live licenses issued from Stripe sessions, all time. Refunds are not subtracted. */
 async function purchaseCount(kv?: KVNamespace): Promise<number | null> {
@@ -127,6 +143,23 @@ const worker = {
           githubCount(),
           purchaseCount(env.LICENSES),
         ]);
+        const countries = Object.fromEntries(
+          await Promise.all(
+            countryKinds.map(async (kind) => [
+              kind,
+              aggregateDays(
+                days,
+                await Promise.all(
+                  days.map((day) =>
+                    env.DOWNLOAD_METRICS.getByName(
+                      kind + '-country:' + day,
+                    ).counts(),
+                  ),
+                ),
+              ),
+            ]),
+          ),
+        ) as DashboardData['countries'];
         const data = {
           ...(Object.fromEntries(series) as Record<
             Kind,
@@ -134,6 +167,7 @@ const worker = {
           >),
           github,
           purchases,
+          countries,
           updated: new Date().toISOString(),
         };
         if (path === '/api/analytics')
@@ -157,7 +191,7 @@ const worker = {
       const response = await env.ASSETS.fetch(request);
       const event = downloadEvent(request, response.status);
       if (!event || !response.body) return response;
-      count(env, ctx, 'downloads', event.source);
+      count(env, ctx, 'downloads', event.source, request);
       // Pipe the file through so the last byte reaching the visitor counts as a finished download.
       const length = Number(
         response.headers.get('content-length') || process.env.DMG_BYTES,
@@ -167,7 +201,7 @@ const worker = {
       ctx.waitUntil(
         response.body
           .pipeTo(writable)
-          .then(() => count(env, ctx, 'downloads-done', event.source))
+          .then(() => count(env, ctx, 'downloads-done', event.source, request))
           .catch(() => {
             /* Cancelled or dropped transfer: started, not finished. */
           }),
@@ -176,12 +210,12 @@ const worker = {
     }
     if (path === '/api/visit') {
       const event = await visitEvent(request);
-      if (event) count(env, ctx, 'visits', event.source);
+      if (event) count(env, ctx, 'visits', event.source, request);
       return new Response(null, { status: 204, headers: privateHeaders });
     }
     const response = await handler.fetch(request, env, ctx);
     if (path === '/api/checkout' && request.method === 'POST' && response.ok)
-      count(env, ctx, 'checkouts', 'Website');
+      count(env, ctx, 'checkouts', 'Website', request);
     return response;
   },
 };

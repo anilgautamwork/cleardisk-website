@@ -8,8 +8,10 @@ export class DownloadMetrics extends DurableObject<unknown> {
       'CREATE TABLE IF NOT EXISTS counts (source TEXT PRIMARY KEY, count INTEGER NOT NULL)',
     );
   }
-  async record(source: Source) {
-    if (!sources.includes(source)) throw new Error('Unknown source');
+  /** A fixed source label, or a two-letter Cloudflare country code for '<kind>-country' objects. */
+  async record(source: string) {
+    if (!sources.includes(source as Source) && !/^[A-Z][A-Z0-9]$/.test(source))
+      throw new Error('Unknown source');
     // Install expiry before writing; expired objects contain no request history.
     if ((await this.ctx.storage.getAlarm()) === null)
       await this.ctx.storage.setAlarm(Date.now() + 366 * 86400000);

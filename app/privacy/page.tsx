@@ -40,11 +40,12 @@ export default function Privacy() {
         <p>
           We count arrivals on this site from elsewhere, download requests,
           completed downloads and opened checkouts by UTC day and a fixed source
-          label, such as Google, Reddit or our website. We store those aggregate
-          counts for up to 366 days. This counter does not store your IP
-          address, filenames, raw referring URL or a unique visitor identifier,
-          and does not set analytics cookies. Counts are not proof of
-          installation or a count of unique people. GitHub separately reports
+          label, such as Google, Reddit or our website, and by country, as
+          determined by our hosting provider from your connection. We store
+          those aggregate counts for up to 366 days. This counter does not store
+          your IP address, filenames, raw referring URL or a unique visitor
+          identifier, and does not set analytics cookies. Counts are not proof
+          of installation or a count of unique people. GitHub separately reports
           downloads from its releases.
         </p>
         <h2>Ad measurement</h2>
