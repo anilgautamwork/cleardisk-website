@@ -34,6 +34,33 @@ for (const path of pages) {
   assert.equal(response.status, 200, path);
   const html = await response.text();
   assert.equal((html.match(/<h1[ >]/g) || []).length, 1, path + ': one H1');
+  if (path === '/guides') {
+    const cards = [
+      ...html.matchAll(/<article class="guide-card">(.*?)<\/article>/gs),
+    ];
+    assert.equal(
+      cards.length,
+      guides.length,
+      'guides: all cards render in the initial HTML',
+    );
+    for (const [index, card] of cards.entries()) {
+      const body = card[1].replace(/<a\b[^>]*>.*?<\/a>/gs, '');
+      assert.match(
+        body,
+        /<p>[^<]+<\/p>/,
+        `guides: card ${index} has a description outside links`,
+      );
+    }
+    for (const guide of guides)
+      assert.ok(
+        html.includes('href="/' + guide.slug + '"'),
+        'guides: ' + guide.slug,
+      );
+    assert.ok(
+      html.includes('id="choosing-a-guide"'),
+      'guides: reader orientation renders without JavaScript',
+    );
+  }
   // Everything below must sit inside <head>: vinext streams generateMetadata()
   // output into <body> unless next.config marks the user agent HTML-limited.
   const head = html.match(/<head>(.*?)<\/head>/s)?.[1] ?? '';

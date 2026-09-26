@@ -594,6 +594,41 @@ a:focus-visible {
   background: #f4f1fa;
   border-color: #c6b8e4;
 }
+article.guide-card {
+  position: relative;
+}
+.guide-card-link {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--reading-link);
+  font-size: 15px;
+}
+.guide-card-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+article.guide-card:focus-within {
+  outline: 2px solid var(--reading-link);
+  outline-offset: 4px;
+}
+.guide-orientation {
+  max-width: 760px;
+}
+.guide-orientation p {
+  color: var(--reading-text);
+  font-size: 17px;
+  line-height: 1.65;
+  margin: 0 0 16px;
+}
+.guide-orientation a {
+  color: var(--reading-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .guide-feature p,
 .guide-card p,
 .guide-cta p,
