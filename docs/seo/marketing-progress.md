@@ -2,6 +2,12 @@
 
 Campaign schedule: 13 September–12 October 2026, 30 calendar days. The owner explicitly chose 13 September. This ledger was first created on 15 September (campaign day 3); no earlier scheduled-run completion is inferred. Preserve the original end date rather than extending the campaign when a ledger is missing. Prior manual work is in progress.md.
 
+## Day 14 — 26 September 2026 (additional owner-requested AppCleaner post)
+
+Published https://cleardisk.app/blog/appcleaner-os-x after confirming there was no AppCleaner-specific article. Same Blog format, Humanize generic edit and primary-source checks; existing guides unchanged. Source 109d088, Worker 7fcc8d03-f447-4ea8-84dd-e7300534a3db. 51 tests and all 175 local/live HTML SEO checks passed, along with typecheck, lint, build and desktop/mobile review. IndexNow accepted 170 URLs (HTTP 200); acceptance is not indexing. Full source/editorial/validation record is in progress.md. Blog now has two posts and sitemap 170 URLs. App download and protected analytics verified; app binary, payment/license behavior and Talivia pause preserved.
+
+At 13:34:24 UTC, website download requests remain 61 in last 30 UTC days / 32 in last 7; GitHub 2 separately. Available funnel: 22 arrivals, 2 transfer-finished events, 2 checkouts and 2 all-time live-session license records, with the measurement limitations in progress.md. No new Search Console data or indexing claim. The September 13–October 12 campaign schedule and day 15 creator-draft stage remain unchanged; no external messages or paid tools.
+
 ## Owner-requested blog publication — 26 September 2026 (campaign day 14)
 
 Published https://cleardisk.app/blog and https://cleardisk.app/blog/how-should-i-clean-my-mac at the owner's request. Article: “How should I clean my Mac? Decide before you delete.” Uses a generic Humanize edit, practical examples and an explicit maker disclosure; no AI-detector guarantee. Addresses the ambiguity between MacPaw's CleanMyMac and general cleanup without awkward keyword repetition. The screenshot's 22.2K volume and difficulty 22 remain unverified third-party estimates, not measured facts. Source checks and editorial decisions: [blog launch record](2026-09-26-blog-launch.md).

@@ -1,3 +1,7 @@
+## AppCleaner blog article — 26 September 2026
+
+Published https://cleardisk.app/blog/appcleaner-os-x in the established Blog format. It covers AppCleaner compatibility, removal review and remaining storage, and explicitly distinguishes ClearDisk's macOS 15+ requirement. Registry: 152 guides, 2 blog posts, 170 sitemap URLs. Source 109d088; current Worker 7fcc8d03-f447-4ea8-84dd-e7300534a3db. Existing app artifact, payment/license behavior and analytics protection preserved. 51 tests and all 175 live HTML SEO checks pass. Source checks and Humanize assessment are in the newest seo/progress.md entry.
+
 ## Blog publication — 26 September 2026
 
 The owner-requested Blog is live at https://cleardisk.app/blog, with the first article at https://cleardisk.app/blog/how-should-i-clean-my-mac. Learn and footer navigation include Blog. Registry:152guides plus1blogpost; sitemap169URLs. Cloudflare authentication is restored; source c703cc4 deployed as21ff4b60-6263-4ae5-982e-9c205a453c3c. The September25Terminal-guide correction is also now live. All174liveHTMLSEOchecks pass;51unit tests, typecheck/lint/build and desktop/390px review passed. App2.0.0DMG and updater unchanged; analytics remains private. IndexNow accepted169URLs, with no new Google indexing claim. See seo/2026-09-26-blog-launch.md and the newest entries in seo/progress.md and seo/marketing-progress.md for sources, metrics and validation.
