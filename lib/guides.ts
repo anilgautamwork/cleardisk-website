@@ -114,7 +114,7 @@ const foundationGuides: Guide[] = [
   },
   {
     slug: 'what-is-system-data-on-mac',
-    title: 'What is System Data on Mac?',
+    title: 'What is System Data on Mac? Storage explained',
     description:
       'What System Data on Mac actually contains, why its size keeps changing, and how to tell ordinary app files from storage you should leave alone.',
     summary:

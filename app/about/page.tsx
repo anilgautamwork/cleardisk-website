@@ -3,8 +3,8 @@ import { ArrowRight } from 'lucide-react';
 import { Header, Footer } from '@/components/brand';
 import { pageMetadata } from '@/lib/seo';
 export const metadata = pageMetadata(
-  'About ClearDisk',
-  'Who makes ClearDisk, why it scans your Mac locally and cleans Trash-first, how the one-time license works, and how to reach support.',
+  'About ClearDisk — Local Mac Storage Scans and Cleanup',
+  'Meet ClearDisk, the Mac storage scanner from TechMarbles. Learn how local scans work, what the one-time cleanup license includes, and where to get help.',
   '/about',
 );
 export default function About() {

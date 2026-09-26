@@ -11,8 +11,8 @@ import {
   HardDrive,
 } from 'lucide-react';
 export const metadata = pageMetadata(
-  'Download ClearDisk for Mac',
-  'Download ClearDisk 1.1 for macOS 15 and later. Universal Apple silicon and Intel app. Free scanning, $10 one-time cleanup license.',
+  'Download ClearDisk for Mac — Free Disk Space Scanner',
+  'Download ClearDisk 2.0.0 for macOS 15 or later on Apple silicon or Intel. Scan your Mac for free, review large files, and unlock cleanup with a $10 license.',
   '/download',
 );
 export default async function Download({
