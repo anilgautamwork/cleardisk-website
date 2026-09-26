@@ -205,6 +205,7 @@ const foundationGuides: Guide[] = [
       },
     ],
     related: [
+      'other-storage-on-mac',
       'clear-system-data-on-mac',
       'how-to-check-storage-on-mac',
       'show-library-folder-mac',
@@ -364,10 +365,10 @@ const foundationGuides: Guide[] = [
       },
     ],
     related: [
+      'mac-log-files',
       'system-data-too-large',
       'mac-storage-full-after-macos-update',
       'clear-system-data-on-mac',
-      'clean-docker-disk-space-mac',
     ],
     sources: [storage, snapshots],
   },
@@ -447,6 +448,7 @@ const foundationGuides: Guide[] = [
       },
     ],
     related: [
+      'disk-almost-full-notification-mac',
       'clear-system-data-on-mac',
       'how-to-check-storage-on-mac',
       'not-enough-space-to-update-macos',

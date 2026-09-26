@@ -1,9 +1,11 @@
 import type { AdsPurchase } from './ads-purchase.ts';
 export const ADS_ID = 'AW-10925384709';
 export const ADS_DESTINATION = ADS_ID + '/MoykCO79r_kcEIXI0Nko';
-export const CONSENT_KEY = 'cleardisk.ads-consent';
+export const GA_ID = 'G-J00KPHWBCN';
+// Ask again: an old Ads-only choice is not consent to Analytics.
+export const CONSENT_KEY = 'cleardisk.measurement-consent.v2';
 export const CONSENT_EVENT = 'cleardisk:ads-consent';
-export type Consent = 'granted' | 'denied';
+export type Consent = 'granted' | 'analytics' | 'denied';
 type Gtag = (...args: unknown[]) => void;
 declare global {
   interface Window {
@@ -13,36 +15,58 @@ declare global {
   }
 }
 let memoryConsent: Consent | null = null;
-export function adsConsent(): Consent | null {
+export function measurementConsent(): Consent | null {
   try {
     const value = localStorage.getItem(CONSENT_KEY);
-    return value === 'granted' || value === 'denied' ? value : memoryConsent;
+    return value === 'granted' || value === 'analytics' || value === 'denied'
+      ? value
+      : memoryConsent;
   } catch {
     return memoryConsent;
   }
 }
-export function consentParameters(granted: boolean) {
+export function adsConsent(): 'granted' | 'denied' | null {
+  const choice = measurementConsent();
+  return choice === 'analytics' ? 'denied' : choice;
+}
+export function consentParameters(granted: boolean, analytics = false) {
   return {
     ad_storage: granted ? 'granted' : 'denied',
     ad_user_data: granted ? 'granted' : 'denied',
     ad_personalization: 'denied',
-    analytics_storage: 'denied',
+    analytics_storage: analytics ? 'granted' : 'denied',
   };
 }
 export function chooseAdsConsent(choice: Consent) {
   memoryConsent = choice;
   try {
     localStorage.setItem(CONSENT_KEY, choice);
-    if (choice === 'denied') localStorage.removeItem('cleardisk.click');
+    if (choice !== 'granted') localStorage.removeItem('cleardisk.click');
   } catch {
     /* Choice applies to this page when persistence is unavailable. */
   }
   window.gtag?.(
     'consent',
     'update',
-    consentParameters(choice === 'granted' && adsConsent() === 'granted'),
+    // The route-aware component grants Analytics only on public pages.
+    consentParameters(choice === 'granted'),
   );
   window.dispatchEvent(new Event(CONSENT_EVENT));
+}
+/** Only registry-backed public routes can be sent, with no query or fragment. */
+export function measurementPage(
+  url: string,
+  publicPaths: readonly string[],
+): string | null {
+  try {
+    const page = new URL(url);
+    return page.origin === 'https://cleardisk.app' &&
+      publicPaths.includes(page.pathname)
+      ? page.origin + page.pathname
+      : null;
+  } catch {
+    return null;
+  }
 }
 // Dependency injection makes consent, repeats and failed dispatch testable without Google.
 export function dispatchPurchase(

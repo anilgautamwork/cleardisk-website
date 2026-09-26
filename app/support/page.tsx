@@ -39,8 +39,9 @@ export default function Support() {
             <h2>Licenses and activation</h2>
             <p>
               Lost your key? Use the email from checkout to recover it. A
-              license covers three personal Macs and all 1.x updates. For an
-              activation-limit issue, contact support before purchasing again.
+              license covers three personal Macs including ClearDisk 2.0.0. For
+              an activation-limit issue, contact support before purchasing
+              again.
             </p>
             <Link href="/recover">Recover your key</Link>
           </section>

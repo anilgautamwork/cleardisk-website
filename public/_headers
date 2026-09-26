@@ -4,3 +4,9 @@
 
 /updates/*
   X-Robots-Tag: noindex
+
+/SHA256SUMS.txt
+  X-Robots-Tag: noindex
+
+/ClearDisk.dmg
+  X-Robots-Tag: noindex

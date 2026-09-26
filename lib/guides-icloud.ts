@@ -64,6 +64,7 @@ export const icloudGuides: Guide[] = [
       },
     ],
     related: [
+      'com-apple-bird-taking-space',
       'icloud-drive-status-icons-mac',
       'icloud-storage-full-but-not-mac',
       'icloud-drive-taking-up-space-on-mac',

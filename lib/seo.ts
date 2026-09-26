@@ -6,7 +6,7 @@ export const SITE_URL = 'https://cleardisk.app';
 export const OG_IMAGE = SITE_URL + '/og.png';
 // Vite replaces this exact expression at build time; preview defaults closed.
 export const INDEXABLE = process.env.SITE_INDEXABLE === 'true';
-const publicPaths = [
+export const publicPaths = [
   '/',
   '/guides',
   '/blog',

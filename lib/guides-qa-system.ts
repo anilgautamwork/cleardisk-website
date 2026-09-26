@@ -585,6 +585,7 @@ export const systemQaGuides: Guide[] = [
       },
     ],
     related: [
+      'uninstall-rosetta-2-mac',
       'uninstall-apps-on-mac',
       'garageband-sound-library-mac',
       'imovie-library-taking-up-space',

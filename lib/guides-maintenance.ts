@@ -779,6 +779,7 @@ export const maintenanceGuides: Guide[] = [
       },
     ],
     related: [
+      'list-disks-terminal-mac',
       'show-library-folder-mac',
       'show-hidden-files-mac',
       'find-node-modules-folders-mac',
@@ -1117,6 +1118,7 @@ export const maintenanceGuides: Guide[] = [
       },
     ],
     related: [
+      'relocated-items-folder-mac',
       'time-machine-snapshots',
       'delete-macos-installer-mac',
       'system-data-keeps-growing',
@@ -1334,6 +1336,8 @@ export const maintenanceGuides: Guide[] = [
       },
     ],
     related: [
+      'mac-storage-calculating',
+      'documents-storage-on-mac',
       'what-is-system-data-on-mac',
       'find-large-files-on-mac',
       'check-disk-space-mac-terminal',
@@ -1446,6 +1450,8 @@ export const maintenanceGuides: Guide[] = [
       },
     ],
     related: [
+      'steam-games-storage-mac',
+      'remove-background-items-mac',
       'application-support-folder-mac',
       'show-library-folder-mac',
       'best-free-mac-cleaner',
@@ -1840,6 +1846,8 @@ export const maintenanceGuides: Guide[] = [
       },
     ],
     related: [
+      'change-screenshot-location-mac',
+      'downloads-folder-missing-mac',
       'free-up-space-on-mac',
       'delete-macos-installer-mac',
       'delete-files-on-mac',

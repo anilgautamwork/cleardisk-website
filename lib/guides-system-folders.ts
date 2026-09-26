@@ -1011,6 +1011,7 @@ export const systemFolderGuides: Guide[] = [
       },
     ],
     related: [
+      'remove-language-files-mac',
       'show-library-folder-mac',
       'show-hidden-files-mac',
       'macos-storage-category-size',

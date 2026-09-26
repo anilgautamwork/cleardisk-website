@@ -36,14 +36,15 @@ export default function About() {
           Everything ClearDisk learns about your files stays on your Mac. The
           scanner uploads nothing, installs no extensions, and changes no system
           settings. Removal is Trash-first with undo; permanent deletion is a
-          separate, explicit step. The only network request the app makes is
-          license activation, which sends your key, a device identifier, your
-          computer name and the app version.
+          separate, explicit step. License activation sends your key, a device
+          identifier, your computer name and the app version. The app also
+          checks for software updates and downloads them when requested. These
+          requests do not include your files or scan results.
         </p>
         <h2>One price, no subscription</h2>
         <p>
           The license is paid once, covers up to three Macs you own, and
-          includes every 1.x update. Prices are shown in your local currency at
+          includes ClearDisk 2.0.0. Prices are shown in your local currency at
           checkout. If ClearDisk is not for you, ask for a refund within 30 days
           from <a href="mailto:hello@cleardisk.app">hello@cleardisk.app</a>.
         </p>

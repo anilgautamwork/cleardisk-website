@@ -91,6 +91,8 @@ export const storageGuides: Guide[] = [
       },
     ],
     related: [
+      'show-folder-sizes-finder-mac',
+      'find-duplicate-files-mac',
       'mac-storage-full',
       'disk-space-analyzer-mac',
       'clear-downloads-folder-mac',
@@ -177,6 +179,7 @@ export const storageGuides: Guide[] = [
       },
     ],
     related: [
+      'ios-files-on-mac',
       'find-large-files-on-mac',
       'messages-taking-up-space-on-mac',
       'mac-storage-not-updating-after-deleting-files',
@@ -886,6 +889,7 @@ export const storageGuides: Guide[] = [
       },
     ],
     related: [
+      'photos-optimize-storage-not-working',
       'move-photos-library-to-external-drive',
       'optimize-storage-mac',
       'icloud-drive-taking-up-space-on-mac',

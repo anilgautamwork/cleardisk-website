@@ -33,7 +33,7 @@ export default function Privacy() {
         <p>
           The interactive Mac window uses example data. It does not read your
           files or scan your device. The hosting provider may process
-          operational request logs. Optional Google Ads measurement is described
+          operational request logs. Optional Google measurement is described
           below. Talivia tracking remains disabled.
         </p>
         <h2>Visit and download measurement</h2>
@@ -48,20 +48,35 @@ export default function Privacy() {
           of installation or a count of unique people. GitHub separately reports
           downloads from its releases.
         </p>
+        <h2>Optional Google Analytics</h2>
+        <p>
+          Google Analytics loads only after you choose Analytics only or Allow
+          all in Privacy settings. It measures visits to public pages and clicks
+          on the ClearDisk download link. A click is not a completed download or
+          an installation. Google processes browser and device information and
+          sets cookies to distinguish visits. We set Analytics cookies to expire
+          after 60 days and keep user-level event data for two months in
+          Analytics. We send public page paths and referring domains without URL
+          queries or fragments. Payment, recovery, activation and private
+          analytics pages are excluded. We do not send emails, license keys or
+          Mac file data. Google Signals, personalized advertising and automatic
+          form tracking are disabled. Declining stops new events and removes our
+          Google measurement cookies; it cannot undo data already collected.
+        </p>
         <h2>Ad measurement</h2>
         <p>
-          Google Ads loads only if you choose Allow measurement. Your choice is
-          saved in this browser and can be changed using Ad privacy settings. If
-          allowed, ad click identifiers and campaign labels are stored locally
-          for up to 90 days and attached to Stripe checkout. After a verified
-          live payment, Google receives the order value, currency and an
-          anonymous order identifier. We do not send your email, payment details
-          or license key. We do not enable personalized ads or enhanced
-          conversions. Declining clears our stored ad attribution and stops new
-          purchase events. Consented ad-linked orders are also retained on our
-          server for up to 90 days for offline conversion reconciliation when a
-          buyer does not return from Stripe; changing your browser choice does
-          not undo records already collected.
+          Google Ads loads only if you choose Allow all. Your choice is saved in
+          this browser and can be changed using Privacy settings. If allowed, ad
+          click identifiers and campaign labels are stored locally for up to 90
+          days and attached to Stripe checkout. After a verified live payment,
+          Google receives the order value, currency and an anonymous order
+          identifier. We do not send your email, payment details or license key.
+          We do not enable personalized ads or enhanced conversions. Declining
+          clears our stored ad attribution and stops new purchase events.
+          Consented ad-linked orders are also retained on our server for up to
+          90 days for offline conversion reconciliation when a buyer does not
+          return from Stripe; changing your browser choice does not undo records
+          already collected.
         </p>
         <h2>Payments</h2>
         <p>
@@ -76,6 +91,14 @@ export default function Privacy() {
           computer name and app version to manage the three-Mac limit. Your
           email address is used to deliver and recover your license key. File
           contents and scan results are not part of activation.
+        </p>
+        <h2>Software updates</h2>
+        <p>
+          The app checks the ClearDisk update feed and can download an update
+          through our hosting provider. Those network requests expose ordinary
+          connection information to the delivery service; they do not contain
+          your files or scan results. Update preferences are available in the
+          app.
         </p>
         <h2>Questions about privacy</h2>
         <p>

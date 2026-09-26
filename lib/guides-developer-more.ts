@@ -291,6 +291,7 @@ export const moreDeveloperGuides: Guide[] = [
       },
     ],
     related: [
+      'pip-no-cache-dir',
       'clean-conda-disk-space-mac',
       'clear-npm-cache-mac',
       'check-disk-space-mac-terminal',
@@ -403,6 +404,7 @@ export const moreDeveloperGuides: Guide[] = [
       },
     ],
     related: [
+      'uninstall-anaconda-mac',
       'clear-pip-cache-mac',
       'developer-storage-on-mac',
       'check-disk-space-mac-terminal',
@@ -696,6 +698,7 @@ export const moreDeveloperGuides: Guide[] = [
       },
     ],
     related: [
+      'clear-cargo-cache-mac',
       'clear-xcode-derived-data',
       'remove-unused-ios-simulators',
       'what-is-system-data-on-mac',

@@ -2,7 +2,7 @@ import { pageMetadata } from '@/lib/seo';
 import { Header, Footer } from '@/components/brand';
 export const metadata = pageMetadata(
   'Terms & refunds — ClearDisk',
-  'ClearDisk 1.0 license terms, the seller of record and the refund policy.',
+  'ClearDisk license terms, the seller of record and the refund policy.',
   '/terms',
 );
 export default function Terms() {
@@ -13,15 +13,16 @@ export default function Terms() {
         <span className="eyebrow">SIMPLE AND UP FRONT</span>
         <h1>Terms & refunds.</h1>
         <p>
-          The $10 checkout on this website sells the ClearDisk 1.0 license,
+          The $10 checkout on this website sells the ClearDisk license,
           delivered instantly, by TechMarbles Web Solutions Pvt. Ltd., Mohali,
           India, the maker of ClearDisk.
         </p>
-        <h2>The 1.0 license</h2>
+        <h2>The cleanup license</h2>
         <p>
           The price is $10 USD, paid once and shown in your local currency at
           checkout, for a personal, non-transferable license on up to three Macs
-          you own. It includes all 1.x updates. No subscription is required.
+          you own. It includes all 1.x updates and ClearDisk 2.0.0. Existing
+          license keys also work with 2.0.0. No subscription is required.
           License keys may not be shared or resold. Your key appears on the
           confirmation page and is emailed to the address used at checkout.
         </p>

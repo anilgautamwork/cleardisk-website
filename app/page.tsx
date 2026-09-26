@@ -31,7 +31,7 @@ import {
 const faqs: [string, string, string?][] = [
   [
     'How do I clear disk space on a Mac?',
-    'Empty the Trash, clear the Downloads folder, remove old iPhone backups and apps you no longer use, then check System Data. Storage settings shows the categories; a free scan shows the files behind them.',
+    'Review large Downloads, old iPhone backups and apps you no longer use. Move only files you no longer need to the Trash, review its contents, then empty it when you are sure. Storage settings shows the categories; a free scan shows the files behind them.',
     'free-up-space-on-mac',
   ],
   [
@@ -41,7 +41,7 @@ const faqs: [string, string, string?][] = [
   ],
   [
     'How do I free up 20 or 30 GB quickly?',
-    'The fastest wins are one old macOS installer, a superseded iPhone backup, developer caches like Xcode or Docker, and the Trash itself. Each is usually 5 to 20 GB. Measure first so you start with the largest.',
+    'Check old macOS installers, superseded iPhone backups and large project folders. Their sizes vary, so measure first and review the largest items. There is no guaranteed amount to recover; keep backups you still need.',
     'find-what-is-filling-disk-mac',
   ],
   [
@@ -56,7 +56,7 @@ const faqs: [string, string, string?][] = [
   ],
   [
     'Why does my Mac say the disk is full when I deleted files?',
-    'Space returns only when the Trash is emptied, and Storage settings can lag. Purgeable space and local snapshots can also hold the figure for a while. Empty the Trash, wait, and compare again.',
+    'Space returns only when the Trash is emptied, and Storage settings can lag. Purgeable space and local snapshots can also hold the figure for a while. Review the Trash before emptying it, then wait and compare again.',
     'mac-storage-not-updating-after-deleting-files',
   ],
   [
@@ -73,7 +73,7 @@ const faqs: [string, string, string?][] = [
   ],
   [
     'Is this another subscription?',
-    'No. The $10 one-time license covers up to three Macs you own and all 1.x updates. There is no monthly or annual charge.',
+    'No. The $10 one-time license covers up to three Macs you own including ClearDisk 2.0.0. There is no monthly or annual charge.',
   ],
   [
     'Does ClearDisk upload my files?',
@@ -450,7 +450,7 @@ export default async function Home() {
                 </li>
                 <li>
                   <Check />
-                  All 1.x updates included
+                  ClearDisk 2.0.0 included
                 </li>
               </ul>
               <Link className="button primary" href="/buy-now">

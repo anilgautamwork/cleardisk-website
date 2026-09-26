@@ -114,6 +114,7 @@ export const memoryDriveGuides: Guide[] = [
       },
     ],
     related: [
+      'sleepimage-file-mac',
       'mac-out-of-application-memory',
       'mac-running-slow-low-storage',
       'apfs-container-vs-volume',
@@ -362,6 +363,7 @@ export const memoryDriveGuides: Guide[] = [
       },
     ],
     related: [
+      'mds-stores-high-cpu-mac',
       'mac-running-slow-low-storage',
       'mac-storage-full-after-macos-update',
       'not-enough-space-to-update-macos',

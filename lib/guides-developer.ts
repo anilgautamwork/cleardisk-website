@@ -71,6 +71,7 @@ export const developerGuides: Guide[] = [
       },
     ],
     related: [
+      'clear-cocoapods-cache-mac',
       'remove-unused-ios-simulators',
       'clean-homebrew-cache-mac',
       'system-data-keeps-growing',
@@ -726,6 +727,7 @@ export const developerGuides: Guide[] = [
       },
     ],
     related: [
+      'clear-yarn-pnpm-cache-mac',
       'find-node-modules-folders-mac',
       'clean-homebrew-cache-mac',
       'clear-xcode-derived-data',

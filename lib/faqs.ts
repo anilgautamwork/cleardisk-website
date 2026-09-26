@@ -428,7 +428,7 @@ export const faqTopics: FaqTopic[] = [
         id: 'price',
         question: 'How much does ClearDisk cost, and is it a subscription?',
         answer:
-          'A one-time license of $10, shown in your local currency at checkout, covers up to three Macs you own and every 1.x update. There is no monthly or annual charge.',
+          'A one-time license of $10, shown in your local currency at checkout, covers up to three Macs you own including ClearDisk 2.0.0. There is no monthly or annual charge.',
       },
       {
         id: 'what-cleanup-does',
@@ -441,7 +441,7 @@ export const faqTopics: FaqTopic[] = [
         id: 'uploads',
         question: 'Does ClearDisk upload my files?',
         answer:
-          'No. Scanning and analysis run on your Mac, and file names and scan results are never uploaded. The only network request is license activation, which sends your key, a device identifier, your computer name and the app version.',
+          'No. Scanning and analysis run on your Mac, and file names and scan results are never uploaded. License activation sends your key, a device identifier, your computer name and the app version. Software update checks and downloads also use the network; they do not upload your files or scan results.',
       },
       {
         id: 'full-disk-access',

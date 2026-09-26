@@ -4,7 +4,7 @@ import { pageMetadata } from '@/lib/seo';
 import { visitorPrice } from '@/lib/visitor-price';
 export const metadata = pageMetadata(
   'ClearDisk pricing — free scanning, $10 once',
-  'Scan your Mac for free. Unlock ClearDisk cleanup and licensed iCloud Doctor actions with a one-time license for three personal Macs, including 1.x updates.',
+  'Scan your Mac for free. Unlock ClearDisk cleanup and licensed iCloud Doctor actions with a one-time license for three personal Macs, including ClearDisk 2.0.0.',
   '/pricing',
 );
 export default async function Pricing() {
@@ -45,7 +45,7 @@ export default async function Pricing() {
               <li>Cleanup inside ClearDisk, with review before removal</li>
               <li>Eligible iCloud local-download removal</li>
               <li>Verified archives of supported iCloud documents</li>
-              <li>Three personal Macs and all 1.x updates</li>
+              <li>Three personal Macs, including ClearDisk 2.0.0</li>
               <li>30-day refund policy</li>
             </ul>
             <Link className="button primary" href="/buy-now">
@@ -55,7 +55,7 @@ export default async function Pricing() {
           <section>
             <h2>Already have a license?</h2>
             <p>
-              Your existing license works with ClearDisk 1.1, including iCloud
+              Your existing license works with ClearDisk 2.0.0, including iCloud
               Doctor. Download the update and activate with your key. You do not
               need a second purchase.
             </p>

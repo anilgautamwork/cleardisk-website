@@ -2,7 +2,12 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { GoogleAds } from '@/components/google-ads';
 import './reading-theme.css';
-import { organizationSchema, pageMetadata, SITE_URL } from '@/lib/seo';
+import {
+  organizationSchema,
+  pageMetadata,
+  publicPaths,
+  SITE_URL,
+} from '@/lib/seo';
 import { JsonLd } from '@/components/json-ld';
 import { ClickAttribution } from '@/components/click-attribution';
 import { VisitBeacon } from '@/components/visit-beacon';
@@ -28,7 +33,7 @@ export default function RootLayout({
           Skip to content
         </a>
         {children}
-        <GoogleAds />
+        <GoogleAds publicPaths={publicPaths} />
         <ClickAttribution />
         <VisitBeacon />
         <JsonLd data={organizationSchema} />
