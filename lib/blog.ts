@@ -2,6 +2,168 @@ import type { Guide } from './guides.ts';
 
 export const blogPosts: Guide[] = [
   {
+    slug: 'blog/appcleaner-os-x',
+    title: 'AppCleaner for OS X: uninstalling apps safely',
+    description:
+      'Find the right AppCleaner version for OS X or macOS, review related files before uninstalling, and decide what to check if your Mac is still low on space.',
+    summary:
+      'Trying to remove an old app? Check which AppCleaner download fits your Mac, review its file list, and find out where to look if storage is still full.',
+    published: '2026-09-26',
+    updated: '2026-09-26',
+    sections: [
+      {
+        id: 'which-version',
+        title: 'Which AppCleaner works with your Mac?',
+        paragraphs: [
+          'If you searched for “AppCleaner OS X,” check your system version before downloading. Choose Apple menu → About This Mac. The name and version number there are more useful than the age of the computer.',
+          'FreeMacSoft lists several AppCleaner downloads. As checked on September 26, 2026, its compatibility labels are:',
+        ],
+        items: [
+          'AppCleaner 3.7: macOS 15 and later.',
+          'AppCleaner 3.6.8: macOS 10.14 through 15.6.',
+          'AppCleaner 3.6: macOS 10.13.',
+          'AppCleaner 3.4: macOS 10.10 through 10.12.',
+        ],
+        links: [
+          {
+            label: 'Check the current AppCleaner downloads',
+            href: 'https://freemacsoft.net/appcleaner/',
+          },
+          {
+            label: 'Apple: find your macOS version',
+            href: 'https://support.apple.com/en-us/109033',
+          },
+        ],
+      },
+      {
+        id: 'what-it-removes',
+        title: 'What AppCleaner looks for',
+        paragraphs: [
+          'AppCleaner is FreeMacSoft’s app-removal utility. Drop an application into its window and it looks for related files you can remove with it.',
+          'Read that list before deleting. You may be finished with the app but still want a preset or data you have not exported. A familiar app name on a file is a useful clue, not a reason to throw it away.',
+          'We make ClearDisk. This explanation uses FreeMacSoft’s published instructions, not a hands-on comparison or a claim that one app found more files than another.',
+        ],
+        links: [
+          {
+            label: 'FreeMacSoft’s AppCleaner description',
+            href: 'https://freemacsoft.net/appcleaner/',
+          },
+        ],
+      },
+      {
+        id: 'before-uninstalling',
+        title: 'Check for the app’s own uninstaller first',
+        paragraphs: [
+          'Apple recommends the developer’s uninstaller when one is included. It can handle login items, extensions and other components the app installed. Check the app’s folder and its menus or settings before choosing a separate removal tool.',
+          'Save your work and quit the app. Back up anything you would miss, including data that is only accessible inside that app. Removing a paid app does not cancel its subscription, and documents you created with it may still need the app to open.',
+        ],
+        links: [
+          {
+            label: 'Apple’s app removal instructions',
+            href: 'https://support.apple.com/en-us/102610',
+          },
+          {
+            label: 'Our guide to uninstallers and leftover files',
+            href: '/uninstall-apps-on-mac',
+          },
+        ],
+      },
+      {
+        id: 'review-the-results',
+        title: 'A careful AppCleaner removal',
+        paragraphs: [
+          'For an app without its own removal instructions, start with one application:',
+        ],
+        items: [
+          'Open the AppCleaner version that supports your Mac, then drag the unwanted app from Finder into its window.',
+          'Read the related-file results. Check the paths and what the files contain. If a result is unclear, stop and check the app maker’s guidance before proceeding.',
+          'Use the delete action once you have checked the listed items. If removed files are in Trash, inspect them before emptying it. Files left there still occupy storage.',
+        ],
+        links: [
+          {
+            label: 'AppCleaner’s documented workflow',
+            href: 'https://freemacsoft.net/appcleaner/',
+          },
+          {
+            label: 'Review and recover files from Trash',
+            href: '/recover-files-from-trash-mac',
+          },
+        ],
+      },
+      {
+        id: 'still-short-on-space',
+        title: 'The app is gone. Why is the disk still full?',
+        paragraphs: [
+          'Think of an old video editor. You might be happy to remove it and still want every video you made. Apple notes that uninstalling does not remove documents you created with an app. Those files need their own review.',
+          'Check storage again. On macOS Ventura 13 or later, open System Settings → General → Storage. On earlier versions, open About This Mac → Storage. Look for the category or familiar folder that still accounts for the space.',
+          'System Data is a broad category that can contain caches, logs and app support files. Its total is not a list of disposable leftovers. If it remains large, identify the app or folder behind it before removing more files.',
+          'Downloads, device backups and old development projects are also worth reviewing when they are relevant to your work. A project’s node_modules folder needs a rebuild plan; a backup needs a decision about whether you still depend on it. Neither becomes unnecessary just because you removed an unrelated app.',
+        ],
+        links: [
+          {
+            label: 'Apple: check storage and free up space',
+            href: 'https://support.apple.com/en-us/102624',
+          },
+          {
+            label: 'Apple: what storage categories contain',
+            href: 'https://support.apple.com/guide/mac-help/mchl3d437fbc/mac',
+          },
+          {
+            label: 'Review old node_modules folders',
+            href: '/find-node-modules-folders-mac',
+          },
+        ],
+      },
+      {
+        id: 'when-cleardisk-helps',
+        title: 'When a separate storage scan helps',
+        paragraphs: [
+          'Use a storage scan when you need to find what is large across your Mac. ClearDisk’s free local scan includes a visual map, a large-file list and a System Data breakdown. File names and scan results stay on your Mac; protected locations may require macOS permission.',
+          'ClearDisk requires macOS 15 or later. It does not run on older OS X releases, so it is not a download option for every reader using an older AppCleaner build.',
+          'On a supported Mac, scan first and inspect the results. The cleanup license is $10 once. ClearDisk 2.0.0 offers Move to Trash with undo while items remain in Trash, or Remove Permanently after typing delete and clicking the red button. Permanent removal cannot be undone.',
+          'If uninstalling the app already gave you enough room, you can stop there. A second cleanup tool is useful only if there is still a storage problem to investigate.',
+        ],
+        links: [
+          {
+            label: 'What ClearDisk’s storage scan shows',
+            href: '/disk-space-analyzer-mac',
+          },
+          {
+            label: 'Download ClearDisk for macOS 15 or later',
+            href: '/download?source=guides',
+          },
+        ],
+      },
+    ],
+    related: [
+      'uninstall-apps-on-mac',
+      'best-free-mac-cleaner',
+      'what-is-system-data-on-mac',
+    ],
+    sources: [
+      {
+        label: 'FreeMacSoft: AppCleaner and compatible downloads',
+        url: 'https://freemacsoft.net/appcleaner/',
+      },
+      {
+        label: 'Apple: identify your macOS version',
+        url: 'https://support.apple.com/en-us/109033',
+      },
+      {
+        label: 'Apple: delete or uninstall apps',
+        url: 'https://support.apple.com/en-us/102610',
+      },
+      {
+        label: 'Apple: free up storage space',
+        url: 'https://support.apple.com/en-us/102624',
+      },
+      {
+        label: 'Apple: Storage settings',
+        url: 'https://support.apple.com/guide/mac-help/mchl3d437fbc/mac',
+      },
+    ],
+  },
+  {
     slug: 'blog/how-should-i-clean-my-mac',
     title: 'How should I clean my Mac? Decide before you delete',
     description:
