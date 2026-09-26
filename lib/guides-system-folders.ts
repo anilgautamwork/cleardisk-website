@@ -82,6 +82,24 @@ export const systemFolderGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'What is the difference between Other storage and System Data on a Mac?',
+        a: "They're the same thing under different names. Apple's Big Sur storage guide defined Other as files like caches, logs, VM files and app support data that don't fit other categories, and later versions renamed that category System Data with the same definition.",
+      },
+      {
+        q: 'Why does the Other or System Data category look huge right after I check it?',
+        a: 'Values are refined as each category finishes calculating, so a first look can overstate Other while the rest of the bar is still being counted. Wait for every category to finish before trusting the numbers you see.',
+      },
+      {
+        q: "Can I click on Other storage to see what's inside it and delete files?",
+        a: "No. Apple's Storage window doesn't let you manage the contents of this category, since there is no list to open or select from. You have to look at the folders that make it up, mainly your user Library, separately in Finder or Terminal.",
+      },
+      {
+        q: 'Should I run a script that promises to delete Other storage with admin rights?',
+        a: 'No. Those scripts can remove app data and system files along with caches, and can leave apps or macOS unable to start. A large Other or System Data figure is a prompt to investigate which folders are large, not something to erase with one command.',
+      },
+    ],
     related: [
       'what-is-system-data-on-mac',
       'clear-system-data-on-mac',
@@ -152,6 +170,24 @@ export const systemFolderGuides: Guide[] = [
           'Reopen Storage settings after a minute and compare Available, not just the iOS Files bar. If you moved files to the Trash, the space returns only after you empty it. If the number hasn’t changed, the storage-not-updating guide covers the usual reasons.',
           'ClearDisk’s scan lists iPhone and iPad backups in its System Data view with a Review label, alongside their paths and sizes. The label means “decide for yourself”: use it to see how much each backup occupies, then keep or remove them through Finder with the device and date in front of you.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'What exactly does the iOS Files storage category contain?',
+        a: 'Apple describes it in five words: iOS backups and firmware. Backups are local copies Finder makes when you back up an iPhone or iPad, and firmware is the device software file your Mac downloads to update or restore a connected device.',
+      },
+      {
+        q: 'Is it safe to delete an iPhone backup listed under iOS Files?',
+        a: "Only if you're sure you don't need it. A backup can be the only copy of messages, health data or photos from a device you no longer have, so identify the device and date first, and if it's encrypted make sure you still know the password.",
+      },
+      {
+        q: 'Do I need to keep firmware files listed under iOS Files?',
+        a: 'No, not once your device is running that software version. Firmware is only needed while your Mac updates or restores a device, and your Mac downloads current software again next time it needs to, so a leftover firmware file is usually easy space to recover.',
+      },
+      {
+        q: "I deleted files from iOS Files but my available storage didn't change. Why?",
+        a: 'If you moved files to the Trash, the space only returns after you empty it, so check that first. Reopen Storage settings after a minute and compare the Available figure, not just the iOS Files bar, since it can take time to update.',
       },
     ],
     related: [
@@ -231,6 +267,24 @@ export const systemFolderGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "Why doesn't the Documents storage figure match the size of my actual Documents folder?",
+        a: 'Documents is a classification of files across your whole home folder, not the size of one folder. It also counts things like Downloads, Desktop and loose videos or photos, while excluding files already counted under other categories such as Photos, Mail or Music.',
+      },
+      {
+        q: 'Why are my Desktop and Documents not showing up under the Documents storage category?',
+        a: "If Desktop and Documents are stored in iCloud Drive, Apple counts those files under iCloud Drive instead of Documents. That's one of several accounting rules, along with other user accounts' files appearing under Other Users and Shared rather than here.",
+      },
+      {
+        q: "What's the difference between the Large Files and File Browser views in Storage settings?",
+        a: 'Large Files lists individual big items, which misses a folder made up of many medium sized files. The File Browser instead shows folder totals using the same classification as the storage bar, so stepping down through folders there finds a heavy folder faster.',
+      },
+      {
+        q: 'Can duplicating a file in Finder make my storage numbers look wrong?',
+        a: 'It can look that way. On APFS, a file duplicated in Finder can share storage with its original, so adding up the sizes of both copies can overstate what they actually occupy on disk.',
+      },
+    ],
     related: [
       'find-large-files-on-mac',
       'clear-downloads-folder-mac',
@@ -301,6 +355,24 @@ export const systemFolderGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Can I free up space by removing built-in Mac apps like Mail or Notes?',
+        a: "No. Apple says you can't use Finder to delete apps required by your Mac, including built-in apps such as Mail, Music, Books, Notes and Maps, because they live on a read-only system volume by design. Turning off system protections to remove them isn't worth the risk.",
+      },
+      {
+        q: 'Will reinstalling macOS shrink the macOS storage category?',
+        a: "No. A fresh install of the same macOS version occupies the same system volume, so reinstalling isn't a storage fix. The macOS category's size is set by the release you run, not by how you use the Mac.",
+      },
+      {
+        q: 'Why is the macOS category bigger on some Macs than others?',
+        a: 'It differs between macOS versions as Apple adds features, languages and resources, and it changes when you update. On Big Sur and earlier, the same category was called System and also included Time Machine local snapshots, which made older figures look much larger.',
+      },
+      {
+        q: 'The macOS category grew right after I updated. Should I worry?',
+        a: "Not right away. A snapshot taken before the update and staged update files can inflate figures briefly after installing, and that usually settles on its own. If it's a real concern, focus instead on categories you control, such as Applications and Documents.",
+      },
+    ],
     related: [
       'what-is-system-data-on-mac',
       'other-volumes-in-container',
@@ -365,6 +437,24 @@ export const systemFolderGuides: Guide[] = [
           'Never delete Preboot, Recovery, VM, the System volume or the Data volume your Mac is using; the Mac needs them to start, recover and run. Apple’s Disk Utility guide warns that deleting a volume permanently erases all its data, and that a volume in use can’t be deleted from the running system.',
           'If you have identified a volume you created and no longer need, or a second installation you are finished with, back up first with Time Machine, open the volume and copy anything you want to keep, then select it in Disk Utility and click the Delete Volume (−) button in the toolbar. If you can’t tell which Data volume is in use, or the volume won’t delete, stop and contact Apple Support rather than working in Recovery on a guess.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'What counts as Other Volumes in Container on a Mac?',
+        a: "It's the space used by volumes sharing your startup disk's container besides your main Data volume, mainly Preboot, which holds data needed to start the system, Recovery, and VM, which stores encrypted swap files. A second macOS installation can add its own System and Data pair too.",
+      },
+      {
+        q: 'Can I delete the Preboot, Recovery or VM volumes to free space?',
+        a: "No, never delete Preboot, Recovery, VM, the System volume or the Data volume in use, since the Mac needs them to start, recover and run. Deleting a volume permanently erases all its data, and a volume in use can't be deleted from the running system.",
+      },
+      {
+        q: 'Why does Other Volumes in Container change size without me adding files?',
+        a: 'Because swap lives on the VM volume, and how much swap macOS is using can change from day to day on its own, which shifts this figure without you adding anything yourself.',
+      },
+      {
+        q: 'I have an extra volume I created myself. How do I remove it safely?',
+        a: "Back it up first with Time Machine, open the volume and copy anything you want to keep, then select it in Disk Utility and click the Delete Volume button. If you can't tell which Data volume is in use, stop and contact Apple Support instead.",
       },
     ],
     related: [
@@ -432,6 +522,24 @@ export const systemFolderGuides: Guide[] = [
           'If Spotlight also fails to find files you know exist, Apple’s procedure is to open System Settings → Spotlight (or Siri & Spotlight), click Search Privacy (or Spotlight Privacy), add Macintosh HD to the list, wait a few seconds, then remove it and click Done. Spotlight then indexes the whole disk again, which takes time, and searches are incomplete until it finishes.',
           'If none of this helps, run First Aid in Disk Utility and make sure your backup is current. ClearDisk’s scan measures folders directly rather than reading Storage settings, so it can show where the space is while the category bar is still counting; it doesn’t repair the Storage pane itself.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'How long should Storage settings take to finish calculating?',
+        a: 'It can take a while on a disk with millions of files, a recent migration or a fresh update, and values are refined as each category finishes, so wait until all categories are done before trusting the numbers.',
+      },
+      {
+        q: 'Is there a faster way to check how full my disk is while Storage settings is still calculating?',
+        a: "Yes. Disk Utility shows used and available space for the startup volume immediately, and running df -h / in Terminal does the same. Available space is what decides whether you can save, install or update, so you don't need the category bar finished for that.",
+      },
+      {
+        q: 'Should I rebuild the Spotlight index if Storage settings is stuck on Calculating?',
+        a: 'Only if Spotlight search is also failing to find files you know exist. Rebuilding means adding Macintosh HD to Search Privacy, waiting a few seconds, then removing it, which makes Spotlight index the whole disk again, so try a restart and safe mode first.',
+      },
+      {
+        q: "Does restarting help when Storage settings won't finish calculating?",
+        a: "Yes, it's a reasonable step. A restart ends any stuck process and gives the calculation a clean start, but opening and closing the Storage pane repeatedly doesn't help it finish, so give it a few minutes after logging back in.",
       },
     ],
     related: [
@@ -505,6 +613,24 @@ export const systemFolderGuides: Guide[] = [
           'Start with the storage-full guide if the Mac is struggling now: emptying the Trash, clearing Downloads and removing old device backups usually recovers far more than any system file. Then look at System Data for caches and app data you can identify.',
           'If memory pressure is the real question, the swap memory guide explains how to read Activity Monitor and why swap grows. Both paths lead to changes you can reverse, which is the right kind of cleanup for files the operating system depends on.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Is it safe to delete the sleepimage file to free up space?',
+        a: "No, and it won't help for long. The file belongs to the system and needs administrator rights to remove, but deleting it doesn't switch hibernation off, so macOS creates it again at the next sleep and the space goes back into use.",
+      },
+      {
+        q: 'Why is my sleepimage file so large?',
+        a: 'Its size relates to how much memory your Mac has, not to your documents, so a large sleepimage on a Mac with a lot of RAM is expected rather than a sign of a fault. macOS decides its size on its own.',
+      },
+      {
+        q: 'Can I move the sleepimage file to another drive to save internal space?',
+        a: "No. The pmset manual states the hibernation file may only be located on the root volume, so there's no way to move it off the startup disk to another drive.",
+      },
+      {
+        q: 'Should I change hibernatemode to 0 and delete sleepimage to reclaim space?',
+        a: "That's not a good trade on a laptop. With hibernatemode set to 0, the Mac must wake from memory and will lose its open apps and documents on power loss, so changing power management defaults to recover a few gigabytes rarely makes sense.",
       },
     ],
     related: [
@@ -586,6 +712,24 @@ export const systemFolderGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Is it safe to delete files inside /private/var/folders?',
+        a: "No, don't delete inside it by hand. Running apps and background services keep files open there, so deleting them while logged in can crash apps or interrupt downloads, and sudo commands that remove everything there also delete other users' files and system state.",
+      },
+      {
+        q: 'Does macOS ever clean up /private/var/folders on its own?',
+        a: "Yes, partly. Files in the temporary items folder may be removed by the system if they haven't been accessed in 3 days, and the cache folder, while not cleaned automatically, has its files removed during a safe boot.",
+      },
+      {
+        q: 'How do I find out which app is filling up /private/var/folders?',
+        a: "Measure your own folders with the read-only commands, then list the largest items in your cache folder; most are named by an app's bundle identifier, such as com.apple.Safari, which tells you whose files they are.",
+      },
+      {
+        q: "Restarting didn't shrink my /private/var/folders. What's next?",
+        a: "If a single app's folder is still large after a restart, that app may be behaving normally or have a bug. Check for an update or a cache setting in the app, or start up in safe mode once, since the cache folder is cleared during a safe boot.",
+      },
+    ],
     related: [
       'library-caches-folder-mac',
       'what-is-system-data-on-mac',
@@ -660,6 +804,24 @@ export const systemFolderGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Which Caches folder on my Mac is safe to look through?',
+        a: "~/Library/Caches, inside your own account, is the safest to review, since it holds rebuildable data organized mostly one folder per app. /Library/Caches is shared by every user and best left mostly alone, and /System/Library/Caches belongs to macOS and isn't somewhere to clean.",
+      },
+      {
+        q: 'How do I know which app a folder in Library/Caches belongs to?',
+        a: "Apple's convention names each subfolder after the app's bundle identifier, such as com.example.MyApp, where com.apple prefixes belong to macOS and Apple apps and prefixes like com.google or com.microsoft point to that vendor. You can confirm an app's identifier with mdls if unsure.",
+      },
+      {
+        q: 'Is it okay to empty my whole Caches folder at once?',
+        a: "It's better to avoid that. Everything comes back, every app starts up cold at the same time, and anything an app cached for offline use has to be downloaded again, so removing one identified folder at a time is safer.",
+      },
+      {
+        q: "What's the right way to clear a specific app's cache folder in Finder?",
+        a: 'Quit the app that owns the folder, move just that folder to the Trash, then reopen the app to confirm it works and rebuilds what it needs, and empty the Trash afterward. Leave the Caches folder itself in place.',
+      },
+    ],
     related: [
       'clear-cache-on-mac',
       'show-library-folder-mac',
@@ -728,6 +890,24 @@ export const systemFolderGuides: Guide[] = [
           'Don’t empty /private/var/log wholesale or try to clear the unified log store with sudo commands. macOS manages both, and the history they hold is what Apple Support or a developer will ask for when you report a fault. Deleting it trades diagnostic evidence for very little space.',
           'ClearDisk’s System Data view shows Logs as its own group, labeled Safe, so you can see the total alongside caches and backups. The label reflects that logs don’t hold your data; the size usually shows they aren’t where your storage went.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Where can I find crash reports and other logs on my Mac?',
+        a: 'Open Console from Applications, Utilities, which lists Crash Reports, Spin Reports, Log Reports and Diagnostic Reports in its sidebar. User reports come from apps you run and are stored in ~/Library/Logs, while system reports need an administrator account to view.',
+      },
+      {
+        q: 'Is it worth clearing Mac log files to free up space?',
+        a: "Usually not much. On most Macs these totals are small next to caches, backups or media, so clearing logs won't make a noticeable difference to storage, and they're useful if something goes wrong and you need to report a fault.",
+      },
+      {
+        q: 'What does it mean if one log file is huge?',
+        a: 'A log running to gigabytes almost always belongs to one app or background helper logging too much, such as a debug setting left on or the same error repeating constantly. Check that app for a logging option, then quit it before moving the old log to the Trash.',
+      },
+      {
+        q: 'Should I delete files from /private/var/log or the unified log store to save space?',
+        a: "No, don't empty /private/var/log wholesale or try to clear the unified log store with sudo commands. macOS manages both, and that history is what Apple Support or a developer will ask for when you report a problem.",
       },
     ],
     related: [
@@ -812,6 +992,24 @@ export const systemFolderGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Why does my Mac show one Macintosh HD when there are actually two volumes?',
+        a: 'Since macOS Catalina, the operating system runs on a separate read-only system volume also named Macintosh HD, while your files live on Macintosh HD - Data. macOS joins them with firmlinks so folders like Applications and Users appear together, even though Finder just shows both as Macintosh HD.',
+      },
+      {
+        q: 'Which folders on my Mac are actually safe for me to clean up?',
+        a: 'Documents and media in your home folder, Downloads, apps you installed in Applications, and package caches in dot folders are yours to manage directly. Folders like ~/Library/Caches deserve a check of which app owns them first, while System and private should be left alone entirely.',
+      },
+      {
+        q: "Why can't I delete something inside the /System folder even with an administrator password?",
+        a: 'Because /System lives on the read-only, cryptographically sealed system volume, and Apple says those resources must not be modified. That volume is fixed by your macOS version, so nothing there is meant to be deleted by users.',
+      },
+      {
+        q: 'Is it safe to look through hidden Unix folders like /private and /usr?',
+        a: "Yes, just looking changes nothing. You can view them with Finder's Shift-Command-Period shortcut to show hidden items, or with ls -la / in Terminal; the risk is only in deleting things outside your home folder, which is where mistakes happen.",
+      },
+    ],
     related: [
       'show-library-folder-mac',
       'show-hidden-files-mac',
@@ -874,6 +1072,24 @@ export const systemFolderGuides: Guide[] = [
           'If the goal is an app in a different language, use the supported setting: Apple’s guide says to open System Settings → General → Language & Region and go to Applications, then choose an app and a language. Nothing is removed and nothing breaks.',
           'If the goal is space, uninstall apps you no longer use, clear the Downloads folder, review large files and look at what System Data is made of. Each of those has a guide below, and each recovers space without modifying signed software. If an app misbehaves after an old language cleanup, reinstalling it is the fix; re-signing someone else’s app yourself is not a substitute.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Can I delete unused language folders from apps to save space on my Mac?',
+        a: "It's not a good idea on current macOS. Removing a .lproj folder changes a signed app bundle, so its code signature no longer matches, and Gatekeeper can reject the app or macOS services relying on a valid code identity can fail.",
+      },
+      {
+        q: 'If I stripped languages from an app in the past, will an update fix it?',
+        a: 'Yes, an app update replaces the whole bundle with a complete, freshly signed copy including all languages, so the space you saved disappears at the next update anyway, and a stripping tool would have to run again and break the signature again.',
+      },
+      {
+        q: 'How much space do language files in apps actually take up?',
+        a: "It varies. A large office suite can carry a noticeable amount of localized material, but most apps carry little, and either way it's usually small next to caches, old device backups, downloads or media.",
+      },
+      {
+        q: 'How do I make an app open in a different language without breaking it?',
+        a: 'Use the supported setting instead of deleting files: open System Settings, General, Language & Region, go to Applications, then choose the app and a language. Nothing is removed and nothing breaks.',
       },
     ],
     related: [

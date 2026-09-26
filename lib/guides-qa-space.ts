@@ -70,6 +70,24 @@ export const spaceQaGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'How do I turn off the Your disk is almost full warning on Mac?',
+        a: 'Apple documents no setting that turns this warning off. The dependable way to stop it is to actually free up room on the startup disk and keep a margin, since silencing it removes the last notice before apps start failing to save.',
+      },
+      {
+        q: 'What triggers the disk almost full warning on Mac?',
+        a: "It comes from a background agent called diskspaced on macOS Tahoe, part of the system's storage-management framework rather than an app you installed, and Apple doesn't publish the exact free-space level that triggers it. It only watches the volume holding your home folder.",
+      },
+      {
+        q: 'What happens if I ignore the disk almost full warning on Mac?',
+        a: 'Apps can fail to save documents, downloads and updates can stop, and memory swap has nowhere to grow, which can lead to a run out of application memory error. Time Machine is affected too, since local snapshots are only stored on disks with plenty of free space.',
+      },
+      {
+        q: 'How much free space should I keep to avoid the disk full warning on Mac?',
+        a: "There's no fixed number from Apple, so decide on a floor covering the largest thing your Mac routinely writes, such as a macOS update or a heavy export, and act before you drop below it. Getting just below the trigger point only means the warning returns with the next download.",
+      },
+    ],
     related: [
       'mac-storage-full',
       'find-what-is-filling-disk-mac',
@@ -122,7 +140,9 @@ export const spaceQaGuides: Guide[] = [
           'The command below only reads. It searches your home folder (~) for files (-type f) larger than 500 MB (-size +500M) whose contents changed in the last two days (-mtime -2), without crossing into other mounted disks (-xdev). The -exec du -h part prints each file’s size, and 2>/dev/null hides “Permission denied” lines for folders macOS protects.',
           'On a large home folder it can take a few minutes. If nothing appears, lower the size to +100M or widen the window to -mtime -7. A result inside a Library folder is a strong lead, because the path usually names the app, and that app’s own settings are the place to fix it. Folders made of many small files won’t show up here; the next step catches those.',
         ],
-        code: ['find ~ -xdev -type f -size +500M -mtime -2 -exec du -h {} + 2>/dev/null'],
+        code: [
+          'find ~ -xdev -type f -size +500M -mtime -2 -exec du -h {} + 2>/dev/null',
+        ],
       },
       {
         id: 'compare-folder-sizes',
@@ -154,6 +174,24 @@ export const spaceQaGuides: Guide[] = [
           'A free ClearDisk scan run before and after a day of normal work shows which folders grew, though it doesn’t name the process doing the writing.',
         ],
         code: ['tmutil listlocalsnapshots /'],
+      },
+    ],
+    questions: [
+      {
+        q: "How do I find out what's slowly filling up my Mac's disk?",
+        a: "Measure first, then catch the writer: log free space with df at the same times each day, check which apps write the most in Activity Monitor's Disk tab, and list large files changed in the last two days. Growth you can pin to one path or app has a fix; growth you only see in a total doesn't yet.",
+      },
+      {
+        q: "Which app is writing the most to my Mac's disk?",
+        a: 'Open Activity Monitor, click Disk, and sort by the Bytes Written column, which accumulates while each process runs. Treat it as a list of suspects rather than a measurement of space, since an app can write huge amounts and delete most of it, while a modest writer that never cleans up can still fill a disk.',
+      },
+      {
+        q: 'How do I find large files that were recently created on Mac?',
+        a: 'A find command searching your home folder for files over 500 MB changed in the last two days only reads and lists them with their sizes. If nothing turns up, lower the size threshold or widen the time window, and a result inside a Library folder is a strong lead since the path usually names the app.',
+      },
+      {
+        q: "Why does my Mac's free space drop and then recover on its own?",
+        a: 'A drop that recovers within hours often comes from temporary files, local Time Machine snapshots, or swap files, all of which macOS manages and removes on its own as they age or as space is needed. A steady loss over several days, rather than a bounce, is the sign something is actually accumulating.',
       },
     ],
     related: [
@@ -237,6 +275,24 @@ export const spaceQaGuides: Guide[] = [
           'Compression: no new hardware or plan, but small gains for media and an extra step every time you need the files.',
           'Moving files between folders on the same disk: tidier, but it frees nothing.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'How can I free up space on my Mac without deleting any files?',
+        a: "A file takes the same space wherever it sits on the Mac's own disk, so space only comes back once the local copy actually leaves the disk. Move finished work to an external drive, let iCloud hold older files with Optimize Mac Storage, or compress folders you rarely open into zip archives.",
+      },
+      {
+        q: "Does turning on iCloud's Optimize Mac Storage free up space?",
+        a: "Yes, gradually: Apple says the full contents of iCloud Drive stay on the Mac when space isn't needed, so this frees room as the disk fills rather than all at once. The trade-off is that files count against your iCloud storage plan and need a connection to open once removed from the Mac.",
+      },
+      {
+        q: 'Does compressing a folder into a zip actually save space on Mac?',
+        a: 'It depends on the content: text, logs, spreadsheets, source code and uncompressed audio often shrink noticeably, while photos, videos, music files and apps are usually already compressed and barely change. You also need enough free room to create the archive and later expand it again.',
+      },
+      {
+        q: 'Can I move an app library like Photos to an external drive on Mac?',
+        a: 'Yes, but move it the way the app expects rather than as an ordinary folder: for Photos, quit the app, copy the library to an APFS or Mac OS Extended drive, then open it from there. A library on an external drive is only available while that drive is connected.',
       },
     ],
     related: [
@@ -323,6 +379,24 @@ export const spaceQaGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "How much free space should I keep on my Mac's SSD?",
+        a: "Apple doesn't publish a percentage, so keep enough free room for the largest thing your Mac routinely writes, such as a macOS update, a big export, or heavy swap, plus a margin. A figure in gigabytes worked out from what your own Mac does holds up better than a generic percentage rule.",
+      },
+      {
+        q: 'Does a full SSD make a Mac slower?',
+        a: "It can contribute, since Apple lists insufficient free disk space among the causes of a slow Mac and a disk with no room to grow swap leaves macOS fewer options when memory is tight. But once there's comfortable room, freeing more won't make the Mac faster, so look at CPU use and memory pressure instead.",
+      },
+      {
+        q: "Why doesn't Apple give a percentage for free disk space on Mac?",
+        a: "Because a percentage scales oddly: 10 percent of a 256 GB disk and 10 percent of a 4 TB disk are very different amounts of room, while something like a macOS update needs roughly the same space regardless of disk size. Apple's own pages give no universal target.",
+      },
+      {
+        q: 'What uses free space on a Mac besides my own files?',
+        a: "macOS and apps borrow free space constantly: updates need extra room to download, unpack and stage before installing, memory pressure writes swap files to the startup disk, and Time Machine's local snapshots need plenty of free space to be kept. Exports and builds also often need their full size free first.",
+      },
+    ],
     related: [
       'mac-running-slow-low-storage',
       'how-much-storage-mac',
@@ -400,6 +474,24 @@ export const spaceQaGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'How big should my Time Machine backup drive be?',
+        a: 'Apple recommends a backup disk with at least twice the storage capacity of your Mac, so a 1 TB Mac pairs with a 2 TB drive. A smaller disk still works if it holds one full backup, but the extra room is what buys history, since Time Machine deletes the oldest backups when space runs low.',
+      },
+      {
+        q: 'Why does my Time Machine drive keep deleting old backups?',
+        a: 'As the backup disk fills up, Time Machine deletes older backups to make room for new ones, though Apple says it never deletes the last remaining backup. Large items that change often, like virtual machine disks or busy databases, eat into that history fastest because a changed item gets saved again each time.',
+      },
+      {
+        q: 'What format should a Time Machine backup drive use on Mac?',
+        a: "Apple lists APFS or APFS Encrypted as the preferred format; if the disk isn't APFS, Time Machine offers to erase and reformat it, which permanently removes what's already on it. A drive that already holds a Mac OS Extended Time Machine backup can keep being used without reformatting.",
+      },
+      {
+        q: 'Can I use a Time Machine drive for other files too?',
+        a: 'Not easily, since Time Machine reserves the entire APFS volume it backs up to. Apple suggests adding a second APFS volume in Disk Utility if you want to keep other files on the same physical drive, but the two volumes then share the available space, eating into your backup history.',
+      },
+    ],
     related: [
       'time-machine-backup-disk-full',
       'delete-old-time-machine-backups',
@@ -467,7 +559,9 @@ export const spaceQaGuides: Guide[] = [
           'The delete verb takes the backup disk’s mount point after -d and a timestamp after -t, copied exactly from the list. You can repeat -t to remove several backups in one command. Start with the oldest and never delete the most recent. The manual also notes that this verb can delete backups made by other Macs, so check the dates twice before pressing Return.',
           'There’s no Trash and no undo: a deleted backup is gone. Deleting can take some time on a large or slow disk. When it finishes, run listbackups again to confirm, and check the disk’s free space with Get Info in Finder. For older Mac OS Extended backup disks the manual adds a -p option that deletes a specific path from backups; it doesn’t apply to APFS backup disks.',
         ],
-        code: ['sudo tmutil delete -d "/Volumes/Backup Disk" -t 2025-03-14-093012'],
+        code: [
+          'sudo tmutil delete -d "/Volumes/Backup Disk" -t 2025-03-14-093012',
+        ],
       },
       {
         id: 'what-not-to-do',
@@ -487,6 +581,24 @@ export const spaceQaGuides: Guide[] = [
         code: ['tmutil listlocalsnapshots /'],
       },
     ],
+    questions: [
+      {
+        q: 'How do I delete old Time Machine backups on Mac?',
+        a: "Usually you don't need to, since Time Machine deletes the oldest backups itself when its disk fills up. To remove a specific one, list backups with tmutil listbackups, then delete a particular one by its timestamp using sudo tmutil delete with -d and -t.",
+      },
+      {
+        q: 'Can I delete Time Machine backups by dragging them to the Trash?',
+        a: "No, the guide warns against pulling backups apart in Finder or running rm on them, since Time Machine tracks what each backup shares with the next, and removing pieces by hand can leave the remaining backups inconsistent. On APFS backup disks there's no documented Finder method for removing just one.",
+      },
+      {
+        q: 'Why does tmutil delete say Operation not permitted on Mac?',
+        a: 'Listing and deleting backups needs root and Full Disk Access, so without granting Terminal Full Disk Access in System Settings, these commands fail with that error. Quit and reopen Terminal after turning the access on for it to take effect.',
+      },
+      {
+        q: 'Are Time Machine local snapshots the same as backups on the external drive?',
+        a: "No, local snapshots are hourly snapshots kept on the Mac's own disk, separate from the backups stored on the external drive. macOS removes local snapshots on its own as they age or as space is needed, and deleting backups on the external drive doesn't affect them.",
+      },
+    ],
     related: [
       'time-machine-backup-disk-full',
       'time-machine-snapshots',
@@ -499,7 +611,8 @@ export const spaceQaGuides: Guide[] = [
         url: 'https://support.apple.com/guide/mac-help/mh15137/mac',
       },
       {
-        label: 'Apple (macOS Catalina guide): delete a file from your Time Machine backup disk',
+        label:
+          'Apple (macOS Catalina guide): delete a file from your Time Machine backup disk',
         url: 'https://support.apple.com/guide/mac-help/delete-a-file-time-machine-backup-disk-mh26863/10.15/mac/10.15',
       },
       localSnapshots,

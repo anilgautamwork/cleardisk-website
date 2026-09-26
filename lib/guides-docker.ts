@@ -49,7 +49,11 @@ export const dockerGuides: Guide[] = [
           'Given an ID that has several tags, Docker refuses and asks for -f; with -f it removes every tag and the image. In Docker Desktop, open Images and select the bin icon on the row. Before deleting an image you built yourself and never pushed, make sure you can rebuild it: it can’t be pulled back from a registry.',
           'On Apple silicon, the containerd image store that current Docker Desktop uses can keep more than one platform variant of an image, for example arm64 and an amd64 variant pulled for testing. docker image ls --tree, marked experimental, shows them, and docker image rm --platform linux/amd64 removes one variant. Docker asks for --force there, because that content goes from every image that shares it.',
         ],
-        code: ['docker image rm myapp:old', 'docker image rm 4e38e38c8ce0', 'docker image rm myapp:dev myapp:test'],
+        code: [
+          'docker image rm myapp:old',
+          'docker image rm 4e38e38c8ce0',
+          'docker image rm myapp:dev myapp:test',
+        ],
       },
       {
         id: 'delete-by-pattern',
@@ -71,7 +75,11 @@ export const dockerGuides: Guide[] = [
           'The clean way to delete everything you aren’t using is docker image prune -a. It removes every image without at least one container, running or stopped, and asks for confirmation first. Add --filter "until=720h" to limit it to images created more than 30 days ago. Images with a container are left alone, so a second step is needed if you want those gone as well.',
           'The literal answer, docker image rm $(docker image ls -q), hands every image ID to the remove command. Images that containers use fail with conflict errors, which is Docker protecting them, and IDs with several tags fail unless forced. Resist adding -f to silence that. To empty Docker completely, remove the containers first, knowing that deletes their writable layers. Image commands never touch volumes.',
         ],
-        code: ['docker image prune -a', 'docker image prune -a --filter "until=720h"', 'docker image rm $(docker image ls -q)'],
+        code: [
+          'docker image prune -a',
+          'docker image prune -a --filter "until=720h"',
+          'docker image rm $(docker image ls -q)',
+        ],
       },
       {
         id: 'space-afterward',
@@ -83,8 +91,38 @@ export const dockerGuides: Guide[] = [
         code: ['docker system df'],
       },
     ],
-    related: ['docker-image-in-use-conflict', 'docker-dangling-vs-unused-images', 'docker-raw-file-mac', 'clean-docker-disk-space-mac'],
-    sources: [imageRm, imageLs, { label: 'Docker: docker image prune reference', url: 'https://docs.docker.com/reference/cli/docker/image/prune/' }],
+    questions: [
+      {
+        q: "Why won't Docker let me delete an image?",
+        a: "Docker won't normally remove an image that any container is based on, including stopped ones, so you need to remove the container first. An image ID with several tags is also refused unless you add -f.",
+      },
+      {
+        q: 'Does removing one tag from a Docker image actually delete it?',
+        a: "Only if that was the image's only tag. If it still has other tags, removing one just untags it, and no space comes back because the data still belongs to the remaining names.",
+      },
+      {
+        q: 'Why does Docker.raw still look large after I delete images on my Mac?',
+        a: "Docker returns freed blocks to macOS quickly, but Docker.raw is a sparse file, so its listed size can stay large; check available space rather than the file's size. Build cache and stopped containers can also hold the same layers even after the images are gone.",
+      },
+      {
+        q: 'What does docker image prune -a actually remove?',
+        a: 'It removes every image that no container, running or stopped, is using, after asking for confirmation. Adding a filter like until=720h limits it to images created more than 30 days ago.',
+      },
+    ],
+    related: [
+      'docker-image-in-use-conflict',
+      'docker-dangling-vs-unused-images',
+      'docker-raw-file-mac',
+      'clean-docker-disk-space-mac',
+    ],
+    sources: [
+      imageRm,
+      imageLs,
+      {
+        label: 'Docker: docker image prune reference',
+        url: 'https://docs.docker.com/reference/cli/docker/image/prune/',
+      },
+    ],
   },
   {
     slug: 'remove-docker-containers-mac',
@@ -103,7 +141,11 @@ export const dockerGuides: Guide[] = [
           'docker ps shows running containers only, which is why old ones go unnoticed. Add -a to include everything: the STATUS column reads Exited for stopped containers and Created for containers that were never started. Add --size to see two figures per container: the data in its own writable layer, and a virtual size that also counts the read-only image underneath it.',
           'The same list is in Docker Desktop’s Containers view, which shows running and stopped containers together and groups Compose projects under their project name. Each stopped container keeps its writable layer, its settings and its logs until it is removed, so a development Mac that runs many one-off containers can collect a long list.',
         ],
-        code: ['docker ps -a', 'docker ps -a --size', 'docker ps -a --filter "status=exited"'],
+        code: [
+          'docker ps -a',
+          'docker ps -a --size',
+          'docker ps -a --filter "status=exited"',
+        ],
       },
       {
         id: 'save-data',
@@ -121,7 +163,11 @@ export const dockerGuides: Guide[] = [
           'Pass one or more names or IDs to docker rm. A running container is refused; stop it first with docker stop, which lets the process shut down cleanly. docker rm -f skips that step by sending SIGKILL, which can leave a database mid-write, so keep it for containers you’re sure about. Adding -v also removes the container’s anonymous volumes, while named volumes stay.',
           'To remove only the exited ones, combine docker rm with a filtered list, as Docker’s own reference shows. For a Compose project, docker compose down removes its containers and networks. docker compose down -v also deletes the named volumes declared in the Compose file, so leave -v off unless you mean to delete that data. In Docker Desktop, use the Delete action on a container row.',
         ],
-        code: ['docker stop old-api', 'docker rm old-api', 'docker rm $(docker ps -aq --filter "status=exited")'],
+        code: [
+          'docker stop old-api',
+          'docker rm old-api',
+          'docker rm $(docker ps -aq --filter "status=exited")',
+        ],
       },
       {
         id: 'prune-stopped',
@@ -130,7 +176,11 @@ export const dockerGuides: Guide[] = [
           'docker container prune removes every stopped container after a confirmation prompt, and prints the IDs it deleted and the space reclaimed. Running containers are never touched. The -f flag skips the prompt; keep it out of habits and scripts you haven’t reviewed.',
           'To keep recent work, add --filter "until=24h". Note what the filter measures: containers created more than 24 hours ago, not stopped more than 24 hours ago, so a long-lived container you stopped this morning still qualifies. Labels work too, and filters with different keys must all match. docker system prune goes further and also removes unused networks, dangling images and build cache.',
         ],
-        code: ['docker container prune', 'docker container prune --filter "until=24h"', 'docker container prune --filter "until=168h"'],
+        code: [
+          'docker container prune',
+          'docker container prune --filter "until=24h"',
+          'docker container prune --filter "until=168h"',
+        ],
       },
       {
         id: 'use-rm',
@@ -142,10 +192,39 @@ export const dockerGuides: Guide[] = [
         code: ['docker run --rm alpine echo hello', 'docker system df'],
       },
     ],
-    related: ['delete-docker-images-mac', 'remove-docker-volumes-mac', 'clean-docker-disk-space-mac', 'docker-raw-file-mac'],
+    questions: [
+      {
+        q: 'Will removing a Docker container delete data I need?',
+        a: "Yes, it deletes the container's writable layer for good, including generated files, uploads, or a database that was never given a volume, with no undo. Data stored in named volumes survives, since that's what volumes are for.",
+      },
+      {
+        q: "What's the difference between docker rm and docker rm -f?",
+        a: 'docker rm refuses to remove a running container until you stop it first, letting the process shut down cleanly. docker rm -f skips that step by sending SIGKILL, which can leave a database mid-write.',
+      },
+      {
+        q: 'How do I remove every stopped Docker container at once?',
+        a: 'Run docker container prune, which removes every stopped container after a confirmation prompt and prints the space it reclaimed. Running containers are never touched, and a filter like until=24h can exclude containers created more recently.',
+      },
+      {
+        q: 'Does removing containers also free the disk space used by their images?',
+        a: 'No. Removing containers frees their own writable layers, but not the images they came from, so large image usage still needs to be cleared separately with an image removal command.',
+      },
+    ],
+    related: [
+      'delete-docker-images-mac',
+      'remove-docker-volumes-mac',
+      'clean-docker-disk-space-mac',
+      'docker-raw-file-mac',
+    ],
     sources: [
-      { label: 'Docker: docker container prune reference', url: 'https://docs.docker.com/reference/cli/docker/container/prune/' },
-      { label: 'Docker: docker container rm reference', url: 'https://docs.docker.com/reference/cli/docker/container/rm/' },
+      {
+        label: 'Docker: docker container prune reference',
+        url: 'https://docs.docker.com/reference/cli/docker/container/prune/',
+      },
+      {
+        label: 'Docker: docker container rm reference',
+        url: 'https://docs.docker.com/reference/cli/docker/container/rm/',
+      },
       pruning,
     ],
   },
@@ -182,7 +261,11 @@ export const dockerGuides: Guide[] = [
           'docker image ls --filter "dangling=true" lists dangling images. Recent Docker versions hide untagged images from the plain docker image ls output, so they may be invisible until you filter for them or add -a. There’s no matching filter for unused images, but you can compare the image list with the images your containers use, which docker ps -a can print.',
           'docker system df gives the totals: the Images row shows how many images are active, meaning used by a container, and how much space is reclaimable, an estimate of what removing unused images could free.',
         ],
-        code: ['docker image ls --filter "dangling=true"', 'docker ps -a --format "{{.Image}}" | sort -u', 'docker system df'],
+        code: [
+          'docker image ls --filter "dangling=true"',
+          'docker ps -a --format "{{.Image}}" | sort -u',
+          'docker system df',
+        ],
       },
       {
         id: 'prune-dangling',
@@ -200,10 +283,36 @@ export const dockerGuides: Guide[] = [
           'docker image prune -a widens the prune to every image without a container. That includes base images you’ll download again on the next pull or build, and images you built locally, which need their source and build steps to recreate. --filter "until=168h" limits it to images created more than a week ago; label filters are available too.',
           'Docker’s reference notes that the confirmation prompt always warns that all dangling images will be removed, even when you pass a filter, so read the filter rather than the prompt. After pruning, Docker Desktop returns the freed space to macOS through its disk image, which the Docker.raw guide explains.',
         ],
-        code: ['docker image prune -a', 'docker image prune -a --filter "until=168h"'],
+        code: [
+          'docker image prune -a',
+          'docker image prune -a --filter "until=168h"',
+        ],
       },
     ],
-    related: ['delete-docker-images-mac', 'clear-docker-build-cache-mac', 'docker-raw-file-mac', 'clean-docker-disk-space-mac'],
+    questions: [
+      {
+        q: 'What does <none>:<none> mean in my Docker image list?',
+        a: 'It means the image has no name or tag, which usually happens when a tag moves to a newer build and leaves the old image behind. If no container uses it, that image counts as dangling.',
+      },
+      {
+        q: 'Does docker image prune remove all unused Docker images?',
+        a: 'No, plain docker image prune removes only dangling images, the untagged ones nothing is using. To remove every unused image, including named ones with no container, you need docker image prune -a instead.',
+      },
+      {
+        q: 'Is an image used by a stopped container considered unused in Docker?',
+        a: "No. A stopped container still counts as using its image, so that image stays in use until the container itself is removed, even if the container hasn't run in months.",
+      },
+      {
+        q: 'Are intermediate build images the same thing as dangling images?',
+        a: "No. Intermediate images from the legacy builder also show a none tag but belong to tagged images, so they aren't dangling. The dangling filter only lists untagged images at the end of a chain.",
+      },
+    ],
+    related: [
+      'delete-docker-images-mac',
+      'clear-docker-build-cache-mac',
+      'docker-raw-file-mac',
+      'clean-docker-disk-space-mac',
+    ],
     sources: [pruning, imageLs, desktopImages],
   },
   {
@@ -240,7 +349,11 @@ export const dockerGuides: Guide[] = [
           'docker system df splits Docker’s usage into images, containers, local volumes and build cache, with a reclaimable figure for each. The verbose form lists every image, container and volume. A large Build Cache line points to build cache; a large Containers line points to containers writing into their own layers instead of volumes.',
           'docker ps -a --size shows how much each container has written to its writable layer. A container that grows by itself, such as one keeping logs or a database inside its own filesystem, will keep filling the disk after every cleanup. Moving that data to a volume fixes the cause.',
         ],
-        code: ['docker system df', 'docker system df -v', 'docker ps -a --size'],
+        code: [
+          'docker system df',
+          'docker system df -v',
+          'docker ps -a --size',
+        ],
       },
       {
         id: 'remove-with-commands',
@@ -249,7 +362,11 @@ export const dockerGuides: Guide[] = [
           'Each Docker object has a command that deletes its layers safely and updates Docker’s records at the same time. Remove stopped containers you don’t need, then dangling or unused images, then build cache. Each command prompts before deleting and prints what it reclaimed.',
           'docker system prune combines the first steps: stopped containers, unused networks, dangling images and build cache. It leaves volumes alone unless you add --volumes, and even then it only takes anonymous volumes. The guides linked below cover each command’s flags and what each one can’t bring back.',
         ],
-        code: ['docker container prune', 'docker image prune', 'docker builder prune'],
+        code: [
+          'docker container prune',
+          'docker image prune',
+          'docker builder prune',
+        ],
       },
       {
         id: 'space-back',
@@ -258,13 +375,44 @@ export const dockerGuides: Guide[] = [
           'Deleting images frees blocks inside the virtual disk, and Docker Desktop passes them back to macOS: within seconds for Docker.raw, according to Docker’s Mac FAQ. Deleting files inside a running container doesn’t free host space automatically. For that case the FAQ documents a command that triggers reclamation.',
           'If the virtual disk is simply the wrong size or on the wrong drive, change it in Docker Desktop under Settings → Resources → Advanced rather than in Finder. The Docker.raw guide explains that page, including the setting that erases all containers and images when you lower it.',
         ],
-        code: ['docker run --privileged --pid=host docker/desktop-reclaim-space'],
+        code: [
+          'docker run --privileged --pid=host docker/desktop-reclaim-space',
+        ],
       },
     ],
-    related: ['docker-raw-file-mac', 'clear-docker-build-cache-mac', 'remove-docker-containers-mac', 'clean-docker-disk-space-mac'],
+    questions: [
+      {
+        q: "Where can I find Docker's overlay2 folder on a Mac?",
+        a: "There isn't one to find. Docker Desktop runs its engine inside a Linux virtual machine and stores everything in a single disk image file, Docker.raw, so /var/lib/docker doesn't exist in macOS and a Finder search for overlay2 turns up nothing.",
+      },
+      {
+        q: "Can I manually delete Docker's layer directories to free space?",
+        a: "No. Docker's documentation says not to manipulate files under /var/lib/docker, because layers are shared between images and containers, and deleting one breaks anything that depends on it while confusing later cleanup commands.",
+      },
+      {
+        q: 'Does current Docker Desktop still use the overlay2 storage driver?',
+        a: 'Not necessarily. The containerd image store is the default in Docker Desktop 4.34 and later, and Docker describes overlay2 as a legacy driver it has superseded; docker info shows which driver your setup actually uses.',
+      },
+      {
+        q: 'What happens if I delete Docker.raw to try to free up space?',
+        a: "It discards every image, container, and volume at once, so treat it as a full reset rather than a cleanup. Removing containers, images, and build cache with Docker's own commands is the safer way to shrink it.",
+      },
+    ],
+    related: [
+      'docker-raw-file-mac',
+      'clear-docker-build-cache-mac',
+      'remove-docker-containers-mac',
+      'clean-docker-disk-space-mac',
+    ],
     sources: [
-      { label: 'Docker: OverlayFS storage driver', url: 'https://docs.docker.com/engine/storage/drivers/overlayfs-driver/' },
-      { label: 'Docker: containerd image store with Docker Engine', url: 'https://docs.docker.com/engine/storage/containerd/' },
+      {
+        label: 'Docker: OverlayFS storage driver',
+        url: 'https://docs.docker.com/engine/storage/drivers/overlayfs-driver/',
+      },
+      {
+        label: 'Docker: containerd image store with Docker Engine',
+        url: 'https://docs.docker.com/engine/storage/containerd/',
+      },
       macFaq,
     ],
   },
@@ -330,11 +478,40 @@ export const dockerGuides: Guide[] = [
         ],
       },
     ],
-    related: ['docker-overlay2-on-mac', 'remove-docker-volumes-mac', 'virtual-machine-disk-space-mac', 'purgeable-space-on-mac'],
+    questions: [
+      {
+        q: "Why does Docker.raw show as hundreds of gigabytes when my Mac isn't that full?",
+        a: "Docker.raw is a sparse file that claims its full maximum size, but disk blocks are only allocated as Docker actually writes data. Tools like ls show the maximum, while du shows what's really allocated, which is what it costs your Mac.",
+      },
+      {
+        q: 'Can I delete or move Docker.raw myself in Finder?',
+        a: "No, don't delete or drag it in Finder, since Docker warns it can lose track of the file. Instead, shrink its contents with Docker's own commands, or change its size limit and location through Docker Desktop's settings.",
+      },
+      {
+        q: "What happens if I lower Docker Desktop's disk size limit?",
+        a: "Docker's FAQ states that reducing the maximum deletes the current disk image, along with all containers and images inside it. Back up any volumes with data you need before changing that setting.",
+      },
+      {
+        q: "Is Docker.raw included in my Mac's Time Machine backups?",
+        a: 'Only if you turned it on. Docker Desktop\'s General settings have an "Include VM in Time Machine backups" option that is off by default, so unless you enabled it, Time Machine isn\'t backing up that data.',
+      },
+    ],
+    related: [
+      'docker-overlay2-on-mac',
+      'remove-docker-volumes-mac',
+      'virtual-machine-disk-space-mac',
+      'purgeable-space-on-mac',
+    ],
     sources: [
       macFaq,
-      { label: 'Docker: change Docker Desktop settings', url: 'https://docs.docker.com/desktop/settings-and-maintenance/settings/' },
-      { label: 'Docker: troubleshoot Docker Desktop', url: 'https://docs.docker.com/desktop/troubleshoot-and-support/troubleshoot/' },
+      {
+        label: 'Docker: change Docker Desktop settings',
+        url: 'https://docs.docker.com/desktop/settings-and-maintenance/settings/',
+      },
+      {
+        label: 'Docker: troubleshoot Docker Desktop',
+        url: 'https://docs.docker.com/desktop/troubleshoot-and-support/troubleshoot/',
+      },
     ],
   },
   {
@@ -354,7 +531,11 @@ export const dockerGuides: Guide[] = [
           'docker system df has a Build Cache row with a total and a reclaimable figure. For detail, docker buildx du lists each cache record for the selected builder with its size, when it was last used and whether it is reclaimable. A record marked not reclaimable is in use by the builder and won’t be deleted even with -a.',
           'An asterisk after a size means the record shares storage with an image. Pruning it removes cache metadata, but the image still needs those layers, so little space comes back. In Docker Desktop, Settings → Builders shows each builder; inspecting an active builder includes its disk usage.',
         ],
-        code: ['docker system df', 'docker buildx du', 'docker buildx du --verbose'],
+        code: [
+          'docker system df',
+          'docker buildx du',
+          'docker buildx du --verbose',
+        ],
       },
       {
         id: 'prune-cache',
@@ -363,7 +544,10 @@ export const dockerGuides: Guide[] = [
           'docker builder prune asks for confirmation, then deletes cache that nothing is using and reports how much it reclaimed. With Docker Desktop, the command runs through Buildx: docker builder prune --help shows docker buildx prune as its usage, and it acts on the selected builder, normally desktop-linux. Add --builder with a name to prune a different builder. Records that a running build is using count as in use and stay, so prune between builds.',
           'Builders that use the docker-container driver keep their cache in their own container. Removing such a builder in Settings → Builders removes its cache along with it; Docker Desktop won’t remove the builder that is currently selected.',
         ],
-        code: ['docker builder prune', 'docker builder prune --builder mybuilder'],
+        code: [
+          'docker builder prune',
+          'docker builder prune --builder mybuilder',
+        ],
       },
       {
         id: 'choose-scope',
@@ -372,7 +556,11 @@ export const dockerGuides: Guide[] = [
           'A filter keeps the cache you are actively using. --filter "until=24h" keeps records used in the last 24 hours and removes older ones, so today’s project still builds quickly. Size flags trim least-recently-used records until the cache fits a limit: current Buildx calls it --max-used-space, and older references list --keep-storage. docker builder prune --help shows which one your version accepts.',
           '-a widens the prune. Docker’s builder prune reference describes it as removing all unused build cache rather than only dangling records, and the Buildx help describes it as including internal and frontend images. Either way the next build will download base images again and rerun every step. Cache mounts, the RUN --mount=type=cache folders package managers use, are build cache too.',
         ],
-        code: ['docker builder prune --filter "until=24h"', 'docker builder prune --max-used-space 10gb', 'docker builder prune -a'],
+        code: [
+          'docker builder prune --filter "until=24h"',
+          'docker builder prune --max-used-space 10gb',
+          'docker builder prune -a',
+        ],
       },
       {
         id: 'garbage-collection',
@@ -391,11 +579,43 @@ export const dockerGuides: Guide[] = [
         ],
       },
     ],
-    related: ['docker-raw-file-mac', 'docker-dangling-vs-unused-images', 'clean-docker-disk-space-mac', 'developer-storage-on-mac'],
+    questions: [
+      {
+        q: "What's the difference between docker builder prune and docker system prune for build cache?",
+        a: 'docker builder prune is the precise tool when only build cache is the target. docker system prune also removes stopped containers, unused networks, and dangling images along with the cache, so it will slow your next build more than needed.',
+      },
+      {
+        q: "Will clearing Docker's build cache make my next build slower?",
+        a: "Yes. Removing cache means the next build has to download base images again and rerun every step, so it's worth checking usage with docker buildx du first, since some records aren't reclaimable while a builder is actively using them.",
+      },
+      {
+        q: 'Does Docker clean up old build cache on its own?',
+        a: 'Yes, BuildKit clears old cache on a schedule: easily regenerated cache unused for 48 hours goes first, then anything unused for 60 days, then whatever exceeds the size limit, which is 20GB by default in Docker Desktop.',
+      },
+      {
+        q: "Does clearing Docker's build cache also remove unused images?",
+        a: "No. Deleting images doesn't empty the build cache, and docker system df counts the two separately, so clearing one doesn't reduce the other.",
+      },
+    ],
+    related: [
+      'docker-raw-file-mac',
+      'docker-dangling-vs-unused-images',
+      'clean-docker-disk-space-mac',
+      'developer-storage-on-mac',
+    ],
     sources: [
-      { label: 'Docker: docker builder prune reference', url: 'https://docs.docker.com/reference/cli/docker/builder/prune/' },
-      { label: 'Docker: docker buildx du reference', url: 'https://docs.docker.com/reference/cli/docker/buildx/du/' },
-      { label: 'Docker: build garbage collection', url: 'https://docs.docker.com/build/cache/garbage-collection/' },
+      {
+        label: 'Docker: docker builder prune reference',
+        url: 'https://docs.docker.com/reference/cli/docker/builder/prune/',
+      },
+      {
+        label: 'Docker: docker buildx du reference',
+        url: 'https://docs.docker.com/reference/cli/docker/buildx/du/',
+      },
+      {
+        label: 'Docker: build garbage collection',
+        url: 'https://docs.docker.com/build/cache/garbage-collection/',
+      },
     ],
   },
   {
@@ -415,7 +635,12 @@ export const dockerGuides: Guide[] = [
           'docker volume ls lists every volume. Long hexadecimal names are anonymous volumes, created when an image declares a volume or a container mounts a path without naming it. Readable names are named volumes; Compose prefixes them with the project name, so myproject_db-data belongs to a project called myproject. The dangling filter lists volumes no container references.',
           'docker system df -v includes a Local Volumes section with each volume’s size and how many containers link to it, and docker volume inspect shows labels, such as the Compose project that created it. Docker Desktop’s Volumes view shows the same list with sizes and an In use or Unused status, and lets you browse the files inside a volume.',
         ],
-        code: ['docker volume ls', 'docker volume ls --filter "dangling=true"', 'docker system df -v', 'docker volume inspect myproject_db-data'],
+        code: [
+          'docker volume ls',
+          'docker volume ls --filter "dangling=true"',
+          'docker system df -v',
+          'docker volume inspect myproject_db-data',
+        ],
       },
       {
         id: 'back-up-first',
@@ -445,7 +670,11 @@ export const dockerGuides: Guide[] = [
           'The error ends with a list of container IDs: those are the containers holding the volume. docker ps shows only running containers, so they seem not to exist. docker ps -a with a volume filter finds them, stopped ones included. Remove the container, after saving anything in it you need, and the volume can be deleted. Reaching for -f is the wrong fix; the container is the dependency.',
           'Compose projects are the usual source. Stopping a project, or pressing Control-C, leaves its containers in place. docker compose down removes the containers and keeps named volumes; docker compose down -v removes the named volumes declared in the Compose file as well, so add -v only when you mean to delete that data.',
         ],
-        code: ['docker ps -a --filter "volume=myproject_db-data"', 'docker rm 1a2b3c4d5e6f', 'docker volume rm myproject_db-data'],
+        code: [
+          'docker ps -a --filter "volume=myproject_db-data"',
+          'docker rm 1a2b3c4d5e6f',
+          'docker volume rm myproject_db-data',
+        ],
       },
       {
         id: 'prune-volumes',
@@ -457,11 +686,43 @@ export const dockerGuides: Guide[] = [
         code: ['docker volume prune', 'docker volume prune -a'],
       },
     ],
-    related: ['remove-docker-containers-mac', 'docker-raw-file-mac', 'clean-docker-disk-space-mac', 'delete-docker-images-mac'],
+    questions: [
+      {
+        q: 'Why does Docker say a volume is in use when nothing seems to be running?',
+        a: 'A stopped container can still reference the volume, and docker ps only shows running containers, so the dependency is easy to miss. Use docker ps -a with a volume filter to find that stopped container and remove it before the volume.',
+      },
+      {
+        q: 'Will docker volume prune delete my named volumes?',
+        a: 'Not by default. On current Docker versions it removes only anonymous volumes; adding -a also removes unused named volumes, which is what can delete the databases of abandoned projects, so list and back up first.',
+      },
+      {
+        q: "Does docker compose down delete my project's data?",
+        a: 'Not unless you add -v. Plain docker compose down removes containers while keeping named volumes, while docker compose down -v also removes the named volumes declared in the Compose file, deleting that data.',
+      },
+      {
+        q: 'Is deleting a Docker volume permanent?',
+        a: "Yes, docker volume rm deletes the volume and all its data with nothing going to the Trash. Back it up first, for example by running a database's own dump tool while the database is still running.",
+      },
+    ],
+    related: [
+      'remove-docker-containers-mac',
+      'docker-raw-file-mac',
+      'clean-docker-disk-space-mac',
+      'delete-docker-images-mac',
+    ],
     sources: [
-      { label: 'Docker: docker volume prune reference', url: 'https://docs.docker.com/reference/cli/docker/volume/prune/' },
-      { label: 'Docker: the Volumes view in Docker Desktop', url: 'https://docs.docker.com/desktop/use-desktop/volumes/' },
-      { label: 'Docker: volumes, including backup and restore', url: 'https://docs.docker.com/engine/storage/volumes/' },
+      {
+        label: 'Docker: docker volume prune reference',
+        url: 'https://docs.docker.com/reference/cli/docker/volume/prune/',
+      },
+      {
+        label: 'Docker: the Volumes view in Docker Desktop',
+        url: 'https://docs.docker.com/desktop/use-desktop/volumes/',
+      },
+      {
+        label: 'Docker: volumes, including backup and restore',
+        url: 'https://docs.docker.com/engine/storage/volumes/',
+      },
     ],
   },
   {
@@ -496,7 +757,10 @@ export const dockerGuides: Guide[] = [
           'The error gives a short container ID. docker ps -a with an id filter shows that container, including stopped ones that plain docker ps hides. To see every container based on an image, filter by ancestor, which matches the image and anything built from it.',
           'Docker Desktop shows the same dependency without commands: the Images view puts an In use tag next to images that running or stopped containers use, and Docker’s documentation says the associated container must be removed before such an image. Check whether the container holds files you need before removing it; its writable layer goes with it.',
         ],
-        code: ['docker ps -a --filter "id=4a7f7eebae0f"', 'docker ps -a --filter "ancestor=myapp:latest"'],
+        code: [
+          'docker ps -a --filter "id=4a7f7eebae0f"',
+          'docker ps -a --filter "ancestor=myapp:latest"',
+        ],
       },
       {
         id: 'remove-in-order',
@@ -505,7 +769,11 @@ export const dockerGuides: Guide[] = [
           'Stop the container if it is running, remove it, then remove the image. With the dependency gone, Docker can delete the image, and the space the container’s layers occupied comes back too. For a Compose project, docker compose down removes the project’s containers first; its --rmi local option also removes images the project built that have no custom tag.',
           'If the container belongs to something you still run, such as a Compose service, think twice: deleting the image only means Docker downloads or builds it again on the next start. When an image has several tags, removing one name:tag only untags it. Remove each name you no longer want; when the last tag goes, the image is deleted. docker image ls shows every tag that shares the ID.',
         ],
-        code: ['docker stop 4a7f7eebae0f', 'docker rm 4a7f7eebae0f', 'docker image rm myapp:latest'],
+        code: [
+          'docker stop 4a7f7eebae0f',
+          'docker rm 4a7f7eebae0f',
+          'docker image rm myapp:latest',
+        ],
       },
       {
         id: 'child-images',
@@ -514,7 +782,10 @@ export const dockerGuides: Guide[] = [
           'A child image depends on a parent stored locally, which mostly happens with the classic image store and the older, non-BuildKit builder that saved each step as its own image. The containerd image store that current Docker Desktop uses by default doesn’t perform this check, so on an up-to-date Mac you are more likely to meet the other errors.',
           'Images created after the parent are candidates; the since filter lists them. Delete the children you don’t need, or run docker image prune to clear the dangling ones, then remove the parent. If a child is something you still use, keep the parent: it holds layers the child needs.',
         ],
-        code: ['docker image ls --filter "since=4e38e38c8ce0"', 'docker image prune'],
+        code: [
+          'docker image ls --filter "since=4e38e38c8ce0"',
+          'docker image prune',
+        ],
       },
       {
         id: 'when-force',
@@ -525,11 +796,37 @@ export const dockerGuides: Guide[] = [
         ],
       },
     ],
-    related: ['delete-docker-images-mac', 'remove-docker-containers-mac', 'docker-dangling-vs-unused-images', 'docker-raw-file-mac'],
+    questions: [
+      {
+        q: 'What does "must be forced" mean in a Docker deletion error?',
+        a: 'It marks a soft conflict that the -f flag can override. "Cannot be forced" instead marks a hard conflict that only removing the actual dependency, such as a running container, will clear.',
+      },
+      {
+        q: 'Is it a good idea to use -f to force-delete a Docker image?',
+        a: "Use it carefully. Forcing past a stopped container only removes the image's name, while the container still depends on its layers, so little or no space comes back until the container itself is removed.",
+      },
+      {
+        q: 'What are dependent child images in Docker?',
+        a: "They're images built on top of another image, which mostly happens with the classic image store and the older non-BuildKit builder. The containerd image store Docker Desktop uses by default doesn't perform this check, so it's less likely on an up-to-date Mac.",
+      },
+      {
+        q: 'How do I find which container is blocking a Docker image deletion?',
+        a: 'The error message gives a short container ID you can filter for with docker ps -a, which also shows stopped containers that plain docker ps hides. Docker Desktop\'s Images view also marks images "In use" without needing any commands.',
+      },
+    ],
+    related: [
+      'delete-docker-images-mac',
+      'remove-docker-containers-mac',
+      'docker-dangling-vs-unused-images',
+      'docker-raw-file-mac',
+    ],
     sources: [
       imageRm,
       desktopImages,
-      { label: 'Docker: docker container ls reference', url: 'https://docs.docker.com/reference/cli/docker/container/ls/' },
+      {
+        label: 'Docker: docker container ls reference',
+        url: 'https://docs.docker.com/reference/cli/docker/container/ls/',
+      },
     ],
   },
 ];

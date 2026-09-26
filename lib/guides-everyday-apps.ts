@@ -64,6 +64,24 @@ export const everydayAppGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "What's the difference between Spotify's cache and its downloads on Mac?",
+        a: 'The cache holds parts of songs and podcasts for smooth playback and refills itself as you listen. Downloads are albums, playlists and podcasts you chose for offline listening, and stay until you or Spotify remove them.',
+      },
+      {
+        q: 'Will clearing the Spotify cache free up space permanently?',
+        a: "No, it's a one-off gain. Songs you play next stream and get cached again, so the folder gradually grows back to a similar size as you keep using Spotify.",
+      },
+      {
+        q: 'Does Spotify ever remove my downloads automatically?',
+        a: "Yes. Spotify removes downloads if you don't go online at least once every 30 days, if you reinstall the app, or if you exceed the five-device download limit for your account.",
+      },
+      {
+        q: "Are Spotify's Local Files affected by clearing the cache or removing downloads?",
+        a: 'No. Local Files are files in your own folders that Spotify simply displays; clearing the cache or removing downloads never touches them, so back them up like any other music you own.',
+      },
+    ],
     related: [
       'clear-cache-on-mac',
       'library-caches-folder-mac',
@@ -148,6 +166,24 @@ export const everydayAppGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Does clearing the Slack cache sign me out of my workspaces?',
+        a: "No. Clear Cache and Restart keeps you signed in and only removes cached content like images and scripts; your messages and files simply reload from Slack's servers after the restart.",
+      },
+      {
+        q: "What's the difference between Clear Cache and Restart and Reset App Data in Slack?",
+        a: 'Clear Cache and Restart removes cached content without signing you out. Reset App Data is heavier: it signs you out of every workspace and resets preferences to their defaults, so check you can sign back in first.',
+      },
+      {
+        q: "Is it safe to delete Slack's Application Support folder by hand?",
+        a: "No, especially while Slack is running. It holds your sign-in and local settings, so deleting it signs you out much like Reset App Data, but without the app's own safeguards.",
+      },
+      {
+        q: "Why does Slack's cache folder grow back after I clear it?",
+        a: 'The cache rebuilds as you use the app. More workspaces, busy channels and shared images or video all add to it, so a folder returning to its old size is normal rather than a fault.',
+      },
+    ],
     related: [
       'clear-teams-cache-mac',
       'clear-cache-on-mac',
@@ -228,6 +264,24 @@ export const everydayAppGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Should I clear the Teams cache to fix missing messages or wrong unread counts?',
+        a: "No, Microsoft doesn't recommend it for those chat or channel problems. Clearing the cache won't fix them, and it deletes the diagnostic logs support would need to find the actual cause.",
+      },
+      {
+        q: 'Is closing the Teams window enough before clearing its cache?',
+        a: "No, you need to quit completely, either Control-click the Dock icon and choose Quit or press Command-Q. Removing files from an app that's still running can leave it in a half-written state.",
+      },
+      {
+        q: 'Is it safe to delete every folder starting with UBF8T346G9 in Group Containers?',
+        a: "No, that prefix is Microsoft's shared developer ID used by several apps. Only the folder ending in com.microsoft.teams is on Microsoft's list for Teams; others, like UBF8T346G9.Office, belong to Office apps such as Outlook.",
+      },
+      {
+        q: 'Will I lose my chat history after clearing the Teams cache?',
+        a: "No. Chats, files and meetings are stored in Microsoft's cloud rather than only on the Mac, so they load again once you sign back in, though the first start afterward is slower while the cache rebuilds.",
+      },
+    ],
     related: [
       'clear-slack-cache-mac',
       'containers-folder-mac',
@@ -304,6 +358,24 @@ export const everydayAppGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Is there a one-click way to free up storage in WhatsApp on Mac?',
+        a: "No. WhatsApp's Free up storage feature isn't available in the Mac app, only on Android and iPhone. On the Mac you work chat by chat, through each chat's Media, Links and Docs tabs instead.",
+      },
+      {
+        q: "What happens if I delete WhatsApp's Group Container folder to save space?",
+        a: "It removes the chat history stored on that Mac along with the data linking it to your account, so you'd need to re-link the Mac from your phone, with no guarantee every message and file comes back.",
+      },
+      {
+        q: 'Does turning off media auto-download in WhatsApp delete files already downloaded?',
+        a: 'No, it only slows future growth by downloading media only when you open it. Anything already saved in the Media folder stays exactly where it is until you delete it yourself.',
+      },
+      {
+        q: "Why are WhatsApp's media folders hard to sort through in Finder?",
+        a: 'Because subfolders are named by chat identifiers rather than contact names, which makes Finder a poor tool for choosing what to delete; removing media inside the app itself is the more reliable route.',
+      },
+    ],
     related: [
       'containers-folder-mac',
       'messages-taking-up-space-on-mac',
@@ -320,7 +392,8 @@ export const everydayAppGuides: Guide[] = [
         url: 'https://faq.whatsapp.com/366146522333492/?cms_platform=mac-desktop',
       },
       {
-        label: 'WhatsApp Help Center: how to free up storage (Mac availability)',
+        label:
+          'WhatsApp Help Center: how to free up storage (Mac availability)',
         url: 'https://faq.whatsapp.com/5503646096388294/?cms_platform=mac-desktop',
       },
     ],
@@ -379,6 +452,24 @@ export const everydayAppGuides: Guide[] = [
           'du -sh "$HOME/Library/Group Containers/"*ru.keepcoder.Telegram',
           'du -sh "$HOME/Library/Application Support/Telegram Desktop"',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: "Will clearing Telegram's cache log me out or delete my chats?",
+        a: "No. Clearing the cache only removes local copies of media you have already opened; your cloud chats remain on Telegram's servers and you can download the media again later. The exception is secret chats, which are device specific and not stored in the cloud, so clearing affects them differently.",
+      },
+      {
+        q: 'Why is Telegram using so much space on my Mac?',
+        a: 'Telegram downloads a local copy of any photo, video or file you open so it loads quickly next time, and large groups or channels with lots of video can fill that cache even if you only scroll past them. Turning off automatic video downloads for groups and channels slows future growth.',
+      },
+      {
+        q: "Why don't the Telegram cache instructions I found online match my settings?",
+        a: "There are two separate Mac apps: Telegram for macOS, the native app, and Telegram Desktop, the cross platform app also used on Windows and Linux. Their settings screens are laid out differently, so instructions written for one often don't match what you see in the other.",
+      },
+      {
+        q: "Can I delete Telegram's data folder in Library to free up space?",
+        a: 'No, that folder keeps the data that keeps you signed in along with the cache, so deleting it signs you out and loses anything not stored in the cloud, including secret chats. Use the in-app storage controls instead, which free space while keeping your session intact.',
       },
     ],
     related: [
@@ -459,6 +550,24 @@ export const everydayAppGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Where does Steam store games on a Mac?',
+        a: 'Steam keeps games in ~/Library/Application Support/Steam/steamapps, with each installed game in its own folder under steamapps/common. If you added library folders on other drives, each of those has its own steamapps folder too, and Library is hidden by default in Finder.',
+      },
+      {
+        q: 'Will I lose my saves if I uninstall a Steam game?',
+        a: 'Not if the game supports Steam Cloud, shown by a Steam Cloud logo on its Store page, since Steam keeps those synced files for you. Games without cloud support may keep saves locally inside steamapps, so copy anything you want to keep before uninstalling.',
+      },
+      {
+        q: 'Can I just delete the Steam folder in Finder to save space?',
+        a: "Removing a game's folder from steamapps/common by hand can leave Steam's records out of step with what is actually on disk, and dragging the Steam app to the Trash does not remove your games. Use Uninstall inside Steam for individual games instead.",
+      },
+      {
+        q: 'Can I move my Steam games to an external drive?',
+        a: "Yes. In Steam's Settings, Storage tab, click plus to add a new library folder on another drive, then select the drive holding the game, select the game and click Move. The drive needs to stay connected whenever you want to play those games.",
+      },
+    ],
     related: [
       'uninstall-apps-on-mac',
       'application-support-folder-mac',
@@ -531,6 +640,24 @@ export const everydayAppGuides: Guide[] = [
           'The same Files settings show the Media folder location, with Change and Reset buttons, plus Keep Media folder organized and Copy files to Media folder when adding to Library. By default the folder sits in ~/Movies/TV. Apple describes it as where the movies and TV shows you import are stored.',
           'Imported home videos in that folder may be your only copy, so back them up before removing anything. Delete through the Apple TV app rather than Finder so the library does not keep entries for missing files. ClearDisk’s large-files list can show which videos are biggest before you decide.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Can I download an Apple TV movie again after deleting it from my Mac?',
+        a: "If it's a purchase, yes: open Movies or TV Shows under Library, hold the pointer over the title and click Download. Titles included with an Apple TV subscription or channel are not purchases, so they won't appear in that redownload list, and availability can vary by region.",
+      },
+      {
+        q: 'Is it safe to delete a rented movie before I finish watching it?',
+        a: "Only if you're sure you can redownload it in time. Apple gives you 30 days to start a rental and 48 hours to finish it once started, and a rental can only be downloaded on one device at a time, so don't delete one you still plan to watch.",
+      },
+      {
+        q: 'How do I stop Apple TV downloads from building up on my Mac?',
+        a: "Go to TV, Settings, then Files, and turn on Automatically delete watched movies and TV shows, which removes downloads after you play them. Storage settings also offers Optimize Storage, which removes shows you've already watched when space is needed, but both only act on watched titles.",
+      },
+      {
+        q: 'Where are my imported home videos stored, and should I delete them?',
+        a: "Imported movies and shows live in the Media folder, by default at ~/Movies/TV. Imported home videos there may be your only copy, so back them up before removing anything, and delete through the Apple TV app rather than Finder so the library doesn't keep entries for missing files.",
       },
     ],
     related: [
@@ -608,6 +735,24 @@ export const everydayAppGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "What's the difference between Remove Download and Delete from Library in Music?",
+        a: "Remove Download only removes the local copy from your Mac; catalog songs stay in your library and play again once you're online. Delete from Library removes the song from your library and playlists entirely, and if Sync Library is on it's deleted from your other devices too.",
+      },
+      {
+        q: 'Is it safe to delete songs I imported myself, like CD rips?',
+        a: 'Not without a backup. Imported songs may be the only copy you have, since Music has no copy to give back if that file is deleted, unlike catalog downloads or iTunes Store purchases, which can both be downloaded again.',
+      },
+      {
+        q: 'Can I move my Music library to an external drive?',
+        a: 'Yes. Choose File, Library, Organize Library, then Consolidate files, quit Music, copy the library folder from ~/Music/Music to the external drive, then hold Option while opening Music and choose that copy as your library. Keep the drive connected and keep a backup.',
+      },
+      {
+        q: 'Why did deleting a song in Music ask me to choose an option?',
+        a: 'Pressing Delete on a selected song offers Keep File, which removes it from the library only, or Move to Trash, which deletes the file from your Mac the next time you empty the Trash. For imported music without a backup, choosing Move to Trash is permanent.',
+      },
+    ],
     related: [
       'apple-tv-downloads-mac',
       'podcasts-taking-up-space-mac',
@@ -681,7 +826,27 @@ export const everydayAppGuides: Guide[] = [
           'The current Podcasts app keeps its data in ~/Library/Group Containers/243LU875E5.groups.com.apple.podcasts. The command below only measures it. A large number here usually means downloaded episodes.',
           'Don’t delete files inside that folder in Finder. The app keeps a database of what it has downloaded, and Remove All Downloads updates both the files and that record. Run the command again after removing downloads to see the difference; Storage settings may take a little longer to update.',
         ],
-        code: ['du -sh "$HOME/Library/Group Containers/243LU875E5.groups.com.apple.podcasts"'],
+        code: [
+          'du -sh "$HOME/Library/Group Containers/243LU875E5.groups.com.apple.podcasts"',
+        ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Does hiding played episodes in Podcasts free up space?',
+        a: 'No. Hide Played Episodes only hides episodes from view and frees no space. To actually free space, use Remove Download for a single episode or Remove All Downloads to clear everything at once.',
+      },
+      {
+        q: 'How do I stop Podcasts from automatically downloading so many episodes?',
+        a: 'In Podcasts, Settings, General, turn off Automatically Download or choose how many episodes to keep, and turn on Remove Played Downloads to delete episodes 24 hours after you play them. Individual shows can also override these settings from the Shows list.',
+      },
+      {
+        q: "If I remove a podcast's downloads, do I stop getting new episodes?",
+        a: "No. Removing a download doesn't unfollow the show, so its episodes still appear and stream when you're online, and with Sync Library on your play position stays in sync across devices. If you want a show gone entirely, unfollow it too.",
+      },
+      {
+        q: 'Can I safely delete files in the Podcasts app folder in Finder?',
+        a: "No, don't delete files inside that Group Containers folder by hand. The app keeps a database of what it has downloaded, and only Remove All Downloads inside Podcasts updates both the files and that record correctly.",
       },
     ],
     related: [

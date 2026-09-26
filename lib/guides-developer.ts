@@ -52,6 +52,24 @@ export const developerGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "Is it safe to delete Xcode's Derived Data folder?",
+        a: "Yes, for a project you're not actively working on. It only holds generated build products and indexes, so removing it just means Xcode rebuilds them, and the next build or indexing pass may take a bit longer.",
+      },
+      {
+        q: "Where is Xcode's Derived Data folder located?",
+        a: "The usual default is ~/Library/Developer/Xcode/DerivedData, but you can confirm it in Xcode's Settings under Locations, since a custom workspace or build configuration can use a different location.",
+      },
+      {
+        q: 'Will deleting Derived Data fix my Xcode build error?',
+        a: "Not necessarily. Apple's Xcode team recommends checking settings and trying a clean build folder first, since a duplicate build input, missing dependency or signing error can survive a Derived Data deletion unchanged.",
+      },
+      {
+        q: 'Should I clear my whole Library/Developer folder to save space?',
+        a: "No, stick to Derived Data for a specific inactive project. The wider Library/Developer folder also holds your project repository, release archives and simulator devices, which serve different purposes and aren't part of this cleanup.",
+      },
+    ],
     related: [
       'remove-unused-ios-simulators',
       'clean-homebrew-cache-mac',
@@ -124,6 +142,24 @@ export const developerGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "What's the difference between deleting a simulator device and a runtime?",
+        a: "A simulator device is a virtual iPhone with its own installed apps and state; a runtime is the shared operating-system version one or more devices use. Deleting a device doesn't remove the runtime, and removing a runtime can leave you unable to run devices that depend on it.",
+      },
+      {
+        q: 'Will I lose data if I delete an iOS simulator device?',
+        a: "Yes. Deleting a simulator device in Xcode's Devices and Simulators window means treating its app data as lost, so export any test documents or fixtures you still need before deleting it.",
+      },
+      {
+        q: 'Where do I remove unused simulator runtimes in Xcode?',
+        a: 'Open Xcode, Settings, and look for Components, which lists installed runtimes along with the storage each removal would recover. Older Xcode versions group these downloads under Platforms instead.',
+      },
+      {
+        q: 'Do I need to redownload a runtime after removing it?',
+        a: "Yes. Removing a downloaded runtime usually means downloading it again before you can test that OS version, so weigh connection speed and any upcoming deadline against the space you'd recover first.",
+      },
+    ],
     related: [
       'clear-xcode-derived-data',
       'system-data-too-large',
@@ -189,6 +225,24 @@ export const developerGuides: Guide[] = [
           'Repeat docker system df -v and compare available Mac space after Docker finishes reclaiming storage. Host reclamation and Docker object totals answer different questions. Deleting files inside a running container may not immediately shrink the disk image. Do not delete Docker.raw or reduce its maximum size as a casual cleanup shortcut.',
           'Start a retained development stack and check its data. If Docker remains the main storage user, plan retention for old images and build cache around your normal workload. If another folder is larger, investigate it separately; a general disk scan helps locate the source but cannot decide which Docker database you should keep.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'How do I check how much space Docker is actually using on my Mac?',
+        a: 'With Docker running, run docker system df -v, a read-only command that reports detailed usage by object type. Also check docker container ls -a and docker image ls to see containers and images without deleting anything.',
+      },
+      {
+        q: "Why does Docker.raw show a huge size when my Mac isn't actually that full?",
+        a: "Docker.raw is a sparse file, so it can report a maximum size much larger than the space it actually occupies. Compare Docker Desktop's storage settings against available Mac space before treating the reported size as real usage.",
+      },
+      {
+        q: 'Is running docker system prune safe?',
+        a: "It removes several kinds of unused objects, including stopped containers, dangling images, unused networks and build cache, but unused doesn't always mean unimportant, since build cache can save real rebuild time. Review what it would remove before running it.",
+      },
+      {
+        q: 'Can I delete Docker.raw directly to free up space?',
+        a: "No. The guide is explicit that you shouldn't delete Docker.raw or reduce its maximum size as a casual cleanup shortcut. Use Docker Desktop's own views or a reviewed prune workflow to reclaim space instead.",
       },
     ],
     related: [
@@ -271,6 +325,24 @@ export const developerGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'How do I find node_modules folders taking up space on my Mac?',
+        a: "In Terminal, change into your projects directory and run find . -type d -name node_modules -prune -print. It's a read-only listing that finds them without deleting anything or descending into each dependency tree.",
+      },
+      {
+        q: 'Is it safe to delete a node_modules folder?',
+        a: 'Generally yes, for a project where you still have package.json and the lockfile, since reinstalling afterward reconstructs it. Keep source code and config intact, and check for manually modified files inside node_modules first.',
+      },
+      {
+        q: 'Will reinstalling recreate node_modules exactly the way it was?',
+        a: 'Only if the dependencies remain available and you use the documented command. For an npm project with a compatible package-lock.json, npm ci performs a clean install but removes the existing node_modules first and requires the lockfile to match package.json.',
+      },
+      {
+        q: 'Is clearing the npm cache the same as deleting node_modules?',
+        a: "No, they're separate. The npm download cache is distinct from each project's node_modules folder, and npm documents its cache as self-healing, with npm cache verify for checking it rather than repeatedly clearing it.",
+      },
+    ],
     related: [
       'clean-docker-disk-space-mac',
       'clear-xcode-derived-data',
@@ -341,6 +413,24 @@ export const developerGuides: Guide[] = [
           'Revisit the page you were troubleshooting and check its behavior. The first load may need to download resources again. If the same problem persists, record the page and symptom and investigate extensions or the site itself; repeated cache clearing is not evidence that the underlying problem is fixed.',
           'If you wanted disk space, compare available storage after cleanup. Review actual Downloads separately and leave browser profile folders intact: they can contain much more than a cache. When another app or folder accounts for most of the drive, use the related storage guides to focus on that larger source.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'How do I clear just the cache in Safari without losing my logins?',
+        a: 'Turn on Show features for web developers in Safari, Settings, Advanced, then use Develop, Empty Caches. That clears cached page resources only; Clear History and Manage Website Data are separate, broader controls.',
+      },
+      {
+        q: "Will clearing Chrome's cache log me out of websites?",
+        a: 'Not if you only select Cached images and files in Delete browsing data. Deleting cookies and site data is what can remove website state and sign you out, so leave that category unselected if you just want cached resources gone.',
+      },
+      {
+        q: 'Does clearing browser cache delete my downloaded files too?',
+        a: 'No. Deleting download history in a browser removes the list of downloads, not the actual downloaded files sitting in Finder. Cache and download history are different categories with different effects.',
+      },
+      {
+        q: 'Will clearing my browser cache free up a lot of disk space?',
+        a: "Usually not much compared with a video download or a large project library, so check the browser's reported usage and your Mac's available space first if storage, rather than a stale page, is the actual goal.",
       },
     ],
     related: [
@@ -416,6 +506,24 @@ export const developerGuides: Guide[] = [
           'Review the document dimensions and units, layer count and recent operation. A mistaken large canvas deserves correction before you start deleting more files. In Photoshop’s performance settings, reducing retained history can reduce temporary-storage demand, but it also reduces the steps you can undo. Make that tradeoff deliberately.',
           'Keep recovery protection unless you understand and accept the loss of recovery opportunities. If Photoshop cannot launch or the warning persists despite adequate space, follow Adobe’s version-specific troubleshooting and contact support with the message, drive and document details. ClearDisk can help locate large local files, but it does not configure Photoshop or repair a damaged project.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'How much free space does Photoshop need for its scratch disk?',
+        a: "Adobe's current troubleshooting guidance recommends freeing at least 100GB on the primary scratch disk, though that's Adobe's specific recommendation rather than a universal requirement for every Mac app.",
+      },
+      {
+        q: "Where do I change Photoshop's scratch disk on Mac?",
+        a: 'Go to Photoshop, Settings, Scratch Disks (older versions call it Preferences), where you can select drives and set their priority. Adobe supports APFS and Mac OS Extended (Journaled) as scratch-drive formats on Mac.',
+      },
+      {
+        q: 'Does buying more iCloud storage fix a Photoshop scratch disk warning?',
+        a: "No. Scratch space is temporary local disk storage Photoshop uses for working files, so more cloud storage doesn't create free space on the selected local drive; check that drive's actual available capacity instead.",
+      },
+      {
+        q: "Will reducing Photoshop's history states free up space?",
+        a: "It can reduce temporary-storage demand, but it also reduces how many steps you can undo, so it's a tradeoff to make deliberately rather than a routine fix for a scratch disk warning.",
       },
     ],
     related: [
@@ -495,6 +603,24 @@ export const developerGuides: Guide[] = [
           'Leave automatic cleanup enabled and run brew cleanup --prune=all every few months on a small SSD. Do not delete the Cellar or the cache folder by hand in Finder; the FAQ’s supported routes are cleanup and uninstall, and brew uninstall --force is described there as destructive because it removes every installed version at once.',
           'Homebrew is usually one of several developer caches. The related guides cover node_modules folders, Xcode’s Derived Data and Docker’s disk image, which are the other places a developer Mac hides tens of gigabytes. A free local scan lists them together with allocated sizes so you can decide which one is worth the time.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Where is the Homebrew cache located on Mac?',
+        a: "Run brew --cache in Terminal; Homebrew's FAQ says it prints the download cache location, usually ~/Library/Caches/Homebrew. Because that folder sits under ~/Library/Caches, macOS counts it inside System Data.",
+      },
+      {
+        q: 'How do I see what brew cleanup will remove before running it?',
+        a: 'Run brew cleanup -n first. It shows what would be removed without removing anything, ending with the total space it would free, so you can confirm nothing you want to keep is on the list.',
+      },
+      {
+        q: 'Does brew cleanup remove everything in the Homebrew cache?',
+        a: 'Not by default. It only removes downloads older than 120 days unless you add --prune=all, which removes all cache files regardless of age, or -s/--scrub, which also clears current-version downloads except installed formulae and casks.',
+      },
+      {
+        q: 'Does Homebrew clean up its own cache automatically?',
+        a: 'Yes. Homebrew already runs cleanup after brew install, brew upgrade and brew reinstall, unless the HOMEBREW_NO_INSTALL_CLEANUP variable is set, and HOMEBREW_CLEANUP_MAX_AGE_DAYS controls the default 120-day age threshold.',
       },
     ],
     related: [
@@ -579,6 +705,24 @@ export const developerGuides: Guide[] = [
           'All four caches refill as you install, which is the intended behaviour. Clearing them is a quick, reversible way to reclaim space before a build or an update, not a permanent fix. If the same folder returns to the same size within a week, the cost is your install habits rather than the cache.',
           'The larger developer footprints are usually elsewhere: node_modules folders inside every project, Xcode’s Derived Data, Docker’s disk image and Homebrew’s downloads. The related guides cover each with the same measure-first approach, and a free local scan lists them together so you can start with the biggest.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Do I need to clear the npm cache to fix problems?',
+        a: "Not usually. npm's own documentation says its cache is self-healing and resistant to corruption, and clearing it should rarely be necessary for anything other than reclaiming disk space; try npm cache verify first, which checks integrity.",
+      },
+      {
+        q: 'Why does npm cache clean require a --force flag?',
+        a: "Because clearing the cache is rarely needed, the command refuses to run without --force. With it, npm cache clean --force empties the cache, and the next install simply re-downloads what's needed.",
+      },
+      {
+        q: 'Is it safe to delete the pnpm store folder directly?',
+        a: "No. The documented cleanup is pnpm store prune, which removes unreferenced packages no project uses anymore; deleting the store folder by hand isn't supported because projects that still link into it may need a full reinstall.",
+      },
+      {
+        q: 'Will clearing a package manager cache free up space permanently?',
+        a: "No. Caches for npm, pnpm, Yarn and pip all refill as you keep installing, since that's the intended behavior. Clearing them is a quick, reversible way to reclaim space before a build, not a permanent fix.",
       },
     ],
     related: [

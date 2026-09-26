@@ -36,7 +36,10 @@ export const systemQaGuides: Guide[] = [
           'The total and swap rows of free come from two kernel values. hw.memsize is the installed RAM in bytes; the second command divides it by 1,073,741,824 to print whole gigabytes. vm.swapusage reports swap total, used and free, and notes that swap is encrypted.',
           'Swap on a Mac isn’t a fixed partition. macOS creates swap files on the startup disk as it needs them, so the total grows and shrinks, and a few gigabytes of swap in use on a busy day is not a fault on its own. The swap guide explains where those files live and when swap is a warning sign.',
         ],
-        code: ['sysctl hw.memsize vm.swapusage', 'echo $(( $(sysctl -n hw.memsize) / 1073741824 )) GB'],
+        code: [
+          'sysctl hw.memsize vm.swapusage',
+          'echo $(( $(sysctl -n hw.memsize) / 1073741824 )) GB',
+        ],
       },
       {
         id: 'vm-stat-pages',
@@ -79,6 +82,24 @@ export const systemQaGuides: Guide[] = [
         code: ["alias free='top -l 1 | grep PhysMem; sysctl vm.swapusage'"],
       },
     ],
+    questions: [
+      {
+        q: 'Is there a free command on Mac like on Linux?',
+        a: "No, macOS doesn't include free, but top -l 1 | grep PhysMem gives a similar one-line summary of used and unused RAM. Adding sysctl vm.swapusage covers swap, and vm_stat gives the detailed page-level breakdown that free doesn't have.",
+      },
+      {
+        q: 'Why does my Mac show so little free memory in Terminal?',
+        a: "macOS keeps recently used files cached in spare RAM and hands it back when an app needs it, so a small unused figure is normal rather than a shortage. Apple's own guidance says having free or unused memory doesn't necessarily improve performance.",
+      },
+      {
+        q: 'How do I check RAM pressure on Mac from Terminal?',
+        a: "Run memory_pressure with no options; its last line gives a figure like System-wide memory free percentage: 84%. The more reliable check is the Memory Pressure graph in Activity Monitor's Memory tab, where Apple describes green as efficient use and red as a sign the Mac needs more RAM now.",
+      },
+      {
+        q: 'How much RAM does my Mac have, checked from Terminal?',
+        a: 'Run sysctl hw.memsize, which returns the installed RAM in bytes; dividing by 1,073,741,824 converts it to whole gigabytes. vm.swapusage separately reports swap total, used and free, noting that swap on a Mac is encrypted and grows or shrinks as needed rather than living in a fixed partition.',
+      },
+    ],
     related: [
       'mac-swap-memory',
       'purge-command-mac-memory',
@@ -119,7 +140,11 @@ export const systemQaGuides: Guide[] = [
           'Open Activity Monitor from Applications → Utilities, click CPU and sort by % CPU. Or run the ps line below, which lists each Spotlight process with its current CPU share. Several mdworker_shared processes at once is normal while indexing is under way.',
           'mdutil -s / reports whether indexing is enabled for the startup volume, and mdutil -s -a does the same for every mounted volume, including external drives and disk images. It shows status, not progress. Apple’s Spotlight article notes that, depending on how much data there is, indexing can take hours or even days.',
         ],
-        code: ["ps -Ac -o pid,pcpu,comm | grep -E 'mds|mdworker'", 'mdutil -s /', 'mdutil -s -a'],
+        code: [
+          "ps -Ac -o pid,pcpu,comm | grep -E 'mds|mdworker'",
+          'mdutil -s /',
+          'mdutil -s -a',
+        ],
       },
       {
         id: 'let-it-finish',
@@ -160,7 +185,30 @@ export const systemQaGuides: Guide[] = [
         ],
       },
     ],
-    related: ['mac-slow-after-macos-update', 'mac-running-slow-low-storage', 'mac-storage-full', 'free-command-on-mac'],
+    questions: [
+      {
+        q: 'Why is mds_stores using so much CPU on my Mac?',
+        a: "mds_stores looks after Spotlight's index databases, and high CPU usually means it's building or updating that index, most often after a macOS update, a large file copy or connecting a drive Spotlight hasn't indexed before. Indexing is incremental, so once it's built these processes go quiet again.",
+      },
+      {
+        q: 'How long does Spotlight indexing take on Mac?',
+        a: 'Apple says it can take hours or even days, depending on how much data there is. Leaving the Mac awake and connected to power helps, since indexing that keeps being interrupted by sleep simply takes longer to finish.',
+      },
+      {
+        q: 'How do I stop Spotlight from indexing a specific folder on Mac?',
+        a: 'Open System Settings, then Spotlight, then Search Privacy, click the add button, and choose the folder or drive, or drag it into the list. This is useful for a folder that changes constantly, since excluding it stops Spotlight reindexing it repeatedly without turning Spotlight off entirely.',
+      },
+      {
+        q: 'How do I rebuild the Spotlight index on Mac?',
+        a: 'Add the disk or folder to the Search Privacy list, wait a few seconds, select it, click the remove button, then click Done; Spotlight then indexes it from scratch. From Terminal, sudo mdutil -E does the same, erasing the index for the named volume so Spotlight rebuilds it.',
+      },
+    ],
+    related: [
+      'mac-slow-after-macos-update',
+      'mac-running-slow-low-storage',
+      'mac-storage-full',
+      'free-command-on-mac',
+    ],
     sources: [
       {
         label: 'Apple: about Spotlight indexing and search results',
@@ -231,7 +279,30 @@ export const systemQaGuides: Guide[] = [
         ],
       },
     ],
-    related: ['mac-swap-memory', 'mac-out-of-application-memory', 'free-command-on-mac', 'purgeable-space-on-mac'],
+    questions: [
+      {
+        q: 'Does sudo purge clear RAM on Mac?',
+        a: "It only flushes the disk cache, the file data macOS keeps in otherwise unused RAM, so a Mac approximates the cold cache it has right after startup. It doesn't touch memory apps have allocated for their own data, which is usually what people are actually hoping to reclaim.",
+      },
+      {
+        q: 'Should I run purge to speed up my Mac?',
+        a: 'Generally no, since cached files are the easiest memory macOS can give back on its own when an app needs RAM, without being asked. Purging swaps a cache that was helping for empty RAM that does nothing, and the Mac spends the next few minutes reading files from disk again.',
+      },
+      {
+        q: 'What is purgeable space on Mac, and is it the same as the purge command?',
+        a: "No, they're unrelated despite the similar name. The purge command only empties the disk cache in RAM, while purgeable space shown in Storage settings and Disk Utility is disk space macOS can free on its own when it needs room.",
+      },
+      {
+        q: 'How do I actually free up memory on a slow Mac?',
+        a: "Check the Memory Pressure graph in Activity Monitor's Memory tab first; if it's green there's nothing to clear, but if it's yellow or red, sort by the Memory column and quit the app using the most that you don't need. A restart clears everything, including memory an app failed to release.",
+      },
+    ],
+    related: [
+      'mac-swap-memory',
+      'mac-out-of-application-memory',
+      'free-command-on-mac',
+      'purgeable-space-on-mac',
+    ],
     sources: [
       memoryUsage,
       needMoreRam,
@@ -299,7 +370,30 @@ export const systemQaGuides: Guide[] = [
         code: ['sfltool dumpbtm', 'sfltool resetbtm'],
       },
     ],
-    related: ['uninstall-apps-on-mac', 'mac-running-slow-low-storage', 'application-support-folder-mac', 'show-library-folder-mac'],
+    questions: [
+      {
+        q: 'How do I remove a background item on Mac after deleting the app?',
+        a: 'First turn the item off in System Settings, then General, then Login Items & Extensions, which stops it running without deleting anything. If the entry stays because a leftover launch agent or daemon remains, find its plist in /Library/LaunchAgents, /Library/LaunchDaemons or ~/Library/LaunchAgents and move it to the Trash.',
+      },
+      {
+        q: 'Why does a background item still show for an app I already uninstalled?',
+        a: "Dragging an app to the Trash doesn't remove files outside the app, so a launch agent plist pointing into the deleted app can stay behind. It has nothing left to run, but the entry can keep its place in the list, sometimes shown under the developer's name rather than the app's.",
+      },
+      {
+        q: 'How do I find which app a launch agent belongs to on Mac?',
+        a: "Use plutil -p to print the plist in readable form, and look at its ProgramArguments or Program line, which names what the job runs; if that path points into an app you've deleted, the file is a leftover. Names usually start with the developer's reversed domain, which also helps identify the owner.",
+      },
+      {
+        q: 'What does sfltool resetbtm do on Mac?',
+        a: "It resets the background and login items record that macOS keeps, useful when an entry survives after its underlying file is already gone. It's a blunt tool, since apps still installed will register their helpers again after a restart, so treat it as a one-time fix rather than routine maintenance.",
+      },
+    ],
+    related: [
+      'uninstall-apps-on-mac',
+      'mac-running-slow-low-storage',
+      'application-support-folder-mac',
+      'show-library-folder-mac',
+    ],
     sources: [
       {
         label: 'Apple: change Login Items & Extensions settings on Mac',
@@ -353,7 +447,10 @@ export const systemQaGuides: Guide[] = [
           'Rosetta’s programs are small. On a Mac with macOS Tahoe 26.6 that we checked, the two folders in the du line came to about 1 MB together. Rosetta is not a meaningful source of used storage, and removing it wouldn’t change the numbers in Storage settings.',
           'The Rosetta service keeps its working data in /var/db/oah, which macOS protects: du reports “Operation not permitted”. The ls -lO line shows the restricted flag on the folders inside /Library/Apple, which is System Integrity Protection marking the folder as off-limits, even to administrators.',
         ],
-        code: ['du -sh /Library/Apple/usr/libexec/oah /usr/libexec/rosetta', 'ls -lO /Library/Apple'],
+        code: [
+          'du -sh /Library/Apple/usr/libexec/oah /usr/libexec/rosetta',
+          'ls -lO /Library/Apple',
+        ],
       },
       {
         id: 'why-no-uninstall',
@@ -377,7 +474,30 @@ export const systemQaGuides: Guide[] = [
         ],
       },
     ],
-    related: ['uninstall-apps-on-mac', 'delete-built-in-apps-mac', 'how-to-check-storage-on-mac', 'mac-running-slow-low-storage'],
+    questions: [
+      {
+        q: 'Can you uninstall Rosetta 2 on Mac?',
+        a: "Not in any supported way. Apple provides a command to install it but none to remove it, its files are protected by System Integrity Protection, and they only take up a few megabytes, so there's no real space to gain.",
+      },
+      {
+        q: 'How much space does Rosetta 2 take up on Mac?',
+        a: "Very little; on a Mac checked for this guide running macOS Tahoe 26.6, its two main folders came to about 1 MB together. That makes Rosetta a non-issue for storage, and removing it wouldn't change the numbers in Storage settings.",
+      },
+      {
+        q: 'How do I check if an app needs Rosetta 2 on Mac?',
+        a: "Select the app in Finder and choose File then Get Info; Apple's Kind values show Application (Intel) as needing Rosetta, while Universal and Apple silicon versions don't. For every app at once, use System Information's Applications list and sort by the Kind column.",
+      },
+      {
+        q: 'Will Rosetta 2 stop working on newer macOS?',
+        a: "Apple's support article says Rosetta is available on Apple silicon Macs through macOS 27, and from macOS 28 it will only work for certain older, unmaintained games that rely on Intel frameworks. That's a good reason to find and replace remaining Intel apps rather than a storage concern.",
+      },
+    ],
+    related: [
+      'uninstall-apps-on-mac',
+      'delete-built-in-apps-mac',
+      'how-to-check-storage-on-mac',
+      'mac-running-slow-low-storage',
+    ],
     sources: [
       {
         label: 'Apple: using Intel-based apps on a Mac with Apple silicon',
@@ -446,7 +566,30 @@ export const systemQaGuides: Guide[] = [
         ],
       },
     ],
-    related: ['uninstall-apps-on-mac', 'garageband-sound-library-mac', 'imovie-library-taking-up-space', 'macos-storage-category-size'],
+    questions: [
+      {
+        q: 'Can I delete Safari or Mail on Mac?',
+        a: "No, Safari, Mail and other apps that come with macOS can't be deleted because they live on a sealed, read-only system volume, and Finder will say the app can't be modified or deleted because it's required by macOS. The space they use belongs to macOS itself, not storage you can reclaim.",
+      },
+      {
+        q: 'Can I delete GarageBand or iMovie on Mac?',
+        a: 'Yes, these come from the App Store, so they uninstall like any other App Store app, either by clicking and holding the icon in the Dock until it jiggles and clicking its Close button, or dragging it to the Trash in Finder. Your documents and any content the apps download stay in place.',
+      },
+      {
+        q: 'How do I get GarageBand back after deleting it on Mac?',
+        a: "Open the App Store, click your name at the bottom of the sidebar, find the app among your purchases, and click the download button. Deleting an App Store app like GarageBand doesn't remove files you made with it, so your projects will still be there when you reinstall.",
+      },
+      {
+        q: 'Should I disable System Integrity Protection to remove built-in Mac apps?',
+        a: "No, this isn't a supported workaround: it fails, breaks the seal the Mac verifies at startup, or both, and Apple's own uninstall documentation says built-in apps required by macOS can't be deleted through Finder. Lowering the Mac's protection to save no real space isn't worth it.",
+      },
+    ],
+    related: [
+      'uninstall-apps-on-mac',
+      'garageband-sound-library-mac',
+      'imovie-library-taking-up-space',
+      'macos-storage-category-size',
+    ],
     sources: [
       {
         label: 'Apple: about the read-only system volume in macOS',
@@ -520,6 +663,24 @@ export const systemQaGuides: Guide[] = [
         code: ['brctl status'],
       },
     ],
+    questions: [
+      {
+        q: 'Is it safe to delete the com.apple.bird cache on Mac?',
+        a: "Deleting files inside Mobile Documents removes those files from iCloud Drive on all your devices, so it's not a safe way to free space, even though bird's own cache folder can be empty on a normal Mac. Use Remove Download or Optimize Mac Storage instead to reduce the local copy without touching what's stored in iCloud.",
+      },
+      {
+        q: 'Why is com.apple.bird using so much space on my Mac?',
+        a: 'bird is the daemon that keeps iCloud Drive files on your Mac in sync with iCloud, and when it seems to use a lot of space, that space is usually iCloud Drive files stored locally rather than the bird cache itself. Checking ~/Library/Mobile Documents, where those downloaded files live, is the place to look first.',
+      },
+      {
+        q: 'How do I free up space used by iCloud Drive on Mac?',
+        a: "In Finder, open iCloud Drive, Control-click files or folders you don't need offline, and choose Remove Download; they stay in iCloud and download again when opened. Turning on Optimize Mac Storage under iCloud Drive settings lets macOS do this automatically as space is needed.",
+      },
+      {
+        q: 'How do I check if iCloud Drive is still syncing on Mac?',
+        a: "Hold the pointer over iCloud Drive in the Finder sidebar and click the status icon to see what's happening, or run brctl status in Terminal, which lists items still syncing; a container marked caught-up has nothing waiting. High activity from bird is expected while a lot is syncing and should fade once everything catches up.",
+      },
+    ],
     related: [
       'icloud-drive-taking-up-space-on-mac',
       'icloud-drive-stuck-uploading-mac',
@@ -563,7 +724,11 @@ export const systemQaGuides: Guide[] = [
           'Filters cut the list down. external physical shows only drives you have connected, which is the quickest way to check whether macOS sees a new drive at all; if it prints nothing, macOS doesn’t see any external drive. internal physical shows the built-in disk, and naming a disk, as in diskutil list disk0, shows just that one.',
           'Add -plist to get machine-readable output for scripts, much like lsblk --json. If a drive is missing here, it isn’t a file system problem you can fix with these commands: check the cable, port, enclosure and power, as the external-drive guide describes.',
         ],
-        code: ['diskutil list external physical', 'diskutil list internal physical', 'diskutil list disk0'],
+        code: [
+          'diskutil list external physical',
+          'diskutil list internal physical',
+          'diskutil list disk0',
+        ],
       },
       {
         id: 'diskutil-info',
@@ -572,7 +737,11 @@ export const systemQaGuides: Guide[] = [
           'diskutil info does the job of lsblk -f and blkid together. Give it a mount point or identifier and it reports the file system, volume UUID, mount point, used space, the container’s free space, whether the volume is read-only, whether the device is solid state, and its SMART status.',
           'On current macOS, diskutil info / describes a snapshot of the sealed system volume. It is marked read-only, and its used space covers only macOS itself. For your own files, ask about /System/Volumes/Data instead. diskutil info disk0 describes the physical SSD, including its size and connection protocol.',
         ],
-        code: ['diskutil info /', 'diskutil info /System/Volumes/Data', 'diskutil info disk0'],
+        code: [
+          'diskutil info /',
+          'diskutil info /System/Volumes/Data',
+          'diskutil info disk0',
+        ],
       },
       {
         id: 'apfs-list',
@@ -591,10 +760,37 @@ export const systemQaGuides: Guide[] = [
           'system_profiler SPStorageDataType lists each mounted volume with its free space, capacity, file system and whether it is writable, plus the physical drive behind it: device name, medium type, protocol and SMART status. For a graphical view, Disk Utility’s View → Show All Devices shows the same tree of disks, containers and volumes.',
           'Every command here only reads. diskutil can also erase and partition disks, so check the identifier carefully before running any diskutil verb other than list or info.',
         ],
-        code: ['df -h', 'df -H /System/Volumes/Data', 'system_profiler SPStorageDataType'],
+        code: [
+          'df -h',
+          'df -H /System/Volumes/Data',
+          'system_profiler SPStorageDataType',
+        ],
       },
     ],
-    related: ['apfs-container-vs-volume', 'external-hard-drive-not-showing-up-mac', 'check-disk-space-mac-terminal', 'disk-utility-mac'],
+    questions: [
+      {
+        q: 'What is the Mac equivalent of lsblk?',
+        a: 'diskutil list is the closest match, printing every disk, partition and APFS volume with its type, name, size and identifier. Filters like diskutil list external physical narrow it down, and diskutil info gives the detail lsblk -f and blkid would give together.',
+      },
+      {
+        q: "Why does my Mac's internal disk show up twice in diskutil list?",
+        a: 'APFS presents each container as a whole disk of its own, so the internal SSD appears once as disk0 with its partitions, and again as the synthesized container holding Macintosh HD and its related volumes. The diskutil manual says that container disk exists only for identification and has no storage of its own.',
+      },
+      {
+        q: 'How do I check if macOS sees a connected USB drive in Terminal?',
+        a: "Run diskutil list external physical, which shows only drives you've connected; if it prints nothing, macOS doesn't see any external drive. If it's still missing after that, check the cable, port, enclosure and power rather than looking for a file-system fix.",
+      },
+      {
+        q: "Why does df show a small Used figure for my Mac's startup disk?",
+        a: 'On current macOS, the / line in df reflects a sealed, read-only system snapshot that only covers macOS itself, so its Used figure stays small no matter what you do. For your own files, read the /System/Volumes/Data line instead.',
+      },
+    ],
+    related: [
+      'apfs-container-vs-volume',
+      'external-hard-drive-not-showing-up-mac',
+      'check-disk-space-mac-terminal',
+      'disk-utility-mac',
+    ],
     sources: [
       {
         label: 'Apple: view all devices or only volumes in Disk Utility',
@@ -660,10 +856,36 @@ export const systemQaGuides: Guide[] = [
           'Finder is slow for comparing dozens of folders. du -sh prints one line per folder with its size in readable units, and sort -h puts the largest last. It only reads; the Terminal guide explains the flags, hidden folders and permission errors.',
           'ClearDisk’s free scan gives the same kind of answer as a storage map and a large-files list, for the whole disk or a folder you choose, if you would rather see sizes than read them.',
         ],
-        code: ['du -sh ~/Documents/* | sort -h', 'du -sh ~/Library/* 2>/dev/null | sort -h'],
+        code: [
+          'du -sh ~/Documents/* | sort -h',
+          'du -sh ~/Library/* 2>/dev/null | sort -h',
+        ],
       },
     ],
-    related: ['check-disk-space-mac-terminal', 'find-large-files-on-mac', 'how-to-check-storage-on-mac', 'disk-space-analyzer-mac'],
+    questions: [
+      {
+        q: 'How do I show folder sizes in Finder on Mac?',
+        a: 'Switch to List view, then choose View then Show View Options and turn on Calculate all sizes. Sizes appear as Finder finishes counting, and you can click the Size column header to sort folders by size.',
+      },
+      {
+        q: "Why does Finder show two dashes instead of a folder's size?",
+        a: 'By default Finder leaves the Size column empty for folders because adding up every file inside takes time. Turning on Calculate all sizes in View Options makes Finder do that counting and display sizes for folders too.',
+      },
+      {
+        q: 'How do I total the size of several selected files on Mac?',
+        a: "Select the files and folders, then press Option-Command-I to open the Inspector, which describes the whole selection including combined size, and it updates as you add or remove items. Command-I opens a separate Get Info window for each item instead, which won't give a total.",
+      },
+      {
+        q: 'How do I compare the sizes of many folders quickly on Mac?',
+        a: "Finder is slow for comparing dozens of folders, so use Terminal instead: du -sh prints one line per folder with its size, and piping to sort -h puts the largest ones last. It only reads your files and doesn't change anything.",
+      },
+    ],
+    related: [
+      'check-disk-space-mac-terminal',
+      'find-large-files-on-mac',
+      'how-to-check-storage-on-mac',
+      'disk-space-analyzer-mac',
+    ],
     sources: [
       {
         label: 'Apple: get file, folder and disk information on Mac',

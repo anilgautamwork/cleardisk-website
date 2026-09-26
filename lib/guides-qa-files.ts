@@ -67,6 +67,24 @@ export const fileQaGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "What's actually using up all the space in Chrome on my Mac?",
+        a: "It's usually site storage: the Service Worker, IndexedDB, File System, and Local Storage data that websites save on your Mac, kept inside each profile in ~/Library/Application Support/Google/Chrome, separate from the smaller cache folder.",
+      },
+      {
+        q: "Does clearing Chrome's cache sign me out of websites?",
+        a: 'No, choosing only "Cached images and files" in the Delete browsing data dialog just makes pages load a little slower for a while and doesn\'t sign you out. "Cookies and other site data" is the option that does that, since it clears the same site storage as deleting a site\'s data individually.',
+      },
+      {
+        q: 'What happens if I delete an old Chrome profile I no longer use?',
+        a: "That profile's bookmarks, history, passwords, and other settings are erased from the computer, per Google's help, so export anything you still need before deleting it through Manage Chrome profiles.",
+      },
+      {
+        q: 'Is it safe to delete files inside the Google Chrome app itself to save space?',
+        a: "No, don't delete folders inside Google Chrome.app. Chrome manages its own version folders after updates, and changing an app bundle also breaks its code signature.",
+      },
+    ],
     related: [
       'chrome-on-device-ai-model-mac',
       'clear-browser-cache-mac',
@@ -151,6 +169,24 @@ export const fileQaGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Is it safe to delete the OptGuideOnDeviceModel folder on Mac?',
+        a: "Moving the folder to the Trash frees the space, but Google says deleting the files manually isn't recommended and won't stop them coming back. If On-device AI stays on and there's enough free space, Chrome downloads the model again, so turn off On-device AI in Chrome's settings instead.",
+      },
+      {
+        q: 'Why does Chrome keep re-downloading OptGuideOnDeviceModel?',
+        a: "Chrome downloads Gemini Nano in the background whenever a Mac meets Google's requirements for network, free space and performance, so the folder can disappear and return on its own. Google's documentation says the model is removed if free space drops below 10 GB after download, then downloads again once requirements are met.",
+      },
+      {
+        q: 'How do I stop Chrome downloading the on-device AI model?',
+        a: "Open Chrome's three-dot menu, go to Settings, then AI Innovations, and turn off On-device AI. Google says this deletes the model files, stops the features that use them, and keeps Chrome from downloading them again while the setting stays off.",
+      },
+      {
+        q: "What is weights.bin in Chrome's Application Support folder?",
+        a: "weights.bin is the weights file for Gemini Nano, the generative AI model Chrome runs on your Mac for features like writing help, scam warnings and page summaries. It sits inside the OptGuideOnDeviceModel folder and makes up nearly all of that folder's size, about 4 GB on the Mac checked for this guide.",
+      },
+    ],
     related: [
       'google-chrome-taking-up-space-mac',
       'application-support-folder-mac',
@@ -190,7 +226,11 @@ export const fileQaGuides: Guide[] = [
           'It has two options besides help. -v prints more detail about what it did. -s, long form --stopOnError, makes it exit with an error if any move fails, which is what you want in a script so a failure isn’t silently skipped. Items appear in the Trash in the Dock and keep using space until you empty it.',
           'Apple’s manual page doesn’t say whether Finder’s Put Back works for items moved this way; if it’s dimmed, drag the item out of the Trash to where it belongs. Listing ~/.Trash in Terminal to check may fail with “Operation not permitted.” That is macOS privacy protection, explained in its own guide, not a problem with the command.',
         ],
-        code: ['which trash', 'trash -v "Old report.pdf" build-output', 'man trash'],
+        code: [
+          'which trash',
+          'trash -v "Old report.pdf" build-output',
+          'man trash',
+        ],
       },
       {
         id: 'finder-osascript',
@@ -200,7 +240,7 @@ export const fileQaGuides: Guide[] = [
           'Give the full path, because a tilde isn’t expanded inside the quotes. The first time, macOS asks whether Terminal may control Finder; allow it, or change the choice later in System Settings → Privacy & Security → Automation.',
         ],
         code: [
-          "osascript -e 'tell application \"Finder\" to delete POSIX file \"/Users/yourname/Desktop/old-report.pdf\"'",
+          'osascript -e \'tell application "Finder" to delete POSIX file "/Users/yourname/Desktop/old-report.pdf"\'',
         ],
       },
       {
@@ -210,7 +250,10 @@ export const fileQaGuides: Guide[] = [
           'Homebrew has several formulas that install a command called trash, including trash and macos-trash. Homebrew marks them keg-only because macOS now ships its own, so after brew install trash the command isn’t added to your PATH. On macOS 15 and later, typing trash still runs Apple’s. To use Homebrew’s copy, call it by its full path, as in the second line.',
           'trash-cli is a different kind of tool: Homebrew describes it as an interface to the freedesktop.org trashcan, the convention Linux desktops use, not the Finder’s Trash. On a Mac, choose the built-in command or one of the Mac-specific formulas.',
         ],
-        code: ['brew install trash', '"$(brew --prefix trash)/bin/trash" old-notes.txt'],
+        code: [
+          'brew install trash',
+          '"$(brew --prefix trash)/bin/trash" old-notes.txt',
+        ],
       },
       {
         id: 'dont-alias-rm',
@@ -219,6 +262,24 @@ export const fileQaGuides: Guide[] = [
           'It’s tempting to make rm safer by pointing it at trash. The two commands don’t accept the same options, so habits like rm -rf either fail or behave differently. An alias also applies only to the interactive shells you configured: scripts, sudo, other user accounts and every other Mac or server still run the real rm, which deletes immediately. The alias trains you to type rm casually in exactly the places where it’s still permanent.',
           'Use trash by name when you want a way back, and keep rm for when you mean it. If trash is too long to type, give it a short alias of its own that isn’t rm. Remember that moving files to the Trash doesn’t free space until you empty it, and that anything removed with rm comes back only from a backup.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'How do I move a file to the Trash using Terminal on Mac?',
+        a: "On macOS 15 Sequoia and later, type trash followed by the file or folder name, and it moves into your Trash where it stays until you empty it. On older macOS, use osascript to ask Finder to delete the item, since Finder's delete command moves items to the Trash rather than erasing them.",
+      },
+      {
+        q: "Why doesn't typing trash work on my Mac?",
+        a: 'The trash command only exists starting with macOS 15 Sequoia, so earlier versions have no built-in equivalent. Run command -v trash to check whether it exists before relying on it in a script, or use the osascript method that asks Finder to do the move instead.',
+      },
+      {
+        q: 'Is it safe to alias rm to trash on Mac?',
+        a: "It's not recommended: rm and trash don't accept the same options, so habits like rm -rf can fail or behave differently. An alias also only applies to the shells you configured, so scripts, sudo and other accounts still run the real rm, which deletes immediately.",
+      },
+      {
+        q: "Why can't I list ~/.Trash in Terminal on Mac?",
+        a: "Listing ~/.Trash can fail with Operation not permitted because of macOS privacy protection blocking Terminal's access, not because of a problem with the trash command itself. Granting the terminal app the right access in System Settings resolves it.",
       },
     ],
     related: [
@@ -287,6 +348,24 @@ export const fileQaGuides: Guide[] = [
           'rm in Terminal never uses the Trash, and neither does find with -delete. For the Terminal equivalent of Move to Trash, macOS 15 and later include a trash command; the Terminal guide covers it and the alternatives for older versions.',
           'Cleanup apps often offer both routes. ClearDisk’s review dialog has Move to Trash and Remove Permanently; the permanent option needs you to type delete, skips the Trash and cannot be undone. Whatever the tool, the safe order is the same: review the selection, move it to the Trash, check nothing you need is missing, then empty it.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'How do I delete a file permanently on Mac without using the Trash?',
+        a: "Select the item in Finder and press Option-Command-Delete, or hold Option and choose File then Delete Immediately. Finder asks you to confirm, then deletes the item without moving it through the Trash, so there's no Put Back afterward.",
+      },
+      {
+        q: 'Can I recover a file after using Delete Immediately on Mac?',
+        a: 'Not through Finder, since Delete Immediately and emptying the Trash both permanently remove the item, leaving no Put Back option. A Time Machine backup made beforehand, or a recent local snapshot, can still restore it if one exists.',
+      },
+      {
+        q: "Why doesn't my Mac show more free space right after deleting files?",
+        a: 'Time Machine saves an hourly local snapshot of the startup disk and keeps each for 24 hours, and a file deleted after a snapshot was taken still has its data held by that snapshot. macOS counts snapshot space as available and removes snapshots as they age, so Finder usually reports the gain even if df shows less right away.',
+      },
+      {
+        q: 'How do I stop the warning before emptying the Trash on Mac?',
+        a: 'Hold Option while clicking Empty or choosing Empty Trash, or press Option-Shift-Command-Delete, to skip the warning once. To turn it off for good, go to Finder then Settings then Advanced and turn off Show warning before emptying the Trash.',
       },
     ],
     related: [
@@ -371,6 +450,24 @@ export const fileQaGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Why does Terminal say Operation not permitted on Mac?',
+        a: "This usually means macOS privacy controls are blocking Terminal's access to a protected location, such as your Trash, Mail or Time Machine backups. Owning the folder doesn't grant access on its own, and sudo doesn't fix it either, since it changes which user runs the command, not the app's privacy authorization.",
+      },
+      {
+        q: 'Does sudo fix Operation not permitted errors on Mac?',
+        a: "No, for a privacy-access denial sudo doesn't help because it only changes which user is running the command, not whether the app has been granted access under macOS privacy controls. Grant the terminal app Full Disk Access, or the specific Files & Folders access, in System Settings instead.",
+      },
+      {
+        q: 'Should I disable System Integrity Protection to fix a permissions error on Mac?',
+        a: "No, the guide says not to disable SIP to delete system files, since it lowers the Mac's protection and files under /System, /usr, /bin, /sbin and /var are managed by macOS updates anyway. Operation not permitted there is expected behavior, with or without sudo.",
+      },
+      {
+        q: 'How do I give Terminal Full Disk Access on Mac?',
+        a: 'Open System Settings, then Privacy & Security, then Full Disk Access, click the add button, go to Applications then Utilities, select Terminal, click Open, and make sure its switch is on. Quit Terminal completely and reopen it afterward, since the change only applies after a relaunch.',
+      },
+    ],
     related: [
       'show-hidden-files-mac',
       'recover-files-from-trash-mac',
@@ -449,7 +546,28 @@ export const fileQaGuides: Guide[] = [
           'Git reads a global ignore file for patterns you never want in any repository. On most Macs its default location is ~/.config/git/ignore, so the two commands below create the folder if needed and add .DS_Store to that file. If you have pointed core.excludesFile at a different file, add the line there instead; git config --global core.excludesFile shows the setting.',
           'Ignoring affects only files Git isn’t already tracking. If a .DS_Store was committed earlier, remove it from the index with git rm --cached and the file’s path, then commit; the file stays on disk and Git stops tracking it. Adding the pattern to a project’s own .gitignore also helps collaborators who haven’t set up a global file.',
         ],
-        code: ['mkdir -p ~/.config/git', 'echo .DS_Store >> ~/.config/git/ignore'],
+        code: [
+          'mkdir -p ~/.config/git',
+          'echo .DS_Store >> ~/.config/git/ignore',
+        ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Is it safe to delete .DS_Store files on Mac?',
+        a: "Yes, deleting a .DS_Store file is safe because it only stores how Finder displays that folder, such as view style, sort order and icon positions. The folder's window goes back to your default view, and Finder writes a new file the next time it needs one, so no documents or tags are affected.",
+      },
+      {
+        q: 'Why does .DS_Store keep coming back after I delete it?',
+        a: "Finder writes a fresh .DS_Store as soon as it has something to remember about that folder's layout, and if you deleted it while the folder was open, Finder may simply write it back right away. This makes deleting them for space pointless, since they're only a few kilobytes each.",
+      },
+      {
+        q: 'How do I stop .DS_Store files from appearing on network shares?',
+        a: 'Apple documents a setting for SMB file shares that turns off .DS_Store there, after which you log out and back in for it to take effect. The trade-off is that Finder no longer remembers custom view settings for folders on that share.',
+      },
+      {
+        q: 'How do I keep .DS_Store out of a Git repository?',
+        a: "Add .DS_Store to Git's global ignore file, usually at ~/.config/git/ignore, which keeps it out of every repository you haven't already committed it to. If a .DS_Store was committed earlier, remove it from the index with git rm --cached and commit, which stops tracking it without deleting the file from disk.",
       },
     ],
     related: [
@@ -541,6 +659,24 @@ export const fileQaGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'How do I stop my Mac from putting hidden files on a USB drive?',
+        a: 'You can only reduce them, not switch them all off, since macOS has no documented setting that stops every hidden file on removable drives. Exclude the drive from Spotlight, empty its Trash before ejecting, run dot_clean on ExFAT or FAT32 drives, and eject properly.',
+      },
+      {
+        q: 'What is the .Trashes folder on a USB drive?',
+        a: "It's the drive's own Trash, and anything you delete from the drive in Finder waits there, using the drive's space, until you empty it while the drive is still connected. Emptying it before ejecting is the step that actually recovers space, since a card can still seem full after you delete photos.",
+      },
+      {
+        q: 'What are the ._ files that appear on my USB drive?',
+        a: "They're AppleDouble files holding Mac metadata, such as extended attributes and Finder information, for file systems like ExFAT and FAT32 that can't store that data natively. Running dot_clean with -m before ejecting removes them, though you lose that Mac-only metadata for the copies on the drive.",
+      },
+      {
+        q: 'How do I exclude a USB drive from Spotlight on Mac?',
+        a: 'With the drive connected, open System Settings, then Spotlight, then Search Privacy, and add the drive with the add button, or drag it into the list. In Terminal, mdutil -i off for the volume does the same thing, so Spotlight stops indexing the drive.',
+      },
+    ],
     related: [
       'eject-external-drive-mac',
       'ds-store-files-mac',
@@ -609,6 +745,24 @@ export const fileQaGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Is it safe to delete the Relocated Items folder on Mac?',
+        a: "Yes, once you've looked inside and kept anything you still need, you can delete it. Its appearance doesn't mean the upgrade failed; it means a few files, usually system configuration files you or an app changed, were set aside for review rather than overwritten silently.",
+      },
+      {
+        q: 'Why do I have multiple Previously Relocated Items folders on Mac?',
+        a: "Each macOS upgrade can produce its own set of relocated files, and earlier ones get renamed Previously Relocated Items, Previously Relocated Items 1 and so on, all sitting in /Users/Shared. They're leftovers from earlier upgrades, and the same review-then-delete decision applies to each one.",
+      },
+      {
+        q: 'What should I check before deleting Relocated Items on my Mac?',
+        a: "Think about whether you ever changed a system configuration file by hand, such as the hosts file or SSH server settings, and compare the relocated copy with the current file at the matching path if so. If you never changed such files, there's nothing to restore, since the upgrade already installed current versions.",
+      },
+      {
+        q: "Why won't Finder delete a subfolder inside Relocated Items?",
+        a: 'Some subfolders resist being moved to the Trash even after authenticating; the fix is to select the folder, choose File then Get Info, open Sharing & Permissions, give your account Read & Write, then apply that to enclosed items. Operation not permitted in Terminal there is macOS privacy protection, not a problem with the folder.',
+      },
+    ],
     related: [
       'mac-storage-full-after-macos-update',
       'operation-not-permitted-terminal-mac',
@@ -617,7 +771,8 @@ export const fileQaGuides: Guide[] = [
     ],
     sources: [
       {
-        label: 'Apple: if a Relocated Items folder appears after upgrading macOS',
+        label:
+          'Apple: if a Relocated Items folder appears after upgrading macOS',
         url: 'https://support.apple.com/guide/mac-help/mchl8ae423a3/mac',
       },
       {

@@ -77,6 +77,24 @@ export const devQaGuides: Guide[] = [
         code: ['hash -r', 'which -a node', 'brew install node', 'node -v'],
       },
     ],
+    questions: [
+      {
+        q: 'How do I know which method was used to install Node.js on my Mac?',
+        a: 'Run which -a node in Terminal to see the path; /opt/homebrew/bin/node points to Homebrew, a path under ~/.nvm belongs to nvm, and a plain /usr/local/bin/node with no version manager usually points to the nodejs.org installer.',
+      },
+      {
+        q: 'Does the nodejs.org Node.js installer include an uninstaller?',
+        a: 'No, it ships no uninstaller, so removing it means deleting files by hand based on its package receipts, then running pkgutil --forget to clear the installation record.',
+      },
+      {
+        q: 'Why does my Mac still find an old version of Node.js after I removed it?',
+        a: 'More than one installation method may be on your Mac at once, and which -a node lists every copy your shell can find in search order. A leftover line in your shell profile from nvm, fnm, or Volta can also add an old folder back to PATH.',
+      },
+      {
+        q: 'Will uninstalling Node.js delete my global npm packages?',
+        a: "The packages live in that installation's node_modules folder and are removed along with it, so save the list of your global packages with npm before uninstalling so you can reinstall the ones you actually use.",
+      },
+    ],
     related: [
       'clear-npm-cache-mac',
       'find-node-modules-folders-mac',
@@ -84,12 +102,18 @@ export const devQaGuides: Guide[] = [
       'developer-storage-on-mac',
     ],
     sources: [
-      { label: 'Node.js: download Node.js', url: 'https://nodejs.org/en/download' },
+      {
+        label: 'Node.js: download Node.js',
+        url: 'https://nodejs.org/en/download',
+      },
       {
         label: 'npm Docs: folders used by npm',
         url: 'https://docs.npmjs.com/cli/v11/configuring-npm/folders',
       },
-      { label: 'nvm: README, uninstalling and removal', url: 'https://github.com/nvm-sh/nvm' },
+      {
+        label: 'nvm: README, uninstalling and removal',
+        url: 'https://github.com/nvm-sh/nvm',
+      },
     ],
   },
   {
@@ -151,7 +175,10 @@ export const devQaGuides: Guide[] = [
           'conda init writes a block between the lines # >>> conda initialize >>> and # <<< conda initialize <<<. zsh, the default shell on current macOS, reads it from ~/.zshrc; bash uses ~/.bash_profile. Open those files in a text editor and confirm the block is gone. A leftover block often fails quietly and leaves a deleted folder at the front of PATH, so no error message does not prove the file is clean.',
           'Then open a new Terminal window. The (base) prefix should be gone from the prompt, and which -a conda python3 should no longer list the old folder. python3 then usually resolves to /usr/bin/python3, which relies on Apple’s Command Line Tools, or to a Homebrew Python if you have one.',
         ],
-        code: ['grep -n "conda initialize" ~/.zshrc ~/.bash_profile', 'which -a conda python3'],
+        code: [
+          'grep -n "conda initialize" ~/.zshrc ~/.bash_profile',
+          'which -a conda python3',
+        ],
       },
       {
         id: 'navigator-and-leftovers',
@@ -161,6 +188,24 @@ export const devQaGuides: Guide[] = [
           'Some files are shared with other Python installs, so check before removing them. ~/.jupyter and ~/.ipython hold Jupyter and IPython settings used by any Python on the Mac, and pip keeps its own download cache in ~/Library/Caches/pip, which the pip cache guide covers.',
         ],
         code: ['conda remove --name base anaconda-navigator'],
+      },
+    ],
+    questions: [
+      {
+        q: 'Does uninstalling Anaconda delete my conda environments?',
+        a: 'Yes, uninstalling deletes those environments with no way back, so export any environments you might want to rebuild before running the uninstall.',
+      },
+      {
+        q: 'Does every version of Anaconda include an uninstall script?',
+        a: 'No, only newer releases do, specifically Anaconda 2025.06 and later and Miniconda 24.11.1 and later. Older installs have no script, so you reverse the shell setup with conda init --reverse --all and then remove the install folder yourself.',
+      },
+      {
+        q: 'Why does my Terminal still show (base) after I uninstalled Anaconda?',
+        a: 'A leftover conda initialize block in your shell profile often fails quietly and can leave a deleted folder at the front of PATH. Check that the block between the conda initialize markers is fully removed from files like ~/.zshrc.',
+      },
+      {
+        q: 'Can I remove just Anaconda Navigator without uninstalling all of Anaconda?',
+        a: 'Yes, running conda remove --name base anaconda-navigator removes only Navigator, leaving your environments, packages, and settings in place.',
       },
     ],
     related: [
@@ -253,6 +298,24 @@ export const devQaGuides: Guide[] = [
         code: ['grep -n "brew shellenv" ~/.zprofile ~/.zshrc', 'which brew'],
       },
     ],
+    questions: [
+      {
+        q: 'Does uninstalling Homebrew remove the apps it installed?',
+        a: "Not unless you uninstall them first. Apps from casks you didn't remove beforehand stay in Applications and keep working, but nothing updates them anymore once Homebrew is gone.",
+      },
+      {
+        q: "What files does Homebrew's uninstall script leave behind?",
+        a: 'It prints a list of "possible Homebrew files" that weren\'t deleted, including configuration in etc, data in var, and packages npm or pip installed into Homebrew\'s lib folder. On Apple silicon, the /opt/homebrew folder itself also stays.',
+      },
+      {
+        q: "Can I see what Homebrew's uninstall script will delete before running it?",
+        a: 'Yes, download the script first and run it with --dry-run, which prints each "Would delete" line without actually removing anything.',
+      },
+      {
+        q: 'Does uninstalling Homebrew also remove the Xcode Command Line Tools?',
+        a: "No. They're Apple software rather than part of Homebrew, and the uninstall script leaves them in place even though Homebrew's installer may have installed them originally.",
+      },
+    ],
     related: [
       'homebrew-list-installed-packages',
       'clean-homebrew-cache-mac',
@@ -268,7 +331,10 @@ export const devQaGuides: Guide[] = [
         label: 'Homebrew: install repository README, uninstall Homebrew',
         url: 'https://github.com/Homebrew/install',
       },
-      { label: 'Homebrew: brew manual page', url: 'https://docs.brew.sh/Manpage' },
+      {
+        label: 'Homebrew: brew manual page',
+        url: 'https://docs.brew.sh/Manpage',
+      },
     ],
   },
   {
@@ -350,6 +416,24 @@ export const devQaGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'How do I see which Homebrew packages I chose versus what came in as dependencies?',
+        a: 'brew leaves lists formulae that no other installed formula or cask depends on, which is close to what you chose yourself, and --installed-on-request narrows it further to formulae you installed by name.',
+      },
+      {
+        q: "How can I tell why a Homebrew formula is installed if I didn't choose it?",
+        a: "Run brew uses --installed on that formula to see what still depends on it, and check before removing anything that isn't a leaf, since brew uninstall will refuse and name what needs it.",
+      },
+      {
+        q: 'How do I back up my list of Homebrew packages before a fresh Mac setup?',
+        a: 'Run brew bundle dump to write your taps, formulae, and casks into a Brewfile, which Homebrew describes as an installed-state snapshot you can keep in version control or use to set up a new Mac.',
+      },
+      {
+        q: 'Which Homebrew packages are taking up the most disk space?',
+        a: 'Formulae live in the Cellar and casks in the Caskroom, so running du on those folders and sorting by size shows the largest ones; brew info on a specific package also shows its installed size.',
+      },
+    ],
     related: [
       'clean-homebrew-cache-mac',
       'uninstall-homebrew-mac',
@@ -357,7 +441,10 @@ export const devQaGuides: Guide[] = [
       'check-disk-space-mac-terminal',
     ],
     sources: [
-      { label: 'Homebrew: brew manual page', url: 'https://docs.brew.sh/Manpage' },
+      {
+        label: 'Homebrew: brew manual page',
+        url: 'https://docs.brew.sh/Manpage',
+      },
       {
         label: 'Homebrew: brew bundle and Brewfile',
         url: 'https://docs.brew.sh/Brew-Bundle-and-Brewfile',
@@ -424,6 +511,24 @@ export const devQaGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "When should I use pip's --no-cache-dir flag?",
+        a: "It's most useful in a Dockerfile, since a pip cache written during a build gets baked into that image layer and is never reused, and for ruling out a stale cached build by forcing a fresh download.",
+      },
+      {
+        q: "Does --no-cache-dir delete pip's existing cache?",
+        a: 'No, it only skips the cache for that one command: nothing is read from it and nothing is saved to it, while the existing cache on disk is left untouched for the next ordinary pip command.',
+      },
+      {
+        q: 'Should I always run pip with --no-cache-dir on my Mac?',
+        a: 'Probably not. On your own Mac, removing one problem package from the cache with pip cache remove is usually the better fix, since leaving the cache on and clearing it occasionally is a better trade on a laptop.',
+      },
+      {
+        q: 'Why does pip keep installing a broken build even after I upgraded a library?',
+        a: "pip's wheel cache is keyed to a package's version, not its contents, so it can keep reusing an old cached build of that same version. Reinstall with --force-reinstall and --no-cache-dir to make pip fetch and build it again.",
+      },
+    ],
     related: [
       'clear-pip-cache-mac',
       'clear-docker-build-cache-mac',
@@ -431,8 +536,14 @@ export const devQaGuides: Guide[] = [
       'clean-conda-disk-space-mac',
     ],
     sources: [
-      { label: 'pip: caching', url: 'https://pip.pypa.io/en/stable/topics/caching/' },
-      { label: 'pip: configuration', url: 'https://pip.pypa.io/en/stable/topics/configuration/' },
+      {
+        label: 'pip: caching',
+        url: 'https://pip.pypa.io/en/stable/topics/caching/',
+      },
+      {
+        label: 'pip: configuration',
+        url: 'https://pip.pypa.io/en/stable/topics/configuration/',
+      },
       {
         label: 'Docker Docs: optimize cache usage in builds',
         url: 'https://docs.docker.com/build/cache/optimize/',
@@ -497,6 +608,24 @@ export const devQaGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Can I delete the Xcode .xip file after installing Xcode?',
+        a: 'Yes, once Xcode is in Applications and opens, the .xip is just a spare copy of what you already installed, so you can move it to the Trash and empty it to get the space back.',
+      },
+      {
+        q: "Why won't my Xcode .xip file expand properly?",
+        a: "It's likely a signature verification failure, usually caused by an interrupted download. Archive Utility checks that the archive is intact and signed by Apple before expanding it, so download it again rather than trying other tools on it.",
+      },
+      {
+        q: 'Does downloading Xcode from the Mac App Store leave a .xip file behind?',
+        a: "No. The App Store installs and updates Xcode in place with no .xip involved; the file only shows up when you download Xcode directly from Apple's developer downloads page.",
+      },
+      {
+        q: 'How much extra space do multiple installed copies of Xcode use?',
+        a: 'Each copy is a full app, so two versions take roughly twice the space, though they share some data, like Derived Data and simulator runtimes, stored elsewhere in ~/Library/Developer.',
+      },
+    ],
     related: [
       'clear-xcode-derived-data',
       'remove-unused-ios-simulators',
@@ -504,10 +633,17 @@ export const devQaGuides: Guide[] = [
       'clear-downloads-folder-mac',
     ],
     sources: [
-      { label: 'Apple Developer: Xcode resources', url: 'https://developer.apple.com/xcode/resources/' },
-      { label: 'Apple Developer: Xcode support', url: 'https://developer.apple.com/support/xcode/' },
       {
-        label: 'Apple Developer: downloading and installing additional Xcode components',
+        label: 'Apple Developer: Xcode resources',
+        url: 'https://developer.apple.com/xcode/resources/',
+      },
+      {
+        label: 'Apple Developer: Xcode support',
+        url: 'https://developer.apple.com/support/xcode/',
+      },
+      {
+        label:
+          'Apple Developer: downloading and installing additional Xcode components',
         url: 'https://developer.apple.com/documentation/xcode/downloading-and-installing-additional-xcode-components',
       },
     ],
@@ -598,6 +734,24 @@ export const devQaGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'How do I check if the Xcode Command Line Tools are installed on my Mac?',
+        a: "Run pkgutil --pkg-info=com.apple.pkg.CLTools_Executables, which prints a package ID, version, and install time if they're installed, or reports no receipt if they aren't. xcode-select -p also shows which developer folder is currently active.",
+      },
+      {
+        q: 'Why does Terminal say the active developer path is invalid after a macOS upgrade?',
+        a: 'This usually means the Command Line Tools folder is missing or incomplete, which is common after an upgrade. Running xcode-select --install again typically fixes it without needing to remove anything first.',
+      },
+      {
+        q: 'Do I need to remove the old Command Line Tools before reinstalling them?',
+        a: "Only if they're broken or already registered incorrectly. Apple documents removing /Library/Developer/CommandLineTools with sudo rm -rf first in that case, then reinstalling with xcode-select --install.",
+      },
+      {
+        q: 'Can Xcode and the standalone Command Line Tools both be installed at the same time?',
+        a: 'Yes, and xcode-select decides which one Terminal actually uses, with --switch changing it for every user. Since Xcode already includes the command-line tools, a Mac with Xcode can often do without the separate package.',
+      },
+    ],
     related: [
       'developer-storage-on-mac',
       'xcode-xip-file-mac',
@@ -609,8 +763,14 @@ export const devQaGuides: Guide[] = [
         label: 'Apple Developer: installing the command-line tools',
         url: 'https://developer.apple.com/documentation/xcode/installing-the-command-line-tools',
       },
-      { label: 'Apple Developer: Xcode support', url: 'https://developer.apple.com/support/xcode/' },
-      { label: 'Apple Developer: Xcode resources', url: 'https://developer.apple.com/xcode/resources/' },
+      {
+        label: 'Apple Developer: Xcode support',
+        url: 'https://developer.apple.com/support/xcode/',
+      },
+      {
+        label: 'Apple Developer: Xcode resources',
+        url: 'https://developer.apple.com/xcode/resources/',
+      },
     ],
   },
 ];

@@ -95,6 +95,24 @@ export const memoryDriveGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Does a high Swap Used number mean something is wrong with my Mac?',
+        a: 'Not by itself. macOS can leave data in swap long after the pressure that put it there has passed, so a large Swap Used figure on its own tells you little. Memory Pressure is the figure that actually matters, not Swap Used.',
+      },
+      {
+        q: 'What do the colors in the Memory Pressure graph mean?',
+        a: 'Green means RAM is being used efficiently, yellow means the Mac might eventually need more RAM, and red means it needs more right now. Brief yellow during a heavy task is different from a graph that stays high all day.',
+      },
+      {
+        q: 'Can I delete or move swap files to free up disk space?',
+        a: "No, don't delete, move or edit them. macOS creates and removes swap files as needed on the VM volume, and they are in use while the Mac is running, so touching them by hand risks the running system.",
+      },
+      {
+        q: 'Why would freeing up disk space help with memory problems?',
+        a: "Swap lives on the startup disk, so when the disk is nearly full, macOS has less room to grow swap during a heavy task. Freeing storage gives swap more room, but it doesn't add RAM, so a red Memory Pressure with plenty of free space points elsewhere.",
+      },
+    ],
     related: [
       'mac-out-of-application-memory',
       'mac-running-slow-low-storage',
@@ -152,6 +170,24 @@ export const memoryDriveGuides: Guide[] = [
           'Repeated alerts with the same app point to that app. Update it, look in its settings for cache or memory limits, and check the developer’s support pages for a known issue. An app whose memory grows steadily while it sits idle may have a memory leak; quitting it periodically is a workaround, not a fix.',
           'If different apps trigger the alert during ordinary work and Memory Pressure is often red, the workload may need more memory than the Mac has. Apple’s Activity Monitor guide shows how to check whether memory can be upgraded. If it can’t, running fewer heavy apps at once is the practical change.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'What should I do first when I see the out of application memory alert?',
+        a: "Save your work in any app that still responds, then quit apps normally starting with Command-Q, and force quit only if an app doesn't respond. Leave the app holding your unsaved work until last, since force quitting can lose its changes.",
+      },
+      {
+        q: 'Why does my browser often trigger the out of application memory alert?',
+        a: "Because tabs and web apps often run as separate processes, and a page left open for days can hold more memory than it seems to need. Closing tabs you don't need, or quitting and reopening the browser, is worth checking first.",
+      },
+      {
+        q: 'Could low disk space cause the out of application memory alert?',
+        a: "Yes. macOS extends memory by writing swap files to the startup disk, so if the disk is almost full there's less room for those files, and the alert can appear sooner than it would with free space available.",
+      },
+      {
+        q: 'The memory alert keeps coming back with the same app. What does that mean?',
+        a: "It points to that app specifically. Update it, look in its settings for cache or memory limits, and check the developer's support pages, since an app whose memory grows steadily while idle may have a memory leak, where quitting periodically is only a workaround.",
       },
     ],
     related: [
@@ -223,6 +259,24 @@ export const memoryDriveGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Will freeing up disk space make my Mac faster?',
+        a: "Only if storage was actually tight. A nearly full disk leaves less room for swap and temporary files and can slow some apps, but if there's already plenty of free space, cleaning more won't make the Mac faster, so check other causes instead.",
+      },
+      {
+        q: 'How do I find which app is slowing down my Mac?',
+        a: "Open Activity Monitor, click CPU, and sort by percent CPU to see what stays busy while you aren't using it. Also check the Memory tab for Memory Pressure and the Energy tab, which ranks apps by energy impact relative to each other.",
+      },
+      {
+        q: "Should I quit a process in Activity Monitor that I don't recognize?",
+        a: "No, don't quit processes you don't recognize just because they're busy. Many belong to macOS and restart on their own, so look the name up in Apple's or the developer's documentation first.",
+      },
+      {
+        q: 'Could apps that open at login be slowing my Mac down?',
+        a: "Possibly. Review Open at Login and App Background Activity in Login Items and Extensions settings, and remove apps you don't need at startup, changing a few at a time and restarting so you can tell which change actually helped.",
+      },
+    ],
     related: [
       'mac-slow-after-macos-update',
       'mac-swap-memory',
@@ -287,6 +341,24 @@ export const memoryDriveGuides: Guide[] = [
           'An update needs room to install, and the Mac needs room afterward for swap, caches and the new index. Open System Settings → General → Storage and compare the available space with what you had before. If it dropped sharply, the storage-after-update guide explains what often changes, such as snapshots and leftover installers.',
           'If space is short, free some before judging speed. ClearDisk’s free scan can show which folders grew; it can’t speed up macOS or make indexing finish sooner. If the Mac is still slow after several days with enough free space and updated apps, contact Apple Support or the developer of the app that stays busy.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'How long does it normally take for a Mac to feel normal after a macOS update?',
+        a: 'It can take a while, since Spotlight reindexing alone can run for hours or even days depending on how much data you have. Giving the Mac a quiet stretch on power, connected to Wi-Fi or Ethernet, helps indexing finish faster.',
+      },
+      {
+        q: 'I see mds and mdworker using a lot of CPU after updating. Is that normal?',
+        a: "Yes, in the first hours after an update those Spotlight-related processes can sit near the top of the CPU tab, and that's expected and should fade. What's worth investigating is a process that stays busy day after day instead.",
+      },
+      {
+        q: 'Should I update my other apps right after a macOS update?',
+        a: "Yes, it's worth doing. A new macOS release can expose problems in apps that haven't been updated for it, so check the App Store and each app's own update option, and look for a version that supports your macOS release.",
+      },
+      {
+        q: "My Mac's available storage dropped after updating. Is that expected?",
+        a: 'It can be. An update needs room to install and the Mac needs room afterward for swap, caches and the new index, and things like snapshots and leftover installers often explain a sharp drop that settles on its own.',
       },
     ],
     related: [
@@ -355,6 +427,24 @@ export const memoryDriveGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "My Mac won't start and I think the disk is full. Should I delete files from Terminal?",
+        a: "No, don't start by deleting files from Terminal, especially in Recovery, where paths differ from a normal startup, there's no Trash, and a mistyped command can permanently remove the wrong data. Try safe mode first instead.",
+      },
+      {
+        q: 'How do I free up space if my Mac only boots into safe mode?',
+        a: "If you can log in through safe mode, empty the Trash if you're sure about its contents, move large files you recognize to an external drive, and delete old downloads and installers, then restart normally once done.",
+      },
+      {
+        q: "My Mac won't even reach safe mode. What should I try next?",
+        a: "Start up from macOS Recovery, open Disk Utility, show all devices, and run First Aid on the startup volumes, then the container, then the disk. First Aid repairs file system problems but doesn't free space; it rules out damage before you copy files or reinstall.",
+      },
+      {
+        q: "How can I copy important files off a Mac that won't start, if I have no backup?",
+        a: 'On Apple silicon, start up in Recovery, choose Utilities, Share Disk, and connect another Mac with a cable so it can access the shared disk under Network in Finder. An Intel-based Mac can use target disk mode instead to appear as an external disk.',
+      },
+    ],
     related: [
       'mac-storage-full',
       'disk-utility-first-aid-mac',
@@ -365,7 +455,8 @@ export const memoryDriveGuides: Guide[] = [
       safeMode,
       recovery,
       {
-        label: 'Apple: transfer files between a Mac with Apple silicon and another Mac',
+        label:
+          'Apple: transfer files between a Mac with Apple silicon and another Mac',
         url: 'https://support.apple.com/guide/mac-help/mchlb37e8ca7/mac',
       },
     ],
@@ -424,6 +515,24 @@ export const memoryDriveGuides: Guide[] = [
           'A drive that doesn’t appear in Disk Utility at all can’t be checked. Apple suggests shutting down, unplugging nonessential devices, and checking the cable, connections and power of an external drive; the guide to a drive that isn’t showing up covers those checks in order.',
           'First Aid also can’t bring back deleted files or recover space. If the disk checks out healthy but is simply full, the storage guides are the next step, starting with finding what uses the space before deleting anything. First Aid also doesn’t inspect what is inside your files: a photo or document can be damaged even when the file system around it is sound.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Does running First Aid free up disk space or make my Mac faster?',
+        a: "No. First Aid checks a disk's file system structures and fixes problems it finds, but it doesn't free space, remove caches or speed up a healthy Mac. Run it when a disk behaves oddly, such as apps reporting save errors or a drive not mounting.",
+      },
+      {
+        q: 'In what order should I run First Aid when checking a disk with multiple volumes?',
+        a: 'Start with the last volume on the device and work upward: each volume first, such as Macintosh HD - Data and Macintosh HD, then the container that holds them, then the physical disk at the top.',
+      },
+      {
+        q: 'First Aid found overlapped extent allocation errors. What does that mean?',
+        a: 'It means two or more files occupy the same space on the disk, and at least one of them is likely damaged. Check the files you care about and restore any damaged ones from a backup.',
+      },
+      {
+        q: 'What should I do if First Aid fails to repair the disk?',
+        a: "Back up as much data as possible, reformat the disk, reinstall macOS, then restore your backed-up data. If Disk Utility says the disk is about to fail, it can't be repaired, so back up and replace the disk instead.",
       },
     ],
     related: [
@@ -499,6 +608,24 @@ export const memoryDriveGuides: Guide[] = [
           'Free space belongs to the container, not to each volume. Two APFS volumes in the same container usually report the same available space, because they draw from the same pool. A volume only has space set aside for it if someone gave it a reserve.',
           'To free space, look at what fills the volumes rather than at the layout. Your files and apps are on the Data volume; the guide to other volumes in the container and the storage guides explain how to find what is large before you delete anything.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: "What's the difference between an APFS container and an APFS volume?",
+        a: 'A container usually fills a partition and holds one or more volumes, which are the items you see as drives in Finder. The volumes inside a container share its free space, which can be allocated to any of them as needed, rather than each having a fixed size.',
+      },
+      {
+        q: 'Why do my two APFS volumes on the same disk show the same available space?',
+        a: 'Because free space belongs to the container, not to each volume, so volumes in the same container usually draw from the same pool and report the same available figure. A volume only has space set aside for it if someone gave it a reserve.',
+      },
+      {
+        q: "Should I partition my Mac's disk, or use APFS volumes instead?",
+        a: "Apple's guidance is that with APFS you shouldn't partition your disk in most cases, and should create additional APFS volumes in the same container instead, since a new volume only takes space as it fills. A partition still makes sense for a different file system, like exFAT.",
+      },
+      {
+        q: "Does Boot Camp's Windows partition share space with my Mac's APFS volumes?",
+        a: "No. On Intel-based Macs, Boot Camp creates its own Windows partition that sits outside the APFS container entirely, so it doesn't share free space with Macintosh HD or the other APFS volumes, unlike volumes that live inside the same container.",
       },
     ],
     related: [
@@ -579,6 +706,24 @@ export const memoryDriveGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "Why can't I see the Recovery partition in Disk Utility?",
+        a: "That's by design, not a sign it's missing. Disk Utility doesn't list the Recovery volume even with Show All Devices, and Finder never shows it either, since it isn't meant to be browsed or edited, the same way Preboot and VM are hidden.",
+      },
+      {
+        q: 'Is it okay to delete the recovery partition to get some extra storage?',
+        a: "No. The recovery system is only a small share of the disk, and removing it takes away the tool you need to repair the startup disk, reinstall macOS or restore from Time Machine when the Mac won't start normally.",
+      },
+      {
+        q: 'How do I start up my Mac in Recovery mode?',
+        a: 'On Apple silicon, shut down, then press and hold the power button until Loading startup options appears, click Options, then Continue. On an Intel-based Mac, press the power button and immediately hold Command-R until you see an Apple logo.',
+      },
+      {
+        q: "What can I do if the built-in Recovery won't start on my Mac?",
+        a: "On an Intel-based Mac, Apple provides macOS Recovery over the internet: Option-Command-R reinstalls the latest compatible macOS, and Shift-Option-Command-R offers the version that came with your Mac. You'll need a network connection since the recovery system downloads first.",
+      },
+    ],
     related: [
       'apfs-container-vs-volume',
       'mac-wont-start-disk-full',
@@ -592,7 +737,8 @@ export const memoryDriveGuides: Guide[] = [
         url: 'https://support.apple.com/guide/mac-help/mchl338cf9a8/mac',
       },
       {
-        label: 'Apple Platform Security: boot modes for a Mac with Apple silicon',
+        label:
+          'Apple Platform Security: boot modes for a Mac with Apple silicon',
         url: 'https://support.apple.com/guide/security/boot-modes-sec10869885b/web',
       },
     ],
@@ -646,6 +792,24 @@ export const memoryDriveGuides: Guide[] = [
           'External drives are a sound way to add capacity for things that don’t need to be on the Mac all the time: archives, finished projects, media libraries you open occasionally, and Time Machine backups. They are less convenient on a laptop you carry everywhere, because the files are only there when the drive is.',
           'iCloud Drive and other cloud services can keep older files off the Mac and download them on demand, at the cost of a subscription and a network connection. Neither replaces enough internal space for macOS, your apps and daily work. ClearDisk’s free scan can show what uses the space on your current Mac, a useful check before choosing.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Should I get 256GB or 512GB of storage on a Mac?',
+        a: "It depends on whether you will keep media or development tools locally. If you won't, 256GB can work with some discipline; if you will, or aren't sure, 512GB leaves room to grow, since current MacBooks have no drive you can replace later.",
+      },
+      {
+        q: "Can I upgrade a MacBook's storage after buying it?",
+        a: 'No. Current MacBook models have no drive the owner can replace, so the internal capacity you choose when ordering is effectively the storage you keep for the life of the machine.',
+      },
+      {
+        q: 'Why does macOS need more free space than my files actually take up?',
+        a: 'macOS needs free space to download and install updates, use swap when memory is busy, and hold caches and temporary files. Apple even lists a startup disk without enough free space as one possible cause of a slow Mac.',
+      },
+      {
+        q: 'Can external or cloud storage make up for a smaller internal drive?',
+        a: 'They can hold archives, finished projects, and files you open only occasionally, which eases the load on internal storage. Neither one replaces enough internal space for macOS, your apps, and daily work, and external drives are less convenient on a laptop you carry around.',
       },
     ],
     related: [
@@ -719,6 +883,24 @@ export const memoryDriveGuides: Guide[] = [
           'Quit apps that use the drive and eject it in Finder before unplugging. Disconnecting a drive while Photos, Music or a virtual machine has files open on it risks damaging the library or disk image. If the drive refuses to eject, the eject guide explains how to find what is holding it.',
           'Once the libraries are moved and checked, the space returns to the internal disk. Empty the Trash only after confirming the copies open from the drive. ClearDisk’s free scan can show which large folders remain on the internal disk if you want to see what else is worth moving.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'What format should I use for an external SSD on a Mac?',
+        a: "Erase it as APFS in Disk Utility with the GUID Partition Map scheme. Apple's Photos article requires APFS or Mac OS Extended (Journaled) for a library stored externally, so an exFAT drive isn't suitable for that.",
+      },
+      {
+        q: 'Can I store my Photos library and Time Machine backups on the same external drive?',
+        a: "No. Apple says you can't store your Photos library on a drive used for Time Machine backups, so use separate drives, which also means one failed drive doesn't take both your library and your backups.",
+      },
+      {
+        q: 'Is it safe to move my entire home folder to an external drive?',
+        a: "It's possible but fragile, so avoid it unless you understand the tradeoffs and have a backup. It's safer to move specific libraries, like Photos or Music, using each app's own method, while keeping apps and your home folder on the internal disk.",
+      },
+      {
+        q: 'What should I do before unplugging an external drive on my Mac?',
+        a: 'Quit any apps using the drive and eject it in Finder first. Disconnecting while Photos, Music, or a virtual machine has files open on it risks damaging the library or disk image.',
       },
     ],
     related: [
@@ -797,6 +979,24 @@ export const memoryDriveGuides: Guide[] = [
           'Open System Settings → General → Storage and check that available space has grown. Disk Utility should show the macOS container using the space again. If it hasn’t grown, restart and look again. If the Windows partition still appears in diskutil list, contact Apple Support rather than deleting it by hand.',
           'If you removed Windows only to free space, the storage guides help with what remains on the macOS side, starting with finding the largest items before deleting anything.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Can I remove a Boot Camp partition on an Apple silicon Mac?',
+        a: "This doesn't apply to Apple silicon Macs, since Boot Camp Assistant only supports Intel-based Macs. Windows on an Apple silicon Mac runs in a virtual machine instead, whose disk files work differently.",
+      },
+      {
+        q: 'Will removing Windows with Boot Camp Assistant erase my files?',
+        a: 'Yes. Apple states plainly that the Windows partition and all data stored in it are erased permanently when Windows is removed, so back everything up to an external drive or cloud storage first.',
+      },
+      {
+        q: 'Can I resize a Boot Camp partition instead of removing it entirely?',
+        a: "No. Boot Camp Assistant can't change the partition's size, and Apple's installation guide confirms it can't be resized later. A different size means backing up Windows, removing the partition, and reinstalling at the size you want.",
+      },
+      {
+        q: 'Can I use Disk Utility instead of Boot Camp Assistant to remove Windows?',
+        a: 'No. Apple says not to use any other utilities to remove Windows or a Boot Camp partition, even if Disk Utility or a third-party tool seems to offer a shortcut. Contact Apple Support if Boot Camp Assistant itself reports an error.',
       },
     ],
     related: [

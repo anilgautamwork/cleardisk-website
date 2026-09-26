@@ -76,6 +76,24 @@ export const maintenanceGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "What's the safest order to free up space on a Mac?",
+        a: "Check what's using space in Storage settings, then clear files you can identify like old installers, unneeded downloads and junk mail before touching anything unfamiliar. Review System Data last, since it has no single list you can empty, and stop once you have enough room for the task.",
+      },
+      {
+        q: 'Will using iCloud to store my Desktop and Documents free up Mac storage?',
+        a: 'It can, but iCloud storage and Mac disk space are separate, so using iCloud requires room in that account too. Deleting a synced file is different from removing its local download, so review what the recommendation actually changes before turning it on.',
+      },
+      {
+        q: 'Should I delete large videos or move them to save space?',
+        a: "Apple's guidance is to move large media like videos, photo libraries and project archives to an external drive rather than delete them, since they are often the biggest files and the least replaceable. Copy the file first, open and check the copy, then remove the original.",
+      },
+      {
+        q: 'Is a Mac cleaner app worth it for freeing up space?',
+        a: "Scanning with a tool like ClearDisk is free and can show local paths and sizes to help investigate System Data, though its results won't necessarily match Apple's category totals exactly. You can review what it finds before deciding whether you need its paid cleanup features at all.",
+      },
+    ],
     related: [
       'mac-storage-full',
       'how-to-check-storage-on-mac',
@@ -149,18 +167,23 @@ export const maintenanceGuides: Guide[] = [
           'Compare Storage settings before and after. If System Data climbs straight back, the guide on recurring growth explains how to find the app responsible.',
         ],
       },
+    ],
+    questions: [
       {
-        id: 'common-questions',
-        title: 'Common questions about clearing the cache',
-        paragraphs: [
-          'The questions people ask alongside this one, answered briefly.',
-        ],
-        items: [
-          'Is it safe to delete caches on a Mac? Caches are rebuildable by definition, so removing one costs a slower first launch, not data. The risk is deleting the wrong folder next to it or clearing a cache while the app is running. Quit the app, clear only folders you can name, and use the Trash so you can put a folder back.',
-          'How do I clear the Safari cache? Apple’s route is Safari → Settings → Privacy → Manage Website Data → Remove All, which also removes cookies. To clear only the cache, enable the Develop menu under Safari’s Advanced settings and choose Develop → Empty Caches.',
-          'Is there a keyboard shortcut to clear cache and cookies? Not for cookies. With the Develop menu enabled, Option-Command-E empties Safari’s caches; website data and cookies are removed from the Privacy settings pane.',
-          'How do I clear the system cache? Not by hand. Apple’s supported route is starting up in safe mode, which clears certain system caches that macOS recreates as needed. User-level caches live in ~/Library/Caches and are covered above.',
-        ],
+        q: 'Is it safe to delete caches on a Mac?',
+        a: 'Caches are rebuildable by definition, so removing one costs a slower first launch, not data. The risk is deleting the wrong folder next to it or clearing a cache while the app is running. Quit the app, clear only folders you can name, and use the Trash so you can put a folder back.',
+      },
+      {
+        q: 'How do I clear the Safari cache?',
+        a: 'Apple’s route is Safari → Settings → Privacy → Manage Website Data → Remove All, which also removes cookies. To clear only the cache, enable the Develop menu under Safari’s Advanced settings and choose Develop → Empty Caches.',
+      },
+      {
+        q: 'Is there a keyboard shortcut to clear cache and cookies?',
+        a: 'Not for cookies. With the Develop menu enabled, Option-Command-E empties Safari’s caches; website data and cookies are removed from the Privacy settings pane.',
+      },
+      {
+        q: 'How do I clear the system cache?',
+        a: 'Not by hand. Apple’s supported route is starting up in safe mode, which clears certain system caches that macOS recreates as needed. User-level caches live in ~/Library/Caches and are covered above.',
       },
     ],
     related: [
@@ -254,6 +277,24 @@ export const maintenanceGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "What does a disk space analyzer do that Storage settings doesn't?",
+        a: 'For documents, photos and apps, Storage settings already shows where space went, but the difference shows up in what Apple groups as System Data: caches, logs, app containers, device backups and developer files no category names individually. A good analyzer also reports the space a file actually occupies on disk.',
+      },
+      {
+        q: 'Do I need Full Disk Access to scan my whole Mac?',
+        a: 'Yes, for the private locations macOS keeps hidden, an analyzer needs Full Disk Access granted in System Settings, Privacy and Security. Without it, the app sees less of the disk and should say so rather than silently skipping folders and showing an incomplete total.',
+      },
+      {
+        q: 'Is ClearDisk actually free to scan a Mac?',
+        a: 'According to its own description, scanning is free and unlimited and everything runs on the Mac, with file names and results never uploaded. Removing files needs a one-time $10 license, and permanent removal in version 2.0.0 skips the Trash and cannot be undone.',
+      },
+      {
+        q: 'What should I check before paying for a Mac cleaner app?',
+        a: "Ask whether you can see scan results before paying and whether the price is one-time or a subscription, and whether removal goes through the Trash with a way back. Also check if it's notarized by Apple, shows hidden folders and allocated sizes, and admits when it lacked permission to read something.",
+      },
+    ],
     related: [
       'best-free-mac-cleaner',
       'find-large-files-on-mac',
@@ -325,6 +366,24 @@ export const maintenanceGuides: Guide[] = [
           'Local Time Machine snapshots are counted as available space and macOS removes them as it needs room, so they rarely block an update. The snapshots guide covers Apple’s supported way to thin them if you want a clean measurement. Do not disable backups permanently to hold on to a few gigabytes.',
           'When the shortfall lives inside System Data, work through the files rather than the category: hidden Library folders, app caches, developer directories and old device backups. ClearDisk’s free scan lists them with allocated sizes on your Mac, marks system and account folders as Leave it, and moves anything you choose to the Trash first so you can empty it once the update has finished. If the message is not about storage at all, Apple’s update-error page lists the other fixes: a stable connection, installing from macOS Recovery, and repairing the startup disk.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'How much space do I actually need to update macOS?',
+        a: 'Use the figure the update dialog itself states, not a generic amount, and compare it with the available space in System Settings, General, Storage. The installer needs more room than its download size because it unpacks and macOS keeps staging copies while installing.',
+      },
+      {
+        q: 'Can starting in safe mode help make room for a macOS update?',
+        a: "Yes, according to Apple's storage guidance, starting in safe mode clears certain system caches, which are recreated as needed, and that can provide enough temporary space to complete an update. Run the update from safe mode, then restart normally afterward.",
+      },
+      {
+        q: 'Should I delete Time Machine local snapshots to fit a macOS update?',
+        a: "Local snapshots are already counted as available space and macOS removes them on its own as it needs room, so they rarely actually block an update. There is a supported way to thin them if you want a clean measurement, but don't disable backups permanently for a few gigabytes.",
+      },
+      {
+        q: 'Is it better to use Software Update or download the full macOS installer?',
+        a: 'Prefer Software Update, since Apple says it can use less storage to download and install updates. A full installer from the App Store is a separate multi-gigabyte app that needs its own room, so keep to one route rather than having both at once.',
       },
     ],
     related: [
@@ -405,6 +464,24 @@ export const maintenanceGuides: Guide[] = [
           'Do not delete folders inside ~/Library/Mail or Mail’s container in Finder. They hold your mailboxes and the index Mail uses to search them. Removing them can lose messages that were never on a server, and for IMAP accounts Mail simply downloads everything again. Use the settings above, and treat those folders as review-only when a scanner lists them.',
           'If Mail is still large afterwards, the size is the messages themselves. Create mailboxes and use Rules under Mail → Settings to sort mail automatically, export anything you need offline with File → Save As or File → Export as PDF, and delete the rest. A local scan can confirm where the space went and whether the Downloads folder holds saved attachments you have already dealt with.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Why does Mail take up so much storage on my Mac?',
+        a: "Mail keeps a local copy of your messages and, by default, most attachments, and the same attachment can actually exist three times: inside the message, in a Mail Downloads folder, and in your regular Downloads folder. Check Mail's category size in Storage settings to see the total.",
+      },
+      {
+        q: 'How do I stop Mail from downloading every attachment?',
+        a: "In Mail's Settings, under Accounts and Account Information, set Download Attachments to Recent, which Apple describes as attachments from the past 15 months, or None for no automatic download. This setting is per account, and Mail always downloads media like images and PDFs regardless.",
+      },
+      {
+        q: 'Is it safe to remove attachments from old emails?',
+        a: 'You can select a message and choose Remove Attachments, but for IMAP accounts this deletes the attachment from the mail server permanently, so save anything you still need first. Work through your biggest messages rather than running this across a whole mailbox at once.',
+      },
+      {
+        q: 'Can I delete files inside the Mail folder in Library to save space?',
+        a: "No, don't delete folders inside ~/Library/Mail or Mail's container in Finder, since they hold your mailboxes and the search index. Removing them can lose messages that were never on a server; use Mail's own attachment and junk settings instead.",
       },
     ],
     related: [
@@ -492,6 +569,24 @@ export const maintenanceGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'How do I open the Library folder on a Mac?',
+        a: "Hold Option, open Finder's Go menu, and Library appears between Home and Computer, or choose Go to Folder and type ~/Library. There are three Library folders and only this one, belonging to your account, is meant for you to look through.",
+      },
+      {
+        q: 'Is it safe to delete files in Application Support?',
+        a: "Treat it as review-only: Application Support holds settings, databases and licenses for apps, and deleting a folder there can reset or break the app it belongs to. Only review it once the app is closed, and don't delete it wholesale.",
+      },
+      {
+        q: "What's taking up so much space in my Mac's Library folder?",
+        a: "The usual big folders are Caches, which are rebuildable working files safe to review once the app is closed, and Application Support, Containers and Group Containers, which hold app data best managed through the app itself. Developer, Mail and Messages have their own guides and shouldn't be trimmed directly.",
+      },
+      {
+        q: 'Should I make the Library folder always visible in Finder?',
+        a: "You can, using View, Show View Options in your home folder and selecting Show Library Folder, but it's just a convenience and doesn't change what's inside. Keep measuring folders before deleting anything, since making Library visible also makes accidental deletion easier.",
+      },
+    ],
     related: [
       'what-is-system-data-on-mac',
       'show-hidden-files-mac',
@@ -563,6 +658,24 @@ export const maintenanceGuides: Guide[] = [
           'Each disk keeps its own Trash. Items you deleted from an external drive appear in the Trash only while that drive is connected, and the space they use is on that drive, not your Mac. Connect the disk, then empty the Trash; ejecting it does not free anything. A backup disk used by Time Machine is managed by Time Machine, and its backups are not meant to be deleted through the Trash at all.',
           'After the Trash empties, check System Settings → General → Storage. If the available figure has not moved, the snapshots and storage-not-updating guides explain purgeable space and delayed figures. ClearDisk’s own removal is Trash-first for exactly this reason: files go where you can still put them back, and the space returns when you empty the Trash yourself.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: "Why won't my Mac let me empty the Trash?",
+        a: "When emptying fails, macOS states the reason: the item is locked, in use by an app, or you don't have permission. Read that message first, since it tells you which fix applies, rather than trying a random command from a forum.",
+      },
+      {
+        q: 'How do I unlock a file so I can delete it on Mac?',
+        a: "Select the item, press Command-I to open Get Info, and deselect the Locked checkbox; if it's greyed out, click the lock at the bottom and enter an administrator name and password first. Then empty the Trash again.",
+      },
+      {
+        q: 'The Trash says a file is in use, what do I do?',
+        a: "Quit the app that created or opened the file, then try emptying the Trash again, since it can't be removed until the app releases it. If you're not sure which app it is, close everything, log out and back in or restart first.",
+      },
+      {
+        q: 'Can I delete just one stuck item without emptying the whole Trash?',
+        a: 'Yes, Control-click the item in the Trash and choose Delete Immediately, which removes just that one item permanently and leaves the rest of the Trash alone. If that also fails with an in-use message, the app or process behind it still needs to quit.',
       },
     ],
     related: [
@@ -647,6 +760,24 @@ export const maintenanceGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'How do I check how much free space I have on Mac using Terminal?',
+        a: "Run df -h / and read the Avail column, which shows the free space every volume on the disk shares; this doesn't include the purgeable space that Disk Utility and Storage settings fold into their own available figure. Add /System/Volumes/Data to see what your own files and apps use.",
+      },
+      {
+        q: 'What Terminal command shows the biggest folders in Library?',
+        a: 'Run du -sh ~/Library/* 2>/dev/null | sort -h, which sizes every folder in your user Library smallest to largest so the last lines are the ones that matter. Repeat the same command one level deeper into any large folder to narrow it down further.',
+      },
+      {
+        q: 'Is it safe to delete files using Terminal commands I found online?',
+        a: 'This kind of guide deliberately avoids any deletion command, using only df and du, which read the disk without changing anything. Take what you measure to Finder instead and remove files through the Trash, so you keep the option to put them back.',
+      },
+      {
+        q: 'Why does Terminal say permission denied when I check folder sizes?',
+        a: "Terminal is limited by permissions like any app, and folders macOS protects return errors until you grant Terminal Full Disk Access under System Settings, Privacy and Security. Even with that access, local snapshots and purgeable space still won't show up in a plain du total.",
+      },
+    ],
     related: [
       'show-library-folder-mac',
       'show-hidden-files-mac',
@@ -719,6 +850,24 @@ export const maintenanceGuides: Guide[] = [
           'Two habits prevent the next pile. Use Software Update rather than a full installer for routine upgrades; Apple notes it can use less storage to download and install. And clear Downloads after each install, or set your browser to ask where to save so installers stop landing there by default.',
           'A free local scan lists disk images and installer apps by allocated size wherever they ended up, including a second copy in a Desktop folder or an external drive. ClearDisk shows them, lets you reveal each in Finder, and moves what you choose to the Trash first.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: "Can I delete the 'Install macOS' app after updating?",
+        a: 'Yes, once the upgrade has finished you can drag it to the Trash, since Apple provides installers for download again, making this only a bandwidth trade rather than a safety issue. The exception is if you plan to make a bootable installer for another Mac.',
+      },
+      {
+        q: "Why can't I delete a macOS installer or disk image?",
+        a: "If a .dmg is still open, it appears as a mounted volume in Finder's sidebar and needs to be ejected before it can be deleted, since a mounted image counts as in use. For the installer app itself, quit Installer and eject anything it mounted, then try again.",
+      },
+      {
+        q: 'Do I need to keep the .dmg files in my Downloads folder?',
+        a: "No, once you've dragged the app it contained into Applications, the disk image is a leftover copy and safe to delete. The installed app keeps working because it was already copied out of the image, and package files work the same way.",
+      },
+      {
+        q: 'How do I stop macOS installers from piling up on my Mac?',
+        a: 'Use Software Update rather than downloading a full installer for routine upgrades, since Apple says it can use less storage, and clear Downloads after each install so disk images stop accumulating there. Setting your browser to ask where to save also helps.',
       },
     ],
     related: [
@@ -841,6 +990,24 @@ export const maintenanceGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "What's the best free way to clean up a Mac?",
+        a: "The right tool depends on the job: an uninstaller finds files tied to an app you want to remove, while a disk scanner shows where space is used across the whole drive. Start with macOS's own Storage settings before installing anything, since it's often enough on its own.",
+      },
+      {
+        q: 'Is GrandPerspective actually free?',
+        a: "It's an open-source visual disk map that's free through the project's SourceForge download, though its separate App Store distribution is paid. A large rectangle in its map shows a large file, not whether that file is safe to remove.",
+      },
+      {
+        q: 'Is CleanMyMac the same company as ClearDisk?',
+        a: "No, CleanMyMac is a separate product made by MacPaw, with purchase options that include subscriptions and, for some editions, a one-time purchase. ClearDisk's own scans stay free, with a $10 one-time license needed for its in-app cleanup.",
+      },
+      {
+        q: 'How do I know if a Mac cleaner app is safe to use?',
+        a: "Use the maker's official download page, check its system requirements, and see whether removal goes through the Trash or deletes immediately. Read any warning about folders the scanner couldn't access, since a partial scan can still be useful but can't explain files it never read.",
+      },
+    ],
     related: [
       'disk-space-analyzer-mac',
       'uninstall-apps-on-mac',
@@ -929,6 +1096,24 @@ export const maintenanceGuides: Guide[] = [
           'When System Data is still far above its pre-update level after a few days, the update is no longer the cause. Work through the files rather than the category: the Library guide explains what the large folders hold, and the recurring-growth guide shows how to find the app producing new data.',
           'A free local scan lists Library folders, developer directories and installers with allocated sizes so you can compare them with the numbers you wrote down in step one. ClearDisk labels what it finds Safe, Review or Leave it, moves anything you choose to the Trash first, and reports snapshots as a count so you do not mistake them for removable files.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Why is my Mac storage full right after a macOS update?',
+        a: 'An update can leave behind a pre-update snapshot of the previous system, the installer app if you used a full installer, and caches the system is still rebuilding, and this can look worse for a day than it will a week later. Write down the numbers and compare after 24 hours.',
+      },
+      {
+        q: 'Should I delete the snapshot macOS makes before an update?',
+        a: "The snapshot is saved so the update can be undone, and its space is already counted as available since macOS deletes snapshots on its own as they age or as space is needed. Don't use a third-party tool to force its removal; it's also your way back if the update misbehaves.",
+      },
+      {
+        q: 'Why does System Data look bigger after updating macOS?',
+        a: 'macOS recreates certain system caches as needed after an update, so the system and your apps rebuilding what the upgrade invalidated can look like growth. Background work like indexing and iCloud or Photos re-syncing also uses space temporarily, so let the Mac idle overnight before measuring again.',
+      },
+      {
+        q: "My storage still hasn't recovered days after a macOS update, what now?",
+        a: "If System Data is still well above its pre-update level after several days, the update is no longer the cause, and it's worth working through the actual files rather than the category. A free local scan can list Library folders, developer directories and installers with their sizes to compare.",
       },
     ],
     related: [
@@ -1029,6 +1214,24 @@ export const maintenanceGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "What's the difference between 'available' and 'free' space on a Mac?",
+        a: "Available is the space macOS is prepared to give you, which can include purgeable space it hasn't released yet, while free space is only the part already released. Used covers everything on the volume, including files still sitting in the Trash until it's emptied.",
+      },
+      {
+        q: "What does 'purgeable space' mean on a Mac?",
+        a: "Purgeable space is files macOS can remove on its own when it needs the room; you can't empty it by hand, and it's already counted inside the available figure Disk Utility shows. It commonly relates to Time Machine local snapshots, which macOS also thins automatically.",
+      },
+      {
+        q: 'What is a container folder on a Mac?',
+        a: "A container is a sandboxed app's private folder inside ~/Library/Containers, which includes the data for apps like Mail and Messages. You're meant to change what's in it through the app itself, not by editing it in Finder.",
+      },
+      {
+        q: 'Why do two tools show different sizes for the same folder on Mac?',
+        a: 'Both can be right because of allocated size: the space a file actually occupies on disk, which on APFS can be far less than the logical size Finder shows first for cloned or sparse files. Full Disk Access also affects this, since a scanner without it sees less and should say so.',
+      },
+    ],
     related: [
       'what-is-system-data-on-mac',
       'purgeable-space-on-mac',
@@ -1111,18 +1314,23 @@ export const maintenanceGuides: Guide[] = [
           'A disk scanner does the same in one pass, with allocated sizes and a label for each folder. ClearDisk’s scan is free and local, shows the System Data folders Storage settings only totals, and lets you reveal any item in Finder before deciding what to do with it.',
         ],
       },
+    ],
+    questions: [
       {
-        id: 'common-questions',
-        title: 'Common questions about Mac storage',
-        paragraphs: [
-          'The questions people ask alongside this one, answered briefly.',
-        ],
-        items: [
-          'How do I free up space on my Mac? Start with the clear-storage guide: empty the Trash, clear Downloads, use Apple’s recommendations, then review large files and System Data.',
-          'How do I check available storage? System Settings → General → Storage shows Available at the top of the bar; Disk Utility shows the same volume with free and purgeable space separated.',
-          'How many GB does my Mac have? Choose Apple menu → About This Mac and click More Info, then Storage, or open Disk Utility and select the startup volume; the capacity shown there is the full size of the disk.',
-          'Why is my Mac storage still full after deleting? Space returns only when the Trash is emptied, and Storage settings can lag; purgeable space and local snapshots can also hold the figure for a while. The storage-not-updating guide covers each case.',
-        ],
+        q: 'How do I free up space on my Mac?',
+        a: 'Start with the clear-storage guide: empty the Trash, clear Downloads, use Apple’s recommendations, then review large files and System Data.',
+      },
+      {
+        q: 'How do I check available storage?',
+        a: 'System Settings → General → Storage shows Available at the top of the bar; Disk Utility shows the same volume with free and purgeable space separated.',
+      },
+      {
+        q: 'How many GB does my Mac have?',
+        a: 'Choose Apple menu → About This Mac and click More Info, then Storage, or open Disk Utility and select the startup volume; the capacity shown there is the full size of the disk.',
+      },
+      {
+        q: 'Why is my Mac storage still full after deleting?',
+        a: 'Space returns only when the Trash is emptied, and Storage settings can lag; purgeable space and local snapshots can also hold the figure for a while. The storage-not-updating guide covers each case.',
       },
     ],
     related: [
@@ -1214,19 +1422,27 @@ export const maintenanceGuides: Guide[] = [
           },
         ],
       },
+    ],
+    questions: [
       {
-        id: 'common-questions',
-        title: 'Common questions about uninstalling',
-        paragraphs: [
-          'The questions people ask alongside this one, answered from Apple’s pages.',
-        ],
-        items: [
-          'Why can’t I delete an app on my Mac? Either it is part of macOS, which Apple says Finder cannot delete, or it is still running. Quit it, including any menu bar helper, and try again; Apple suggests restarting or safe mode if it stays in use.',
-          'How do I completely uninstall an app? Use its own uninstaller where available. Otherwise use Finder, then check the maker’s guidance for leftover data. Keep documents and shared files you still need; no generic removal method can guarantee that every related item is found.',
-          'How do I force uninstall an app on macOS? If it is in use, quit it and restart if needed. Use the maker’s uninstaller or support guidance rather than force-deleting protected files.',
-          'Does uninstalling cancel a subscription? No. Cancel it with the seller or account that bills you, separately from deleting the app.',
-          'Can I uninstall Apple apps on Mac? Apps installed with macOS such as Mail, Music, Books and Notes cannot be deleted with Finder. Apple apps you got from the App Store, such as Pages or Keynote, can be removed like any other app.',
-        ],
+        q: 'Why can’t I delete an app on my Mac?',
+        a: 'Either it is part of macOS, which Apple says Finder cannot delete, or it is still running. Quit it, including any menu bar helper, and try again; Apple suggests restarting or safe mode if it stays in use.',
+      },
+      {
+        q: 'How do I completely uninstall an app?',
+        a: 'Use its own uninstaller where available. Otherwise use Finder, then check the maker’s guidance for leftover data. Keep documents and shared files you still need; no generic removal method can guarantee that every related item is found.',
+      },
+      {
+        q: 'How do I force uninstall an app on macOS?',
+        a: 'If it is in use, quit it and restart if needed. Use the maker’s uninstaller or support guidance rather than force-deleting protected files.',
+      },
+      {
+        q: 'Does uninstalling cancel a subscription?',
+        a: 'No. Cancel it with the seller or account that bills you, separately from deleting the app.',
+      },
+      {
+        q: 'Can I uninstall Apple apps on Mac?',
+        a: 'Apps installed with macOS such as Mail, Music, Books and Notes cannot be deleted with Finder. Apple apps you got from the App Store, such as Pages or Keynote, can be removed like any other app.',
       },
     ],
     related: [
@@ -1317,6 +1533,24 @@ export const maintenanceGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'How do I show hidden files on a Mac?',
+        a: "Press Shift-Command-Period in any Finder window, which has worked since macOS Sierra and toggles hidden items, including dot folders like .npm, .cache and .docker in your home folder. Press the same keys again to hide them once you're done.",
+      },
+      {
+        q: 'Are dot folders like .npm and .cache safe to delete?',
+        a: "Package caches such as .npm, .cache, .cargo, .gradle and .m2 are rebuildable, and each manager documents its own command to clear them properly. It's still worth measuring them first, since some, like Docker's virtual machine folders, can be tens of gigabytes.",
+      },
+      {
+        q: "Why is the Library folder hidden if it's not a dot folder?",
+        a: "Finder hides ~/Library by a different rule than dot folders: it has no dot in its name, but Finder hides it anyway. Holding Option while opening Finder's Go menu adds a Library item so you can open it directly.",
+      },
+      {
+        q: "What's the Terminal command to list hidden folder sizes on Mac?",
+        a: 'Run du -sh ~/.[!.]* 2>/dev/null | sort -h, which sizes every hidden folder in your home folder and sorts them smallest to largest so you can see which ones are worth opening. This command only reads the disk and changes nothing.',
+      },
+    ],
     related: [
       'show-library-folder-mac',
       'check-disk-space-mac-terminal',
@@ -1385,6 +1619,24 @@ export const maintenanceGuides: Guide[] = [
           'When the goal is room rather than tidiness, delete by size. Storage settings lists large files and downloads under Documents; the large-files guide covers reviewing them, and the check-storage guide covers the categories. Empty the Trash after each round and compare the available figure.',
           'ClearDisk 2.0.0 lets you choose Move to Trash or Remove Permanently in its review dialog. For permanent removal, type delete and click the red Remove Permanently button. You do not need to type a long filename. Check the selected paths first: this action skips Trash and cannot be undone. Move to Trash remains available if you want to keep a way back.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: "What's the keyboard shortcut to delete a file on Mac?",
+        a: 'Select the item and press Command-Delete to move it to the Trash, or Command-click or Shift-click to select several files first. Nothing is actually removed yet; the file just sits in the Trash, still using its space, until you empty it or put it back.',
+      },
+      {
+        q: 'How do I get a file back after moving it to the Trash on Mac?',
+        a: 'Open the Trash and drag the item out, or select it and choose File, Put Back, which returns it to the folder it came from. Review the Trash before emptying in bulk, since a single wrong item is easier to catch now than after restoring from a backup.',
+      },
+      {
+        q: 'Does moving a file to Trash free up space on my Mac?',
+        a: "No, a file's space doesn't become available until you actually empty the Trash, which is why a Mac can feel just as full after an afternoon of deleting. For a single item you're sure about, Control-click it and choose Delete Immediately instead.",
+      },
+      {
+        q: 'Can I make the Trash empty itself automatically on Mac?',
+        a: 'Yes, open Finder Settings, Advanced, and select Remove items from the Trash after 30 days. Items deleted from iCloud Drive are emptied after 30 days regardless of that setting, since Apple applies it to iCloud Drive separately.',
       },
     ],
     related: [
@@ -1465,6 +1717,24 @@ export const maintenanceGuides: Guide[] = [
           'Trash: Finder → Settings → Advanced, clear Remove items from the Trash after 30 days.',
           'None of these touch developer caches, app containers or the rest of System Data. For that part, the System Data and Library guides apply, and a free local scan such as ClearDisk’s shows those folders with allocated sizes and moves what you choose to the Trash first.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: "What does 'Store in iCloud' actually do to my Mac storage?",
+        a: 'It turns on syncing your Desktop and Documents folders, photos and messages to iCloud at once, letting macOS evict older files to the cloud when space is needed. Everything then counts against your iCloud storage plan, and deleting a synced file deletes it everywhere.',
+      },
+      {
+        q: "Is the 'Optimize Storage' recommendation safe to turn on?",
+        a: "Yes, it's described as cheap and reversible: it removes Apple TV movies and shows you've already watched and keeps only recent email attachments locally when space is needed. A watched purchase downloads again from the TV app, and older attachments return from the mail server when opened.",
+      },
+      {
+        q: 'What happens if I turn on Empty Trash Automatically?',
+        a: 'It erases items that have been in the Trash for more than 30 days, the same option found in Finder Settings, Advanced. The cost is the safety net: Put Back only works while an item is still in the Trash, so anything older than a month is gone for good.',
+      },
+      {
+        q: 'Does Optimize Storage clean up System Data on Mac?',
+        a: 'No, none of these three recommendations touch developer caches, app containers or the rest of System Data; they only affect iCloud-synced files, Apple TV downloads, Mail attachments and the Trash. For System Data itself, you need to look at the Library folders directly.',
       },
     ],
     related: [
@@ -1549,6 +1819,24 @@ export const maintenanceGuides: Guide[] = [
           'Downloads is not the only place downloads land. Mail keeps attachments you opened in a Mail Downloads folder inside its container in your Library, browsers keep their own caches, and messaging apps store received files in their containers. The Mail and Library guides cover those; the check-storage guide shows how the categories add up.',
           'A free local scan lists every one of those folders with allocated sizes, so you can see whether the Downloads folder was the real problem or only the visible one. ClearDisk shows them, lets you reveal each in Finder, and moves what you choose to the Trash first.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: "What's safe to delete from the Downloads folder on Mac?",
+        a: "Installers and disk images are usually leftovers once the app is already in Applications, and .zip archives you've already expanded can go once you keep the expanded copy you need. Anything you can't identify is worth opening first, since unknown doesn't mean disposable.",
+      },
+      {
+        q: 'How do I stop installers from piling up in Downloads?',
+        a: "In Safari's settings under General, set File download location to a folder of your choice, or choose Ask for each download so you decide a destination every time, keeping installers out of Downloads by default. Other browsers have the same setting under their own download preferences.",
+      },
+      {
+        q: 'Why does my Downloads folder keep filling up with attachments?',
+        a: "Mail saves attachments to Downloads by default, though you can pick a different folder under Mail's Settings, General. Downloads also isn't the only place downloads land, since Mail keeps opened attachments in its own Mail Downloads folder inside your Library too.",
+      },
+      {
+        q: 'How do I actually free space after deleting files from Downloads?',
+        a: 'Select what you want gone and press Command-Delete to move it to the Trash, then empty the Trash afterward, since space only returns once you do that. Compare the Downloads total before and after using Get Info or the du -sh ~/Downloads command in Terminal.',
       },
     ],
     related: [
@@ -1637,6 +1925,24 @@ export const maintenanceGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Is it safe to delete a large Application Support folder?',
+        a: 'Not automatically; Application Support holds settings, databases, downloaded content and licence files for an app, so it can hold your only copy of saved work as well as replaceable content. Check which app owns the folder and use its own storage or cache settings before removing anything.',
+      },
+      {
+        q: 'I uninstalled an app, can I delete its Application Support folder?',
+        a: "Not necessarily right away. Uninstalling the app doesn't prove its remaining data is disposable, since the folder can contain a local database, saved work or resources shared with another app, so check its contents and back up anything you need first.",
+      },
+      {
+        q: "What's usually taking up space in Application Support?",
+        a: "It varies by app type: chat apps keep message and file caches per workspace, creative suites store brushes, templates and media caches, and music apps keep large sound libraries, often with their own in-app controls to manage them. Adjust these through each app's own settings rather than deleting in Finder.",
+      },
+      {
+        q: 'Can ClearDisk delete files in Application Support for me?',
+        a: "No, ClearDisk's removal guard blocks general Application Support data from being removed through the app, with a separate exception for local device backups. Review that kind of app data through the owning app or its maker's instructions instead.",
+      },
+    ],
     related: [
       'containers-folder-mac',
       'show-library-folder-mac',
@@ -1718,6 +2024,24 @@ export const maintenanceGuides: Guide[] = [
           'Never delete containers named com.apple or group.com.apple; they belong to macOS apps and services and are protected for a reason. Do not delete the Containers or Group Containers folders themselves, and do not remove the protection by copying data out and back with Terminal to get around a prompt.',
           'ClearDisk can help you inspect paths and sizes. Its removal guard blocks Containers and Group Containers, including their contents. Use the owning app or its maker’s instructions to manage that data; a scan result is not permission to delete it.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Is it safe to delete a Container or Group Container folder on Mac?',
+        a: "Generally review-only: a container can hold an app's saved work as well as its downloads, and a Group Container can be shared by several apps and extensions from one developer at once. Find out who uses it and whether you need the data before considering removal.",
+      },
+      {
+        q: 'Why does my Mac ask if an app can access data from other apps?',
+        a: "That's System Integrity Protection on Group Containers, which in macOS 15 and later triggers a prompt asking you to authorize access whenever an app outside the sharing group tries to read one. It's the same protection that keeps other software from quietly modifying container data.",
+      },
+      {
+        q: 'What usually takes up space in Containers on Mac?',
+        a: "Look at apps for mail, messages and offline media first, since their containers can be large because they store content you asked to keep locally, such as Mail's opened attachments in its Mail Downloads folder. Chat apps also cache files per workspace, usually with a clear-cache control.",
+      },
+      {
+        q: 'Can I delete containers named com.apple on Mac?',
+        a: "No, never delete containers named com.apple or group.com.apple, since they belong to macOS apps and services and are protected for a reason. Don't try to get around the access prompt by copying data out and back with Terminal either.",
       },
     ],
     related: [

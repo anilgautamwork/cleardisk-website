@@ -61,6 +61,24 @@ export const creativeGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Does clearing the Premiere Pro media cache delete my original footage?',
+        a: "No. The media cache only holds peak files and conformed audio that Premiere Pro creates for faster playback. Projects, sequences and original footage are stored elsewhere and aren't touched by clearing it.",
+      },
+      {
+        q: 'Why does deleting unused media cache files sometimes remove cache I still need?',
+        a: "Delete unused looks for source media it can't find, so if a drive holding footage you still edit isn't connected, its cache can be mistaken for unused and removed, needing a rebuild the next time you open that footage.",
+      },
+      {
+        q: "Does Premiere Pro's media cache affect After Effects too?",
+        a: 'Yes. The media cache database is shared with After Effects and Media Encoder, so clearing or relocating it in Premiere Pro changes it for those other apps as well.',
+      },
+      {
+        q: 'Are render previews the same thing as the media cache in Premiere Pro?',
+        a: "No, they're separate. Render previews are cleared with Sequence then Delete Render Files and must be rendered again before playback is smooth, while the media cache holds peak files and conformed audio instead.",
+      },
+    ],
     related: [
       'adobe-creative-cloud-space-mac',
       'clear-davinci-resolve-cache-mac',
@@ -142,6 +160,24 @@ export const creativeGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Does Delete Render Cache in Resolve also remove optimized media?',
+        a: "No. Optimized media must be deleted manually in Finder, since Delete Render Cache doesn't remove it. Clear it deliberately for finished projects or for clips you can regenerate from the originals.",
+      },
+      {
+        q: 'Is there a warning before clearing render cache in DaVinci Resolve?',
+        a: "No. There is no warning dialog or undo when you click Clear Selected Cache in the Cache Manager, so double-check your project selection before confirming, since it can't be reversed.",
+      },
+      {
+        q: 'Does unlinking proxy media in Resolve delete the proxy files?',
+        a: 'No. Unlink Proxy Media only removes the link between a clip and its proxy; the proxy file itself stays on disk in Finder until you delete it yourself.',
+      },
+      {
+        q: 'Can DaVinci Resolve delete old cache automatically?',
+        a: "Yes. Turn on Delete cache older than under Preferences, User, then Cache Management, and set a number of days longer than your usual gap between sessions so an active project doesn't need re-caching.",
+      },
+    ],
     related: [
       'clear-premiere-pro-media-cache-mac',
       'final-cut-pro-storage-full',
@@ -215,6 +251,24 @@ export const creativeGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Is it safe to delete the Previews.lrdata file in Lightroom Classic?',
+        a: 'Yes, Adobe says you can delete it if it grows too large. Quit Lightroom Classic first, and expect previews to rebuild as you open each folder afterward.',
+      },
+      {
+        q: "What's the difference between Smart Previews and regular previews in Lightroom Classic?",
+        a: "Smart Previews are compact files that let you edit photos when the original isn't connected, stored in their own file separately from ordinary previews. Keep them for photos on a drive you leave at home.",
+      },
+      {
+        q: 'How many Lightroom Classic catalog backups should I keep?',
+        a: 'Keep only the most recent few, ideally stored on a different disk from the catalog, as Adobe recommends. Older dated backup folders in the Backups directory can be moved to the Trash.',
+      },
+      {
+        q: 'Does lowering the cache limit in the cloud Lightroom app delete my photos?',
+        a: "No. A lower cache size limit under Preferences then Cache just means Lightroom downloads photos again from the cloud when you need them; it doesn't remove your originals stored there.",
+      },
+    ],
     related: [
       'adobe-creative-cloud-space-mac',
       'photos-library-taking-up-space-mac',
@@ -227,7 +281,8 @@ export const creativeGuides: Guide[] = [
         url: 'https://helpx.adobe.com/lightroom-classic/desktop/technical-support/performance-guidelines/optimize-performance-lightroom.html',
       },
       {
-        label: 'Adobe: Lightroom Classic preference file and other file locations',
+        label:
+          'Adobe: Lightroom Classic preference file and other file locations',
         url: 'https://helpx.adobe.com/lightroom-classic/desktop/kb/preference-file-and-other-file-locations.html',
       },
       {
@@ -303,6 +358,24 @@ export const creativeGuides: Guide[] = [
           'Don’t remove the whole Adobe folder from ~/Library/Application Support or /Library/Application Support, and don’t run cleanup scripts from forums. These folders hold preferences, plug-ins and shared components the apps rely on. If the Creative Cloud app itself is broken, Adobe’s troubleshooting route is its Creative Cloud Cleaner tool, which is a repair tool, not a space saver.',
           'ClearDisk’s free scan and storage map show which of these locations is actually large on your Mac, with paths and sizes. It doesn’t uninstall Adobe apps or clear their caches through Adobe’s settings, so the removals above still happen in Adobe’s apps.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Is there one Adobe cache folder I can clear to free up space?',
+        a: "No. Adobe storage comes from several separate places: installed apps and old versions, the shared media cache, individual app caches like Photoshop's scratch disk, and your own files, each cleared its own way.",
+      },
+      {
+        q: 'Do old Adobe app versions stay on my Mac after updating?',
+        a: 'Usually not, since Adobe removes the previous version by default when installing a new one. But if Remove older versions was turned off in Creative Cloud preferences, old major versions can accumulate in Applications.',
+      },
+      {
+        q: 'Is it safe to delete the Creative Cloud Files folder?',
+        a: 'Only after backing it up elsewhere first. Adobe discontinued Creative Cloud Synced files, so those files now live only on your Mac and are no longer a cache you can casually remove.',
+      },
+      {
+        q: 'Can I delete the whole Adobe folder in Application Support to free space?',
+        a: "No. That folder holds preferences, plug-ins and shared components the apps rely on. Clear the shared media cache and each app's own cache settings instead of removing the folder wholesale.",
       },
     ],
     related: [
@@ -385,6 +458,24 @@ export const creativeGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Does Delete Generated Library Files remove my original footage in Final Cut Pro?',
+        a: 'No, Apple states original media files are not deleted. It removes render files and, if selected, optimized and proxy media, which Final Cut Pro can recreate from the originals when needed.',
+      },
+      {
+        q: 'Why do unused render files build up in Final Cut Pro?',
+        a: 'They accumulate when you change timelines, or update Final Cut Pro, macOS or plug-ins, or move a library between Macs running different macOS versions, none of which get cleaned up automatically.',
+      },
+      {
+        q: 'Can I store a Final Cut Pro library on my Time Machine backup drive?',
+        a: "No. Apple's method for moving a library requires an external drive formatted as APFS, and a drive used for Time Machine backups can't be used for a library at all.",
+      },
+      {
+        q: "What do Final Cut Pro's automatic backups actually contain?",
+        a: 'Only the library database, not the media itself, so a backup lets you restore your project structure but is not a substitute for backing up your original footage separately.',
+      },
+    ],
     related: [
       'imovie-library-taking-up-space',
       'clear-davinci-resolve-cache-mac',
@@ -456,6 +547,24 @@ export const creativeGuides: Guide[] = [
           'In earlier versions, Logic Pro offers Retry, Ignore or Reset when the drive is missing. Ignore replaces tracks that use library content with basic tones; Reset installs a library on your Mac again, which uses the space you tried to free. Apple also says each Mac needs its own sound library. Apple lists SSDs and USB thumb drives as possible destinations, and content you download later is installed in the library’s new location.',
           'Don’t delete content folders by hand in Finder. If an older version of Logic Pro or MainStage is still installed, Apple says to keep the original sound library, because the new bundle isn’t compatible with older versions. Your own recordings and projects are separate, and ClearDisk’s storage map can show whether they or the library take more room.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'What happens if I delete a Logic Pro sound library pack that a project uses?',
+        a: 'It can affect that project. Apple notes some packs are needed to open certain projects, and Logic Pro will ask to download the pack again when required, which needs an internet connection.',
+      },
+      {
+        q: "Does updating Logic Pro's sound library use extra disk space for the clone?",
+        a: "No. When Logic Pro clones an older library into the new bundle format, Apple says the clone needs no extra space and you don't have to delete the old files, though some size tools may double-count it.",
+      },
+      {
+        q: 'Can I move the Logic Pro sound library to an external drive?',
+        a: "Yes. Quit Logic Pro, drag Logic Pro Library.bundle from your Music folder to the external drive, open Logic Pro and use Locate if asked, then delete the original once you've confirmed the copy works.",
+      },
+      {
+        q: "What happens if the drive holding a relocated Logic Pro sound library isn't connected?",
+        a: 'In earlier versions, Logic Pro offers Retry, Ignore or Reset. Ignore replaces tracks using library content with basic tones, while Reset installs a fresh library on your Mac, using the space you tried to free.',
       },
     ],
     related: [
@@ -538,6 +647,24 @@ export const creativeGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'If I delete GarageBand, does that remove my songs and recordings?',
+        a: "No. Apple notes that deleting an app doesn't remove documents you created with it, so your songs stay. The downloaded sound content lives outside the app too, and needs a separate review.",
+      },
+      {
+        q: 'What does File then Clean Up Project do in GarageBand?',
+        a: 'It deletes audio files the current project no longer uses. Recorded audio is your own work, so review a song for old takes you might still want before running the cleanup.',
+      },
+      {
+        q: 'Is my own recorded audio the reason GarageBand is taking up space, or the sound library?',
+        a: "It can be either. Recorded takes are saved with each song, so one with many tracks and takes can be large; check Music Creation in Storage settings first, then your own recordings if that's small.",
+      },
+      {
+        q: "Can I get GarageBand's downloaded sounds back after removing them?",
+        a: 'Yes, click Download next to an item in the Library or Loop Browser to restore it individually. Download All Available Sounds installs everything at once, so use it only on a Mac with plenty of room.',
+      },
+    ],
     related: [
       'logic-pro-sound-library-space',
       'uninstall-apps-on-mac',
@@ -617,6 +744,24 @@ export const creativeGuides: Guide[] = [
           'If the external drive isn’t connected, iMovie opens a new, empty library in the Movies folder on your Mac, and new imports go there. Connect the drive and open the moved library before importing, or you’ll rebuild a large library on the internal disk.',
           'Apple also supports multiple libraries, so finished work can live on an external drive while the current project stays local. ClearDisk’s storage map can show how the iMovie Library compares with exported movies and other video files, which helps decide what to archive first.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Does deleting individual clips from an iMovie event free up space?',
+        a: "No, Apple is specific that deleting clips from an event doesn't free space; you have to delete the entire event, and if a clip is still used in a project you're asked to remove it from the project first.",
+      },
+      {
+        q: 'Does deleting an iMovie project also delete the media inside it?',
+        a: "No. Deleting a project that contains media doesn't remove the media itself; iMovie creates a new event with the project's name to hold it, so delete that event too if you're finished with the footage.",
+      },
+      {
+        q: 'Can I store my iMovie Library on an SD card or a Time Machine drive?',
+        a: "No. Apple doesn't recommend SD cards, USB flash drives or network storage for it, and a Time Machine backup drive can't be used at all; use a USB or Thunderbolt drive formatted as APFS instead.",
+      },
+      {
+        q: "What happens if I move my iMovie Library but the external drive isn't connected?",
+        a: "iMovie opens a new, empty library in the Movies folder on your Mac and sends new imports there, so connect the drive and open the moved library first, or you'll rebuild a large library internally.",
       },
     ],
     related: [

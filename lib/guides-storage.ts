@@ -72,6 +72,24 @@ export const storageGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "How do I find what's using the most space on my Mac?",
+        a: 'Open System Settings, General, Storage, then Documents, and use the Large Files and File Browser views, clicking Size to sort. Start with about five recognizable results, record their names and approximate sizes, and use Show in Finder to inspect each before deciding anything.',
+      },
+      {
+        q: 'How do I search for large files of a specific type on Mac?',
+        a: "Use Finder's search: type a project name, click the plus button below the search field, and add a criterion like Kind to narrow results, for example to movies only. Check whether the search scope is the current folder or the whole Mac, and remove a criterion if results get too narrow.",
+      },
+      {
+        q: "Should I delete a large video file if I don't remember what it is?",
+        a: "Not automatically; a large file is a candidate for review, not proof it's unnecessary. Check whether it's an original or a compressed export, whether you can obtain it again, and whether another project still depends on it before deciding to remove or move it.",
+      },
+      {
+        q: "I can't find any large files but my Mac is still full, why?",
+        a: "If recognizable documents don't explain the shortage, the remaining space is likely elsewhere in System Data, so it's worth investigating those categories instead of widening your search into unfamiliar folders. Stop once you've found enough room for the task that brought you here.",
+      },
+    ],
     related: [
       'mac-storage-full',
       'disk-space-analyzer-mac',
@@ -139,18 +157,23 @@ export const storageGuides: Guide[] = [
           'Compare the Mac’s available space before considering another deletion. If the gain is smaller than expected, investigate the measurement with the related guide. Do not remove a second backup merely to make a category bar reach a target. If backups repeatedly exhaust the disk, plan where you will keep recovery copies before the next device replacement.',
         ],
       },
+    ],
+    questions: [
       {
-        id: 'common-questions',
-        title: 'Common questions about iPhone backups on a Mac',
-        paragraphs: [
-          'The questions people ask alongside this one, answered from Apple’s backup page.',
-        ],
-        items: [
-          'Where are iPhone backups stored on Mac? Apple documents the folder ~/Library/Application Support/MobileSync/Backup, reachable with Finder’s Go to Folder. The reliable route is Finder → your device → General → Manage Backups, then right-click a backup and choose Show in Finder.',
-          'How do I delete an iPhone backup on Mac? Connect the device, open Finder → General → Manage Backups, right-click the backup and choose Delete. System Settings → General → Storage → iOS files lists the same backups with their sizes and dates.',
-          'Can I move iPhone backups to an external drive? Apple’s page covers locating, archiving and deleting backups, not relocating the folder, so treat the location as fixed. Free space by deleting superseded backups and keeping the newest one per device.',
-          'How much space does an iPhone backup take? About as much as the device’s used storage, minus what is already in iCloud. Storage settings → iOS files shows the size of each one.',
-        ],
+        q: 'Where are iPhone backups stored on Mac?',
+        a: 'Apple documents the folder ~/Library/Application Support/MobileSync/Backup, reachable with Finder’s Go to Folder. The reliable route is Finder → your device → General → Manage Backups, then right-click a backup and choose Show in Finder.',
+      },
+      {
+        q: 'How do I delete an iPhone backup on Mac?',
+        a: 'Connect the device, open Finder → General → Manage Backups, right-click the backup and choose Delete. System Settings → General → Storage → iOS files lists the same backups with their sizes and dates.',
+      },
+      {
+        q: 'Can I move iPhone backups to an external drive?',
+        a: 'Apple’s page covers locating, archiving and deleting backups, not relocating the folder, so treat the location as fixed. Free space by deleting superseded backups and keeping the newest one per device.',
+      },
+      {
+        q: 'How much space does an iPhone backup take?',
+        a: 'About as much as the device’s used storage, minus what is already in iCloud. Storage settings → iOS files shows the size of each one.',
       },
     ],
     related: [
@@ -226,6 +249,24 @@ export const storageGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "Why does iCloud Drive still take up space on my Mac if it's in the cloud?",
+        a: "iCloud Drive can keep local copies of files for offline use, so a file appearing in the folder doesn't mean its latest contents are only in the cloud. Check its iCloud Status in Finder's list view, since Waiting to Upload means it isn't fully stored in iCloud yet.",
+      },
+      {
+        q: "What's the difference between deleting and removing the download of an iCloud file?",
+        a: 'Remove Download only frees local space while keeping the file in iCloud, and Download Now brings a cloud-only file back for offline use. Deleting is different: it removes the file from iCloud Drive and every other device signed into the same account.',
+      },
+      {
+        q: 'How do I keep some iCloud Drive files always available offline?',
+        a: "Control-click the item and select Keep Downloaded so it stays local even when Optimize Mac Storage would otherwise evict older files to iCloud when space is needed. Make a list of what you'll need without internet and verify each file's status while you still have a connection.",
+      },
+      {
+        q: "What if Remove Download isn't available for an iCloud Drive file?",
+        a: "Recheck that you're looking at an actual iCloud Drive item and review its status column, rather than working around the missing control by deleting hidden synchronization folders. If the state still doesn't make sense, record the macOS version and status message for Apple support.",
+      },
+    ],
     related: [
       'icloud-remove-download-missing-mac',
       'icloud-drive-stuck-uploading-mac',
@@ -296,6 +337,24 @@ export const storageGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "What does purgeable space mean on Mac's Disk Utility?",
+        a: "Purgeable space is storage macOS can reclaim from eligible files when it needs room, and it's not an ordinary folder with an Empty command you can click. It's typically already included inside the available figure, so a Mac reporting 40GB available with 15GB purgeable does not mean 55GB is free.",
+      },
+      {
+        q: 'Are Time Machine local snapshots the same as purgeable space?',
+        a: "They're related: Apple counts local snapshot storage as available and removes snapshots automatically as they age or as space is needed. A snapshot count doesn't tell you how many additional bytes a cleaner can actually recover, so don't treat it as a capacity estimate.",
+      },
+      {
+        q: 'Can I force macOS to purge space by filling up my disk?',
+        a: "This isn't recommended; manufacturing huge temporary files to pressure the disk into purging data introduces a competing operation while you're trying to diagnose a shortage and makes before-and-after measurements harder to interpret. Deleting files you actually no longer need is more useful.",
+      },
+      {
+        q: "A copy or install failed even though I have enough free space, what's wrong?",
+        a: "Record the exact warning message and the amount of space it requests, and confirm you're checking the correct destination volume, since free room on your internal drive doesn't increase an external drive's capacity. Compare the same volume in the same tool before and after one change.",
+      },
+    ],
     related: [
       'time-machine-snapshots',
       'mac-storage-not-updating-after-deleting-files',
@@ -354,6 +413,24 @@ export const storageGuides: Guide[] = [
           'If you now have enough room and the original save or install succeeds, stop cleaning. If it still fails, capture its exact message and required space. Save work and restart normally if you need a fresh application state; treat that as a diagnostic step, not a guaranteed storage repair.',
           'Persistent unexplained errors call for support with the volume name, before-and-after figures and action taken. Share those details without uploading private filenames or files. Repeatedly deleting unrelated folders makes both recovery and diagnosis harder.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: "I deleted files but my Mac's free space didn't change, why?",
+        a: "First check whether those files are still sitting in the Trash, since a moved file still occupies storage until the Trash is emptied. Also confirm you deleted from the same volume whose capacity you're watching, since removing something from an external drive won't free space internally.",
+      },
+      {
+        q: 'Does Storage settings update right away after I free up space?',
+        a: "Apple says it updates automatically as you free space, but there's no fixed refresh deadline given, so reopen System Settings, General, Storage after the operation finishes and compare the available-space figure rather than expecting an instant change. A category bar isn't the only result worth checking.",
+      },
+      {
+        q: 'Could new downloads be cancelling out the space I just freed?',
+        a: 'Yes, new downloads, exports or other app activity can offset the effect of a deletion, so save your work, pause optional transfers, and compare available space again during a quiet period. If the same folder keeps increasing, note its path and the app you were using.',
+      },
+      {
+        q: "Should I keep deleting more files if my storage number isn't moving?",
+        a: "Not without more information first; repeatedly deleting unrelated folders makes both recovery and diagnosis harder. If the number still hasn't moved after checking the Trash, the volume and competing activity, gather the exact figures for support rather than continuing to guess.",
       },
     ],
     related: [
@@ -422,6 +499,24 @@ export const storageGuides: Guide[] = [
           'Once the destination and backup are verified, quit Photos and move only the original library to Trash. Review before emptying it. Connect the external drive before opening Photos: Apple warns that an unavailable destination can cause Photos to create an empty library in the default location.',
           'If you later see an empty library, our first check is the drive connection and the selected library, not an assumption that the photos vanished. Quit Photos and use the Option-key library chooser to inspect the intended destination. Resolve copy, permissions or missing-content errors before permanently removing anything else.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Can I store my Photos library on a USB flash drive?',
+        a: "No. Apple advises against SD cards, USB flash drives, network storage and cloud storage for a Photos library, and you shouldn't use a drive that's also your Time Machine backup disk. Use a directly connected external drive formatted as APFS or Mac OS Extended (Journaled) instead.",
+      },
+      {
+        q: 'Why is my Photos library empty after moving it to an external drive?',
+        a: "Apple warns that if the destination drive isn't connected when Photos opens, it creates a new empty library in the default location instead of failing. Check that the external drive is connected, then use the Option-key library chooser to open the correct library.",
+      },
+      {
+        q: 'Do I need to make my moved library the System Photo Library?',
+        a: "Yes, if you use iCloud Photos. Open Photos, Settings, General, and choose Use as System Photo Library; Apple disables that button when the open library already holds the role. Switching also merges the library's contents with iCloud and can trigger downloads.",
+      },
+      {
+        q: 'Does backing up my Photos library include everything in it?',
+        a: "Not necessarily. Files the library references but stores outside itself aren't included when you back up the library, so those need separate backup coverage. Apple's guide on referenced files explains how to find and consolidate them.",
       },
     ],
     related: [
@@ -504,6 +599,24 @@ export const storageGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Do local snapshots actually take up storage space on my Mac?',
+        a: 'Technically yes, but macOS counts that space as available storage, so downloads or installers can still use it. Time Machine also thins snapshots automatically, deleting them as they age or as space is needed elsewhere.',
+      },
+      {
+        q: 'How do I see how many local snapshots exist on my Mac?',
+        a: 'Open Terminal and run tmutil listlocalsnapshots / with the trailing slash. It only lists snapshot names and dates, not sizes, and changes nothing, so treat the count as informational rather than a measure of reclaimable space.',
+      },
+      {
+        q: 'Is it safe to delete Time Machine local snapshots manually?',
+        a: "You can, using Apple's documented method: pause automatic backups in System Settings, General, Time Machine, Options by setting frequency to Manually, which deletes local snapshots after several minutes. Doing so loses the ability to restore files changed in the last 24 hours while your backup disk is disconnected.",
+      },
+      {
+        q: 'Will deleting local snapshots permanently free up disk space?',
+        a: 'No. Time Machine creates a new snapshot again within about an hour, so the space returns. Local snapshots are separate from the backups on your external Time Machine disk, which are unaffected either way.',
+      },
+    ],
     related: [
       'purgeable-space-on-mac',
       'time-machine-backup-disk-full',
@@ -573,6 +686,24 @@ export const storageGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'How do I delete photos and videos from Messages without deleting the whole conversation?',
+        a: 'Open the conversation, show its details, scroll to a category like Photos, shift-click to select items, then Control-click and choose Delete. This removes the attachments while keeping the surrounding messages intact.',
+      },
+      {
+        q: "Why didn't my Mac's storage go down after I deleted Messages attachments?",
+        a: 'Deleted messages and attachments stay in Recently Deleted for up to 30 days before the space returns, so a large cleanup only shows up in Storage settings after that window expires or you clear Recently Deleted.',
+      },
+      {
+        q: 'Will deleting a message on my Mac delete it on my iPhone too?',
+        a: 'If Messages in iCloud is turned on, yes: deleting a message or conversation on your Mac deletes it from every device where the feature is enabled. Deleted items can be recovered for 30 days and are permanently gone from iCloud after 40 days.',
+      },
+      {
+        q: 'How do I stop old Messages conversations from taking up space again?',
+        a: 'Go to Messages, Settings, General, and change the Keep Messages menu from Forever to a shorter period like one year. Conversations and all their attachments are then removed automatically once that period passes, so the folder stops growing back.',
+      },
+    ],
     related: [
       'mail-taking-up-space-on-mac',
       'free-up-space-on-mac',
@@ -639,6 +770,24 @@ export const storageGuides: Guide[] = [
           'After switching modes, rescan. Space returns as the app releases local copies, which can take a while for a large folder. Files you open afterwards come back down, so a working set of recent documents will always occupy some room.',
           'Do not delete files inside a synced folder to save space: the deletion syncs to the cloud and to every other device. Use the app’s online-only or streaming controls instead. iCloud Drive has its own version of this behaviour, covered in the iCloud guide. ClearDisk shows these folders with allocated sizes so you can see which drive is holding the space, but it does not change sync settings and does not offer synced folders for removal.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Why is my Google Drive folder using so much disk space?',
+        a: "If Drive for desktop is set to mirror files, everything is stored on your computer as well as in the cloud. Switch to Stream files under Settings, Preferences, Folders from Drive, My Drive syncing options, though anything you've opened stays cached locally.",
+      },
+      {
+        q: 'How do I make Dropbox files online-only on a Mac?',
+        a: 'Right-click a file or folder in the Dropbox folder in Finder and choose Make online-only; it stays in the cloud and in Finder but stops taking up local storage until opened. Dropbox notes Basic users need the latest File Provider build of Dropbox for macOS for that option.',
+      },
+      {
+        q: 'Is it safe to delete files inside a synced cloud folder to free up space?',
+        a: "No. Deleting a file inside a synced folder like Google Drive, Dropbox or OneDrive syncs that deletion to the cloud and every other device. Use the app's own online-only or streaming controls instead of deleting.",
+      },
+      {
+        q: 'How do I free up space used by OneDrive on my Mac?',
+        a: 'Right-click a file or folder in the OneDrive folder and choose Free up space; it becomes an online-only placeholder shown with a cloud icon and downloads again when opened. Always Keep on This Device does the opposite and pins a full local copy.',
       },
     ],
     related: [
@@ -718,6 +867,24 @@ export const storageGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Does Optimize Mac Storage delete my original photos?',
+        a: 'No. It keeps smaller versions on your Mac while storing the full-size originals in iCloud, and it requires iCloud Photos to be turned on. It also shrinks the library gradually when space is limited, not immediately when you enable it.',
+      },
+      {
+        q: 'Why did a photo disappear from all my devices after I deleted it?',
+        a: 'Because iCloud Photos syncs deletions: removing a photo on one device deletes it everywhere you use iCloud Photos. It stays in Recently Deleted for 30 days, so the space only returns after that window or after you empty Recently Deleted.',
+      },
+      {
+        q: 'Will turning off iCloud Photos free up space on my Mac?',
+        a: "No. Turning it off only stops syncing; it does not remove the local library, so the Photos Library package stays the same size on your Mac's disk.",
+      },
+      {
+        q: 'Can I delete individual files inside the Photos Library package to save space?',
+        a: "No. It's a single package, not a folder to browse, so you should never open it and delete files inside. Look instead for duplicate libraries or exported albums outside the package, or move the whole library to an external drive.",
+      },
+    ],
     related: [
       'move-photos-library-to-external-drive',
       'optimize-storage-mac',
@@ -792,6 +959,24 @@ export const storageGuides: Guide[] = [
           'Do not delete backup folders on the backup disk in Finder. Time Machine tracks what each backup shares with the next, and removing pieces by hand can leave the remaining backups unusable. Let Time Machine thin the disk, exclude what you do not need, or replace the disk.',
           'The local snapshots on your Mac’s own disk are a separate mechanism covered in the snapshots guide; a full backup disk does not fill your Mac, and a full Mac does not fill the backup disk. ClearDisk scans the Mac’s internal storage, not the backup volume, and reports snapshots as a count so you can keep the two questions apart.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Is it normal for my Time Machine backup disk to show almost no free space?',
+        a: 'Yes. Time Machine is designed to fill the disk and then delete the oldest backups to make room for new ones, so a nearly full backup disk is its normal working state rather than a problem by itself.',
+      },
+      {
+        q: "Why does Time Machine say it doesn't have enough space to back up?",
+        a: "This happens when the data you're backing up has grown past what the disk can hold even after the oldest backups are removed. Check what grew, such as a new Photos library or a developer folder, and consider excluding or moving it.",
+      },
+      {
+        q: 'Can I exclude specific folders from Time Machine backups?',
+        a: "Yes. In Time Machine settings, click Options and add items like node_modules folders, Xcode's Derived Data or Docker's disk image to the exclusion list. Excluding a folder stops future backups of it but doesn't remove it from backups already made.",
+      },
+      {
+        q: 'Is it safe to delete old backups directly on the Time Machine disk?',
+        a: 'No. Time Machine tracks what each backup shares with the next, and removing pieces by hand in Finder can leave the remaining backups unusable. Let Time Machine thin the disk itself, exclude unneeded folders, or switch to a larger disk instead.',
       },
     ],
     related: [

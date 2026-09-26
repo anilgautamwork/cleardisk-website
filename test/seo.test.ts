@@ -227,3 +227,25 @@ await test('blog posts have canonical discovery, source links and blog breadcrum
     }
   }
 });
+await test('guide questions are short, plain and end with a question mark', () => {
+  for (const guide of guides) {
+    if (!guide.questions) continue;
+    assert.ok(
+      guide.questions.length >= 3,
+      guide.slug + ': at least 3 questions',
+    );
+    assert.equal(
+      new Set(guide.questions.map((q) => q.q)).size,
+      guide.questions.length,
+      guide.slug + ': unique questions',
+    );
+    for (const { q, a } of guide.questions) {
+      assert.ok(q.endsWith('?'), guide.slug + ': ' + q);
+      assert.ok(
+        a.split(/\s+/).length >= 15,
+        guide.slug + ': short answer ' + q,
+      );
+      assert.ok(!/<|https?:\/\//.test(a), guide.slug + ': plain text ' + q);
+    }
+  }
+});

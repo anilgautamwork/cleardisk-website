@@ -18,7 +18,11 @@ export const moreDeveloperGuides: Guide[] = [
           'Gradle keeps everything that is not part of a project in its user home, which is ~/.gradle on a Mac unless the GRADLE_USER_HOME environment variable points somewhere else. Gradle’s documentation lists what lives there: caches for downloaded dependencies, artifact transforms and build-cache entries; wrapper/dists for the Gradle versions that projects’ wrappers downloaded; daemon for daemon logs; and jdks for Java toolchains Gradle provisioned itself.',
           'The folder is hidden in Finder because its name starts with a dot. Measure it in Terminal with du, which only reads. The per-folder figures tell you whether dependencies, Gradle distributions or toolchains make up most of the total, which decides where to start.',
         ],
-        code: ['echo $GRADLE_USER_HOME', 'du -sh ~/.gradle', 'du -sh ~/.gradle/* | sort -h'],
+        code: [
+          'echo $GRADLE_USER_HOME',
+          'du -sh ~/.gradle',
+          'du -sh ~/.gradle/* | sort -h',
+        ],
       },
       {
         id: 'what-gradle-cleans',
@@ -58,6 +62,24 @@ export const moreDeveloperGuides: Guide[] = [
           'ClearDisk’s free scan includes the Gradle cache at ~/.gradle/caches in its Developer Junk list, next to node_modules folders, Xcode Derived Data and the Maven repository, with sizes. That shows whether Gradle is actually the large one before you spend time on it. Whichever route you use, the space returns only after you empty the Trash.',
         ],
         code: ['./gradlew clean'],
+      },
+    ],
+    questions: [
+      {
+        q: 'Why does the Gradle cache keep growing even though Gradle cleans up automatically?',
+        a: "Gradle's own cleanup only runs when Gradle itself runs, deleting version caches after 30 days unused (7 for snapshots). If you stopped building for months, or switch between many Gradle versions, nothing trims the folder in the meantime.",
+      },
+      {
+        q: 'Do I need to stop Gradle before deleting its cache?',
+        a: 'Yes. Run ./gradlew --stop or gradle --stop, and quit Android Studio and IntelliJ IDEA too, since all of them start daemons that hold cache files open and could leave a half-written cache.',
+      },
+      {
+        q: 'Will deleting the Gradle caches folder break my projects?',
+        a: 'No. Gradle recreates the caches folder on the next build and downloads every dependency again, and projects that pin dependency versions get exactly the same versions back, just with a slower first sync.',
+      },
+      {
+        q: 'Is it safe to delete gradle.properties or the init.d folder to save space?',
+        a: 'No, leave them alone. They hold your settings, and gradle.properties sometimes holds credentials for private repositories, so they are configuration you rely on rather than cache data that Gradle can simply regenerate later.',
       },
     ],
     related: [
@@ -112,7 +134,11 @@ export const moreDeveloperGuides: Guide[] = [
           'Older CocoaPods setups cloned the entire public Specs repository into ~/.cocoapods/repos, usually under the name master. CocoaPods 1.8 made the CDN the default source instead, and the release post gives pod repo remove master as the cleanup once your Podfile uses the CDN or has no git source line. Check with pod repo list and measure the folders before deciding.',
           'Keep any private spec repo your team publishes to; removing it breaks pod install for projects that depend on it until you add it back. If a Podfile still names the git-based Specs source explicitly, update it to the CDN source first, or the repo is cloned again on the next install.',
         ],
-        code: ['pod repo list', 'du -sh ~/.cocoapods/repos/*', 'pod repo remove master'],
+        code: [
+          'pod repo list',
+          'du -sh ~/.cocoapods/repos/*',
+          'pod repo remove master',
+        ],
       },
       {
         id: 'pods-folders',
@@ -130,6 +156,24 @@ export const moreDeveloperGuides: Guide[] = [
           'The CocoaPods team has announced that trunk becomes read-only on December 2, 2026. Their post says existing builds keep working, but pods published through trunk stop receiving updates. As projects move their dependencies to Swift Package Manager, their Pods folders and cache entries become safe to remove once the migration is committed.',
           'Swift Package Manager keeps its own downloads, and Xcode stores a project’s package checkouts inside Derived Data, so clearing CocoaPods does not affect them. Whatever you move to the Trash still takes space until you empty it.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Why does the CocoaPods cache count toward System Data instead of Developer storage?',
+        a: 'The cache sits in ~/Library/Caches/CocoaPods, and Storage settings groups files there with other app caches rather than the Developer category, which is one reason a Mac used for iOS work shows a large System Data figure.',
+      },
+      {
+        q: "Is it safe to delete a project's Pods folder?",
+        a: 'Yes, as long as you keep the Podfile and Podfile.lock. Running pod install later rebuilds the Pods folder at the exact versions recorded in the lock file, though check first whether your team commits Pods to git.',
+      },
+      {
+        q: 'What does pod deintegrate actually do, and should I use it to save space?',
+        a: 'It is not a cleanup tool. It removes CocoaPods from the Xcode project entirely, which only makes sense when migrating away from CocoaPods, such as once a project has moved to Swift Package Manager.',
+      },
+      {
+        q: 'Can I remove the old CocoaPods master spec repo?',
+        a: 'Yes, once your Podfile uses the CDN source (the default since CocoaPods 1.8) or has no git source line, pod repo remove master cleans it up. Keep any private spec repo your team publishes to.',
       },
     ],
     related: [
@@ -201,7 +245,9 @@ export const moreDeveloperGuides: Guide[] = [
           'Each virtual environment holds its own full copy of the packages installed into it, so ten projects with the same data-science stack store it ten times. They usually sit in a .venv or venv folder inside each project. The command below lists every .venv under a projects folder with its size; adjust the path, and repeat with venv if you use that name.',
           'Python’s documentation describes a virtual environment as disposable: it should be simple to delete and recreate from scratch, it is not meant to be moved or copied, and it is not checked into source control. That makes environments of old projects some of the safest large folders on a developer Mac.',
         ],
-        code: ['find ~/Projects -type d -name .venv -prune -exec du -sh {} + 2>/dev/null | sort -h'],
+        code: [
+          'find ~/Projects -type d -name .venv -prune -exec du -sh {} + 2>/dev/null | sort -h',
+        ],
       },
       {
         id: 'remove-an-environment',
@@ -224,6 +270,24 @@ export const moreDeveloperGuides: Guide[] = [
           'conda has its own package cache and environments, covered in the conda guide. Moving any of these folders to the Trash frees space only once the Trash is emptied.',
         ],
         code: ['uv cache dir', 'uv cache prune'],
+      },
+    ],
+    questions: [
+      {
+        q: 'Where does pip store its cache on a Mac?',
+        a: 'By default it is ~/Library/Caches/pip; pip cache dir confirms the exact path. Because it sits in ~/Library/Caches, Storage settings counts it with other app caches rather than under a Python-specific heading.',
+      },
+      {
+        q: 'Is it safe to delete a Python virtual environment folder?',
+        a: "Yes. Python's own documentation describes a virtual environment as disposable and meant to be deleted and recreated from scratch. Save the package list with pip freeze first if the project has no requirements file.",
+      },
+      {
+        q: 'Will clearing the pip cache break my installed packages?',
+        a: 'No. pip cache purge only removes cached downloads, so nothing already installed is affected. The next install just downloads packages again, and anything built from source takes a little longer the first time.',
+      },
+      {
+        q: "Does clearing pip's cache also clear conda's or uv's cache?",
+        a: "No, each tool keeps its own. uv's cache lives separately at ~/.cache/uv and is cleared with uv cache prune or uv cache clean, while conda has its own package cache covered by conda's own commands.",
       },
     ],
     related: [
@@ -264,7 +328,11 @@ export const moreDeveloperGuides: Guide[] = [
           'Anaconda, Miniconda and Miniforge all install a base folder that contains conda itself, a pkgs folder with every package it has downloaded, and an envs folder with your environments. Installers commonly put it in your home folder under a name such as miniconda3, anaconda3 or miniforge3. conda info prints the exact base location, the package cache and the environment directories, so you do not have to guess.',
           'Measure the whole install with one du command. conda normally hard-links files from the package cache into environments, and a single du run counts each hard-linked file once. Measuring pkgs and envs separately counts shared files twice, which makes the install look larger than it is and makes cleanup look more promising than it will be.',
         ],
-        code: ['conda info', 'conda config --show pkgs_dirs', 'du -sh "$(conda info --base)"'],
+        code: [
+          'conda info',
+          'conda config --show pkgs_dirs',
+          'du -sh "$(conda info --base)"',
+        ],
       },
       {
         id: 'preview-clean',
@@ -314,6 +382,24 @@ export const moreDeveloperGuides: Guide[] = [
           'Packages installed with pip inside a conda environment use pip’s own cache in ~/Library/Caches/pip, which conda clean does not touch; the pip guide covers it. Environments created by other tools, such as a project’s .venv folder, are separate from conda as well.',
           'If you have moved away from conda altogether, follow the uninstall instructions for the installer you used rather than only deleting the base folder. conda init adds a block to your shell profile, such as ~/.zshrc, that points at that folder; remove the block too, or every new Terminal window reports an error.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: "Why does measuring conda's pkgs and envs folders separately overstate their size?",
+        a: 'conda normally hard-links files from the package cache into environments, so a single du run on the whole install counts each shared file once. Measuring pkgs and envs separately counts shared files twice, making the install look bigger than it is.',
+      },
+      {
+        q: "What's the difference between conda clean --all and conda clean --force-pkgs-dirs?",
+        a: 'conda clean --all only removes caches nothing else is using, so it is safe. --force-pkgs-dirs removes all writable package caches and can break environments whose packages are symlinked back to that cache, so it is best avoided.',
+      },
+      {
+        q: 'Can I delete a conda environment folder in Finder instead of using conda remove?',
+        a: "No. Deleting the folder in Finder leaves conda's own record of that environment behind. Use conda remove with --name or --prefix and --all instead, so conda's records stay accurate.",
+      },
+      {
+        q: "Does conda clean also clear pip's cache inside a conda environment?",
+        a: "No. Packages installed with pip inside a conda environment use pip's own cache in ~/Library/Caches/pip, which conda clean does not touch; that cache needs pip's own commands to clear.",
       },
     ],
     related: [
@@ -377,7 +463,9 @@ export const moreDeveloperGuides: Guide[] = [
           'Ollama’s FAQ documents the OLLAMA_MODELS environment variable for using a different directory. For the Mac app, it says to set the variable with launchctl setenv and then restart the Ollama application. Quit Ollama first, copy the contents of ~/.ollama/models to the new folder, set the variable, start Ollama, and confirm ollama list still shows your models before moving the old folder to the Trash.',
           'A value set with launchctl setenv lasts until you log out or restart, so plan to set it again, or check whether your version of the Ollama app offers a model location option in its settings, which is simpler. An external drive must be connected before Ollama starts; with it unplugged, the models are not available.',
         ],
-        code: ['launchctl setenv OLLAMA_MODELS "/Volumes/External/ollama-models"'],
+        code: [
+          'launchctl setenv OLLAMA_MODELS "/Volumes/External/ollama-models"',
+        ],
       },
       {
         id: 'cleardisk-and-other-apps',
@@ -386,6 +474,24 @@ export const moreDeveloperGuides: Guide[] = [
           'ClearDisk’s free scan lists Ollama models in its Developer Junk list but leaves them unselected by default, because they are downloads you chose rather than a cache. Use it to see how much space they take next to other developer folders, and ollama rm to remove the models themselves.',
           'Other local-model tools keep their own copies. Hugging Face tools, for example, default to a folder under ~/.cache, and desktop model apps have their own libraries. The same model downloaded in two tools takes space twice, so check each app’s settings before assuming Ollama is the whole story.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Can I delete Ollama model files by hand in Finder?',
+        a: 'No, avoid deleting files in the blobs folder directly. Manifests point at them and one blob can be part of more than one model, so hand-deleting can leave a model listed but broken while freeing less than expected.',
+      },
+      {
+        q: 'Does removing an Ollama model send it to the Trash?',
+        a: 'No. ollama rm frees the disk space directly without going through the Trash, so it cannot be undone from Finder. ollama pull downloads the model again later if you need it.',
+      },
+      {
+        q: "How do I move Ollama's models to an external drive?",
+        a: 'Quit Ollama, copy the contents of ~/.ollama/models to the new folder, set the OLLAMA_MODELS environment variable, then restart Ollama and confirm ollama list still shows your models before moving the old folder to the Trash.',
+      },
+      {
+        q: 'Why does ClearDisk list Ollama models but leave them unselected by default?',
+        a: "ClearDisk's free scan shows Ollama models in its Developer Junk list because they are downloads you chose rather than a cache, so it displays their size without selecting them for automatic removal.",
       },
     ],
     related: [
@@ -463,6 +569,24 @@ export const moreDeveloperGuides: Guide[] = [
           'Do not delete ~/.android as a whole. Besides the avd folder it holds debug.keystore, the key that signs your debug builds; losing it changes your debug signature, which breaks API keys or sign-in setups registered against it until you register the new one.',
           'Avoid removing the whole SDK folder while projects depend on it, and skip Finder for anything SDK Manager or Device Manager can remove. ClearDisk’s Developer Junk list includes the Gradle cache, not the Android SDK or emulator devices, so those stay a decision you make in Android Studio.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Should I delete emulator devices in Finder to save space?',
+        a: 'No, use Device Manager instead. Wipe Data returns a device to new while keeping it in the list, and Delete removes it entirely; either loses test accounts, app data and files inside the emulator.',
+      },
+      {
+        q: 'Is it safe to delete the whole ~/.android folder?',
+        a: 'No. Besides the avd folder, it holds debug.keystore, the key that signs your debug builds. Losing it changes your debug signature, which breaks API keys or sign-in setups registered against it until you re-register.',
+      },
+      {
+        q: 'Which SDK packages are safe to remove in Android Studio?',
+        a: "Old NDK and build-tools versions no project's build files name, and system images for the processor architecture your Mac doesn't use, are good candidates. Keep the platform your projects compile against and images your current devices use.",
+      },
+      {
+        q: 'Why does Android Studio offer to delete old version directories?',
+        a: 'On the first run of a new major version, it looks for folders left by versions no longer installed and offers a Delete Unused Android Studio Directories dialog showing their sizes, which you can accept.',
       },
     ],
     related: [
@@ -553,6 +677,24 @@ export const moreDeveloperGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Why does my Mac show a small Developer storage number but a huge System Data number?',
+        a: "The Developer category only counts Apple's own tools, like Derived Data, archives and device support. Other developer caches such as npm, Gradle, CocoaPods, Homebrew and Docker are counted elsewhere, often inside System Data instead.",
+      },
+      {
+        q: 'Is it safe to delete Xcode archives to free space?',
+        a: 'Not without checking first. An archive is not a cache: each one holds a build you exported or uploaded plus the debug symbols needed to make sense of crash reports, so keep archives for releases people still run.',
+      },
+      {
+        q: 'What happens if I remove the Command Line Tools on my Mac?',
+        a: "If Xcode isn't installed, removing them breaks git, compilers and Homebrew builds until you reinstall with xcode-select --install. Only one version can be installed at a time, so old versions never pile up.",
+      },
+      {
+        q: 'Can I undo a deletion made from the Developer storage panel?',
+        a: 'No, assume it cannot be recovered from the Trash. For a step you can undo, remove Derived Data or old archive folders from Finder instead of deleting straight from Storage settings.',
+      },
+    ],
     related: [
       'clear-xcode-derived-data',
       'remove-unused-ios-simulators',
@@ -569,7 +711,8 @@ export const moreDeveloperGuides: Guide[] = [
         url: 'https://developer.apple.com/documentation/xcode/installing-the-command-line-tools/',
       },
       {
-        label: 'Apple Developer: downloading and installing additional Xcode components',
+        label:
+          'Apple Developer: downloading and installing additional Xcode components',
         url: 'https://developer.apple.com/documentation/xcode/downloading-and-installing-additional-xcode-components',
       },
     ],
@@ -600,7 +743,11 @@ export const moreDeveloperGuides: Guide[] = [
           'Yarn 1 keeps every package it downloads in a single global cache. yarn cache dir prints its location, which on a Mac is usually inside ~/Library/Caches/Yarn, and du measures it. yarn cache list shows what is stored, and its --pattern option filters the list by package name.',
           'yarn cache clean clears the whole cache, and a package name after it clears only that package. The documentation notes the cache is populated again the next time yarn or yarn install runs, so the cost is a slower, network-dependent first install.',
         ],
-        code: ['yarn cache dir', 'du -sh "$(yarn cache dir)"', 'yarn cache clean'],
+        code: [
+          'yarn cache dir',
+          'du -sh "$(yarn cache dir)"',
+          'yarn cache clean',
+        ],
       },
       {
         id: 'modern-yarn',
@@ -618,7 +765,11 @@ export const moreDeveloperGuides: Guide[] = [
           'pnpm keeps packages in a content-addressable store; pnpm’s documentation gives ~/Library/pnpm/store as the default on macOS, and pnpm store path prints the one in use. The store should be on the same disk as your projects, so pnpm uses one store per disk: projects on an external drive get a separate .pnpm-store folder at the root of that drive.',
           'pnpm store prune removes packages that no project on the system references any more. pnpm describes it as harmless with no side effects on projects, and suggests running it occasionally rather than often, because switching branches can need an unreferenced package again, and pnpm then downloads it.',
         ],
-        code: ['pnpm store path', 'du -sh "$(pnpm store path)"', 'pnpm store prune'],
+        code: [
+          'pnpm store path',
+          'du -sh "$(pnpm store path)"',
+          'pnpm store prune',
+        ],
       },
       {
         id: 'shared-store-sizes',
@@ -630,6 +781,24 @@ export const moreDeveloperGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'How do I know if a project uses Yarn 1 (classic) or modern Yarn?',
+        a: 'Run yarn --version: a 1.x number means classic. A packageManager field in package.json or a .yarnrc.yml file signals modern Yarn, version 2 or later, and each version stores and clears its cache differently.',
+      },
+      {
+        q: "Is it safe to delete a project's committed .yarn/cache folder?",
+        a: 'Not if your team commits it to git on purpose, for offline installs or Zero-Installs. Deleting it shows up as deleted files in version control, so leave a committed .yarn/cache alone.',
+      },
+      {
+        q: "Why doesn't deleting a project's node_modules free much space with pnpm?",
+        a: "pnpm links or clones files from its shared store into each project's node_modules instead of copying them, so the project folder and the store share the same data, and deleting one node_modules frees little on its own.",
+      },
+      {
+        q: "Can I delete pnpm's store folder directly in Finder?",
+        a: 'No. Projects that link into it may then need a full reinstall, and pnpm has no way to know which packages you still wanted. Use pnpm store prune instead to remove only unreferenced packages.',
+      },
+    ],
     related: [
       'clear-npm-cache-mac',
       'find-node-modules-folders-mac',
@@ -638,7 +807,8 @@ export const moreDeveloperGuides: Guide[] = [
     ],
     sources: [
       {
-        label: 'Yarn docs: .yarnrc.yml settings (enableGlobalCache, globalFolder, cacheFolder)',
+        label:
+          'Yarn docs: .yarnrc.yml settings (enableGlobalCache, globalFolder, cacheFolder)',
         url: 'https://yarnpkg.com/configuration/yarnrc',
       },
       {
@@ -705,7 +875,28 @@ export const moreDeveloperGuides: Guide[] = [
           'Every toolchain rustup installs, such as stable, a pinned version or a dated nightly, is a full compiler with its standard library. rustup toolchain list shows them, and rustup toolchain uninstall removes one by name. Before removing a pinned version, check whether a project’s rust-toolchain.toml file still names it. Extra compilation targets, such as those for iOS or WebAssembly, are installed per toolchain as well: rustup target list --installed shows them and rustup target remove deletes one.',
           'To remove Rust completely, rustup’s documentation gives rustup self uninstall, which removes rustup, its toolchains and Cargo’s home. Copy any program in ~/.cargo/bin you still want to keep somewhere else first.',
         ],
-        code: ['rustup toolchain list', 'rustup toolchain uninstall nightly-2025-01-01'],
+        code: [
+          'rustup toolchain list',
+          'rustup toolchain uninstall nightly-2025-01-01',
+        ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Does Cargo clean up its own cache automatically?',
+        a: 'Yes, since Rust 1.88. Files downloaded from the network are removed if unused for three months, and files obtained locally after one month, with the cache.auto-clean-frequency setting controlling how often this runs.',
+      },
+      {
+        q: 'Is it safe to delete the ~/.cargo/registry folder?',
+        a: 'Yes. Cargo can remove any part of the cache and will restore what it needs by re-extracting archives, checking out repositories, or downloading again. Just keep bin, config.toml and credentials.toml, which hold tools and publish tokens.',
+      },
+      {
+        q: "Why doesn't cargo clean free space from every project's build folder?",
+        a: "If CARGO_TARGET_DIR is set, or a project configures a shared target directory, builds go there instead of each project's own folder, so searching for individual target folders won't find that shared location.",
+      },
+      {
+        q: 'Can I remove a Rust toolchain that rustup installed?',
+        a: "Yes, with rustup toolchain uninstall, but check first whether a project's rust-toolchain.toml file still names that pinned version, since removing a toolchain a project depends on breaks its build.",
       },
     ],
     related: [
@@ -785,6 +976,24 @@ export const moreDeveloperGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Does Invalidate Caches free up a lot of disk space in JetBrains IDEs?',
+        a: 'Not much on its own. It is mainly a fix for broken indexing or odd editor behavior, and since the current version rebuilds its indexes right after restarting, the space it actually saves is modest.',
+      },
+      {
+        q: 'Why do I have JetBrains cache folders for versions I no longer use?',
+        a: "Every major version creates its own set of cache, config and log folders named after that version, so a Mac that has run several releases can end up holding folders for versions that aren't installed anymore.",
+      },
+      {
+        q: 'Does JetBrains clean up old version folders automatically?',
+        a: 'Partly. Installing a new major version auto-deletes caches and logs of older versions untouched for 180 days, but keeps configuration and plugin folders, which you review yourself with Help then Delete Leftover IDE Directories.',
+      },
+      {
+        q: "Is it safe to delete a JetBrains IDE's current cache folder by hand?",
+        a: "No. It also holds Local History, the IDE's own record of recent file changes separate from git, and deleting it while the IDE is running can leave its indexes in a broken state.",
+      },
+    ],
     related: [
       'android-studio-disk-space-mac',
       'clear-gradle-cache-mac',
@@ -793,7 +1002,8 @@ export const moreDeveloperGuides: Guide[] = [
     ],
     sources: [
       {
-        label: 'JetBrains: directories used by the IDE (macOS paths, leftover cleanup)',
+        label:
+          'JetBrains: directories used by the IDE (macOS paths, leftover cleanup)',
         url: 'https://www.jetbrains.com/help/idea/directories-used-by-the-ide-to-store-settings-caches-plugins-and-logs.html',
       },
       {
@@ -861,6 +1071,24 @@ export const moreDeveloperGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'What happens if I delete a virtual machine bundle in Finder?',
+        a: "It's the same as erasing that virtual computer's whole disk, with no way to recover a single file afterward. Copy out anything you still need first, and deactivate any license tied to that machine before deleting.",
+      },
+      {
+        q: 'Why does a Parallels virtual machine file stay the same size after deleting files inside it?',
+        a: "The VM file doesn't shrink on its own. Use File then Free Up Disk Space, or the Reclaim button on the General tab, to actually compact the virtual disk after deleting files inside Windows or Linux.",
+      },
+      {
+        q: 'Is it safe to delete an old snapshot to save space?',
+        a: "Delete snapshots from the app's own snapshot manager, never by removing files inside the bundle, and remove them from the end of a chain first. Deleting a parent snapshot with many branches can actually make the disk larger.",
+      },
+      {
+        q: "Does removing a VM from UTM's list delete its files too?",
+        a: "Yes, for one stored in the default location. UTM's documentation says removing it deletes its data as well, not just the list entry, so copy out anything you need before you remove it.",
+      },
+    ],
     related: [
       'find-large-files-on-mac',
       'expand-mac-storage-external-ssd',
@@ -869,7 +1097,8 @@ export const moreDeveloperGuides: Guide[] = [
     ],
     sources: [
       {
-        label: 'Parallels: freeing up disk space (Parallels Desktop User’s Guide)',
+        label:
+          'Parallels: freeing up disk space (Parallels Desktop User’s Guide)',
         url: 'https://docs.parallels.com/landing/pdfm-ug/parallels-desktop-for-mac-27-users-guide/advanced-topics/working-with-virtual-machines/freeing-up-disk-space',
       },
       {
@@ -942,6 +1171,24 @@ export const moreDeveloperGuides: Guide[] = [
           '--exclude-caches skips folders marked with a CACHEDIR.TAG file, such as Gradle’s caches, to show what remains without them. If you prefer a graphical view, ClearDisk’s free scan draws the same information as a storage map.',
         ],
         code: ['ncdu -x -o ~/home-scan.json ~', 'ncdu -f ~/home-scan.json'],
+      },
+    ],
+    questions: [
+      {
+        q: 'How do I use ncdu without risking deleting files by accident?',
+        a: 'Run it as ncdu -r -x ~. The -r flag disables its delete feature, and doubling it as -r -r also disables the shell key, so nothing in that session can change your disk while you browse.',
+      },
+      {
+        q: "Does ncdu's delete key send files to the Trash?",
+        a: 'No. Outside read-only mode, the d key deletes the selected file or folder directly after a confirmation prompt. There is no Trash step involved, and no undo.',
+      },
+      {
+        q: 'Why should I scan my home folder instead of the whole disk with ncdu?',
+        a: "macOS splits system and user data across volumes joined by firmlinks, which ncdu's manual lists as unsupported. Your own files are in your home folder anyway, so scanning it directly avoids the issue entirely.",
+      },
+      {
+        q: 'Can I save an ncdu scan to compare later?',
+        a: 'Yes. Export it with the -o flag and reopen it later with -f. ncdu disables deletion when browsing an imported file, making it a safe way to compare a folder before and after a cleanup.',
       },
     ],
     related: [

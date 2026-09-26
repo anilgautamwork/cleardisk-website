@@ -141,6 +141,26 @@ for (const path of pages) {
   if (path === '/' || path === '/download')
     assert.equal(ofType('SoftwareApplication')[0]?.offers?.price, '10', path);
   if (guide) {
+    if (guide.questions) {
+      const faqNode = ofType('FAQPage')[0];
+      assert.equal(
+        faqNode?.mainEntity?.length,
+        guide.questions.length,
+        path + ': FAQPage',
+      );
+      const escapeHtml = (t) =>
+        t
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/'/g, '&#x27;')
+          .replace(/"/g, '&quot;');
+      for (const q of guide.questions)
+        assert.ok(
+          html.includes('<h3>' + escapeHtml(q.q) + '</h3>'),
+          path + ': visible question ' + q.q.slice(0, 40),
+        );
+    } else assert.equal(ofType('FAQPage').length, 0, path + ': no FAQPage');
     assert.ok(title.length < 60, path + ': title under 60 chars');
     assert.ok(
       description.length >= 140 && description.length <= 158,

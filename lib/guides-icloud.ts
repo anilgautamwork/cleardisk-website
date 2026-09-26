@@ -45,6 +45,24 @@ export const icloudGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'What does Waiting to Upload mean for a file in Finder?',
+        a: "It means the file hasn't yet reached iCloud. Open iCloud Drive in Finder's List view and turn on iCloud Status in View Options to see this status for each item.",
+      },
+      {
+        q: 'How long should I wait before considering an iCloud upload stuck?',
+        a: "There's no universal waiting period, since a large transfer and a small edited note have different circumstances. Compare the same file's status later and note whether it changes, rather than assuming a fixed timeout means it's stuck.",
+      },
+      {
+        q: 'Can ClearDisk tell me for certain that an iCloud upload is stuck?',
+        a: "Not with certainty. ClearDisk 1.1's iCloud Doctor uses comparable local scan history to flag potentially stuck items, based on repeated matching pending observations rather than continuous monitoring or a guaranteed diagnosis.",
+      },
+      {
+        q: 'Should I sign out of iCloud to fix a stuck upload?',
+        a: "No. Avoid erasing hidden sync databases, repeatedly signing out, or deleting the original file to force a retry. Instead, preserve a copy of important unsynced work and check Apple's System Status page for reported incidents.",
+      },
+    ],
     related: [
       'icloud-drive-status-icons-mac',
       'icloud-storage-full-but-not-mac',
@@ -112,6 +130,24 @@ export const icloudGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "What's the difference between In iCloud and Downloaded status in Finder?",
+        a: 'In iCloud describes content that needs a download before offline use, while Downloaded means the item is locally available and up to date. These are storage states, not a ranking from bad to good.',
+      },
+      {
+        q: 'What does the Out of Space status mean for an iCloud Drive file?',
+        a: "It points to a cloud capacity problem rather than a local disk issue. Ineligible is different again: it means the item can't be stored in iCloud Drive at all, so check the specific item and Apple's current limits.",
+      },
+      {
+        q: 'Where do I turn on iCloud status icons in Finder?',
+        a: 'Open iCloud Drive in Finder, switch to List view, and turn on iCloud Status in View Options. Read the status for each individual item, since a single folder can contain files in different stages.',
+      },
+      {
+        q: "What does an Unknown status from ClearDisk's iCloud Doctor mean?",
+        a: "It's a limitation of the observation, not a diagnosis. iCloud Doctor groups observed metadata into errors, conflicts, pending transfers, local copies and cloud-only items, but an Unknown result doesn't measure your whole account or inspect Photos, Notes or Messages.",
+      },
+    ],
     related: [
       'icloud-drive-stuck-uploading-mac',
       'keep-icloud-files-downloaded-mac',
@@ -169,6 +205,24 @@ export const icloudGuides: Guide[] = [
           'A local scanner is useful when you need to identify what occupies the SSD. ClearDisk’s iCloud Doctor focuses on accessible Drive metadata and allocated local bytes. It cannot calculate complete account usage, remove iPhone backups from your account, or repair quota accounting.',
           'An archive is a separate retained copy. It becomes part of a cloud-space decision only if you later review and intentionally delete the cloud original, with the effect on other synced devices understood. Keep the backup and deletion decisions separate.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Why does iCloud say storage is full when my Mac has plenty of space?',
+        a: "Because your iCloud plan and your Mac's SSD are separate limits answering different questions. Apple's account-storage breakdown includes backups, Photos, Drive, Mail and Messages, and a small local folder doesn't rule out a full account.",
+      },
+      {
+        q: 'Will deleting local downloads fix a full iCloud account?',
+        a: "No. Removing a local download leaves the cloud original in place, so it doesn't reduce how much of your iCloud plan is used. Check the account's category breakdown instead of Mac folder sizes.",
+      },
+      {
+        q: 'Can ClearDisk tell me exactly why my iCloud account is full?',
+        a: "Not fully. Its iCloud Doctor focuses on accessible Drive metadata and allocated local bytes; it can't calculate complete account usage, remove iPhone backups from your account, or repair quota accounting.",
+      },
+      {
+        q: 'What should I check first when iCloud storage shows as full?',
+        a: "Note which category is affected, such as backups, Photos, Drive, Mail or Messages, and check Apple's Manage iCloud Storage instructions for that category rather than deleting unrelated Mac caches, which won't change the account total.",
       },
     ],
     related: [
@@ -230,6 +284,24 @@ export const icloudGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Why is Remove Download greyed out for an iCloud file?',
+        a: "The control can be unavailable depending on the file's current state, for example if it's already cloud-only or is waiting, transferring, or reporting a conflict. Check Finder's iCloud Status column to see the actual state.",
+      },
+      {
+        q: 'Can I delete an iCloud file in Finder instead of using Remove Download?',
+        a: "No, they have different consequences. Deleting a file, or removing files from hidden synchronization directories, isn't a safe substitute for Remove Download, since it can affect the synced original rather than just the local copy.",
+      },
+      {
+        q: 'Does requesting a local removal in ClearDisk free the space right away?',
+        a: "Not necessarily. ClearDisk 1.1 rechecks metadata before requesting local eviction and refuses unsafe or uncertain states, but a request being accepted doesn't mean it's completed; check the file's new status and available space afterward.",
+      },
+      {
+        q: 'Will opening a file after removing its local download use space again?',
+        a: "Yes. Opening the document to inspect its contents can download it again, so check the file's state and your Mac's available space after removal rather than assuming it stays freed.",
+      },
+    ],
     related: [
       'icloud-drive-status-icons-mac',
       'icloud-drive-taking-up-space-on-mac',
@@ -287,6 +359,24 @@ export const icloudGuides: Guide[] = [
           'After the trip, review which files still need offline access. For an item you no longer need to retain, Control-click it in Finder and choose Keep Downloaded again to clear the checkmark. This changes the retention setting; do not assume it immediately frees disk space.',
           'If you choose to reduce local copies, confirm their latest edits are uploaded first. Removing a local download affects offline availability and Mac storage; deleting the original affects the synced document. Use the local-storage guide for that separate decision.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: "What's the difference between Download Now and Keep Downloaded in Finder?",
+        a: "Download Now retrieves an online-only file once. Keep Downloaded asks Finder to retain it locally even when Optimize Mac Storage is enabled, so it isn't evicted again automatically.",
+      },
+      {
+        q: "Does ClearDisk's download feature keep files downloaded permanently?",
+        a: "No. ClearDisk 1.1's download action requests retrieval for that session; it is not persistent pinning. If you need a file to stay downloaded beyond the current session, use Finder's own Keep Downloaded control instead, since only that setting persists.",
+      },
+      {
+        q: 'How do I prepare iCloud files for offline use before traveling?',
+        a: 'List the documents and linked assets your task actually needs, download or Keep Downloaded that specific set rather than your entire Drive, and rehearse by briefly disconnecting from the internet to confirm everything opens.',
+      },
+      {
+        q: 'Does keeping a file downloaded count as a backup?',
+        a: "No. A locally available document still participates in synchronization once you reconnect, so it isn't a backup test. Keep a separate backup for any work that needs independent retention.",
       },
     ],
     related: [
@@ -348,6 +438,24 @@ export const icloudGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Where does ClearDisk save archived iCloud files?',
+        a: "ClearDisk 1.1's Archive to Mac workflow copies supported documents, data-only folders or document packages into a folder called ~/ClearDisk Archives, verifying the bytes and source stability while keeping the cloud original in place.",
+      },
+      {
+        q: 'Does archiving a file to my Mac free up iCloud storage?',
+        a: "No. A completed archive adds a copy; it doesn't free iCloud space by itself. Freeing iCloud space needs a separate decision to delete the cloud original, which is left for you to review in Finder.",
+      },
+      {
+        q: 'Will an archived copy keep the shared-file access from iCloud?',
+        a: "No. Apple's archive guidance notes that sharing access does not transfer with a copied file, so a shared document loses that shared access once it becomes an independent archived copy.",
+      },
+      {
+        q: 'Can I archive any type of iCloud file with ClearDisk?',
+        a: 'Not everything. Executable files and files with unsupported metadata are refused with Finder guidance, and the archive destination excludes known cloud locations, so confirm no other sync client is watching wherever you archive to.',
+      },
+    ],
     related: [
       'icloud-storage-full-but-not-mac',
       'icloud-drive-taking-up-space-on-mac',
@@ -405,6 +513,24 @@ export const icloudGuides: Guide[] = [
           'Check the intended Apple Account on iCloud.com and use Recently Deleted if actual deletion may have occurred. If a different device still has a needed version, preserve it before making further edits or changes to sync settings.',
           'iCloud Doctor inspects accessible Drive items, not every prior account state or deleted file. An empty or unavailable scan cannot prove your cloud data is gone. Use the recovery guide or Apple support when you cannot locate the original.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Did I lose my files by turning off Desktop and Documents sync?',
+        a: "Not automatically. Apple explains that turning off Desktop and Documents leaves the existing content in iCloud Drive while creating new local folders, so compare iCloud Drive in Finder against your home folder's Desktop and Documents.",
+      },
+      {
+        q: 'Where do my files go if I chose to keep a local copy when disabling iCloud Drive?',
+        a: 'macOS creates an iCloud Drive archive folder in your home folder; check that folder and verify its actual contents rather than assuming everything downloaded successfully.',
+      },
+      {
+        q: 'Should I keep changing iCloud settings if my Desktop looks empty?',
+        a: 'No. Inspection comes before more settings changes, since repeatedly toggling synchronization makes it harder to identify which folder holds the latest copy and can create additional copies that need review.',
+      },
+      {
+        q: "Can ClearDisk's iCloud Doctor find files from a previous account state?",
+        a: "No. It inspects accessible Drive items, not every prior account state or deleted file, so an empty or unavailable scan result doesn't prove your cloud data is actually gone.",
       },
     ],
     related: [
@@ -469,6 +595,24 @@ export const icloudGuides: Guide[] = [
           'Check independent backups and any archive you made before deletion. Preserve any surviving copy on another device before attempting more changes. For irreplaceable material, contact Apple or the owning app’s support with the timeline and the exact recovery state.',
           'ClearDisk’s iCloud Doctor is a metadata and local-storage tool, not a deleted-file recovery service. Its archive workflow retains the cloud original and asks you to review deletion separately in Finder. That boundary helps prevent cleanup from becoming an accidental recovery task.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'How do I recover a file I deleted from iCloud Drive?',
+        a: "Check the Mac's Trash first, then sign in at iCloud.com, open Drive, choose Recently Deleted, select the files and choose Recover. Apple allows recovery of eligible files deleted within the last 30 days.",
+      },
+      {
+        q: 'Can I recover iCloud files from apps other than Drive?',
+        a: 'Yes. For files from other supported apps, open Data Recovery on iCloud.com, choose Restore Files, select the items, and choose Restore Files again; recovered files return to their original folders.',
+      },
+      {
+        q: 'Should I keep working in iCloud Drive while a recovery is in progress?',
+        a: 'No. Apple warns that changes during recovery can interrupt it, so wait until recovery finishes before editing or deleting anything else in iCloud Drive, and avoid starting another cleanup in the meantime.',
+      },
+      {
+        q: 'Can ClearDisk recover permanently deleted iCloud files?',
+        a: "No. ClearDisk's iCloud Doctor is a metadata and local-storage tool, not a deleted-file recovery service; its archive workflow keeps the cloud original and leaves deletion review to you in Finder rather than recovering files already deleted.",
       },
     ],
     related: [

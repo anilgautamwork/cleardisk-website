@@ -57,6 +57,24 @@ export const moreFileGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Why do my Mac screenshots take up iCloud storage?',
+        a: 'Screenshots save to the Desktop by default, and if Desktop & Documents Folders is turned on in iCloud, the Desktop lives in iCloud Drive. That means every screenshot syncs and counts against your iCloud storage.',
+      },
+      {
+        q: 'How do I stop screenshots from saving as files at all?',
+        a: 'Hold Control while pressing the capture keys, such as Control-Shift-Command-3 or Control-Shift-Command-4, which copies the shot to the clipboard instead of saving a file. Choosing Clipboard under Options in the Screenshot toolbar does the same for every shot.',
+      },
+      {
+        q: 'Will changing the screenshot save location move my existing screenshots?',
+        a: 'No. The new setting only affects screenshots taken after you change it; the ones already on the Desktop stay there until you move or review them yourself.',
+      },
+      {
+        q: 'How do I find all my old screenshots so I can delete them?',
+        a: 'Search Finder for "Screenshot" in the folder where they saved, then repeat the search for "Screen Shot" to catch files from older macOS releases. Renamed screenshots won\'t match a name search, though Spotlight\'s mdfind can list them by metadata regardless of name.',
+      },
+    ],
     related: [
       'icloud-desktop-documents-files-missing-mac',
       'find-large-files-on-mac',
@@ -134,6 +152,24 @@ export const moreFileGuides: Guide[] = [
         paragraphs: [
           'ClearDisk does not detect duplicate files and does not compare file contents. Its free scan lists the largest files with their paths and sizes, which is often how a second copy of a big video, disk image or archive becomes obvious. Confirm with the checksum command before removing either copy.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Does macOS have a built-in duplicate file finder?',
+        a: 'No, macOS has no single duplicate finder. Photos and Music can detect duplicates within their own libraries, Finder can put likely copies side by side, and a Terminal checksum command can confirm whether two files are truly identical.',
+      },
+      {
+        q: 'Does ClearDisk find duplicate files on a Mac?',
+        a: "No, ClearDisk does not detect duplicates or compare file contents. Its free scan lists the largest files with their paths and sizes, which often makes a second copy of a big file obvious, but you'd still confirm it with a checksum yourself.",
+      },
+      {
+        q: 'Why does deleting a duplicate file sometimes not free up any space?',
+        a: 'On APFS, a copy made on the same volume can be a clone that shares its data with the original until one of them changes. Deleting a clone removes a name, but sometimes very little actual storage.',
+      },
+      {
+        q: 'How can I be sure two files are identical before deleting one?',
+        a: 'A matching name and size is a hint, not proof, since two exports of the same project can share both and still differ in content. A checksum, like SHA-256, settles it: identical files produce the same hash.',
       },
     ],
     related: [
@@ -216,6 +252,24 @@ export const moreFileGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Can I still recover a file after emptying the Trash on a Mac?',
+        a: "The realistic routes are a Time Machine backup, or Recently Deleted on iCloud.com for iCloud Drive files. Time Machine also keeps local snapshots for about 24 hours when the backup disk isn't connected, which only helps with a very recent deletion.",
+      },
+      {
+        q: "Why isn't my deleted file showing up in the Trash?",
+        a: "Items removed with Delete Immediately, with rm in Terminal, or by some apps' own delete commands never pass through the Trash at all. Photos and Mail also keep their own separate deleted-items locations instead.",
+      },
+      {
+        q: "What's the difference between Put Back and dragging a file out of the Trash?",
+        a: "Put Back returns the item to the exact folder it came from, which is the safest choice when you're unsure where it belonged. Dragging it out instead moves it to whatever folder you drop it into.",
+      },
+      {
+        q: "Can data recovery software get back files that aren't in any backup?",
+        a: "There's no guarantee. Recovery apps exist, but none can guarantee results, and installing one or saving new files to the same disk can overwrite what remains, so stop using that disk and consider a professional service for valuable data.",
+      },
+    ],
     related: [
       'recover-deleted-icloud-drive-files-mac',
       'empty-trash-automatically-mac',
@@ -287,6 +341,24 @@ export const moreFileGuides: Guide[] = [
           'Clear the same checkbox in Finder → Settings → Advanced. Nothing already erased comes back, but items still in the Trash stay there until you empty it. On a shared Mac, each user account has its own Trash and its own Finder settings, so the choice applies to your account only.',
           'Files that ClearDisk moves to the Trash follow the same timer once they are there. Its Remove Permanently option skips the Trash entirely, so the timer and Put Back never apply to those.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'How long does macOS keep files in the Trash before deleting them automatically?',
+        a: 'With "Remove items from the Trash after 30 days" turned on, items are erased once they\'ve been in the Trash for more than 30 days. The timer counts from when each item was deleted, not how old the file itself is.',
+      },
+      {
+        q: 'Does the 30-day auto-empty setting apply to iCloud Drive or Photos too?',
+        a: "iCloud Drive follows its own rule regardless of this setting: Apple empties items moved to its Trash after 30 days either way. Photos keeps deleted items in its own Recently Deleted album on its own schedule, which this Finder setting doesn't touch.",
+      },
+      {
+        q: 'Can I turn automatic Trash emptying back off after enabling it?',
+        a: 'Yes, clear the same checkbox in Finder → Settings → Advanced. Nothing already erased comes back, but items still in the Trash at that point stay there until you empty it yourself.',
+      },
+      {
+        q: 'Will automatic Trash emptying help if my Mac is out of space right now?',
+        a: 'Not really, since thirty days is too long to wait when a Mac is already full. Review the Trash and empty it yourself with Finder → Empty Trash or Shift-Command-Delete instead.',
       },
     ],
     related: [
@@ -363,6 +435,24 @@ export const moreFileGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Did removing the Downloads icon from my Dock delete the folder too?',
+        a: "No. Apple notes that dragging an item out of the sidebar or Dock removes only the link, and the folder itself stays at ~/Downloads. Press Option-Command-L to open it directly and confirm it's still there.",
+      },
+      {
+        q: 'How do I get the Downloads folder back into the Finder sidebar?',
+        a: 'Choose Finder → Settings, click Sidebar, and select Downloads in the Favorites list, and it reappears right away. You can also drag it there yourself from your home folder.',
+      },
+      {
+        q: 'Why do my downloaded files seem to keep disappearing?',
+        a: 'Your browser may be saving them somewhere other than Downloads. In Safari this is set under Settings → General → File download location, and other browsers have the same option in their own download settings.',
+      },
+      {
+        q: 'Does turning on Desktop & Documents Folders in iCloud move my Downloads folder too?',
+        a: "No. That iCloud setting covers only Desktop and Documents; Downloads stays in your home folder regardless of whether it's turned on.",
+      },
+    ],
     related: [
       'clear-downloads-folder-mac',
       'icloud-desktop-documents-files-missing-mac',
@@ -434,6 +524,24 @@ export const moreFileGuides: Guide[] = [
           'After uploads finish, the library shrinks only as the Mac needs room. Watch available space in System Settings → General → Storage over days, not minutes. If you need space immediately, Optimize is the wrong tool: moving the library to an external drive or deleting items you don’t want are the direct routes, and the Photos library guide compares them.',
           'Don’t try to hurry it by deleting files inside the Photos Library package, and don’t turn off iCloud Photos while originals exist only in iCloud; choose Download Originals to this Mac first if you plan to stop using it. ClearDisk shows the Photos Library package and its size, but leaves its contents to Photos.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: "Why isn't Photos shrinking my library after I turned on Optimize Mac Storage?",
+        a: "Optimization only happens when the Mac actually needs more device storage, starting with the photos you access least, so a Mac with plenty of free space can keep most originals for a long time. That's the feature working as designed, not a failure.",
+      },
+      {
+        q: 'Does Optimize Mac Storage work if iCloud Photos is turned off?',
+        a: "No. Optimize Mac Storage depends on iCloud Photos, since it only keeps space-saving versions locally once the originals are already stored in iCloud. An upload that hasn't finished has nothing to fall back on yet.",
+      },
+      {
+        q: "Does turning on Optimize Mac Storage on my iPhone shrink my Mac's library?",
+        a: "No. The setting belongs to each device separately, so turning on Optimize on an iPhone does nothing for the Mac's library, and choosing Download Originals on the Mac doesn't change the iPhone either.",
+      },
+      {
+        q: 'What should I do if I need Photos storage freed up right away?',
+        a: "Optimize is the wrong tool for that, since it only frees space gradually as the Mac needs it. Moving the library to an external drive or deleting items you don't want are the direct routes instead.",
       },
     ],
     related: [

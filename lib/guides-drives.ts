@@ -96,6 +96,24 @@ export const driveGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: "Why doesn't my external drive show up on the desktop or in Finder?",
+        a: 'It might just be hidden. Open Finder, Settings, General, and select External disks under Show these items on the desktop, then also select External disks under Locations on the Sidebar tab.',
+      },
+      {
+        q: 'My external drive shows in Disk Utility but not Finder, what does that mean?',
+        a: "If it's listed in Disk Utility under View, Show All Devices, the Mac is detecting it, so the problem is with the volume rather than the connection. A dimmed volume there is detected but not mounted; select it and click Mount.",
+      },
+      {
+        q: "Why can't I copy files onto my external hard drive?",
+        a: 'It may be formatted as NTFS. macOS can read NTFS drives but cannot write to them, so an NTFS drive will show up but refuse new files; a drive shared between Mac and Windows over 32GB should generally use exFAT instead.',
+      },
+      {
+        q: "What should I check first if an external drive isn't detected at all?",
+        a: 'Check its cable, connections and power: try a different cable and port, plug it directly into the Mac rather than through a hub, and confirm a self-powered drive is switched on, since bus-powered drives can fail on an underpowered hub.',
+      },
+    ],
     related: [
       'format-external-hard-drive-mac',
       'eject-external-drive-mac',
@@ -151,6 +169,24 @@ export const driveGuides: Guide[] = [
         paragraphs: [
           'A drive that often refuses to eject usually has a background app that keeps it busy: a backup tool, a cloud sync folder stored on it, or a media library kept on the drive. Check that app’s settings. If the drive also disconnects on its own or throws errors, run First Aid in Disk Utility; the guide to a drive that isn’t showing up covers the order.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: "Why won't my external drive eject on Mac?",
+        a: "The most common reason is that an app is still using it; Apple's advice is to quit the apps using the disk or close the documents open from it. If the warning doesn't name the app, press Command-Tab to see what's open.",
+      },
+      {
+        q: 'Is it safe to just unplug an external drive without ejecting it?',
+        a: 'No. Unplugging without ejecting can interrupt a write in progress; most of the time nothing bad happens, but the times it does are the ones where you lose the file you just copied.',
+      },
+      {
+        q: "What do I do if a drive still won't eject after quitting apps?",
+        a: "Log out and log back in, which closes every open app and releases the drive, then try ejecting again. If it still won't eject, shut down the Mac, disconnect the drive while it's off, and start up again.",
+      },
+      {
+        q: 'Why does my external drive keep refusing to eject every time?',
+        a: "It usually has a background app keeping it busy, such as a backup tool, a cloud sync folder stored on it, or a media library kept on the drive. Check that app's settings for what's holding it open.",
       },
     ],
     related: [
@@ -215,6 +251,24 @@ export const driveGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'What format should I use for a drive shared between Mac and Windows?',
+        a: "exFAT. Apple's Disk Utility guide suggests it for Windows volumes over 32GB shared between Mac and Windows; MS-DOS (FAT) is only for smaller drives of 32GB or less and can't store a single file larger than 4GB.",
+      },
+      {
+        q: 'Will formatting an external drive delete my Time Machine backups?',
+        a: 'Yes, if that drive holds your Time Machine backup history. Erasing a storage device deletes everything on it, so copy off anything you need first and expect formatting a Time Machine disk to remove its backup history too.',
+      },
+      {
+        q: 'Should I select the volume or the device when erasing in Disk Utility?',
+        a: 'Select the device itself in the sidebar, not just the volume under it. This gives a clean partition map, which avoids leftover-partition oddities on drives that came formatted for Windows.',
+      },
+      {
+        q: 'Can I securely overwrite data when erasing an SSD?',
+        a: "Not with the Security Options button, since Apple notes it isn't available for solid-state drives. For an SSD, Apple recommends using an encrypted format from the start so erasing it later leaves nothing readable.",
+      },
+    ],
     related: [
       'external-hard-drive-not-showing-up-mac',
       'disk-utility-mac',
@@ -277,6 +331,24 @@ export const driveGuides: Guide[] = [
         paragraphs: [
           'It won’t tell you what is filling your Mac, clear caches or reduce System Data, and running First Aid does not free space. If the startup disk is simply full, the storage guides are the right place to start. ClearDisk’s free scan shows the folders behind the numbers Disk Utility reports.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Why do Disk Utility, Finder and Storage settings show different amounts of free space?',
+        a: 'Available space can include both free space and purgeable space, which macOS removes on its own when it needs room. That is why Disk Utility, Finder and Storage settings can show slightly different numbers for the same disk.',
+      },
+      {
+        q: 'Does running First Aid free up disk space?',
+        a: 'No. First Aid only checks and repairs the file system; running it does not free space. If the startup disk is simply full, the storage guides are the right place to start instead.',
+      },
+      {
+        q: "Why is a volume greyed out in Disk Utility's sidebar?",
+        a: 'A dimmed volume is connected but not mounted. Select it and click Mount to make it available in Finder, or use the eject button next to it to unmount before repairing or disconnecting a drive.',
+      },
+      {
+        q: 'Should I partition a drive or add an APFS volume instead?',
+        a: "With APFS, adding a volume to a container is usually the better choice than partitioning, because APFS volumes share the container's free space rather than splitting it into fixed sections.",
       },
     ],
     related: [

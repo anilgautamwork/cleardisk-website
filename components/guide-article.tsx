@@ -67,6 +67,11 @@ export async function GuideArticle({
                     </a>
                   </li>
                 ))}
+                {guide.questions && (
+                  <li>
+                    <a href="#common-questions">Common questions</a>
+                  </li>
+                )}
               </ol>
             </nav>
             <div className="guide-side-note">
@@ -110,6 +115,17 @@ export async function GuideArticle({
                 )}
               </section>
             ))}
+            {guide.questions && (
+              <section id="common-questions" className="guide-questions">
+                <h2>Common questions</h2>
+                {guide.questions.map((item) => (
+                  <div key={item.q}>
+                    <h3>{item.q}</h3>
+                    <p>{item.a}</p>
+                  </div>
+                ))}
+              </section>
+            )}
             <section className="guide-references">
               <h2>References & further reading</h2>
               <p>

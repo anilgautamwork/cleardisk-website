@@ -184,6 +184,19 @@ export function guideSchema(
         { '@type': 'ListItem', position: 3, name: guide.title, item: url },
       ],
     },
+    ...(guide.questions
+      ? [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: guide.questions.map((item) => ({
+              '@type': 'Question',
+              name: item.q,
+              acceptedAnswer: { '@type': 'Answer', text: item.a },
+            })),
+          },
+        ]
+      : []),
     // Explainers without numbered sections keep Article only; HowTo steps
     // come straight from the existing numbered headings.
     ...(steps.length >= 3

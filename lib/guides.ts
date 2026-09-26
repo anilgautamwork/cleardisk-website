@@ -22,6 +22,7 @@ export type GuideSection = {
   code?: string[];
   items?: string[];
 };
+export type GuideQuestion = { q: string; a: string };
 export type Guide = {
   slug: string;
   title: string;
@@ -30,6 +31,10 @@ export type Guide = {
   published: string;
   updated: string;
   sections: GuideSection[];
+  // Short answers to the searches people make around this topic. Rendered as
+  // a "Common questions" section with one heading per question and emitted
+  // as FAQPage schema, so the visible text and the markup always match.
+  questions?: GuideQuestion[];
   related: string[];
   sources: { label: string; url: string }[];
 };
@@ -104,6 +109,24 @@ const foundationGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'Is it safe to delete System Data on a Mac?',
+        a: 'System Data is a storage category, not one folder, so there is nothing to safely empty in one action. Check the files behind the number, close the owning app first, and start with a small selection you recognize. Leave unfamiliar system resources and protected folders alone.',
+      },
+      {
+        q: 'How do I clear System Data on Mac without breaking anything?',
+        a: 'Open System Settings, General, Storage to see the available space and the System Data size, then look at development tools, creative apps, downloads and backups for a source you recognize. Close the owning app, keep a backup of anything irreplaceable, and start with items you know you no longer need.',
+      },
+      {
+        q: 'Does emptying the Trash free up System Data space right away?',
+        a: 'No. Moving files to the Trash keeps them counted as used space until you empty the Trash yourself, and even then the System Data bar may not fall by the exact amount you removed. Category accounting, permissions and macOS-managed storage can produce different figures than a simple sum of what you deleted.',
+      },
+      {
+        q: 'Can ClearDisk permanently delete System Data files?',
+        a: 'Yes. In ClearDisk 2.0.0, Remove Permanently requires typing delete and clicking the red button, and it skips the Trash entirely, so the removal cannot be undone. Move to Trash is the reversible option, and the cleanup license itself costs $10 once after a free scan.',
+      },
+    ],
     related: [
       'what-is-system-data-on-mac',
       'system-data-keeps-growing',
@@ -162,18 +185,23 @@ const foundationGuides: Guide[] = [
           'The guides below separate three next steps: learning a cleanup workflow, diagnosing an unusually large total, and dealing with an urgent full-disk warning.',
         ],
       },
+    ],
+    questions: [
       {
-        id: 'common-questions',
-        title: 'Common questions about System Data',
-        paragraphs: [
-          'The questions people ask alongside this one, answered briefly.',
-        ],
-        items: [
-          'How do I clear System Data on my Mac? Find the files behind the number first: caches, app containers, developer folders and device backups in your Library. The clear-System-Data guide gives the order; there is no single switch.',
-          'Is it okay to delete System Data on Mac? Some of it. Caches and old device backups can go; Application Support, Containers and anything macOS manages should stay. The category mixes both, which is why deleting by category is the wrong move.',
-          'Why is the System Data on my Mac so high? Usually one or two producers: a developer tool, a creative app’s caches, old iOS backups, or Mail and Messages attachments. The recurring-growth guide shows how to identify the producer.',
-          'How do I get rid of 100GB of System Data? Measure the Library and hidden folders, then remove the largest rebuildable items and backups you no longer need. The 100GB-or-more guide walks through it; expect the number to drop in steps, not all at once.',
-        ],
+        q: 'How do I clear System Data on my Mac?',
+        a: 'Find the files behind the number first: caches, app containers, developer folders and device backups in your Library. The clear-System-Data guide gives the order; there is no single switch.',
+      },
+      {
+        q: 'Is it okay to delete System Data on Mac?',
+        a: 'Some of it. Caches and old device backups can go; Application Support, Containers and anything macOS manages should stay. The category mixes both, which is why deleting by category is the wrong move.',
+      },
+      {
+        q: 'Why is the System Data on my Mac so high?',
+        a: 'Usually one or two producers: a developer tool, a creative app’s caches, old iOS backups, or Mail and Messages attachments. The recurring-growth guide shows how to identify the producer.',
+      },
+      {
+        q: 'How do I get rid of 100GB of System Data?',
+        a: 'Measure the Library and hidden folders, then remove the largest rebuildable items and backups you no longer need. The 100GB-or-more guide walks through it; expect the number to drop in steps, not all at once.',
       },
     ],
     related: [
@@ -241,6 +269,24 @@ const foundationGuides: Guide[] = [
         ],
       },
     ],
+    questions: [
+      {
+        q: 'How much System Data is normal on a Mac?',
+        a: "There is no universal safe limit; 100GB, 150GB or 200GB can be normal or not depending on what the Mac is used for and how large its drive is. Start with available space, then identify the largest contributors rather than comparing to another Mac's number.",
+      },
+      {
+        q: 'Why does my Mac show 100GB or more of System Data?',
+        a: "It usually comes from how you use the Mac, such as developer files, creative app caches and projects, local iPhone or iPad backups, or Time Machine snapshots. Match the folder to an activity you recognize, like a creative app's own media and cache controls, rather than guessing from the total alone.",
+      },
+      {
+        q: "How do I find what's taking up System Data on Mac?",
+        a: 'A local scan such as ClearDisk lets you move from a category total to individual files by inspecting System Data, Browse and Large Files, checking each path, its owning app and whether the content is replaceable. If a scan cannot access some locations, grant it Full Disk Access rather than assuming those folders are empty.',
+      },
+      {
+        q: 'Should I delete System Data files to fix a full disk?',
+        a: 'Remove only a small, understood selection through the owning app or a reviewed Trash action, then check the app still works and repeat the scan to compare space. Bulk deletion of hidden folders or system resources just to lower the number is not a good idea.',
+      },
+    ],
     related: [
       'what-is-system-data-on-mac',
       'system-data-keeps-growing',
@@ -297,6 +343,24 @@ const foundationGuides: Guide[] = [
           'The goal is to keep enough space for your work while retaining the data you need. Repeatedly removing system resources, disabling protection or deleting entire hidden folders is not a sound diagnostic method.',
           'If you cannot identify the owner, keep your baseline and the changed path available when asking for support. Review any screenshot for personal filenames before sharing it.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Why does System Data keep growing back after I clean it?',
+        a: 'Repeatedly deleting the same files hides the symptom rather than fixing the cause. Compare a baseline scan before and after a normal activity like building a project or downloading content, and look for the specific path that grew rather than just a larger combined category total.',
+      },
+      {
+        q: 'How do I stop a Mac app from refilling its storage?',
+        a: "Once you trace a growing folder to a specific app, check that app's own storage controls, such as download retention, cache limits or project locations, rather than deleting the files again. If the same large files return immediately, another deletion won't be a lasting fix.",
+      },
+      {
+        q: 'Does emptying Trash actually free up the space I deleted?',
+        a: 'Only once you empty it. Trash-first cleanup keeps a recovery option, but the files still use disk space until you empty the Trash, so confirm whether items were moved to Trash or permanently removed and compare available space rather than trusting the category figure alone.',
+      },
+      {
+        q: 'Can a Mac cleaner tell me which app is filling up my storage?',
+        a: 'Not automatically. A tool like ClearDisk helps you inspect paths and sizes, but it does not diagnose the responsible process or track growth history for you; comparing scans before and after an ordinary activity is a manual workflow you have to do yourself.',
       },
     ],
     related: [
@@ -362,6 +426,24 @@ const foundationGuides: Guide[] = [
           'Save your work, verify important files are backed up, and confirm that the required space is available. If the Mac has no room even for a small utility, use its built-in Storage and Finder tools first.',
           'Apple’s storage guidance includes additional built-in options for temporary working space. If storage errors persist or the disk behaves abnormally, seek support rather than repeatedly removing unfamiliar files.',
         ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Why is my Mac storage full but iCloud says it has space?',
+        a: "Your Mac drive, an external drive and your iCloud account each have separate capacities, so a local cleaner cannot fix a full cloud quota just by clearing Mac caches. Check System Settings, General, Storage for the Mac's own available space instead.",
+      },
+      {
+        q: 'What should I delete first when my Mac storage is full?',
+        a: 'Start with files you can evaluate yourself: old downloads, installers you can get again, or large files you have already backed up elsewhere. If you move work to another drive, verify the copy opens before removing the original, since libraries and synced folders need their own app-specific move process.',
+      },
+      {
+        q: 'I emptied the Trash but my Mac is still full, what next?',
+        a: 'Compare the same available-space measurement again and check whether another app is writing new data while you clean, since a move to Trash only relocates storage rather than freeing it immediately. If System Data is still the biggest remaining category, switch to identifying its contributors instead.',
+      },
+      {
+        q: "Is it safe to use a free Mac scanner to find what's filling my disk?",
+        a: 'A free scan such as ClearDisk can show named groups, paths and large files without uploading your results, which helps make an informed choice. You still decide what to remove, since some of what it finds supports active applications or system operation rather than being safe to delete.',
       },
     ],
     related: [
