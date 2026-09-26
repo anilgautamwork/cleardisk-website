@@ -2,6 +2,12 @@
 
 Campaign schedule: 13 September–12 October 2026, 30 calendar days. The owner explicitly chose 13 September. This ledger was first created on 15 September (campaign day 3); no earlier scheduled-run completion is inferred. Preserve the original end date rather than extending the campaign when a ledger is missing. Prior manual work is in progress.md.
 
+## Day 14 — 26 September 2026 (owner-requested keyword coverage)
+
+All 19 keyword rows map to six existing articles. Strengthened and published the cleanup blog, free-cleaner comparison, app-uninstall guide and free-disk-space guide; retained the already-covered AppCleaner and System Data cleanup articles. [Coverage report and page links](2026-09-26-keyword-coverage.md); [all 19 estimates and assignments](2026-09-26-keyword-coverage.csv). Volumes are screenshot estimates, not independent measurements or additive traffic forecasts. No new duplicate pages.
+
+Source 3847f76; Worker c8efe62f-b259-4bb5-b0a8-e7d352c4d596. 51 tests, typecheck/lint/build, 175 local/live SEO checks and desktop/mobile reading review passed. Four live article revisions, all six sitemap entries and the new AppCleaner link verified. IndexNow accepted four articles plus the two listing pages (HTTP 200); Google indexing and keyword-tool recrawl remain unverified. App 2.0.0, checksum, updater, private analytics and payment/license behavior preserved. QA download excluded. No new metrics snapshot; 13:34 UTC remains the latest aggregate recorded below. Source checks and Humanize assessment are in the report/progress.md. Campaign end date and day-15 creator-draft stage unchanged; next editorial action is to inspect real query data when available, not create spelling-variant articles.
+
 ## Day 14 — 26 September 2026 (owner-requested search titles)
 
 Published clearer search titles on /about, /download and /what-is-system-data-on-mac, plus the correct 2.0.0 Download description. Source e820ec5; Worker 57724943-4119-4e76-8eac-e0de8c757e94. Source checks and validation are in progress.md. IndexNow accepted those three URLs; audit recrawl and Google reindexing are unverified. No new metrics snapshot or campaign-stage change. The app checksum and analytics protection are unchanged; QA requests were excluded.

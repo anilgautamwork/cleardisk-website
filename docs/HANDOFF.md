@@ -1,3 +1,7 @@
+## Keyword coverage review — 26 September 2026
+
+All 19 owner-supplied search-volume keywords are assigned to six existing articles. Four were strengthened and deployed: the cleanup blog, best-free-Mac-cleaner, uninstall-apps and free-up-space guides. No new duplicate articles. See [the coverage report](seo/2026-09-26-keyword-coverage.md) and [row-level CSV](seo/2026-09-26-keyword-coverage.csv). Source 3847f76; current Worker c8efe62f-b259-4bb5-b0a8-e7d352c4d596. All 175 live SEO checks and 51 unit tests pass; sitemap remains 170 URLs. IndexNow accepted six changed URLs, with no fresh Google indexing claim. App download/checksum, updater, analytics protection and payment/license behavior unchanged. Full sources and validation in seo/progress.md.
+
 ## Search title correction — 26 September 2026
 
 Updated the About, Download and System Data explainer titles at the owner's request; Download metadata now names release 2.0.0. Source e820ec5; current Worker 57724943-4119-4e76-8eac-e0de8c757e94. Live titles and release description verified, app checksum unchanged, analytics private. Existing schema, canonical and sitemap behavior preserved. The audit screenshot omitted its issue name; short titles were the likely issue and still need a third-party recrawl. Details in seo/progress.md.
