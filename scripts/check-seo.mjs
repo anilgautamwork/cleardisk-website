@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { guides } from '../lib/guides.ts';
+import { blogPosts } from '../lib/blog.ts';
 import { faqTopics } from '../lib/faqs.ts';
 const origin = process.env.SITE_CHECK_ORIGIN || 'http://localhost:3001';
 const indexable = process.env.SITE_CHECK_INDEXABLE === 'true';
@@ -7,6 +8,8 @@ const site = 'https://cleardisk.app';
 const pages = [
   '/',
   '/guides',
+  '/blog',
+  ...blogPosts.map((post) => '/' + post.slug),
   '/icloud-doctor',
   '/features',
   '/pricing',
@@ -56,7 +59,8 @@ for (const path of pages) {
     path + ': robots',
   );
   if (indexable && !privatePage) assert.ok(!robots.includes('noindex'), path);
-  const guide = guides.find((g) => '/' + g.slug === path);
+  const blogPost = blogPosts.find((post) => '/' + post.slug === path);
+  const guide = blogPost || guides.find((g) => '/' + g.slug === path);
   assert.equal(meta(head, 'property', 'og:title'), title, path + ': og:title');
   assert.equal(meta(head, 'property', 'og:description'), description, path);
   assert.equal(meta(head, 'property', 'og:url'), canonical, path + ': og:url');
@@ -117,7 +121,7 @@ for (const path of pages) {
     );
     assert.ok(html.includes('guide-body'), path + ': server article');
     assert.ok(html.includes(guide.sections[0].id), path + ': first section');
-    const article = ofType('Article')[0];
+    const article = ofType(blogPost ? 'BlogPosting' : 'Article')[0];
     assert.equal(article?.headline, guide.title, path + ': Article');
     assert.equal(article.datePublished, guide.published, path);
     assert.equal(article.dateModified, guide.updated, path);
@@ -141,19 +145,29 @@ for (const path of pages) {
       steps.length >= 3 ? steps.length : undefined,
       path + ': HowTo',
     );
+    for (const section of guide.sections) {
+      for (const link of section.links || []) {
+        assert.ok(
+          html.includes('href="' + link.href + '"'),
+          path + ': source or internal link',
+        );
+      }
+    }
     for (const related of guide.related)
       assert.ok(html.includes('href="/' + related + '"'), path + ': related');
   }
 }
 const missing = await fetch(new URL('/not-a-real-guide', origin));
 assert.equal(missing.status, 404);
+const missingBlog = await fetch(new URL('/blog/not-a-real-article', origin));
+assert.equal(missingBlog.status, 404);
 const sitemap = await fetch(new URL('/sitemap.xml', origin));
 assert.equal(sitemap.status, 200);
 const xml = await sitemap.text();
 const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
 assert.equal(
   urls.length,
-  indexable ? guides.length + 8 + 1 + faqTopics.length : 0,
+  indexable ? guides.length + blogPosts.length + 9 + 1 + faqTopics.length : 0,
 );
 for (const path of ['/thanks', '/buy-now', '/recover', '/api'])
   assert.ok(

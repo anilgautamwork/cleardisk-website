@@ -89,6 +89,7 @@ export function Footer() {
             title: 'Learn',
             links: [
               ['Storage guides', '/guides'],
+              ['Blog', '/blog'],
               ['FAQs', '/faq'],
               ['About ClearDisk', '/about'],
               ['Sitemap', '/sitemap.xml'],

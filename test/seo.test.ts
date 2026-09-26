@@ -7,6 +7,7 @@ import {
   sitemapEntries,
 } from '../lib/seo.ts';
 import { guides, getGuide } from '../lib/guides.ts';
+import { blogPosts } from '../lib/blog.ts';
 import { faqTopics, getFaqTopic } from '../lib/faqs.ts';
 
 await test('canonicals use the production domain and omit query data', () => {
@@ -188,5 +189,41 @@ await test('product navigation pages are indexable and present in the sitemap', 
   for (const path of ['/features', '/pricing', '/support']) {
     assert.equal(shouldIndex(true, path), true);
     assert.ok(urls.includes(canonical(path)));
+  }
+});
+
+await test('blog posts have canonical discovery, source links and blog breadcrumbs', () => {
+  const urls = sitemapEntries(true).map((entry) => entry.url);
+  assert.ok(urls.includes(canonical('/blog')));
+  for (const post of blogPosts) {
+    assert.ok(shouldIndex(true, '/' + post.slug));
+    assert.ok(urls.includes(canonical('/' + post.slug)));
+    assert.ok(
+      !getGuide(post.slug),
+      'blog posts are not duplicate guide routes',
+    );
+    assert.ok(post.title.length < 60);
+    assert.ok(post.description.length >= 140 && post.description.length <= 158);
+    const schema = guideSchema(post, 'blog');
+    assert.equal(schema[0]['@type'], 'BlogPosting');
+    assert.equal(
+      schema[0].mainEntityOfPage?.['@id'],
+      canonical('/' + post.slug),
+    );
+    assert.equal(schema[1].itemListElement?.[1].item, canonical('/blog'));
+    for (const related of post.related) assert.ok(getGuide(related));
+    for (const section of post.sections) {
+      for (const link of section.links || []) {
+        if (link.href.startsWith('/'))
+          assert.ok(
+            shouldIndex(
+              true,
+              new URL(link.href, 'https://cleardisk.app').pathname,
+            ),
+            link.href,
+          );
+        else assert.equal(new URL(link.href).protocol, 'https:');
+      }
+    }
   }
 });

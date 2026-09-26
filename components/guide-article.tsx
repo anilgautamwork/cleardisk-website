@@ -6,7 +6,13 @@ import { guideSchema } from '@/lib/seo';
 import { visitorPrice } from '@/lib/visitor-price';
 import { JsonLd } from './json-ld';
 
-export async function GuideArticle({ guide }: { guide: Guide }) {
+export async function GuideArticle({
+  guide,
+  collection = 'guides',
+}: {
+  guide: Guide;
+  collection?: 'guides' | 'blog';
+}) {
   const price = await visitorPrice();
   return (
     <>
@@ -15,7 +21,9 @@ export async function GuideArticle({ guide }: { guide: Guide }) {
         <nav className="breadcrumbs" aria-label="Breadcrumb">
           <Link href="/">ClearDisk</Link>
           <span>/</span>
-          <Link href="/guides">Storage guides</Link>
+          <Link href={collection === 'blog' ? '/blog' : '/guides'}>
+            {collection === 'blog' ? 'Blog' : 'Storage guides'}
+          </Link>
           <span>/</span>
           <span aria-current="page">{guide.title}</span>
         </nav>
@@ -88,6 +96,18 @@ export async function GuideArticle({ guide }: { guide: Guide }) {
                     ))}
                   </ul>
                 )}
+                {section.links && (
+                  <ul className="article-links">
+                    {section.links.map((link) => (
+                      <li key={link.href}>
+                        <Link href={link.href}>
+                          {link.label}{' '}
+                          <ArrowUpRight size={14} aria-hidden="true" />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </section>
             ))}
             <section className="guide-references">
@@ -133,7 +153,7 @@ export async function GuideArticle({ guide }: { guide: Guide }) {
           </div>
           <div>
             <DownloadButton label="Download free scanner" source="guides" />
-            <small>macOS 15+ · version 1.1</small>
+            <small>macOS 15+ · version 2.0.0</small>
             <Link href="/pricing">
               Cleanup license: {price.display} once <ArrowRight size={13} />
             </Link>
@@ -159,7 +179,7 @@ export async function GuideArticle({ guide }: { guide: Guide }) {
         </section>
       </main>
       <Footer />
-      <JsonLd data={guideSchema(guide)} />
+      <JsonLd data={guideSchema(guide, collection)} />
     </>
   );
 }

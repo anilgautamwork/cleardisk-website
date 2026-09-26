@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { blogPosts } from './blog.ts';
 import { guides, type Guide } from './guides.ts';
 import { faqTopics, type FaqTopic } from './faqs.ts';
 export const SITE_URL = 'https://cleardisk.app';
@@ -8,6 +9,8 @@ export const INDEXABLE = process.env.SITE_INDEXABLE === 'true';
 const publicPaths = [
   '/',
   '/guides',
+  '/blog',
+  ...blogPosts.map((post) => '/' + post.slug),
   '/icloud-doctor',
   '/features',
   '/pricing',
@@ -73,6 +76,7 @@ export function sitemapEntries(indexable = INDEXABLE) {
     ...[
       '/',
       '/guides',
+      '/blog',
       '/icloud-doctor',
       '/download',
       '/about',
@@ -82,7 +86,7 @@ export function sitemapEntries(indexable = INDEXABLE) {
     ].map((path) => ({
       url: canonical(path),
     })),
-    ...guides.map((guide) => ({
+    ...[...guides, ...blogPosts].map((guide) => ({
       url: canonical('/' + guide.slug),
       lastModified: guide.updated,
     })),
@@ -147,13 +151,16 @@ export const softwareSchema = {
   },
 };
 const numbered = /^\d+\. /;
-export function guideSchema(guide: Guide) {
+export function guideSchema(
+  guide: Guide,
+  collection: 'guides' | 'blog' = 'guides',
+) {
   const url = canonical('/' + guide.slug);
   const steps = guide.sections.filter((s) => numbered.test(s.title));
   return [
     {
       '@context': 'https://schema.org',
-      '@type': 'Article',
+      '@type': collection === 'blog' ? 'BlogPosting' : 'Article',
       headline: guide.title,
       description: guide.description,
       image: OG_IMAGE,
@@ -171,8 +178,8 @@ export function guideSchema(guide: Guide) {
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Storage guides',
-          item: canonical('/guides'),
+          name: collection === 'blog' ? 'Blog' : 'Storage guides',
+          item: canonical(collection === 'blog' ? '/blog' : '/guides'),
         },
         { '@type': 'ListItem', position: 3, name: guide.title, item: url },
       ],

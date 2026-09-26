@@ -1226,3 +1226,46 @@ a:focus-visible {
   .hero-intro { gap: 28px; padding-bottom: 24px; }
   .landing-details { font-size: 14px; margin-bottom: 32px; }
 }
+
+/* The blog extends the existing reading surface without adding motion. */
+.blog-directory {
+  max-width: 920px;
+}
+.blog-posts article {
+  border-top: 1px solid var(--border);
+  padding: 38px 0;
+}
+.blog-posts h2 {
+  max-width: 24ch;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin: 18px 0;
+}
+.blog-posts h2 a:hover {
+  color: var(--reading-link);
+}
+.blog-posts p {
+  max-width: 64ch;
+  color: var(--reading-text);
+  font-size: 19px;
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+.guide-body .article-links {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+.guide-body .article-links li {
+  font-size: 16px;
+  margin: 8px 0;
+}
+.article-links a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.article-links svg {
+  display: inline;
+  vertical-align: middle;
+}

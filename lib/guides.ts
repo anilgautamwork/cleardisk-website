@@ -18,6 +18,7 @@ export type GuideSection = {
   id: string;
   title: string;
   paragraphs: string[];
+  links?: { label: string; href: string }[];
   code?: string[];
   items?: string[];
 };

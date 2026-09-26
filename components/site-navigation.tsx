@@ -16,6 +16,7 @@ const groups = [
     label: 'Learn',
     links: [
       ['Storage guides', '/guides'],
+      ['Blog', '/blog'],
       ['Frequently asked questions', '/faq'],
       ['About ClearDisk', '/about'],
     ],
