@@ -16,7 +16,7 @@ import {
 import { Header, Footer, DownloadButton, Mark } from '@/components/brand';
 import { visitorPrice } from '@/lib/visitor-price';
 import { JsonLd } from '@/components/json-ld';
-import { softwareSchema, websiteSchema } from '@/lib/seo';
+import { softwareSchema, websiteSchema, SITE_URL } from '@/lib/seo';
 import { StoragePreview } from '@/components/storage-preview';
 import { PageMotion } from '@/components/motion';
 import { ProductDemo } from '@/components/product-demo';
@@ -26,7 +26,39 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from '@/components/ui/accordion';
-const faqs = [
+// [question, answer, guide slug]. The first group mirrors Google's
+// "People also ask" boxes for Mac storage searches; the second is product.
+const faqs: [string, string, string?][] = [
+  [
+    'How do I clear disk space on a Mac?',
+    'Empty the Trash, clear the Downloads folder, remove old iPhone backups and apps you no longer use, then check System Data. Storage settings shows the categories; a free scan shows the files behind them.',
+    'free-up-space-on-mac',
+  ],
+  [
+    'Does Mac have a built-in disk cleanup tool?',
+    'Yes. System Settings → General → Storage lists large files, downloads, backups and apps, and offers Apple’s Optimize Storage recommendations. It does not open System Data; that part needs the Library folder or a scanner.',
+    'how-to-check-storage-on-mac',
+  ],
+  [
+    'How do I free up 20 or 30 GB quickly?',
+    'The fastest wins are one old macOS installer, a superseded iPhone backup, developer caches like Xcode or Docker, and the Trash itself. Each is usually 5 to 20 GB. Measure first so you start with the largest.',
+    'find-what-is-filling-disk-mac',
+  ],
+  [
+    'Why is my disk full all of a sudden?',
+    'Usually one producer: a macOS update’s snapshot and installer, a backup, a cloud drive switched to mirroring, or an app that grew its cache. Compare what changed in the last few days instead of deleting at random.',
+    'system-data-keeps-growing',
+  ],
+  [
+    'How do I clear my Mac’s cache?',
+    'Clear browser caches from the browser’s own settings, app caches from the app or by moving its Caches folder to the Trash after quitting it, and system caches by starting in safe mode. Caches come back; that is normal.',
+    'clear-cache-on-mac',
+  ],
+  [
+    'Why does my Mac say the disk is full when I deleted files?',
+    'Space returns only when the Trash is emptied, and Storage settings can lag. Purgeable space and local snapshots can also hold the figure for a while. Empty the Trash, wait, and compare again.',
+    'mac-storage-not-updating-after-deleting-files',
+  ],
   [
     'What’s actually hiding in System Data?',
     'Caches, logs, app containers, developer files, device backups and more. ClearDisk breaks down the files it finds into named groups, explains what they do, and labels them Safe, Review or Leave it. Some macOS-managed storage, including local snapshots, is reported separately.',
@@ -55,10 +87,13 @@ const faqs = [
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: faqs.map(([question, answer]) => ({
+  mainEntity: faqs.map(([question, answer, guide]) => ({
     '@type': 'Question',
     name: question,
-    acceptedAnswer: { '@type': 'Answer', text: answer },
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: guide ? `${answer} Full guide: ${SITE_URL}/${guide}` : answer,
+    },
   })),
 };
 export default async function Home() {
@@ -89,8 +124,9 @@ export default async function Home() {
                   </Link>
                 </div>
                 <p className="hero-offer">
-                  Free to scan. <strong>Cleanup is {price.display}, once.</strong>
-                  {' '}No subscription.
+                  Free to scan.{' '}
+                  <strong>Cleanup is {price.display}, once.</strong> No
+                  subscription.
                 </p>
                 <div className="hero-details">
                   <span>macOS 15+</span>
@@ -111,8 +147,8 @@ export default async function Home() {
                 <summary>What does ClearDisk install?</summary>
                 <p className="software-disclosure">
                   ClearDisk is a downloadable Mac app. It does not change system
-                  settings, install extensions or upload your files. To uninstall,
-                  move ClearDisk to the Trash.
+                  settings, install extensions or upload your files. To
+                  uninstall, move ClearDisk to the Trash.
                 </p>
               </details>
               <Link href="/icloud-doctor">
@@ -452,10 +488,18 @@ export default async function Home() {
             </a>
           </div>
           <Accordion className="faq-list">
-            {faqs.map(([q, a], i) => (
+            {faqs.map(([q, a, guide], i) => (
               <AccordionItem key={q} value={i}>
                 <AccordionTrigger>{q}</AccordionTrigger>
-                <AccordionContent>{a}</AccordionContent>
+                <AccordionContent>
+                  {a}
+                  {guide && (
+                    <>
+                      {' '}
+                      <Link href={'/' + guide}>Read the full guide</Link>
+                    </>
+                  )}
+                </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>

@@ -484,6 +484,87 @@ export const faqTopics: FaqTopic[] = [
       },
     ],
   },
+  {
+    slug: 'disk-cleanup',
+    title: 'Mac disk cleanup: questions and answers',
+    description:
+      'Short answers about cleaning up a Mac disk: the built-in cleanup tool, freeing 20 or 30 GB fast, why a disk fills suddenly, a full disk, and what to keep.',
+    intro:
+      'These are the questions Google shows next to “clear disk space on Mac” searches. Each gets a short, direct answer and a link to the guide with the full steps.',
+    updated: '2026-09-26',
+    questions: [
+      {
+        id: 'clear-disk-space',
+        question: 'How do I clear disk space on a Mac?',
+        answer:
+          'In order of return for effort: empty the Trash, clear Downloads, delete old macOS installers and superseded iPhone backups, remove apps you no longer use, then investigate System Data. Measure after each step so you know what worked.',
+        guide: 'free-up-space-on-mac',
+      },
+      {
+        id: 'built-in-tool',
+        question: 'Does Mac have a disk cleanup tool?',
+        answer:
+          'Yes, two. System Settings → General → Storage lists large files, downloads, backups and apps, and Optimize Storage offers Apple’s recommendations. Disk Utility handles the drive itself: repairs, formats and free-versus-purgeable space. Neither opens System Data.',
+        guide: 'how-to-check-storage-on-mac',
+      },
+      {
+        id: 'free-20-gb',
+        question: 'How do I free up 20 GB of storage?',
+        answer:
+          'Look for single large items first: an Install macOS app in Applications, an iPhone backup in Storage settings, Xcode’s Derived Data, Docker’s disk image, or a Downloads folder of disk images. One of those is often 10 to 20 GB on its own.',
+        guide: 'find-what-is-filling-disk-mac',
+      },
+      {
+        id: 'free-30-gb',
+        question: 'How do I free up 30 GB or more?',
+        answer:
+          'Combine the quick wins with a decision about media: move the Photos library or video projects to an external drive, or turn on Optimize Mac Storage for Photos. Developer Macs can usually find 30 GB in caches alone.',
+        guide: 'free-up-space-on-mac',
+      },
+      {
+        id: 'disk-full-suddenly',
+        question: 'Why is my disk full all of a sudden?',
+        answer:
+          'Something produced a lot of data quickly: a macOS update left a snapshot and installer, a cloud drive switched from streaming to mirroring, a backup or export ran, or an app grew its cache. Find what changed in the last few days before deleting anything.',
+        guide: 'system-data-keeps-growing',
+      },
+      {
+        id: 'disk-drive-full',
+        question: 'Why is my disk drive full?',
+        answer:
+          'Open Storage settings and read the categories. If Documents, Photos or Apps dominate, it is your files. If System Data dominates, it is caches, containers, developer data or backups, which need the Library folder or a scanner to see.',
+        guide: 'what-is-system-data-on-mac',
+      },
+      {
+        id: 'clear-if-full',
+        question: 'How do I clear a disk that is completely full?',
+        answer:
+          'Empty the Trash first, because nothing else frees space until you do. Then delete one large recognizable item so macOS has working room, restart, and continue with the normal order. If the Mac will not start, use macOS Recovery.',
+        guide: 'mac-wont-start-disk-full',
+      },
+      {
+        id: 'hundred-percent-disk',
+        question: 'How do I fix 100% disk usage on a Mac?',
+        answer:
+          'On a Mac this usually means the disk is nearly full rather than busy. Get free space above a few percent of the drive and performance returns. If the Mac is slow with plenty of space, look at memory pressure and background processes instead.',
+        guide: 'mac-running-slow-low-storage',
+      },
+      {
+        id: 'how-much-to-keep',
+        question: 'How much free space should a Mac have?',
+        answer:
+          'Enough for updates and swap: keep roughly 10 to 15 percent free, and never let it drop below a few gigabytes. macOS updates alone can need 20 GB or more of working room.',
+        guide: 'how-much-free-space-to-keep-mac',
+      },
+      {
+        id: 'safe-to-delete',
+        question: 'What is safe to delete and what should I keep?',
+        answer:
+          'Safe: caches, old installers, superseded backups, build output and downloads you have used. Keep: Application Support, Containers, anything under /System, Photos and Mail libraries, and files you cannot get again. When unsure, move to the Trash and wait a week.',
+        guide: 'clear-system-data-on-mac',
+      },
+    ],
+  },
 ];
 export function getFaqTopic(slug: string): FaqTopic | undefined {
   return faqTopics.find((topic) => topic.slug === slug);
