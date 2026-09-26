@@ -2,6 +2,14 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Three short search titles — 26 September 2026 (owner request)
+
+Published title improvements for /about, /download and /what-is-system-data-on-mac. The screenshot omitted the issue heading; its current values and the live titles strongly suggest short-title warnings, not another word-count report. Live title lengths were 15, 26 and 27 characters; revised descriptive titles are 53, 52 and 45. About and Download descriptions now explain the page more clearly, and Download metadata correctly names the shipped 2.0.0 release instead of 1.1. Shared metadata already keeps HTML, Open Graph and Twitter titles consistent; no helper change. The System Data registry title also updates its H1, breadcrumbs and related cards. Article body and editorial date are unchanged.
+
+Primary SEO guidance checked: https://developers.google.com/search/docs/appearance/title-link recommends descriptive, concise titles and does not set a character-count ranking requirement. The changes clarify each page rather than guarantee an audit result or ranking. Source e820ec5; personal-account Worker 57724943-4119-4e76-8eac-e0de8c757e94. 51 unit tests, typecheck, lint, build, 175 local and 175 live HTTP checks and desktop/390px heading review passed. Targeted live checks verified all three titles and the current release description. IndexNow accepted the three changed URLs (HTTP 200); no Google indexing or third-party audit recrawl claim. Sitemap URLs and publication dates unchanged.
+
+QA download checksum is unchanged (375d29ab6f6586aff751389acdfbd165bf88e2f15594e0aaec81b45029be1903); verification used ClearDisk-QA and does not count as a download. Anonymous /analytics and /api/analytics remain 401. No metrics snapshot taken; the last observed aggregate remains the 13:34 UTC record below. Payments, licensing, app artifacts and Talivia pause preserved. Next action: recrawl the three pages in the audit tool; if its issue heading names something else, inspect that specific rule.
+
 ## Guides hub audit correction — 26 September 2026 (owner request)
 
 Updated https://cleardisk.app/guides in response to the low-word-count audit screenshot. The original page already returned around 6,100 main-content words in initial HTML for both ordinary and Googlebot user agents; only 125 words were outside links because every guide title and description sat inside a card-wide anchor. The audit screenshot does not reveal its crawl date or extraction method, so excluding linked text is a plausible explanation, not a confirmed diagnosis of that tool.

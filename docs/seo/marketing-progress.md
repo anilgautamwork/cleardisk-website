@@ -2,6 +2,10 @@
 
 Campaign schedule: 13 September–12 October 2026, 30 calendar days. The owner explicitly chose 13 September. This ledger was first created on 15 September (campaign day 3); no earlier scheduled-run completion is inferred. Preserve the original end date rather than extending the campaign when a ledger is missing. Prior manual work is in progress.md.
 
+## Day 14 — 26 September 2026 (owner-requested search titles)
+
+Published clearer search titles on /about, /download and /what-is-system-data-on-mac, plus the correct 2.0.0 Download description. Source e820ec5; Worker 57724943-4119-4e76-8eac-e0de8c757e94. Source checks and validation are in progress.md. IndexNow accepted those three URLs; audit recrawl and Google reindexing are unverified. No new metrics snapshot or campaign-stage change. The app checksum and analytics protection are unchanged; QA requests were excluded.
+
 ## Day 14 — 26 September 2026 (owner-requested guides hub fix)
 
 Published the /guides body-content correction: an orientation section and 152 semantic guide cards with descriptions outside links, preserving design and all destinations. Source c0bca60; Worker d2c27d76-44af-478f-926c-ca074803f4cb. 51 tests, typecheck/lint/build, 175 local/live SEO checks and desktop/mobile review passed. Sitemap remains 170 URLs; IndexNow accepted the changed /guides URL. Audit-tool recrawl is still pending; no Google indexing claim. Full evidence and before/after counts are in progress.md. App download checksum and private analytics protection verified, with QA downloads excluded. Metrics were not refreshed; the preceding recorded 13:34 UTC aggregate remains the latest observation. Campaign dates and next-stage creator drafts are unchanged.

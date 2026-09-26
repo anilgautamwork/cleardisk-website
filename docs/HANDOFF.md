@@ -1,3 +1,7 @@
+## Search title correction — 26 September 2026
+
+Updated the About, Download and System Data explainer titles at the owner's request; Download metadata now names release 2.0.0. Source e820ec5; current Worker 57724943-4119-4e76-8eac-e0de8c757e94. Live titles and release description verified, app checksum unchanged, analytics private. Existing schema, canonical and sitemap behavior preserved. The audit screenshot omitted its issue name; short titles were the likely issue and still need a third-party recrawl. Details in seo/progress.md.
+
 ## Guides hub correction — 26 September 2026
 
 The /guides low-word-count report was addressed with a short orientation section and semantic article cards: the 152 descriptions are now ordinary body paragraphs outside links. Design and whole-card navigation remain. Source c0bca60; current Worker d2c27d76-44af-478f-926c-ca074803f4cb. All 175 live HTML SEO checks, 51 unit tests, typecheck/lint/build and desktop/mobile review pass. Sitemap remains 170 URLs. The third-party audit still needs a recrawl; no new indexing claim. App binary, payment/license behavior and analytics protection are preserved. See seo/progress.md for the measured evidence and audit limitation.
