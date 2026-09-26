@@ -41,3 +41,11 @@ Optional owned-site download link: https://cleardisk.app/download?utm_source=you
 ## Evidence and next step
 
 UI and behavior checked in repository source on 16 September: Sources/ClearDiskApp/SystemDataView.swift (home-scan requirement, Review files), LargeFilesView.swift (100 MB threshold), FileRows.swift (Reveal/Trash), DeleteForever.swift (review options, Cancel and license gate). Actual recording is still required to validate framing and timing. No screenshots of personal files were captured and no community post, creator message or paid ad was sent. Obtain owner approval before external distribution.
+
+## 2.0.0 recording update — 26 September 2026
+
+Source check: DeleteForever.swift now labels the confirmation “Type delete to confirm permanent removal”; ClearDiskApp.swift has “Check for Updates…”. Before recording, confirm About shows 2.0.0 or later. These are recording instructions, not a claim that a new recording exists.
+
+For demo 2, keep the 28–38 second segment at the choice sheet and Cancel. If a separate close-up explains permanent removal, use a disposable long-named sample, select Remove Permanently to reveal the confirmation field, and say: “Type delete instead of the filename. Check the selected files before confirming. This skips Trash and cannot be undone.” End with Cancel; never click the final destructive button. Show the $10 one-time cleanup license accurately, and keep the key out of frame.
+
+No recording, external post or message was made. This small script refresh prepares the existing demo for creator review without creating another overlapping demo.

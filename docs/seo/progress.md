@@ -2,6 +2,18 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Campaign day 14 — 26 September 2026 (demo refresh; existing publication blocker)
+
+Reviewed current source/main 4d0a77b and preserved the separately committed country-analytics changes. Refreshed the existing demo script with the actual 2.0.0 lowercase delete confirmation and a Cancel ending using disposable sample data. Verified labels against DeleteForever.swift and ClearDiskApp.swift. Generic direct prose; no personal voice imitation, new troubleshooting advice or new Apple-source claim. Recording and external distribution remain pending. No new article or duplicate community draft.
+
+The day13 Terminal correction is still NOT live: /operation-not-permitted-terminal-mac returns200 without the new warning against repeating deletion, and sitemap lastmod remains2026-09-24. The tested source correction remains committed in8c0db91. Wrangler deployment inspection again fails for missing non-interactive Cloudflare credentials; no deployment performed and no new deployment ID claimed. This is the same blocker already reported, not a new failure. No runtime changes in this run; builds need not be repeated for local Markdown edits. Markdown diff checked.
+
+Live /download returns200 and reports2.0.0; sitemap returns200 with167URLs. Public DMG hash verified as375d29ab6f6586aff751389acdfbd165bf88e2f15594e0aaec81b45029be1903. Both anonymous analytics routes return401. QA download used ClearDisk-QA and is excluded. No release or indexing change claimed; no fresh Search Console dataset retrieved. September15 remains the last recorded indexing evidence.
+
+Metrics at2026-09-26T11:39:06.401Z: website download requests61over last30UTCdays,32over last7; GitHub2cumulative separately. Since new instrumentation began:19arrival events,2transfer-finished events and2checkout sessions in the available window; still2live-session license records all time. These are not unique users, installations, net sales or attributable campaign conversions; checkout includes test mode and license-record totals do not subtract refunds. No revenue inferred.
+
+Next: renew personal-account Cloudflare credentials, review the current source including other-session changes, deploy and verify the pending Terminal correction. Day15 starts the five-creator research/draft stage; sending stays unauthorized. Talivia, payment mode, license implementation, app artifacts and design preserved. No external messages or paid tools.
+
 ## Campaign day 13 — 25 September 2026 (Terminal guide corrected; deployment blocked)
 
 Reviewed the new question-guide collection and corrected /operation-not-permitted-terminal-mac. Its introduction promised Full Disk Access would make a failed command work. The revised title, description and summary distinguish app privacy access from other restrictions; the steps check Files & Folders before broader access, test with read-only commands, and do not automatically retry deletion. Removed an unconditional claim that a fresh Terminal window always fails to list Trash. Updated the article date to 2026-09-25. No new URL, layout change or duplicate article.
