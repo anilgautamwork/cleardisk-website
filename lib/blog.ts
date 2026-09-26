@@ -193,12 +193,22 @@ export const blogPosts: Guide[] = [
         title: 'Do I need CleanMyMac to clean my Mac?',
         paragraphs: [
           'The name can make searches confusing. CleanMyMac is an app made by MacPaw. Cleaning up your Mac is also something you can do with Finder and macOS Storage settings. You do not need to buy an app just to review your Downloads folder.',
-          'If you meant MacPaw’s product, its own documentation is the place to check its current features and requirements. This article is about choosing a cleanup approach. We have not tested competing cleaners side by side, so we are not ranking them or claiming ClearDisk replaces every feature they offer.',
+          'If you meant MacPaw’s product, its documented tools include an app uninstaller, large-file review and system-junk cleanup, alongside maintenance and protection tools. Check the edition you plan to buy: features differ between the MacPaw Store, App Store and Setapp versions.',
+          'CleanMyMac is not subscription-only. MacPaw lists one-time purchases as well as subscriptions for its own store and the App Store; Setapp uses a subscription. Check the current price and major-upgrade terms before paying. A free trial is different from a permanently free cleanup tool.',
+          'We make ClearDisk and have not tested competing cleaners side by side. ClearDisk does not replace every feature of those tools. If you already know which files you want to remove, the built-in tools may be enough. If you want MacPaw’s app specifically, use its official download and support pages.',
         ],
         links: [
           {
             label: 'MacPaw’s CleanMyMac documentation',
             href: 'https://macpaw.com/support/cleanmymac/knowledgebase/my-tools',
+          },
+          {
+            label: 'CleanMyMac editions and purchase options',
+            href: 'https://macpaw.com/support/cleanmymac/knowledgebase/editions',
+          },
+          {
+            label: 'Compare free Mac cleaner apps by the job they do',
+            href: '/best-free-mac-cleaner',
           },
         ],
       },
@@ -320,6 +330,10 @@ export const blogPosts: Guide[] = [
       {
         label: 'MacPaw: CleanMyMac tools',
         url: 'https://macpaw.com/support/cleanmymac/knowledgebase/my-tools',
+      },
+      {
+        label: 'MacPaw: CleanMyMac editions and purchase options',
+        url: 'https://macpaw.com/support/cleanmymac/knowledgebase/editions',
       },
     ],
   },

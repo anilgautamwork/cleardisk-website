@@ -16,41 +16,47 @@ const trash = {
 export const maintenanceGuides: Guide[] = [
   {
     slug: 'free-up-space-on-mac',
-    title: 'How to clear storage on Mac: free up space step by step',
+    title: 'How to free up disk space on Mac, step by step',
     description:
       'Clear storage on Mac in a sensible order: check Storage settings, use Apple’s built-in recommendations, clear Downloads and Trash, then review large files.',
     summary:
-      'Routine cleanup works best in order: measure first, use the controls macOS already offers, remove what you recognise, and only then investigate the categories you cannot explain.',
+      'Start with the files you recognise. Check available space, review downloads and unused apps, then investigate anything you still cannot explain. Keep a backup before removing important work.',
     published: '2026-09-05',
-    updated: '2026-09-05',
+    updated: '2026-09-26',
     sections: [
       {
         id: 'measure-first',
         title: '1. Check what is using space',
         paragraphs: [
-          'Open System Settings → General → Storage. The bar shows how macOS groups your files: Applications, Documents, Photos, Mail, Messages, macOS itself and System Data, which Apple describes as files that do not fall into the other categories, primarily logs, caches, virtual memory and other runtime resources. The information button next to each category lists what it holds.',
-          'Write down the available space and the two or three largest categories before changing anything. A number you can compare against later is the only reliable way to know whether a step worked, because the bar can take a while to refresh and some categories change on their own.',
+          'On macOS Ventura 13 or later, open System Settings → General → Storage. On older versions, choose Apple menu → About This Mac → Storage. Look for the largest categories and open More Info where that button is available. System Data has no single list you can empty.',
+          'Note the available space before changing anything. If an update or export says how much room it needs, keep that figure nearby. You have a specific job to finish, not a storage bar to make perfect.',
         ],
       },
       {
         id: 'built-in-recommendations',
         title: '2. Use the built-in recommendations, knowing what each does',
         paragraphs: [
-          'Storage settings offers a short list of recommendations. Store in iCloud keeps recent files on the Mac and moves older ones to iCloud Drive, which frees local space only while you have iCloud storage to spare. Optimize Storage removes movies and TV shows you have already watched. Empty Trash Automatically deletes items that have been in the Trash for 30 days.',
-          'These are Apple’s own controls and they are the safest place to start. Read what each one changes before turning it on: Store in iCloud, in particular, changes where your files live, not just how much space they use.',
+          'Read the storage recommendations macOS offers for your setup. Some use iCloud to reduce local storage; others manage downloaded media or automatically remove old items from Trash. Choose an option only after checking what it changes.',
+          'iCloud storage and Mac disk space are separate. Using iCloud requires room in that account, and deleting a synced file is different from removing its local download. Review the iCloud guide before changing where your files are stored.',
+        ],
+        links: [
+          {
+            label: 'Understand iCloud storage versus Mac storage',
+            href: '/icloud-storage-full-but-not-mac',
+          },
         ],
       },
       {
         id: 'obvious-space',
         title: '3. Clear the obvious space',
         paragraphs: [
-          'Apple’s own checklist covers most everyday clutter: the Downloads folder, apps you no longer use, junk and deleted items in Mail, and the Trash itself. A file you move to the Trash keeps using space until you empty it, so emptying the Trash is often the single largest immediate gain.',
+          'Start with a file you can identify: an installer for an app you already installed, a duplicate export or a download you no longer need. Open anything you are unsure about. For apps, check for the maker’s uninstaller before using Finder.',
         ],
         items: [
-          'Downloads: sort by size and date. Installers and disk images you have already used can usually go.',
-          'Applications: remove apps you have not opened in months; move them to the Trash from the Applications folder or uninstall through the app’s own method if it has one.',
+          'Downloads: sort by size and date, then check that you no longer need each item or can obtain it again.',
+          'Applications: use the maker’s uninstall instructions. Removing an app does not cancel its subscription.',
           'Mail: erase junk and deleted messages from within Mail rather than hunting for its files.',
-          'Trash: empty it, then compare the available space with your note from step one.',
+          'Trash: review its contents and restore anything you need before emptying it. Emptying Trash is permanent; moving files there alone does not free their space.',
         ],
       },
       {
@@ -58,15 +64,15 @@ export const maintenanceGuides: Guide[] = [
         title: '4. Move large media instead of deleting it',
         paragraphs: [
           'Videos, photo libraries and project archives are often the biggest files and the least replaceable. Apple’s guidance is to move them to an external drive rather than delete them. Copy first, open the copy and check it, then remove the original. The Photos library has its own relocation steps, covered in the linked guide.',
-          'Moving a file between folders on the same drive frees nothing. Only a different volume, a cloud tier that removes the local copy, or deletion changes the number.',
+          'Moving a file between folders on the same disk does not free that disk’s space. Use a separate storage device, verify the copy and keep a backup before removing the original.',
         ],
       },
       {
         id: 'system-data-last',
         title: '5. Review System Data last, and know when to stop',
         paragraphs: [
-          'If the categories you recognise are tidy and the disk is still short of room, System Data is usually where the remainder lives. Treat it as a category to inspect, not a folder to empty: the System Data guides linked below explain how to find the files behind the number and which ones to leave alone.',
-          'Stop when you have the room you need for the task in front of you. Chasing the last few gigabytes is where most cleanup mistakes happen. ClearDisk’s free scan shows the same categories with the paths behind them, which makes the review in this step faster; deleting by hand remains your decision either way.',
+          'If System Data is large and you still need room, inspect what contributes to it. Do not delete an unfamiliar Library folder because of its size. Start with the app that created it and that app’s own cleanup controls.',
+          'ClearDisk can show local paths and allocated sizes to help with that investigation. Its results need not match Apple’s category totals. Scanning is free; you can review the findings before deciding whether you need its paid cleanup controls. Stop when you have enough room for the task that brought you here.',
         ],
       },
     ],
@@ -78,7 +84,15 @@ export const maintenanceGuides: Guide[] = [
       'mail-taking-up-space-on-mac',
       'clear-system-data-on-mac',
     ],
-    sources: [storage, settings, trash],
+    sources: [
+      storage,
+      settings,
+      trash,
+      {
+        label: 'Apple: delete or uninstall apps',
+        url: 'https://support.apple.com/en-us/102610',
+      },
+    ],
   },
   {
     slug: 'clear-cache-on-mac',
@@ -734,50 +748,96 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'best-free-mac-cleaner',
-    title: 'Best free Mac cleaner: what macOS includes, then free apps',
+    title: 'Best free Mac cleaner apps: choose the right tool',
     description:
-      'The best free Mac cleaner is the one built in. What Storage settings does, which free apps cover the gaps according to their makers, and how to stay safe.',
+      'Compare Mac cleaner apps by the job: uninstalling apps, finding large files or reviewing System Data. See what is free, what costs money, and what to check.',
     summary:
-      'macOS ships with a storage manager, a large-file finder and a Trash with undo. Free apps add visual maps and app uninstalling. Pay only when you want in-app cleanup with a safety net.',
+      'The right Mac cleaner app depends on what you need to remove. Start with macOS Storage settings, then choose an uninstaller, a disk scanner or a maintenance tool for the job left over.',
     published: '2026-09-06',
-    updated: '2026-09-06',
+    updated: '2026-09-26',
     sections: [
+      {
+        id: 'choose-the-job',
+        title: 'Which kind of Mac cleaner app do you need?',
+        paragraphs: [
+          'An old app and an unexplained storage total call for different tools. An uninstaller looks for files associated with an app you want to remove. A disk scanner shows where space is used, including documents and media you may want to keep.',
+          'If you know which download to delete, Finder may be enough. If your MacBook is nearly full and you cannot find the cause, inspect the biggest folders first. A maintenance utility is useful when you have a specific maintenance task; it is not a reason to run every cleanup option.',
+        ],
+      },
       {
         id: 'what-macos-already-includes',
         title: 'What macOS already includes',
         paragraphs: [
-          'Before installing anything, use the tools Apple documents in its storage guidance. System Settings → General → Storage shows the category bar with recommendations: Store in iCloud, Optimize Storage for TV downloads and email attachments, and Empty Trash Automatically. Each category has its own information button: Documents opens Large Files, Downloads and a File Browser sorted by size, and the others list apps, device backups and attachments for deletion.',
-          'Add Finder’s Get Info for sizes, the Trash with File → Put Back for undo, Disk Utility for the free-versus-purgeable distinction, and safe mode for a one-off cache clear before an update. For a Mac whose storage is mostly documents, photos and apps, this is the whole toolkit.',
+          'On macOS Ventura 13 or later, open System Settings → General → Storage. Review the categories and use More Info where that button appears. On older macOS versions, start in About This Mac → Storage. You can investigate Downloads and unused applications without buying a cleaner.',
+          'Before uninstalling an app, check for its own removal tool. Apple recommends that route when one is provided. Documents you made with the app may remain, and removing the app does not cancel a subscription.',
+        ],
+        links: [
+          {
+            label: 'Uninstall apps using Apple’s documented methods',
+            href: '/uninstall-apps-on-mac',
+          },
         ],
       },
       {
         id: 'free-apps-by-job',
         title: 'Free apps, by the job they do',
         paragraphs: [
-          'These descriptions come from each maker’s own page as read on 6 September 2026. We make ClearDisk and have not tested the others side by side, so this is a map of what exists, not a ranking.',
+          'We checked the makers’ pages on September 26, 2026. We make ClearDisk and have not run a side-by-side performance test. The notes below describe each app’s purpose and payment boundary.',
         ],
         items: [
-          'OnyX (Titanium Software): a free multifunction maintenance utility that verifies system files, runs cleaning and maintenance tasks and uninstalls apps, with a separate build for each macOS version. Aimed at people who know which maintenance task they want.',
-          'GrandPerspective: a free, open-source tree map in which each file is a rectangle proportional to its size, so the biggest folders are visible at a glance. Files can be deleted from inside the app, so read a rectangle before clicking it.',
-          'OmniDiskSweeper (The Omni Group): a free list of your files from largest to smallest that lets you Trash or open them. The simplest way to find the ten biggest things on a disk.',
-          'AppCleaner (FreeMacSoft): a free uninstaller that finds the small files an app leaves around the system and deletes them with the app.',
-          'ClearDisk: free, unlimited local scanning with a System Data breakdown labelled Safe, Review or Leave it, a storage map, a largest-files list and Reveal in Finder. Cleanup from inside the app, Trash-first with undo, is a one-time license.',
+          'AppCleaner, from FreeMacSoft: drop an app into its window to find related files for removal. Review the results before deleting. Choose a download compatible with your macOS version.',
+          'GrandPerspective: an open-source visual disk map, available free through the project’s SourceForge download. Its App Store distribution is paid. A large rectangle shows a large file, not whether that file is safe to remove.',
+          'OmniDiskSweeper, from The Omni Group: a file list ordered by size with options to open items or move them to Trash. Useful if you prefer a list to a visual map.',
+          'OnyX, from Titanium Software: a free maintenance utility with cleaning, verification and other system tasks. Download the build intended for your macOS version and read what a task changes before running it.',
+          'ClearDisk: free local scans, a storage map, a largest-files list and a System Data breakdown. In-app cleanup needs the $10 one-time license. It requires macOS 15 or later; it is not a download for older OS X versions.',
+        ],
+        links: [
+          {
+            label: 'AppCleaner compatibility and removal walkthrough',
+            href: '/blog/appcleaner-os-x',
+          },
+          {
+            label: 'What a disk space analyzer can show',
+            href: '/disk-space-analyzer-mac',
+          },
+        ],
+      },
+      {
+        id: 'free-scan-or-free-cleanup',
+        title: 'Does free mean a scan, cleanup or a trial?',
+        paragraphs: [
+          'Check the action you need before installing. A free scan may show files but require payment to remove them. A trial may unlock the full app for a limited time. An app can also be free from its maker and paid through a store, as GrandPerspective is.',
+          'CleanMyMac is a separate product made by MacPaw. Its purchase options include subscriptions and, for some editions, a one-time purchase. Check the chosen edition’s features, device limit and major-upgrade terms rather than assuming every cleaner has the same payment model.',
+          'ClearDisk’s scans stay free. Its cleanup dialog offers Move to Trash or permanent removal after confirmation. Choose Trash when you want the option to undo while the items remain there; permanent removal cannot be undone.',
+        ],
+        links: [
+          {
+            label: 'CleanMyMac editions and purchase options',
+            href: 'https://macpaw.com/support/cleanmymac/knowledgebase/editions',
+          },
+          { label: 'ClearDisk license details', href: '/pricing' },
         ],
       },
       {
         id: 'stay-safe',
         title: 'How to stay safe with any cleaner',
         paragraphs: [
-          'The category attracts bad actors. In January 2026, researchers documented sponsored search results for “mac cleaner” that led to malware. Download from the maker’s own site or the App Store, check that Gatekeeper accepts the app without a workaround, and be suspicious of any tool that promises a fixed amount of freed space, a faster Mac, or memory cleaning, none of which a file scanner can honestly guarantee.',
-          'Prefer tools that move files to the Trash rather than deleting immediately, that show you the path of every item before removal, and that tell you when they lacked permission to read a folder. A cleaner that silently skips protected locations produces a confident total that is wrong.',
+          'Use the maker’s official download page and check its system requirements. Keep a backup of work you cannot replace. Before removing a result, look at its path and the app that created it; “large” and “cache” are not enough information by themselves.',
+          'Check whether removal uses Trash or deletes immediately. Read any warning about folders the scanner could not access. A partial scan can still be useful, but it cannot explain files it never read. Files moved to Trash continue to occupy space until you empty it.',
         ],
       },
       {
         id: 'how-to-choose',
-        title: 'How to choose',
+        title: 'Try the smallest tool that answers your question',
         paragraphs: [
-          'Start free and specific. If Storage settings already explains your number, stop there. If System Data is large and unexplained, use a scanner that opens the Library and shows allocated sizes: GrandPerspective and OmniDiskSweeper for a picture, ClearDisk for the breakdown with labels. If old apps are the problem, an uninstaller does the job. If you want maintenance scripts, OnyX is built for that.',
-          'Pay only for the part you will use repeatedly. For most people that is either nothing, or a one-time license for in-app cleanup with a way back. Whatever you pick, the guides on this site work with Finder and Terminal alone, so the free path is always open.',
+          'If Storage settings shows an old video export you recognise, review that file in Finder. If you want to remove an app, start with its maker’s uninstaller or inspect an AppCleaner result. If the space is still unexplained, try a disk scan.',
+          'Pay when you have seen what a tool finds and want the feature behind the price. A scanner should make your own files easier to understand; the size of someone else’s cleanup is not a promise for your Mac.',
+        ],
+        links: [
+          {
+            label: 'A practical approach to cleaning your Mac',
+            href: '/blog/how-should-i-clean-my-mac',
+          },
         ],
       },
     ],
@@ -810,9 +870,12 @@ export const maintenanceGuides: Guide[] = [
         url: 'https://freemacsoft.net/appcleaner/',
       },
       {
-        label:
-          'AppleInsider: Mac malware in sponsored Google ads, January 2026',
-        url: 'https://appleinsider.com/articles/26/01/28/mac-malware-is-sneaking-into-some-sponsored-google-ads',
+        label: 'Apple: delete or uninstall apps',
+        url: 'https://support.apple.com/en-us/102610',
+      },
+      {
+        label: 'MacPaw: CleanMyMac editions and purchase options',
+        url: 'https://macpaw.com/support/cleanmymac/knowledgebase/editions',
       },
     ],
   },
@@ -1091,54 +1154,64 @@ export const maintenanceGuides: Guide[] = [
     description:
       'Uninstall Mac apps the way Apple documents: the app’s own uninstaller or Finder, when an app will not delete, and how to find the files it leaves in Library.',
     summary:
-      'Dragging an app to the Trash removes the app but not its settings, caches or login items. Use the maker’s uninstaller when there is one, then review what stays behind in your Library.',
+      'Dragging an app to the Trash can leave settings, caches and login items behind. Use the maker’s uninstaller when there is one, then review what stays behind in your Library.',
     published: '2026-09-06',
-    updated: '2026-09-15',
+    updated: '2026-09-26',
     sections: [
       {
         id: 'check-for-an-uninstaller',
         title: '1. Check for the app’s own uninstaller first',
         paragraphs: [
-          'Apple’s page on deleting apps is direct: find out whether the app includes an Uninstall or Uninstaller app, because that is the best way to delete it, and some apps offer removal as a menu item or setting instead. Apple’s guide for apps installed from the internet adds the practical step: if the app is in a folder, open the folder and look for Uninstall [App] or [App] Uninstaller, then double-click it.',
-          'Uninstallers matter for suites that install more than one thing: creative and office suites, security software, drivers and anything with a menu bar helper. Apple notes they help remove login items, extensions and other data the app stored, which Finder cannot see.',
+          'Quit the app, then check its folder, settings or help for an Uninstall option. Apple recommends using the app’s own uninstaller when one is available because it can also remove associated login items, extensions and other data.',
+          'Keep documents and export any app data you need before starting. Uninstalling does not cancel a subscription, and you may still need the app to open documents you created with it.',
         ],
       },
       {
         id: 'delete-the-app',
-        title: '2. Delete the app with Finder or from its icon',
+        title: '2. Move the app to Trash using Finder',
         paragraphs: [
-          'For an app without an uninstaller, Apple’s steps are to drag it from the Applications folder to the Trash, or select it and choose File → Move to Trash, entering an administrator name and password if asked. For apps from the App Store, Apple’s App Store guide describes pressing and holding the app’s icon until it jiggles and clicking the delete button, in Launchpad or the Apps window that replaces it on recent macOS.',
-          'Then choose Finder → Empty Trash. Until you do, the app still occupies its space, and a large app such as a game or a creative suite can be tens of gigabytes.',
+          'If there is no uninstaller, find the app in Finder, usually in Applications. Drag it to Trash or select File → Move to Trash. macOS may ask for an administrator account name and password.',
+          'Review Trash before choosing Finder → Empty Trash. Emptying it permanently removes its contents and frees the space occupied by those items. Moving an app to Trash alone does not free that space.',
         ],
       },
       {
         id: 'if-an-app-will-not-delete',
         title: '3. If an app will not delete',
         paragraphs: [
-          'Two causes cover almost every case. Apple states that you cannot use Finder to delete apps required by your Mac, including many installed by macOS such as Mail, Music, Books and Notes; they are part of the system and are not taking space you can reclaim. The second is an app that is still in use: quit it, including any helper it runs in the menu bar, and try again. Apple’s page suggests restarting, or starting up in safe mode, when the app stays in use.',
-          'Do not delete an app’s folder from inside a package or force it with Terminal. If the maker ships an uninstaller and the app will not go, run the uninstaller; that is what it is for.',
+          'If macOS says the app is in use, quit it and try again. Apple suggests restarting or safe mode if it still cannot be removed. Finder cannot delete apps required by macOS; a cleaner is not a reason to work around that protection.',
+          'If the maker’s uninstaller fails, check its support instructions. Avoid deleting pieces from inside an app package or repeating the removal with a Terminal command you do not understand.',
         ],
       },
       {
         id: 'find-what-the-app-left-behind',
         title: '4. Find what the app left behind',
         paragraphs: [
-          'Apple’s page makes the limit clear: deleting or uninstalling an app does not remove documents or other files you created. It also leaves behind support data unless an uninstaller cleaned it. The usual places are inside your Library, named after the app or its maker.',
+          'Removing an app can leave support files in Library. A folder bearing the app’s name may also contain work you want to keep. Inspect it and check the maker’s instructions before removing it; a matching name alone is not proof that it is disposable.',
         ],
         items: [
           'Application Support: settings, databases and downloaded content, under the app or vendor name.',
           'Containers and Group Containers: data for sandboxed apps, named by bundle identifier such as com.vendor.app.',
-          'Caches: rebuildable working files, also by bundle identifier. Safe to remove once the app is gone.',
-          'Preferences: small .plist files. Harmless to leave; remove only if you want a fresh start on reinstall.',
-          'Logs, Saved Application State and LaunchAgents: usually tiny, worth checking for a helper that keeps launching.',
+          'Caches: working files often named by bundle identifier. Confirm which app uses the folder; do not empty the whole Caches directory.',
+          'Preferences: settings often stored in .plist files. Leave them unless the maker recommends a reset or you intend to discard those settings.',
+          'Logs and Saved Application State: check their owner before removal. For LaunchAgents or a helper that keeps opening, follow the maker’s uninstall instructions.',
         ],
       },
       {
         id: 'login-items-and-the-last-check',
         title: '5. Login items, extensions and the last check',
         paragraphs: [
-          'Open System Settings → General → Login Items & Extensions and remove anything that belonged to the app; a leftover helper is the most common reason a deleted app still appears to run. Then empty the Trash and check System Settings → General → Storage.',
-          'The Library guide explains those folders and which to leave alone. If you would rather not search by hand, the free-tools guide lists uninstallers that do this search for you, and ClearDisk’s free scan shows Application Support, Containers and Caches with allocated sizes so you can review a leftover before it goes to the Trash. Keep documents and any app database you still need. ClearDisk blocks general Application Support and container data from removal; use the maker’s instructions for those folders.',
+          'If a helper still opens after uninstalling, use the maker’s removal instructions for it. A helper may be shared with another app you still use. Check available storage after you have reviewed and emptied Trash.',
+          'AppCleaner can look for related files when you drop an app into it; review those results before deletion. ClearDisk serves a different purpose: its scan helps inspect local paths and sizes. It blocks general Application Support and container data from removal, so use the maker’s instructions for those folders.',
+        ],
+        links: [
+          {
+            label: 'AppCleaner: check compatibility and review related files',
+            href: '/blog/appcleaner-os-x',
+          },
+          {
+            label: 'Review free Mac cleaner apps by purpose',
+            href: '/best-free-mac-cleaner',
+          },
         ],
       },
       {
@@ -1149,8 +1222,9 @@ export const maintenanceGuides: Guide[] = [
         ],
         items: [
           'Why can’t I delete an app on my Mac? Either it is part of macOS, which Apple says Finder cannot delete, or it is still running. Quit it, including any menu bar helper, and try again; Apple suggests restarting or safe mode if it stays in use.',
-          'How do I completely uninstall an app? Run the maker’s uninstaller if there is one, otherwise move the app to the Trash, then remove its leftovers in Application Support, Containers and Caches and any login item, as described above.',
-          'How do I force uninstall an app on macOS? There is no force option in Finder, and Terminal commands only remove the app bundle. Quit the app, remove its login items, restart if needed, then delete it normally. If the maker ships an uninstaller, that is the force option.',
+          'How do I completely uninstall an app? Use its own uninstaller where available. Otherwise use Finder, then check the maker’s guidance for leftover data. Keep documents and shared files you still need; no generic removal method can guarantee that every related item is found.',
+          'How do I force uninstall an app on macOS? If it is in use, quit it and restart if needed. Use the maker’s uninstaller or support guidance rather than force-deleting protected files.',
+          'Does uninstalling cancel a subscription? No. Cancel it with the seller or account that bills you, separately from deleting the app.',
           'Can I uninstall Apple apps on Mac? Apps installed with macOS such as Mail, Music, Books and Notes cannot be deleted with Finder. Apple apps you got from the App Store, such as Pages or Keynote, can be removed like any other app.',
         ],
       },
@@ -1180,6 +1254,10 @@ export const maintenanceGuides: Guide[] = [
       {
         label: 'Apple: free up storage space on Mac',
         url: 'https://support.apple.com/en-us/102624',
+      },
+      {
+        label: 'FreeMacSoft: AppCleaner',
+        url: 'https://freemacsoft.net/appcleaner/',
       },
     ],
   },
