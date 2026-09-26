@@ -2,6 +2,18 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Guides hub audit correction — 26 September 2026 (owner request)
+
+Updated https://cleardisk.app/guides in response to the low-word-count audit screenshot. The original page already returned around 6,100 main-content words in initial HTML for both ordinary and Googlebot user agents; only 125 words were outside links because every guide title and description sat inside a card-wide anchor. The audit screenshot does not reveal its crawl date or extraction method, so excluding linked text is a plausible explanation, not a confirmed diagnosis of that tool.
+
+Changed the 152 cards to semantic articles with normal description paragraphs and one descriptively labelled, stretched link. All guide destinations, the card click area, keyboard focus, topic navigation and current visual identity remain. Added a short “Not sure where to start?” section linking storage checks, large files, post-deletion storage and iCloud-versus-Mac capacity. No new guide or repetitive keyword page. Using the same HTMLParser word extraction on both versions, main text is 6,147 → 6,314 words and text outside anchors is 125 → 5,720; counts depend on tokenization. This is a content and semantic improvement, not a Google word-count requirement. Checked Google's primary guidance today: https://developers.google.com/search/docs/fundamentals/creating-helpful-content explicitly states there is no preferred word count.
+
+Source c0bca60 pushed to main and deployed as personal-account Worker d2c27d76-44af-478f-926c-ca074803f4cb. Validation: 51 tests, typecheck, lint, production build and all 175 local/live HTML SEO checks passed. Added a regression check for every guide card's initial-HTML description outside anchors, all guide links and the orientation section. Desktop and 390px browser review passed, with no horizontal overflow; keyboard focus and clicking a card heading were verified. Impeccable's changed-page detector reported no findings. Live orientation and all 152 article cards confirmed.
+
+Sitemap remains 170 URLs including /guides; canonical and index policy verified. IndexNow accepted the one changed URL with HTTP 200, which is not evidence of indexing. The third-party audit has not been recrawled; no claim its warning is cleared or that Google has reindexed. Next action: recrawl /guides in the owner's audit tool. Search Console data was not retrieved in this correction.
+
+App/download safeguards: /download still reports 2.0.0; DMG remains 6,048,127 bytes with SHA256 375d29ab6f6586aff751389acdfbd165bf88e2f15594e0aaec81b45029be1903. Download verification used ClearDisk-QA and does not count as a download. /updates/appcast.xml responds 200 and both anonymous analytics routes return 401. No new metrics snapshot; the preceding 13:34 UTC entry remains the last observed aggregate. Talivia, payment mode, licensing and app artifacts unchanged. Preserved unrelated .codex/ files.
+
 ## AppCleaner article — 26 September 2026 (owner request)
 
 Published https://cleardisk.app/blog/appcleaner-os-x, “AppCleaner for OS X: uninstalling apps safely.” The registry had only a short AppCleaner mention in the free-cleaners guide, not a dedicated article. This post addresses a distinct problem: selecting a compatible AppCleaner build, reviewing an app removal and finding the remaining storage problem afterward. Existing guides were left unchanged. The Blog index now has two posts; sitemap has 170 URLs.

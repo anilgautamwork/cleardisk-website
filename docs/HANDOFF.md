@@ -1,3 +1,7 @@
+## Guides hub correction — 26 September 2026
+
+The /guides low-word-count report was addressed with a short orientation section and semantic article cards: the 152 descriptions are now ordinary body paragraphs outside links. Design and whole-card navigation remain. Source c0bca60; current Worker d2c27d76-44af-478f-926c-ca074803f4cb. All 175 live HTML SEO checks, 51 unit tests, typecheck/lint/build and desktop/mobile review pass. Sitemap remains 170 URLs. The third-party audit still needs a recrawl; no new indexing claim. App binary, payment/license behavior and analytics protection are preserved. See seo/progress.md for the measured evidence and audit limitation.
+
 ## AppCleaner blog article — 26 September 2026
 
 Published https://cleardisk.app/blog/appcleaner-os-x in the established Blog format. It covers AppCleaner compatibility, removal review and remaining storage, and explicitly distinguishes ClearDisk's macOS 15+ requirement. Registry: 152 guides, 2 blog posts, 170 sitemap URLs. Source 109d088; current Worker 7fcc8d03-f447-4ea8-84dd-e7300534a3db. Existing app artifact, payment/license behavior and analytics protection preserved. 51 tests and all 175 live HTML SEO checks pass. Source checks and Humanize assessment are in the newest seo/progress.md entry.
