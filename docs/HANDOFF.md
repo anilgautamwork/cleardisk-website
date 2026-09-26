@@ -1,3 +1,7 @@
+## Blog publication — 26 September 2026
+
+The owner-requested Blog is live at https://cleardisk.app/blog, with the first article at https://cleardisk.app/blog/how-should-i-clean-my-mac. Learn and footer navigation include Blog. Registry:152guides plus1blogpost; sitemap169URLs. Cloudflare authentication is restored; source c703cc4 deployed as21ff4b60-6263-4ae5-982e-9c205a453c3c. The September25Terminal-guide correction is also now live. All174liveHTMLSEOchecks pass;51unit tests, typecheck/lint/build and desktop/390px review passed. App2.0.0DMG and updater unchanged; analytics remains private. IndexNow accepted169URLs, with no new Google indexing claim. See seo/2026-09-26-blog-launch.md and the newest entries in seo/progress.md and seo/marketing-progress.md for sources, metrics and validation.
+
 ## Campaign verification — 24 September 2026
 
 The day11 Cloudflare authentication blocker is resolved. Current deployment is 11b9bf05-d0c8-41e1-89ce-aa11c35fa6c7 (16:22 UTC), verified through Wrangler. The three 2.0.0 cleanup-guide corrections are live. Other sessions expanded the registry to 152 guides / 167 sitemap URLs and added the owner funnel described in ANALYTICS.md. All 172 live HTML SEO checks passed; this does not establish editorial quality or indexing for every new guide. DMG hash remains the 2.0.0 build11 value below, and both analytics endpoints remain protected. See seo/marketing-progress.md day12 for metrics and limits. No redundant deployment from this campaign run.
