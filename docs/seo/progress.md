@@ -2,6 +2,12 @@
 
 Written by the autonomous SEO loop. Newest entry first. Every entry says what was researched, what shipped, and what still needs the owner.
 
+## Support inbox forwarding — 27 September 2026
+
+Owner selected anilgautamwork@gmail.com for hello@cleardisk.app. Enabled native Cloudflare Email Routing in the existing personal account and saved one exact-address rule. Verified in the dashboard: rule Active, Gmail destination Verified, domain routing Enabled, DNS Locked. Catch-all remains disabled. Public DNS now resolves route1/route2/route3.mx.cloudflare.net (priorities 42/25/4), the Cloudflare SPF TXT and cf2024-1._domainkey DKIM TXT. These records replace the previously observed absence of incoming mail records; the destination-choice blocker below is resolved.
+
+No test email was sent, so end-to-end inbox delivery is not claimed. This configures incoming forwarding only; Gmail send-as and outgoing license-email setup were not changed. No website deployment, payment/license change or new dependency was needed. Source: Cloudflare Email Routing configuration UI and current routing-address documentation, https://developers.cloudflare.com/email-service/configuration/email-routing-addresses/. Validation: active rule/destination/domain status plus public DNS queries.
+
 ## SEO fixes and Google connection — 27 September 2026
 
 Owner authorized implementation after the live-site audit. Prepared consent-based GA4 page visits and download-click tracking, corrected release/privacy copy for the existing 2.0.0 app and $10 license, removed an unsupported recovery-size claim, added 25 relevant incoming related-guide links, and excluded the DMG/checksum from search indexing. The 152-guide registry now has no guide without a contextual incoming related-guide link. Existing 1.x license entitlement is retained; 2.0.0 compatibility is confirmed by the shipped license implementation, with no promise about future major releases. No payment, license code, app binary, new dependency or article URL changed.

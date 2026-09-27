@@ -4,7 +4,7 @@ All 19 owner-supplied search-volume keywords are assigned to six existing articl
 
 ## September 27 — SEO and Google setup
 
-See docs/seo/2026-09-27-live-site-audit.md and docs/ANALYTICS.md for the current audit, remediation and GA4 IDs. Search Console is verified under the work Google account and linked to the new ClearDisk Analytics property. Cloudflare now enforces HTTPS and redirects www with the path/query preserved. Preserve the new consent-based measurement and the current app/payment/license behavior. Publication evidence is recorded in docs/seo/progress.md; historical access-blocked entries below are not current setup instructions. Support email routing awaits the owner's destination choice.
+See docs/seo/2026-09-27-live-site-audit.md and docs/ANALYTICS.md for the current audit, remediation and GA4 IDs. Search Console is verified under the work Google account and linked to the new ClearDisk Analytics property. Cloudflare now enforces HTTPS and redirects www with the path/query preserved. Preserve the new consent-based measurement and the current app/payment/license behavior. Publication evidence is recorded in docs/seo/progress.md; historical access-blocked entries below are not current setup instructions. Support email routing is enabled as of September 27: hello@cleardisk.app forwards to the verified anilgautamwork@gmail.com destination. The exact-address rule is Active, catch-all remains disabled, and public MX/SPF/DKIM records resolve. No end-to-end test message was sent; outgoing license email is a separate setup.
 
 ## Search title correction — 26 September 2026
 
