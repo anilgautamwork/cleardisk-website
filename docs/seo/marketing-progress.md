@@ -2,6 +2,18 @@
 
 Campaign schedule: 13 September–12 October 2026, 30 calendar days. The owner explicitly chose 13 September. This ledger was first created on 15 September (campaign day 3); no earlier scheduled-run completion is inferred. Preserve the original end date rather than extending the campaign when a ledger is missing. Prior manual work is in progress.md.
 
+## Day 16 — 28 September 2026 (improve an existing guide)
+
+Published a substantive update to https://cleardisk.app/photoshop-scratch-disk-full-mac, chosen from actual early Search Console query evidence in the September 27 audit. Added a direct disk-space check, Finder/Disk Utility steps, the launch shortcut when Photoshop will not open, two FAQs and a purgeable-space link. Current Adobe and Apple sources checked; generic Humanize edit applied. Full research and editorial assessment are in [progress.md](progress.md). No duplicate article or claimed original Photoshop screenshot.
+
+Source e0ef823 pushed to main; deployed to the existing personal-account Worker as c22e644d-7926-44b4-9e49-43d6eec5ab77 after renewing the existing Wrangler session. All 53 tests, typecheck, lint, production build, 176 local and 176 live HTML SEO checks passed. Desktop/390px reading review passed. Live content and schema match; sitemap has 171 URLs and the guide's September 28 lastmod. IndexNow accepted this one URL (200). No fresh Google indexing/ranking claim or indexing request; yesterday's recorded Search Console evidence remains the latest.
+
+At 2026-09-28T10:08:49.030Z: 65 website download requests/30 UTC days, 32/7 days; 47 arrivals, 4 finished-transfer events, 2 checkout sessions; 2 all-time live-session license records. GitHub is 2 cumulative, separately. Requests are not people, installations or sales; windows differ, QA arrivals may count, checkout includes test mode, and license records do not subtract refunds. Download QA used HEAD or ClearDisk-QA. Public version remains 2.0.0 and the unchanged DMG hash/size were verified; both anonymous analytics routes remain 401/private-no-store/noindex. Current payment mode, licenses, updater, design and Talivia pause are preserved.
+
+Post-deployment metrics rechecked at 2026-09-28T10:11:30.946Z: all aggregate counts above were unchanged, including 65 download requests. Verification did not add a download event.
+
+Next: original visual evidence for a priority existing guide or a disposable-data demo. Five creator drafts from day 15 stay unsent. Do not invent screenshots or performance results. Recheck Google reports when newer data is available. Campaign dates remain September 13–October 12.
+
 ## Day 15 — 27 September 2026 (creator research and unsent drafts)
 
 Prepared the [five-creator shortlist and tailored drafts](outreach/2026-09-27-creator-shortlist.md) for the days 15–21 stage: SwiftLee, Fatbobman, MacSparky, Use Your Loaf and Eclectic Light. Each has a sourced relevance assessment, contact-route limitation and a distinct proposed demo or feedback angle. MacMost was screened out because its published contact policy rejects marketing/product-review pitches. No messages, comments, paid placements or review licenses were sent or arranged. The existing demo scripts remain unrecorded; no video or measured result was invented.
