@@ -462,11 +462,11 @@ export const developerGuides: Guide[] = [
     slug: 'photoshop-scratch-disk-full-mac',
     title: 'Photoshop scratch disk full on Mac: what to check',
     description:
-      'Photoshop scratch disk full on Mac? Identify the selected scratch drive, recover working space, and choose suitable scratch storage without risking projects.',
+      'Check Photoshop scratch disk space on Mac, find the selected drive, and choose another disk if Photoshop will not open. Keep your project and recovery files.',
     summary:
-      'A scratch disk is Photoshop’s temporary working storage. Check the selected drive and its free space before deleting files or changing performance settings.',
+      'To check scratch disk space on a Mac, open Photoshop → Settings → Scratch Disks, note the selected drive, then check that same drive in Finder. Save any open work before changing settings or removing files.',
     published: '2026-09-05',
-    updated: '2026-09-05',
+    updated: '2026-09-28',
     sections: [
       {
         id: 'protect-open-work',
@@ -478,10 +478,22 @@ export const developerGuides: Guide[] = [
       },
       {
         id: 'check-selected-drive',
-        title: '2. Inspect the configured scratch disk',
+        title: '2. Check scratch disk space on your Mac',
         paragraphs: [
-          'In current Photoshop for macOS, choose Photoshop → Settings → Scratch Disks. Older versions call this Preferences. Check which drives are selected and their priority. Scratch space is disk storage used for temporary work; buying more cloud storage does not directly create free space on the selected local drive.',
-          'Check that drive’s available capacity in Finder or macOS storage tools. Adobe’s current troubleshooting guidance recommends freeing at least 100GB on the primary scratch disk. Treat that as Adobe’s Photoshop-specific troubleshooting recommendation, not a universal requirement for every Mac app or a promise that every document will fit.',
+          'A scratch disk holds Photoshop’s temporary working data. It can be your startup drive or another selected drive. Check the name first: space on an unrelated external drive or in iCloud will not help the drive Photoshop is using.',
+          'Adobe recommends freeing at least 100GB on the primary scratch disk when troubleshooting this error. That is a Photoshop recommendation, not a requirement for every Mac app or a guarantee that a particular document will fit.',
+        ],
+        items: [
+          'Open Photoshop → Settings → Scratch Disks. Older releases use the name Preferences. Note the selected drives and their order.',
+          'In Finder, open the same drive, then choose View → Show Status Bar to see its available disk space. You can also select the drive and choose File → Get Info (Command-I). Inspect the drive, not just a PSD file or folder.',
+          'For a closer breakdown, select that volume in Disk Utility. Apple notes that Available can include purgeable space as well as free space; do not assume the full Available figure is already empty.',
+          'After freeing space on that drive, save your work, restart Photoshop and retry the operation. Check whether the warning clears rather than relying only on a changed storage number.',
+        ],
+        links: [
+          {
+            label: 'Why free and available storage can differ',
+            href: '/purgeable-space-on-mac',
+          },
         ],
       },
       {
@@ -501,8 +513,16 @@ export const developerGuides: Guide[] = [
         ],
       },
       {
+        id: 'photoshop-wont-open',
+        title: '5. If Photoshop will not open',
+        paragraphs: [
+          'For a scratch-disk error that prevents launch, Adobe documents holding Command + Option while opening Photoshop to choose a different scratch disk. Connect a suitable drive with enough space first. If the dialog offers no usable alternative, free space on the current drive before trying again.',
+          'Do not add Shift to that shortcut: Command + Option + Shift opens the separate preference-reset flow. Resetting preferences changes your settings; it is not the same as choosing another scratch disk. Do not force-quit an unsaved document to try either shortcut.',
+        ],
+      },
+      {
         id: 'if-error-returns',
-        title: '5. Investigate recurring scratch pressure',
+        title: '6. Investigate recurring scratch pressure',
         paragraphs: [
           'Review the document dimensions and units, layer count and recent operation. A mistaken large canvas deserves correction before you start deleting more files. In Photoshop’s performance settings, reducing retained history can reduce temporary-storage demand, but it also reduces the steps you can undo. Make that tradeoff deliberately.',
           'Keep recovery protection unless you understand and accept the loss of recovery opportunities. If Photoshop cannot launch or the warning persists despite adequate space, follow Adobe’s version-specific troubleshooting and contact support with the message, drive and document details. ClearDisk can help locate large local files, but it does not configure Photoshop or repair a damaged project.',
@@ -510,6 +530,14 @@ export const developerGuides: Guide[] = [
       },
     ],
     questions: [
+      {
+        q: 'How do I check scratch disk space on a Mac?',
+        a: 'Open Photoshop → Settings → Scratch Disks and note the selected drive. Open that same drive in Finder and choose View → Show Status Bar for its available space, or select the drive and use File → Get Info. Disk Utility can show more detail, including purgeable space.',
+      },
+      {
+        q: 'How can I change the scratch disk if Photoshop will not open?',
+        a: 'Adobe documents holding Command + Option while launching Photoshop to select another scratch disk. Have a suitable drive connected with enough free space. Adding Shift invokes the different preference-reset flow, so leave it out when you only want to choose a drive.',
+      },
       {
         q: 'How much free space does Photoshop need for its scratch disk?',
         a: "Adobe's current troubleshooting guidance recommends freeing at least 100GB on the primary scratch disk, though that's Adobe's specific recommendation rather than a universal requirement for every Mac app.",
@@ -540,6 +568,19 @@ export const developerGuides: Guide[] = [
       {
         label: 'Adobe: set up and manage scratch disks',
         url: 'https://helpx.adobe.com/photoshop/desktop/troubleshoot/troubleshoot-tools-resources/set-up-and-manage-scratch-disks.html',
+      },
+      {
+        label:
+          'Adobe: performance settings and the startup scratch-disk shortcut',
+        url: 'https://helpx.adobe.com/photoshop/kb/optimize-photoshop-cc-performance.html',
+      },
+      {
+        label: 'Apple: get file, folder and disk information',
+        url: 'https://support.apple.com/en-mo/guide/mac-help/mchlp1774/mac',
+      },
+      {
+        label: 'Apple: inspect free and purgeable space in Disk Utility',
+        url: 'https://support.apple.com/en-nz/guide/disk-utility/dskutl1005/mac',
       },
       {
         label: 'Apple: free up storage space on Mac',
