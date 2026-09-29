@@ -2,6 +2,18 @@
 
 Campaign schedule: 13 September–12 October 2026, 30 calendar days. The owner explicitly chose 13 September. This ledger was first created on 15 September (campaign day 3); no earlier scheduled-run completion is inferred. Preserve the original end date rather than extending the campaign when a ledger is missing. Prior manual work is in progress.md.
 
+## Day 17 — 29 September 2026 (Xcode guide and fresh Google evidence)
+
+Published https://cleardisk.app/clear-xcode-derived-data with corrected safety FAQs, a read-only size command, a real 4.5GiB local measurement, release archive/debug-symbol retention, DocC export advice and a simulator link. The measurement involved no deletion and is not a typical-size or recovery promise. Current Apple sources and the generic Humanize edit are documented in [progress.md](progress.md). No duplicate article, new dependency or design change.
+
+Source b031181 pushed to main; deployed to the existing personal-account Worker as 613ee76e-87db-40d5-a868-07548dde9ed2. All 53 tests, typecheck, lint, production build, 176 local and 176 live HTTP SEO checks passed; desktop and narrow reading reviewed. Live guide/date and September 29 sitemap entry verified. IndexNow accepted this one URL (200). Sitemap remains 171 URLs. Version 2.0.0, DMG size/hash and updater access verified; both anonymous analytics routes remain 401/private-no-store/noindex. Current payment/license behavior and Talivia pause preserved.
+
+Search Console is accessible: available September 7–26 Web (text) data shows 4 clicks, 563 impressions, 0.7% CTR and average position 24.1; this guide has 25 impressions and no clicks. Do not compare directly with the shorter September 7–24 window or attribute results to this edit. Google last read the sitemap September 29: Success, 171 discovered pages. Indexing data still dates to September 21 (65 indexed / 11 not indexed). No new Google indexing request or claim that the revision has been recrawled/indexed; no paid volume data.
+
+Metrics at 2026-09-29T10:04:34.896Z and after verification at 10:10:59.834Z: unchanged 67 website download requests/30 UTC days, 16/7 days; 61 arrivals, 6 finished-transfer events, 2 checkout sessions; 2 all-time live-session license records; GitHub 2 cumulative separately. These counts have differing windows and are not unique users, installs or attributable sales. Arrivals may include QA, checkouts include test mode and license totals do not subtract refunds. HEAD/ClearDisk-QA verification added no downloads; secrets were not exposed.
+
+Next: continue evidence-led corrections in the container guide or record one existing disposable-data demo when the relevant UI is available. Day-15 creator drafts remain unsent. Revisit Google's lagging indexing report after it updates. Campaign dates remain September 13–October 12.
+
 ## Day 16 — 28 September 2026 (improve an existing guide)
 
 Published a substantive update to https://cleardisk.app/photoshop-scratch-disk-full-mac, chosen from actual early Search Console query evidence in the September 27 audit. Added a direct disk-space check, Finder/Disk Utility steps, the launch shortcut when Photoshop will not open, two FAQs and a purgeable-space link. Current Adobe and Apple sources checked; generic Humanize edit applied. Full research and editorial assessment are in [progress.md](progress.md). No duplicate article or claimed original Photoshop screenshot.
