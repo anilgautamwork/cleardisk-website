@@ -394,7 +394,7 @@ const foundationGuides: Guide[] = [
     summary:
       'Start with files you recognize and can safely move or remove. If you already deleted things, check Trash and available space before deleting more.',
     published: '2026-09-05',
-    updated: '2026-09-05',
+    updated: '2026-09-30',
     sections: [
       {
         id: 'check-the-warning',
@@ -402,6 +402,10 @@ const foundationGuides: Guide[] = [
         paragraphs: [
           'Read the warning carefully. Your Mac drive, an external drive and your iCloud account have separate capacities. A local cleaner cannot fix a full cloud quota simply by clearing Mac caches.',
           'Open System Settings → General → Storage and look at available space. If a download or installer needs more room, use its stated requirement rather than a universal target copied from a cleanup article.',
+        ],
+        links: [
+          { label: 'Check your Mac’s storage and available space', href: '/how-to-check-storage-on-mac' },
+          { label: 'If the warning is about iCloud storage instead', href: '/icloud-storage-full-but-not-mac' },
         ],
       },
       {
@@ -417,6 +421,10 @@ const foundationGuides: Guide[] = [
           'Keep required backups and original project files.',
           'Avoid changing protected system folders to make space.',
         ],
+        links: [
+          { label: 'Find large files: built-in tools and our sample scan', href: '/find-large-files-on-mac#sample-scan' },
+          { label: 'Keep your photos while reducing local storage', href: '/free-up-space-without-deleting-files#keep-your-photos' },
+        ],
       },
       {
         id: 'after-deleting',
@@ -425,6 +433,10 @@ const foundationGuides: Guide[] = [
           'Check Trash. A move to Trash is reversible storage relocation, not immediate space recovery. Review everything in it before choosing permanent removal.',
           'If Trash is already empty, compare the same available-space measurement again and inspect the remaining large paths. Another app may be writing new data while you clean. The recurring-growth guide helps isolate that pattern.',
         ],
+        links: [
+          { label: 'See what Move to Trash and Put Back actually do', href: '/mac-storage-not-updating-after-deleting-files#sample-trash' },
+          { label: 'Investigate storage that keeps growing', href: '/system-data-keeps-growing' },
+        ],
       },
       {
         id: 'find-what-remains',
@@ -432,6 +444,10 @@ const foundationGuides: Guide[] = [
         paragraphs: [
           'If the biggest remaining category is System Data, switch from deleting familiar files to identifying its contributors. ClearDisk’s free scan can show named groups, paths and large files without uploading your scan results.',
           'You remain responsible for choosing what to remove. Some files support active applications or system operation. The scanner is useful because it helps make that choice informed, not because everything it finds should go.',
+        ],
+        links: [
+          { label: 'Review System Data by file and app', href: '/clear-system-data-on-mac' },
+          { label: 'Compare built-in tools, file scanners and Mac cleaners', href: '/best-free-mac-cleaner' },
         ],
       },
       {
@@ -446,7 +462,7 @@ const foundationGuides: Guide[] = [
     questions: [
       {
         q: 'Why is my Mac storage full but iCloud says it has space?',
-        a: "Your Mac drive, an external drive and your iCloud account each have separate capacities, so a local cleaner cannot fix a full cloud quota just by clearing Mac caches. Check System Settings, General, Storage for the Mac's own available space instead.",
+        a: 'Free space in iCloud does not add capacity to your Mac’s physical drive. Downloaded cloud files can still occupy local storage. Check System Settings → General → Storage, then review what needs to remain offline. Photos optimization and iCloud Drive download removal use different controls; do not delete synced originals just to remove a local copy.',
       },
       {
         q: 'What should I delete first when my Mac storage is full?',
@@ -454,7 +470,7 @@ const foundationGuides: Guide[] = [
       },
       {
         q: 'I emptied the Trash but my Mac is still full, what next?',
-        a: 'Compare the same available-space measurement again and check whether another app is writing new data while you clean, since a move to Trash only relocates storage rather than freeing it immediately. If System Data is still the biggest remaining category, switch to identifying its contributors instead.',
+        a: 'Confirm which drive you cleared, compare available space again, and check whether an app is writing new files. Storage categories update automatically, without a fixed refresh deadline. Time Machine local snapshots count as available space. If a scan shows little, check its scope and permissions before removing more files.',
       },
       {
         q: "Is it safe to use a free Mac scanner to find what's filling my disk?",

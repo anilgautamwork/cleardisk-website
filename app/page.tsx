@@ -20,45 +20,27 @@ import { softwareSchema, websiteSchema, SITE_URL } from '@/lib/seo';
 import { StoragePreview } from '@/components/storage-preview';
 import { PageMotion } from '@/components/motion';
 import { ProductDemo } from '@/components/product-demo';
+import { getFaqTopic } from '@/lib/faqs';
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
 } from '@/components/ui/accordion';
-// [question, answer, guide slug]. The first group mirrors Google's
-// "People also ask" boxes for Mac storage searches; the second is product.
+// Reuse the reviewed topic answers so homepage copy and JSON-LD stay aligned.
+const storageAnswers: [string, string, string?][] = [
+  ['mac-storage-full', 'what-to-clear-first'],
+  ['mac-storage-full', 'check-storage'],
+  ['system-data', 'hundred-gb'],
+  ['system-data', 'keeps-growing'],
+  ['clear-cache', 'safe-to-delete-caches'],
+  ['mac-storage-full', 'still-full-after-deleting'],
+].map(([topic, id]) => {
+  const answer = getFaqTopic(topic)!.questions.find((item) => item.id === id)!;
+  return [answer.question, answer.answer, answer.guide];
+});
 const faqs: [string, string, string?][] = [
-  [
-    'How do I clear disk space on a Mac?',
-    'Review large Downloads, old iPhone backups and apps you no longer use. Move only files you no longer need to the Trash, review its contents, then empty it when you are sure. Storage settings shows the categories; a free scan shows the files behind them.',
-    'free-up-space-on-mac',
-  ],
-  [
-    'Does Mac have a built-in disk cleanup tool?',
-    'Yes. System Settings → General → Storage lists large files, downloads, backups and apps, and offers Apple’s Optimize Storage recommendations. It does not open System Data; that part needs the Library folder or a scanner.',
-    'how-to-check-storage-on-mac',
-  ],
-  [
-    'How do I free up 20 or 30 GB quickly?',
-    'Check old macOS installers, superseded iPhone backups and large project folders. Their sizes vary, so measure first and review the largest items. There is no guaranteed amount to recover; keep backups you still need.',
-    'find-what-is-filling-disk-mac',
-  ],
-  [
-    'Why is my disk full all of a sudden?',
-    'Usually one producer: a macOS update’s snapshot and installer, a backup, a cloud drive switched to mirroring, or an app that grew its cache. Compare what changed in the last few days instead of deleting at random.',
-    'system-data-keeps-growing',
-  ],
-  [
-    'How do I clear my Mac’s cache?',
-    'Clear browser caches from the browser’s own settings, app caches from the app or by moving its Caches folder to the Trash after quitting it, and system caches by starting in safe mode. Caches come back; that is normal.',
-    'clear-cache-on-mac',
-  ],
-  [
-    'Why does my Mac say the disk is full when I deleted files?',
-    'Space returns only when the Trash is emptied, and Storage settings can lag. Purgeable space and local snapshots can also hold the figure for a while. Review the Trash before emptying it, then wait and compare again.',
-    'mac-storage-not-updating-after-deleting-files',
-  ],
+  ...storageAnswers,
   [
     'What’s actually hiding in System Data?',
     'Caches, logs, app containers, developer files, device backups and more. ClearDisk breaks down the files it finds into named groups, explains what they do, and labels them Safe, Review or Leave it. Some macOS-managed storage, including local snapshots, is reported separately.',
@@ -376,6 +358,15 @@ export default async function Home() {
               <a className="text-link" href="#demo">
                 Take the preview for a spin <ArrowRight size={16} />
               </a>
+              <p>
+                <Link href="/find-large-files-on-mac#sample-scan">
+                  See an actual scan with generated sample files
+                </Link>{' '}
+                and the{' '}
+                <Link href="/mac-storage-not-updating-after-deleting-files#sample-trash">
+                  Move to Trash and Put Back walkthrough
+                </Link>.
+              </p>
             </div>
           </div>
         </section>

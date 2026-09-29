@@ -23,7 +23,7 @@ export const faqTopics: FaqTopic[] = [
       'Short answers to the questions people ask about System Data on a Mac: what it is, whether it is safe to delete, why it is so large, and how to shrink it.',
     intro:
       'System Data is the category that confuses more Mac owners than any other. These are the questions that come up most, each with a short answer and the guide that goes deeper.',
-    updated: '2026-09-06',
+    updated: '2026-09-30',
     questions: [
       {
         id: 'what-is-system-data',
@@ -36,7 +36,7 @@ export const faqTopics: FaqTopic[] = [
         id: 'is-it-safe-to-delete',
         question: 'Is it safe to delete System Data?',
         answer:
-          'Some of it. Caches and superseded device backups can go; Application Support, Containers and anything macOS manages should stay. Because the category mixes both, delete by file and app, never by category.',
+          'System Data is a category, not a folder to empty. Identify the app and purpose of each file, use that app’s storage controls where possible, and keep backups you still need. A cache label or an old date does not make a file safe to remove.',
         guide: 'clear-system-data-on-mac',
       },
       {
@@ -50,14 +50,14 @@ export const faqTopics: FaqTopic[] = [
         id: 'hundred-gb',
         question: 'How do I get rid of 100GB or more of System Data?',
         answer:
-          'Measure the Library and hidden folders first, then remove the largest rebuildable items and backups you no longer need. Expect the number to drop in steps as you handle each producer, not all at once.',
+          'Identify the largest contributors first, then review files you recognize and can replace or no longer need. Keep required backups and project originals. A 100GB category does not mean 100GB is removable; compare available space after each small change.',
         guide: 'system-data-too-large',
       },
       {
         id: 'how-to-clear',
         question: 'How do I clear System Data on a Mac?',
         answer:
-          'Find the files behind the number: open the Library, size its folders, handle caches, developer data, device backups and attachments through their apps or the Trash, then empty the Trash. There is no single switch.',
+          'Check available space in System Settings → General → Storage, then identify which apps or files account for the shortage. Use the owning app’s cleanup controls where possible. Review selected paths and backups before removal, and inspect Trash before permanently emptying it.',
         guide: 'clear-system-data-on-mac',
       },
       {
@@ -104,20 +104,20 @@ export const faqTopics: FaqTopic[] = [
       'Short answers for a full Mac: why it stays full after deleting, why an update says there is not enough space, what purgeable means, and what to clear first.',
     intro:
       'A full disk raises the same questions on every Mac. These are the ones people ask most, each with a short answer and the guide that walks through the fix.',
-    updated: '2026-09-06',
+    updated: '2026-09-30',
     questions: [
       {
         id: 'still-full-after-deleting',
         question: 'Why is my Mac still full after deleting files?',
         answer:
-          'Space returns only when the Trash is emptied, and Storage settings can lag for a while. Purgeable space and local snapshots can also hold the figure. Empty the Trash, wait a minute, and compare again.',
+          'First check what was deleted: moving a file to Trash, removing a cloud download and deleting inside an app have different effects. Review Trash before emptying it permanently, then compare available space. Storage updates automatically; there is no fixed one-minute deadline. Time Machine local snapshots already count as available space.',
         guide: 'mac-storage-not-updating-after-deleting-files',
       },
       {
         id: 'what-to-clear-first',
         question: 'What should I clear first when storage is full?',
         answer:
-          'The Trash, the Downloads folder, old installers in Applications and superseded iPhone backups. Those return the most space with the least risk, before you touch anything in the Library.',
+          'Start with recognizable downloads, replaceable installers and offline media you no longer need. Check backups and original project files before removing anything. If you move files to another drive, verify the destination copy opens. Review Trash before permanent deletion; there is no guaranteed amount to recover.',
         guide: 'mac-storage-full',
       },
       {
@@ -145,35 +145,35 @@ export const faqTopics: FaqTopic[] = [
         id: 'trash-wont-empty',
         question: 'What if the Trash will not empty?',
         answer:
-          'Read the message: a locked file needs unlocking with Get Info, a file in use needs its app quit, and an item from an external drive needs that drive connected. Delete Immediately handles a single stubborn item.',
+          'Read the error first. Quit the app using the file, check a locked item in Get Info, or reconnect its external drive as appropriate. Verify the item is no longer needed before retrying. Delete Immediately is permanent removal, not a general solution to permissions or in-use errors.',
         guide: 'trash-wont-empty-mac',
       },
       {
         id: 'check-storage',
         question: 'How do I check what is using my Mac’s storage?',
         answer:
-          'System Settings → General → Storage shows the bar and its categories; each category has an information button that lists its contents by size. What the categories hide needs Terminal or a scanner.',
+          'Open System Settings → General → Storage on macOS Ventura or later. Categories with an information button offer more details or management controls; Documents includes large-file views. Not every category lists files. Use Finder or a scanner to investigate recognizable paths, and check any permission warnings.',
         guide: 'how-to-check-storage-on-mac',
       },
       {
         id: 'after-update',
         question: 'Why is storage full right after a macOS update?',
         answer:
-          'The update leaves a local snapshot of the previous system, the installer app if you used one, and caches the system rebuilds. Most of it clears itself within days; the installer does not.',
+          'An update can create temporary files, rebuild caches or leave a downloaded installer. Compare Storage settings and inspect actual paths before removing anything. Do not assume every large item is an update leftover or will disappear on a fixed schedule. Time Machine local snapshots are managed automatically and count as available space.',
         guide: 'mac-storage-full-after-macos-update',
       },
       {
         id: 'downloads',
         question: 'Is the Downloads folder worth clearing?',
         answer:
-          'Usually yes. It fills with installers, disk images and archives whose job is done. Sort it by size, delete by type, empty the Trash, and set Safari to ask where each download goes.',
+          'Review it, rather than emptying it wholesale. Sort by size and check whether each installer, archive or document is replaceable or your only copy. Keep what you need, remove a small understood selection, and review Trash before emptying it.',
         guide: 'clear-downloads-folder-mac',
       },
       {
         id: 'optimize-storage',
         question: 'Should I turn on Apple’s Optimize Storage recommendations?',
         answer:
-          'They are three separate switches with different costs: two move files into iCloud on demand and count against your iCloud plan, one empties the Trash on a 30-day timer. Turn on the ones whose cost you accept.',
+          'Review each recommendation separately. iCloud options use your cloud allowance, Optimize Storage can remove watched Apple TV downloads, and automatic Trash removal permanently deletes items after 30 days. Available options vary. Choose based on what you need offline and whether you want automatic deletion.',
         guide: 'optimize-storage-mac',
       },
     ],
@@ -185,20 +185,20 @@ export const faqTopics: FaqTopic[] = [
       'Short answers about Mac caches: whether deleting them is safe, how to clear Safari and Chrome, what the system cache is, and which developer caches count.',
     intro:
       'Caches are the most-searched cleanup topic on the Mac and the most misunderstood. These answers separate the safe, rebuildable caches from the folders that only look like caches.',
-    updated: '2026-09-06',
+    updated: '2026-09-30',
     questions: [
       {
         id: 'safe-to-delete-caches',
         question: 'Is it safe to delete caches on a Mac?',
         answer:
-          'Caches are rebuildable by definition, so removing one costs a slower first launch, not data. The risk is deleting the wrong folder next to it or clearing a cache while its app is running. Quit the app and use the Trash.',
+          'Use the app’s documented cache controls first. Clearing a cache can remove offline content, trigger downloads or interrupt work; a folder’s name alone is not a safety guarantee. Quit the owning app before any documented manual cleanup, and leave unfamiliar system folders alone.',
         guide: 'clear-cache-on-mac',
       },
       {
         id: 'safari',
         question: 'How do I clear the Safari cache?',
         answer:
-          'Safari → Settings → Privacy → Manage Website Data → Remove All clears cache and cookies together. To clear only the cache, enable the Develop menu under Advanced and choose Develop → Empty Caches.',
+          'For cache-only cleanup, use Empty Caches in Safari’s Develop menu after enabling developer features in Advanced settings; wording varies by version. Privacy → Manage Website Data removes cookies and other site data too, can sign you out and is a different action.',
         guide: 'clear-browser-cache-mac',
       },
       {
@@ -219,8 +219,8 @@ export const faqTopics: FaqTopic[] = [
         id: 'library-caches',
         question: 'Can I delete everything in ~/Library/Caches?',
         answer:
-          'You can, but it is the blunt version. Apps rebuild what they need, so you lose time rather than data, and any app that is open while you do it may misbehave until restarted. Clear the largest folders for apps you have quit instead.',
-        guide: 'show-library-folder-mac',
+          'Do not empty the folder as a blanket fix. Identify the app behind a large folder and use its documented cleanup controls. Check offline content and ongoing work first. Quit the app before any documented manual removal, and never extend the selection into Application Support, Containers or unfamiliar system files.',
+        guide: 'clear-cache-on-mac',
       },
       {
         id: 'cache-grows-back',
@@ -491,7 +491,7 @@ export const faqTopics: FaqTopic[] = [
       'Short answers about cleaning up a Mac disk: the built-in cleanup tool, freeing 20 or 30 GB fast, why a disk fills suddenly, a full disk, and what to keep.',
     intro:
       'These are the questions Google shows next to “clear disk space on Mac” searches. Each gets a short, direct answer and a link to the guide with the full steps.',
-    updated: '2026-09-26',
+    updated: '2026-09-30',
     questions: [
       {
         id: 'clear-disk-space',
@@ -560,7 +560,7 @@ export const faqTopics: FaqTopic[] = [
         id: 'safe-to-delete',
         question: 'What is safe to delete and what should I keep?',
         answer:
-          'Safe: caches, old installers, superseded backups, build output and downloads you have used. Keep: Application Support, Containers, anything under /System, Photos and Mail libraries, and files you cannot get again. When unsure, move to the Trash and wait a week.',
+          'Start with files you recognize, no longer need and can replace or have independently backed up. Cache folders, backups and generated output still need review. Keep originals, required restore points and unfamiliar system resources. If unsure, leave the file in place while you identify it; Trash is not a backup.',
         guide: 'clear-system-data-on-mac',
       },
     ],
