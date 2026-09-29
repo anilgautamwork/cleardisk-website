@@ -30,14 +30,14 @@ export const storageGuides: Guide[] = [
     summary:
       'Start with the Documents view in Storage settings, then inspect the largest results in Finder. A large file is a candidate for review, not proof that it is unnecessary.',
     published: '2026-09-05',
-    updated: '2026-09-05',
+    updated: '2026-09-30',
     sections: [
       {
         id: 'storage-list',
         title: '1. Open the built-in large-file list',
         paragraphs: [
           'On macOS Ventura or later, open System Settings → General → Storage. Open Documents with its information button. Apple documents views for large files, downloads and a File Browser; click Size to sort the results. Select a candidate and use Show in Finder to inspect its location. Names and available categories can vary with your macOS version and files.',
-          'Our suggested starting point is five recognizable results. Record their names, locations and approximate sizes before changing anything. This creates a manageable review list and avoids losing track of what you intended to keep halfway through a cleanup.',
+          'Start with a few files you recognize. Open their locations in Finder and check what created them. An old installer may be replaceable; footage from a finished project may still be your only original.',
         ],
       },
       {
@@ -46,6 +46,29 @@ export const storageGuides: Guide[] = [
         paragraphs: [
           'Apple’s Finder search supports additional criteria. Search for a project name in Finder, click the plus button below the search field, and choose a criterion such as Kind. Other opens additional attributes. Check whether the selected search scope is the current folder or This Mac. Remove an unwanted criterion if results become too narrow.',
           'For example, searching a finished project by name and limiting the kind to movies can help separate exported videos from unrelated documents. Repeat for another known project rather than assuming one search covers everything on the drive. An empty result means that search found nothing; it does not establish that the disk contains no large files.',
+        ],
+      },
+      {
+        id: 'sample-scan',
+        title: 'What a real sample scan shows',
+        paragraphs: [
+          'On September 30, 2026, we scanned a folder containing three generated sample files with ClearDisk 2.0.0 (build 11) on macOS 27.0.1. Finder displayed them as 134.2 MB, 33.6 MB and 2.1 MB. The largest contained exactly 134,217,728 bytes: 128 MiB, or about 134.2 MB in decimal units.',
+          'The treemap showed all three files. The Large Files view, labelled “Files over 100 MB”, showed only the 134.2 MB file. The two smaller files had not disappeared; they were below that view’s threshold. Check the selected folder and any size filter before treating an empty list as proof that there is nothing to find.',
+          'This was a selected-folder scan of generated data. We did not measure scanning speed or space recovered, and we did not test other disk scanners. ClearDisk can show where bytes are stored; it cannot decide whether you still need the file.',
+        ],
+        figure: {
+          src: '/guides/sample-storage-map.jpg',
+          alt: 'ClearDisk treemap of three generated sample files sized 134.2 MB, 33.6 MB and 2.1 MB',
+          width: 2200,
+          height: 1496,
+          caption:
+            'Our selected-folder scan in ClearDisk 2.0.0. The sidebar describes the whole drive; it is not space recovered by this test. Select the image to see the file labels at full size.',
+        },
+        links: [
+          {
+            label: 'What happened when we moved the sample file to Trash',
+            href: '/mac-storage-not-updating-after-deleting-files#sample-trash',
+          },
         ],
       },
       {
@@ -87,7 +110,7 @@ export const storageGuides: Guide[] = [
       },
       {
         q: "I can't find any large files but my Mac is still full, why?",
-        a: "If recognizable documents don't explain the shortage, the remaining space is likely elsewhere in System Data, so it's worth investigating those categories instead of widening your search into unfamiliar folders. Stop once you've found enough room for the task that brought you here.",
+        a: 'Check the search scope, size filter and any permission warning first. Lots of smaller files can also fill a disk. Compare Storage settings with the folders you can inspect; an empty search does not establish that the rest is System Data or safe to delete.',
       },
     ],
     related: [
@@ -374,15 +397,31 @@ export const storageGuides: Guide[] = [
     summary:
       'First confirm that deletion finished and that you are measuring the drive those files occupied. Then compare available space, rather than relying only on a category bar.',
     published: '2026-09-05',
-    updated: '2026-09-05',
+    updated: '2026-09-30',
     sections: [
       {
         id: 'trash',
         title: '1. Check whether the files are still in Trash',
         paragraphs: [
           'Apple says a file moved to Trash still occupies storage until Trash is emptied. Open Trash and inspect the items. Restore anything you still need before choosing Empty Trash. Permanent deletion is the point at which that recovery opportunity ends.',
-          'Our first diagnostic question is what “deleted” meant in your last action. Moving a file to Trash, removing a download and deleting material through an app are different operations. Write down which one you performed so you can evaluate its expected effect.',
+          'Check the action you took. Move to Trash keeps the file locally. Remove Download can leave an iCloud file available online. Deleting from a synced folder can remove the file from your other devices too. These actions have different consequences even when the file disappears from the current view.',
         ],
+      },
+      {
+        id: 'sample-trash',
+        title: 'A 134.2 MB file we moved to Trash and restored',
+        paragraphs: [
+          'We tested this with a generated file in a Downloads sample folder on September 30, 2026. ClearDisk 2.0.0 (build 11) showed 134.2 MB in its review dialog. After Move to Trash, the file was absent from the sample folder and visible in Finder’s Trash. ClearDisk also reminded us that emptying Trash is the later step that reclaims space.',
+          'In Finder’s Trash, we selected the sample and used File → Put Back. It returned to its original folder with the same byte count, 134,217,728. We did not empty Trash, use permanent removal or measure a change in available space. This demonstrates removal and restoration for one ordinary sample file, not a guarantee for every app library or synced folder.',
+        ],
+        figure: {
+          src: '/guides/sample-removal-review.jpg',
+          alt: 'ClearDisk removal review for a 134.2 MB generated file, offering Move to Trash and Remove Permanently',
+          width: 1180,
+          height: 708,
+          caption:
+            'The actual review dialog from our sample-file test. We chose Move to Trash and later restored the file through Finder. No personal file was removed.',
+        },
       },
       {
         id: 'same-volume',
@@ -398,7 +437,7 @@ export const storageGuides: Guide[] = [
         paragraphs: [
           'Apple says Storage settings update automatically as you free space. It does not give a fixed refresh deadline. Reopen System Settings → General → Storage after the operation finishes and compare the available-space figure. A particular category bar is not the only result worth checking.',
           'Disk Utility’s available figure can include purgeable storage. Apple also counts Time Machine local snapshots as available and manages their removal automatically. These definitions are why free, available and category totals should not be treated as interchangeable measurements.',
-          'Our suggested note has four fields: time, volume, measurement label and value. For example, compare “internal volume, available” with the same field after cleanup. Comparing yesterday’s category total with today’s free-space number cannot isolate the result of a deletion.',
+          'Note the volume, the label beside the number and when you checked it. Compare “internal volume, available” with that same field afterward. A change in System Data and a change in free space are different measurements.',
         ],
       },
       {
@@ -406,7 +445,7 @@ export const storageGuides: Guide[] = [
         title: '4. Check cloud status and competing activity',
         paragraphs: [
           'Apple distinguishes iCloud Drive entries stored only in the cloud from downloaded files. Removing an already cloud-only document is not a useful way to recover its full apparent size locally. Review the iCloud Drive guide before removing additional synced content.',
-          'Our troubleshooting inference is that new downloads, exports or other app activity can offset the effect of a deletion. Save your work, pause optional transfers and compare once more during a quiet period. If the same folder keeps increasing, record its path and the application you were using when it changed.',
+          'New downloads, exports or other app activity may use space while you are checking it. Save your work, pause optional transfers and compare once more during a quiet period. If the same folder keeps increasing, record its path and the application you were using when it changed.',
         ],
       },
       {

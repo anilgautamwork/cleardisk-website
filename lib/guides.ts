@@ -21,6 +21,13 @@ export type GuideSection = {
   links?: { label: string; href: string }[];
   code?: string[];
   items?: string[];
+  figure?: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    caption: string;
+  };
 };
 export type GuideQuestion = { q: string; a: string };
 export type Guide = {
@@ -60,7 +67,7 @@ const foundationGuides: Guide[] = [
     summary:
       'Start by finding the files behind the number. System Data is a storage category, not a single folder you can safely empty. Review identifiable files before removing anything.',
     published: '2026-09-05',
-    updated: '2026-09-23',
+    updated: '2026-09-30',
     sections: [
       {
         id: 'start-with-the-number',
@@ -75,9 +82,16 @@ const foundationGuides: Guide[] = [
         title: '2. Find a source you recognize',
         paragraphs: [
           'Think about the work this Mac does. Development tools, creative apps, downloaded media and local device backups leave different storage footprints. Start with the applications you use rather than treating every hidden folder as disposable.',
-          'ClearDisk’s free scan groups the files it finds and lets you inspect paths and sizes. Its System Data view labels groups Safe, Review or Leave it. These labels help you decide what to examine; they do not mean that every byte in Apple’s category is removable.',
+          'ClearDisk’s free scan groups the files it finds and lets you inspect paths and sizes. Its System Data view labels groups Safe, Review or Leave it. Check the individual paths even in a Safe group. Review groups need a decision about the files; Leave it groups are there to explain usage, not invite removal. These labels do not mean that every byte in Apple’s category is removable.',
+        ],
+        links: [
+          {
+            label: 'See our sample scan and what its size filter includes',
+            href: '/find-large-files-on-mac#sample-scan',
+          },
         ],
         items: [
+          'Use a home-folder or full-disk scan for ClearDisk’s System Data view. In our ClearDisk 2.0.0 selected-folder test, that view was unavailable; a scan of one Downloads folder cannot explain the whole Mac.',
           'Look at an app’s own storage or download settings before changing its files in Finder.',
           'Review old local device backups only when you know which restore points you still need.',
           'For development files, distinguish generated build data from projects and release archives.',
@@ -105,7 +119,7 @@ const foundationGuides: Guide[] = [
         title: 'If System Data comes back',
         paragraphs: [
           'Repeated cleanup is not a diagnosis. If the same app recreates a large folder, examine its cache limit, downloads, logging or project settings. The recurring-growth guide explains how to narrow this down.',
-          'If snapshots appear large, first understand how macOS manages them. ClearDisk reports a local snapshot count, not their storage size; do not assume that deleting ordinary files or buying a cleanup license can remove all of it.',
+          'If snapshots appear large, first understand how macOS manages them. Apple counts Time Machine local snapshots as available space and removes them automatically as needed. ClearDisk reports a local snapshot count, not their storage size. A count cannot tell you how many gigabytes you could recover.',
         ],
       },
     ],

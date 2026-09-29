@@ -120,14 +120,14 @@ export const maintenanceGuides: Guide[] = [
     summary:
       'Caches are working files an app can rebuild. macOS counts most of them inside System Data. Clear them from the app that made them, and avoid emptying Library folders wholesale.',
     published: '2026-09-05',
-    updated: '2026-09-05',
+    updated: '2026-09-30',
     sections: [
       {
         id: 'what-a-cache-is',
         title: '1. Know what a cache is and where it lives',
         paragraphs: [
-          'A cache is a copy of something an app expects to need again: website images, thumbnails, downloaded updates, build products. Apple’s Storage settings count caches, logs and other runtime files inside System Data, which is why that category grows as you use your Mac and shrinks again after cleanup.',
-          'User caches live under the hidden Library folder in your home folder, in Caches. System caches live in the top-level Library and in protected system locations you should not edit. Because a cache is rebuilt on demand, clearing one costs you a slower first launch or a re-download, not your data. Deleting the wrong folder next to it can cost you settings or documents, which is why this guide works app by app.',
+          'A cache is a copy of something an app expects to need again: website images, thumbnails, downloaded updates, build products. Apple’s Storage settings count caches, logs and other runtime files inside System Data, so changes in those files can affect the category. The number also includes other data; it is not a cache-deletion target.',
+          'User caches live under the hidden Library folder in your home folder, in Caches. System caches live in the top-level Library and in protected system locations you should not edit. Clearing a genuine cache may mean a slower next launch or a new download. But a folder name alone does not prove that everything inside is disposable. App support files can contain saved work or settings, and a browser’s website-data control can remove more than cached images.',
         ],
       },
       {
@@ -150,18 +150,18 @@ export const maintenanceGuides: Guide[] = [
         title: '4. Let apps clear their own caches',
         paragraphs: [
           'Many apps that download or generate large working sets, including music and chat apps, design tools and developer tools, have a cache or storage setting of their own. Prefer it over deleting files behind the app’s back: the app knows which files are safe to drop and updates its own records.',
-          'Developer caches are the largest offenders on many Macs. Xcode’s Derived Data and Docker’s disk image each have a dedicated guide below with the version-specific controls.',
+          'For a development Mac, inspect generated build data separately from project files. Xcode’s Derived Data can be rebuilt; Docker’s disk image may also contain volumes with data you need. Use the dedicated guides before removing either.',
         ],
       },
       {
         id: 'by-hand',
         title: '5. If you clear a cache folder by hand',
         paragraphs: [
-          'Sometimes an app offers no control and its cache folder is plainly large. Work carefully and keep the change reversible.',
+          'Only do this when the app’s documentation identifies the cache and supports removing it. If you cannot tell a cache from an app database, stop at measuring the folder. Back up important work before changing app files.',
         ],
         items: [
           'Quit the app first, so it is not writing to the folder you are clearing.',
-          'Move the folder’s contents to the Trash rather than deleting them permanently; keep the folder itself in place.',
+          'Remove only the cache items identified by the app’s instructions. Where supported, use Trash so you retain a chance to restore them; do not empty an entire Library or Application Support folder.',
           'Open the app once and confirm it behaves normally before you empty the Trash.',
           'Never edit the System folder or the top-level Library on a hunch; macOS protects them for a reason.',
           'Compare Storage settings before and after. If System Data climbs straight back, the guide on recurring growth explains how to find the app responsible.',
@@ -171,11 +171,11 @@ export const maintenanceGuides: Guide[] = [
     questions: [
       {
         q: 'Is it safe to delete caches on a Mac?',
-        a: 'Caches are rebuildable by definition, so removing one costs a slower first launch, not data. The risk is deleting the wrong folder next to it or clearing a cache while the app is running. Quit the app, clear only folders you can name, and use the Trash so you can put a folder back.',
+        a: 'Use the app’s own cache control or its documented removal steps. Do not assume everything called app data is a cache. Clearing website data can sign you out, and removing app databases or offline work can cause loss. Check what the chosen control removes before confirming.',
       },
       {
         q: 'How do I clear the Safari cache?',
-        a: 'Apple’s route is Safari → Settings → Privacy → Manage Website Data → Remove All, which also removes cookies. To clear only the cache, enable the Develop menu under Safari’s Advanced settings and choose Develop → Empty Caches.',
+        a: 'For cached page resources, enable the Develop menu under Safari → Settings → Advanced, then choose Develop → Empty Caches. Privacy → Manage Website Data is a broader action: removing a site’s data may sign you out and change its behaviour. Choose the action that matches the problem.',
       },
       {
         q: 'Is there a keyboard shortcut to clear cache and cookies?',
@@ -196,7 +196,7 @@ export const maintenanceGuides: Guide[] = [
       settings,
       {
         label: 'Apple: manage cookies and website data in Safari',
-        url: 'https://support.apple.com/en-us/guide/safari/sfri11471/mac',
+        url: 'https://support.apple.com/en-gb/guide/safari/sfri11471/mac',
       },
       {
         label: 'Apple: Safari advanced settings and the Develop menu',
@@ -904,7 +904,7 @@ export const maintenanceGuides: Guide[] = [
     summary:
       'The right Mac cleaner app depends on what you need to remove. Start with macOS Storage settings, then choose an uninstaller, a disk scanner or a maintenance tool for the job left over.',
     published: '2026-09-06',
-    updated: '2026-09-26',
+    updated: '2026-09-30',
     sections: [
       {
         id: 'choose-the-job',
@@ -949,6 +949,24 @@ export const maintenanceGuides: Guide[] = [
           {
             label: 'What a disk space analyzer can show',
             href: '/disk-space-analyzer-mac',
+          },
+        ],
+      },
+      {
+        id: 'our-sample-test',
+        title: 'What we checked ourselves',
+        paragraphs: [
+          'On September 30, 2026, we inspected three generated files in Finder and scanned the same folder with ClearDisk 2.0.0 on macOS 27.0.1. Finder showed 134.2 MB, 33.6 MB and 2.1 MB. ClearDisk’s treemap showed all three, while its Large Files view showed only the file above 100 MB. That filter matters if you expect a list of every file.',
+          'We then moved the 134.2 MB sample to Trash through ClearDisk and restored it with Finder’s File → Put Back. We did not empty Trash or measure recovered space. This is a small check of our app’s behaviour, not a speed comparison or a test of the other products above.',
+        ],
+        links: [
+          {
+            label: 'See the sample treemap, file sizes and test limits',
+            href: '/find-large-files-on-mac#sample-scan',
+          },
+          {
+            label: 'See the removal dialog and restoration result',
+            href: '/mac-storage-not-updating-after-deleting-files#sample-trash',
           },
         ],
       },

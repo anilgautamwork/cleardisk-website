@@ -220,7 +220,7 @@ export const spaceQaGuides: Guide[] = [
     summary:
       'Move the local copy somewhere else instead of destroying it: finished work to an external drive, libraries with their app’s own method, older files to iCloud with Optimize Mac Storage, and rarely opened folders into zip archives. Each option trades convenience, cost or offline access for space.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-09-30',
     sections: [
       {
         id: 'what-it-can-mean',
@@ -255,6 +255,21 @@ export const spaceQaGuides: Guide[] = [
         ],
       },
       {
+        id: 'keep-your-photos',
+        title: 'Need space without deleting your photos?',
+        paragraphs: [
+          'If you use iCloud Photos, open Photos → Settings → iCloud, enable iCloud Photos and select Optimize Mac Storage. This is a Photos setting, separate from the iCloud Drive setting in System Settings. Photos keeps smaller versions locally when space is limited, with full-resolution originals in iCloud. Check that uploads have finished and that your iCloud plan has room; optimization is not a promise of an immediate, fixed-size saving.',
+          'Deleting pictures in Photos is not a way to keep the same pictures safely in iCloud. With iCloud Photos, deletion syncs. Keep a separate backup of originals you cannot replace, and expect to need a connection when downloading an original that is no longer stored locally.',
+          'If you prefer an external library, copy the whole Photos library to a suitable directly connected drive and open that copy before removing the original. Apple specifies APFS or Mac OS Extended (Journaled), and excludes a Time Machine backup device, network or cloud storage, SD cards and USB flash drives. Keep the library drive connected when you open Photos.',
+        ],
+        links: [
+          {
+            label: 'Copy and verify a Photos library on an external drive',
+            href: '/move-photos-library-to-external-drive',
+          },
+        ],
+      },
+      {
         id: 'compress-rarely-used',
         title: '4. Compress folders you rarely open',
         paragraphs: [
@@ -278,6 +293,10 @@ export const spaceQaGuides: Guide[] = [
       },
     ],
     questions: [
+      {
+        q: 'How can I free space on my Mac without deleting photos?',
+        a: 'Use Photos → Settings → iCloud → Optimize Mac Storage after checking iCloud Photos and upload status, or copy and verify the whole Photos library on a suitable external drive. Keep a separate backup. Deleting photos from a synced library also deletes them in iCloud; it does not just remove the local copy.',
+      },
       {
         q: 'How can I free up space on my Mac without deleting any files?',
         a: "A file takes the same space wherever it sits on the Mac's own disk, so space only comes back once the local copy actually leaves the disk. Move finished work to an external drive, let iCloud hold older files with Optimize Mac Storage, or compress folders you rarely open into zip archives.",
@@ -303,6 +322,14 @@ export const spaceQaGuides: Guide[] = [
     ],
     sources: [
       freeUpStorage,
+      {
+        label: 'Apple: optimize storage in Photos on Mac',
+        url: 'https://support.apple.com/guide/photos/optimize-storage-in-photos-on-mac-phta9b4673b4/mac',
+      },
+      {
+        label: 'Apple: move your Photos library',
+        url: 'https://support.apple.com/en-us/108345',
+      },
       {
         label: 'Apple: store files in iCloud Drive on Mac',
         url: 'https://support.apple.com/guide/mac-help/store-files-in-icloud-drive-mchle5a61431/mac',

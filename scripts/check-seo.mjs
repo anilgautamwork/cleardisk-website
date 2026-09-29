@@ -141,6 +141,30 @@ for (const path of pages) {
   if (path === '/' || path === '/download')
     assert.equal(ofType('SoftwareApplication')[0]?.offers?.price, '10', path);
   if (guide) {
+    for (const section of guide.sections) {
+      if (!section.figure) continue;
+      const { src, alt, width, height, caption } = section.figure;
+      assert.ok(html.includes('src="' + src + '"'), path + ': screenshot');
+      assert.ok(
+        html.includes('alt="' + alt + '"'),
+        path + ': screenshot description',
+      );
+      assert.ok(
+        html.includes('width="' + width + '" height="' + height + '"'),
+        path + ': screenshot dimensions',
+      );
+      assert.ok(
+        html.includes('<figcaption>' + caption + '</figcaption>'),
+        path + ': evidence caption',
+      );
+      const asset = await fetch(new URL(src, origin), { method: 'HEAD' });
+      assert.equal(asset.status, 200, src);
+      assert.match(
+        asset.headers.get('content-type') || '',
+        /^image\/jpeg/,
+        src,
+      );
+    }
     if (guide.questions) {
       const faqNode = ofType('FAQPage')[0];
       assert.equal(

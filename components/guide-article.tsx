@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, ArrowUpRight, ShieldCheck } from 'lucide-react';
 import { Header, Footer, DownloadButton } from './brand';
 import { getGuide, type Guide } from '@/lib/guides';
@@ -89,6 +90,25 @@ export async function GuideArticle({
                 {section.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
+                {section.figure && (
+                  <figure className="guide-figure">
+                    <a
+                      href={section.figure.src}
+                      aria-label="Open screenshot at full size"
+                    >
+                      <Image
+                        unoptimized
+                        src={section.figure.src}
+                        alt={section.figure.alt}
+                        width={section.figure.width}
+                        height={section.figure.height}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </a>
+                    <figcaption>{section.figure.caption}</figcaption>
+                  </figure>
+                )}
                 {section.code && (
                   <pre>
                     <code>{section.code.join('\n')}</code>
