@@ -5,11 +5,11 @@ export const developerGuides: Guide[] = [
     slug: 'clear-xcode-derived-data',
     title: 'How to clear Xcode Derived Data on Mac',
     description:
-      'Clear Xcode Derived Data on Mac: find the folder, remove a reviewed project cache, and keep source code, release archives and simulator data separate.',
+      'Find and measure Xcode Derived Data on Mac, review one project before removal, and keep release archives, debug symbols and source files out of cleanup.',
     summary:
-      'Derived Data contains generated build products and indexes. Start with one inactive project, confirm its location, and expect Xcode to rebuild what you remove.',
+      'To clear Xcode Derived Data, confirm its path in Xcode → Settings → Locations, save your work and quit Xcode, then review one inactive project’s generated folder in Finder before moving it to Trash. Keep your source files and release archives.',
     published: '2026-09-05',
-    updated: '2026-09-05',
+    updated: '2026-09-29',
     sections: [
       {
         id: 'understand-the-tradeoff',
@@ -28,8 +28,18 @@ export const developerGuides: Guide[] = [
         ],
       },
       {
+        id: 'measure-before-removing',
+        title: '3. Measure the folder before removing anything',
+        paragraphs: [
+          'The Terminal command below only measures the usual Derived Data folder; it does not delete files or change Xcode settings. If you configured another location, use that path instead. A missing-folder error means this path is absent, not that Xcode uses no storage elsewhere.',
+          'In a read-only check on the Mac used for this guide on September 29, 2026, macOS du reported 4.5G for this folder (about 4.5GiB of allocated storage), with Xcode 27.0 installed. No files were removed. That is one machine’s current usage, not a typical size or a promise of recoverable space. Your total can change while builds are running.',
+          'Use Finder’s Get Info on the individual project folder next. The total for DerivedData does not tell you which project is inactive or whether anything inside needs to be kept. Do not widen the selection to the parent Xcode folder to chase a bigger number.',
+        ],
+        code: ['du -sh "$HOME/Library/Developer/Xcode/DerivedData"'],
+      },
+      {
         id: 'choose-a-small-selection',
-        title: '3. Remove a reviewed selection',
+        title: '4. Remove a reviewed selection',
         paragraphs: [
           'Save your work and stop builds, tests and previews. Quit Xcode before manually moving a selected project’s generated folder to Trash. If you have several Xcode versions open, close the sessions that may use that location. Keep the selection narrow enough that you can explain what it belongs to.',
           'Xcode 27 adds a Delete Derived Data menu action, confirmed in Apple’s WWDC26 Xcode lab. If your installed version offers it, review the action’s scope and confirmation. Its presence is version dependent; this guide does not assume all releases have the same menu or that the action uses Trash.',
@@ -37,15 +47,22 @@ export const developerGuides: Guide[] = [
       },
       {
         id: 'keep-release-material',
-        title: '4. Keep source, archives and test state separate',
+        title: '5. Keep source, archives and test state separate',
         paragraphs: [
           'Do not extend this cleanup to the whole Library/Developer directory. Your project repository, release archives, simulator devices and platform runtimes serve different purposes. A release archive may be needed for distribution or debugging; a simulator may contain a test database that is not in source control.',
-          'Before removing a project folder, check for unusual workflows that saved an export or manually modified dependency inside generated storage. Copy anything you cannot reconstruct to a documented project location. A folder name is useful evidence, but it cannot prove that every file inside is replaceable.',
+          'Keep the Xcode archive for each app build you distribute. Apple explains that an archive contains the built binaries and their matching dSYM files; those symbols help interpret crash reports from that exact build. Rebuilding the same source with different settings or another Xcode version does not guarantee matching symbols.',
+          'Generated does not always mean disposable. Apple’s DocC workflow, for example, produces a .doccarchive inside Derived Data for you to export. Before cleanup, preserve any output you still need to publish, manually changed dependency files or exports that exist only there. Keep the source repository in its own known location; deleting a reviewed Derived Data folder is not permission to delete the project.',
+        ],
+        links: [
+          {
+            label: 'Review simulator devices and runtimes separately',
+            href: '/remove-unused-ios-simulators',
+          },
         ],
       },
       {
         id: 'verify-and-maintain',
-        title: '5. Rebuild once and check available space',
+        title: '6. Rebuild once and check available space',
         paragraphs: [
           'Reopen a project you still use and build it once. Confirm that its dependencies resolve and your expected work remains available. If you used Trash, review the removed contents before emptying it: the files still occupy space until permanent removal. Compare available storage after that step.',
           'Avoid turning cleanup into an every-build ritual. If the folder immediately grows again, that is evidence of the project’s workload. Review inactive projects periodically, and investigate simulator runtimes separately when they are the larger contributor. ClearDisk can help inspect paths and sizes; deciding what development state to retain remains your choice.',
@@ -55,7 +72,7 @@ export const developerGuides: Guide[] = [
     questions: [
       {
         q: "Is it safe to delete Xcode's Derived Data folder?",
-        a: "Yes, for a project you're not actively working on. It only holds generated build products and indexes, so removing it just means Xcode rebuilds them, and the next build or indexing pass may take a bit longer.",
+        a: 'Usually, a reviewed project’s generated build products and indexes can be recreated. Save your work and stop Xcode first. Check for exports, documentation archives or manually changed files you still need, keep your source and release archives, and expect another build and indexing pass.',
       },
       {
         q: "Where is Xcode's Derived Data folder located?",
@@ -67,7 +84,7 @@ export const developerGuides: Guide[] = [
       },
       {
         q: 'Should I clear my whole Library/Developer folder to save space?',
-        a: "No, stick to Derived Data for a specific inactive project. The wider Library/Developer folder also holds your project repository, release archives and simulator devices, which serve different purposes and aren't part of this cleanup.",
+        a: 'No. Review the Derived Data folder for a specific inactive project. Library/Developer also holds other development state, including archives and simulator data. Your source repository lives wherever you saved or cloned it; it is a separate item to preserve.',
       },
     ],
     related: [
@@ -85,6 +102,14 @@ export const developerGuides: Guide[] = [
       {
         label: 'Apple: Xcode build settings reference',
         url: 'https://developer.apple.com/documentation/xcode/build-settings-reference',
+      },
+      {
+        label: 'Apple: retain release archives and matching debug symbols',
+        url: 'https://developer.apple.com/documentation/xcode/building-your-app-to-include-debugging-information',
+      },
+      {
+        label: 'Apple: export documentation archives from Derived Data',
+        url: 'https://developer.apple.com/documentation/xcode/distributing-documentation-to-other-developers',
       },
       {
         label: 'Apple: downloading and installing additional Xcode components',
