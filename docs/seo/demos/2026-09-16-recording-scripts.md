@@ -49,3 +49,7 @@ Source check: DeleteForever.swift now labels the confirmation “Type delete to 
 For demo 2, keep the 28–38 second segment at the choice sheet and Cancel. If a separate close-up explains permanent removal, use a disposable long-named sample, select Remove Permanently to reveal the confirmation field, and say: “Type delete instead of the filename. Check the selected files before confirming. This skips Trash and cannot be undone.” End with Cancel; never click the final destructive button. Show the $10 one-time cleanup license accurately, and keep the key out of frame.
 
 No recording, external post or message was made. This small script refresh prepares the existing demo for creator review without creating another overlapping demo.
+
+## September 30: published still-image evidence
+
+The videos above remain unrecorded. A separate selected-folder test now has two real screenshots: [sample treemap](https://cleardisk.app/find-large-files-on-mac#sample-scan) and [removal review with Finder restoration](https://cleardisk.app/mac-storage-not-updating-after-deleting-files#sample-trash). The test used generated files (134.2MB, 33.6MB and 2.1MB), ClearDisk 2.0.0 build 11 and macOS 27.0.1. It moved only the large sample to Trash and restored it; no personal file, permanent deletion or measured recovery result. This is not a recording of either script or a home-folder System Data demonstration. Use the existing published evidence in draft outreach while video production remains pending.

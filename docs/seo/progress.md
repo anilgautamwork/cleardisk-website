@@ -1,5 +1,18 @@
 # SEO loop progress log
 
+## Campaign day 18 scheduled follow-up — 30 September 2026
+
+Today's six-guide publication and subsequent homepage/shared-FAQ update were already complete. Preserved source 79d4ac3 and verified current Worker 58179b2c-399b-4e8b-8ebd-bfed7f665c46 through the installed Wrangler 4.144.0 session. The older project-local CLI lacked non-interactive auth; using the already authenticated CLI resolved inspection without changing credentials or access. No redundant publication, build or deployment.
+
+Updated the existing [MacSparky draft](outreach/2026-09-27-creator-shortlist.md) to link the real sample-file walkthrough rather than propose an unrecorded video. Updated the existing demo ledger to distinguish published still images from the two videos that remain unrecorded. Rechecked https://www.macsparky.com/about/ : direct correspondence route is separate from support; paid link deals and cross-posting collaborations are explicitly rejected. Product-pitch acceptance remains unverified. No message, review license, paid placement or public post was sent. Generic Humanize surgical edit, subjective draft assessment 9/69 → 6/69; no detector or personal-voice claim.
+
+Validation: documentation diff checked; both evidence pages, both screenshot assets, /download and /sitemap.xml return 200. Live text confirms the actual sample test and version 2.0.0; sitemap remains 171 URLs. DMG HEAD returns 200/noindex. Both anonymous analytics routes return 401/noindex. Used ClearDisk-QA and HEAD, no full DMG request. Public URLs, app, payments, license handling, analytics and Talivia state unchanged. No new technical guidance requiring an Apple-source refresh.
+
+Aggregate metrics at 2026-09-30T10:03:06.409Z: 69 website download requests/30 UTC days, 16/7 days; 84 arrivals, eight finished-transfer events, five checkout sessions; three all-time live-session license records; GitHub two cumulative separately. Seven-day change reflects a rolling window; requests are not unique users or installs, arrivals may include QA, checkout counts include test mode and license records do not subtract refunds. No revenue or causality claim. No fresh Search Console dataset retrieved: September 29 remains the latest Google observation. The separate research follow-up records authenticated historical Keyword Planner estimates; this run did not fetch or expand those estimates.
+
+Next: the owner can review the updated recipient/message before any external send. Continue evidence-led guide corrections when a concrete gap or fresh search query warrants them; do not republish for the schedule alone. Campaign still ends October 12.
+
+
 ## 30 September 2026 — owner-requested AI research improvements
 
 Implemented the supplied AI Rank Grow research with the requested Humanize skill only. The [research, prompt map, sources and editorial assessment](2026-09-30-ai-visibility-improvements.md) preserve the report's denominator: 22 complete answers, eight excluded unsuccessful answers, no observed ClearDisk mentions/citations. These are not Google rankings or keyword volumes. Generic editing was already authorized; no personal voice profile or detector claim was invented.

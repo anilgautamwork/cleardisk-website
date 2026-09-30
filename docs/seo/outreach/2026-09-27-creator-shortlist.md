@@ -46,21 +46,23 @@ The current release is ClearDisk 2.0.0, macOS 15+. Scanning is free; the existin
 
 ## 3. David Sparks — MacSparky
 
-**Fit:** General Mac workflow fit. His [About page](https://www.macsparky.com/about/) describes practical Mac tutorials, app videos and productivity writing. This is broader audience relevance; no recent storage-specific episode was verified, and the draft does not pretend to reference one.
+**Fit:** General Mac workflow fit. His [About page](https://www.macsparky.com/about/), rechecked September 30, describes practical Mac tutorials, app videos and productivity writing. No recent storage-specific episode was verified; the draft does not pretend to reference one.
 
-**Route/status:** The About page publishes a direct-to-David correspondence address separately from customer support. Product-review acceptance remains unverified. Use only that published general route if the owner later authorizes a message; do not contact Labs support or post inside the paid community.
+**Route/status:** The current page lists desk@macsparky.com for direct correspondence, separate from customer support. It expressly rejects paid link deals and cross-posting collaborations, and warns that replies are rare. Product-review acceptance remains unverified. Hold for owner approval of this exact recipient and message. Do not use Labs support, offer payment or request a link exchange.
 
-**Demo angle:** Find an old sample video export, reveal it in Finder and inspect the cleanup choices. Stop at Cancel. This reuses [demo 2](../demos/2026-09-16-recording-scripts.md) and the [large-file guide](https://cleardisk.app/find-large-files-on-mac); no new feature or recording is implied.
+**Evidence angle:** The [published sample scan](https://cleardisk.app/find-large-files-on-mac#sample-scan) now exists, with a labelled three-file treemap and exact sizes. The [Trash/Put Back walkthrough](https://cleardisk.app/mac-storage-not-updating-after-deleting-files#sample-trash) documents moving and restoring only a generated 134.2MB file. This is a written walkthrough with screenshots, not a video, a real-user cleanup or a measured storage saving. It replaces this draft's unrecorded video-export proposal.
 
-**Subject:** A small Mac workflow: review the file before cleanup
+**Subject:** A Mac storage walkthrough with sample files
 
 > Hi David,
 >
-> I make ClearDisk, a Mac storage scanner. I have a walkthrough idea for people who know their Mac is full but don't know which files they can let go of.
+> I make ClearDisk, a Mac storage scanner. We put together a small walkthrough for a common frustration: a file disappears, but the Mac still looks full.
 >
-> It follows one sample video export: find it, reveal its folder, then review the cleanup choices. It ends at Cancel, so the point is deciding what to keep. No claimed space saving.
+> We scanned three generated files, moved the 134.2 MB one to Trash, then restored it through Finder. The screenshots show the actual steps. We didn't empty Trash or claim any space saved.
 >
-> Would you be interested in seeing a short recording once it's ready? The scan is free at https://cleardisk.app/download. Cleanup costs $10 once, with no subscription.
+> Here's the walkthrough: https://cleardisk.app/mac-storage-not-updating-after-deleting-files#sample-trash
+>
+> If that fits a future storage topic, the example is there to inspect. ClearDisk's scan is free; in-app cleanup costs $10 once. No reply needed if it isn't useful for your readers.
 >
 > Anil
 
@@ -108,7 +110,7 @@ Gary Rosenzweig's [Mail-log tutorial](https://macmost.com/drive-filling-up-check
 
 ## Recording and send readiness
 
-The two [existing recording scripts](../demos/2026-09-16-recording-scripts.md) remain unrecorded. No attachment or video link exists yet. All pitches say what a demo would show rather than claiming it has been produced. Use disposable data, label edited scan time, show measured values only and keep account details and license keys out of frame. Do not remove real files.
+The two [existing recording scripts](../demos/2026-09-16-recording-scripts.md) remain unrecorded. No video link exists yet. The September 30 MacSparky revision points to an actual written walkthrough with screenshots. Other drafts still describe proposed recordings; do not present the published still images as those recordings. Use disposable data, label edited scan time, show measured values only and keep account details and license keys out of frame. Do not remove real files.
 
 First prepare one usable recording, then ask the owner which exact recipient/message to send. No bulk follow-up schedule. If a creator declines or does not accept product suggestions, close that candidate. Paid sponsorship and free paid-license provisioning need separate decisions. The configured hello@cleardisk.app address currently forwards incoming mail only; Gmail send-as has not been configured.
 
@@ -117,3 +119,9 @@ First prepare one usable recording, then ask the owner which exact recipient/mes
 All linked creator pages were checked on 27 September 2026 using free public sources. Read pages/transcripts only; no claim of watching every video, contacting anyone, verifying audience figures or testing another creator's software. Rechecked the live ClearDisk download page (2.0.0, macOS 15+) and current release/demo documentation. No new technical troubleshooting steps were published.
 
 Humanize: authorized generic ClearDisk edit; neither local voice-profile file exists. Replaced broad product-pitch phrasing with one demonstrable action per draft, removed interchangeable praise and varied the opening/request. Subjective pattern assessment of the five draft messages: before 13/69 (Tier 1: 3/12, Tier 2: 6/42, Tier 3: 4/15); estimated after 8/69 (2/12, 3/42, 3/15). Moderate edit; this is an editorial judgment, not a detector score or personal-voice match. No content is claimed to evade AI detection.
+
+## September 30 evidence follow-up
+
+Revised only the MacSparky draft to use today's already-published sample evidence. Verified its two guide links and screenshot assets; all returned 200. Rechecked MacSparky's own contact policy and kept its restrictions above. No new prospect, pitch delivery, paid placement, review license or follow-up sequence. The owner must personally review the draft before authorizing a send.
+
+Generic Humanize edit: replaced a future-demo request with the actual three-file test and one useful link. Subjective assessment for the revised message: 9/69 before (2 statistical, 4 composition, 3 document), estimated 6/69 after (1, 2, 3), surgical edit. These are editorial judgments, not detector scores. No separate personal voice profile was assumed.

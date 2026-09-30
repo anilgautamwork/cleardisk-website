@@ -2,6 +2,14 @@
 
 Campaign schedule: 13 September–12 October 2026, 30 calendar days. The owner explicitly chose 13 September. This ledger was first created on 15 September (campaign day 3); no earlier scheduled-run completion is inferred. Preserve the original end date rather than extending the campaign when a ledger is missing. Prior manual work is in progress.md.
 
+## Day 18 scheduled follow-up — 30 September 2026
+
+Updated the existing MacSparky outreach draft with today's published sample scan and Trash/Put Back evidence; refreshed the demo ledger so still images are not described as recorded videos. Creator's own contact policy rechecked, including its rejection of paid links/cross-posting. Exact draft remains local and unsent pending owner approval. No duplicate article, external message or deployment.
+
+Verified source 79d4ac3 and current Worker 58179b2c-399b-4e8b-8ebd-bfed7f665c46, preserving the other session's homepage/FAQ changes. Two guide URLs, two screenshot assets, download and sitemap return 200; public release still 2.0.0; sitemap 171 URLs, DMG HEAD 200/noindex and both private analytics endpoints 401/noindex. Markdown diff checked; runtime tests/build were unnecessary for documentation-only changes. Full source and generic Humanize notes in progress.md.
+
+Metrics at 2026-09-30T10:03:06.409Z: 69 website requests/30 UTC days, 16/7; 84 arrivals, eight finished transfers, five checkouts; three all-time live-session license records; GitHub two cumulative separately. Counts are not unique users/installs or attributable revenue; QA/test/refund caveats remain. No new Google indexing/ranking dataset or volume request. Verification used HEAD/ClearDisk-QA. Next: owner review before any send; retain existing guide corrections and wait for meaningful fresh evidence. Campaign end October 12 unchanged.
+
 ## Day 18 — 30 September 2026 (original evidence from owner research)
 
 Published improvements to six existing guides: [large files](https://cleardisk.app/find-large-files-on-mac), [storage after deletion](https://cleardisk.app/mac-storage-not-updating-after-deleting-files), [System Data](https://cleardisk.app/clear-system-data-on-mac), [cache](https://cleardisk.app/clear-cache-on-mac), [keeping files/photos](https://cleardisk.app/free-up-space-without-deleting-files), and [free cleaner choices](https://cleardisk.app/best-free-mac-cleaner). Added original sample-folder and removal-review screenshots, tested Finder restoration, corrected cache safety and Photos settings, and linked the evidence. No duplicate article or fabricated recovery result. Only generated sample data was moved to Trash and restored; no personal files or permanent deletion. Full sources, prompt map and generic Humanize assessment are in [the research record](2026-09-30-ai-visibility-improvements.md) and progress.md.
