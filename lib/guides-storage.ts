@@ -864,67 +864,67 @@ export const storageGuides: Guide[] = [
     description:
       'Why the Photos library grows, how Optimize Mac Storage keeps originals in iCloud, what deleting does across devices, and when to move it to another drive.',
     summary:
-      'The Photos library is one package that holds every original. Optimize Mac Storage trades local originals for iCloud copies; moving the library trades the internal disk for an external one. Deleting is the only option that removes photos, everywhere.',
+      'A large Photos library does not mean you need to delete pictures. Start with its location and your backup. Optimize Mac Storage can reduce local storage use; moving the library can put it on an external drive. Deleting photos while iCloud Photos is on also deletes them on your other synced devices.',
     published: '2026-09-06',
-    updated: '2026-09-06',
+    updated: '2026-10-01',
     sections: [
       {
         id: 'see-the-library-size',
         title: '1. See the library size',
         paragraphs: [
-          'System Settings → General → Storage lists Photos as its own category. In Finder, the library is a single file called Photos Library in your Pictures folder; select it and choose File → Get Info for the size. It is a package, not a folder to browse, so never open it and delete files inside.',
-          'A disk scanner reports the same package with its allocated size and can show whether other copies exist: exported albums, an old iPhoto library, or a second library from a migration. Those duplicates are often the easy saving.',
+          'Open System Settings → General → Storage to check the Photos category. The default Photos Library is in your Pictures folder. If you use another library, check that location instead. Select the library in Finder and choose File → Get Info. Leave the files inside its package alone; manage pictures through Photos.',
+          'An old library or exported album may contain photos that are missing from your current library. A similar name is not proof of a duplicate. Back up each library before deciding what to remove. If you use referenced files stored outside the library, back those up separately too.',
         ],
       },
       {
         id: 'optimize-mac-storage',
         title: '2. Turn on Optimize Mac Storage',
         paragraphs: [
-          'Apple’s Photos guide describes the setting: choose Photos → Settings → iCloud, make sure iCloud Photos is on, and select Optimize Mac Storage. Optimize stores smaller versions of your photos on the Mac when storage space is limited and keeps the original, full-size photos in iCloud. Download Originals to this Mac does the opposite and restores the full-size versions.',
-          'Two conditions apply. iCloud Photos has to be on, which means the whole library counts against your iCloud storage as well as device storage. And Optimize works when space is limited rather than immediately, so the library shrinks over time, not the moment you click.',
+          'In Photos, choose Settings → iCloud, turn on iCloud Photos if you want to use it, and select Optimize Mac Storage. When local space is limited, Photos can keep smaller versions on the Mac while full-size originals remain in iCloud. Download Originals to this Mac keeps full-size copies locally and needs room for them.',
+          'Your iCloud account needs enough storage for the originals. The local library size can be smaller than the collection in iCloud; a library package on your Mac does not necessarily contain every full-resolution original. Apple gives no fixed amount or deadline for local space savings. Keep a separate backup even when you use iCloud Photos.',
         ],
       },
       {
         id: 'delete-with-sync-rules-in-mind',
         title: '3. Delete with the sync rules in mind',
         paragraphs: [
-          'Apple’s iCloud Photos page is clear: when you delete photos on one device, they are deleted everywhere you use iCloud Photos. Deleted items stay in Recently Deleted for 30 days, so the space returns after that window or after you delete them from Recently Deleted too.',
-          'Delete for the right reason. Screenshots, burst duplicates and screen recordings are common candidates; originals of edited photos are not, because the edit depends on them.',
+          'With iCloud Photos on, deleting a photo on one device also deletes it on your other synced devices. Recently Deleted normally gives you 30 days to recover it. Permanently deleting it there ends that recovery option. The recovery window is not a promise that your Mac will show a particular amount of free space on day 30.',
+          'Review unwanted screenshots or recordings inside Photos. If the goal is only to use less space on this Mac while keeping your collection, try Optimize or move the library first.',
         ],
       },
       {
         id: 'move-the-library',
         title: '4. Move the library instead of shrinking it',
         paragraphs: [
-          'When you want every original at hand but not on the internal disk, move the library to an external drive. Apple documents the procedure, and the move-photos guide walks through the drive requirements and the verification step before you remove the original.',
-          'Moving is the right choice for large video libraries and for Macs with a small SSD and a permanently connected drive. It is the wrong choice for a laptop that leaves the drive at home, because Photos needs the library present to open at all.',
+          'An external drive can hold the library instead of your internal disk. Apple requires APFS or Mac OS Extended (Journaled) and advises against network storage, cloud folders and a drive used for Time Machine backups. Quit Photos before copying the whole library, then open and verify the copy before removing the original. The linked move-library guide covers the steps.',
+          'Keep that drive connected when using this library. If Photos cannot find it, the app can create a new empty library in Pictures; that does not mean your photos were erased. Reconnect the drive, quit Photos, then hold Option while opening Photos to choose the external library. Moving an optimized library does not by itself download every cloud original.',
         ],
       },
       {
         id: 'what-not-to-do',
         title: '5. What not to do',
         paragraphs: [
-          'Do not edit inside the Photos Library package, do not delete its caches by hand, and do not turn off iCloud Photos to save space without first downloading originals. Turning it off only stops syncing; it does not remove the local library.',
-          'ClearDisk shows the Photos Library package with its allocated size but does not offer it for removal, because Photos owns the data. Use the scan to find duplicate libraries and large exports outside it; use Photos for everything inside.',
+          'Turning off Sync this Mac changes how Photos works. Apple offers Download to keep local copies, or Delete from Mac / Remove from Mac to remove them without downloading a copy. Check that the originals are in iCloud and keep a separate backup before choosing removal. The account-wide Turn Off and Delete option is different: it schedules deletion from iCloud.',
+          'Use ClearDisk’s free scan to locate large libraries and exports for review. Their size cannot tell you whether they are backed up, fully synced or safe to delete. Leave the package contents and caches alone; use Photos to manage its pictures.',
         ],
       },
     ],
     questions: [
       {
         q: 'Does Optimize Mac Storage delete my original photos?',
-        a: 'No. It keeps smaller versions on your Mac while storing the full-size originals in iCloud, and it requires iCloud Photos to be turned on. It also shrinks the library gradually when space is limited, not immediately when you enable it.',
+        a: 'It keeps full-size originals in iCloud and can use smaller versions on your Mac when local storage is limited. It requires iCloud Photos. It does not guarantee an immediate reduction or a specific number of gigabytes saved.',
       },
       {
         q: 'Why did a photo disappear from all my devices after I deleted it?',
-        a: 'Because iCloud Photos syncs deletions: removing a photo on one device deletes it everywhere you use iCloud Photos. It stays in Recently Deleted for 30 days, so the space only returns after that window or after you empty Recently Deleted.',
+        a: 'iCloud Photos syncs deletions. Check Recently Deleted promptly if the deletion was a mistake; Apple normally allows recovery for 30 days. Items permanently removed from there cannot be recovered through that feature.',
       },
       {
         q: 'Will turning off iCloud Photos free up space on my Mac?',
-        a: "No. Turning it off only stops syncing; it does not remove the local library, so the Photos Library package stays the same size on your Mac's disk.",
+        a: 'It depends on the choice you make. Apple offers Download or Remove from Mac / Delete from Mac when turning off this Mac’s sync. Removing local copies can reduce local use, but it also stops this Mac syncing. It is different from turning off and deleting your account’s iCloud Photos collection.',
       },
       {
         q: 'Can I delete individual files inside the Photos Library package to save space?',
-        a: "No. It's a single package, not a folder to browse, so you should never open it and delete files inside. Look instead for duplicate libraries or exported albums outside the package, or move the whole library to an external drive.",
+        a: 'Do not remove files inside the package by hand. Use Photos to review pictures, or follow Apple’s whole-library move procedure. A second library may contain unique photos, so verify its contents and backup before removing it.',
       },
     ],
     related: [
@@ -948,8 +948,12 @@ export const storageGuides: Guide[] = [
         url: 'https://support.apple.com/en-us/108345',
       },
       {
-        label: 'Apple: free up storage space on Mac',
-        url: 'https://support.apple.com/en-us/102624',
+        label: 'Apple: back up the Photos library',
+        url: 'https://support.apple.com/guide/photos/back-up-the-photos-library-pht6d60d10f/mac',
+      },
+      {
+        label: 'Apple: turn off iCloud Photos',
+        url: 'https://support.apple.com/en-us/102179',
       },
     ],
   },
