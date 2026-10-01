@@ -2,6 +2,16 @@
 
 Campaign schedule: 13 September–12 October 2026, 30 calendar days. The owner explicitly chose 13 September. This ledger was first created on 15 September (campaign day 3); no earlier scheduled-run completion is inferred. Preserve the original end date rather than extending the campaign when a ledger is missing. Prior manual work is in progress.md.
 
+## Day 19 — 1 October 2026 (Photos library accuracy)
+
+Published https://cleardisk.app/photos-library-taking-up-space-mac with corrected iCloud optimization/removal choices, recovery-window wording, external-library behavior and backup guidance. Replaced unsafe assumptions about old libraries and a blanket app-removal claim. Five current Apple sources and the generic Humanize assessment are logged in progress.md. No duplicate article or fabricated test result; no personal files changed.
+
+Source 4501f9e pushed to main; Worker d433b9ee-2889-4ca2-912c-116995e63d5f deployed and verified. All 53 tests, typecheck, lint, production build and 176 local plus 176 live SEO route checks passed. Desktop/390px reading checked; sitemap remains 171 URLs with the guide’s October 1 date. IndexNow accepted one URL (200), not Google indexing. App 2.0.0 download/updater and DMG checksum are unchanged; both private analytics routes remain anonymous 401/private-no-store/noindex. Payment/license behavior and Talivia pause preserved.
+
+Metrics at 2026-10-01T10:03:54.657Z: 71 download requests/30 UTC days, 12/7; 103 arrivals, nine finished transfers and five checkouts/30 days; three all-time live-session license records; GitHub two cumulative separately. After QA at 10:08:56.191Z, request/transfer/checkout/license counts unchanged, arrivals 104 (may include QA). These are not unique people, installs or attributable sales; test/refund/rolling-window caveats remain. ClearDisk-QA excluded the verification download. No fresh Google dataset or claim of indexing this revision; September 29 remains latest evidence.
+
+Next: prioritize another substantive correction using fresh evidence; existing creator messages remain local and unsent pending review/authorization. Campaign ends October 12 unchanged.
+
 ## Day 18 scheduled follow-up — 30 September 2026
 
 Updated the existing MacSparky outreach draft with today's published sample scan and Trash/Put Back evidence; refreshed the demo ledger so still images are not described as recorded videos. Creator's own contact policy rechecked, including its rejection of paid links/cross-posting. Exact draft remains local and unsent pending owner approval. No duplicate article, external message or deployment.
