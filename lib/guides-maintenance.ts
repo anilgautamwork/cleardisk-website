@@ -1999,26 +1999,26 @@ export const maintenanceGuides: Guide[] = [
     summary:
       'A large container can hold an app’s saved work as well as its downloads. Group Containers can belong to several apps at once. Before removing anything, find out who uses it and whether you need the data.',
     published: '2026-09-06',
-    updated: '2026-09-15',
+    updated: '2026-10-02',
     sections: [
       {
         id: 'what-they-are',
         title: '1. What the two folders are',
         paragraphs: [
-          'Apple’s developer documentation describes app data containers as folders the system creates for apps that use the App Sandbox; the container is where the app’s files live, and it carries System Integrity Protection so other software cannot quietly modify them. On your Mac they sit in ~/Library/Containers, one folder per app, named by the app’s bundle identifier such as com.apple.mail, though Finder often shows the app’s name and icon instead.',
-          'Group Containers, in ~/Library/Group Containers, are shared by a group of apps and extensions from one developer. Apple notes that in macOS 15 and later these also get System Integrity Protection, and that any app outside the group that tries to read one triggers a prompt asking you to authorize access. That prompt is the one that says an app wants to access data from other apps; it is the same protection seen from the other side.',
+          'Apps that use Apple’s App Sandbox keep private data in app containers. Look in ~/Library/Containers. These folders can hold documents and databases as well as temporary files, so their contents are not all disposable.',
+          'The separate ~/Library/Group Containers folder holds data shared by apps and supporting processes from the same developer team. One suite folder may still be in use after you uninstall one of its apps. Apple documents additional protection for app group containers in macOS 15 and later; an app outside the group can trigger an authorization prompt when accessing protected data.',
         ],
       },
       {
         id: 'open-and-measure',
         title: '2. Open them and measure them',
         paragraphs: [
-          'Choose Go → Go to Folder in Finder and type ~/Library/Containers or ~/Library/Group Containers. Inside a container you will find a Data folder that mirrors a home folder, with its own Library, Documents and Downloads; that structure is why the folder can be large and why it confuses a first look. In Terminal, one read-only command sizes every container and sorts them.',
-          'Some container data can appear in System Data, but the category is not a direct measurement of these folders. The commands only report readable entries; access restrictions can leave files out.',
+          'In Finder, choose Go → Go to Folder and enter ~/Library/Containers or ~/Library/Group Containers. Select a folder and use File → Get Info to inspect its size. If you prefer Terminal, run the two read-only commands below. They show disk usage for each top-level subfolder and a total for its parent folder; do not add that total to the entries again.',
+          'The commands leave permission errors visible. If you see “Operation not permitted” or “Permission denied,” the reported sizes may omit protected files. A small result is not proof that a folder is empty. Read an access prompt before deciding whether to allow it; you can stop here and check storage inside the owning app instead. Do not disable macOS protections to get a larger scan.',
         ],
         code: [
-          'du -sh ~/Library/Containers/* 2>/dev/null | sort -h | tail -15',
-          'du -sh ~/Library/Group\\ Containers/* 2>/dev/null | sort -h | tail -15',
+          'du -h -d 1 "$HOME/Library/Containers"',
+          'du -h -d 1 "$HOME/Library/Group Containers"',
         ],
       },
       {
@@ -2059,7 +2059,7 @@ export const maintenanceGuides: Guide[] = [
       },
       {
         q: 'Why does my Mac ask if an app can access data from other apps?',
-        a: "That's System Integrity Protection on Group Containers, which in macOS 15 and later triggers a prompt asking you to authorize access whenever an app outside the sharing group tries to read one. It's the same protection that keeps other software from quietly modifying container data.",
+        a: 'macOS protects app data from access by other apps. Apple documents authorization prompts for protected app data and app group containers, including group-container protection in macOS 15 and later. Check which app is asking and why. A denied request can make a storage scan incomplete; it does not mean the files are junk.',
       },
       {
         q: 'What usually takes up space in Containers on Mac?',
