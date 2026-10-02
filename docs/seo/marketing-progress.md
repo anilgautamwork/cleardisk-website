@@ -2,6 +2,16 @@
 
 Campaign schedule: 13 September–12 October 2026, 30 calendar days. The owner explicitly chose 13 September. This ledger was first created on 15 September (campaign day 3); no earlier scheduled-run completion is inferred. Preserve the original end date rather than extending the campaign when a ledger is missing. Prior manual work is in progress.md.
 
+## Day 20 — 2 October 2026 (Containers guide accuracy)
+
+Published https://cleardisk.app/containers-folder-mac with commands that retain permission errors and include hidden subfolders, an explanation of partial measurements/parent totals, and clearer app-access guidance. Current Apple sources and the generic Humanize pass are documented in progress.md. Verified command behavior with temporary generated files only; no personal app data or permissions changed. No new article or layout change.
+
+Source 7171fe2 pushed to main; Worker 9dea131e-a1f0-4a6b-aa64-b48136098d89 deployed. All 53 tests, typecheck, lint, build and 176 local HTTP SEO checks passed. All 176 live HTTP SEO checks passed.. Live content/date verified; sitemap remains 171 URLs with this guide’s October 2 lastmod. IndexNow accepted one URL (200), not Google indexing. App 2.0.0 DMG size/hash and updater unchanged; analytics endpoints remain anonymous 401/private-no-store/noindex. No fresh visual browser review was available; renderer and design unchanged. Payments/licenses and Talivia pause preserved.
+
+Metrics before publication at 2026-10-02T10:03:04.194Z and after verification at 10:07:15.140Z: unchanged 71 website requests/30 UTC days, 11/7; 117 arrivals, nine finished transfers and five checkouts/30 days; three all-time live-session license records; GitHub two cumulative separately. Verification used ClearDisk-QA. Counts are not unique users, installs or attributable sales; test/refund/QA/rolling-window caveats remain. No fresh Search Console dataset; September 29 remains latest recorded evidence and indexing of this revision is unverified.
+
+Next: prioritize useful existing-guide corrections informed by new evidence, and retain the five creator drafts for owner review before sending. No external outreach or paid services. Campaign still ends October 12.
+
 ## Day 19 — 1 October 2026 (Photos library accuracy)
 
 Published https://cleardisk.app/photos-library-taking-up-space-mac with corrected iCloud optimization/removal choices, recovery-window wording, external-library behavior and backup guidance. Replaced unsafe assumptions about old libraries and a blanket app-removal claim. Five current Apple sources and the generic Humanize assessment are logged in progress.md. No duplicate article or fabricated test result; no personal files changed.
