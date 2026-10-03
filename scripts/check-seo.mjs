@@ -30,7 +30,9 @@ const meta = (head, attr, name) =>
 const titles = new Set();
 const descriptions = new Set();
 for (const path of pages) {
-  const response = await fetch(new URL(path, origin));
+  const response = await fetch(new URL(path, origin), {
+    headers: { 'User-Agent': 'ClearDisk-QA' },
+  });
   assert.equal(response.status, 200, path);
   const html = await response.text();
   assert.equal((html.match(/<h1[ >]/g) || []).length, 1, path + ': one H1');
@@ -121,6 +123,20 @@ for (const path of pages) {
   }
   const faq = faqTopics.find((t) => '/faq/' + t.slug === path);
   if (faq) {
+    for (const [index, q] of faq.questions.entries()) {
+      assert.ok(
+        html.includes('id="' + q.id + '"'),
+        path + ': visible FAQ anchor',
+      );
+      const entity = ofType('FAQPage')[0]?.mainEntity?.[index];
+      assert.equal(entity?.url, site + path + '#' + q.id);
+      assert.equal(entity?.name, q.question);
+      assert.equal(entity?.acceptedAnswer?.text, q.answer);
+    }
+    assert.ok(
+      html.toLowerCase().includes('datetime="' + faq.updated + '"'),
+      path + ': visible FAQ date',
+    );
     assert.equal(
       ofType('FAQPage')[0]?.mainEntity?.length,
       faq.questions.length,

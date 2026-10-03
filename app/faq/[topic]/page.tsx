@@ -37,6 +37,9 @@ export default async function FaqTopicPage({ params }: Props) {
           <span className="eyebrow">QUESTIONS AND ANSWERS</span>
           <h1>{faq.title}</h1>
           <p className="guide-summary">{faq.intro}</p>
+          <p className="guide-meta">
+            Updated <time dateTime={faq.updated}>{faq.updated}</time>
+          </p>
         </header>
         <div className="guide-layout">
           <aside className="guide-sidebar">
@@ -85,7 +88,7 @@ export default async function FaqTopicPage({ params }: Props) {
           </div>
           <div>
             <DownloadButton label="Download free scanner" source="guides" />
-            <small>macOS 15+ · version 1.1</small>
+            <small>macOS 15+ · Free to scan</small>
           </div>
         </section>
         <section className="related-guides">

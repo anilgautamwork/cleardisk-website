@@ -156,6 +156,9 @@ export function guideSchema(
   collection: 'guides' | 'blog' = 'guides',
 ) {
   const url = canonical('/' + guide.slug);
+  const articleImages = guide.sections.flatMap((section) =>
+    section.figure ? [canonical(section.figure.src)] : [],
+  );
   const steps = guide.sections.filter((s) => numbered.test(s.title));
   return [
     {
@@ -163,7 +166,11 @@ export function guideSchema(
       '@type': collection === 'blog' ? 'BlogPosting' : 'Article',
       headline: guide.title,
       description: guide.description,
-      image: OG_IMAGE,
+      // Article images must depict the article, not the site's promotional card.
+      ...(articleImages.length ? { image: articleImages } : {}),
+      '@id': url + '#article',
+      url,
+      inLanguage: 'en',
       datePublished: guide.published,
       dateModified: guide.updated,
       author: organization,
@@ -216,7 +223,7 @@ export function guideSchema(
           },
         ]
       : []),
-  ];
+  ] as const;
 }
 export function faqSchema(topic: FaqTopic) {
   const url = canonical('/faq/' + topic.slug);
@@ -224,8 +231,17 @@ export function faqSchema(topic: FaqTopic) {
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
+      '@id': url,
+      url,
+      name: topic.title,
+      description: topic.description,
+      inLanguage: 'en',
+      dateModified: topic.updated,
+      // Schema.org semantics remain useful; Google retired FAQ rich results in May 2026.
       mainEntity: topic.questions.map((q) => ({
         '@type': 'Question',
+        '@id': url + '#' + q.id,
+        url: url + '#' + q.id,
         name: q.question,
         acceptedAnswer: { '@type': 'Answer', text: q.answer },
       })),

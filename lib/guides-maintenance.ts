@@ -1284,16 +1284,16 @@ export const maintenanceGuides: Guide[] = [
     description:
       'Open Storage settings, read the bar, drill into Applications, Documents and Messages, check a single drive, and find what the categories hide.',
     summary:
-      'Storage settings answers the first question in one screen and the categories answer the second. The last part, what sits inside System Data, needs Terminal or a scanner.',
+      'To check storage on a Mac, open Apple menu → System Settings → General → Storage. Review used and available space, then open categories with an information button to inspect files. System Data shows a total only.',
     published: '2026-09-06',
-    updated: '2026-09-06',
+    updated: '2026-10-04',
     sections: [
       {
         id: 'open-storage-settings',
         title: '1. Open Storage settings',
         paragraphs: [
           'Apple’s guide gives the path: choose Apple menu → System Settings, click General in the sidebar, then click Storage. On macOS versions before Ventura, Apple’s storage page points to Apple menu → About This Mac → Storage instead. The steps are the same on a MacBook Air, MacBook Pro, iMac or Mac mini.',
-          'Give the screen a minute. The bar appears immediately but the categories keep refining while macOS finishes counting, so the first numbers you see can shift before they settle.',
+          'Storage information updates automatically. If it is still calculating, let it finish before comparing numbers; Apple does not give a fixed one-minute deadline.',
         ],
       },
       {
@@ -1308,14 +1308,14 @@ export const maintenanceGuides: Guide[] = [
         id: 'open-a-category',
         title: '3. Open a category with its information button',
         paragraphs: [
-          'Apple’s guide notes that categories such as Applications, Documents, Messages, Mail, iOS files and Trash have an information button that opens them. This is where the useful lists live.',
+          'Look for an information button beside a category. Where one is available, open it to see that category’s management options. The controls differ by category and macOS version.',
         ],
         items: [
-          'Applications: every app sorted by size, with a column showing where it came from and whether it is still supported.',
+          'Applications: installed apps, excluding system applications. Review apps you recognize before removing them.',
           'Documents: three views, Large Files, Downloads and a File Browser, each sortable by size with a Show in Finder option.',
-          'Messages and Mail: attachments by size, deletable from the list. The Mail and Messages guides explain what deleting does to your accounts.',
-          'iOS files: iPhone and iPad backups stored on the Mac, with their dates.',
-          'Trash: what is waiting to be emptied, and how much space emptying it returns.',
+          'Messages: review conversation content and attachments. For Mail, use the Mail app’s storage controls; check what removal does to your account before deleting.',
+          'iOS files: local iPhone and iPad backups and firmware. Keep backups you still need.',
+          'Trash: review items waiting for permanent removal. Its category total excludes items deleted from iCloud Drive.',
         ],
       },
       {
@@ -1330,7 +1330,7 @@ export const maintenanceGuides: Guide[] = [
         id: 'see-what-the-categories-hide',
         title: '5. See what the categories hide',
         paragraphs: [
-          'System Data has no information button and no list, which is the point where Storage settings stops helping. The next layer is the folders themselves: the Library guide explains what is in there, the Terminal guide gives the read-only commands that size every folder, and the large-files guide covers documents that Storage settings misses because they sit outside your home folder.',
+          'System Data has no information button and no list, which is the point where Storage settings stops helping. The next layer is the folders themselves: the Library guide explains what is in there, the Terminal guide gives the read-only commands that measure accessible folders, and the large-files guide covers documents that Storage settings misses because they sit outside your home folder.',
           'A disk scanner does the same in one pass, with allocated sizes and a label for each folder. ClearDisk’s scan is free and local, shows the System Data folders Storage settings only totals, and lets you reveal any item in Finder before deciding what to do with it.',
         ],
       },
@@ -1338,7 +1338,7 @@ export const maintenanceGuides: Guide[] = [
     questions: [
       {
         q: 'How do I free up space on my Mac?',
-        a: 'Start with the clear-storage guide: empty the Trash, clear Downloads, use Apple’s recommendations, then review large files and System Data.',
+        a: 'Review recognizable downloads, offline media and large files you no longer need. Keep originals and required backups. Inspect Trash before emptying it permanently, then compare available space.',
       },
       {
         q: 'How do I check available storage?',
@@ -1350,7 +1350,7 @@ export const maintenanceGuides: Guide[] = [
       },
       {
         q: 'Why is my Mac storage still full after deleting?',
-        a: 'Space returns only when the Trash is emptied, and Storage settings can lag; purgeable space and local snapshots can also hold the figure for a while. The storage-not-updating guide covers each case.',
+        a: 'Moving a file to Trash does not free its space until it is permanently removed. Review Trash first, then compare available space. Cloud downloads and app-managed deletion behave differently. Time Machine local snapshots already count as available space.',
       },
     ],
     related: [

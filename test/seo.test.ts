@@ -3,6 +3,7 @@ import { test } from 'node:test';
 import {
   canonical,
   guideSchema,
+  faqSchema,
   shouldIndex,
   sitemapEntries,
 } from '../lib/seo.ts';
@@ -103,7 +104,7 @@ type SchemaNode = {
 };
 await test('guide schema derives HowTo steps only from numbered sections', () => {
   for (const guide of guides) {
-    const schema = guideSchema(guide) as SchemaNode[];
+    const schema = guideSchema(guide) as readonly SchemaNode[];
     const article = schema.find((s) => s['@type'] === 'Article');
     assert.equal(article?.datePublished, guide.published, guide.slug);
     assert.equal(
@@ -247,5 +248,34 @@ await test('guide questions are short, plain and end with a question mark', () =
       );
       assert.ok(!/<|https?:\/\//.test(a), guide.slug + ': plain text ' + q);
     }
+  }
+});
+
+await test('FAQ schema matches visible answers and stable section anchors', () => {
+  for (const topic of faqTopics) {
+    const schema = faqSchema(topic)[0];
+    assert.equal(schema.dateModified, topic.updated);
+    assert.deepEqual(
+      schema.mainEntity?.map((q) => [q.name, q.acceptedAnswer.text, q.url]),
+      topic.questions.map((q) => [
+        q.question,
+        q.answer,
+        canonical('/faq/' + topic.slug) + '#' + q.id,
+      ]),
+    );
+  }
+});
+await test('article images come from visible figures, not promotional cards', () => {
+  for (const guide of [...guides, ...blogPosts]) {
+    const article = guideSchema(guide)[0];
+    const images = guide.sections.flatMap((s) =>
+      s.figure ? [canonical(s.figure.src)] : [],
+    );
+    assert.deepEqual(
+      article.image,
+      images.length ? images : undefined,
+      guide.slug,
+    );
+    assert.equal(article.url, canonical('/' + guide.slug));
   }
 });

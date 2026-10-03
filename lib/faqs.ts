@@ -22,15 +22,22 @@ export const faqTopics: FaqTopic[] = [
     description:
       'Short answers to the questions people ask about System Data on a Mac: what it is, whether it is safe to delete, why it is so large, and how to shrink it.',
     intro:
-      'System Data is the category that confuses more Mac owners than any other. These are the questions that come up most, each with a short answer and the guide that goes deeper.',
-    updated: '2026-09-30',
+      'Start with the number in Storage settings, then find the files behind it. These answers explain what System Data includes, where to look and what to leave alone.',
+    updated: '2026-10-04',
     questions: [
       {
         id: 'what-is-system-data',
         question: 'What is System Data on a Mac?',
         answer:
-          'It is Apple’s catch-all category for files that do not fit any other category in Storage settings: caches, logs, app containers, developer files, device backups and system resources. It is a category, not a folder, so there is nothing to open and empty.',
+          'System Data is the storage category for files that macOS does not place in a more specific category. Apple lists logs, caches, virtual memory files, temporary files, fonts, app support files and plug-ins. It is not one folder or a list of disposable files.',
         guide: 'what-is-system-data-on-mac',
+      },
+      {
+        id: 'see-system-data',
+        question: 'How do I see System Data in Mac storage?',
+        answer:
+          'On macOS Ventura 13 or later, open Apple menu → System Settings → General → Storage and find System Data in the category list. It shows a total, not a file browser. Use Finder or the app that created the data to investigate specific files.',
+        guide: 'how-to-check-storage-on-mac',
       },
       {
         id: 'is-it-safe-to-delete',
@@ -71,7 +78,7 @@ export const faqTopics: FaqTopic[] = [
         id: 'terminal',
         question: 'Can I clear System Data with Terminal?',
         answer:
-          'Terminal is best for measuring, not deleting. The df and du commands size the disk and every Library folder without changing anything; remove files through Finder and the Trash so you can put them back.',
+          'Use Terminal to inspect space before deciding what to remove. The df command reports filesystem space; du measures accessible paths. Permission errors mean the measurement is incomplete. Neither command identifies whether a file is safe to delete.',
         guide: 'check-disk-space-mac-terminal',
       },
       {
@@ -92,7 +99,7 @@ export const faqTopics: FaqTopic[] = [
         id: 'library-folder',
         question: 'Where does System Data actually live?',
         answer:
-          'Mostly in your user Library: Caches, Application Support, Containers, Developer, Mail and Messages. Finder hides the folder; hold Option and open the Go menu, or use Go to Folder with ~/Library.',
+          'There is no single System Data folder. Some contributors live in your user Library; others are managed elsewhere by macOS. Open Finder → Go → Go to Folder and enter ~/Library to inspect your own app data. Do not delete the Library folder or assume every item there belongs to System Data.',
         guide: 'show-library-folder-mac',
       },
     ],

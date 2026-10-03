@@ -157,8 +157,23 @@ const foundationGuides: Guide[] = [
     summary:
       'System Data is macOS’s catch-all for files that do not fit its other storage categories. It can include caches, logs, app support files and runtime resources. It is not all junk.',
     published: '2026-09-05',
-    updated: '2026-09-05',
+    updated: '2026-10-04',
     sections: [
+      {
+        id: 'see-system-data',
+        title: 'How to see System Data in Mac storage',
+        paragraphs: [
+          'On macOS Ventura 13 or later, choose Apple menu → System Settings → General → Storage. Look for System Data in the category list. On older macOS versions, open About This Mac → Storage instead; the catch-all category may be called Other.',
+          'System Data shows a total without a file list or a delete button. To investigate your own files, use Finder or the app that created them. A scanner can help locate large paths, but its results depend on access permissions and will not necessarily equal Apple’s category total.',
+        ],
+        links: [
+          {
+            label: 'Check storage categories step by step',
+            href: '/how-to-check-storage-on-mac',
+          },
+          { label: 'More System Data questions', href: '/faq/system-data' },
+        ],
+      },
       {
         id: 'inside-the-category',
         title: 'A category, not one folder',
@@ -207,7 +222,7 @@ const foundationGuides: Guide[] = [
       },
       {
         q: 'Is it okay to delete System Data on Mac?',
-        a: 'Some of it. Caches and old device backups can go; Application Support, Containers and anything macOS manages should stay. The category mixes both, which is why deleting by category is the wrong move.',
+        a: 'Do not delete by category. Identify each file and use the owning app’s cleanup controls when available. Keep needed backups and saved work; an old date or cache label does not make a file disposable. Leave unfamiliar system-managed files alone.',
       },
       {
         q: 'Why is the System Data on my Mac so high?',
@@ -215,7 +230,7 @@ const foundationGuides: Guide[] = [
       },
       {
         q: 'How do I get rid of 100GB of System Data?',
-        a: 'Measure the Library and hidden folders, then remove the largest rebuildable items and backups you no longer need. The 100GB-or-more guide walks through it; expect the number to drop in steps, not all at once.',
+        a: 'A 100GB category does not mean 100GB can be removed. Find the largest recognizable contributors, check backups and saved work, and make one small, understood change. Compare available space afterward; there is no guaranteed amount to recover.',
       },
     ],
     related: [
@@ -225,7 +240,7 @@ const foundationGuides: Guide[] = [
       'show-library-folder-mac',
       'mac-storage-glossary',
     ],
-    sources: [definition, snapshots],
+    sources: [definition, storage, snapshots],
   },
   {
     slug: 'system-data-too-large',

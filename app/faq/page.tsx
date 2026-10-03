@@ -21,7 +21,7 @@ export default function Faq() {
             <span>Short answers, then the guide.</span>
           </h1>
           <p>
-            Each topic collects the questions people search for most.
+            Find answers about System Data, caches, cloud files and cleanup.
             <br />
             Every answer links to the guide that goes deeper.
           </p>

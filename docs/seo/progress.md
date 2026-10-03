@@ -1,5 +1,17 @@
 # SEO loop progress log
 
+## 4 October 2026 — FAQ and snippet improvements (owner request, campaign day 22)
+
+Improved existing /faq/system-data, /what-is-system-data-on-mac and /how-to-check-storage-on-mac rather than duplicating their intent in another blog post. Seven topic FAQ pages and two blog posts already exist. Added the missing direct settings-path answer, corrected unsafe blanket cleanup advice, partial measurement claims, a fixed calculation deadline and category controls. FAQ pages now display their actual content dates and no longer advertise obsolete version 1.1. Existing layout, URLs, app 2.0.0 download, payment/license behavior and Talivia pause preserved.
+
+Current Google guidance checked: https://developers.google.com/search/updates (May 8 and June 15 entries: FAQ rich results stopped May 7, 2026; FAQ documentation retired), https://developers.google.com/search/docs/appearance/snippet (visible content, unique descriptions, working deep links), and https://developers.google.com/search/docs/appearance/structured-data/article (representative images, author/date/headline). FAQPage remains valid schema.org semantics, not eligibility for a retired Google feature. Added canonical FAQ/question identities pointing at visible section anchors. Article/BlogPosting image now uses actual inline figures when present, omitting the unrelated promotional OG card otherwise. Social OG card unchanged. Article/Breadcrumb markup already existed. No invented reviews, QAPage substitution, ranking or snippet guarantee.
+
+Apple sources read: https://support.apple.com/en-us/102624 ; https://support.apple.com/guide/mac-help/change-storage-settings-mchl3d437fbc/mac ; https://support.apple.com/en-us/102154 . The first guessed storage URL failed; used Apple's linked live page. Preserved important distinctions between System Data, available space, snapshots and removable files. Source-check dates are not claims of testing every supported OS.
+
+Humanize generic edit (already authorized): concrete settings paths and direct answers replace vague lead-ins and unsupported certainty. Estimated editorial pattern score 11/69 before, 6/69 after; subjective, not an AI detector result or personal voice profile. Impeccable narrow refinement preserved the existing reading design.
+
+Validation before publication: 55 tests, typecheck, lint, Cloudflare build and 176 local HTTP SEO routes passed. Added FAQ answer/anchor parity and article-image tests. Corrected test typing and HTML attribute-case assertion during validation. Browser checked desktop and 390px FAQ; no horizontal overflow, visible answers and working hash link. Git main matched origin before edits; starting production Worker 9dea131e-a1f0-4a6b-aa64-b48136098d89 confirmed. Deployment and indexing status pending below; no new Google crawl claim. October 3 Search Console comparison remains the latest evidence (660 impressions/five clicks vs 59/one, equal seven-day windows). Prioritized its two existing guide opportunities. No new keyword volumes or outreach.
+
 ## Campaign day 21 — 3 October 2026 (fresh Google evidence)
 
 Regained read-only Search Console access through the existing anilgautamwork@gmail.com browser session. No new verification, permissions or credentials were needed. Used Google's page-performance recommendation to open an equal-window comparison, then removed the page filter to read property totals. This replaces the September 29 observation as the latest Google evidence; earlier entries remain historical.
