@@ -1,5 +1,16 @@
 # SEO loop progress log
 
+## 4 October 2026 — ClearDisk 2.1.0 release publication
+
+GitHub tag workflow initially failed on its missing release manifest; recovery commit bb167ae and manual run 37157573051 succeeded. Published app assets were unchanged. See the release record for the exact cause and recovery.
+
+Owner-requested release, not a new campaign article. Published app 2.1.0 build 12 with read-only Apple Intelligence storage and Intel-app checks. Updated current release copy on /, /about, /download, /features, /pricing, /buy-now, /support and /terms, shared FAQs and software metadata; historical article testing claims preserved. App source 17bcf1d; website source 36a1ea1; production Worker 1d5e854b-ca59-4a38-97fd-80cef4d2146b. GitHub v2.1.0 published with matching DMG digest. See ../releases-2.1.0.md for signatures, notarization, hash and limits.
+
+Apple https://support.apple.com/102527 rechecked: Rosetta remains generally available through macOS 27, with limited older-game support in macOS 28; main executable findings do not cover plug-ins or determine game exceptions. Protected Apple Intelligence locations were unreadable in signed-app QA and remained explicitly partial. No universal 30 GB footprint or recoverable-space claim.
+
+Validation: 76 Swift tests, 55 website tests, typecheck, lint, production build, desktop/390px review and all 176 local/live HTTP SEO checks passed. Live primary/versioned DMGs and feed match verified local artifacts. In-app update from installed 2.0.0 (11) to 2.1.0 (12) installed and relaunched; existing developer license preserved. Anonymous analytics endpoints return 401. Verification used ClearDisk-QA; update archive excluded from primary download metrics. No new aggregate metrics fetched, no new keyword-volume data and no fresh Google recrawl/indexing claim. Sitemap validated; payment mode, license implementation, consent analytics and Talivia pause preserved.
+
+
 ## 4 October 2026 — FAQ and snippet improvements (owner request, campaign day 22)
 
 Publication verified: source commit 1e94b1c pushed to main; deployed personal-account Worker version 2b62dabf-d720-4b0e-a04f-bcaab430c54c. Removed only obsolete legacy_env from an ignored generated deployment config, preserving bindings. All 176 live HTTP SEO checks passed. Browser confirmed the live new FAQ answer and October 4 date. Sitemap remains 171 URLs with October 4 modification dates for the three edited content pages. Both private analytics routes return anonymous 401/private-no-store/noindex; DMG and appcast HEAD return 200/noindex. DMG contents were not downloaded in this run, so no new checksum claim. IndexNow accepted the three revised content URLs (200); Google recrawl/indexing/snippet display for this revision is not yet verified.
