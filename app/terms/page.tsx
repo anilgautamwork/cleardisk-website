@@ -21,8 +21,8 @@ export default function Terms() {
         <p>
           The price is $10 USD, paid once and shown in your local currency at
           checkout, for a personal, non-transferable license on up to three Macs
-          you own. It includes all 1.x updates and ClearDisk 2.0.0. Existing
-          license keys also work with 2.0.0. No subscription is required.
+          you own. It includes all 1.x updates and ClearDisk 2.1.0. Existing
+          license keys also work with 2.1.0. No subscription is required.
           License keys may not be shared or resold. Your key appears on the
           confirmation page and is emailed to the address used at checkout.
         </p>

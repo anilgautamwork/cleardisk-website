@@ -6,7 +6,7 @@ import { visitorPrice } from '@/lib/visitor-price';
 import { Check, ShieldCheck } from 'lucide-react';
 export const metadata = pageMetadata(
   'Buy ClearDisk — $10 once',
-  'Buy the ClearDisk 2.0.0 cleanup license for $10, paid once. Your key arrives instantly on screen and by email. 30-day refund.',
+  'Buy the ClearDisk 2.1.0 cleanup license for $10, paid once. Your key arrives instantly on screen and by email. 30-day refund.',
   '/buy-now',
 );
 export default async function Buy() {
@@ -29,7 +29,7 @@ export default async function Buy() {
             Yours to keep.
           </h1>
           <p>
-            The ClearDisk 2.0.0 license unlocks cleanup on three Macs you own.
+            The ClearDisk 2.1.0 license unlocks cleanup on three Macs you own.
             Pay once, unlock the current release, and leave the subscriptions
             behind.
           </p>
@@ -52,7 +52,7 @@ export default async function Buy() {
             </li>
             <li>
               <Check />
-              ClearDisk 2.0.0 · no subscription
+              ClearDisk 2.1.0 · no subscription
             </li>
             <li>
               <ShieldCheck />
@@ -72,7 +72,7 @@ export default async function Buy() {
         </div>
         <aside className="checkout-aside">
           <EmbeddedCheckoutCard
-            label={`Buy ClearDisk 2.0.0 · ${price.display}`}
+            label={`Buy ClearDisk 2.1.0 · ${price.display}`}
           />
         </aside>
       </main>

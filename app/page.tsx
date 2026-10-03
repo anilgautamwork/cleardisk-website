@@ -55,7 +55,7 @@ const faqs: [string, string, string?][] = [
   ],
   [
     'Is this another subscription?',
-    'No. The $10 one-time license covers up to three Macs you own including ClearDisk 2.0.0. There is no monthly or annual charge.',
+    'No. The $10 one-time license covers up to three Macs you own including ClearDisk 2.1.0. There is no monthly or annual charge.',
   ],
   [
     'Does ClearDisk upload my files?',
@@ -441,7 +441,7 @@ export default async function Home() {
                 </li>
                 <li>
                   <Check />
-                  ClearDisk 2.0.0 included
+                  ClearDisk 2.1.0 included
                 </li>
               </ul>
               <Link className="button primary" href="/buy-now">

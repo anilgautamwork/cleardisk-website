@@ -44,7 +44,7 @@ export default function About() {
         <h2>One price, no subscription</h2>
         <p>
           The license is paid once, covers up to three Macs you own, and
-          includes ClearDisk 2.0.0. Prices are shown in your local currency at
+          includes ClearDisk 2.1.0. Prices are shown in your local currency at
           checkout. If ClearDisk is not for you, ask for a refund within 30 days
           from <a href="mailto:hello@cleardisk.app">hello@cleardisk.app</a>.
         </p>

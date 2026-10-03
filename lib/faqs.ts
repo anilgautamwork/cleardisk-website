@@ -435,7 +435,7 @@ export const faqTopics: FaqTopic[] = [
         id: 'price',
         question: 'How much does ClearDisk cost, and is it a subscription?',
         answer:
-          'A one-time license of $10, shown in your local currency at checkout, covers up to three Macs you own including ClearDisk 2.0.0. There is no monthly or annual charge.',
+          'A one-time license of $10, shown in your local currency at checkout, covers up to three Macs you own including ClearDisk 2.1.0. There is no monthly or annual charge.',
       },
       {
         id: 'what-cleanup-does',

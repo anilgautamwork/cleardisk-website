@@ -3,7 +3,7 @@ import { Header, Footer, DownloadButton } from '@/components/brand';
 import { pageMetadata } from '@/lib/seo';
 export const metadata = pageMetadata(
   'ClearDisk features — understand your Mac storage',
-  'Explore ClearDisk’s local disk scanner, storage map, System Data breakdown, developer cleanup and iCloud Doctor. Free scanning on macOS 15 and later.',
+  'Explore ClearDisk’s local disk scanner, storage map, System Data breakdown, developer cleanup, iCloud Doctor and read-only Mac checks. Free scanning on macOS 15 and later.',
   '/features',
 );
 export default function Features() {
@@ -65,6 +65,28 @@ export default function Features() {
             <Link href="/icloud-doctor">
               Explore iCloud Doctor and its limits
             </Link>
+          </section>
+          <section>
+            <h2>Apple Intelligence storage</h2>
+            <p>
+              Open Mac checks to inspect recognized Apple Intelligence model and
+              support folders. See measured sizes and which locations could not
+              be read. macOS manages these files; ClearDisk does not remove them,
+              and protected locations can leave an incomplete total.
+            </p>
+            <Link href="/download">Get Mac checks in ClearDisk 2.1.0</Link>
+          </section>
+          <section>
+            <h2>Find Intel-only apps</h2>
+            <p>
+              Review the main executables of apps in your Applications folders
+              without launching them. Intel-only, Universal, Apple silicon and
+              undetermined results stay distinct. Check with each developer for
+              updates; this scan does not audit plug-ins or helper programs.
+            </p>
+            <a href="https://support.apple.com/102527">
+              Apple’s Intel app compatibility guidance
+            </a>
           </section>
           <section>
             <h2>You stay in control</h2>

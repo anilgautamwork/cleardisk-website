@@ -6,6 +6,27 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>ClearDisk</title>
         <item>
+            <title>2.1.0</title>
+            <pubDate>Sun, 04 Oct 2026 03:26:16 +0530</pubDate>
+            <link>https://cleardisk.app/download</link>
+            <sparkle:version>12</sparkle:version>
+            <sparkle:shortVersionString>2.1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>ClearDisk 2.1.0</title></head><body>
+<h1>ClearDisk 2.1.0</h1>
+<p>Two new read-only checks, built into ClearDisk.</p>
+<ul>
+<li><strong>Apple Intelligence storage:</strong> measure recognized model and support folders, see where they live, and understand which locations could not be read. macOS manages these assets; ClearDisk does not delete them.</li>
+<li><strong>Intel app review:</strong> find installed apps with Intel-only main executables before upgrading beyond macOS 27. Universal, Apple silicon and undetermined results stay distinct. Plug-ins and helper programs need a separate review.</li>
+</ul>
+<p>Open Mac checks in the sidebar. A full disk scan is not required. Neither check changes your files.</p>
+<p><a href="https://support.apple.com/102527">Read Apple's Rosetta compatibility guidance</a>, including the limited exception for certain older games.</p>
+</body></html>
+]]></description>
+            <enclosure url="https://cleardisk.app/updates/ClearDisk-2.1.0-12.dmg" length="6287199" type="application/octet-stream" sparkle:edSignature="JN7j/uTPvYyHV4UpxZ8prEqaYuVT0bCiCwXpZpE0HwVfulyOeM/vf+nutCcRH8w2D3mWdyhUaMiumbClFfS9CQ=="/>
+        </item>
+        <item>
             <title>2.0.0</title>
             <pubDate>Tue, 22 Sep 2026 18:28:42 +0530</pubDate>
             <link>https://cleardisk.app/download</link>
@@ -43,6 +64,6 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     </channel>
 </rss>
 <!-- sparkle-signatures:
-edSignature: EqzkCUZ4h02xcAwt6wG6sITnp79iN763OfotfIYDUiIslb+b3Zk4FRlF7mifbPNB9v6GFgk3Nvy8F6D6NQr2CA==
-length: 2982
+edSignature: o+xcUX2jEpp2zJ6rE8EBY2H/Y0fwRlBD1zBM7q/C+jYWK63hhQMEvZ/KumKn4PNmbJ1mtN6CiD8Pbm6uco5sAA==
+length: 4617
 -->
