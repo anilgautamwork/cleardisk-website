@@ -1,5 +1,40 @@
 # SEO loop progress log
 
+## Campaign day 21 — 3 October 2026 (fresh Google evidence)
+
+Regained read-only Search Console access through the existing anilgautamwork@gmail.com browser session. No new verification, permissions or credentials were needed. Used Google's page-performance recommendation to open an equal-window comparison, then removed the page filter to read property totals. This replaces the September 29 observation as the latest Google evidence; earlier entries remain historical.
+
+Web (text), all countries/devices, September 22–28 versus September 15–21:
+
+| Metric | September 15–21 | September 22–28 |
+| --- | ---: | ---: |
+| Clicks | 1 | 5 |
+| Impressions | 59 | 660 |
+| CTR shown by Google | 1.7% | 0.8% |
+| Average position | 34.3 | 14.3 |
+
+Source: [authenticated performance comparison](https://search.google.com/u/2/search-console/performance/search-analytics?resource_id=https%3A%2F%2Fcleardisk.app%2F&start_date=20260922&end_date=20260928&compare_start_date=20260915&compare_end_date=20260921&metrics=IMPRESSIONS). Report said “Last update: 5 hours ago” when read. These are historical, complete seven-day windows, not today's totals or keyword search volumes. Small counts and changing query/page mix limit interpretation; no causal claim about recent edits, revenue or fixed-keyword ranking.
+
+Page evidence, same dates and search type:
+
+| Existing guide | Earlier impressions | Later impressions |
+| --- | ---: | ---: |
+| /what-is-system-data-on-mac | 2 | 90 |
+| /how-to-check-storage-on-mac | 6 | 80 |
+| /icloud-drive-status-icons-mac | 4 | 50 |
+| /keep-icloud-files-downloaded-mac | 1 | 45 |
+| /delete-macos-installer-mac | 1 | 37 |
+
+The System Data explainer had zero clicks in both windows and average position 7 earlier versus 14.3 later. Its 4,400% impression recommendation is mathematically correct but rests on two earlier impressions; it is not a ranking improvement. Its visible query rows include “what is system data on mac” (four later impressions), “system data mac storage” (four), and “macos system data”, “where is system data on mac”, “what is system data in storage”, “how to see system data on mac” and “how to find system data on mac” (one each). All displayed earlier counts were zero. The seven visible rows account for only 13 of the page's 90 impressions; they are not a complete query census. Property-level visible queries also include “how to check storage on mac” (three versus zero) and “how to view storage on mac” (three versus three); those rows were not page-filtered and must not be assigned to one guide without checking.
+
+Next content review: prioritize /what-is-system-data-on-mac and /how-to-check-storage-on-mac, inspecting their existing definition, settings path and size-interpretation explanations before editing. Both already exist; preserve their URLs and avoid duplicate variants. Fresh Apple-source checks are required for any new technical advice. This run added no troubleshooting instructions or public prose, so no new technical-source research or Humanize assessment was needed. No personal voice or detector claim.
+
+Google's [sitemap report](https://search.google.com/u/2/search-console/sitemaps?resource_id=https%3A%2F%2Fcleardisk.app%2F) shows Success, last read October 2, 171 discovered pages. [Page indexing](https://search.google.com/u/2/search-console/index?resource_id=https%3A%2F%2Fcleardisk.app%2F) remains dated September 21 with 65 indexed and 11 not indexed. Do not subtract these lagged counts from the current sitemap total or claim recent edits have been indexed. No indexing request submitted. No new paid or free keyword-volume estimate was collected.
+
+Current private metrics at 2026-10-03T13:38:00.057Z: 74 website download requests/30 UTC days and 11/7; 147 arrivals, 12 finished-transfer events and six checkout sessions/30 days; four all-time live-session license records; GitHub two cumulative separately. Requests are not unique users or installs, arrivals may include QA, checkout counts include test mode, license totals do not subtract refunds and windows differ. No campaign-attribution or revenue claim. Credentials stayed local and were neither printed nor committed.
+
+Repository main was clean and matched origin after fetching. Authenticated deployment history confirms unchanged Worker 9dea131e-a1f0-4a6b-aa64-b48136098d89. Live /containers-folder-mac, /download and /sitemap.xml return 200; container guide retains its October 2 date, download reports 2.0.0, and sitemap has 171 URLs. DMG HEAD returns 200/noindex; anonymous /analytics and /api/analytics return 401/private-no-store/noindex. Verification used ClearDisk-QA and no DMG body request. No fresh checksum claim. Documentation diff checked; no runtime changes, build, new publication or deployment. Payment/license implementation, app, design and Talivia pause unchanged. Existing creator drafts remain unsent. Campaign ends October 12.
+
 ## Campaign day 20 — 2 October 2026 (container measurement correction)
 
 Published https://cleardisk.app/containers-folder-mac . Replaced wildcard size commands that discarded permission errors and kept only 15 results with quoted, one-level du commands. The guide now explains incomplete measurements, parent totals and the option to stop at an access prompt. Shortened the container definitions and clarified the matching access FAQ. Existing saved-data warnings and ClearDisk’s removal guard remain. No new page, layout or dependency; Article/sitemap modification date is October 2.
@@ -12,7 +47,7 @@ Humanize: used the already authorized generic edit; neither local voice-profile 
 
 Source 7171fe2 pushed to main. Clean starting tree and matching remote confirmed; prior production d433b9ee-2889-4ca2-912c-116995e63d5f checked through authenticated Wrangler. Deployed to the same personal-account Worker as 9dea131e-a1f0-4a6b-aa64-b48136098d89. The current CLI used a temporary generated config omitting only obsolete legacy_env; no source configuration, bindings or credentials changed.
 
-Validation: 53 tests, typecheck, lint, production build and 176 local HTTP SEO checks passed. All 176 live HTTP SEO checks passed.. Exact live commands, text/date and the October 2 sitemap entry verified; sitemap remains 171 URLs. IndexNow accepted this one URL (200), not a Google indexing confirmation. No fresh browser visual review was available; unchanged renderer/layout and actual compiled/live HTML were checked. Public download/updater still report 2.0.0. DMG unchanged at 6,048,127 bytes and SHA256 375d29ab6f6586aff751389acdfbd165bf88e2f15594e0aaec81b45029be1903, with noindex. Both anonymous analytics routes remain 401/private/no-store/noindex. Payment mode, licenses, Google configuration and Talivia pause preserved.
+Validation: 53 tests, typecheck, lint, production build and 176 local HTTP SEO checks passed. All 176 live HTTP SEO checks passed. Exact live commands, text/date and the October 2 sitemap entry verified; sitemap remains 171 URLs. IndexNow accepted this one URL (200), not a Google indexing confirmation. No fresh browser visual review was available; unchanged renderer/layout and actual compiled/live HTML were checked. Public download/updater still report 2.0.0. DMG unchanged at 6,048,127 bytes and SHA256 375d29ab6f6586aff751389acdfbd165bf88e2f15594e0aaec81b45029be1903, with noindex. Both anonymous analytics routes remain 401/private/no-store/noindex. Payment mode, licenses, Google configuration and Talivia pause preserved.
 
 Private aggregate metrics before publication at 2026-10-02T10:03:04.194Z and after QA at 10:07:15.140Z were unchanged: 71 website download requests/30 UTC days, 11/7 days; 117 arrivals, nine finished-transfer events and five checkout sessions/30 days; three all-time live-session license records; GitHub two cumulative separately. ClearDisk-QA excluded verification downloads. Counts are not unique people, installs or attributable sales; arrivals can include QA, checkout counts include test mode, license totals do not subtract refunds, and rolling windows differ. Secrets remained local and were not printed or committed.
 

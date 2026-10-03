@@ -2,11 +2,25 @@
 
 Campaign schedule: 13 September–12 October 2026, 30 calendar days. The owner explicitly chose 13 September. This ledger was first created on 15 September (campaign day 3); no earlier scheduled-run completion is inferred. Preserve the original end date rather than extending the campaign when a ledger is missing. Prior manual work is in progress.md.
 
+## Day 21 — 3 October 2026 (Search Console comparison)
+
+Read Search Console in the authorized work account and compared equal seven-day Web (text) windows. September 22–28 recorded 660 impressions, five clicks, 0.8% CTR and average position 14.3; September 15–21 recorded 59 impressions, one click, 1.7% CTR and average position 34.3. Visibility increased from a small baseline, while CTR fell. The query/page mix changed; these totals do not establish a ranking gain for a fixed keyword or the effect of a particular edit.
+
+The existing /what-is-system-data-on-mac guide received 90 impressions versus two, with no clicks in either window. Its average position was 14.3 versus 7, so Google's 4,400% impression alert must not be presented as a ranking improvement. /how-to-check-storage-on-mac received 80 impressions versus six. Prioritize these two existing guides for the days 22–26 review, using their actual questions and checking current content before making changes. Do not create keyword-variant copies. Detailed query evidence is in progress.md.
+
+Google last read /sitemap.xml on October 2: Success, 171 discovered pages. The indexing report still has September 21 data: 65 indexed and 11 not indexed. That lag does not establish the status of recent revisions. No indexing submission or configuration change was made.
+
+At 2026-10-03T13:38:00.057Z, private metrics show 74 website download requests/30 UTC days, 11/7; 147 arrivals, 12 finished transfers and six checkout sessions/30 days; four all-time live-session license records; GitHub two cumulative separately. These are not unique users, installs or attributable revenue; QA/test/refund and rolling-window caveats remain. No secrets were printed or committed.
+
+Confirmed clean main matched origin and the existing Worker is still 9dea131e-a1f0-4a6b-aa64-b48136098d89. Containers guide, download and sitemap return 200; sitemap contains 171 URLs, download still reports 2.0.0, and the DMG HEAD returns 200/noindex. Both anonymous analytics routes remain 401/private-no-store/noindex. Checks used ClearDisk-QA and did not fetch the DMG body. Documentation-only evidence update: no new article, changed public URL, build or deployment. Markdown diff checked. Payment/license behavior, design and Talivia pause preserved.
+
+Next: review the System Data explainer and storage-check guide for specific gaps revealed by these queries, then validate any correction against current primary sources. Keep creator drafts unsent pending owner review. Campaign still ends October 12; no paid services or external outreach.
+
 ## Day 20 — 2 October 2026 (Containers guide accuracy)
 
 Published https://cleardisk.app/containers-folder-mac with commands that retain permission errors and include hidden subfolders, an explanation of partial measurements/parent totals, and clearer app-access guidance. Current Apple sources and the generic Humanize pass are documented in progress.md. Verified command behavior with temporary generated files only; no personal app data or permissions changed. No new article or layout change.
 
-Source 7171fe2 pushed to main; Worker 9dea131e-a1f0-4a6b-aa64-b48136098d89 deployed. All 53 tests, typecheck, lint, build and 176 local HTTP SEO checks passed. All 176 live HTTP SEO checks passed.. Live content/date verified; sitemap remains 171 URLs with this guide’s October 2 lastmod. IndexNow accepted one URL (200), not Google indexing. App 2.0.0 DMG size/hash and updater unchanged; analytics endpoints remain anonymous 401/private-no-store/noindex. No fresh visual browser review was available; renderer and design unchanged. Payments/licenses and Talivia pause preserved.
+Source 7171fe2 pushed to main; Worker 9dea131e-a1f0-4a6b-aa64-b48136098d89 deployed. All 53 tests, typecheck, lint, build and 176 local HTTP SEO checks passed. All 176 live HTTP SEO checks passed. Live content/date verified; sitemap remains 171 URLs with this guide’s October 2 lastmod. IndexNow accepted one URL (200), not Google indexing. App 2.0.0 DMG size/hash and updater unchanged; analytics endpoints remain anonymous 401/private-no-store/noindex. No fresh visual browser review was available; renderer and design unchanged. Payments/licenses and Talivia pause preserved.
 
 Metrics before publication at 2026-10-02T10:03:04.194Z and after verification at 10:07:15.140Z: unchanged 71 website requests/30 UTC days, 11/7; 117 arrivals, nine finished transfers and five checkouts/30 days; three all-time live-session license records; GitHub two cumulative separately. Verification used ClearDisk-QA. Counts are not unique users, installs or attributable sales; test/refund/QA/rolling-window caveats remain. No fresh Search Console dataset; September 29 remains latest recorded evidence and indexing of this revision is unverified.
 
