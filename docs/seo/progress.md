@@ -1,5 +1,20 @@
 # SEO loop progress log
 
+## Day 22 follow-up — 4 October 2026 (reviewer brief after release)
+
+Campaign remains September 13 through October 12. Read the existing day-22 FAQ publication and completed 2.1.0 release first; did not duplicate their work or publish a filler article. Updated the existing creator shortlist to 2.1.0 and prepared [a reviewer brief](outreach/2026-10-04-reviewer-brief.md), including an optional MacSparky pitch, download/release links, a read-only evaluation outline and explicit partial-model/main-executable limits. The new pitch is an alternative to the earlier sample-file pitch, not a second message to send. No outreach, review license, paid placement or recording was performed.
+
+Source checks: https://support.apple.com/102527 ; https://support.apple.com/en-us/121115 ; https://www.macsparky.com/about/ . Confirmed Rosetta's macOS 28 exception and separate-component caveat, hardware-dependent Apple Intelligence requirements, and MacSparky's direct contact route with its rejection of paid links/cross-posting. Product-review acceptance remains unverified. Release facts are supported by docs/releases-2.1.0.md and the live 2.1.0 GitHub release; older sample screenshots are explicitly labelled as an earlier version. Used the Humanizer skill for a generic concrete edit, without a personal voice profile or detector claim.
+
+Metrics at 2026-10-04T10:03:37.206Z: 77 website download requests/30 UTC days, 12/7; 167 arrivals, 13 finished-transfer events and six checkout sessions/30 days; four all-time live-session license records; GitHub two cumulative separately. These are requests/events rather than unique people or installs; arrivals can include QA, checkouts include test mode, and license records do not subtract refunds. No campaign attribution or revenue inference. The first summarizer expected an object where the endpoint returns a daily list; corrected the local summarizer to use the dashboard's count aggregation. Credentials stayed local.
+
+Verified /download and /updates/appcast.xml both advertise 2.1.0, and /features and /sitemap.xml return 200. Sitemap has 171 URLs. Primary DMG HEAD returns 200; both analytics endpoints return anonymous 401. Used ClearDisk-QA and no DMG body request. No new checksum or notarization claim beyond the release evidence. GitHub v2.1.0 is published (not draft). Main matched origin before edits; preserved the unrelated docs/seo/2026-09-27-live-site-audit.md edit.
+
+No public URL changed, new deployment, app change or runtime build. Latest recorded production Worker remains 1d5e854b-ca59-4a38-97fd-80cef4d2146b from the verified release; this run checked live content, not authenticated deployment history. No fresh Search Console dataset was fetched; October 3 remains the latest recorded comparison and indexing evidence. No claim that today's revisions are indexed. Markdown diff and local document links checked.
+
+Next: allow time for the already-published two Search Console priorities to be recrawled; inspect their next complete comparison before another rewrite. Reviewer material is available for owner review; sending still requires exact-recipient/message approval. New Mac checks video remains unrecorded. No need to redeploy documentation-only changes; payment mode, $10 license, app artifacts, design, private analytics and Talivia pause preserved.
+
+
 ## 4 October 2026 — ClearDisk 2.1.0 release publication
 
 GitHub tag workflow initially failed on its missing release manifest; recovery commit bb167ae and manual run 37157573051 succeeded. Published app assets were unchanged. See the release record for the exact cause and recovery.

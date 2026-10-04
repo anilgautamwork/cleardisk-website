@@ -2,7 +2,7 @@
 
 Campaign day 15. Research and drafts only: nothing sent, posted, booked or paid for. Five candidates below are ranked by relevance, not audience size or expected conversions. A public contact route does not establish that someone accepts product pitches. Recheck that before sending, then obtain the owner's explicit authorization for the exact recipient and message.
 
-The current release is ClearDisk 2.0.0, macOS 15+. Scanning is free; the existing cleanup license is $10 once for three Macs, with regional pricing shown by the website. Scans run locally; activation and update checks use the network. No review license, sponsorship, affiliate arrangement or guaranteed coverage is offered in these drafts.
+The current release is ClearDisk 2.1.0 (build 12), macOS 15+. See the [reviewer brief](2026-10-04-reviewer-brief.md) for verified release details and the limits of the new Mac checks. Scanning is free; the existing cleanup license is $10 once for three Macs, with regional pricing shown by the website. Scans run locally; activation and update checks use the network. No review license, sponsorship, affiliate arrangement or guaranteed coverage is offered in these drafts.
 
 ## 1. Antoine van der Lee — SwiftLee
 
@@ -125,3 +125,9 @@ Humanize: authorized generic ClearDisk edit; neither local voice-profile file ex
 Revised only the MacSparky draft to use today's already-published sample evidence. Verified its two guide links and screenshot assets; all returned 200. Rechecked MacSparky's own contact policy and kept its restrictions above. No new prospect, pitch delivery, paid placement, review license or follow-up sequence. The owner must personally review the draft before authorizing a send.
 
 Generic Humanize edit: replaced a future-demo request with the actual three-file test and one useful link. Subjective assessment for the revised message: 9/69 before (2 statistical, 4 composition, 3 document), estimated 6/69 after (1, 2, 3), surgical edit. These are editorial judgments, not detector scores. No separate personal voice profile was assumed.
+
+## October 4 release follow-up
+
+The notarized 2.1.0 download and signed update feed are live. The [reviewer brief](2026-10-04-reviewer-brief.md) includes the new checks, their limits and a short optional MacSparky release pitch. This is an alternative to the existing sample-file pitch, not a second message to send to the same person. No messages have been sent.
+
+Rechecked MacSparky's About page on October 4: desk@macsparky.com remains the direct route; paid link deals and cross-posting pitches are rejected. Product-review acceptance is still unverified. Other candidates' contact policies were not rechecked today. Existing unrecorded demos and all send approvals remain pending.
