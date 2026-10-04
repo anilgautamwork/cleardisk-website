@@ -1222,6 +1222,13 @@ article.guide-card:focus-within {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
+.footer p a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.footer p a:hover {
+  color: #6845bd;
+}
 .footer-bottom {
   grid-column: 1 / -1;
 }

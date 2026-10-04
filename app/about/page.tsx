@@ -31,6 +31,12 @@ export default function About() {
           writes the storage guides on this site, checks them against Apple’s
           documentation, and answers support mail.
         </p>
+        <p>
+          Anil Gautam also makes{' '}
+          <a href="https://whyslow.app/?ref=cleardisk">WhySlow</a>, a Mac app
+          that explains in plain English why your Mac is slow. ClearDisk frees
+          storage; WhySlow explains CPU and memory slowdowns.
+        </p>
         <h2>How it works, and what it never does</h2>
         <p>
           Everything ClearDisk learns about your files stays on your Mac. The

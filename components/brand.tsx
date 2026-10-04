@@ -73,6 +73,11 @@ export function Footer() {
           ClearDisk
         </Link>
         <p>A little less clutter. A lot more possibility.</p>
+        <p>
+          More Mac apps by Anil Gautam:{' '}
+          <a href="https://whyslow.app/?ref=cleardisk">WhySlow</a>, find out why
+          your Mac is slow.
+        </p>
       </div>
       <nav className="footer-groups" aria-label="Footer navigation">
         {[
