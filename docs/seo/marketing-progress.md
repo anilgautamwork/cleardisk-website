@@ -1,5 +1,33 @@
 # ClearDisk 30-day marketing progress
 
+## Day 23 — 5 October 2026 (Google recrawl verification)
+
+Campaign remains September 13 through October 12. Checked the two existing Search Console priorities after the October 4 edits. No duplicate article or further rewrite; this run establishes crawl status before assessing content performance.
+
+Read the authorized anilgautamwork@gmail.com Search Console session. The sitemap report shows Success, last read October 4, 171 discovered pages. Discovery is not a claim that all 171 pages are indexed.
+
+| URL | Indexed status | Last crawl shown by Google | Canonical |
+| --- | --- | --- | --- |
+| /what-is-system-data-on-mac | URL is on Google; page indexed | 4 Oct 2026, 22:18:53 | Google-selected canonical is the inspected URL |
+| /how-to-check-storage-on-mac | URL is on Google; page indexed | 1 Oct 2026, 09:24:46 | Google-selected canonical is the inspected URL |
+
+Times above are exactly as displayed; the report did not label their timezone. Both were fetched successfully by Googlebot smartphone, allow crawl/indexing, use HTTPS and have one valid Breadcrumb item. System Data has been crawled since the recorded October 4 revision. This does not establish its displayed snippet or ranking. Storage-check's last crawl predates that revision.
+
+Requested indexing once for https://cleardisk.app/how-to-check-storage-on-mac. Google confirmed “Indexing requested” and that the URL was added to its priority crawl queue. No challenge was presented or solved. Do not repeat the request on the next daily run; Google says repeats do not change priority. Acceptance is not proof that the new revision has been crawled or indexed. Saved local proof at /tmp/cleardisk-indexing-request-2026-10-05.jpg.
+
+The individual inspection Discovery fields showed “No referring sitemaps detected” for System Data and “Temporary processing error” for storage-check. Both URLs are present in the public sitemap, and the sitemap-level report is successful. No basis to change sitemap URLs or resubmit the sitemap from these fields alone.
+
+Sources: authenticated Google sitemap report https://search.google.com/u/2/search-console/sitemaps?resource_id=https%3A%2F%2Fcleardisk.app%2F ; URL inspection through the property's search field for the two URLs above. No new keyword volumes, performance comparison or technical troubleshooting advice. October 3 remains the latest recorded equal-window performance comparison; today's evidence updates crawl/indexing status only. Humanizer prose editing was unnecessary because no public content was written.
+
+Private aggregate metrics at 2026-10-05T10:03:05.873Z: 72 website download requests/30 UTC days, 12/7; 177 arrivals, 14 finished-transfer events and seven checkout sessions/30 days; four all-time live-session license records; GitHub two cumulative separately. The rolling 30-day request total is lower than yesterday's 77; totals from moving windows cannot be read as lost downloads. Requests are not unique people or installs, arrivals may include QA, checkouts include test mode and license records do not subtract refunds. No revenue or campaign-attribution claim. Credentials were kept local and never printed or committed.
+
+Verification: the two guides, /download and /sitemap.xml return 200; /download reports 2.1.0; sitemap contains 171 URLs. DMG HEAD returns 200 and both private analytics endpoints return anonymous 401. Used ClearDisk-QA and did not fetch the DMG body. GitHub v2.1.0 remains published (not draft). Git main matched origin after fetch; the unrelated docs/seo/2026-09-27-live-site-audit.md edit is preserved. No new checksum, authenticated deployment-history or notarization check claimed; the last verified Worker remains the release record's 1d5e854b-ca59-4a38-97fd-80cef4d2146b.
+
+No public routes changed and no new deployment or runtime build was needed. Documentation diff checked. App artifacts, $10 license, payment mode, design, private analytics and Talivia pause unchanged. Reviewer drafts remain unsent.
+
+Next: verify the storage-check guide's crawl date on a later run without submitting it again, and compare complete post-edit search periods once available. Continue targeted existing-guide work only when there is a concrete content gap. Campaign ends October 12.
+
+
 ## Day 22 follow-up — 4 October 2026 (reviewer brief after release)
 
 Campaign remains September 13 through October 12. Read the existing day-22 FAQ publication and completed 2.1.0 release first; did not duplicate their work or publish a filler article. Updated the existing creator shortlist to 2.1.0 and prepared [a reviewer brief](outreach/2026-10-04-reviewer-brief.md), including an optional MacSparky pitch, download/release links, a read-only evaluation outline and explicit partial-model/main-executable limits. The new pitch is an alternative to the earlier sample-file pitch, not a second message to send. No outreach, review license, paid placement or recording was performed.
