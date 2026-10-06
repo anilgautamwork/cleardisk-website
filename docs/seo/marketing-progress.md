@@ -1,5 +1,28 @@
 # ClearDisk 30-day marketing progress
 
+## Day 24 — 6 October 2026 (iCloud status guide prepared; deployment blocked)
+
+Campaign remains September 13–October 12. Improved the existing /icloud-drive-status-icons-mac guide, selected from the October 3 Search Console comparison: 50 impressions in September 22–28 versus four in September 15–21. This is historical page evidence, not a new keyword-volume estimate or proof of rankings gained. No duplicate article.
+
+Source commit d5e30bc adds the missing explanation of absent Downloaded icons beside filenames, file-versus-sidebar transfer progress, concrete offline preparation, and the difference between Remove Download and deleting the synced original. Added a visible FAQ answer, a related link to /icloud-remove-download-missing-mac and a deletion source. The guide's content date and generated sitemap lastmod are October 6. Removed its obsolete 1.1 product reference while preserving iCloud Doctor's limits. Browser review also found an outdated version 2.0.0 in the shared article CTA; it now reads softwareSchema.softwareVersion (currently 2.1.0), affecting existing guides and blog posts. No other guide dates were advanced for this shared label correction.
+
+Primary sources checked October 6:
+- https://support.apple.com/en-ae/guide/mac-help/mchlc994344b/mac — Finder status column, absent Downloaded icon, transfer indicators.
+- https://support.apple.com/en-gb/guide/mac-help/mchl1a02d711/mac — Download Now, Keep Downloaded, Remove Download and local retention.
+- https://support.apple.com/en-ie/guide/icloud/mm3b7fcd0c10/icloud — deleting a cloud file affects other synced devices.
+
+Applied the installed Humanizer skill as a generic factual edit: replaced abstract advice with specific Finder actions and an offline presentation example. No personal voice profile, invented experience or AI-detection score. App source still implements the documented unknown/local/cloud-only observations. GitHub v2.1.0 is published (not draft); live /download and /updates/appcast.xml advertise 2.1.0. No new app build or release claim.
+
+Final validation: 55 tests pass, typecheck, lint, Cloudflare production build and 176 local HTTP SEO checks pass. Local sitemap has the target's October 6 date; the registry remains 171 sitemap URLs. Browser checked rendered copy, the working new section anchor, related guide and the corrected 2.1.0 CTA. No layout or styling change; no narrow-viewport test claimed. Preview screenshot: /tmp/cleardisk-guide-preview-2026-10-06.jpg. Removed only obsolete legacy_env from the ignored generated Wrangler config for local preview, preserving bindings. Git diff --check passed. An initial edit script stopped before writing because its guessed related slug was wrong; corrected to the existing canonical slug before final tests.
+
+Private metrics observed at 2026-10-06T10:08:16.463Z: 67 website download requests / rolling 30 UTC days (nine / seven days); 184 arrivals (108 / seven); 14 finished-transfer events (six / seven); seven checkout sessions (two / seven). Four all-time live-session license records and two cumulative GitHub downloads separately. Requests are not unique people or installs, arrivals can include QA, checkouts include test mode, and license counts do not deduct refunds. Rolling-window totals are not cumulative gains or losses. No revenue or attribution claim. Credentials stayed local and were not printed.
+
+Live pre-publication checks: guide, /download, /sitemap.xml and appcast return 200; sitemap contains 171 URLs; DMG HEAD returns 200; /analytics and /api/analytics return anonymous 401. Used ClearDisk-QA and no DMG GET. No fresh checksum or notarization validation. Current deployed guide revision remains unchanged; this run did not deploy.
+
+Blocker: Wrangler has no usable publishing session and requested authentication. A narrow-scope login attempt reached Cloudflare's saved personal-account sign-in screen for anilgautam1180@gmail.com, which explicitly says continuing agrees to its terms. Stopped before that agreement under the browser confirmation rules. OAuth then timed out. Owner needs to sign in/complete that agreement; restart Wrangler login afterward to refresh the existing publishing access. Authenticated deployment history could not be read, so the latest recorded Worker remains 1d5e854b-ca59-4a38-97fd-80cef4d2146b, not a fresh verification of the deployment ID.
+
+No fresh Search Console read or indexing request. October 5 is the latest recorded sitemap/inspection evidence; yesterday's accepted indexing request must not be repeated just because today is a new run. Today's unpublished revision cannot yet be indexed. No IndexNow submission before publication. Follow up after Cloudflare authentication: inspect current remote/deployment state, deploy the tested correction, verify live text/metadata/sitemap, DMG HEAD and analytics protection, then submit only the revised guide to IndexNow. Preserve payment mode, $10 license, app artifacts, design and Talivia pause. No outreach sent. The unrelated docs/seo/2026-09-27-live-site-audit.md edit remains unstaged.
+
 ## Day 23 — 5 October 2026 (Google recrawl verification)
 
 Campaign remains September 13 through October 12. Checked the two existing Search Console priorities after the October 4 edits. No duplicate article or further rewrite; this run establishes crawl status before assessing content performance.
