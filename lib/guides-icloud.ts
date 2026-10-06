@@ -96,14 +96,14 @@ export const icloudGuides: Guide[] = [
     summary:
       'File location and file availability are different facts. Use Finder’s iCloud Status column to understand what macOS reports before downloading, archiving or removing anything.',
     published: '2026-09-09',
-    updated: '2026-09-09',
+    updated: '2026-10-06',
     sections: [
       {
         id: '1-make-status-visible',
         title: 'Make status visible',
         paragraphs: [
           'Open iCloud Drive in Finder, switch to List view and turn on iCloud Status in View Options. Read the row for the individual item rather than relying only on the folder’s appearance. A folder can contain files in different stages.',
-          'Keep the path visible when comparing similarly named documents. Our practical advice is to record the exact item and time, since a status that was true before another app saved changes may no longer describe the latest version.',
+          'A downloaded file can have no status icon beside its name when the iCloud Status column is hidden. Show the column before treating a missing icon as a sync error.',
         ],
       },
       {
@@ -111,7 +111,7 @@ export const icloudGuides: Guide[] = [
         title: 'Separate availability from a problem',
         paragraphs: [
           'In iCloud describes content that needs a download before offline use. Downloaded indicates a locally available, up-to-date item. Keep Downloaded expresses an intention to retain it locally when storage optimization runs.',
-          'These are useful storage states, not a ranking from bad to good. For example, reference material you rarely open may be perfectly useful as cloud-only content. An upcoming presentation has a different requirement because you need its contents without a network.',
+          'For a presentation you need on a flight, Control-click the file and choose Keep Downloaded. Wait for the transfer to finish, then check that you can open it offline before leaving. A filename in Finder alone is not enough.',
         ],
       },
       {
@@ -119,19 +119,31 @@ export const icloudGuides: Guide[] = [
         title: 'Read pending and error states carefully',
         paragraphs: [
           'Waiting to Upload describes unfinished cloud storage of an item. Out of Space points to cloud capacity. Ineligible means the item cannot be stored there; inspect Apple’s current limits and the affected item instead of assuming all sync problems share one cause.',
-          'A transfer indicator suggests activity, but a screenshot alone cannot tell you how long that activity has lasted. Our recommendation is to compare the same item later and keep any explicit error text. Do not convert an unknown or missing value into a reassuring success label.',
+          'The pie-chart indicator shows transfer progress. Beside iCloud Drive in the sidebar it covers overall transfers; beside a file it refers to that item. If it seems stuck, note the filename and time, check it again later, and keep any error message for troubleshooting.',
         ],
       },
       {
         id: '4-use-observations-to-choose-an-action',
         title: 'Use observations to choose an action',
         paragraphs: [
-          'For offline access, request a download and verify it finishes. For a persistent upload issue, use the pending-upload guide. For local space, review uploaded local copies rather than deleting a file because a cloud icon looks unfamiliar.',
-          'ClearDisk 1.1’s iCloud Doctor groups observed metadata into errors, conflicts, pending transfers, local copies and cloud-only items. Its Unknown state remains a limitation of the observation. These results do not measure your whole iCloud account or inspect Photos, Notes and Messages.',
+          'To open a cloud-only file offline, Control-click it and choose Download Now. If an upload remains pending, keep the original and follow the pending-upload guide linked below.',
+          'ClearDisk’s iCloud Doctor groups the metadata it can read into errors, conflicts, pending transfers, local copies and cloud-only items. Unknown means it could not establish the state. It does not measure your whole iCloud account or inspect Photos, Notes and Messages.',
+        ],
+      },
+      {
+        id: '5-free-local-space',
+        title: 'Free local space without deleting the cloud original',
+        paragraphs: [
+          'For an uploaded file you no longer need offline, Finder offers Remove Download in the Control-click menu. This removes its local download. If Keep Downloaded is checked, uncheck it first. Check the file’s status afterward; opening it again can download it again.',
+          'Moving an iCloud Drive file to Trash deletes it from other devices using the same Drive. Keep the cloud original when your aim is only to reclaim Mac space. If Remove Download is unavailable, use the troubleshooting guide below instead of deleting the file or touching hidden sync folders.',
         ],
       },
     ],
     questions: [
+      {
+        q: 'Why is there no cloud icon beside my iCloud Drive file?',
+        a: 'Finder can omit the Downloaded icon beside the filename when the iCloud Status column is hidden. Enable that column in List view to check the state before assuming there is an error.',
+      },
       {
         q: "What's the difference between In iCloud and Downloaded status in Finder?",
         a: 'In iCloud describes content that needs a download before offline use, while Downloaded means the item is locally available and up to date. These are storage states, not a ranking from bad to good.',
@@ -153,8 +165,13 @@ export const icloudGuides: Guide[] = [
       'icloud-drive-stuck-uploading-mac',
       'keep-icloud-files-downloaded-mac',
       'icloud-drive-taking-up-space-on-mac',
+      'icloud-remove-download-missing-mac',
     ],
     sources: [
+      {
+        label: 'Apple: delete files in iCloud Drive',
+        url: 'https://support.apple.com/en-ie/guide/icloud/mm3b7fcd0c10/icloud',
+      },
       {
         label: 'Apple: check iCloud Drive file and folder status',
         url: 'https://support.apple.com/en-ae/guide/mac-help/mchlc994344b/mac',

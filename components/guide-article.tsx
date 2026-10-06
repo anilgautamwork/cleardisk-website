@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { ArrowRight, ArrowUpRight, ShieldCheck } from 'lucide-react';
 import { Header, Footer, DownloadButton } from './brand';
 import { getGuide, type Guide } from '@/lib/guides';
-import { guideSchema } from '@/lib/seo';
+import { guideSchema, softwareSchema } from '@/lib/seo';
 import { visitorPrice } from '@/lib/visitor-price';
 import { JsonLd } from './json-ld';
 
@@ -189,7 +189,7 @@ export async function GuideArticle({
           </div>
           <div>
             <DownloadButton label="Download free scanner" source="guides" />
-            <small>macOS 15+ · version 2.0.0</small>
+            <small>macOS 15+ · version {softwareSchema.softwareVersion}</small>
             <Link href="/pricing">
               Cleanup license: {price.display} once <ArrowRight size={13} />
             </Link>
