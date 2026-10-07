@@ -1,5 +1,21 @@
 # ClearDisk 30-day marketing progress
 
+## Day 25 — 7 October 2026 (pending iCloud correction published)
+
+Campaign: September 13–October 12. Published yesterday's completed work instead of adding another article. Source d5e30bc, main df9869d at deployment. Cloudflare access worked with the existing generated project config; no new login, agreement or permissions were requested today. Authenticated deployment history showed the previous production version was d20f382f-4cbb-4d5a-bb6d-5c023497bf80 (October 4), superseding the older last-recorded release version. Git main matched origin after fetch. Preserved the unrelated unstaged audit-document edit.
+
+Deployed the unchanged, previously validated build to personal account 449c51af2c638c0c3c88493d6175228b / cleardisk-website. New Worker version: d572aa51-4ddc-4728-82bd-c50f6f5de5bd. Published URL: https://cleardisk.app/icloud-drive-status-icons-mac . Verified its new missing-icon question and October 6 content date in live HTML, the additional related link through the full SEO checker, and the sitemap lastmod of 2026-10-06. Shared article download labels now derive version 2.1.0 from existing product metadata; verified on /blog/appcleaner-os-x. No other article dates advanced. Sitemap remains 171 URLs.
+
+All 176 live HTTP SEO checks passed after deployment, covering metadata, schema, related links, 404 behavior, sitemap, robots, DMG and OG image. The same source/build passed 55 tests, typecheck, lint, Cloudflare build and local HTTP checks on October 6; no new implementation changes today and no redundant rebuild. Local public and built DMGs both match the release SHA256 b4ba1ad14058d3be8e221d35566af8d6fad3926fc92c67a33869384d4b2abd99. Live DMG HEAD returns 200; no new remote-body checksum or notarization claim. /download and appcast advertise 2.1.0; GitHub v2.1.0 remains published. /analytics and /api/analytics both return anonymous 401, private/no-store and noindex/nofollow. Checks used ClearDisk-QA for content requests and HEAD for DMG probes, without download conversion traffic.
+
+IndexNow accepted the one revised guide URL (HTTP 200). This is not Google submission or evidence of indexing. No fresh Search Console session was read today; October 5 remains the latest recorded inspection/sitemap evidence, and October 3 the latest equal-window performance comparison. Did not repeat the October 5 indexing request. No current ranking or snippet claim.
+
+Source checks and Humanizer edit remain those completed October 6 and documented directly below: Apple's Finder-status, Drive-controls and synced-deletion pages. No additional technical guidance or personal voice claim was introduced today. Public content now contains those corrections; today's publication date does not replace its actual content-review date.
+
+Private aggregate observation at 2026-10-07T10:03:09.386Z: 64 website download requests / rolling 30 UTC days (10 / seven days), 203 arrivals (103 / seven), 15 finished-transfer events (seven / seven), and seven checkout sessions (two / seven). Four all-time live-session license records and two cumulative GitHub downloads separately. Requests/events are not unique people or installs; arrivals may include QA, checkouts include test mode, and license records do not subtract refunds. Moving-window changes are not cumulative gains or losses. No revenue or campaign-attribution inference; credentials never printed or committed.
+
+Next: use the next complete Search Console comparison to assess the existing priorities, allow the revised iCloud guide time to be crawled, and prepare the final campaign evidence by October 12. No need for daily rewrites, repeated indexing requests or duplicate articles. Reviewer materials remain local and unsent. App files, payment/license implementation, design, analytics privacy and Talivia pause preserved. The October 6 deployment blocker is resolved.
+
 ## Day 24 — 6 October 2026 (iCloud status guide prepared; deployment blocked)
 
 Campaign remains September 13–October 12. Improved the existing /icloud-drive-status-icons-mac guide, selected from the October 3 Search Console comparison: 50 impressions in September 22–28 versus four in September 15–21. This is historical page evidence, not a new keyword-volume estimate or proof of rankings gained. No duplicate article.
