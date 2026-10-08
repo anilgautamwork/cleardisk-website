@@ -1,5 +1,13 @@
 # ClearDisk 30-day marketing progress
 
+## 9 October 2026 — first recovery batch published and verified
+
+Published both existing guides from fc833c2 to Worker 2e3797b9-fc2c-41ff-b9d8-4583a4c51dc3 and pushed main. URLs: https://cleardisk.app/operation-not-permitted-terminal-mac and https://cleardisk.app/private-var-folders-mac . All 176 live HTTP SEO checks pass, following the final full 55-test suite (zero skips), typecheck, lint and production build. Desktop and 390px browser review verified readable prose, contained code scrolling, loaded real screenshot and no page overflow. Final diff/failure-path review covered incomplete totals, empty/failed path resolution and stale variables.
+
+Both updated routes return 200 and October 9 sitemap dates; sitemap remains 171 URLs. Download/appcast still advertise 2.1.0, DMG HEAD returns 200 and both private analytics routes return anonymous 401 with private/no-store and noindex/nofollow. QA traffic excluded; no DMG body request or new download aggregate. No Google indexing request or recovery claim. The two fixture-based tests do not establish whole-disk scan completeness, safe-boot cleanup or disk-space savings.
+
+The verified 15-page loss queue, next tasks and daily automation are in [recovery-review.md](recovery-review.md). Continue with the next concrete existing-page correction; no bulk articles or mass removals. Owner’s unrelated September 27 audit-document change remains unstaged. This publication resolves the preceding pending entry.
+
 ## 9 October 2026 — daily recovery work authorized; first two corrections prepared
 
 Owner requested daily fixes to the highest-loss 10–15 pages. Updated the existing heartbeat to ClearDisk daily content recovery, daily 10:00 Asia/Kolkata with no old campaign end date. No duplicate automation. Created [recovery-review.md](recovery-review.md) with 15 priorities measured directly in Search Console, October 1–3 versus October 4–6. The queue distinguishes completed work from pages awaiting deep review; the historical campaign record remains intact.
