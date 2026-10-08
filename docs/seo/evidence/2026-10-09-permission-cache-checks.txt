@@ -1,0 +1,40 @@
+Test date: 2026-10-09
+Host: macOS 27.0.1 (26A434)
+Fixtures only; no personal data, no deletion, no privacy changes.
+
+Locked-file flags
+exit=0
+uchg
+
+
+Attempt to append to locked disposable file
+exit=1
+
+zsh:1: operation not permitted: locked-note.txt
+
+Read-only folder measurement
+exit=0
+0B	sample-cache/restricted-example
+2.0M	sample-cache/com.example.video
+256K	sample-cache/.hidden-example
+512K	sample-cache/com.example.notes
+2.8M	sample-cache
+
+
+Unreadable fixture: partial output
+exit=1
+2.0M	sample-cache/com.example.video
+256K	sample-cache/.hidden-example
+512K	sample-cache/com.example.notes
+2.8M	sample-cache
+du: sample-cache/restricted-example: Permission denied
+DARWIN_USER_TEMP_DIR: exit=0, nonempty path=True; actual path omitted.
+DARWIN_USER_CACHE_DIR: exit=71, nonempty path=False; actual path omitted.
+getconf cache lookup was denied in the sandbox on the first run. Do not claim all process contexts can access it.
+Local man confstr and man du checked. No safe boot, private cache scan or Full Disk Access change performed.
+
+Published command guard test: failed lookup; no du call; exit 1.
+
+Published command guard test: empty lookup; no du call; exit 1.
+Final guard test with pre-existing cache variable: failed lookup; no du call; exit 71.
+Final guard test with pre-existing cache variable: empty lookup; no du call; exit 1.

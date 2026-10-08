@@ -1,5 +1,25 @@
 # ClearDisk 30-day marketing progress
 
+## 9 October 2026 — daily recovery work authorized; first two corrections prepared
+
+Owner requested daily fixes to the highest-loss 10–15 pages. Updated the existing heartbeat to ClearDisk daily content recovery, daily 10:00 Asia/Kolkata with no old campaign end date. No duplicate automation. Created [recovery-review.md](recovery-review.md) with 15 priorities measured directly in Search Console, October 1–3 versus October 4–6. The queue distinguishes completed work from pages awaiting deep review; the historical campaign record remains intact.
+
+Prepared /operation-not-permitted-terminal-mac and /private-var-folders-mac with verified command behavior, clearer limits, one genuine Finder screenshot of a disposable locked file, corrected FAQs and contextual links. Primary Apple sources and installed macOS manuals checked; Humanizer used for factual prose. No personal files deleted, no Full Disk Access or SIP changes. Live URLs retained; no new articles, noindex or removals. Full 55 tests (zero skipped), typecheck, lint, production build and all 176 local HTTP checks pass. Browser checked desktop and narrow layouts, loaded screenshot and link targets. Source/diff reviewed, including failed and empty cache-path lookups and stale-variable prevention. Publication pending; next task after publication is Steam storage and Library Caches review from the measured queue. No new download metrics or indexing claim in this run.
+
+## Day 27 — 9 October 2026 (owner-requested organic traffic investigation)
+
+Verified the October 4–6 collapse directly in Search Console and reviewed official Google update dates, manual actions/security, crawl history, links, publication history and October 3–4 deployment diffs. Full findings and prioritized next work: [organic traffic investigation](2026-10-09-organic-traffic-investigation.md). No proven site-specific spam penalty or current indexing blocker. Important caveats: 49 historical other-4XX crawl requests (visible examples September 27); 100 guides added September 24; only two article records have embedded figures; 220 reported external links originate from three cross-promoting sites. No comment-spam evidence found in the inspected report/source.
+
+All 176 current live HTTP SEO checks passed. Public URLs and production unchanged; no new article, indexing request, disavow or bulk removal. No fresh download aggregate queried. October 7–8 performance unavailable in the inspected GSC report, which ends October 6. Campaign remains September 13–October 12. Prioritize existing-guide evidence/corrections and complete-window monitoring over further bulk publishing. Automation settings unchanged; outreach remains unsent. Documentation-only work, unrelated audit-document edit preserved.
+
+## Day 26 — 8 October 2026 (publication record recovered October 9)
+
+Published the existing Homebrew package-listing correction, source e4151e1: https://cleardisk.app/homebrew-list-installed-packages. Clarified leaves versus manually installed packages, cask storage and dependency-related uninstall refusals; no new article. Homebrew primary documentation was checked during the edit. Full 55 tests (zero skips), typecheck, lint, production build and 176 local HTTP SEO checks passed during that run.
+
+Production version 73f33354-5ced-4088-8b85-14521fb85ddd was created October 8 at 10:10:23 UTC and independently confirmed in deployment history October 9. Changed guide, sitemap date, 2.1.0 download/appcast and anonymous analytics 401 protections were verified during the publication run. Its final full live check was interrupted, so its completion is not claimed; the fresh October 9 full 176-route check passed. IndexNow submission outcome is unknown; no Google indexing claim.
+
+Aggregate observation October 8 at 10:09:09.298Z: 61 download requests / rolling 30 UTC days (eight / seven days), 219 arrivals (106 / seven), 15 finished-transfer events (six / seven), seven checkouts (two / seven), four all-time license records and two cumulative GitHub downloads separately. These are not unique people, installs or attributable sales; checkouts include test mode, arrivals may include QA and license counts are not refund-adjusted. The previous historical Homebrew performance window must not be interpreted as growth after October 4.
+
 ## Day 25 — 7 October 2026 (pending iCloud correction published)
 
 Campaign: September 13–October 12. Published yesterday's completed work instead of adding another article. Source d5e30bc, main df9869d at deployment. Cloudflare access worked with the existing generated project config; no new login, agreement or permissions were requested today. Authenticated deployment history showed the previous production version was d20f382f-4cbb-4d5a-bb6d-5c023497bf80 (October 4), superseding the older last-recorded release version. Git main matched origin after fetch. Preserved the unrelated unstaged audit-document edit.

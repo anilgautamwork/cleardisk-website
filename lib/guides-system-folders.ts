@@ -654,16 +654,16 @@ export const systemFolderGuides: Guide[] = [
     description:
       'What /private/var/folders holds on a Mac: per-user temporary files and caches. How macOS cleans it, how to measure yours, and why not to delete it by hand.',
     summary:
-      '/private/var/folders holds each user’s temporary files and system-managed caches. macOS cleans much of it on its own. Don’t delete inside it by hand: measure it, restart, and if one app keeps filling it, fix that app.',
+      '/private/var/folders holds each user’s temporary files and system-managed caches. Temporary items and caches have different cleanup rules. Measure the folders you can read, keep any permission errors visible, and investigate the app responsible before considering cleanup.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-10-09',
     sections: [
       {
         id: 'what-lives-there',
         title: 'What lives there',
         paragraphs: [
           'Each user account on the Mac gets a folder inside /private/var/folders with a random-looking two-level name. Inside it, T holds temporary items, C holds caches and 0 holds per-user data for system services; other folders can appear alongside them. Apps and macOS put working files there that they don’t want in your Library. The path starts with /var because /var is a link to /private/var.',
-          'Apple’s File System Basics guide lists /var among the Unix folders Finder hides, describing it as the home of log files and other files whose content is variable. Apple’s Storage settings count temporary files and caches under System Data, which is where this folder’s size ends up.',
+          'Apple’s File System Basics guide lists /var among the Unix folders Finder hides, describing it as the home of log files and other files whose content is variable. Apple’s Storage settings include temporary files and caches in System Data. That category contains other data too, so this folder’s measured size is not a complete System Data total.',
         ],
       },
       {
@@ -671,28 +671,48 @@ export const systemFolderGuides: Guide[] = [
         title: 'How macOS cleans it',
         paragraphs: [
           'The confstr manual on your Mac (man confstr) documents the two folders apps are meant to use. Files in the temporary items folder may be removed by the system if they are not accessed in 3 days. The cache folder is not cleaned automatically, but its files are removed during a safe boot.',
-          'Apple’s safe mode article says the same thing from the other side: starting in safe mode clears some system caches, which are created again as needed. Between the automatic temporary-file cleanup, restarts and safe mode, macOS has supported ways to reset this folder, and none of them involve deleting it yourself.',
+          'Apple’s safe mode article says the same thing from the other side: starting in safe mode clears some system caches, which are created again as needed. Safe mode is a troubleshooting step, not a promise to empty all of /private/var/folders or permanently recover a particular amount of space.',
         ],
       },
       {
         id: 'measure-yours',
-        title: '1. Measure your own folders',
+        title: '1. Measure your own folders without hiding errors',
         paragraphs: [
-          'getconf prints the paths for your account, and du sizes them. The third command lists the largest items in your cache folder; most are named by an app’s bundle identifier, such as com.apple.Safari, which tells you whose files they are. All three commands only read.',
-          'Other accounts’ folders and system-owned ones are not readable without administrator rights, so the total you see covers your own account. That is fine: your folders are the ones your apps fill.',
+          'Open Terminal in Applications → Utilities. The first command group locates your account’s temporary and cache folders and measures their totals. The checks stop the command if a path lookup fails or returns nothing. These commands do not delete files; getconf may create the standard per-user directory if it does not already exist.',
+          'A successful du -sh prints one size and path per folder. The M and G suffixes use powers of 1024, so they may differ from Finder’s decimal display. These are allocated disk-use measurements, not a guarantee of space you could reclaim. Your account’s paths do not cover other users or every system-owned folder.',
+          'If you see Operation not permitted or Permission denied, the measurement is incomplete even when du also prints a total. Keep the error visible. Do not add sudo or discard errors just to get a cleaner number. A getconf error means the folder lookup itself failed; stop there rather than replacing it with a guessed path.',
+          'The final command group resolves the cache path again, then shows its immediate subdirectories and a total for the cache folder. Hidden directories are included. It still traverses the contents to measure them, so a large cache can take time; Control-C stops the measurement without deleting anything. The parent total already includes the child folders: do not add those rows together.',
         ],
         code: [
-          'getconf DARWIN_USER_TEMP_DIR',
-          'du -sh "$(getconf DARWIN_USER_TEMP_DIR)" "$(getconf DARWIN_USER_CACHE_DIR)"',
-          'du -sh "$(getconf DARWIN_USER_CACHE_DIR)"* 2>/dev/null | sort -h | tail -10',
+          'cleardisk_temp_dir="$(getconf DARWIN_USER_TEMP_DIR)" &&\ncleardisk_cache_dir="$(getconf DARWIN_USER_CACHE_DIR)" &&\ntest -n "$cleardisk_temp_dir" && test -n "$cleardisk_cache_dir" &&\ndu -sh "$cleardisk_temp_dir" "$cleardisk_cache_dir"',
+          '\ncleardisk_cache_dir="$(getconf DARWIN_USER_CACHE_DIR)" &&\ntest -n "$cleardisk_cache_dir" &&\ndu -h -d 1 "$cleardisk_cache_dir"',
+        ],
+        links: [
+          {
+            label:
+              'Troubleshoot Operation not permitted before trusting a partial total',
+            href: '/operation-not-permitted-terminal-mac',
+          },
+        ],
+      },
+      {
+        id: 'tested-measurement',
+        title: 'What our measurement test showed',
+        paragraphs: [
+          'On October 9, 2026, we tested du -h -d 1 on macOS 27.0.1 with generated files in a disposable sample-cache folder. It reported 2.0M for one subfolder, 512K for another, 256K for a hidden subfolder and 2.8M for the parent. The hidden folder appeared without a wildcard.',
+          'We then made an empty test subfolder unreadable. du still printed the accessible sizes and a parent total, but also reported Permission denied and exited with status 1. That is why this guide keeps errors on screen. A plausible-looking total does not establish that the scan was complete.',
+          'This test checked the command’s behavior, not the contents of a real system cache. We did not reboot into safe mode, delete cache files or measure recovered space. A separate getconf cache lookup was denied in our restricted test process; the guarded command stopped instead of scanning a fallback directory.',
+        ],
+        code: [
+          '# Read-only demonstration, after creating your own sample-cache folder:\ndu -h -d 1 ./sample-cache',
         ],
       },
       {
         id: 'restart-first',
         title: '2. Restart, then measure again',
         paragraphs: [
-          'Quit your apps, restart, and run the same commands. If the figure dropped, the space belonged to temporary work of apps that were running, and nothing more is needed. If a single app’s folder is still large, note its name and size.',
-          'An app that repeatedly fills this folder is behaving the way it was built to, or has a bug. Check for an update, look for a cache or temporary-file setting in the app, and contact its developer with the folder name and size if it keeps growing. That fixes the cause instead of the symptom.',
+          'Quit your apps, restart, and run the same commands. Compare the same paths and check that neither run reported an access error. A lower total tells you that less space is allocated now; it does not identify which process removed files. If one app’s folder is still large, record its name and size.',
+          'An app that repeatedly fills this folder is behaving the way it was built to, or has a bug. Check for an update, look for a cache or temporary-file setting in the app, and contact its developer with the folder name and size if it keeps growing. A folder name can suggest an app, but it is not proof that its contents are disposable. Keep downloads and unsaved work in mind when asking the developer about cleanup.',
         ],
       },
       {
@@ -708,7 +728,7 @@ export const systemFolderGuides: Guide[] = [
         title: 'Why not to delete it by hand',
         paragraphs: [
           'Running apps and background services keep files open in these folders. Deleting them while you are logged in can crash apps, interrupt downloads or break services until the next restart, and a file that is still open keeps its space until the process using it closes anyway.',
-          'Commands that circulate online, such as removing everything under /private/var/folders with sudo, also delete other users’ files and system state. There is no reason to take that risk when a restart and safe mode reach the same result the supported way.',
+          'Commands that circulate online, such as removing everything under /private/var/folders with sudo, also delete other users’ files and system state. A restart or safe boot may help diagnose growth, but neither is equivalent to manually removing every file. Leave the parent folder and other users’ data in place.',
         ],
       },
     ],
@@ -723,7 +743,7 @@ export const systemFolderGuides: Guide[] = [
       },
       {
         q: 'How do I find out which app is filling up /private/var/folders?',
-        a: "Measure your own folders with the read-only commands, then list the largest items in your cache folder; most are named by an app's bundle identifier, such as com.apple.Safari, which tells you whose files they are.",
+        a: 'Resolve your own cache path with getconf, then use du -h -d 1 on that path to inspect immediate subdirectories. A bundle-style name can suggest an app. Keep permission errors visible: any skipped folder makes the result incomplete, and a recognizable name does not make its files safe to delete.',
       },
       {
         q: "Restarting didn't shrink my /private/var/folders. What's next?",
@@ -735,6 +755,7 @@ export const systemFolderGuides: Guide[] = [
       'what-is-system-data-on-mac',
       'mac-folder-structure-explained',
       'check-disk-space-mac-terminal',
+      'operation-not-permitted-terminal-mac',
     ],
     sources: [safeMode, storageSettings, fileSystemBasics],
   },

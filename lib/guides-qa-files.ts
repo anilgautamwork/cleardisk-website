@@ -397,14 +397,14 @@ export const fileQaGuides: Guide[] = [
     summary:
       'Start with the path and the action that failed. macOS privacy controls can block Terminal from reading protected data, but Full Disk Access does not override every restriction. Check app access, file locks and system protections before retrying anything that changes files.',
     published: '2026-09-24',
-    updated: '2026-09-25',
+    updated: '2026-10-09',
     sections: [
       {
         id: 'what-it-means',
         title: 'What the message actually means',
         paragraphs: [
           'If ls ~/.Trash returns “Operation not permitted,” app privacy access is one thing to check. Owning a folder does not, by itself, give Terminal access through macOS privacy controls. Record the exact path and whether you were listing, copying or deleting: the message alone does not identify which protection blocked the operation.',
-          'For a privacy-access denial, sudo does not solve the problem. It changes the user running a command, not the app’s privacy authorization. Your Trash is one protected location, as the message shows; Apple’s description of Full Disk Access names others, including Mail, Messages and Safari data and Time Machine backups. Desktop, Documents, Downloads and removable drives work differently: macOS asks the first time an app tries to use them.',
+          'For a privacy-access denial, sudo does not solve the problem. It changes the user running a command, not the app’s privacy authorization. Your Trash is one location where this can occur; Apple’s description of Full Disk Access names others, including Mail, Messages and Safari data and Time Machine backups. Desktop, Documents, Downloads and removable drives work differently: macOS asks the first time an app tries to use them.',
         ],
       },
       {
@@ -412,14 +412,14 @@ export const fileQaGuides: Guide[] = [
         title: '1. Check the app’s privacy access',
         paragraphs: [
           'For Desktop, Documents or Downloads, check the terminal app under System Settings → Privacy & Security → Files & Folders first. If your task requires broader access to protected data, open Full Disk Access in the same settings pane. Click the add button (+), go to Applications → Utilities, select Terminal and click Open, then make sure its switch is on. macOS asks for your password or Touch ID. On macOS 12 and earlier, the same list is in System Preferences → Security & Privacy → Privacy.',
-          'Quit Terminal completely and open it again; the change applies after a relaunch, and System Settings may offer to quit it for you. If you use a different terminal, such as iTerm2 or the one built into VS Code, add that app instead, because the permission follows whichever app runs the command.',
+          'Quit Terminal completely and open it again; the change applies after a relaunch, and System Settings may offer to quit it for you. If you use a different terminal, such as iTerm2 or the one built into VS Code, check that app instead, because access is associated with the app hosting the command. If a managed Mac prevents changes, ask its administrator rather than bypassing the restriction.',
         ],
       },
       {
         id: 'check-again',
         title: '2. Test with a read-only command',
         paragraphs: [
-          'After relaunching Terminal, test access without changing files. Do not automatically repeat a deletion or other modifying command. Both lines below only read: the first lists what is in your Trash, the second shows how much space it uses. Items in the Trash still count against your disk until you empty it, and emptying is best done in Finder, where you can see what is going.',
+          'After relaunching Terminal, test access without changing files. Do not automatically repeat a deletion or other modifying command. Both lines below only read: the first lists what is in your Trash, the second shows how much space it uses. A directory listing indicates that this app can read that location at that moment. If du prints a total alongside an access error, that total is incomplete. Neither result proves that you can safely delete the contents. Items in the Trash still occupy space until permanently removed; review them in Finder first.',
           'If you only wanted a look, you may not need Terminal at all: the Trash in the Dock shows the same files, and Finder shows hidden items with Shift-Command-Period. The hidden-files guide covers the other dot folders you’re likely to look at next.',
         ],
         code: ['ls -la ~/.Trash', 'du -sh ~/.Trash'],
@@ -428,17 +428,33 @@ export const fileQaGuides: Guide[] = [
         id: 'sip-read-only',
         title: 'Why system folders stay read-only even then',
         paragraphs: [
-          'Full Disk Access lets Terminal read your data; it doesn’t make macOS itself writable. Apple lists what System Integrity Protection covers: /System, /usr, /bin, /sbin, /var and the apps that come with macOS, while /Applications, /Library and /usr/local stay writable for installers. Apple says SIP restricts the root user and allows changes to those parts only by Apple-signed processes such as software updates. The system itself also sits on a signed, read-only volume.',
-          'So “Operation not permitted” when you try to change something under /System or /usr/bin is expected, with or without sudo. ls -lO shows the restricted flag on those items, and csrutil status reports whether SIP is on. Don’t disable SIP to delete system files: it lowers the Mac’s protection, and those files are managed by macOS updates.',
+          'Full Disk Access lets Terminal read your data; it doesn’t make macOS itself writable. System Integrity Protection restricts changes to protected parts of macOS, including /System and /usr/bin, even for root. Some locations remain writable for third-party software; do not infer that every path underneath /var or /usr has identical rules. The system itself also sits on a signed, read-only volume.',
+          'So “Operation not permitted” when you try to change something under /System or /usr/bin is expected, with or without sudo. Use ls -lOd to inspect a protected directory itself. A restricted flag is one clue; csrutil status reports whether SIP is enabled. These checks do not identify every possible access restriction. Don’t disable SIP to delete system files: it lowers the Mac’s protection, and those files are managed by macOS updates.',
         ],
         code: ['ls -lOd /System /usr/bin', 'csrutil status'],
       },
       {
         id: 'other-causes',
-        title: 'Other causes of the same message',
+        title: 'Check a file lock before changing app permissions',
         paragraphs: [
-          'A locked file gives the same error when you try to delete or change it, because the lock is a file flag. ls -lO shows uchg in the flags column for a locked item. Clear it in Finder with File → Get Info and the Locked checkbox, or in Terminal with chflags nouchg followed by the file name, then try again.',
-          'Files on a network share, or on a drive another system formatted, can refuse changes for reasons of their own. If a read-only check still fails after granting the required access and relaunching, check the location and file permissions. On a managed Mac, ask your administrator about restrictions. Keep SIP enabled.',
+          'If reading works but editing a particular file fails, select it in Finder and choose File → Get Info. Check Locked. In Terminal, ls -lO followed by a quoted file path shows file flags; uchg means the user-immutable flag is set. Unlock only a file you own and intend to change. A file lock is different from an app privacy denial.',
+          'On October 9, 2026, we created a disposable text file on macOS 27.0.1 and set its user-immutable flag. Finder showed Locked checked, and an attempted append returned “operation not permitted.” The original text remained unchanged. We then removed the flag from that test file. No personal file, system protection or Full Disk Access setting was changed.',
+          'This reproduces one cause of the error, not a privacy-access failure. Network shares, external filesystems, ordinary permissions and administrator policies need separate checks. Do not apply recursive chmod, chown or unlock commands to your home folder or the system just because one file failed.',
+        ],
+        figure: {
+          src: '/guides/locked-sample-file-mac.jpg',
+          alt: 'Finder Get Info for our disposable locked-note.txt file, showing the Locked checkbox selected',
+          width: 800,
+          height: 812,
+          caption:
+            'Our generated sample file on macOS 27.0.1. The checked Locked box corresponds to the uchg flag; it is not a Full Disk Access setting.',
+        },
+        links: [
+          {
+            label:
+              'Check incomplete cache measurements under /private/var/folders',
+            href: '/private-var-folders-mac#measure-yours',
+          },
         ],
       },
       {
@@ -446,14 +462,14 @@ export const fileQaGuides: Guide[] = [
         title: '3. Remove the access when you’re done',
         paragraphs: [
           'Full Disk Access is broad: Apple describes it as letting an app access all files, including other apps’ data, Time Machine backups and certain administrative settings for all users. Anything you run in Terminal, including a script you downloaded, runs with it. If you granted it for one task, switch Terminal off in the Full Disk Access list afterwards, or select it and click the remove button (–).',
-          'Leaving it on is a reasonable choice if you work in Terminal every day and know what you run there. Either way, you can revisit it in the same pane at any time.',
+          'Keep only the access your ongoing work requires. If you turn it off, relaunch the terminal app before checking the restricted location again.',
         ],
       },
     ],
     questions: [
       {
         q: 'Why does Terminal say Operation not permitted on Mac?',
-        a: "This usually means macOS privacy controls are blocking Terminal's access to a protected location, such as your Trash, Mail or Time Machine backups. Owning the folder doesn't grant access on its own, and sudo doesn't fix it either, since it changes which user runs the command, not the app's privacy authorization.",
+        a: 'The message does not identify a single cause. Check the failed path and whether you were reading or changing it. App privacy access, a locked file and protected system locations require different fixes; Full Disk Access does not override them all.',
       },
       {
         q: 'Does sudo fix Operation not permitted errors on Mac?',
@@ -461,7 +477,7 @@ export const fileQaGuides: Guide[] = [
       },
       {
         q: 'Should I disable System Integrity Protection to fix a permissions error on Mac?',
-        a: "No, the guide says not to disable SIP to delete system files, since it lowers the Mac's protection and files under /System, /usr, /bin, /sbin and /var are managed by macOS updates anyway. Operation not permitted there is expected behavior, with or without sudo.",
+        a: 'No. Keep SIP enabled. It protects parts of macOS even from root; Full Disk Access does not make the signed system volume writable. For a file you own, check its lock, app access and filesystem permissions instead.',
       },
       {
         q: 'How do I give Terminal Full Disk Access on Mac?',
@@ -473,6 +489,7 @@ export const fileQaGuides: Guide[] = [
       'recover-files-from-trash-mac',
       'move-files-to-trash-terminal-mac',
       'check-disk-space-mac-terminal',
+      'private-var-folders-mac',
     ],
     sources: [
       {
