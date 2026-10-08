@@ -339,13 +339,13 @@ export const devQaGuides: Guide[] = [
   },
   {
     slug: 'homebrew-list-installed-packages',
-    title: 'How to list all packages installed with Homebrew',
+    title: 'brew list: show installed Homebrew packages on Mac',
     description:
       'List Homebrew packages on Mac with brew list, brew leaves and brew deps --tree, see which formulae use the most space, and save everything to a Brewfile.',
     summary:
-      'Run brew list: it prints your installed formulae, then your casks. brew leaves narrows that to formulae nothing else depends on, brew deps --tree --installed shows why the rest are there, and brew bundle dump saves the whole list to a Brewfile you can reinstall from.',
+      'Run brew list in Terminal to see installed Homebrew packages. Use brew list --formula for command-line packages or brew list --cask for casks. To check versions, dependencies, disk usage or save a Brewfile, use the commands below.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-10-08',
     sections: [
       {
         id: 'brew-list',
@@ -366,7 +366,7 @@ export const devQaGuides: Guide[] = [
         id: 'leaves',
         title: '2. Separate what you asked for from dependencies',
         paragraphs: [
-          'Most formulae on a typical Mac arrived as dependencies of something else. brew leaves lists installed formulae that no other installed formula or cask depends on, which is usually close to the list of things you chose. --installed-on-request narrows that to leaves you installed yourself, and --installed-as-dependency shows leaves that came in as a dependency but are no longer needed by anything.',
+          'Some formulae arrive as dependencies of other software. brew leaves lists installed formulae that no other installed formula or cask depends on; it does not identify everything you chose yourself. --installed-on-request narrows that to leaves you installed yourself, and --installed-as-dependency shows leaves that came in as a dependency but are no longer needed by anything.',
           'brew list --installed-on-request answers a slightly different question: every formula you installed by name, including ones that other formulae also use. The short forms -r and -p work for leaves, but the long forms are easier to read back later. Leaves installed as dependencies are what brew autoremove targets; the cache cleanup guide covers that command.',
         ],
         code: [
@@ -394,7 +394,7 @@ export const devQaGuides: Guide[] = [
         title: '4. Find the packages using the most space',
         paragraphs: [
           'Formulae live in the Cellar, one folder per package, so du can measure each one and sort -h puts the largest last. The Caskroom holds Homebrew’s records for each cask and, for command-line casks such as SDKs, the software itself; an app a cask installed is counted in Applications instead. brew --cellar and brew --caskroom print the right folders on both Apple silicon and Intel Macs.',
-          'brew info shows one package in detail, including a line under its installed versions with the number of files and their size. Removing a large formula frees nothing if another formula still depends on it, so check brew uses first. Downloads that Homebrew keeps after installing are a separate folder, covered by the cache guide linked below.',
+          'brew info shows one package in detail, including a line under its installed versions with the number of files and their size. Homebrew normally refuses to uninstall a formula that another installed formula depends on. Check brew uses first and keep packages your other tools need. Downloads that Homebrew keeps after installing are a separate folder, covered by the cache guide linked below.',
         ],
         code: [
           'du -sh "$(brew --cellar)"/* | sort -h',
@@ -419,7 +419,7 @@ export const devQaGuides: Guide[] = [
     questions: [
       {
         q: 'How do I see which Homebrew packages I chose versus what came in as dependencies?',
-        a: 'brew leaves lists formulae that no other installed formula or cask depends on, which is close to what you chose yourself, and --installed-on-request narrows it further to formulae you installed by name.',
+        a: 'brew leaves lists formulae that no other installed formula or cask depends on, and --installed-on-request narrows those leaves to formulae you installed by name. Use brew list --installed-on-request to include packages you chose that other formulae also depend on.',
       },
       {
         q: "How can I tell why a Homebrew formula is installed if I didn't choose it?",
@@ -431,7 +431,7 @@ export const devQaGuides: Guide[] = [
       },
       {
         q: 'Which Homebrew packages are taking up the most disk space?',
-        a: 'Formulae live in the Cellar and casks in the Caskroom, so running du on those folders and sorting by size shows the largest ones; brew info on a specific package also shows its installed size.',
+        a: 'Measure formula folders in the Cellar. Caskroom size can miss apps installed elsewhere, usually /Applications, so check those apps separately. brew info shows the installed size of a formula.',
       },
     ],
     related: [
