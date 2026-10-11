@@ -1,5 +1,9 @@
 # SEO loop progress log
 
+## 11 October 2026 — Steam guide correction published and verified
+
+Published https://cleardisk.app/steam-games-storage-mac from source 3b647d4, pushed main; Worker 677fde1d-888d-47c8-970d-c6fa4400836b. Source checks and actual fixture evidence are recorded below and in recovery-review.md. All 176 live HTTP SEO checks passed after deployment; guide 200 with corrected save limits, sitemap date October 11 (171 URLs), download/appcast 2.1.0, DMG HEAD 200, anonymous analytics/API 401 with private/no-store and noindex/nofollow. QA requests excluded from downloads. Full 55 tests (zero skipped), lint/typecheck/build, 176 local checks and desktop/narrow review passed before publication. Final diff and failure paths reviewed. No indexing or ranking recovery claim. This resolves the pending-publication entry below.
+
 ## 11 October 2026 — Steam guide safety correction prepared
 
 Reviewed /steam-games-storage-mac from the verified loss queue. Corrected the save-preservation guarantee, placed sync/backups before uninstall, distinguished installation files from game-specific saves, and documented actual read-only size-command fixture results and failure cases. Current Valve primary guidance checked and Humanizer applied. Details, source URLs, metrics and limits are in [recovery-review.md](recovery-review.md). No new articles or indexing request.

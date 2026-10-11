@@ -11,7 +11,7 @@ Site totals: 4,123 impressions and 21 clicks before; 324 impressions and zero cl
 | Priority | Page | Impressions before → after | Lost | Clicks before → after | Review state / next task |
 | --- | --- | ---: | ---: | ---: | --- |
 | 1 | /homebrew-list-installed-packages | 467 → 11 | 456 | 0 → 0 | Recently improved October 8; monitor before rewriting again. |
-| 2 | /steam-games-storage-mac | 264 → 16 | 248 | 0 → 0 | Improved October 11; publication pending: save-sync limits, backups before uninstall and tested size-command edge cases. |
+| 2 | /steam-games-storage-mac | 264 → 16 | 248 | 0 → 0 | Published October 11: save-sync limits, backups before uninstall and tested size-command edge cases. |
 | 3 | /operation-not-permitted-terminal-mac | 260 → 14 | 246 | 2 → 0 | Published October 9: distinguish causes, real locked-file screenshot, partial totals. |
 | 4 | /what-is-system-data-on-mac | 180 → 6 | 174 | 0 → 0 | Queued: assess definition intent against cleanup/growing variants. |
 | 5 | /private-var-folders-mac | 121 → 4 | 117 | 1 → 0 | Published October 9: preserve errors, guarded paths, tested hidden-folder/incomplete scan examples. |
@@ -60,3 +60,7 @@ Final full unit suite: 55 passed, zero failed/skipped. Lint, typecheck and produ
 Private aggregate observation 2026-10-11T13:41:15.913Z: 63 download requests / rolling 30 UTC days (five / seven days), 320 arrival events (145 / seven), 16 finished-transfer events (two / seven), seven checkout sessions (zero / seven), four all-time license records and two cumulative GitHub downloads separately. These are not unique people, installs or sales; arrivals can include QA, checkouts include test mode, license records are not refund-adjusted. Credentials were not printed or committed. No ranking-recovery inference from these counters.
 
 Next content review: October 12, /library-caches-folder-mac for blanket removal advice and /what-is-system-data-on-mac for definition/cleanup overlap. Preserve the unrelated September 27 audit-document edit. Keep the current design, app 2.1.0 artifacts, Stripe/license behavior, private analytics and Talivia pause unchanged.
+
+### October 11 publication verified
+
+Published source **3b647d4** from main to Worker **677fde1d-888d-47c8-970d-c6fa4400836b** in the existing personal account. All **176 live HTTP SEO checks passed**. The changed guide returns 200 with the corrected FAQ and measured fixture explanation. Its sitemap lastmod is 2026-10-11; sitemap remains 171 URLs. /download and the signed appcast still advertise 2.1.0; DMG HEAD returns 200. Anonymous /analytics and /api/analytics return 401 with private/no-store and noindex/nofollow. Verification used ClearDisk-QA and DMG HEAD, not a counted download. No Google submission, new indexing observation or recovery claim. Final local suite: 55 passed, zero skipped; lint/typecheck/build and 176 local HTTP checks passed. Only the reviewed guide was published; the unrelated audit edit remains unstaged. Next review October 12; complete-window Search Console review October 16.
