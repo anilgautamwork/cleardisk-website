@@ -1,0 +1,26 @@
+Disposable Steam-like folder fixture; no installed games inspected.
+macOS-27.0.1-arm64-arm-64bit-Mach-O
+populated
+exit=0
+256K	/var/folders/tl/l7gbx2dj1ls0x2vvqg5y486c0000gp/T/cleardisk-steam-oct11-ej7qryih/Steam Library/steamapps/common/.hidden-sample
+2.0M	/var/folders/tl/l7gbx2dj1ls0x2vvqg5y486c0000gp/T/cleardisk-steam-oct11-ej7qryih/Steam Library/steamapps/common/Sample Game
+2.3M	/var/folders/tl/l7gbx2dj1ls0x2vvqg5y486c0000gp/T/cleardisk-steam-oct11-ej7qryih/Steam Library/steamapps/common
+
+
+empty
+exit=0
+  0B	/var/folders/tl/l7gbx2dj1ls0x2vvqg5y486c0000gp/T/cleardisk-steam-oct11-ej7qryih/empty
+
+
+missing
+exit=1
+
+du: /var/folders/tl/l7gbx2dj1ls0x2vvqg5y486c0000gp/T/cleardisk-steam-oct11-ej7qryih/missing: No such file or directory
+
+unreadable
+exit=1
+256K	/var/folders/tl/l7gbx2dj1ls0x2vvqg5y486c0000gp/T/cleardisk-steam-oct11-ej7qryih/Steam Library/steamapps/common/.hidden-sample
+2.0M	/var/folders/tl/l7gbx2dj1ls0x2vvqg5y486c0000gp/T/cleardisk-steam-oct11-ej7qryih/Steam Library/steamapps/common/Sample Game
+2.3M	/var/folders/tl/l7gbx2dj1ls0x2vvqg5y486c0000gp/T/cleardisk-steam-oct11-ej7qryih/Steam Library/steamapps/common
+
+du: /var/folders/tl/l7gbx2dj1ls0x2vvqg5y486c0000gp/T/cleardisk-steam-oct11-ej7qryih/Steam Library/steamapps/common/unreadable: Permission denied

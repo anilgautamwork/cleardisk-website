@@ -497,22 +497,31 @@ export const everydayAppGuides: Guide[] = [
     slug: 'steam-games-storage-mac',
     title: 'Where are Steam games stored on Mac? Find and trim them',
     description:
-      'Find where Steam stores games on Mac, see how much space each one takes in Storage settings, and uninstall or move games without losing your saves.',
+      'Find where Steam stores games on Mac, see how much space each one takes in Storage settings, and check save backups before uninstalling or moving games.',
     summary:
       'Steam keeps games in ~/Library/Application Support/Steam/steamapps, with each game under steamapps/common. Use Steam → Settings → Storage to see sizes, uninstall games you are not playing, or move them to a library folder on another drive.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-10-11',
     sections: [
       {
         id: 'default-location',
         title: 'Where Steam puts games on a Mac',
         paragraphs: [
-          'Valve’s Mac instructions point to Library/Application Support/Steam in your home folder. Its steamapps folder contains your game downloads and any local save files, and each installed game has its own folder under steamapps/common. Library is hidden by default, so use Go → Go to Folder in Finder to open it.',
-          'To see how much space Steam takes up, measure the folder in Terminal. The commands below only report sizes. If you have added library folders on other drives, each of those has its own steamapps folder too.',
+          'Valve’s Mac instructions point to Library/Application Support/Steam in your home folder. Installed game files normally sit under steamapps/common. Saves can live elsewhere, so this folder is not a complete backup of your progress. Library is hidden by default, so use Go → Go to Folder in Finder to open it.',
+          'In Finder, choose Go → Go to Folder and paste ~/Library/Application Support/Steam/steamapps/common. If it is missing or empty, check the selected drive in Steam → Settings → Storage: your library may be elsewhere. The read-only commands below measure the default Steam folder and its immediate game folders; they do not include libraries on other drives.',
         ],
         code: [
           'du -sh "$HOME/Library/Application Support/Steam"',
-          'du -sh "$HOME/Library/Application Support/Steam/steamapps/common/"* | sort -h',
+          'du -h -d 1 "$HOME/Library/Application Support/Steam/steamapps/common"',
+        ],
+      },
+      {
+        id: 'read-size-results',
+        title: 'Read the size results before choosing a game',
+        paragraphs: [
+          'The second command lists immediate subfolders, including hidden ones, followed by the common folder total. Do not add that total to the rows above it. Sizes use binary units and measure allocated disk space; Steam may report a different figure. The common total also excludes data elsewhere in Steam and game saves stored outside it.',
+          'On macOS 27.0.1, we tested this command against disposable folders, not installed games. A Sample Game folder containing a 2 MiB file appeared as 2.0M, a hidden folder with a 256 KiB file as 256K, and the parent as 2.3M. An empty directory returned 0B. These are command checks, not game sizes or space recovered.',
+          'A missing path prints No such file or directory. An unreadable child prints Permission denied and can still leave a partial parent total on screen; our fixture returned exit status 1. Keep those errors visible. Do not treat a partial total as a complete scan or change privacy permissions just to make the number larger. Control-C stops a long-running check.',
         ],
       },
       {
@@ -527,9 +536,9 @@ export const everydayAppGuides: Guide[] = [
         id: 'uninstall-games',
         title: '2. Uninstall games you are not playing',
         paragraphs: [
-          'In your Steam Library, Control-click a game and choose Manage → Uninstall, then confirm. The game stays in your account, so you can install it again later, though that means downloading it in full.',
-          'Check your saves first. If a game supports Steam Cloud, its Store page shows a Steam Cloud logo and Steam keeps the synced files for you. Games without it may keep saves locally, and Valve notes that steamapps can hold local save files, so copy anything you want to keep before uninstalling.',
-          'To check a game’s cloud setting, Control-click it in your Library, choose Properties, and look under General for the Steam Cloud synchronization setting. Valve notes that when Steam Cloud is turned off for a game, progress that would normally sync is saved only on that Mac.',
+          'Before uninstalling, quit the game and let Steam finish syncing. A Steam Cloud logo means the game uses the service; its developer decides which files are uploaded. If Steam reports a sync error or conflict, stop and resolve it before removing local files. A supported game can still have unsynced progress.',
+          'Check the cloud option in Library → game Properties → General and the global option in Steam → Settings → Cloud. For saves you want to keep, also consult the game developer’s Mac backup instructions and copy the documented save files to a separate location. Steam’s game-file backup is not a guarantee that saves or custom content are included.',
+          'In your Steam Library, Control-click a game and choose Manage → Uninstall, then confirm. The game stays in your account for reinstallation. Expect to download its installation files again unless you have a usable backup.',
         ],
       },
       {
@@ -537,14 +546,14 @@ export const everydayAppGuides: Guide[] = [
         title: '3. Move games to another drive instead',
         paragraphs: [
           'In Settings → Storage, click + to add a new library folder, for example on an external SSD. Then select the drive that holds the game, select the game, and click Move. Future installs can go straight to the new folder.',
-          'The drive has to be connected whenever you want to play those games. Valve advises against installing Steam itself on an external drive for performance reasons; moving individual game libraries is the supported route.',
+          'Wait for the move to finish, then check that the game appears on the destination drive in Storage. Launch it with that drive connected and check your progress before considering any leftover-folder cleanup. The drive has to be connected whenever you want to play those games. Valve advises against installing Steam itself on an external drive for performance reasons; moving individual game libraries is the supported route.',
         ],
       },
       {
         id: 'avoid-finder-deletion',
         title: 'Avoid deleting Steam folders by hand',
         paragraphs: [
-          'Removing a game’s folder from steamapps/common in Finder can leave Steam’s records out of step with what is on the disk, and dragging the Steam app to the Trash does not remove your games. Valve’s Mac removal steps say to keep the steamapps folder if you want your games and local saves; deleting the whole Steam folder removes them.',
+          'Removing a game’s folder from steamapps/common in Finder can leave Steam’s records out of step with what is on the disk, and dragging the Steam app to the Trash does not remove your games. Deleting the whole Steam data folder also risks local account data and saves. Back up the game-specific save locations first.',
           'Use Uninstall inside Steam for individual games. ClearDisk’s storage map and large-files list can show when steamapps is one of the largest folders on the disk, which is a good prompt to open the Storage Manager.',
           'After uninstalling, run the measuring commands again. If a folder for an uninstalled game is still in steamapps/common, look inside before removing it: it may hold saves, mods or screenshots you added yourself. Some games also keep settings and saves outside the Steam folder, so check the game’s own documentation before you tidy up leftovers.',
         ],
@@ -557,7 +566,7 @@ export const everydayAppGuides: Guide[] = [
       },
       {
         q: 'Will I lose my saves if I uninstall a Steam game?',
-        a: 'Not if the game supports Steam Cloud, shown by a Steam Cloud logo on its Store page, since Steam keeps those synced files for you. Games without cloud support may keep saves locally inside steamapps, so copy anything you want to keep before uninstalling.',
+        a: 'It depends on the game and whether its saves actually synced. Cloud support alone is not a backup guarantee. Resolve sync errors first and copy the save files identified by the game developer before uninstalling.',
       },
       {
         q: 'Can I just delete the Steam folder in Finder to save space?',
@@ -582,6 +591,10 @@ export const everydayAppGuides: Guide[] = [
       {
         label: 'Steam Support: removing and reinstalling Steam on a Mac',
         url: 'https://help.steampowered.com/en/faqs/view/30EB-87BF-531F-512D',
+      },
+      {
+        label: 'Steam Support: game-file backup limitations',
+        url: 'https://help.steampowered.com/en/faqs/view/4593-5CB7-DC3C-64F0',
       },
       {
         label: 'Steam Support: Steam Cloud',
