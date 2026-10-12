@@ -1,5 +1,11 @@
 # SEO loop progress log
 
+## 12 October 2026 — Library Caches correction published and verified
+
+Published https://cleardisk.app/library-caches-folder-mac from main 5695d03 to Worker e5a37e1a-2836-40b6-988e-63ae4cfb1858. Corrected unsupported deletion assumptions, preserved scan errors, explained sandbox scope and added measured disposable-fixture results with explicit limits. Apple sources and Humanizer review are recorded in [recovery-review.md](recovery-review.md).
+
+All 176 live HTTP SEO checks pass. Changed route 200, October 12 sitemap date and 171 sitemap URLs verified. Download/appcast remain 2.1.0; DMG HEAD 200. Anonymous analytics endpoints return 401, private/no-store, noindex/nofollow. QA verification does not add a download conversion. Full local suite: 55 passed, zero failed/skipped; lint/typecheck/build and 176 local HTTP checks passed, with desktop/390px review and final diff review. No new article, indexing request or evidence of recovery. This resolves the pending entry below. Next daily review October 13; complete-window GSC review October 16.
+
 ## 12 October 2026 — Library Caches correction prepared
 
 Reviewed /library-caches-folder-mac (verified priority 6) and corrected cache ownership assumptions, deletion advice, sandbox scope and hidden measurement errors. Added actual disposable-fixture results and their limits; Apple sources checked and Humanizer applied. Source URLs, aggregate metrics and next review are recorded in [recovery-review.md](recovery-review.md). No new article or indexing request.

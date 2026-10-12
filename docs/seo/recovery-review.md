@@ -15,7 +15,7 @@ Site totals: 4,123 impressions and 21 clicks before; 324 impressions and zero cl
 | 3 | /operation-not-permitted-terminal-mac | 260 → 14 | 246 | 2 → 0 | Published October 9: distinguish causes, real locked-file screenshot, partial totals. |
 | 4 | /what-is-system-data-on-mac | 180 → 6 | 174 | 0 → 0 | Queued: assess definition intent against cleanup/growing variants. |
 | 5 | /private-var-folders-mac | 121 → 4 | 117 | 1 → 0 | Published October 9: preserve errors, guarded paths, tested hidden-folder/incomplete scan examples. |
-| 6 | /library-caches-folder-mac | 106 → 5 | 101 | 0 → 0 | Reviewed October 12: app-specific cleanup, visible measurement errors and sandbox scope; publication pending. |
+| 6 | /library-caches-folder-mac | 106 → 5 | 101 | 0 → 0 | Published October 12: app-specific cleanup, visible measurement errors and sandbox scope. |
 | 7 | /application-support-folder-mac | 97 → 1 | 96 | 0 → 0 | Queued: check data-loss warnings and actual storage inspection steps. |
 | 8 | /free-command-on-mac | 91 → 1 | 90 | 0 → 0 | Queued: verify memory units, expected output and disk/RAM distinction. |
 | 9 | /uninstall-homebrew-mac | 108 → 20 | 88 | 0 → 0 | Queued: audit uninstall scope, dependencies and command execution risks. |
@@ -85,3 +85,7 @@ Humanizer used for a generic factual edit, without invented experience or screen
 Private aggregate observation at 2026-10-12T10:08:27.679Z: 63 download requests / rolling 30 UTC days (five / seven), 337 arrival events (159 / seven), 16 finished-transfer events (two / seven), seven checkout sessions (zero / seven), four all-time license records and two cumulative GitHub downloads separately. These are requests/events, not people, installs, sales or proof of organic recovery; arrivals can include QA, checkouts include test mode and licenses are not refund-adjusted. Credentials were neither printed nor committed.
 
 Before publication, origin/main matched local e86b5b7 and the latest Worker was 677fde1d-888d-47c8-970d-c6fa4400836b. Preserve the unrelated September 27 audit-document edit. Next review October 13: /what-is-system-data-on-mac definition/cleanup overlap, then /application-support-folder-mac. No forced daily rewrite or new indexing request.
+
+### October 12 publication verified
+
+Published source **5695d03** from main to Worker **e5a37e1a-2836-40b6-988e-63ae4cfb1858** in the existing personal account. Live URL: https://cleardisk.app/library-caches-folder-mac . All **176 live HTTP SEO checks passed**. The revised page returns 200 with the corrected introduction and fixture explanation. Its sitemap lastmod is 2026-10-12; sitemap remains 171 URLs. /download and /updates/appcast.xml still advertise 2.1.0; DMG HEAD returns 200. Anonymous /analytics and /api/analytics return 401 with private/no-store and noindex/nofollow. The initial additional sitemap assertion assumed compact XML; a whitespace-tolerant assertion passed, with no production change needed. Verification used ClearDisk-QA and DMG HEAD, not a counted download. No Google submission, observed recrawl or recovery claim. Full local 55-test suite (zero skips), lint/typecheck/build, 176 local HTTP checks and responsive review passed before publication. Next content review October 13; Search Console comparison October 16. Unrelated audit-document edit remains unstaged.
