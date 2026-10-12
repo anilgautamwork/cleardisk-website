@@ -15,7 +15,7 @@ Site totals: 4,123 impressions and 21 clicks before; 324 impressions and zero cl
 | 3 | /operation-not-permitted-terminal-mac | 260 → 14 | 246 | 2 → 0 | Published October 9: distinguish causes, real locked-file screenshot, partial totals. |
 | 4 | /what-is-system-data-on-mac | 180 → 6 | 174 | 0 → 0 | Queued: assess definition intent against cleanup/growing variants. |
 | 5 | /private-var-folders-mac | 121 → 4 | 117 | 1 → 0 | Published October 9: preserve errors, guarded paths, tested hidden-folder/incomplete scan examples. |
-| 6 | /library-caches-folder-mac | 106 → 5 | 101 | 0 → 0 | Queued: check blanket cache-removal advice and permissions. |
+| 6 | /library-caches-folder-mac | 106 → 5 | 101 | 0 → 0 | Reviewed October 12: app-specific cleanup, visible measurement errors and sandbox scope; publication pending. |
 | 7 | /application-support-folder-mac | 97 → 1 | 96 | 0 → 0 | Queued: check data-loss warnings and actual storage inspection steps. |
 | 8 | /free-command-on-mac | 91 → 1 | 90 | 0 → 0 | Queued: verify memory units, expected output and disk/RAM distinction. |
 | 9 | /uninstall-homebrew-mac | 108 → 20 | 88 | 0 → 0 | Queued: audit uninstall scope, dependencies and command execution risks. |
@@ -64,3 +64,24 @@ Next content review: October 12, /library-caches-folder-mac for blanket removal 
 ### October 11 publication verified
 
 Published source **3b647d4** from main to Worker **677fde1d-888d-47c8-970d-c6fa4400836b** in the existing personal account. All **176 live HTTP SEO checks passed**. The changed guide returns 200 with the corrected FAQ and measured fixture explanation. Its sitemap lastmod is 2026-10-11; sitemap remains 171 URLs. /download and the signed appcast still advertise 2.1.0; DMG HEAD returns 200. Anonymous /analytics and /api/analytics return 401 with private/no-store and noindex/nofollow. Verification used ClearDisk-QA and DMG HEAD, not a counted download. No Google submission, new indexing observation or recovery claim. Final local suite: 55 passed, zero skipped; lint/typecheck/build and 176 local HTTP checks passed. Only the reviewed guide was published; the unrelated audit edit remains unstaged. Next review October 12; complete-window Search Console review October 16.
+
+
+## October 12 — Library Caches guide correction
+
+Disposition: **improved**, retained at /library-caches-folder-mac. Priority 6 uses the October 9 Search Console evidence: equal complete October 1–3 versus October 4–6 windows, 106 → 5 impressions (101 lost), zero clicks in both. No fresh ranking comparison today; weekly complete-window review remains October 16. This is one deep review, not completion of the entire queue. No new article, removal, noindex or redirect.
+
+Removed the assumption that an unrecognized cache folder is safe to delete and the promise that a removed app’s cache stays gone. The guide now separates inspection from deletion, ordinary caches from sandbox locations, and app-managed cleanup from vendor-documented manual removal. ClearDisk categories help identify data; they do not establish that every file is disposable. The app source was checked in Sources/Core/SystemDataReport.swift. Current download/release remains 2.1.0; no app, payment, analytics or design changes.
+
+Replaced wildcard size commands that hid errors with quoted `du -h -d 1` checks. Added binary-unit and parent-total explanations, incomplete-scan warnings, missing-path behavior and Control-C. A disposable fixture on macOS 27.0.1 produced 1.0M, 128K (hidden subfolder) and 1.1M parent; missing and restricted paths exited 1. The restricted child was empty, so this demonstrates error reporting, not measured lost bytes. A read-only plutil check of Safari’s Info.plist returned com.apple.Safari. See [command observations](evidence/2026-10-12-cache-checks.txt). No real caches were deleted, no privacy/security settings changed, and no app cleanup or storage savings are claimed.
+
+Primary sources checked October 12:
+- https://developer.apple.com/documentation/foundation/url/cachesdirectory — indexed Apple reference confirms sandbox cache location; direct HTML is JavaScript-only and the Markdown extractor failed, so do not claim full body extraction.
+- https://support.apple.com/en-us/102624 — current Apple storage advice, Trash behavior and temporary clearing of certain system caches in safe mode.
+- https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/MacOSXDirectories/MacOSXDirectories.html — archived Library conventions, including bundle identifiers; treated as developer conventions, not proof of present file contents.
+- https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html — archived user/shared/system and sandbox context; iOS purge behavior was not applied to Mac.
+
+Humanizer used for a generic factual edit, without invented experience or screenshots. Only this guide’s editorial date advances to October 12. Full final unit suite: **55 passed, zero failed/skipped**. Lint, typecheck and Cloudflare production build passed. **176 local HTTP SEO checks passed**. Initial unit run caught an overlong meta description; shortened it and reran the full suite and all build checks. Desktop and 390px browser review confirmed readable copy, contained code scrolling and no horizontal page overflow. Final diff reviewed for command/path failures, partial totals, cache ownership assumptions, product claims and unrelated edits. Impeccable detector returned no findings. Publication pending.
+
+Private aggregate observation at 2026-10-12T10:08:27.679Z: 63 download requests / rolling 30 UTC days (five / seven), 337 arrival events (159 / seven), 16 finished-transfer events (two / seven), seven checkout sessions (zero / seven), four all-time license records and two cumulative GitHub downloads separately. These are requests/events, not people, installs, sales or proof of organic recovery; arrivals can include QA, checkouts include test mode and licenses are not refund-adjusted. Credentials were neither printed nor committed.
+
+Before publication, origin/main matched local e86b5b7 and the latest Worker was 677fde1d-888d-47c8-970d-c6fa4400836b. Preserve the unrelated September 27 audit-document edit. Next review October 13: /what-is-system-data-on-mac definition/cleanup overlap, then /application-support-folder-mac. No forced daily rewrite or new indexing request.

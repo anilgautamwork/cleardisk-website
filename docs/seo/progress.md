@@ -1,5 +1,11 @@
 # SEO loop progress log
 
+## 12 October 2026 — Library Caches correction prepared
+
+Reviewed /library-caches-folder-mac (verified priority 6) and corrected cache ownership assumptions, deletion advice, sandbox scope and hidden measurement errors. Added actual disposable-fixture results and their limits; Apple sources checked and Humanizer applied. Source URLs, aggregate metrics and next review are recorded in [recovery-review.md](recovery-review.md). No new article or indexing request.
+
+Final full unit suite: 55 passed, zero failed/skipped; lint, typecheck and production build passed. All 176 local HTTP SEO checks passed. Desktop/390px browser and final diff/failure-path review completed. Publication pending. Unrelated audit-document edit preserved; release 2.1.0 and payment/license implementation unchanged.
+
 ## 11 October 2026 — Steam guide correction published and verified
 
 Published https://cleardisk.app/steam-games-storage-mac from source 3b647d4, pushed main; Worker 677fde1d-888d-47c8-970d-c6fa4400836b. Source checks and actual fixture evidence are recorded below and in recovery-review.md. All 176 live HTTP SEO checks passed after deployment; guide 200 with corrected save limits, sitemap date October 11 (171 URLs), download/appcast 2.1.0, DMG HEAD 200, anonymous analytics/API 401 with private/no-store and noindex/nofollow. QA requests excluded from downloads. Full 55 tests (zero skipped), lint/typecheck/build, 176 local checks and desktop/narrow review passed before publication. Final diff and failure paths reviewed. No indexing or ranking recovery claim. This resolves the pending-publication entry below.

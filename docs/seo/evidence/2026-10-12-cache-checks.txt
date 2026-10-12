@@ -1,0 +1,24 @@
+macOS 27.0.1. Disposable cache-like fixture, not a real app cache.
+Command: du -h -d 1 <fixture Caches path>
+readable
+exit 0
+128K	<disposable fixture>/Caches/.hidden-fixture
+1.0M	<disposable fixture>/Caches/com.example.Reader
+1.1M	<disposable fixture>/Caches
+
+
+missing
+exit 1
+
+du: <disposable fixture>/Caches/missing: No such file or directory
+
+restricted
+exit 1
+128K	<disposable fixture>/Caches/.hidden-fixture
+1.0M	<disposable fixture>/Caches/com.example.Reader
+1.1M	<disposable fixture>/Caches
+
+du: <disposable fixture>/Caches/restricted: Permission denied
+
+Read-only identifier check: /usr/bin/plutil -extract CFBundleIdentifier raw /Applications/Safari.app/Contents/Info.plist
+com.apple.Safari

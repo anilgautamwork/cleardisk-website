@@ -763,18 +763,18 @@ export const systemFolderGuides: Guide[] = [
     slug: 'library-caches-folder-mac',
     title: 'The Library Caches folder on Mac, folder by folder',
     description:
-      'What ~/Library/Caches and /Library/Caches hold, how folder names map to apps, how to rank them by size, and which cache folders to leave to macOS.',
+      'What ~/Library/Caches and /Library/Caches hold, how to identify and measure app caches without hiding errors, and which folders to leave to macOS.',
     summary:
-      '~/Library/Caches holds rebuildable working files, usually one folder per app named by its bundle identifier. It is the safest part of the Library to review: identify the owner, quit it, and move that one folder to the Trash. /Library/Caches is shared by all users and best left mostly alone.',
+      'Start with ~/Library/Caches to inspect your account’s app caches. Identify the app and use its own cleanup controls where available. A folder name alone does not establish that deletion is safe. Shared caches in /Library/Caches and macOS files in /System/Library/Caches need different handling.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-10-12',
     sections: [
       {
         id: 'three-caches-folders',
         title: 'Three Caches folders, one of them yours',
         paragraphs: [
           '~/Library/Caches belongs to your account; open it from Finder with Go → Go to Folder. /Library/Caches, at the top of the disk, holds caches shared by every user, often from system services and background updaters. /System/Library/Caches belongs to macOS and is not somewhere to clean.',
-          'Apple’s developer guidance defines the folder’s purpose: it contains cached data that can be regenerated as needed, and apps should never rely on cache files existing. Apps are responsible for managing their own caches, which is why an app’s own clear-cache setting is always the first choice, as the cache-clearing guide explains app by app. Apple’s Storage settings count caches in System Data, so this folder is one of the places that category comes from.',
+          'Apple defines caches as data an app can recreate. That is a storage convention for developers, not proof that every file you find can be removed without consequences. Sandboxed apps keep their cache directory inside their app sandbox; inspecting ~/Library/Caches alone will not measure every app’s cache. Do not remove a whole container to clear the cache inside it.',
         ],
       },
       {
@@ -782,65 +782,73 @@ export const systemFolderGuides: Guide[] = [
         title: '1. Read the folder names',
         paragraphs: [
           'Apple’s convention is a subfolder named after the app’s bundle identifier, such as com.example.MyApp. Names starting com.apple belong to macOS and Apple apps; com.google, com.microsoft and similar prefixes point to the vendor. Some tools use a plain name instead, such as Homebrew or pip.',
-          'To confirm which identifier an installed app uses, read it from the app with mdls, as below. When a folder’s identifier matches no app you have, it is usually a cache left by an app you removed, which is one of the easier things to clear.',
+          'The read-only command below reads Safari’s bundle identifier directly from its Info.plist. On our macOS 27.0.1 check it returned com.apple.Safari. For another app, use its actual app-bundle path. A missing file or key is an inconclusive check, not evidence that a cache is abandoned. If you cannot identify the owner, leave the folder in place until you have the vendor’s guidance.',
         ],
         code: [
-          'mdls -name kMDItemCFBundleIdentifier -raw /Applications/Safari.app',
+          '/usr/bin/plutil -extract CFBundleIdentifier raw /Applications/Safari.app/Contents/Info.plist',
         ],
       },
       {
         id: 'measure-and-rank',
-        title: '2. Measure and rank',
+        title: '2. Measure without hiding errors',
         paragraphs: [
-          'The first command lists the fifteen largest folders in your Caches folder, largest last. The second does the same for the shared folder. Some com.apple folders are protected and are skipped silently; that is expected.',
-          'On many Macs a few folders account for most of the total. Write down the top three and the app each belongs to, and ignore the long tail of small folders: clearing them recovers little and costs every app a slower next launch.',
+          'These read-only commands list immediate subfolders and a parent total, first for your account and then for shared caches. Hidden subfolders are included. Sizes use binary units and reflect allocated space. The parent already includes its children, so do not add its row to the others. Neither command measures all caches on the Mac.',
+          'Keep Permission denied and Operation not permitted messages visible: a printed total can be incomplete. A missing directory produces an error rather than a zero-byte measurement. Do not add sudo, change permissions or disable protections to force a complete scan. Control-C stops the command. Compare the larger readable folders only after identifying their owners.',
         ],
         code: [
-          'du -sh ~/Library/Caches/* 2>/dev/null | sort -h | tail -15',
-          'du -sh /Library/Caches/* 2>/dev/null | sort -h | tail -10',
+          'du -h -d 1 "$HOME/Library/Caches"',
+          'du -h -d 1 /Library/Caches',
+        ],
+      },
+      {
+        id: 'tested-size-example',
+        title: 'What the size command showed in a disposable test',
+        paragraphs: [
+          'On macOS 27.0.1, a generated Caches folder contained a 1 MiB file under com.example.Reader and a 128 KiB file in a hidden subfolder. The command printed 1.0M and 128K for those folders and 1.1M for the parent. When a separate empty child was made unreadable, it still printed a parent total but also reported Permission denied and exited with status 1.',
+          'This checks how the command handles paths and errors. It does not test an actual app’s cache, prove that deleting one is safe, or measure recoverable storage. No real caches were removed.',
         ],
       },
       {
         id: 'what-is-usually-large',
-        title: '3. What is usually large',
+        title: '3. Choose the owning app’s cleanup controls',
         paragraphs: [
-          'The same few kinds of cache tend to top the list. Each has a better route than Finder deletion where one exists.',
-          'Two patterns deserve a second look. A large cache for an app you use every day will simply grow back, so clearing it buys a few days of space at the cost of a slower app. A cache for an app you rarely open, or no longer have, is the better target: it stays gone.',
+          'Choose a cleanup method from the app that owns the files. The size is a reason to inspect a folder, not permission to remove it.',
+          'A cache may return as the app downloads or rebuilds data. There is no fixed number of days that the space will stay free. If it grows rapidly again, check the app’s storage settings or support guidance before repeating the cleanup.',
         ],
         items: [
-          'Browser caches: Chrome keeps its disk cache under Google; Safari’s is under com.apple.Safari. Clear them from the browser, as the browser cache guide shows.',
-          'Package managers: Homebrew keeps downloads in ~/Library/Caches/Homebrew and pip in ~/Library/Caches/pip. Use brew cleanup and pip cache purge rather than Finder.',
+          'Browsers: use the browser’s own cache controls. Check what the selected option removes; website data and saved sessions are different from cached files.',
+          'Package managers: use their documented inspection and cleanup commands. Review the dedicated Homebrew or pip guide before deleting downloads you may need offline.',
           'Developer and creative tools: build caches, previews and media caches. Check the tool’s settings for a cache location or clear option.',
-          'Apps you have removed: their cache folders are leftovers and can go to the Trash.',
-          'com.apple folders: leave them. macOS manages these and clears caches it considers safe when space is needed.',
+          'An app you removed: confirm the folder belongs only to that app. A vendor name or an absent app icon is not sufficient evidence.',
+          'Apple and system services: leave unfamiliar folders in place. Apple documents safe mode as a way to clear certain system caches temporarily, not every cache.',
         ],
       },
       {
         id: 'remove-one-folder',
-        title: '4. Remove one folder at a time',
+        title: '4. Use an app-specific cleanup method',
         paragraphs: [
-          'Quit the app that owns the folder, then move that app’s folder to the Trash; leave the Caches folder itself in place. Open the app, confirm it works and has rebuilt what it needs, and empty the Trash afterwards. Expect the folder to grow back as you use the app; a cache that returns to the same size quickly is doing its job.',
-          'In /Library/Caches, only remove a folder that clearly belongs to software you installed and have since removed. ClearDisk’s System Data view groups these files as Application caches and Browser caches, labeled Safe because they rebuild; the label still assumes you quit the app first and use the Trash.',
-          'Avoid tools or commands that empty the whole Caches folder at once. Everything comes back, every app starts cold at the same time, and anything an app cached for offline use has to be downloaded again.',
+          'Use the app’s built-in clear-cache action first, following its documentation. For manual Finder removal, proceed only when the vendor identifies the exact cache path and says it can be removed. Quit the app and any helper the vendor specifies. Review the path carefully, then move only the documented cache item to the Trash. Keep the parent Caches folder.',
+          'Reopen the app and check the tasks you depend on, including offline access if relevant. Keep a backup of important work. Moving an item to Trash does not free its space until the Trash is emptied; review its contents before that irreversible step. A successful launch alone does not test every app feature. If you need to restore an item, quit the app and follow its support instructions if replacement files now exist.',
+          'Leave shared /Library/Caches and protected system locations to macOS or the software vendor’s procedure. ClearDisk’s Application caches and Browser caches categories help locate data; a category label does not verify the contents of an individual folder. Avoid blanket deletion commands.',
         ],
       },
     ],
     questions: [
       {
         q: 'Which Caches folder on my Mac is safe to look through?',
-        a: "~/Library/Caches, inside your own account, is the safest to review, since it holds rebuildable data organized mostly one folder per app. /Library/Caches is shared by every user and best left mostly alone, and /System/Library/Caches belongs to macOS and isn't somewhere to clean.",
+        a: "Start by inspecting ~/Library/Caches in your own account. Inspection does not require deleting anything. Leave shared and protected system caches alone unless the relevant vendor documents a specific procedure.",
       },
       {
         q: 'How do I know which app a folder in Library/Caches belongs to?',
-        a: "Apple's convention names each subfolder after the app's bundle identifier, such as com.example.MyApp, where com.apple prefixes belong to macOS and Apple apps and prefixes like com.google or com.microsoft point to that vendor. You can confirm an app's identifier with mdls if unsure.",
+        a: "Apple's convention names each subfolder after the app's bundle identifier, such as com.example.MyApp, where com.apple prefixes belong to macOS and Apple apps and prefixes like com.google or com.microsoft point to that vendor. Read an installed app's CFBundleIdentifier with plutil. A matching name is a clue to ownership, not a deletion guarantee.",
       },
       {
         q: 'Is it okay to empty my whole Caches folder at once?',
-        a: "It's better to avoid that. Everything comes back, every app starts up cold at the same time, and anything an app cached for offline use has to be downloaded again, so removing one identified folder at a time is safer.",
+        a: "Avoid clearing the whole folder. Apps can need time or a network connection to rebuild data, and an unfamiliar item needs investigation. Use the owning app's documented cleanup controls.",
       },
       {
         q: "What's the right way to clear a specific app's cache folder in Finder?",
-        a: 'Quit the app that owns the folder, move just that folder to the Trash, then reopen the app to confirm it works and rebuilds what it needs, and empty the Trash afterward. Leave the Caches folder itself in place.',
+        a: 'Use Finder only when the app’s documentation identifies the exact removable cache path. Quit the app as directed, move only that item to Trash, and test the app before deciding whether to empty Trash. Leave the parent folder and unrelated data in place.',
       },
     ],
     related: [
@@ -849,7 +857,11 @@ export const systemFolderGuides: Guide[] = [
       'application-support-folder-mac',
       'clear-browser-cache-mac',
     ],
-    sources: [libraryDetails, fileSystemBasics, storageSettings],
+    sources: [
+      libraryDetails, fileSystemBasics,
+      { label: 'Apple Developer: cache directory and sandbox location', url: 'https://developer.apple.com/documentation/foundation/url/cachesdirectory' },
+      { label: 'Apple: free up storage space on Mac', url: 'https://support.apple.com/en-us/102624' },
+    ],
   },
   {
     slug: 'mac-log-files',
