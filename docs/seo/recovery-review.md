@@ -13,7 +13,7 @@ Site totals: 4,123 impressions and 21 clicks before; 324 impressions and zero cl
 | 1 | /homebrew-list-installed-packages | 467 → 11 | 456 | 0 → 0 | Recently improved October 8; monitor before rewriting again. |
 | 2 | /steam-games-storage-mac | 264 → 16 | 248 | 0 → 0 | Published October 11: save-sync limits, backups before uninstall and tested size-command edge cases. |
 | 3 | /operation-not-permitted-terminal-mac | 260 → 14 | 246 | 2 → 0 | Published October 9: distinguish causes, real locked-file screenshot, partial totals. |
-| 4 | /what-is-system-data-on-mac | 180 → 6 | 174 | 0 → 0 | Reviewed October 13: corrected category boundaries and measurement limits; publication pending. |
+| 4 | /what-is-system-data-on-mac | 180 → 6 | 174 | 0 → 0 | Published October 13: corrected category boundaries, definition FAQ and measurement limits. |
 | 5 | /private-var-folders-mac | 121 → 4 | 117 | 1 → 0 | Published October 9: preserve errors, guarded paths, tested hidden-folder/incomplete scan examples. |
 | 6 | /library-caches-folder-mac | 106 → 5 | 101 | 0 → 0 | Published October 12: app-specific cleanup, visible measurement errors and sandbox scope. |
 | 7 | /application-support-folder-mac | 97 → 1 | 96 | 0 → 0 | Queued: check data-loss warnings and actual storage inspection steps. |
@@ -111,3 +111,9 @@ Validation before publication: full **55 unit tests passed, zero failed/skipped*
 Private aggregate observation 2026-10-13T09:59:46.698Z: 60 download requests / rolling 30 UTC days (four / seven), 340 arrivals (140 / seven), 16 finished-transfer events (one / seven), seven checkouts (zero / seven), four all-time license records and two cumulative GitHub downloads separately. These are events, not unique people, installs, sales or organic attribution; moving windows are not cumulative counters, arrivals can include QA, checkouts include test mode and licenses are not refund-adjusted. Credentials not printed or committed.
 
 Before editing, main matched origin at 4c15510 and latest Worker was e5a37e1a-2836-40b6-988e-63ae4cfb1858. Preserve the unrelated September 27 audit-document change. Next content review October 14: /application-support-folder-mac. Keep the existing daily recovery schedule, current design, release, Stripe/license behavior and Talivia pause.
+
+### October 13 publication verified
+
+Published source **3b83d9a** to existing Worker **81a6ae12-28af-44fe-b7a1-f243694383a3**, main pushed. URL: https://cleardisk.app/what-is-system-data-on-mac . **176 final live HTTP SEO checks passed**. Initial requests immediately after deployment lacked the updated copy/FAQ; a subsequent response contained the correction, and the complete suite was repeated successfully without another deployment. This is consistent with deployment propagation; the transient response alone does not establish a persistent caching defect.
+
+Changed guide 200 with revised category explanation, definition FAQ and labeled example; sitemap lastmod October 13 and 171 URLs verified. /download and /updates/appcast.xml remain 2.1.0; DMG HEAD 200. Anonymous analytics and analytics API remain 401, private/no-store, noindex/nofollow. ClearDisk-QA/HEAD verification avoids counted download traffic. No Google submission or observed recrawl/indexing/recovery claim. Final local suite remains 55 passed, zero failed/skipped; lint/typecheck/build and 176 local HTTP checks passed, with desktop/narrow browser and final diff review. Unrelated September 27 audit-document edit preserved. Next review October 14; GSC complete-window review October 16.

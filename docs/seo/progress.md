@@ -1,5 +1,11 @@
 # SEO loop progress log
 
+## 13 October 2026 — System Data explanation published and verified
+
+Published https://cleardisk.app/what-is-system-data-on-mac from 3b83d9a to Worker 81a6ae12-28af-44fe-b7a1-f243694383a3. Corrected category assignments, clarified ClearDisk/Apple grouping and snapshot limits, and improved definition FAQ and internal links. Sources, overlap decisions, metrics and evidence limits are in [recovery-review.md](recovery-review.md).
+
+All 176 final live HTTP SEO checks passed after initial post-deployment responses still lacked the new FAQ; the whole suite was rerun successfully. Updated route 200, October 13 sitemap date (171 URLs), release/download 2.1.0, DMG HEAD 200 and anonymous analytics 401/private/no-store/noindex verified. Local 55 tests (zero failures/skips), lint/typecheck/build, 176 HTTP checks and desktop/390px review passed. No new pages, Google submission, observed indexing or recovery claim. This resolves the pending entry below. Next guide October 14; complete-window Search Console review October 16.
+
 ## 13 October 2026 — System Data explanation correction prepared
 
 Reviewed /what-is-system-data-on-mac, verified loss priority 4. Corrected the unsupported attribution of Mail/Messages attachments and iOS backups to System Data, distinguished Apple’s and ClearDisk’s grouping, and added measurement limits and a clearly labeled numerical example. Apple’s current primary pages and app source checked; Humanizer used. Existing cleanup/growth/large-total guides kept for distinct reader needs; no consolidation or new pages. Source evidence and metrics: [recovery-review.md](recovery-review.md).
