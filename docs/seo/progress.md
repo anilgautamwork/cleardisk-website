@@ -1,5 +1,11 @@
 # SEO loop progress log
 
+## 13 October 2026 — System Data explanation correction prepared
+
+Reviewed /what-is-system-data-on-mac, verified loss priority 4. Corrected the unsupported attribution of Mail/Messages attachments and iOS backups to System Data, distinguished Apple’s and ClearDisk’s grouping, and added measurement limits and a clearly labeled numerical example. Apple’s current primary pages and app source checked; Humanizer used. Existing cleanup/growth/large-total guides kept for distinct reader needs; no consolidation or new pages. Source evidence and metrics: [recovery-review.md](recovery-review.md).
+
+Full 55 unit tests passed (zero failed/skipped), lint/typecheck/build and all 176 local HTTP SEO checks passed. Desktop/390px and final diff review completed. Publication pending; no indexing or recovery claim. Unrelated audit edit preserved. Next page review October 14; complete-window Search Console review October 16.
+
 ## 12 October 2026 — Library Caches correction published and verified
 
 Published https://cleardisk.app/library-caches-folder-mac from main 5695d03 to Worker e5a37e1a-2836-40b6-988e-63ae4cfb1858. Corrected unsupported deletion assumptions, preserved scan errors, explained sandbox scope and added measured disposable-fixture results with explicit limits. Apple sources and Humanizer review are recorded in [recovery-review.md](recovery-review.md).

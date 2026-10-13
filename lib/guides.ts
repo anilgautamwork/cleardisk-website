@@ -155,9 +155,9 @@ const foundationGuides: Guide[] = [
     description:
       'What System Data on Mac actually contains, why its size keeps changing, and how to tell ordinary app files from storage you should leave alone.',
     summary:
-      'System Data is macOS’s catch-all for files that do not fit its other storage categories. It can include caches, logs, app support files and runtime resources. It is not all junk.',
+      'System Data groups files that macOS does not assign to another storage category, including caches, logs and app support data. The total describes storage use; it does not tell you how much can be removed.',
     published: '2026-09-05',
-    updated: '2026-10-04',
+    updated: '2026-10-13',
     sections: [
       {
         id: 'see-system-data',
@@ -176,10 +176,19 @@ const foundationGuides: Guide[] = [
       },
       {
         id: 'inside-the-category',
-        title: 'A category, not one folder',
+        title: 'What belongs in System Data?',
         paragraphs: [
-          'There is no single System Data folder corresponding to the number in Storage settings. Files from different locations and different applications can contribute to the category. Deleting a folder just because its name contains “System” is the wrong approach.',
-          'For cleanup decisions, a file’s purpose matters more than the category macOS assigns it. An app support folder might contain useful personal data, while a generated cache may be replaceable. Even replaceable files can interrupt an app when removed while it is running.',
+          'Apple lists caches, logs, temporary files, virtual-memory files and other runtime resources among its examples. Fonts, plug-ins and app support data can also belong here. There is no single folder whose contents equal the total.',
+          'For cleanup decisions, a file’s purpose matters more than its category. App support data can include saved work and settings. Use the owning app’s controls or documentation before changing it.',
+        ],
+        items: [
+          'macOS is a separate category for the operating system and its built-in apps. System Data does not mean the size of macOS itself.',
+          'Mail and Messages have their own categories, including attachments. Local device backups appear under iOS Files. Do not automatically attribute these files to System Data.',
+          'A storage app may group files differently. ClearDisk’s System Data view includes a row for iPhone and iPad backups; that does not reproduce Apple’s category boundaries.',
+        ],
+        links: [
+          { label: 'Inspect Library caches and their limits', href: '/library-caches-folder-mac' },
+          { label: 'Understand Application Support data', href: '/application-support-folder-mac' },
         ],
       },
       {
@@ -194,8 +203,8 @@ const foundationGuides: Guide[] = [
         id: 'different-measurements',
         title: 'Why two storage tools may disagree',
         paragraphs: [
-          'Different tools answer different questions: how large a file says it is, how much disk space it occupies, or which category it belongs to. Permissions also affect what a scanner can see. ClearDisk measures allocated file sizes and may need Full Disk Access for protected locations.',
-          'Local snapshots are another part of the picture. Apple counts their space as available and manages them automatically as space is needed. Do not add that figure to an app’s removable-file total and assume the sum is space you can recover.',
+          'Different tools report a file’s logical size, its allocated disk space or a category total. ClearDisk measures allocated file sizes in the locations it can scan. A protected or skipped path can leave its results incomplete; additional permissions do not establish that its total equals Apple’s System Data figure.',
+          'Apple counts Time Machine local snapshot space as available and removes snapshots as they age or space is needed. ClearDisk shows their count, not their size. Neither a count nor a difference between two storage totals establishes how many bytes you can reclaim.',
         ],
       },
       {
@@ -211,22 +220,28 @@ const foundationGuides: Guide[] = [
         title: 'What to do with this information',
         paragraphs: [
           'If you have enough working space, a large System Data number alone does not require immediate cleanup. If you need room, identify the largest understandable contributors, review them, and remove only what you no longer need.',
-          'The guides below separate three next steps: learning a cleanup workflow, diagnosing an unusually large total, and dealing with an urgent full-disk warning.',
+          'Before changing anything, record the date, available space and System Data total from the same volume in Storage settings. If a scanner reports less, check its selected location and any access errors. Keep the difference unresolved until you can identify what accounts for it.',
+          'For example, suppose Storage settings shows 80 GB of System Data and a scanner finds 30 GB in selected folders. The 50 GB difference is not evidence of 50 GB of hidden junk. These are illustrative numbers, not a ClearDisk scan or a savings estimate.',
+        ],
+        links: [
+          { label: 'Follow a reviewed cleanup workflow', href: '/clear-system-data-on-mac' },
+          { label: 'Investigate a number that keeps growing', href: '/system-data-keeps-growing' },
+          { label: 'Deal with a full startup disk', href: '/mac-storage-full' },
         ],
       },
     ],
     questions: [
       {
-        q: 'How do I clear System Data on my Mac?',
-        a: 'Find the files behind the number first: caches, app containers, developer folders and device backups in your Library. The clear-System-Data guide gives the order; there is no single switch.',
+        q: 'What is System Data in Mac storage?',
+        a: 'It is the category for files that do not fit another storage category, such as caches, logs, temporary files and app support data. Its size is not an estimate of removable junk, and it does not correspond to one folder.',
       },
       {
         q: 'Is it okay to delete System Data on Mac?',
         a: 'Do not delete by category. Identify each file and use the owning app’s cleanup controls when available. Keep needed backups and saved work; an old date or cache label does not make a file disposable. Leave unfamiliar system-managed files alone.',
       },
       {
-        q: 'Why is the System Data on my Mac so high?',
-        a: 'Usually one or two producers: a developer tool, a creative app’s caches, old iOS backups, or Mail and Messages attachments. The recurring-growth guide shows how to identify the producer.',
+        q: 'Why can’t I open System Data to delete files?',
+        a: 'Storage settings displays this category as a total without a file-removal control. Inspect identifiable files in Finder or the app that owns them. Categories with an information button provide their own management options; a missing button does not mean a permission error.',
       },
       {
         q: 'How do I get rid of 100GB of System Data?',

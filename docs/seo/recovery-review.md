@@ -13,7 +13,7 @@ Site totals: 4,123 impressions and 21 clicks before; 324 impressions and zero cl
 | 1 | /homebrew-list-installed-packages | 467 → 11 | 456 | 0 → 0 | Recently improved October 8; monitor before rewriting again. |
 | 2 | /steam-games-storage-mac | 264 → 16 | 248 | 0 → 0 | Published October 11: save-sync limits, backups before uninstall and tested size-command edge cases. |
 | 3 | /operation-not-permitted-terminal-mac | 260 → 14 | 246 | 2 → 0 | Published October 9: distinguish causes, real locked-file screenshot, partial totals. |
-| 4 | /what-is-system-data-on-mac | 180 → 6 | 174 | 0 → 0 | Queued: assess definition intent against cleanup/growing variants. |
+| 4 | /what-is-system-data-on-mac | 180 → 6 | 174 | 0 → 0 | Reviewed October 13: corrected category boundaries and measurement limits; publication pending. |
 | 5 | /private-var-folders-mac | 121 → 4 | 117 | 1 → 0 | Published October 9: preserve errors, guarded paths, tested hidden-folder/incomplete scan examples. |
 | 6 | /library-caches-folder-mac | 106 → 5 | 101 | 0 → 0 | Published October 12: app-specific cleanup, visible measurement errors and sandbox scope. |
 | 7 | /application-support-folder-mac | 97 → 1 | 96 | 0 → 0 | Queued: check data-loss warnings and actual storage inspection steps. |
@@ -26,7 +26,7 @@ Site totals: 4,123 impressions and 21 clicks before; 324 impressions and zero cl
 | 14 | /mac-log-files | 77 → 5 | 72 | 0 → 0 | Queued: verify measurement and app-managed cleanup; no blanket removal. |
 | 15 | /how-to-check-storage-on-mac | 77 → 8 | 69 | 0 → 0 | Recently revised October 4; review measurement limitations before more changes. |
 
-These are review priorities, not a claim that all 15 have had a complete editorial audit. Homebrew was already corrected October 8. Today’s deep review covers the permissions and private-var-folders guides; the remaining entries need their own source/test pass. All pages remain indexable.
+These are review priorities, not a claim that all 15 have had a complete editorial audit. Homebrew was already corrected October 8. Completed reviews and remaining source/test passes are listed individually below. All pages remain indexable.
 
 ## October 9 — first correction batch
 
@@ -89,3 +89,25 @@ Before publication, origin/main matched local e86b5b7 and the latest Worker was 
 ### October 12 publication verified
 
 Published source **5695d03** from main to Worker **e5a37e1a-2836-40b6-988e-63ae4cfb1858** in the existing personal account. Live URL: https://cleardisk.app/library-caches-folder-mac . All **176 live HTTP SEO checks passed**. The revised page returns 200 with the corrected introduction and fixture explanation. Its sitemap lastmod is 2026-10-12; sitemap remains 171 URLs. /download and /updates/appcast.xml still advertise 2.1.0; DMG HEAD returns 200. Anonymous /analytics and /api/analytics return 401 with private/no-store and noindex/nofollow. The initial additional sitemap assertion assumed compact XML; a whitespace-tolerant assertion passed, with no production change needed. Verification used ClearDisk-QA and DMG HEAD, not a counted download. No Google submission, observed recrawl or recovery claim. Full local 55-test suite (zero skips), lint/typecheck/build, 176 local HTTP checks and responsive review passed before publication. Next content review October 13; Search Console comparison October 16. Unrelated audit-document edit remains unstaged.
+
+
+## October 13 — System Data definition review
+
+Disposition: **improved**, retained at /what-is-system-data-on-mac. Priority 4 remains based on the October 9 GSC reading: complete equal October 1–3 / October 4–6 windows, 180 → 6 impressions (174 lost), zero clicks in both. No fresh query-window or ranking data today; next complete-window review October 16. This is a focused existing-page correction, not another article or a complete audit of all 15 priorities.
+
+The old FAQ called iOS backups and Mail/Messages attachments usual System Data producers and claimed there were usually only one or two causes, without evidence for that distribution. Apple’s current Storage guide explicitly assigns those files to iOS Files, Mail and Messages. Corrected that categorization, explained macOS as a separate category, and aligned the FAQ with definition intent. ClearDisk’s own System Data view groups iOS backups differently; that distinction is now explicit. Source check: Sources/Core/SystemDataReport.swift, including the iOS-backup row and snapshot bytes:nil; BulkScanner.swift confirms allocated-size measurement. Release remains 2.1.0; no binary or payment change.
+
+Added concrete reading steps (same-volume/date/available-space baseline, selected scan location and access errors), explained that broader permissions do not reconcile category totals, and labeled the 80/30/50 GB arithmetic example as illustrative. It is not measured output or a savings claim. No command, native Storage UI, permission change, deletion or cleanup test was performed or claimed. No invented screenshot or author. Humanizer applied to factual prose. Existing page title, canonical, section IDs and publication date retained; only this guide’s editorial date advances to October 13.
+
+Primary Apple sources read October 13:
+- https://support.apple.com/en-gb/guide/mac-help/mchl3d437fbc/mac — macOS 27 category definitions, non-manageable totals and separate Mail/Messages/iOS Files categories. Full relevant body was accessible today.
+- https://support.apple.com/en-us/102624 — Ventura-or-later navigation, catch-all definition and category information controls.
+- https://support.apple.com/en-us/102154 — local snapshots counted as available and automatically aged/removed. No manual snapshot deletion instructions were added.
+
+Overlap review: **keep** /clear-system-data-on-mac (cleanup workflow), /system-data-keeps-growing (repeat-activity diagnosis) and /system-data-too-large (large-total triage) as distinct from this definition page. This is a source/content intent assessment, not query-level cannibalization proof. Added contextual links to the existing cache/support explanations and cleanup/growth/full-disk routes. No proposed consolidation, redirects or noindex changes. Other guides’ content and dates unchanged.
+
+Validation before publication: full **55 unit tests passed, zero failed/skipped**, lint, typecheck and Cloudflare production build passed; **176 local HTTP SEO checks passed**. Desktop/390px browser review shows readable text and no horizontal page overflow. Final diff reviewed for unsupported category assignments, incomplete-scan implications, actual product behavior, example labels, links/schema and unrelated edits. Impeccable detector reported no findings. No new regression test was needed for this factual copy correction; the full existing metadata/schema/route checks ran. Publication pending.
+
+Private aggregate observation 2026-10-13T09:59:46.698Z: 60 download requests / rolling 30 UTC days (four / seven), 340 arrivals (140 / seven), 16 finished-transfer events (one / seven), seven checkouts (zero / seven), four all-time license records and two cumulative GitHub downloads separately. These are events, not unique people, installs, sales or organic attribution; moving windows are not cumulative counters, arrivals can include QA, checkouts include test mode and licenses are not refund-adjusted. Credentials not printed or committed.
+
+Before editing, main matched origin at 4c15510 and latest Worker was e5a37e1a-2836-40b6-988e-63ae4cfb1858. Preserve the unrelated September 27 audit-document change. Next content review October 14: /application-support-folder-mac. Keep the existing daily recovery schedule, current design, release, Stripe/license behavior and Talivia pause.
