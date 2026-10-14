@@ -1,5 +1,11 @@
 # SEO loop progress log
 
+## 14 October 2026 — Application Support correction published and verified
+
+Published https://cleardisk.app/application-support-folder-mac from 20a74c0 to Worker 2d2250f0-c5f4-4f3a-9c8c-a9fa98710d80. Corrected reset/data-loss advice, sandbox scope and size measurement, with a tested disposable example. Sources, fixture output and aggregate metrics are recorded in [recovery-review.md](recovery-review.md).
+
+All 176 live HTTP SEO checks passed. Guide 200/new copy, October 14 sitemap date (171 URLs), release/download 2.1.0, DMG HEAD 200 and private anonymous analytics 401 verified. Full 55 unit tests (zero failed/skipped), lint/typecheck/build, 176 local HTTP checks and responsive/diff review passed. This resolves the pending entry below. No indexing or recovery claim. Next guide October 15; GSC comparison October 16.
+
 ## 14 October 2026 — Application Support correction prepared
 
 Reviewed /application-support-folder-mac (verified loss priority 7). Corrected reset/reinstall advice, sandbox scope and unsupported largest-category claims; added an error-visible size command with real disposable-fixture results. Apple sources and actual removal guard checked; Humanizer applied. Evidence, metrics and source-access limits are in [recovery-review.md](recovery-review.md).

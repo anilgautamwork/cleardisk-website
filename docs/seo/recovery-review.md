@@ -16,7 +16,7 @@ Site totals: 4,123 impressions and 21 clicks before; 324 impressions and zero cl
 | 4 | /what-is-system-data-on-mac | 180 → 6 | 174 | 0 → 0 | Published October 13: corrected category boundaries, definition FAQ and measurement limits. |
 | 5 | /private-var-folders-mac | 121 → 4 | 117 | 1 → 0 | Published October 9: preserve errors, guarded paths, tested hidden-folder/incomplete scan examples. |
 | 6 | /library-caches-folder-mac | 106 → 5 | 101 | 0 → 0 | Published October 12: app-specific cleanup, visible measurement errors and sandbox scope. |
-| 7 | /application-support-folder-mac | 97 → 1 | 96 | 0 → 0 | Reviewed October 14: reset/data-loss limits and tested size command; publication pending. |
+| 7 | /application-support-folder-mac | 97 → 1 | 96 | 0 → 0 | Published October 14: reset/data-loss limits, sandbox scope and tested error-visible size command. |
 | 8 | /free-command-on-mac | 91 → 1 | 90 | 0 → 0 | Queued: verify memory units, expected output and disk/RAM distinction. |
 | 9 | /uninstall-homebrew-mac | 108 → 20 | 88 | 0 → 0 | Queued: audit uninstall scope, dependencies and command execution risks. |
 | 10 | /photos-library-taking-up-space-mac | 91 → 5 | 86 | 2 → 0 | Queued: verify originals, Optimize Storage and synced deletion behavior. |
@@ -138,3 +138,10 @@ Validation before publication: **55 unit tests passed, zero failed/skipped**; li
 Private aggregate observation 2026-10-14T10:01:02.939Z: 60 download requests / rolling 30 UTC days (four / seven), 343 arrivals (133 / seven), 16 finished-transfer events (one / seven), seven checkouts (zero / seven), four all-time license records and two separate cumulative GitHub downloads. These are events, not unique people, installs, sales or organic recovery. Arrivals can include QA, checkout sessions include test mode, license totals are not refund-adjusted. Credentials were not printed or committed.
 
 Before editing, main matched origin at 1419ef5 and production Worker was 81a6ae12-28af-44fe-b7a1-f243694383a3. Preserve the unrelated September 27 audit-document edit. Keep design, app 2.1.0, download, Stripe/license behavior, private analytics and Talivia pause unchanged. Next content review October 15: /free-command-on-mac; complete-window GSC review October 16. No indexing or recovery claim.
+
+
+### October 14 publication verified
+
+Published source **20a74c0** from main to existing Worker **2d2250f0-c5f4-4f3a-9c8c-a9fa98710d80**. URL: https://cleardisk.app/application-support-folder-mac . All **176 live HTTP SEO checks passed**. Changed guide returns 200 with corrected reset warning, fixture explanation and FAQ; sitemap lastmod is October 14 and count remains 171 URLs. /download and /updates/appcast.xml still advertise 2.1.0; DMG HEAD returns 200. Anonymous /analytics and /api/analytics return 401 with private/no-store and noindex/nofollow. QA/HEAD checks avoid counted download traffic.
+
+Full final unit suite: 55 passed, zero failed/skipped. Lint/typecheck/build, 176 local HTTP checks, desktop/390px and final diff review passed before publication. No indexing request, observed Google recrawl or recovery claim. Only the reviewed guide was published; unrelated audit edit remains unstaged. Next review October 15; complete-window Search Console comparison October 16. Local preview stopped after verification.
