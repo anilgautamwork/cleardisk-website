@@ -1898,13 +1898,13 @@ export const maintenanceGuides: Guide[] = [
     summary:
       'Found a large Application Support folder? Start by checking which app owns it. It may hold downloaded content, but it can also hold your saved work. Even after you uninstall the app, keep any data you still need.',
     published: '2026-09-06',
-    updated: '2026-09-15',
+    updated: '2026-10-14',
     sections: [
       {
         id: 'what-it-holds',
         title: '1. What the folder holds',
         paragraphs: [
-          'There are two Application Support folders. ~/Library/Application Support belongs to your account and holds the data of the apps you use: a subfolder per app or vendor with settings, small databases, downloaded content such as voices, templates and models, and licence files. /Library/Application Support holds the same kind of data for items shared by every user, often installed by drivers and larger suites.',
+          'Start with ~/Library/Application Support for your account and /Library/Application Support for shared app resources. App-specific folders can contain databases, downloaded resources and saved work. These are not the only locations: sandboxed apps also keep data in containers. A small Application Support folder does not mean an app has little data elsewhere.',
           'Treat Application Support as app data, not a cache you can empty. Some files can be downloaded again; others may be your only copy. Deleting a folder can reset settings or erase local work.',
         ],
       },
@@ -1912,11 +1912,14 @@ export const maintenanceGuides: Guide[] = [
         id: 'open-and-measure',
         title: '2. Open it and measure it',
         paragraphs: [
-          'In Finder, choose Go → Go to Folder, enter ~/Library/Application Support and press Return. Select a subfolder and press Command-I to check its size. If you prefer Terminal, the command below measures readable subfolders and sorts them from smallest to largest. It does not delete files; inaccessible entries are omitted.',
+          'In Finder, choose Go → Go to Folder, paste ~/Library/Application Support and press Return. Select a subfolder and press Command-I to inspect it. In Terminal, the command below reports allocated disk space for readable immediate subfolders and the parent folder. It includes hidden subfolders and leaves errors visible. It does not delete files or list every nested file.',
+          'The parent total already includes its children; do not add it to their sizes. K, M and G use powers of 1024, so these figures can differ from Finder’s decimal display. A size is not a cleanup recommendation. You can stop a long scan with Control-C.',
+          'If you see Permission denied or Operation not permitted, the result is incomplete. Keep that error with your notes; do not hide it, change permissions or add sudo just to obtain a larger total. No such file or directory means the path was not found, not that the app uses zero space. Check the path in Finder and consult the app’s storage instructions.',
+          'A disposable test on macOS 27.0.1 returned 2.0M for an ExampleApp folder, 128K for a hidden subfolder and 2.1M for their parent. An empty folder returned 0B; a missing path returned an error. Those are fixture results, not installed-app measurements or recoverable-space estimates.',
           'Some app support data can appear in System Data. Apple defines that category as files that do not fit a more specific category; it is not a direct measurement of this folder. Compare the folder sizes you can read instead of assuming they explain the entire total.',
         ],
         code: [
-          'du -sh ~/Library/Application\\ Support/* 2>/dev/null | sort -h',
+          'du -h -d 1 "$HOME/Library/Application Support"',
         ],
       },
       {
@@ -1926,11 +1929,9 @@ export const maintenanceGuides: Guide[] = [
           'Start with the largest folder you recognize. Open the app that owns it and look for storage, downloads or cache settings. The options depend on the app.',
         ],
         items: [
-          'Chat and collaboration apps: message and file caches per workspace. Their own settings usually offer a cache limit or a clear-cache button.',
-          'Creative and design suites: brushes, fonts, templates, media caches and sync data. Adjust in the app’s preferences; the Photoshop scratch guide covers the largest case.',
-          'Developer tools and editors: extensions, language servers, indexes and workspace storage. Uninstall extensions you no longer use.',
-          'Music and audio apps: sound libraries and instrument content, often tens of gigabytes, with an in-app download manager to remove them.',
-          'Browsers and launchers: profiles, updates and game libraries. Remove games and profiles inside the app rather than in Finder.',
+          'Check the owning app’s storage screen for downloaded content you can remove separately from saved work. Read what its clear-cache or reset control actually removes before using it.',
+          'For a database or profile folder, open the app and check which accounts, projects or documents depend on it. A filename ending in .db is not evidence that the file is temporary.',
+          'For extensions, templates or media resources, use the app’s content manager when it provides one. Check that a resource can still be downloaded or restored before removing your local copy.',
           'Folders named after apps you deleted: review their contents and the maker’s removal instructions. They can still hold documents, databases or data shared with other apps.',
         ],
       },
@@ -1946,7 +1947,8 @@ export const maintenanceGuides: Guide[] = [
         id: 'what-never-to-delete',
         title: '5. What never to delete',
         paragraphs: [
-          'Do not delete the Application Support folder itself, anything under /Library/Application Support that you did not install, or subfolders named for Apple, CrashReporter, com.apple or iCloud; macOS and its services store data there. Do not delete a running app’s folder to fix a problem; reinstalling the app or using its reset option is the supported route.',
+          'Do not empty either Application Support folder or remove an unfamiliar folder to make the total smaller. A familiar vendor name does not prove every file inside is disposable. Leave system and shared resources alone unless the maker documents a specific removal procedure.',
+          'If an app is malfunctioning, follow its maker’s troubleshooting steps. A reset can erase local data, and reinstalling the app does not guarantee that its stored data will be repaired or removed. Export or back up needed work first, verify that you can open the backup, and quit the app before any documented manual change.',
           'ClearDisk’s free scan helps you inspect paths and sizes. Its removal guard blocks general Application Support data; local device backups have a separate exception. Review ordinary app data through the owning app or its maker’s instructions. A large folder is not necessarily disposable.',
         ],
       },
@@ -1962,7 +1964,7 @@ export const maintenanceGuides: Guide[] = [
       },
       {
         q: "What's usually taking up space in Application Support?",
-        a: "It varies by app type: chat apps keep message and file caches per workspace, creative suites store brushes, templates and media caches, and music apps keep large sound libraries, often with their own in-app controls to manage them. Adjust these through each app's own settings rather than deleting in Finder.",
+        a: "There is no fixed largest category. Measure the folders you can read, identify their owning apps and check those apps for downloaded content or saved projects. A database or profile can hold work you still need; its size alone does not make it safe to remove.",
       },
       {
         q: 'Can ClearDisk delete files in Application Support for me?',
@@ -1977,6 +1979,10 @@ export const maintenanceGuides: Guide[] = [
       'clear-cache-on-mac',
     ],
     sources: [
+      {
+        label: 'Apple Developer: macOS Library directory conventions (archived)',
+        url: 'https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/MacOSXDirectories/MacOSXDirectories.html',
+      },
       {
         label: 'Apple: go directly to a specific folder on Mac',
         url: 'https://support.apple.com/guide/mac-help/mchlp1236/mac',

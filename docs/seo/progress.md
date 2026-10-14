@@ -1,5 +1,11 @@
 # SEO loop progress log
 
+## 14 October 2026 — Application Support correction prepared
+
+Reviewed /application-support-folder-mac (verified loss priority 7). Corrected reset/reinstall advice, sandbox scope and unsupported largest-category claims; added an error-visible size command with real disposable-fixture results. Apple sources and actual removal guard checked; Humanizer applied. Evidence, metrics and source-access limits are in [recovery-review.md](recovery-review.md).
+
+Full 55 unit tests passed (zero failed/skipped), lint/typecheck/build and 176 local HTTP SEO checks passed. Desktop/390px layout and final diff/failure-path review completed. Publication pending; no new pages, indexing request or recovery claim. Unrelated audit-document edit preserved. Next guide October 15; GSC review October 16.
+
 ## 13 October 2026 — System Data explanation published and verified
 
 Published https://cleardisk.app/what-is-system-data-on-mac from 3b83d9a to Worker 81a6ae12-28af-44fe-b7a1-f243694383a3. Corrected category assignments, clarified ClearDisk/Apple grouping and snapshot limits, and improved definition FAQ and internal links. Sources, overlap decisions, metrics and evidence limits are in [recovery-review.md](recovery-review.md).

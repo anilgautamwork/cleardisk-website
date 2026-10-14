@@ -16,7 +16,7 @@ Site totals: 4,123 impressions and 21 clicks before; 324 impressions and zero cl
 | 4 | /what-is-system-data-on-mac | 180 → 6 | 174 | 0 → 0 | Published October 13: corrected category boundaries, definition FAQ and measurement limits. |
 | 5 | /private-var-folders-mac | 121 → 4 | 117 | 1 → 0 | Published October 9: preserve errors, guarded paths, tested hidden-folder/incomplete scan examples. |
 | 6 | /library-caches-folder-mac | 106 → 5 | 101 | 0 → 0 | Published October 12: app-specific cleanup, visible measurement errors and sandbox scope. |
-| 7 | /application-support-folder-mac | 97 → 1 | 96 | 0 → 0 | Queued: check data-loss warnings and actual storage inspection steps. |
+| 7 | /application-support-folder-mac | 97 → 1 | 96 | 0 → 0 | Reviewed October 14: reset/data-loss limits and tested size command; publication pending. |
 | 8 | /free-command-on-mac | 91 → 1 | 90 | 0 → 0 | Queued: verify memory units, expected output and disk/RAM distinction. |
 | 9 | /uninstall-homebrew-mac | 108 → 20 | 88 | 0 → 0 | Queued: audit uninstall scope, dependencies and command execution risks. |
 | 10 | /photos-library-taking-up-space-mac | 91 → 5 | 86 | 2 → 0 | Queued: verify originals, Optimize Storage and synced deletion behavior. |
@@ -117,3 +117,24 @@ Before editing, main matched origin at 4c15510 and latest Worker was e5a37e1a-28
 Published source **3b83d9a** to existing Worker **81a6ae12-28af-44fe-b7a1-f243694383a3**, main pushed. URL: https://cleardisk.app/what-is-system-data-on-mac . **176 final live HTTP SEO checks passed**. Initial requests immediately after deployment lacked the updated copy/FAQ; a subsequent response contained the correction, and the complete suite was repeated successfully without another deployment. This is consistent with deployment propagation; the transient response alone does not establish a persistent caching defect.
 
 Changed guide 200 with revised category explanation, definition FAQ and labeled example; sitemap lastmod October 13 and 171 URLs verified. /download and /updates/appcast.xml remain 2.1.0; DMG HEAD 200. Anonymous analytics and analytics API remain 401, private/no-store, noindex/nofollow. ClearDisk-QA/HEAD verification avoids counted download traffic. No Google submission or observed recrawl/indexing/recovery claim. Final local suite remains 55 passed, zero failed/skipped; lint/typecheck/build and 176 local HTTP checks passed, with desktop/narrow browser and final diff review. Unrelated September 27 audit-document edit preserved. Next review October 14; GSC complete-window review October 16.
+
+
+## October 14 — Application Support guide correction
+
+Disposition: **improved**, retained at /application-support-folder-mac. Priority 7 uses the October 9 GSC evidence: complete equal October 1–3 versus October 4–6 windows, 97 → 1 impressions (96 lost), zero clicks in both. No fresh search/query window today; next complete-window comparison October 16. Review scope is this guide, not all 15 queue entries. No new article, noindex, redirect or removal.
+
+Corrected the claim that there are only two app-support locations, removed unsupported app-type size rankings and the suggestion that reset/reinstall is a general safe fix. The guide now explains sandbox scope, checks for saved work and restorable resources, and warns that a reset can erase local data. Replaced the wildcard/error-suppressing pipeline with quoted `du -h -d 1`, preserving hidden subfolders and diagnostic errors. Explained parent totals, binary units, missing/incomplete paths and Control-C without recommending permission expansion. FAQ now avoids claiming a usual largest category. Current TrashService.swift confirms the general Application Support block and separate MobileSync/Backup exception; no release or product capability changes.
+
+Reproducible evidence: [disposable command fixture](evidence/2026-10-14-application-support-checks.txt). On macOS 27.0.1, random fixture data produced 2.0M for ExampleApp, 128K for a hidden folder and 2.1M for the parent; an empty folder returned 0B and a missing path exited 1 with a visible error. No installed app data was scanned, deleted or reset; no savings, real-app cleanup or permission-denial reproduction is claimed. Humanizer used for a generic factual edit, without an invented author or screenshot.
+
+Primary sources read October 14:
+- https://support.apple.com/en-us/102610 — uninstall guidance, vendor uninstallers, preserved user documents and the possible need for the app to open them.
+- https://support.apple.com/guide/mac-help/mchlp1236/mac — Finder Go to Folder and home-folder path syntax; current AU redirect body read.
+- https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/MacOSXDirectories/MacOSXDirectories.html — app-support/user-data and sandbox container conventions. Explicitly labeled archived; no iOS purge behavior applied to Mac.
+- The Storage settings source remains from the October 13 check; today's direct extraction returned an internal error, so no fresh read of its body is claimed. Its existing catch-all definition was not changed.
+
+Validation before publication: **55 unit tests passed, zero failed/skipped**; lint, typecheck and Cloudflare production build passed. All **176 local HTTP SEO checks passed**. Desktop and 390px browser inspection confirmed readable copy and no horizontal page overflow. Final diff reviewed for shell quoting, partial/missing totals, reset/uninstall failure paths, actual removal guard, schema/date consistency and unrelated edits. Impeccable detector returned no findings. Only this guide's editorial date advances. Publication pending.
+
+Private aggregate observation 2026-10-14T10:01:02.939Z: 60 download requests / rolling 30 UTC days (four / seven), 343 arrivals (133 / seven), 16 finished-transfer events (one / seven), seven checkouts (zero / seven), four all-time license records and two separate cumulative GitHub downloads. These are events, not unique people, installs, sales or organic recovery. Arrivals can include QA, checkout sessions include test mode, license totals are not refund-adjusted. Credentials were not printed or committed.
+
+Before editing, main matched origin at 1419ef5 and production Worker was 81a6ae12-28af-44fe-b7a1-f243694383a3. Preserve the unrelated September 27 audit-document edit. Keep design, app 2.1.0, download, Stripe/license behavior, private analytics and Talivia pause unchanged. Next content review October 15: /free-command-on-mac; complete-window GSC review October 16. No indexing or recovery claim.
