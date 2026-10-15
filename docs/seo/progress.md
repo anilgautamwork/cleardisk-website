@@ -1,5 +1,11 @@
 # SEO loop progress log
 
+## 15 October 2026 — Memory-command correction published and verified
+
+Published https://cleardisk.app/free-command-on-mac from 25dc365 to Worker 7149a5c8-e574-43ac-a0d2-e1fd59743014. Binary units, interval counter behavior, pressure limits and RAM/disk distinction corrected with actual read-only observations. Sources and metrics: [recovery-review.md](recovery-review.md).
+
+All 176 live HTTP SEO checks passed. Revised guide 200, sitemap October 15 (171 URLs), release/download 2.1.0, DMG HEAD 200 and private anonymous analytics 401 verified. Final 55 unit tests passed, zero failed/skipped; lint/typecheck/build, 176 local checks and desktop/mobile review passed. This resolves the pending entry below. No new page, indexing or recovery claim. Next review October 16 includes complete Search Console windows.
+
 ## 15 October 2026 — Memory-command guide correction prepared
 
 Reviewed /free-command-on-mac (verified priority 8). Corrected binary units, mixed interval/current counters and the unsupported available-memory equivalence; added actual read-only command observations and disk/RAM boundaries. Apple pages and installed manuals checked, Humanizer applied. Sources, metrics and testing limits: [recovery-review.md](recovery-review.md).

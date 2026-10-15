@@ -17,7 +17,7 @@ Site totals: 4,123 impressions and 21 clicks before; 324 impressions and zero cl
 | 5 | /private-var-folders-mac | 121 → 4 | 117 | 1 → 0 | Published October 9: preserve errors, guarded paths, tested hidden-folder/incomplete scan examples. |
 | 6 | /library-caches-folder-mac | 106 → 5 | 101 | 0 → 0 | Published October 12: app-specific cleanup, visible measurement errors and sandbox scope. |
 | 7 | /application-support-folder-mac | 97 → 1 | 96 | 0 → 0 | Published October 14: reset/data-loss limits, sandbox scope and tested error-visible size command. |
-| 8 | /free-command-on-mac | 91 → 1 | 90 | 0 → 0 | Reviewed October 15: corrected units, interval counters and pressure interpretation; publication pending. |
+| 8 | /free-command-on-mac | 91 → 1 | 90 | 0 → 0 | Published October 15: corrected units, interval counters and pressure interpretation; tested read-only output. |
 | 9 | /uninstall-homebrew-mac | 108 → 20 | 88 | 0 → 0 | Queued: audit uninstall scope, dependencies and command execution risks. |
 | 10 | /photos-library-taking-up-space-mac | 91 → 5 | 86 | 2 → 0 | Queued: verify originals, Optimize Storage and synced deletion behavior. |
 | 11 | /move-files-to-trash-terminal-mac | 83 → 2 | 81 | 0 → 0 | Queued: verify OS availability, paths and recoverability. |
@@ -168,3 +168,10 @@ Final validation: full **55 unit tests passed, zero failed/skipped**, lint, type
 Aggregate metrics observed 2026-10-15T10:01:26.809Z: 57 download requests / rolling 30 UTC days (four / seven), 351 arrival events (113 / seven), 16 completed-transfer events (one / seven), seven checkout sessions (zero / seven), four all-time license records, two cumulative GitHub downloads separately. These are events, not unique people, installs, sales or proof of organic recovery; arrivals may include QA, checkout sessions include test mode, and license totals are not refund-adjusted. No credentials printed or committed.
 
 Origin/main matched e41abd4 before editing. Production check confirmed Worker 2d2250f0-c5f4-4f3a-9c8c-a9fa98710d80; the first deployment-list command lacked a Worker name and failed locally, then the explicit-name read succeeded. Preserve the unrelated September 27 audit edit. Next review October 16: complete Search Console windows, then /uninstall-homebrew-mac if appropriate. No indexing or recovery claim.
+
+
+### October 15 publication verified
+
+Published source **25dc365** from main to existing Worker **7149a5c8-e574-43ac-a0d2-e1fd59743014**. Live URL: https://cleardisk.app/free-command-on-mac . All **176 live HTTP SEO checks passed**. Guide returns 200 with corrected GiB output, vm_stat explanation and memory_pressure limits. Sitemap date October 15 and 171 URLs verified. /download and /updates/appcast.xml remain 2.1.0; DMG HEAD 200. Anonymous /analytics and /api/analytics remain 401, private/no-store, noindex/nofollow. ClearDisk-QA and HEAD verification excludes counted downloads.
+
+Final local 55 unit tests passed, zero failed/skipped; lint/typecheck/build and 176 local HTTP SEO checks passed, with desktop/390px and diff/failure review. No Google submission, observed recrawl/indexing or recovery claim. Local preview stopped and browser viewport reset. Unrelated September 27 audit edit preserved. Next: October 16 complete-window GSC comparison and Homebrew uninstall review; retain ongoing daily recovery schedule.
