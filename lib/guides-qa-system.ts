@@ -16,51 +16,51 @@ export const systemQaGuides: Guide[] = [
     description:
       'macOS has no free command. Use top, vm_stat, sysctl and memory_pressure to see used, free and swap memory in Terminal, and learn which number matters.',
     summary:
-      'No, macOS doesn’t include free, but top -l 1 | grep PhysMem gives a one-line summary of used and unused RAM, and sysctl vm.swapusage adds swap. vm_stat has the detail in pages; memory_pressure and Activity Monitor show whether the Mac is actually short of memory.',
+      'macOS does not include Linux’s free command. Use top for a RAM summary, sysctl for installed memory and swap, and vm_stat for page counts. To judge a shortage, check Activity Monitor’s Memory Pressure graph during the workload that feels slow. These checks do not measure free disk space.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-10-15',
     sections: [
       {
         id: 'top-one-liner',
         title: '1. Get a one-line summary with top',
         paragraphs: [
-          'Linux’s free prints total, used and free memory in one small table. The nearest thing on a Mac is top in logging mode: -l 1 takes a single sample and exits instead of opening the live screen, and grep keeps only the memory line. The result looks like “PhysMem: 125G used (8482M wired, 12G compressor), 2126M unused.”',
-          'Used covers memory apps hold, wired memory the system must keep in RAM, and the compressor, which stores squeezed pages in RAM instead of writing them to disk. Unused is RAM holding nothing at all. On a Mac that has been running for a while that last figure is usually small, and that is normal rather than a shortage: macOS keeps recently used files cached in spare RAM and hands it back when an app needs it.',
+          'Linux’s free prints total, used and free memory in one small table. The nearest thing on a Mac is top in logging mode: -l 1 takes a single sample and exits instead of opening the live screen, and grep keeps only the memory line. A read-only check on macOS 27.0.1 returned “PhysMem: 116G used (5944M wired, 165M compressor), 12G unused.” This is one machine’s observation, not a target for yours; the values change as apps run.',
+          'Used covers memory apps hold, wired memory the system must keep in RAM, and the compressor, which stores squeezed pages in RAM instead of writing them to disk. Unused is RAM holding nothing at all. macOS also keeps recently used files cached in spare RAM. A small unused figure alone cannot tell you whether the workload is short of memory.',
         ],
-        code: ['top -l 1 | grep PhysMem'],
+        code: ['top -l 1 | grep "^PhysMem:"'],
       },
       {
         id: 'sysctl-total-swap',
         title: '2. Add total RAM and swap with sysctl',
         paragraphs: [
-          'The total and swap rows of free come from two kernel values. hw.memsize is the installed RAM in bytes; the second command divides it by 1,073,741,824 to print whole gigabytes. vm.swapusage reports swap total, used and free, and notes that swap is encrypted.',
+          'On macOS, sysctl exposes installed RAM and swap separately. hw.memsize returns bytes; dividing by 1,073,741,824 gives gibibytes (GiB), not decimal gigabytes (GB). The second command prints one decimal place. Our check returned 137438953472 bytes, or 128.0 GiB. vm.swapusage reports swap total, used and free; our sample showed zero for all three.',
           'Swap on a Mac isn’t a fixed partition. macOS creates swap files on the startup disk as it needs them, so the total grows and shrinks, and a few gigabytes of swap in use on a busy day is not a fault on its own. The swap guide explains where those files live and when swap is a warning sign.',
         ],
         code: [
           'sysctl hw.memsize vm.swapusage',
-          'echo $(( $(sysctl -n hw.memsize) / 1073741824 )) GB',
+          "sysctl -n hw.memsize | awk '{printf \"%.1f GiB\\n\", $1 / 1073741824}'",
         ],
       },
       {
         id: 'vm-stat-pages',
         title: '3. Read vm_stat, and convert pages to bytes',
         paragraphs: [
-          'vm_stat is the detailed view, but it counts pages, not bytes. Its first line states the page size: 16,384 bytes on a Mac with Apple silicon, and 4,096 on an Intel Mac. pagesize prints the same value. Multiply any count by it to get bytes, or use the awk line below, which does the arithmetic and prints the main rows in megabytes.',
-          'Apple’s memory documentation defines the lists: free pages aren’t being used for anything, active pages were accessed recently, inactive pages still hold valid data but haven’t been touched lately and can be reclaimed, and wired pages must never be paged out. “Pages occupied by compressor” is the RAM the compressor itself takes up. vm_stat -c 5 1 prints five samples one second apart, like free -s 1; after the first row, each row shows the change since the previous one.',
+          'Read the page size in the first line of vm_stat instead of assuming a value from the chip type. pagesize provides a separate check. Our run reported 16384 bytes. For a row measured in pages, multiply its count by that size to get bytes, then divide by 1048576 for MiB. For example, 1024 pages at 16384 bytes per page is 16 MiB; this arithmetic example is not a measurement of free RAM.',
+          'Free, active, inactive and wired are memory-state counts. Wired pages cannot be paged out. Pages occupied by compressor measures the space holding compressed data; Pages stored in compressor counts the pages represented there. Do not add every row together: some describe overlapping classifications, and rows such as Translation faults count events rather than a current amount of RAM.',
+          'vm_stat -c 3 1 takes three samples one second apart. In our test, free and active remained current page counts while faults and pageins became interval event counts after the first sample. The installed manual describes interval differences broadly; do not subtract or convert every column as if it had the same meaning. Control-C stops a repeating command.',
         ],
         code: [
           'pagesize',
           'vm_stat',
-          "vm_stat | awk -v ps=$(pagesize) -F': +' '/^Pages (free|active|inactive|speculative|wired|occupied)/ {printf \"%-30s %8.0f MB\\n\", $1, $2*ps/1048576}'",
-          'vm_stat -c 5 1',
+          'vm_stat -c 3 1',
         ],
       },
       {
         id: 'memory-pressure-command',
-        title: '4. Check memory_pressure for an “available” figure',
+        title: '4. Use memory_pressure as a separate diagnostic',
         paragraphs: [
-          'free’s available column estimates how much memory apps could still get. The closest built-in figure is the last line of memory_pressure run with no options, such as “System-wide memory free percentage: 84%”. Above it, the tool states the total RAM and page size, then repeats vm_stat’s counts grouped into free, swap, queue, compressor and file activity.',
-          'Run it exactly as shown. With -l or -p, memory_pressure deliberately allocates memory to push the Mac into a warning or critical state; that is a testing tool for developers, not a status check. Without options it only reports.',
+          'With no options, memory_pressure printed aggregate memory counters and “System-wide memory free percentage: 94%” in our macOS 27.0.1 check. That percentage is not a documented substitute for Linux’s available column or a promise that an app can allocate that much RAM. Do not turn it into a pass/fail threshold. Use Activity Monitor’s graph and the symptoms of your actual workload.',
+          'Run only the no-option form shown here for this check. The manual documents -l and -p as pressure-generating options and -S as simulated pressure. Those modes alter system conditions and are not part of this guide. We did not run them.',
         ],
         code: ['memory_pressure'],
       },
@@ -68,18 +68,17 @@ export const systemQaGuides: Guide[] = [
         id: 'why-free-looks-low',
         title: 'Why free memory looks low, and what to watch instead',
         paragraphs: [
-          'A Mac keeps as much useful data in RAM as it can, compresses memory that hasn’t been used lately, and only then writes to swap. Apple’s Activity Monitor guide makes the point directly: having free or unused memory doesn’t necessarily improve performance. A small unused figure from top, or a low free count from vm_stat, is not a reason to act.',
-          'The figure that tells you whether the Mac is short of memory is the Memory Pressure graph in Activity Monitor’s Memory tab. Apple describes green as RAM being used efficiently, yellow as a sign the Mac might eventually need more RAM, and red as a sign it needs more. If pressure stays high, quit what you aren’t using. Commands that claim to clear RAM are covered in the purge guide; they rarely help.',
+          'macOS uses RAM for file caching and can compress memory or use startup-disk space for swap. Apple’s Activity Monitor guide makes the point directly: having free or unused memory doesn’t necessarily improve performance. A small unused figure from top, or a low free count from vm_stat, is not a reason to act.',
+          'The figure that tells you whether the Mac is short of memory is the Memory Pressure graph in Activity Monitor’s Memory tab. Apple describes green as RAM being used efficiently, yellow as a sign the Mac might eventually need more RAM, and red as a sign it needs more. If pressure stays high during slowdowns, save your work and quit an unneeded app normally, then watch the graph again. Do not delete swap files or force a memory purge to improve a counter.',
         ],
       },
       {
         id: 'free-alias',
-        title: 'A free shortcut for Terminal',
+        title: 'RAM checks versus free disk space',
         paragraphs: [
-          'If you type free out of habit, add this line to ~/.zshrc, the file zsh reads when a Terminal window opens, then open a new window. Typing free then prints the PhysMem line and the swap line together. It is only a shortcut for the commands above, so it reads the same values and changes nothing.',
-          'For scripts, read the raw sources instead: sysctl -n hw.memsize returns plain bytes, and vm_stat’s counts are easy to parse once you multiply by the page size. top switches between M and G depending on the value, which makes its line easier to read than to parse.',
+          'If your problem is a full startup disk, use the disk-space guide linked below. RAM counters describe working memory; removing files does not add physical RAM. Swap uses disk space, but its presence alone does not identify the cause of a slowdown.',
+          'If a command reports an error or prints no matching line, do not interpret that as zero memory. Read the error and use Activity Monitor as the fallback. The examples were checked on macOS 27.0.1; labels and available fields can vary by release. They do not require installing a cleaner or editing your shell profile.',
         ],
-        code: ["alias free='top -l 1 | grep PhysMem; sysctl vm.swapusage'"],
       },
     ],
     questions: [
@@ -89,15 +88,15 @@ export const systemQaGuides: Guide[] = [
       },
       {
         q: 'Why does my Mac show so little free memory in Terminal?',
-        a: "macOS keeps recently used files cached in spare RAM and hands it back when an app needs it, so a small unused figure is normal rather than a shortage. Apple's own guidance says having free or unused memory doesn't necessarily improve performance.",
+        a: "macOS keeps recently used files cached in spare RAM and hands it back when an app needs it, so a small unused figure alone does not establish a shortage. Apple's own guidance says having free or unused memory doesn't necessarily improve performance.",
       },
       {
         q: 'How do I check RAM pressure on Mac from Terminal?',
-        a: "Run memory_pressure with no options; its last line gives a figure like System-wide memory free percentage: 84%. The more reliable check is the Memory Pressure graph in Activity Monitor's Memory tab, where Apple describes green as efficient use and red as a sign the Mac needs more RAM now.",
+        a: "Run memory_pressure without options for diagnostic counters, but do not treat its percentage as Linux available memory. In Activity Monitor, check the Memory Pressure graph while the slowdown happens. Green means efficient use; sustained yellow or red warrants reviewing the apps using memory.",
       },
       {
         q: 'How much RAM does my Mac have, checked from Terminal?',
-        a: 'Run sysctl hw.memsize, which returns the installed RAM in bytes; dividing by 1,073,741,824 converts it to whole gigabytes. vm.swapusage separately reports swap total, used and free, noting that swap on a Mac is encrypted and grows or shrinks as needed rather than living in a fixed partition.',
+        a: 'Run sysctl hw.memsize, which returns the installed RAM in bytes; dividing by 1,073,741,824 converts it to GiB (gibibytes). vm.swapusage separately reports swap total, used and free, noting that swap on a Mac is encrypted and grows or shrinks as needed rather than living in a fixed partition.',
       },
     ],
     related: [
@@ -110,7 +109,7 @@ export const systemQaGuides: Guide[] = [
       memoryUsage,
       needMoreRam,
       {
-        label: 'Apple Developer: about the virtual memory system',
+        label: 'Apple Developer: about the virtual memory system (archived)',
         url: 'https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/AboutMemory.html',
       },
     ],

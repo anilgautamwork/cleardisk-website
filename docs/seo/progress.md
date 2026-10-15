@@ -1,5 +1,11 @@
 # SEO loop progress log
 
+## 15 October 2026 — Memory-command guide correction prepared
+
+Reviewed /free-command-on-mac (verified priority 8). Corrected binary units, mixed interval/current counters and the unsupported available-memory equivalence; added actual read-only command observations and disk/RAM boundaries. Apple pages and installed manuals checked, Humanizer applied. Sources, metrics and testing limits: [recovery-review.md](recovery-review.md).
+
+Full 55 unit tests passed, zero failed/skipped; lint/typecheck/build and 176 local HTTP SEO checks passed. Desktop/390px and final diff/failure review completed. Publication pending; no Google submission or recovery claim. Unrelated audit edit preserved. Next: October 16 complete-window Search Console comparison and Homebrew uninstall review.
+
 ## 14 October 2026 — Application Support correction published and verified
 
 Published https://cleardisk.app/application-support-folder-mac from 20a74c0 to Worker 2d2250f0-c5f4-4f3a-9c8c-a9fa98710d80. Corrected reset/data-loss advice, sandbox scope and size measurement, with a tested disposable example. Sources, fixture output and aggregate metrics are recorded in [recovery-review.md](recovery-review.md).

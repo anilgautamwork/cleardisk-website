@@ -1,0 +1,96 @@
+Read-only memory command observations — 2026-10-15
+Aggregate counters only; no process names or private files. No pressure-generating options, purge, deletions or shell-profile edits.
+$ sw_vers -productVersion
+27.0.1
+
+
+exit=0
+$ top -l 1 | grep "^PhysMem:"
+PhysMem: 116G used (5944M wired, 165M compressor), 12G unused.
+
+
+exit=0
+$ sysctl hw.memsize vm.swapusage
+hw.memsize: 137438953472
+vm.swapusage: total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)
+
+
+exit=0
+$ sysctl -n hw.memsize | awk '{printf "%.1f GiB\n", $1 / 1073741824}'
+128.0 GiB
+
+
+exit=0
+$ pagesize
+16384
+
+
+exit=0
+$ vm_stat
+Mach Virtual Memory Statistics: (page size of 16384 bytes)
+Pages free:                                   731608.
+Pages active:                                3604239.
+Pages inactive:                              3580012.
+Pages speculative:                             23400.
+Pages throttled:                                   0.
+Pages wired down:                             380398.
+Pages purgeable:                              159062.
+"Translation faults":                     1021043613.
+Pages copy-on-write:                        50396509.
+Pages zero filled:                        1478968350.
+Pages reactivated:                            923421.
+Pages purged:                                3223233.
+File-backed pages:                           1787513.
+Anonymous pages:                             5420138.
+Pages stored in compressor:                    29652.
+Pages occupied by compressor:                  10563.
+Decompressions:                                27770.
+Compressions:                                  63369.
+Pageins:                                     8566018.
+Pageouts:                                         14.
+Swapins:                                           0.
+Swapouts:                                          0.
+
+
+exit=0
+$ vm_stat -c 3 1
+Mach Virtual Memory Statistics: (page size of 16384 bytes)
+    free   active   specul inactive throttle    wired  prgable   faults     copy    0fill reactive   purged file-backed anonymous cmprssed cmprssor  dcomprs   comprs  pageins  pageout  swapins swapouts
+  731607  3604240    23400  3580012        0   380398   159062 1021044K 50396674 1478968K   923421  3223233     1787513   5420139    29652    10563    27770    63369  8566022       14        0        0 
+  729447  3581078    23400  3577791        0   407941   146907     6933      201     6146        4        0     1787490   5394779    29652    10563        0        0        0        0        0        0 
+  730440  3581461    23400  3576430        0   407926   145887     8431      502     7356        0        0     1787514   5393777    29652    10563        0        0       10        0        0        0 
+
+
+exit=0
+$ memory_pressure
+The system has 137438953472 (8388608 pages with a page size of 16384).
+
+Stats: 
+Pages free: 730409 
+Pages purgeable: 145887 
+Pages purged: 3223233 
+
+Swap I/O:
+Swapins: 0 
+Swapouts: 0 
+
+Page Q counts:
+Pages active: 3581770 
+Pages inactive: 3576445 
+Pages speculative: 23402 
+Pages throttled: 0 
+Pages wired down: 407631 
+
+Compressor Stats:
+Pages used by compressor: 10563 
+Pages decompressed: 27770 
+Pages compressed: 63369 
+
+File I/O:
+Pageins: 8566038 
+Pageouts: 14 
+
+System-wide memory free percentage: 94%
+
+
+exit=0

@@ -17,7 +17,7 @@ Site totals: 4,123 impressions and 21 clicks before; 324 impressions and zero cl
 | 5 | /private-var-folders-mac | 121 → 4 | 117 | 1 → 0 | Published October 9: preserve errors, guarded paths, tested hidden-folder/incomplete scan examples. |
 | 6 | /library-caches-folder-mac | 106 → 5 | 101 | 0 → 0 | Published October 12: app-specific cleanup, visible measurement errors and sandbox scope. |
 | 7 | /application-support-folder-mac | 97 → 1 | 96 | 0 → 0 | Published October 14: reset/data-loss limits, sandbox scope and tested error-visible size command. |
-| 8 | /free-command-on-mac | 91 → 1 | 90 | 0 → 0 | Queued: verify memory units, expected output and disk/RAM distinction. |
+| 8 | /free-command-on-mac | 91 → 1 | 90 | 0 → 0 | Reviewed October 15: corrected units, interval counters and pressure interpretation; publication pending. |
 | 9 | /uninstall-homebrew-mac | 108 → 20 | 88 | 0 → 0 | Queued: audit uninstall scope, dependencies and command execution risks. |
 | 10 | /photos-library-taking-up-space-mac | 91 → 5 | 86 | 2 → 0 | Queued: verify originals, Optimize Storage and synced deletion behavior. |
 | 11 | /move-files-to-trash-terminal-mac | 83 → 2 | 81 | 0 → 0 | Queued: verify OS availability, paths and recoverability. |
@@ -145,3 +145,26 @@ Before editing, main matched origin at 1419ef5 and production Worker was 81a6ae1
 Published source **20a74c0** from main to existing Worker **2d2250f0-c5f4-4f3a-9c8c-a9fa98710d80**. URL: https://cleardisk.app/application-support-folder-mac . All **176 live HTTP SEO checks passed**. Changed guide returns 200 with corrected reset warning, fixture explanation and FAQ; sitemap lastmod is October 14 and count remains 171 URLs. /download and /updates/appcast.xml still advertise 2.1.0; DMG HEAD returns 200. Anonymous /analytics and /api/analytics return 401 with private/no-store and noindex/nofollow. QA/HEAD checks avoid counted download traffic.
 
 Full final unit suite: 55 passed, zero failed/skipped. Lint/typecheck/build, 176 local HTTP checks, desktop/390px and final diff review passed before publication. No indexing request, observed Google recrawl or recovery claim. Only the reviewed guide was published; unrelated audit edit remains unstaged. Next review October 15; complete-window Search Console comparison October 16. Local preview stopped after verification.
+
+
+## October 15 — Mac memory-command guide correction
+
+Disposition: **improved**, retained at /free-command-on-mac. Verified priority 8 from October 9 Search Console evidence: complete equal October 1–3 / October 4–6 windows, 91 → 1 impressions (90 lost), zero clicks in both. No new query comparison today; complete-window review due October 16. One existing-page review, no new article, noindex, removal or redirect.
+
+Corrected GB/MB versus GiB/MiB, removed the unsupported equivalence between memory_pressure's percentage and Linux available memory, and corrected the assertion that every interval vm_stat column is a delta. The local manual describes interval differences broadly, but actual macOS 27.0.1 output retains current free/active counts while faults/pageins report interval events after the first sample. Explained overlapping page classifications, compressor counts, failure/empty-output handling, and RAM versus disk space. Replaced the persistent free alias suggestion with diagnostic scope and fallback guidance; retained its section anchor for existing links. No profile was edited. All other guides and their dates remain unchanged.
+
+[Read-only command observations](evidence/2026-10-15-memory-checks.txt) contain aggregate counters only, with exit codes. Commands returned successfully on macOS 27.0.1: top memory line, sysctl memory/swap, GiB conversion, pagesize, vm_stat single/repeated and memory_pressure without options. Observed 137438953472 bytes = 128.0 GiB, 16384-byte pages, top 116G used / 12G unused, zero swap and memory_pressure 94%. These are sequential samples, not simultaneous measurements, health targets or cleanup results. No pressure generation/simulation, purge, deletion, privacy change, process-name publication or screenshot fabrication. The 1024-page → 16 MiB calculation is explicitly illustrative. No older macOS or Intel host was tested.
+
+Sources checked October 15:
+- https://support.apple.com/guide/activity-monitor/view-memory-usage-actmntr1004/mac — memory components, caching, swap and pressure inputs; NZ redirect showed the macOS 26 guide.
+- https://support.apple.com/guide/activity-monitor/check-if-your-mac-needs-more-ram-actmntr34865/mac — efficient memory use and graph colors; current Europe redirect showed macOS 27.
+- https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/AboutMemory.html — archived backing-store and wired/page-list background. Labeled archived; its old hardware page-size assumptions were not used.
+- Installed macOS manuals: man top, man vm_stat, man memory_pressure. Actual interval output is recorded where the manual's generic description is insufficient.
+
+Humanizer used for a concrete generic edit without a personal voice/author claim. Existing title, description, URL, related guides and template retained. Memory diagnosis is distinct from the linked swap, out-of-memory and disk-space workflows; no consolidation proposed. Current release remains 2.1.0 in the handoff and rendered preview; no new app capability claim, binary, Stripe/license, analytics or Talivia changes.
+
+Final validation: full **55 unit tests passed, zero failed/skipped**, lint, typecheck and production build passed. All **176 local HTTP SEO checks passed**. Desktop and 390px review confirmed readable copy, horizontal scrolling contained inside the long command, and no page overflow. Reviewed final diff and failure paths for shell quoting, failed/empty output, counter/byte confusion, pressure-generating options, example labels and schema/date consistency. Impeccable detector found no issues. Publication pending.
+
+Aggregate metrics observed 2026-10-15T10:01:26.809Z: 57 download requests / rolling 30 UTC days (four / seven), 351 arrival events (113 / seven), 16 completed-transfer events (one / seven), seven checkout sessions (zero / seven), four all-time license records, two cumulative GitHub downloads separately. These are events, not unique people, installs, sales or proof of organic recovery; arrivals may include QA, checkout sessions include test mode, and license totals are not refund-adjusted. No credentials printed or committed.
+
+Origin/main matched e41abd4 before editing. Production check confirmed Worker 2d2250f0-c5f4-4f3a-9c8c-a9fa98710d80; the first deployment-list command lacked a Worker name and failed locally, then the explicit-name read succeeded. Preserve the unrelated September 27 audit edit. Next review October 16: complete Search Console windows, then /uninstall-homebrew-mac if appropriate. No indexing or recovery claim.
