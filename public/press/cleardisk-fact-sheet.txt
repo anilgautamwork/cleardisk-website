@@ -1,0 +1,35 @@
+CLEARDISK PRESS KIT
+Updated: 16 October 2026
+Website: https://cleardisk.app
+Press contact: hello@cleardisk.app
+
+SHORT DESCRIPTION
+ClearDisk is a Mac storage app that helps you find large files, understand System Data and review developer clutter. Scans run locally and are free. A one-time license unlocks cleanup, with a review before removal and a Move to Trash option.
+
+FACTS
+Release: 2.1.0 (build 12), released 4 October 2026.
+Requirements: macOS 15 or later; Apple silicon and Intel Macs.
+Price: free scans; US $10 one-time cleanup license for up to three Macs you own. No subscription. Local pricing appears at checkout. 30-day refund policy.
+Publisher: TechMarbles Web Solutions Pvt. Ltd., Mohali, India.
+Maker contact: interview requests for Anil Gautam via hello@cleardisk.app.
+Distribution: signed and notarized macOS app. Notarization is not an Apple endorsement.
+Download: https://cleardisk.app/download
+Release: https://github.com/anilgautamwork/cleardisk-app/releases/tag/v2.1.0
+Privacy: file scans stay on the Mac. Activation and updates use the network. Activation sends the license key, device identifier, computer name and app version. Files and scan results are not uploaded.
+
+REVIEWER NOTES
+Scan totals are not guaranteed reclaimable space. Use disposable sample files to demonstrate cleanup. Undo requires the items to remain in Trash; permanent deletion cannot be undone.
+Mac checks in 2.1.0 measure readable recognized Apple Intelligence model-asset folders; protected or partial locations are reported. No model deletion or complete-footprint guarantee.
+Intel-app checks inspect main executables under /Applications and ~/Applications, including subfolders. Helpers, plug-ins and other locations are outside the scan. Results do not guarantee future macOS compatibility.
+iCloud Doctor provides local diagnostics. It does not increase iCloud quota or promise to repair every sync issue.
+Include your app version, Mac model and macOS version in a review.
+
+ASSETS AND CAPTIONS
+cleardisk-app-icon.png: native ClearDisk app icon, 1024 x 1024 PNG, converted from the project's AppIcon.icns. Original artwork.
+cleardisk-web-mark.svg: scalable website mark, copied from the site's icon.svg. Original artwork.
+sample-storage-map.jpg: ClearDisk storage map showing three generated files in the ClearDisk Guide Sample folder. Larger blocks represent larger files.
+sample-removal-review.jpg: removal review for a generated sample file, with Move to Trash and permanent removal choices.
+Both screenshots are from our September 2026 sample-file walkthrough in an earlier app version. They do not show 2.1.0 Mac checks. Displayed sizes are demonstration data, not typical space savings. No personal filenames or license keys are shown.
+
+USAGE
+Use these assets in coverage of ClearDisk. Preserve artwork proportions and colours, credit ClearDisk and link to https://cleardisk.app where practical. Retain the sample-data context with screenshot captions. Asset availability does not imply an endorsement, partnership or independent review. Contact hello@cleardisk.app for other formats or questions.

@@ -187,7 +187,7 @@ await test('iCloud landing and all eight distinct guides are discoverable', () =
 
 await test('product navigation pages are indexable and present in the sitemap', () => {
   const urls = sitemapEntries(true).map((entry) => entry.url);
-  for (const path of ['/features', '/pricing', '/support']) {
+  for (const path of ['/features', '/pricing', '/support', '/press']) {
     assert.equal(shouldIndex(true, path), true);
     assert.ok(urls.includes(canonical(path)));
   }

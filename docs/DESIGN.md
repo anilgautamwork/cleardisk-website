@@ -28,3 +28,7 @@ Five server-rendered SEO guides, canonical metadata, schema and internal links r
 ## Ad landing refinement — 16 September 2026
 
 The homepage keeps the centered violet design with a shorter problem-led headline, one primary Download for Mac action and a secondary purchase link. Free scanning and localized one-time cleanup pricing sit directly below the actions. Compatibility and local processing are grouped on one line. The illustrative storage preview starts within the first viewport; installation/uninstallation details use native disclosure below it. iCloud diagnostics remains linked below the preview. No new performance, savings or conversion-rate claims were added.
+
+## Press resource extension — 16 October 2026
+
+`/press` uses the existing neutral reading surface, system typography, violet actions and shared header/footer. Its page-specific layout adds a ruled definition list, downloadable artwork and captioned sample screenshots; these do not introduce new global tokens. The direction, source provenance, asset maintenance and independent finish review are recorded in [press-kit.md](press-kit.md). Desktop and narrow layouts were reviewed against this design system.

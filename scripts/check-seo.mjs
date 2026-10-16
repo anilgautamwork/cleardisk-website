@@ -19,6 +19,7 @@ const pages = [
   ...faqTopics.map((t) => '/faq/' + t.slug),
   '/download',
   '/about',
+  '/press',
   '/buy-now',
   '/thanks',
   '/recover',
@@ -254,7 +255,7 @@ const xml = await sitemap.text();
 const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
 assert.equal(
   urls.length,
-  indexable ? guides.length + blogPosts.length + 9 + 1 + faqTopics.length : 0,
+  indexable ? guides.length + blogPosts.length + 10 + 1 + faqTopics.length : 0,
 );
 for (const path of ['/thanks', '/buy-now', '/recover', '/api'])
   assert.ok(

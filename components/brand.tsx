@@ -97,6 +97,7 @@ export function Footer() {
               ['Blog', '/blog'],
               ['FAQs', '/faq'],
               ['About ClearDisk', '/about'],
+              ['Press kit', '/press'],
               ['Sitemap', '/sitemap.xml'],
             ],
           },
