@@ -2,7 +2,9 @@
 
 Owner authorized ongoing daily review and fixes on October 9, 2026. The existing heartbeat is now **ClearDisk daily content recovery**, active daily at 10:00 Asia/Kolkata, without the old October 12 end date. Its identifier remains cleardisk-30-day-publishing-plan to avoid a duplicate automation. Prior campaign history is preserved. No bulk new articles. No automatic deletion/noindex for zero traffic, and no batch consolidation without evidence and owner approval.
 
-## Verified priority queue
+Current queue: [October 16 measured priorities](#october-16--weekly-measurement-and-refreshed-queue). The original queue below is preserved as history.
+
+## Historical October 9 priority queue
 
 Read directly from Search Console on October 9 under the owner’s work account. Web search, all countries/devices, no query filter. Equal complete windows: **October 1–3 before**, **October 4–6 after**. Sorted by absolute lost page impressions. This three-day comparison prioritizes work; it does not establish the cause of the decline. Next complete-window trend review: October 16 or earlier if actionable new data arrives. The report currently ends October 6.
 
@@ -175,3 +177,32 @@ Origin/main matched e41abd4 before editing. Production check confirmed Worker 2d
 Published source **25dc365** from main to existing Worker **7149a5c8-e574-43ac-a0d2-e1fd59743014**. Live URL: https://cleardisk.app/free-command-on-mac . All **176 live HTTP SEO checks passed**. Guide returns 200 with corrected GiB output, vm_stat explanation and memory_pressure limits. Sitemap date October 15 and 171 URLs verified. /download and /updates/appcast.xml remain 2.1.0; DMG HEAD 200. Anonymous /analytics and /api/analytics remain 401, private/no-store, noindex/nofollow. ClearDisk-QA and HEAD verification excludes counted downloads.
 
 Final local 55 unit tests passed, zero failed/skipped; lint/typecheck/build and 176 local HTTP SEO checks passed, with desktop/390px and diff/failure review. No Google submission, observed recrawl/indexing or recovery claim. Local preview stopped and browser viewport reset. Unrelated September 27 audit edit preserved. Next: October 16 complete-window GSC comparison and Homebrew uninstall review; retain ongoing daily recovery schedule.
+
+
+## October 16 — weekly measurement and refreshed queue
+
+Disposition: kept existing pages; refreshed measured priorities, no forced publication. [Full evidence and interpretation](2026-10-16-recovery-measurement.md). Complete equal September 27–October 3 / October 7–13 windows: 5,747 → 5,952 impressions, 34 → 40 clicks. This weekly aggregate hides another drop: October 12/13 had 39/34 impressions and zero clicks after a rebound October 8–11. No sustained-recovery or causation claim.
+
+| Priority | Page | Impressions before → after | Lost | Clicks before → after | Disposition / next action |
+| --- | --- | ---: | ---: | ---: | --- |
+| 1 | /homebrew-list-installed-packages | 654 → 212 | 442 | 0 → 0 | Kept after limited source spot-check; October 8 corrections retained. Queue size-command empty/failed-path edge cases. |
+| 2 | /what-is-system-data-on-mac | 237 → 72 | 165 | 0 → 1 | Keep October 13 correction; this window does not measure its later performance. |
+| 3 | /operation-not-permitted-terminal-mac | 364 → 239 | 125 | 3 → 0 | Keep October 9 correction; monitor and revisit only for a concrete gap. |
+| 4 | /move-files-to-trash-terminal-mac | 126 → 11 | 115 | 1 → 0 | Next deep review October 17: command availability, quoting, recoverability and failure paths. |
+| 5 | /purge-command-mac-memory | 102 → 1 | 101 | 0 → 0 | Next after Trash: distinguish RAM from disk cleanup; check pressure/purge safety claims. |
+| 6 | /application-support-folder-mac | 172 → 103 | 69 | 0 → 0 | Keep October 14 correction; published after the measurement window. |
+| 7 | /free-command-on-mac | 120 → 53 | 67 | 0 → 1 | Keep October 15 correction; published after the measurement window. |
+| 8 | /mac-log-files | 77 → 14 | 63 | 0 → 0 | Queued: app-managed cleanup, measurement limits and blanket-removal advice. |
+| 9 | /library-caches-folder-mac | 154 → 100 | 54 | 0 → 0 | Keep October 12 correction; window includes publication day and one following day. |
+| 10 | /clear-downloads-folder-mac | 93 → 42 | 51 | 0 → 0 | Queued: originals, recoverability and synced locations. |
+| 11 | /keep-icloud-files-downloaded-mac | 95 → 46 | 49 | 0 → 0 | Queued: local copies versus cloud deletion, availability and space limits. |
+| 12 | /uninstall-node-js-mac | 101 → 57 | 44 | 0 → 0 | Queued: installation methods, dependencies and blanket deletion. |
+| 13 | /mac-folder-structure-explained | 51 → 8 | 43 | 0 → 0 | Queued: system/user boundaries and overlapping intent. |
+| 14 | /steam-games-storage-mac | 325 → 285 | 40 | 0 → 2 | Keep October 11 correction; two clicks in the later window. |
+| 15 | /purgeable-space-on-mac | 65 → 25 | 40 | 0 → 0 | Queued: available versus purgeable storage; avoid forced-cleanup promises. |
+
+These are the largest measured impression losses among 153 displayed page rows, not 15 completed deep reviews. Kept Homebrew listing after a limited official-manpage spot-check; its size-command failure/empty-glob cases remain queued. Previously corrected guides stay published. No consolidation proposed solely from traffic. Manual action/security reports show no issues; crawl host status healthy; other-4XX total remains 49 with displayed September 27 examples. Exact status attribution to Cloudflare remains unverified. Full source, query limitations, metrics and verification are in the linked report.
+
+Next deep review October 17: Trash from Terminal, then purge-command safety. Next complete-window measurement October 23; inspect daily rows to avoid a misleading weekly average. No new article or deployment today. Unrelated repository edits preserved.
+
+October 16 live verification: **177 HTTP SEO route checks passed**, including metadata/schema, related links, 404, sitemap, robots, DMG and OG image. Anonymous /analytics and /api/analytics return 401 with no-store/noindex; appcast returns 200 and remains 2.1.0. The first sandbox HTTP run failed at DNS resolution (ENOTFOUND); the authorized network-enabled rerun passed. Verification used ClearDisk-QA/HEAD handling to avoid counted download events. Evidence arithmetic checked against the daily and page tables; final documentation diff reviewed, git diff --check passed. No code/test changes, new deployment or indexing claim.

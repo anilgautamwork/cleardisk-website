@@ -1,0 +1,269 @@
+{
+  "observed": "2026-10-16",
+  "property": "https://cleardisk.app/",
+  "manualActions": "No issues detected",
+  "securityIssues": "No issues detected",
+  "robotsTxt": "Valid",
+  "crawl": {
+    "lastUpdated": "2026-10-14",
+    "requests": 2292,
+    "averageResponseMs": 130,
+    "host": "Host had no problems in the last 90 days",
+    "http200Percent": 96,
+    "other4xxPercent": 2,
+    "other4xxRequests": 49,
+    "other4xxExamples": [
+      [
+        "Time",
+        "URL",
+        "Response"
+      ],
+      [
+        "27/09/2026, 02:06",
+        "https://cleardisk.app/clear-lightroom-cache-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 02:00",
+        "https://cleardisk.app/chrome-on-device-ai-model-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 01:54",
+        "https://cleardisk.app/clear-pip-cache-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 01:48",
+        "https://cleardisk.app/mac-out-of-application-memory",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 01:43",
+        "https://cleardisk.app/free-up-space-without-deleting-files",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 01:37",
+        "https://cleardisk.app/find-duplicate-files-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 01:31",
+        "https://cleardisk.app/uninstall-rosetta-2-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 01:25",
+        "https://cleardisk.app/delete-built-in-apps-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 01:19",
+        "https://cleardisk.app/remove-language-files-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 01:14",
+        "https://cleardisk.app/move-files-to-trash-terminal-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 01:10",
+        "https://cleardisk.app/clear-yarn-pnpm-cache-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 01:06",
+        "https://cleardisk.app/ios-files-on-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 01:02",
+        "https://cleardisk.app/imovie-library-taking-up-space",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 00:58",
+        "https://cleardisk.app/apfs-container-vs-volume",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 00:54",
+        "https://cleardisk.app/private-var-folders-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 00:50",
+        "https://cleardisk.app/uninstall-homebrew-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 00:46",
+        "https://cleardisk.app/homebrew-list-installed-packages",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 00:42",
+        "https://cleardisk.app/operation-not-permitted-terminal-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 00:38",
+        "https://cleardisk.app/mac-log-files",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 00:38",
+        "https://cleardisk.app/blog/appcleaner-os-x",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 00:38",
+        "https://cleardisk.app/list-disks-terminal-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 00:34",
+        "https://cleardisk.app/logic-pro-sound-library-space",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 00:30",
+        "https://cleardisk.app/free-command-on-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 00:26",
+        "https://cleardisk.app/ollama-models-location-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 00:22",
+        "https://cleardisk.app/reinstall-command-line-tools-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 00:18",
+        "https://cleardisk.app/remove-docker-volumes-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 00:14",
+        "https://cleardisk.app/clear-gradle-cache-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 00:11",
+        "https://cleardisk.app/purge-command-mac-memory",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 00:07",
+        "https://cleardisk.app/uninstall-node-js-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 00:07",
+        "https://cleardisk.app/photos-optimize-storage-not-working",
+        "Other client error (4XX)"
+      ],
+      [
+        "27/09/2026, 00:03",
+        "https://cleardisk.app/developer-storage-on-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "26/09/2026, 23:59",
+        "https://cleardisk.app/clear-jetbrains-cache-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "26/09/2026, 23:57",
+        "https://cleardisk.app/ncdu-on-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "26/09/2026, 23:55",
+        "https://cleardisk.app/docker-overlay2-on-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "26/09/2026, 23:51",
+        "https://cleardisk.app/delete-docker-images-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "26/09/2026, 23:47",
+        "https://cleardisk.app/clear-cocoapods-cache-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "26/09/2026, 23:47",
+        "https://cleardisk.app/apple-tv-downloads-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "26/09/2026, 23:43",
+        "https://cleardisk.app/remove-docker-containers-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "26/09/2026, 23:39",
+        "https://cleardisk.app/mds-stores-high-cpu-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "26/09/2026, 23:37",
+        "https://cleardisk.app/com-apple-bird-taking-space",
+        "Other client error (4XX)"
+      ],
+      [
+        "26/09/2026, 23:35",
+        "https://cleardisk.app/clear-docker-build-cache-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "26/09/2026, 23:31",
+        "https://cleardisk.app/xcode-xip-file-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "26/09/2026, 23:27",
+        "https://cleardisk.app/docker-dangling-vs-unused-images",
+        "Other client error (4XX)"
+      ],
+      [
+        "26/09/2026, 23:27",
+        "https://cleardisk.app/blog/how-should-i-clean-my-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "26/09/2026, 23:23",
+        "https://cleardisk.app/docker-image-in-use-conflict",
+        "Other client error (4XX)"
+      ],
+      [
+        "26/09/2026, 23:18",
+        "https://cleardisk.app/remove-boot-camp-partition",
+        "Other client error (4XX)"
+      ],
+      [
+        "26/09/2026, 23:17",
+        "https://cleardisk.app/clear-slack-cache-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "26/09/2026, 22:09",
+        "https://cleardisk.app/steam-games-storage-mac",
+        "Other client error (4XX)"
+      ],
+      [
+        "24/09/2026, 18:12",
+        "https://cleardisk.app/disk-utility-mac",
+        "Other client error (4XX)"
+      ]
+    ],
+    "limits": "First ten displayed 4XX examples only; total unchanged from October 9. No Cloudflare event correlation or exact 4XX codes obtained."
+  }
+}
