@@ -188,8 +188,8 @@ Disposition: kept existing pages; refreshed measured priorities, no forced publi
 | 1 | /homebrew-list-installed-packages | 654 → 212 | 442 | 0 → 0 | Kept after limited source spot-check; October 8 corrections retained. Queue size-command empty/failed-path edge cases. |
 | 2 | /what-is-system-data-on-mac | 237 → 72 | 165 | 0 → 1 | Keep October 13 correction; this window does not measure its later performance. |
 | 3 | /operation-not-permitted-terminal-mac | 364 → 239 | 125 | 3 → 0 | Keep October 9 correction; monitor and revisit only for a concrete gap. |
-| 4 | /move-files-to-trash-terminal-mac | 126 → 11 | 115 | 1 → 0 | Next deep review October 17: command availability, quoting, recoverability and failure paths. |
-| 5 | /purge-command-mac-memory | 102 → 1 | 101 | 0 → 0 | Next after Trash: distinguish RAM from disk cleanup; check pressure/purge safety claims. |
+| 4 | /move-files-to-trash-terminal-mac | 126 → 11 | 115 | 1 → 0 | Published October 16 follow-up: reviewed paths, partial failures, Finder fallback and restoration limits. |
+| 5 | /purge-command-mac-memory | 102 → 1 | 101 | 0 → 0 | Published October 16 follow-up: corrected memory scope, removed unmeasured purge promises and added diagnosis limits. |
 | 6 | /application-support-folder-mac | 172 → 103 | 69 | 0 → 0 | Keep October 14 correction; published after the measurement window. |
 | 7 | /free-command-on-mac | 120 → 53 | 67 | 0 → 1 | Keep October 15 correction; published after the measurement window. |
 | 8 | /mac-log-files | 77 → 14 | 63 | 0 → 0 | Queued: app-managed cleanup, measurement limits and blanket-removal advice. |
@@ -214,3 +214,8 @@ Disposition **improved and retained** for /move-files-to-trash-terminal-mac (pri
 Added reviewed paths, partial-batch handling, a tested missing-path failure, Finder fallback, accurate restoration/iCloud limits and more careful memory diagnosis. Removed broad permission advice and unmeasured purge outcomes. [Investigation, sources and fixture limits](2026-10-16-second-drop-followup.md). The largest-loss Homebrew page is indexed and Google fetched it successfully October 14 with the correct canonical. No mass deindexing or confirmed deployment fault found; no claim of an established algorithmic cause.
 
 Full 55 unit tests passed, zero failed/skipped; lint/typecheck/build and 177 local HTTP SEO routes passed; desktop/390px review and final failure-path review passed. No real files removed, permissions broadened or purge benchmark run. Only two guide dates changed. Publication pending. Next daily batch October 17: /mac-log-files, then /uninstall-node-js-mac; retain Homebrew size-command edge-case follow-up. Next complete-window review October 23. No page removal/noindex/redirect proposed.
+
+
+### October 16 follow-up publication verified
+
+Source **94b411a**, pushed to main and deployed to existing Worker **30ef2aa2-0323-45fa-a222-d514a2cab9cd**. Both live guide routes return 200 with the revised copy and October 16 sitemap dates. **177 live HTTP SEO route checks passed**; sitemap remains 172 URLs. Download, DMG HEAD and appcast return 200; release remains 2.1.0. Anonymous analytics/API return 401 with no-store/noindex. Verification uses QA/HEAD requests to avoid counted downloads. Final full local suite 55 passed, zero failed/skipped, plus lint/typecheck/build, 177 local HTTP checks and desktop/narrow review. No indexing request, ranking recovery claim or further sitewide change. Review records pushed; unrelated audit edit preserved. Next daily content review: Mac logs, then Node.js uninstall.

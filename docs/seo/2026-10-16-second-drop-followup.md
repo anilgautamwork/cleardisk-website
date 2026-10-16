@@ -48,3 +48,8 @@ A disposable fixture in /private/tmp tested /usr/bin/trash -v -s with a missing 
 ## Validation
 
 Final full unit suite: **55 passed, zero failed/skipped/cancelled**. Lint, typecheck and Cloudflare production build passed. All **177 local HTTP SEO route checks passed**. Existing Vite configuration/module deprecation warnings remain; no build errors. The sandbox preview initially could not write Wrangler logs or bind loopback; the authorized preview succeeded. Desktop 1440px and narrow 390px inspection passed for both articles. Code scroll stays inside its block and no horizontal page overflow was observed. Mechanical design detector returned no findings. Final review covered missing/partial paths, shell quoting, immediate status capture, privacy scope, cold-cache claims, iCloud removal limits and schema/visible-copy consistency. Publication verification follows after deployment.
+
+
+### October 16 follow-up publication verified
+
+Source **94b411a**, pushed to main and deployed to existing Worker **30ef2aa2-0323-45fa-a222-d514a2cab9cd**. Both live guide routes return 200 with the revised copy and October 16 sitemap dates. **177 live HTTP SEO route checks passed**; sitemap remains 172 URLs. Download, DMG HEAD and appcast return 200; release remains 2.1.0. Anonymous analytics/API return 401 with no-store/noindex. Verification uses QA/HEAD requests to avoid counted downloads. Final full local suite 55 passed, zero failed/skipped, plus lint/typecheck/build, 177 local HTTP checks and desktop/narrow review. No indexing request, ranking recovery claim or further sitewide change. Review records pushed; unrelated audit edit preserved. Next daily content review: Mac logs, then Node.js uninstall.
