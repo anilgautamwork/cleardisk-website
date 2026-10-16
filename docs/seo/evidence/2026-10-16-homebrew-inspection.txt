@@ -1,0 +1,64 @@
+URL: https://cleardisk.app/homebrew-list-installed-packages
+Observed October 16, 2026
+
+  - heading "URL Inspection" [level=1]
+- button "Test live URL":
+  - generic: Test live URL
+- main:
+  - generic: check_circle
+  - generic: URL is on Google
+  - text: It can appear in Google Search results (if not subject to a manual action or removal request) with all relevant enhancements.
+  - link "Learn more":
+    - /url: https://support.google.com/webmasters/answer/9012289#url_on_google
+  - button "View crawled page":
+    - generic: View crawled page
+  - generic: Page changed?
+  - button "Request indexingRequest again":
+    - generic: Request indexing
+  - button "Page indexing Page is indexed" [expanded] [active]:
+    - generic: check_circle
+    - generic: Page indexing
+    - generic: Page is indexed
+    - generic: 
+  - generic: Discovery
+  - generic: Sitemaps
+  - generic: https://cleardisk.app/sitemap.xml
+  - generic: Referring page
+  - generic: https://cleardisk.app/sitemap.xml
+  - generic: Crawl
+  - generic: Last crawl
+  - generic: 14 Oct 2026, 11:02:07
+  - generic: Crawled as
+  - generic: Googlebot smartphone
+  - generic: Crawl allowed?
+  - generic: "Yes"
+  - generic: Page fetch
+  - generic: Successful
+  - generic: Indexing allowed?
+  - generic: "Yes"
+  - generic: Indexing
+  - generic: User-declared canonical
+  - generic: https://cleardisk.app/homebrew-list-installed-packages
+  - generic: Google-selected canonical
+  - button "null":
+    - generic: 
+  - generic: Inspected URL
+  - link "Link to more extensive documentation":
+    - /url: https://support.google.com/webmasters/answer/7440203#submitted_and_indexed
+    - generic: Learn More
+  - link "open report":
+    - /url: ./search-console/index/drilldown?resource_id=https%3A%2F%2Fcleardisk.app%2F&item_key=CAMYASAB
+    - generic: open report
+  - generic: Enhancements and experience
+  - link "HTTPS Page is served over HTTPS":
+    - /url: ./search-console/inspect/https?resource_id=https%3A%2F%2Fcleardisk.app%2F&id=oimX9hcTFPAbbF4uibuhEw
+    - generic: check_circle
+    - generic: HTTPS
+    - generic: Page is served over HTTPS
+    - generic: 
+  - link "Breadcrumbs 1 valid item detected":
+    - /url: ./search-console/inspect/r/breadcrumbs?resource_id=https%3A%2F%2Fcleardisk.app%2F&id=oimX9hcTFPAbbF4uibuhEw
+    - generic: check_circle
+    - generic: Breadcrumbs
+    - generic: 1 valid item detected
+    - generic: 

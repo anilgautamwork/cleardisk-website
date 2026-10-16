@@ -212,74 +212,92 @@ export const fileQaGuides: Guide[] = [
     slug: 'move-files-to-trash-terminal-mac',
     title: 'How to move files to the Trash from Terminal on Mac',
     description:
-      'Move files to the Mac Trash from Terminal with the trash command in macOS 15 and later, a Finder osascript one-liner, or Homebrew, and why not to alias rm.',
+      'Use the built-in Mac trash command with quoted paths, check partial failures, and recover items in Finder. Includes a fallback for older macOS versions.',
     summary:
-      'On macOS 15 Sequoia and later, type trash followed by the file names: macOS includes a trash command that moves items to your Trash, where they stay until you empty it. On older versions, ask Finder to do it with osascript, or run a Homebrew trash tool by its full path. Don’t alias rm to any of them.',
+      'On macOS 15 and later, /usr/bin/trash moves selected files or folders to the Trash. Check the path first, quote it, and use -s to stop if a move fails. Trashing is not the same as permanent deletion, but it is not a backup: confirm the item is in the Trash and leave it there until you are sure you do not need it.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-10-16',
     sections: [
       {
         id: 'built-in-trash',
-        title: '1. Use the trash command built into macOS',
+        title: '1. Check the command and the file before moving it',
         paragraphs: [
-          'macOS includes /usr/bin/trash; its manual page says it first appeared in macOS 15.0. Give it one or more files or folders and it moves them into your Trash, as long as that folder exists and permissions allow the move. Quote names that contain spaces, and run which trash to check the command is there before relying on it in a script. In a script that may also run on an older Mac, test with command -v trash first, which succeeds only when the command exists, so the script can stop with a clear message instead of failing halfway.',
-          'It has two options besides help. -v prints more detail about what it did. -s, long form --stopOnError, makes it exit with an error if any move fails, which is what you want in a script so a failure isn’t silently skipped. Items appear in the Trash in the Dock and keep using space until you empty it.',
-          'Apple’s manual page doesn’t say whether Finder’s Put Back works for items moved this way; if it’s dimmed, drag the item out of the Trash to where it belongs. Listing ~/.Trash in Terminal to check may fail with “Operation not permitted.” That is macOS privacy protection, explained in its own guide, not a problem with the command.',
+          'Apple’s installed trash manual says the command first appeared in macOS 15.0. Check /usr/bin/trash directly so a shell alias or a separately installed tool cannot silently change which program these examples use. If the check prints “Use Finder instead”, skip to the Finder fallback below.',
+          'The examples assume Old report.pdf is in your current folder. Run pwd and ls first, then replace the example with the exact item you have reviewed. The ./ prefix makes a relative filename unambiguous even when its name starts with a hyphen; double quotes keep spaces in one argument. A folder includes everything inside it, so open it before choosing to remove it.',
         ],
         code: [
-          'which trash',
-          'trash -v "Old report.pdf" build-output',
-          'man trash',
+          'if [ -x /usr/bin/trash ]; then\n  printf "Built-in trash is available\\n"\nelse\n  printf "Use Finder instead\\n"\nfi',
+          'pwd\nls -ld "./Old report.pdf"',
+        ],
+      },
+      {
+        id: 'move-and-check',
+        title: '2. Move the selected item and check the result',
+        paragraphs: [
+          'Run the following only after checking the item above. -v prints details; -s stops on a failed move and returns an error. Check the status immediately, before running another command. A nonzero result means you need to read the error, not retry with sudo or switch to rm.',
+          'A batch is not a transaction. Earlier items may already have moved before a later one fails; -s does not roll them back. Open the Trash in Finder and compare it with the source folder before retrying any remaining items. Moving to Trash usually leaves the data on the same volume, so this is not a promise that free disk space will increase.',
+        ],
+        code: [
+          '/usr/bin/trash -v -s "./Old report.pdf"\nprintf "Exit status: %s\\n" "$?"',
+        ],
+        items: [
+          'Expected success: the source item disappears and is visible in Finder’s Trash. Review its name and contents there before emptying anything.',
+          'Missing path: correct the spelling or current folder. In our macOS 27.0.1 fixture check, a missing first path returned status 5 and -s left the second test file untouched. That is an observed example, not a portable list of exit codes.',
+          'Permission or privacy error: use Finder to inspect the item and the permissions you already have. Do not disable security or broaden disk access just to list the Trash.',
+          'Partial batch: keep the error output and review both locations. Never treat the whole batch as unchanged after a failure.',
+        ],
+      },
+      {
+        id: 'restore-and-limits',
+        title: '3. Keep a way to recover the item',
+        paragraphs: [
+          'Click the Trash in the Dock. If Finder offers File → Put Back, use it; otherwise drag the item to a folder you choose. Do not assume that every command-line trash tool preserves the same restoration metadata. We tested the missing-path failure above, not successful restoration or external-volume behavior.',
+          'Apple notes that Finder can automatically remove local items after 30 days if that setting is enabled. Items trashed from iCloud Drive are removed after 30 days regardless of that Finder setting. Emptying Trash removes the ordinary recovery path. Keep a separate backup for anything important, and do not empty the Trash as part of testing these instructions.',
+          'For a file in an iCloud-synced folder, deletion can propagate to other devices. If your goal is to keep the cloud file and remove only its local download, use Finder’s iCloud Remove Download action where available instead of trashing it.',
         ],
       },
       {
         id: 'finder-osascript',
-        title: '2. On older macOS, ask Finder with osascript',
+        title: 'On older macOS, reveal the item in Finder',
         paragraphs: [
-          'Before macOS 15 there was no built-in command, but Terminal can ask Finder to do the move. Finder’s AppleScript delete command moves an item to the Trash rather than erasing it. Because Finder performs the move, the item should behave like one you dragged there.',
-          'Give the full path, because a tilde isn’t expanded inside the quotes. The first time, macOS asks whether Terminal may control Finder; allow it, or change the choice later in System Settings → Privacy & Security → Automation.',
+          'If /usr/bin/trash is unavailable, reveal the exact item in Finder with open -R, review the selection, and choose File → Move to Trash or press Command-Delete. The command below only reveals the item; it does not delete it.',
+          'Finder automation through osascript is another possible approach, but it introduces Automation permission and path-escaping requirements. This fallback works without granting Terminal control of Finder. If Finder cannot trash the item, investigate its location and the specific error rather than bypassing the failure.',
         ],
-        code: [
-          'osascript -e \'tell application "Finder" to delete POSIX file "/Users/yourname/Desktop/old-report.pdf"\'',
-        ],
+        code: ['open -R "./Old report.pdf"'],
       },
       {
         id: 'homebrew-tools',
-        title: '3. Homebrew’s trash tools, and the one to avoid',
+        title: 'If you already use a Homebrew trash tool',
         paragraphs: [
-          'Homebrew has several formulas that install a command called trash, including trash and macos-trash. Homebrew marks them keg-only because macOS now ships its own, so after brew install trash the command isn’t added to your PATH. On macOS 15 and later, typing trash still runs Apple’s. To use Homebrew’s copy, call it by its full path, as in the second line.',
-          'trash-cli is a different kind of tool: Homebrew describes it as an interface to the freedesktop.org trashcan, the convention Linux desktops use, not the Finder’s Trash. On a Mac, choose the built-in command or one of the Mac-specific formulas.',
-        ],
-        code: [
-          'brew install trash',
-          '"$(brew --prefix trash)/bin/trash" old-notes.txt',
+          'Homebrew’s trash formula is separate from /usr/bin/trash. Its formula page marks it keg-only because macOS provides similar software, so installing it does not necessarily make it the command your shell runs. Check the chosen tool’s own help and installation path before using it; do not assume Apple’s -s flag or exit behavior applies.',
+          'You do not need to install a package for this task on a Mac that already has /usr/bin/trash. On an older Mac, Finder is the simplest fallback if you do not already maintain command-line tools.',
         ],
       },
       {
         id: 'dont-alias-rm',
-        title: 'Why not alias rm to trash',
+        title: 'Keep rm and trash as separate commands',
         paragraphs: [
-          'It’s tempting to make rm safer by pointing it at trash. The two commands don’t accept the same options, so habits like rm -rf either fail or behave differently. An alias also applies only to the interactive shells you configured: scripts, sudo, other user accounts and every other Mac or server still run the real rm, which deletes immediately. The alias trains you to type rm casually in exactly the places where it’s still permanent.',
-          'Use trash by name when you want a way back, and keep rm for when you mean it. If trash is too long to type, give it a short alias of its own that isn’t rm. Remember that moving files to the Trash doesn’t free space until you empty it, and that anything removed with rm comes back only from a backup.',
+          'rm removes directory entries without moving items to Finder’s Trash. An alias can behave differently in scripts, other shells or another machine, and the two commands do not share all their flags. Use trash explicitly when you want Trash behavior. Do not replace a failed trash operation with rm -rf.',
+          'These instructions cover selecting and moving known items. They do not identify which caches, app data or system folders are safe to remove. The linked storage and permissions guides cover those decisions separately.',
         ],
       },
     ],
     questions: [
       {
         q: 'How do I move a file to the Trash using Terminal on Mac?',
-        a: "On macOS 15 Sequoia and later, type trash followed by the file or folder name, and it moves into your Trash where it stays until you empty it. On older macOS, use osascript to ask Finder to delete the item, since Finder's delete command moves items to the Trash rather than erasing them.",
+        a: 'On macOS 15 or later, first review the file path, then use /usr/bin/trash -v -s with that quoted path. Check the exit status immediately and confirm the item in Finder’s Trash. On older versions, reveal it with open -R and use Finder’s Move to Trash action.',
       },
       {
-        q: "Why doesn't typing trash work on my Mac?",
-        a: 'The trash command only exists starting with macOS 15 Sequoia, so earlier versions have no built-in equivalent. Run command -v trash to check whether it exists before relying on it in a script, or use the osascript method that asks Finder to do the move instead.',
+        q: 'Does -s undo a partly completed trash command?',
+        a: 'No. It stops on a failed move, but earlier items can already be in the Trash. Check the source folder and Finder’s Trash before retrying the items that remain.',
       },
       {
         q: 'Is it safe to alias rm to trash on Mac?',
-        a: "It's not recommended: rm and trash don't accept the same options, so habits like rm -rf can fail or behave differently. An alias also only applies to the shells you configured, so scripts, sudo and other accounts still run the real rm, which deletes immediately.",
+        a: 'Keep the commands separate. Their flags and behavior differ, and an alias does not protect scripts or other environments. Use trash by name when you want items moved to the Trash.',
       },
       {
-        q: "Why can't I list ~/.Trash in Terminal on Mac?",
-        a: "Listing ~/.Trash can fail with Operation not permitted because of macOS privacy protection blocking Terminal's access, not because of a problem with the trash command itself. Granting the terminal app the right access in System Settings resolves it.",
+        q: 'Why can’t I list ~/.Trash in Terminal on Mac?',
+        a: 'macOS privacy controls can restrict Terminal access, but the error alone does not diagnose every failure. Open the Trash in Finder to check the result. You do not need to broaden Terminal’s permissions merely to confirm a trashed item.',
       },
     ],
     related: [
@@ -290,12 +308,12 @@ export const fileQaGuides: Guide[] = [
     ],
     sources: [
       {
-        label: 'Homebrew: trash formula (keg-only, shadowed by macOS)',
-        url: 'https://formulae.brew.sh/formula/trash',
-      },
-      {
         label: 'Apple: delete files and folders on Mac',
         url: 'https://support.apple.com/guide/mac-help/delete-files-and-folders-on-mac-mchlp1093/mac',
+      },
+      {
+        label: 'Homebrew: trash formula',
+        url: 'https://formulae.brew.sh/formula/trash',
       },
     ],
   },

@@ -1,0 +1,237 @@
+- banner:
+  - button "Main menu":
+  - link "Google Search Console":
+    - /url: ./search-console?resource_id=https%3A%2F%2Fcleardisk.app%2F
+  - search:
+    - textbox [disabled]: Inspect any URL in 'https://cleardisk.app/'
+    - combobox "Inspect any URL in https://cleardisk.app/"
+    - button "Search":
+  - button "Help":
+    - generic: help_outline
+  - tooltip: Help
+  - button "User settings":
+    - generic: manage_accounts
+  - tooltip: User settings
+  - button "Messages":
+    - generic: notifications
+  - tooltip: Messages
+  - button "Google apps":
+  - 'button "Google Account: Anil Gautam (anilgautamwork@gmail.com)"':
+- dialog "navigational drawer":
+  - navigation "Primary":
+    - button "Search property":
+      - img "favicon"
+      - combobox "https://cleardisk.app/"
+      - generic: 
+    - link "Overview":
+      - /url: ./search-console?resource_id=https%3A%2F%2Fcleardisk.app%2F
+      - generic: home
+      - generic: Overview
+    - link "Insights":
+      - /url: ./search-console/performance/insights?resource_id=https%3A%2F%2Fcleardisk.app%2F
+      - generic: lightbulb_2
+      - generic: Insights
+    - link "Performance":
+      - /url: ./search-console/performance/search-analytics?resource_id=https%3A%2F%2Fcleardisk.app%2F
+      - generic: trending_up
+      - generic: Performance
+    - button "Performance report section":
+      - generic: keyboard_arrow_down
+    - button "URL inspection":
+      - generic: search
+      - generic: URL inspection
+    - generic: Indexing
+    - button "Indexing report section" [expanded]:
+      - generic: keyboard_arrow_up
+    - link "Pages" [active]:
+      - /url: ./search-console/index?resource_id=https%3A%2F%2Fcleardisk.app%2F
+      - generic: file_copy
+      - generic: Pages
+    - link "Sitemaps":
+      - /url: ./search-console/sitemaps?resource_id=https%3A%2F%2Fcleardisk.app%2F
+      - generic: account_tree
+      - generic: Sitemaps
+    - link "Removals":
+      - /url: ./search-console/removals?resource_id=https%3A%2F%2Fcleardisk.app%2F
+      - generic: visibility_off
+      - generic: Removals
+    - generic: Experience
+    - button "Experience report section" [expanded]:
+      - generic: keyboard_arrow_up
+    - link "Core web vitals":
+      - /url: ./search-console/core-web-vitals?resource_id=https%3A%2F%2Fcleardisk.app%2F
+      - generic: speed
+      - generic: Core web vitals
+    - link "HTTPS":
+      - /url: ./search-console/https?resource_id=https%3A%2F%2Fcleardisk.app%2F
+      - generic: lock
+      - generic: HTTPS
+    - generic: Enhancements
+    - button "Enhancements report section" [expanded]:
+      - generic: keyboard_arrow_up
+    - link "Breadcrumbs":
+      - /url: ./search-console/r/breadcrumbs?resource_id=https%3A%2F%2Fcleardisk.app%2F
+      - generic: layers
+      - generic: Breadcrumbs
+    - generic: Security & Manual Actions
+    - button "Security & Manual Actions report section":
+      - generic: keyboard_arrow_down
+    - link "Links report":
+      - /url: ./search-console/links?resource_id=https%3A%2F%2Fcleardisk.app%2F
+      - generic: link_2
+      - generic: Links
+    - link "Achievements":
+      - /url: ./search-console/achievements?resource_id=https%3A%2F%2Fcleardisk.app%2F
+      - generic: trophy
+      - generic: Achievements
+    - link "Settings":
+      - /url: ./search-console/settings?resource_id=https%3A%2F%2Fcleardisk.app%2F
+      - generic: settings
+      - generic: Settings
+    - button "Submit feedback":
+      - generic: feedback
+      - generic: Submit feedback
+    - button "About Search Console":
+      - generic: info
+      - generic: About Search Console
+    - link "Privacy":
+      - /url: https://myaccount.google.com/privacypolicy?hl=en-GB
+    - link "Terms":
+      - /url: https://myaccount.google.com/termsofservice?hl=en-GB
+- navigation "Breadcrumbs":
+  - heading "Page indexing" [level=1]
+- button "EXPORT":
+  - generic: 
+  - generic: EXPORT
+- listbox:
+  - option "All known pages" [selected]
+  - option "All submitted pages"
+  - option "Unsubmitted pages only"
+  - option "/sitemap.xml"
+- generic: "Last update: 12/10/2026"
+- main:
+  - button "Not indexed 16 6 reasons":
+    - generic "Not indexed":
+      - generic: 
+      - generic: Not indexed
+    - generic "16"
+    - generic: 6 reasons
+  - button "null":
+    - generic: 
+  - button "Indexed 166":
+    - generic "Indexed":
+      - generic: 
+      - generic: Indexed
+    - generic "166"
+  - button "null":
+    - generic: 
+  - checkbox "Impressions"
+  - generic: Impressions
+  - generic: Pages
+  - link "View data about indexed pages":
+    - /url: ./search-console/index/drilldown?resource_id=https%3A%2F%2Fcleardisk.app%2F&pages=ALL_URLS
+    - generic: check_circle
+    - generic: View data about indexed pages
+    - generic: 
+  - generic: info_filled
+  - generic: Why pages aren’t indexed
+  - generic: Pages that aren’t indexed can’t be served on Google
+  - button "Filter table rows":
+    - generic: 
+  - table:
+    - rowgroup:
+      - row "Reason Source null Validation Trend Pages":
+        - columnheader "Reason":
+          - generic: Reason
+        - columnheader "Source null":
+          - text: Source
+          - button "null":
+            - generic: 
+        - columnheader "Validation":
+          - generic: Validation
+        - columnheader "Trend":
+          - generic: Trend
+        - columnheader "Pages":
+          - generic: Pages
+    - rowgroup:
+      - row "Excluded by ‘noindex’ tag Website Not Started 2":
+        - cell "Excluded by ‘noindex’ tag":
+          - generic "Excluded by ‘noindex’ tag"
+        - cell "Website":
+          - generic: Website
+        - cell "Not Started":
+          - generic: 
+          - text: Not Started
+        - cell:
+        - cell "2":
+          - generic: "2"
+      - row "Not found (404) Website Not Started 2":
+        - cell "Not found (404)":
+          - generic "Not found (404)"
+        - cell "Website":
+          - generic: Website
+        - cell "Not Started":
+          - generic: 
+          - text: Not Started
+        - cell:
+        - cell "2":
+          - generic: "2"
+      - row "Alternative page with proper canonical tag Website Not Started 2":
+        - cell "Alternative page with proper canonical tag":
+          - generic "Alternative page with proper canonical tag"
+        - cell "Website":
+          - generic: Website
+        - cell "Not Started":
+          - generic: 
+          - text: Not Started
+        - cell:
+        - cell "2":
+          - generic: "2"
+      - row "Soft 404 Website Not Started 1":
+        - cell "Soft 404":
+          - generic "Soft 404"
+        - cell "Website":
+          - generic: Website
+        - cell "Not Started":
+          - generic: 
+          - text: Not Started
+        - cell:
+        - cell "1":
+          - generic: "1"
+      - row "Crawled - currently not indexed Google systems Not Started 5":
+        - cell "Crawled - currently not indexed":
+          - generic "Crawled - currently not indexed"
+        - cell "Google systems":
+          - generic: Google systems
+        - cell "Not Started":
+          - generic: 
+          - text: Not Started
+        - cell:
+        - cell "5":
+          - generic: "5"
+      - row "Discovered – currently not indexed Google systems Not Started 4":
+        - cell "Discovered – currently not indexed":
+          - generic "Discovered – currently not indexed"
+        - cell "Google systems":
+          - generic: Google systems
+        - cell "Not Started":
+          - generic: 
+          - text: Not Started
+        - cell:
+        - cell "4":
+          - generic: "4"
+  - generic: "Rows per page:"
+  - listbox "Number of rows per page":
+    - option "5"
+    - option "10" [selected]
+    - option "25"
+    - option "50"
+    - option "100"
+    - option "250"
+    - option "500"
+  - generic: 1-6 of 6
+  - generic: 
+  - generic: 
+
+Noindex examples: /recover (15 September), /buy-now (5 September).
+Soft 404 example: /SHA256SUMS.txt (10 September). No guide URLs in these two categories.

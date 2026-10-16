@@ -38,7 +38,7 @@ export const systemQaGuides: Guide[] = [
         ],
         code: [
           'sysctl hw.memsize vm.swapusage',
-          "sysctl -n hw.memsize | awk '{printf \"%.1f GiB\\n\", $1 / 1073741824}'",
+          'sysctl -n hw.memsize | awk \'{printf "%.1f GiB\\n", $1 / 1073741824}\'',
         ],
       },
       {
@@ -49,11 +49,7 @@ export const systemQaGuides: Guide[] = [
           'Free, active, inactive and wired are memory-state counts. Wired pages cannot be paged out. Pages occupied by compressor measures the space holding compressed data; Pages stored in compressor counts the pages represented there. Do not add every row together: some describe overlapping classifications, and rows such as Translation faults count events rather than a current amount of RAM.',
           'vm_stat -c 3 1 takes three samples one second apart. In our test, free and active remained current page counts while faults and pageins became interval event counts after the first sample. The installed manual describes interval differences broadly; do not subtract or convert every column as if it had the same meaning. Control-C stops a repeating command.',
         ],
-        code: [
-          'pagesize',
-          'vm_stat',
-          'vm_stat -c 3 1',
-        ],
+        code: ['pagesize', 'vm_stat', 'vm_stat -c 3 1'],
       },
       {
         id: 'memory-pressure-command',
@@ -92,7 +88,7 @@ export const systemQaGuides: Guide[] = [
       },
       {
         q: 'How do I check RAM pressure on Mac from Terminal?',
-        a: "Run memory_pressure without options for diagnostic counters, but do not treat its percentage as Linux available memory. In Activity Monitor, check the Memory Pressure graph while the slowdown happens. Green means efficient use; sustained yellow or red warrants reviewing the apps using memory.",
+        a: 'Run memory_pressure without options for diagnostic counters, but do not treat its percentage as Linux available memory. In Activity Monitor, check the Memory Pressure graph while the slowdown happens. Green means efficient use; sustained yellow or red warrants reviewing the apps using memory.',
       },
       {
         q: 'How much RAM does my Mac have, checked from Terminal?',
@@ -223,77 +219,81 @@ export const systemQaGuides: Guide[] = [
     slug: 'purge-command-mac-memory',
     title: 'sudo purge on Mac: does it clear RAM, and should you?',
     description:
-      'What sudo purge really does on a Mac: it empties the disk cache, not app memory. Why it rarely helps, and what to do instead when memory pressure is high.',
+      'What the Mac purge command does to cached file data, why it is not a disk cleaner, and how to check memory pressure before changing your workload.',
     summary:
-      'sudo purge empties the disk cache, the file data macOS keeps in otherwise unused RAM; it doesn’t touch memory that apps are using. The drop is temporary and can make the next few minutes slower. If the Mac is short of memory, quit the app holding it.',
+      'purge is a performance-testing tool that flushes the disk buffer cache held in RAM. It does not free the anonymous memory allocated by your apps and is not a way to clear System Data or purgeable disk space. For a slow Mac, check Memory Pressure during the problem before trying to reduce memory use.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-10-16',
     sections: [
       {
         id: 'what-purge-does',
         title: 'What purge actually does',
         paragraphs: [
-          'The manual page is short and specific: purge forces the disk cache to be flushed and emptied, so that a Mac approximates the cold cache it has just after startup, for performance analysis. It also says what it leaves alone: memory apps have allocated for their own data. That is the memory Activity Monitor counts as App Memory, and it’s usually what people are hoping to reclaim.',
-          'The disk cache appears as Cached Files in Activity Monitor’s Memory tab, which Apple describes as files cached by the system into unused memory to improve performance. Emptying it makes the memory figures look better for a moment. The next time an app reads those files, macOS reads them from the disk again and the cache fills back up.',
+          'The installed macOS manual describes purge as a way to approximate a cold disk buffer cache for performance analysis. It explicitly excludes anonymous allocations made through interfaces such as malloc and vm_allocate. That is narrower than saying the command clears all RAM or affects nothing an app uses.',
+          'Cached file data helps avoid repeated storage reads. After a cache flush, later reads may have to fetch that data again. The amount reclaimed and how long any slowdown lasts depend on the workload; there is no reliable “a few minutes” rule or guaranteed rise in a particular memory counter.',
         ],
         code: ['man purge'],
       },
       {
         id: 'why-it-rarely-helps',
-        title: 'Why it rarely helps',
+        title: 'Why it is not routine Mac maintenance',
         paragraphs: [
-          'Cached files are the easiest memory for macOS to give back. When an app needs RAM, the system can drop cache on its own, without being asked. Apple’s memory guidance puts it plainly: having free or unused memory doesn’t necessarily improve performance, and macOS gets the best performance by using and managing all of it.',
-          'So purging swaps a cache that was helping for empty RAM that does nothing, and the Mac spends the next few minutes reading files from disk again. It won’t stop an app that keeps growing, won’t shrink memory that open apps hold, won’t remove swap files, and won’t free any disk space.',
+          'Apple describes Cached Files as file data kept in otherwise unused memory to improve performance. macOS can reuse that memory when it is needed. A large Cached Files value, by itself, is not evidence that the Mac needs cleaning.',
+          'purge is not a disk-cleaning command. It does not delete your Downloads, remove app caches from Library, or offer a supported way to remove swap files. A lower memory number after any intervention does not prove the app you care about became faster. Diagnose the symptom rather than scheduling cache flushes.',
         ],
       },
       {
         id: 'three-purges',
-        title: 'Three different things called purge',
+        title: 'RAM cache, purgeable memory and purgeable disk space',
         paragraphs: [
-          'The word turns up in three places on a Mac, and they aren’t related. None of them is something you need to trigger by hand in normal use.',
+          'These names describe different resources. Choose the check that matches the problem you are seeing.',
         ],
         items: [
-          'The purge command empties the disk cache held in RAM, and nothing else.',
-          'Purgeable pages in vm_stat are memory apps have marked as disposable. Apple’s developer documentation says the system discards it rather than writing it to disk when memory is reclaimed, and the app recreates it if needed.',
-          'Purgeable space in Storage settings and Disk Utility is disk space macOS can free on its own when it needs room. The purgeable space guide covers it.',
+          'Disk buffer cache: file data held in RAM. This is the cache targeted by the purge command for performance testing.',
+          'Purgeable memory: allocations an app marks as discardable under specific memory-management rules. This is not a count of removable files.',
+          'Purgeable disk space: storage macOS can reclaim when needed. Inspect Storage settings or Disk Utility for a disk-space problem; the purge command is not its cleanup control.',
         ],
       },
       {
         id: 'if-you-run-it',
-        title: '1. If you still want to run it',
+        title: 'When a cold-cache test is relevant',
         paragraphs: [
-          'purge lives at /usr/sbin/purge and needs administrator rights, so run it with sudo and enter your password. Save your work first: apps may pause briefly while the files they use are read back from disk.',
-          'The useful cases are narrow: timing how long an app takes to open from a cold cache, or testing disk read speed without cached data skewing the result. For everyday slowness, the next step does more.',
-          'If you want to see the effect for yourself, run top -l 1 | grep PhysMem before and after, or watch Cached Files in Activity Monitor. Unused memory should rise straight after a purge, then fall again as you open files and apps and macOS fills the cache back up. That round trip is the whole effect: nothing about the apps you have open has changed.',
+          'A developer might use purge while comparing the same file-reading workload with a warm cache and a cold cache. The test must hold the workload constant and record elapsed time, rather than treating a changing RAM figure as the result. On a normal working Mac, background activity makes a clean comparison difficult.',
+          'This guide does not ask you to run sudo purge, schedule it, or install a RAM cleaner. We checked the installed manual on macOS 27.0.1 and used Apple’s Activity Monitor documentation; we did not run purge or measure a before-and-after speed improvement. A missing command or permission error is not a reason to disable security or install an unknown replacement.',
         ],
-        code: ['sudo purge'],
       },
       {
         id: 'free-memory-that-matters',
-        title: '2. Free the memory that actually matters',
+        title: 'Check the workload that feels slow',
         paragraphs: [
-          'Open Activity Monitor from Applications → Utilities and click Memory. Look at the Memory Pressure graph before any number: Apple describes green as RAM being used efficiently, yellow as a sign the Mac might eventually need more RAM, and red as a sign it needs more. If it’s green, there is nothing to clear.',
-          'If it’s yellow or red, sort by the Memory column and quit the app at the top that you don’t need, after saving your work. Browsers with many tabs, virtual machines, large creative projects and developer tools are the usual candidates. A restart clears everything, including memory an app failed to release, and is the reliable way to start clean.',
-          'If macOS warns that it has run out of application memory, or swap keeps climbing, the linked guides cover each case. Check free disk space too, because swap files need room on the startup disk.',
+          'Open Applications → Utilities → Activity Monitor, select Memory, and reproduce the work that feels slow. Watch the Memory Pressure graph over time. Green means memory is being used efficiently at that moment; it does not rule out a slow disk, high CPU use, a network delay or an app-specific problem.',
+          'If pressure stays yellow or red while the slowdown occurs, sort by Memory and identify apps you recognize. Save your work, then quit an unneeded app through its own menu and compare responsiveness and pressure. Do not force-quit an unfamiliar system process just because it is near the top.',
+          'If an app repeatedly grows during ordinary use, record what triggers it and check the app’s support or updates. A restart can end that session’s processes and relieve symptoms, but an underlying problem can return when the workload resumes. Check startup-disk space too, because swap uses storage.',
+        ],
+        items: [
+          'Pressure is green but the Mac is slow: inspect the relevant CPU, Disk or Network view and the affected app, rather than assuming RAM is the cause.',
+          'Pressure improves after quitting a known app: reduce that workload and see whether the improvement persists. A single sample is not a diagnosis.',
+          'Swap Used is nonzero: that alone is not a fault. Look at pressure, responsiveness and changes during the workload.',
+          'The warning says storage is full: follow a disk-space guide. Free RAM and free storage are different measurements.',
         ],
       },
     ],
     questions: [
       {
         q: 'Does sudo purge clear RAM on Mac?',
-        a: "It only flushes the disk cache, the file data macOS keeps in otherwise unused RAM, so a Mac approximates the cold cache it has right after startup. It doesn't touch memory apps have allocated for their own data, which is usually what people are actually hoping to reclaim.",
+        a: 'It flushes the disk buffer cache held in RAM. The macOS manual says it does not affect anonymous memory allocated through interfaces such as malloc or vm_allocate. It is not a general way to clear all app memory.',
       },
       {
         q: 'Should I run purge to speed up my Mac?',
-        a: 'Generally no, since cached files are the easiest memory macOS can give back on its own when an app needs RAM, without being asked. Purging swaps a cache that was helping for empty RAM that does nothing, and the Mac spends the next few minutes reading files from disk again.',
+        a: 'Usually no. It is intended for cold-cache performance testing, and later reads may need to fetch cached file data again. Check Activity Monitor’s Memory Pressure during the slowdown before deciding that memory is the problem.',
       },
       {
-        q: 'What is purgeable space on Mac, and is it the same as the purge command?',
-        a: "No, they're unrelated despite the similar name. The purge command only empties the disk cache in RAM, while purgeable space shown in Storage settings and Disk Utility is disk space macOS can free on its own when it needs room.",
+        q: 'Will purge remove System Data or purgeable disk space?',
+        a: 'It is not a disk-cleaning command and should not be used to remove System Data, Library cache folders or swap files. Check Storage settings for disk use and Activity Monitor for RAM pressure.',
       },
       {
-        q: 'How do I actually free up memory on a slow Mac?',
-        a: "Check the Memory Pressure graph in Activity Monitor's Memory tab first; if it's green there's nothing to clear, but if it's yellow or red, sort by the Memory column and quit the app using the most that you don't need. A restart clears everything, including memory an app failed to release.",
+        q: 'Does green memory pressure mean nothing is wrong?',
+        a: 'It means RAM is being used efficiently at that moment. CPU load, storage, the network or a particular app can still cause slowness. Watch the graph during the actual workload instead of relying on one idle reading.',
       },
     ],
     related: [
@@ -303,10 +303,16 @@ export const systemQaGuides: Guide[] = [
       'purgeable-space-on-mac',
     ],
     sources: [
-      memoryUsage,
-      needMoreRam,
       {
-        label: 'Apple Developer: caching and purgeable memory',
+        label: 'Apple: view memory usage in Activity Monitor',
+        url: 'https://support.apple.com/guide/activity-monitor/view-memory-usage-actmntr1004/mac',
+      },
+      {
+        label: 'Apple: check if your Mac needs more RAM',
+        url: 'https://support.apple.com/guide/activity-monitor/check-if-your-mac-needs-more-ram-actmntr34865/mac',
+      },
+      {
+        label: 'Apple Developer archive: caching and purgeable memory',
         url: 'https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/CachingandPurgeableMemory.html',
       },
     ],

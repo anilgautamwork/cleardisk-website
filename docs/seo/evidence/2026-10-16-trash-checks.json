@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-16",
+  "os": "27.0.1",
+  "test": "missing first path with -s; second synthetic file must remain",
+  "exit": 5,
+  "stdout": "Terminating due to errors.\n",
+  "stderr": "2026-10-16 18:14:24.269 trash[75820:8641104] # Error attempting to move <fixture>/missing.txt to the trash folder, Error Domain=NSCocoaErrorDomain Code=4 \"The file \u201cmissing.txt\u201d doesn\u2019t exist.\" UserInfo={NSURL=file://<fixture>/missing.txt, NSUserStringVariant=Trash, NSUnderlyingError=0x7c41030930 {Error Domain=NSOSStatusErrorDomain Code=-43 \"fnfErr: File not found\"}}\n",
+  "secondFileRemains": true,
+  "limits": "No successful Trash move or Put Back tested; no permissions changed; purge not run."
+}
