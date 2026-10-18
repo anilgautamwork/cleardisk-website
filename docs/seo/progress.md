@@ -812,3 +812,10 @@ Source **94b411a**, pushed to main and deployed to existing Worker **30ef2aa2-03
 Improved and retained /mac-log-files (priority 8: 77 → 14 impressions; zero clicks in both complete September 27–October 3 / October 7–13 windows). Corrected hidden measurement errors, empty-folder handling, privacy claims and Trash/recovery expectations. Added explicitly labeled disposable-fixture evidence and limits. Primary Apple sources and released source checked; Humanizer applied. [Review and source record](2026-10-18-mac-log-review.md).
 
 55 full unit tests passed, zero failed/skipped; lint/typecheck/production build and 177 local HTTP SEO checks passed. Desktop/390px browser and final diff/failure-path review passed. Only this guide date changed; no removals, new articles or indexing claims. Publication pending. Next review October 19: Node.js uninstall, then Homebrew size-command edge cases; next full GSC windows October 23. Unrelated edits preserved.
+
+
+### October 18 — resource-limit failure found during live checks
+
+Mac-log correction source e3667b4 was published as f6d17239-7b18-4bb0-b52b-294689b397c5 and its live copy/sitemap/download/privacy checks passed. However, the full live route suite failed twice with 503s on unchanged guides. A diagnostic homepage response confirmed Cloudflare error 1102 (Worker exceeded resource limits), ray a4c808cd29b9cfa3-MRS at 13:54:20 UTC. This is new technical evidence, not proof of the historical search-loss cause.
+
+Prepared a public HTML/RSC build-snapshot correction without a hosting upgrade. 58 full unit tests passed (zero skipped/failed), lint/typecheck/build, 174 paired snapshots, 177 local SEO routes and desktop/mobile navigation checks passed. Private/payment/license/download logic preserved; source and failure-path details are in 2026-10-18-mac-log-review.md. Delivery correction publication pending. Prioritize live stability verification next run before the queued Node.js article; keep October 23 GSC comparison.

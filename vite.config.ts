@@ -77,6 +77,7 @@ export default defineConfig(async () => {
               assets: {
                 binding: 'ASSETS',
                 run_worker_first: [
+                  '/__public_pages/*',
                   '/ClearDisk.dmg',
                   '/analytics',
                   '/api/analytics',

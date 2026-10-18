@@ -1,4 +1,5 @@
 import handler from 'vinext/server/fetch-handler';
+import { publicSnapshot } from '../lib/public-snapshot';
 import { DownloadMetrics } from './download-metrics';
 import {
   aggregateDays,
@@ -213,6 +214,8 @@ const worker = {
       if (event) count(env, ctx, 'visits', event.source, request);
       return new Response(null, { status: 204, headers: privateHeaders });
     }
+    const snapshot = await publicSnapshot(request, env.ASSETS);
+    if (snapshot) return snapshot;
     const response = await handler.fetch(request, env, ctx);
     if (path === '/api/checkout' && request.method === 'POST' && response.ok)
       count(env, ctx, 'checkouts', 'Website', request);
