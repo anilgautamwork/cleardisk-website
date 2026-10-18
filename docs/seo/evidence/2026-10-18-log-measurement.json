@@ -1,0 +1,36 @@
+{
+  "nested": {
+    "command": [
+      "/usr/bin/du",
+      "-h",
+      "-d",
+      "1",
+      "/private/tmp/cleardisk-log-review-s19o1k41/Logs"
+    ],
+    "exit": 0,
+    "stdout": "8.0K\t/private/tmp/cleardisk-log-review-s19o1k41/Logs/.hidden-folder\n1.0M\t/private/tmp/cleardisk-log-review-s19o1k41/Logs/Example App\n1.0M\t/private/tmp/cleardisk-log-review-s19o1k41/Logs\n",
+    "stderr": ""
+  },
+  "empty": {
+    "command": [
+      "/usr/bin/du",
+      "-h",
+      "-d",
+      "1",
+      "/private/tmp/cleardisk-log-review-s19o1k41/Empty"
+    ],
+    "exit": 0,
+    "stdout": "  0B\t/private/tmp/cleardisk-log-review-s19o1k41/Empty\n",
+    "stderr": ""
+  },
+  "missing": {
+    "command": [
+      "/usr/bin/du",
+      "-sh",
+      "/private/tmp/cleardisk-log-review-s19o1k41/Missing"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "du: /private/tmp/cleardisk-log-review-s19o1k41/Missing: No such file or directory\n"
+  }
+}

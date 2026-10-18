@@ -869,16 +869,16 @@ export const systemFolderGuides: Guide[] = [
     description:
       'Where Mac log files live: ~/Library/Logs, /Library/Logs, /var/log and the unified log. How to read them in Console, measure them, and deal with a large one.',
     summary:
-      'Mac logs live in ~/Library/Logs, /Library/Logs and /private/var/log, while most system messages go to the unified log that Console reads. They are usually small. A large log is a symptom: find the app writing it before deleting anything.',
+      'Mac logs live in ~/Library/Logs, /Library/Logs and /private/var/log, while most system messages go to the unified log that Console reads. Measure them before clearing anything. If one keeps growing, identify the app writing it and keep the evidence needed to investigate the fault.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-10-18',
     sections: [
       {
         id: 'where-logs-live',
         title: 'Where logs live',
         paragraphs: [
           'macOS has two kinds of logging. Traditional log files are text files that apps and services write into a few folders. The unified logging system, which Apple’s developer documentation says centralizes log data in memory and on disk rather than in text files, handles most of what macOS itself records. You read unified logs with Console or the log command, not in Finder.',
-          'Crash reports are the files people most often find in bulk. Each one is small, but an app that crashes repeatedly leaves one per crash, so a crowded DiagnosticReports folder is a quick way to spot an app with a problem.',
+          'Repeated reports for the same app can help explain a growing DiagnosticReports folder. Check the process name and timestamps before assuming every report describes a separate current problem.',
         ],
         items: [
           '~/Library/Logs: logs from apps you run, plus a DiagnosticReports folder with crash and diagnostic reports for your account.',
@@ -892,36 +892,52 @@ export const systemFolderGuides: Guide[] = [
         title: '1. Read logs and reports in Console',
         paragraphs: [
           'Open Console from Applications → Utilities. Apple’s Console guide lists the report types in its sidebar: Crash Reports (.ips files), Spin Reports, Log Reports (.log and similar), Diagnostic Reports, Mac Analytics Data from /var/log/DiagnosticMessages, and the legacy system.log. User reports come from apps you use; system reports need an administrator account to view.',
-          'Select a report to read it, choose File → Reveal in Finder to see where it lives, or File → Move to Trash to remove it. Console is the tidy way to clear out old crash reports once you no longer need them, because it only touches the report you selected. A crash report also names the process that failed near the top, which tells you which app to update or report.',
+          'Select a report to read it, choose File → Reveal in Finder to see where it lives, or File → Move to Trash to remove it. Keep reports needed for an open support case. Review your selection before moving reports to the Trash. A crash report also names the process that failed near the top, which tells you which app to update or report.',
         ],
       },
       {
         id: 'measure',
         title: '2. Measure the log folders',
         paragraphs: [
-          'The first command sizes the three folders; the second ranks what is inside your own Logs folder. The third shows the last five minutes of the unified log, trimmed to a few lines, which is a quick way to see whether something is logging constantly. It uses the full path /usr/bin/log because zsh, the default shell, has its own unrelated log command. All three only read.',
-          'On most Macs these totals are small next to caches, backups or media. If they are, stop here: clearing logs will not make a noticeable difference to your storage, and they are useful when something goes wrong.',
+          'Run these commands in Terminal one at a time. The first measures three traditional log folders. The second shows the immediate subfolders inside your own Logs folder, including hidden ones, followed by its total. It does not list individual files or measure the unified log store.',
+          'Keep error messages visible. Permission denied or Operation not permitted means the total may be incomplete; No such file or directory means that path was not found. None of these means zero bytes. Do not add sudo or change privacy permissions just to obtain a larger total.',
+          'The sizes describe disk usage, not how much space cleanup will recover. Nested totals overlap, so do not add a parent to its children. The commands do not sort by size. To inspect individual files, open ~/Library/Logs with Finder’s Go → Go to Folder, switch to list view and sort by Size. Leave unfamiliar files in place.',
         ],
         code: [
-          'du -sh ~/Library/Logs /Library/Logs /private/var/log 2>/dev/null',
-          'du -sh ~/Library/Logs/* 2>/dev/null | sort -h | tail -10',
-          '/usr/bin/log show --last 5m | tail -20',
+          'du -sh "$HOME/Library/Logs" /Library/Logs /private/var/log',
+          'du -h -d 1 "$HOME/Library/Logs"',
+        ],
+      },
+      {
+        id: 'measurement-example',
+        title: 'What the measurement should show',
+        paragraphs: [
+          'In an October 18 test using disposable files, the second command listed an Example App folder containing a 1 MiB file and a hidden folder containing an 8 KiB file. An empty folder returned 0B with a successful exit status. A missing path returned an error and exit status 1. These were fixtures, not a scan of a customer’s Mac or a cleanup result.',
+          'An individual file directly inside Logs contributes to the parent total but gets no separate line with -d 1. An empty folder needs no wildcard expansion, so the command still works when there are no visible files. Protected-folder access failures were not reproduced in this fixture; if you encounter one, treat the result as partial.',
+          'If the measured logs are small compared with the space you need, keep them and investigate larger storage categories. Reading a stream of unified log messages does not tell you how much disk space those messages occupy.',
         ],
       },
       {
         id: 'large-log',
         title: '3. When one log is large',
         paragraphs: [
-          'A log that runs to gigabytes almost always belongs to one app or background helper that is logging too much: a debug or verbose setting left on, or the same error repeating every second. The folder or file name usually names the app. Check the app for a logging option, install its updates, and report the problem to its developer if it continues.',
-          'Then quit the app and move the old log to the Trash. If the app is still running, a deleted log keeps its space until the app closes the file, which is why quitting first matters. Leave logs from software you don’t recognize until you know what wrote them.',
+          'Record the file’s size and modification time, then check again after using the app normally. Repeated growth can come from verbose logging or a recurring error. The name may suggest the app, but confirm it from the report or vendor documentation before removing anything. Check for an app update or a documented log-retention setting first.',
+          'If the vendor allows removal of an old app log, keep any evidence needed for support, quit the app and move only that reviewed file to the Trash. A background helper may still be writing after the window closes; consult the vendor if the file keeps growing. Moving a file to Trash does not itself reclaim its storage. Emptying Trash permanently removes its contents, so review everything there first. A removed file that a process still holds open can continue using space until that process closes it.',
         ],
       },
       {
         id: 'leave-alone',
         title: 'What to leave alone',
         paragraphs: [
-          'Don’t empty /private/var/log wholesale or try to clear the unified log store with sudo commands. macOS manages both, and the history they hold is what Apple Support or a developer will ask for when you report a fault. Deleting it trades diagnostic evidence for very little space.',
-          'ClearDisk’s System Data view shows Logs as its own group, labeled Safe, so you can see the total alongside caches and backups. The label reflects that logs don’t hold your data; the size usually shows they aren’t where your storage went.',
+          'Don’t empty /private/var/log wholesale or try to clear the unified log store with sudo commands. macOS manages both, and the history they hold is what Apple Support or a developer will ask for when you report a fault. Removing that history can make the fault harder to investigate and does not fix the process producing new logs.',
+          'ClearDisk 2.1.0 shows a Logs group from the scanned user Library. That figure is not a complete inventory of every system log or the unified log store. Its Safe label does not establish that every report is disposable or free of personal information. Review the files and keep evidence you still need.',
+        ],
+      },
+      {
+        id: 'sharing-logs',
+        title: 'Check logs before sharing them',
+        paragraphs: [
+          'Logs can include account names, file paths and details supplied by an app. Apple provides privacy controls for unified logging, but those controls do not guarantee that every app log is redacted. Review the specific excerpt requested by support and remove personal details or credentials before posting it publicly. Do not upload an entire Logs folder to a forum.',
         ],
       },
     ],
@@ -932,11 +948,11 @@ export const systemFolderGuides: Guide[] = [
       },
       {
         q: 'Is it worth clearing Mac log files to free up space?',
-        a: "Usually not much. On most Macs these totals are small next to caches, backups or media, so clearing logs won't make a noticeable difference to storage, and they're useful if something goes wrong and you need to report a fault.",
+        a: "Measure them first. Small totals are unlikely to solve a storage shortage. A large or growing file needs an app-specific investigation; keep logs needed for support, and remember that moving them to Trash does not free their storage immediately.",
       },
       {
         q: 'What does it mean if one log file is huge?',
-        a: 'A log running to gigabytes almost always belongs to one app or background helper logging too much, such as a debug setting left on or the same error repeating constantly. Check that app for a logging option, then quit it before moving the old log to the Trash.',
+        a: 'Check whether the file keeps growing and identify its app or service. Verbose logging and recurring errors are possible causes. Follow the vendor’s retention or cleanup instructions, keep evidence needed for support, and avoid removing logs from an unfamiliar service.',
       },
       {
         q: 'Should I delete files from /private/var/log or the unified log store to save space?',
@@ -957,6 +973,10 @@ export const systemFolderGuides: Guide[] = [
       {
         label: 'Apple Developer: logging',
         url: 'https://developer.apple.com/documentation/os/logging',
+      },
+      {
+        label: 'Apple Developer: log messages and sensitive data',
+        url: 'https://developer.apple.com/documentation/os/generating-log-messages-from-your-code',
       },
       libraryDetails,
     ],

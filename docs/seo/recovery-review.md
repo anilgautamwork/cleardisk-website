@@ -192,7 +192,7 @@ Disposition: kept existing pages; refreshed measured priorities, no forced publi
 | 5 | /purge-command-mac-memory | 102 → 1 | 101 | 0 → 0 | Published October 16 follow-up: corrected memory scope, removed unmeasured purge promises and added diagnosis limits. |
 | 6 | /application-support-folder-mac | 172 → 103 | 69 | 0 → 0 | Keep October 14 correction; published after the measurement window. |
 | 7 | /free-command-on-mac | 120 → 53 | 67 | 0 → 1 | Keep October 15 correction; published after the measurement window. |
-| 8 | /mac-log-files | 77 → 14 | 63 | 0 → 0 | Queued: app-managed cleanup, measurement limits and blanket-removal advice. |
+| 8 | /mac-log-files | 77 → 14 | 63 | 0 → 0 | Improved October 18: visible measurement errors, fixture limits, log privacy and app-specific cleanup. |
 | 9 | /library-caches-folder-mac | 154 → 100 | 54 | 0 → 0 | Keep October 12 correction; window includes publication day and one following day. |
 | 10 | /clear-downloads-folder-mac | 93 → 42 | 51 | 0 → 0 | Queued: originals, recoverability and synced locations. |
 | 11 | /keep-icloud-files-downloaded-mac | 95 → 46 | 49 | 0 → 0 | Queued: local copies versus cloud deletion, availability and space limits. |
@@ -219,3 +219,10 @@ Full 55 unit tests passed, zero failed/skipped; lint/typecheck/build and 177 loc
 ### October 16 follow-up publication verified
 
 Source **94b411a**, pushed to main and deployed to existing Worker **30ef2aa2-0323-45fa-a222-d514a2cab9cd**. Both live guide routes return 200 with the revised copy and October 16 sitemap dates. **177 live HTTP SEO route checks passed**; sitemap remains 172 URLs. Download, DMG HEAD and appcast return 200; release remains 2.1.0. Anonymous analytics/API return 401 with no-store/noindex. Verification uses QA/HEAD requests to avoid counted downloads. Final full local suite 55 passed, zero failed/skipped, plus lint/typecheck/build, 177 local HTTP checks and desktop/narrow review. No indexing request, ranking recovery claim or further sitewide change. Review records pushed; unrelated audit edit preserved. Next daily content review: Mac logs, then Node.js uninstall.
+
+
+## October 18 — Mac log-files guide
+
+Improved and retained /mac-log-files (priority 8: 77 → 14 impressions; zero clicks in both complete September 27–October 3 / October 7–13 windows). Corrected hidden measurement errors, empty-folder handling, privacy claims and Trash/recovery expectations. Added explicitly labeled disposable-fixture evidence and limits. Primary Apple sources and released source checked; Humanizer applied. [Review and source record](2026-10-18-mac-log-review.md).
+
+55 full unit tests passed, zero failed/skipped; lint/typecheck/production build and 177 local HTTP SEO checks passed. Desktop/390px browser and final diff/failure-path review passed. Only this guide date changed; no removals, new articles or indexing claims. Publication pending. Next review October 19: Node.js uninstall, then Homebrew size-command edge cases; next full GSC windows October 23. Unrelated edits preserved.
