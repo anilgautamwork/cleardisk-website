@@ -832,3 +832,10 @@ Final full unit suite: **58 passed, zero failed/skipped/cancelled**. Lint/typech
 Updated existing /uninstall-node-js-mac using current Homebrew/nvm/fnm/npm/Volta documentation, Node's official download page and Apple's installed pkgutil manual. Humanizer applied. Corrected shared-folder deletion, mixed-manager removal, global-package persistence and PATH/receipt limitations; preserved existing anchors and related links. [Full evidence](2026-10-19-node-uninstall-review.md).
 
 Final full suite 58 passed, zero failed/skipped/cancelled; lint/typecheck/build, 174 HTML/RSC pairs, 177 local SEO route checks and desktop/390px review passed. Initial title-length failure corrected. Pre-deployment 177 live checks passed without a repeated 5XX. Publication pending; no new Search Console indexing or ranking claim. Aggregate download metrics and limits recorded in review; unrelated work preserved.
+
+
+### October 19 publication verified
+
+Source **3797e39** pushed to main and deployed to existing Worker **27e99b42-0254-494b-ab1e-a88ad73d3ac3**. Live guide: https://cleardisk.app/uninstall-node-js-mac . Corrected copy, title and October 19 sitemap date verified; sitemap remains 172 URLs. **177 live HTTP SEO route checks passed**, with no 5XX in this final run. Independent checks confirmed homepage and three guide RSC responses as 200/build, and direct internal snapshot access as 404. /download, DMG HEAD and appcast return 200; released version remains 2.1.0. Anonymous /analytics and /api/analytics remain 401 with no-store/noindex. QA/HEAD requests exclude test download counts.
+
+Final local validation: 58 unit tests passed, zero failed/skipped/cancelled, lint, typecheck, full production build, 174 HTML/RSC pairs, 177 local HTTP checks, desktop/narrow browser review and final diff/failure-path review. Temporary preview stopped and viewport reset. No Google indexing submission, observed recrawl or ranking recovery claim. Next daily review October 20: Homebrew package-size command failure/empty cases; next complete GSC comparison October 23. Unrelated audit edit and .impeccable preserved.

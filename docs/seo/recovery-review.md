@@ -196,7 +196,7 @@ Disposition: kept existing pages; refreshed measured priorities, no forced publi
 | 9 | /library-caches-folder-mac | 154 → 100 | 54 | 0 → 0 | Keep October 12 correction; window includes publication day and one following day. |
 | 10 | /clear-downloads-folder-mac | 93 → 42 | 51 | 0 → 0 | Queued: originals, recoverability and synced locations. |
 | 11 | /keep-icloud-files-downloaded-mac | 95 → 46 | 49 | 0 → 0 | Queued: local copies versus cloud deletion, availability and space limits. |
-| 12 | /uninstall-node-js-mac | 101 → 57 | 44 | 0 → 0 | Queued: installation methods, dependencies and blanket deletion. |
+| 12 | /uninstall-node-js-mac | 101 → 57 | 44 | 0 → 0 | Improved October 19: installer-specific removal, shared-tool protection and lookup limits. |
 | 13 | /mac-folder-structure-explained | 51 → 8 | 43 | 0 → 0 | Queued: system/user boundaries and overlapping intent. |
 | 14 | /steam-games-storage-mac | 325 → 285 | 40 | 0 → 2 | Keep October 11 correction; two clicks in the later window. |
 | 15 | /purgeable-space-on-mac | 65 → 25 | 40 | 0 → 0 | Queued: available versus purgeable storage; avoid forced-cleanup promises. |
@@ -246,3 +246,10 @@ Final full unit suite: **58 passed, zero failed/skipped/cancelled**. Lint/typech
 Improved and retained /uninstall-node-js-mac (priority 12, 101 → 57 impressions; zero clicks in both complete September 27–October 3 / October 7–13 windows). Removed blanket shared-folder deletion, combined manager-removal commands and misleading shell/receipt ownership claims. Added installer-specific choices, global-tool preservation, failure interpretation and private configuration guidance. [Sources, fixture evidence and review](2026-10-19-node-uninstall-review.md).
 
 Yesterday's resource-limit fix passed today's pre-publication 177-route live check; no historical-cause or recovery claim. Final 58 unit tests passed, zero failed/skipped/cancelled, plus lint/typecheck/build, 174 HTML/RSC pairs, 177 local HTTP SEO checks and desktop/narrow review. First draft title test failed and was fixed. Publication pending. Metrics: 58 download requests/17 completed-transfer events across September 20–October 19 (current day partial), not installs or sales. No fresh GSC measurement; next equal-window review October 23. Next deep review October 20: Homebrew size-command failure cases, followed by Downloads/iCloud. No removals proposed.
+
+
+### October 19 publication verified
+
+Source **3797e39** pushed to main and deployed to existing Worker **27e99b42-0254-494b-ab1e-a88ad73d3ac3**. Live guide: https://cleardisk.app/uninstall-node-js-mac . Corrected copy, title and October 19 sitemap date verified; sitemap remains 172 URLs. **177 live HTTP SEO route checks passed**, with no 5XX in this final run. Independent checks confirmed homepage and three guide RSC responses as 200/build, and direct internal snapshot access as 404. /download, DMG HEAD and appcast return 200; released version remains 2.1.0. Anonymous /analytics and /api/analytics remain 401 with no-store/noindex. QA/HEAD requests exclude test download counts.
+
+Final local validation: 58 unit tests passed, zero failed/skipped/cancelled, lint, typecheck, full production build, 174 HTML/RSC pairs, 177 local HTTP checks, desktop/narrow browser review and final diff/failure-path review. Temporary preview stopped and viewport reset. No Google indexing submission, observed recrawl or ranking recovery claim. Next daily review October 20: Homebrew package-size command failure/empty cases; next complete GSC comparison October 23. Unrelated audit edit and .impeccable preserved.
