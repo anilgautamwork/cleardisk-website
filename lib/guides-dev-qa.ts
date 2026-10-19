@@ -3,96 +3,100 @@ import type { Guide } from './guides.ts';
 export const devQaGuides: Guide[] = [
   {
     slug: 'uninstall-node-js-mac',
-    title: 'How to completely uninstall and reinstall Node.js on Mac',
+    title: 'How to uninstall Node.js on Mac safely',
     description:
-      'Uninstall Node.js on Mac the way it was installed: Homebrew, nvm, fnm, Volta or the nodejs.org package. Then clear global packages and reinstall cleanly.',
+      'Identify your Node.js installer, save global tool details, and remove the right version on Mac. Covers Homebrew, nvm, fnm, Volta and package receipts.',
     summary:
-      'Find out how Node.js got onto your Mac first, because each method removes differently: brew uninstall for Homebrew, nvm uninstall for nvm, and a file-by-file removal for the nodejs.org installer, which ships no uninstaller. Save your list of global packages, remove the leftovers, then reinstall with one method only.',
+      'Start by checking which Node.js your shell uses and which installer manages it. Save your global tool list, then follow only the matching removal method. Keep project folders and shared npm directories until you know what they contain.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-10-19',
     sections: [
       {
         id: 'find-every-node',
-        title: '1. Find every Node.js on your PATH',
+        title: '1. Identify the Node.js your shell uses',
         paragraphs: [
-          'Open Terminal and run which -a node. It prints every node your shell can find, in the order it searches, and the first line is the one that runs. More than one line means more than one install, which is the usual reason a “removed” Node.js keeps answering. The same path can appear twice when a folder is listed twice in PATH; that is one install, not two.',
-          'The path tells you the installer. /opt/homebrew/bin/node is Homebrew on Apple silicon. /usr/local/bin/node is either Homebrew on an Intel Mac or the nodejs.org package: ls -l shows a Homebrew copy as a link into ../Cellar/node, while the package installs a real file. A path under ~/.nvm belongs to nvm, one under ~/.volta to Volta, and one containing fnm to fnm. The nodejs.org installer also registers two package receipts, org.nodejs.node.pkg and org.nodejs.npm.pkg, which pkgutil can list.',
+          'Run these checks in Terminal before removing anything. type -a reports matching commands, including aliases or functions; command -v reports how this shell resolves node. A path is a clue to the installer, not proof of ownership. Neither command searches your whole disk, other user accounts or every version stored by a manager.',
+          '/opt/homebrew/bin/node commonly belongs to Homebrew on Apple silicon. /usr/local/bin/node can come from Homebrew or a package installer. A path inside .nvm suggests nvm; .volta/bin/node is normally a Volta shim that selects another executable. Confirm with the matching manager below. If the output reports an alias or function, inspect its definition before assuming it names a file.',
+          'If you inspect a path with ls -l, copy that one path and put it in double quotes. Do not pass a whole command listing into ls: aliases, missing results and paths containing spaces can produce misleading output. A missing command only means this shell cannot resolve it.',
         ],
-        code: [
-          'which -a node',
-          'node -v',
-          'ls -l $(which -a node)',
-          'brew list --versions node',
-          'pkgutil --pkgs | grep -i nodejs',
-        ],
+        code: ['type -a node npm', 'command -v node', 'command -v npm'],
       },
       {
         id: 'save-global-packages',
-        title: '2. Save the list of global packages',
+        title: '2. Record tools and project requirements',
         paragraphs: [
-          'npm’s documentation puts packages installed with npm install -g in {prefix}/lib/node_modules and links their commands into {prefix}/bin, where the prefix is usually the folder Node.js was installed into. npm root -g prints that folder for the Node.js you are running. Save the list before removing anything, so you can put back the tools you actually use rather than everything you once tried.',
-          'Under a version manager, each Node.js version has its own global packages, so repeat the list for each version you care about. The npm download cache in ~/.npm is separate: it survives an uninstall, is shared by every version, and has its own guide linked below.',
+          'Before uninstalling, stop development servers you started and save your work. Check the Node version required by your projects, including .nvmrc, .node-version or package.json. Removing a runtime can stop those projects and command-line tools from running. Keep your source files, lockfiles and local data.',
+          'When npm still works, the commands below show its global package directory, top-level packages and configured cache location. Copy the results into a new private note. If npm reports missing or invalid packages, keep the error with the list; a failed command is not evidence that no packages are installed.',
+          'Global packages can live in a shared prefix or inside one managed version. Record each environment you intend to remove; for Volta-managed tools, also use volta list. Removing Node does not reliably remove all global packages. The npm cache is separate and may use a custom location. Never delete a shared node_modules directory just because one Node version is leaving.',
         ],
-        code: ['npm root -g', 'npm ls -g --depth=0 > ~/npm-globals.txt'],
+        code: ['npm root -g', 'npm ls -g --depth=0', 'npm config get cache'],
       },
       {
         id: 'managed-installs',
-        title: '3. Remove a Homebrew or version-manager install',
+        title: '3. Homebrew: remove the installed formula',
         paragraphs: [
-          'For Homebrew, brew uninstall node removes the formula; repeat it for any versioned formula, such as node@22, that brew list shows. If another installed formula needs Node.js, Homebrew refuses and names it, so decide whether you still want that formula before forcing anything. Global packages in $(brew --prefix)/lib/node_modules sit outside Homebrew’s own copy of Node.js, so look in that folder afterwards.',
-          'For nvm, nvm ls lists installed versions and nvm uninstall removes one. nvm will not remove the version currently in use, so run nvm deactivate first. To remove nvm itself, its README says to run nvm unload, delete the ~/.nvm folder, and remove the lines that load nvm from your shell profile. On macOS 15 and later, the built-in trash command moves that folder to the Trash instead of deleting it outright.',
-          'fnm has fnm list and fnm uninstall for individual versions. Volta’s documentation removes it by deleting ~/.volta and the two Volta lines in your shell profile.',
+          'Use this section only if Homebrew manages the installation. Run brew list --formula --versions and look for node or a versioned formula such as node@22. If brew is not found, skip this method; do not install another manager merely to remove Node.',
+          'For an installed formula named node, inspect its installed dependants with brew uses --installed node, then run brew uninstall node only if you no longer need that runtime. Substitute the exact formula name for a versioned installation. If Homebrew refuses because another formula needs it, stop and review that dependency. Do not bypass the refusal with --ignore-dependencies or delete files from its Cellar manually.',
+          'Afterwards, repeat the formula listing and the shell checks. Leave shared global npm packages in place until you identify which tools still use them. A second Homebrew installation, for example under a different prefix, needs its own inventory.',
         ],
-        code: [
-          'brew uninstall node',
-          'nvm ls',
-          'nvm deactivate',
-          'nvm uninstall 22',
-          'nvm unload',
-          'trash ~/.nvm',
+        code: ['brew list --formula --versions'],
+      },
+      {
+        id: 'nvm-and-fnm',
+        title: 'nvm or fnm: choose one exact installed version',
+        paragraphs: [
+          'For nvm, run nvm ls and note the full version you want to remove. If it is active, switch to a version you are keeping or run nvm deactivate. Then use nvm uninstall followed by that exact version. For example, nvm uninstall 22.0.0 removes 22.0.0 only if that is the version you chose. Save its global tool list first, and check project and default aliases afterwards.',
+          'For fnm, run fnm list, switch away from the version you are removing, then run fnm uninstall followed by its full version. Avoid using an alias as the removal target: fnm documents that it removes the version the alias points to and other aliases pointing to that version.',
+          'Run only the commands for your manager. Removing one runtime does not require deleting the manager. Leave its startup lines and installation directory intact while you still use other versions; custom NVM_DIR or FNM_DIR settings can place those files outside the usual folders.',
         ],
+      },
+      {
+        id: 'volta',
+        title: 'Volta: distinguish a tool from the whole manager',
+        paragraphs: [
+          'Use volta list to inspect the toolchain and volta which node to identify the selected executable behind the shim. Volta documents volta uninstall for global packages installed with volta install; do not assume it behaves like nvm uninstall for a specific Node release.',
+          'Volta’s full Unix removal instructions delete its entire home directory and remove its shell-profile entries. That affects the manager and the tools stored there, not just the Node version you currently see. If you want to remove Volta altogether, record those tools first, check whether VOLTA_HOME is customized, and follow the linked official removal instructions. If you only need another Node version, use Volta’s toolchain controls instead of deleting its directory.',
+        ],
+        code: ['volta list', 'volta which node'],
       },
       {
         id: 'pkg-install',
-        title: '4. Remove the nodejs.org package by hand',
+        title: '4. Package installer: inspect receipts before touching files',
         paragraphs: [
-          'The installer from nodejs.org has no uninstaller. Its receipt lists what it put on the disk, relative to the top of the drive: node in usr/local/bin, C headers in usr/local/include/node, and documentation and a man page under usr/local/share. The full listing also names shared folders such as usr/local/bin itself, so read it rather than feeding it to a delete command. npm is a second package, installed into usr/local/lib/node_modules/npm.',
-          'Some files are missing from the receipts. The npm and npx links in /usr/local/bin are created by an installer script, and every global package you added linked its own command there too; ls -l shows them pointing into node_modules. In Finder, choose Go → Go to Folder, open /usr/local/bin, select node, npm, npx and those links, and choose Move to Trash; Finder asks for an administrator password. Do the same for the node folder in /usr/local/include, the node_modules folder in /usr/local/lib, and the node items the receipt lists under /usr/local/share.',
-          'Finally, pkgutil --forget removes the two receipts. It deletes no files; it only stops macOS recording those packages as installed. If pkgutil --pkgs showed a different nodejs ID from an older installer, forget that one too. On an Intel Mac that also has Homebrew, leave the rest of /usr/local alone, because Homebrew uses the same folder.',
+          'For a Node.js .pkg installation, start with the receipt inventory below. The grep filter returns no lines when it finds no matching ID; that is not proof that Node is absent. Receipt IDs can vary. For an ID that actually appears, use pkgutil --pkg-info followed by that ID to see installation details, then pkgutil --only-files --files followed by the same ID to list recorded files.',
+          'For example, if org.nodejs.node.pkg appears, inspect it with pkgutil --pkg-info org.nodejs.node.pkg and pkgutil --only-files --files org.nodejs.node.pkg. Interpret the listed paths using the receipt’s volume and install location. A receipt records a past installation: it does not prove that a current file has not since been replaced by Homebrew or another installer.',
+          'Do not delete /usr/local, /usr/local/bin or /usr/local/lib/node_modules as a batch. These locations may contain unrelated executables or global tools you still use. Do not pipe a receipt listing into rm. Inspect each candidate’s current path and symlink target, compare it with your manager inventory, and back up anything you intend to remove. If ownership is unclear, leave it in place and get help identifying it.',
+          'Only after that review, use Finder’s Go → Go to Folder to open the specific parent folder and move the confirmed obsolete item to Trash. Recheck your remaining tools before emptying Trash. Permission errors are a reason to stop, not to loosen permissions recursively. pkgutil --forget only discards a receipt; it does not uninstall the files and is not required to make another Node installation work.',
         ],
-        code: [
-          'pkgutil --only-files --files org.nodejs.node.pkg',
-          'ls -l /usr/local/bin | grep node_modules',
-          'sudo pkgutil --forget org.nodejs.node.pkg',
-          'sudo pkgutil --forget org.nodejs.npm.pkg',
-        ],
+        code: ['pkgutil --pkgs | grep -i nodejs'],
       },
       {
         id: 'reinstall',
-        title: '5. Check the removal, then reinstall one way',
+        title: '5. Verify the intended version, then reinstall if needed',
         paragraphs: [
-          'Open a new Terminal window, or run hash -r, and run which -a node again. “node not found” means every copy is gone; any path still printed is the install you missed. Look in ~/.zshrc and ~/.zprofile for lines that load nvm, fnm or Volta or add an old Node.js folder to PATH, and remove them. Keep ~/.npmrc if you plan to reinstall: it can hold registry settings and access tokens.',
-          'Then choose one installation method. Homebrew suits a single current version that updates with your other tools. A version manager such as nvm or fnm suits projects that need different versions, and the nodejs.org download page lists both beside its installer. Mixing methods is what creates duplicate installs in the first place. After installing, reinstall the global tools from the list you saved, and check node -v and which -a node once more.',
+          'Open a fresh Terminal window and repeat type -a node npm and command -v node. A remaining path may be an installation you intentionally kept. “Not found” means this shell has no matching command; inactive manager versions or app-bundled runtimes can still exist elsewhere. Recheck the manager’s own inventory too.',
+          'If reinstalling, choose the version your projects support and follow that manager’s instructions or the official Node.js download page. Keeping one primary installation method makes PATH easier to understand, though multiple methods can coexist deliberately. Once installed, run node -v and npm -v and check their paths before restoring the global tools you need.',
+          'Keep .npmrc private: it can contain registry credentials. Do not paste it into public issues or screenshots. Edit shell startup files only for a manager you have actually removed, and keep a backup of those files. If storage is still the problem, inspect project dependencies and the npm cache separately using the related guides; reinstalling Node does not remove every development file.',
         ],
-        code: ['hash -r', 'which -a node', 'brew install node', 'node -v'],
+        code: ['type -a node npm', 'command -v node'],
       },
     ],
     questions: [
       {
-        q: 'How do I know which method was used to install Node.js on my Mac?',
-        a: 'Run which -a node in Terminal to see the path; /opt/homebrew/bin/node points to Homebrew, a path under ~/.nvm belongs to nvm, and a plain /usr/local/bin/node with no version manager usually points to the nodejs.org installer.',
+        q: 'How do I identify which installer manages Node.js on my Mac?',
+        a: 'Use type -a node and command -v node to inspect the current shell, then confirm with Homebrew or your version manager. A path or old package receipt alone does not prove who owns the current file.',
       },
       {
-        q: 'Does the nodejs.org Node.js installer include an uninstaller?',
-        a: 'No, it ships no uninstaller, so removing it means deleting files by hand based on its package receipts, then running pkgutil --forget to clear the installation record.',
+        q: 'Can I remove Node.js by deleting /usr/local/lib/node_modules?',
+        a: 'That directory can contain shared global tools. Removing it can break packages beyond the Node version you intended to uninstall. Identify the installer and inspect individual packages before removing anything.',
       },
       {
-        q: 'Why does my Mac still find an old version of Node.js after I removed it?',
-        a: 'More than one installation method may be on your Mac at once, and which -a node lists every copy your shell can find in search order. A leftover line in your shell profile from nvm, fnm, or Volta can also add an old folder back to PATH.',
+        q: 'Why does node still work after an uninstall?',
+        a: 'Another installation, a manager shim or a shell alias may still resolve the command. Check a fresh Terminal window and the manager inventory. A shell lookup is not a scan of every Node installation on the disk.',
       },
       {
         q: 'Will uninstalling Node.js delete my global npm packages?',
-        a: "The packages live in that installation's node_modules folder and are removed along with it, so save the list of your global packages with npm before uninstalling so you can reinstall the ones you actually use.",
+        a: 'It depends on where the packages live and how Node was installed. Packages inside a removed version directory may go with it; a shared global prefix may remain. Record npm root -g and npm ls -g --depth=0 before removing the runtime.',
       },
     ],
     related: [
@@ -103,16 +107,36 @@ export const devQaGuides: Guide[] = [
     ],
     sources: [
       {
-        label: 'Node.js: download Node.js',
+        label: 'Node.js: official download options',
         url: 'https://nodejs.org/en/download',
       },
       {
-        label: 'npm Docs: folders used by npm',
-        url: 'https://docs.npmjs.com/cli/v11/configuring-npm/folders',
+        label: 'npm: global folders and cache locations',
+        url: 'https://docs.npmjs.com/cli/v11/configuring-npm/folders/',
       },
       {
-        label: 'nvm: README, uninstalling and removal',
+        label: 'npm: interpreting npm ls output',
+        url: 'https://docs.npmjs.com/cli/v11/commands/npm-ls/',
+      },
+      {
+        label: 'Homebrew: list, uses and uninstall',
+        url: 'https://docs.brew.sh/Manpage',
+      },
+      {
+        label: 'nvm: version management and removal',
         url: 'https://github.com/nvm-sh/nvm',
+      },
+      {
+        label: 'fnm: list and uninstall command reference',
+        url: 'https://github.com/Schniz/fnm/blob/master/docs/commands.md',
+      },
+      {
+        label: 'Volta: uninstalling global packages',
+        url: 'https://docs.volta.sh/reference/uninstall',
+      },
+      {
+        label: 'Volta: removing the whole manager',
+        url: 'https://docs.volta.sh/advanced/uninstall',
       },
     ],
   },
