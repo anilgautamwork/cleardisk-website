@@ -369,7 +369,7 @@ export const devQaGuides: Guide[] = [
     summary:
       'Run brew list in Terminal to see installed Homebrew packages. Use brew list --formula for command-line packages or brew list --cask for casks. To check versions, dependencies, disk usage or save a Brewfile, use the commands below.',
     published: '2026-09-24',
-    updated: '2026-10-08',
+    updated: '2026-10-20',
     sections: [
       {
         id: 'brew-list',
@@ -415,15 +415,26 @@ export const devQaGuides: Guide[] = [
       },
       {
         id: 'sizes',
-        title: '4. Find the packages using the most space',
+        title: '4. Check package sizes without scanning the wrong folder',
         paragraphs: [
-          'Formulae live in the Cellar, one folder per package, so du can measure each one and sort -h puts the largest last. The Caskroom holds Homebrew’s records for each cask and, for command-line casks such as SDKs, the software itself; an app a cask installed is counted in Applications instead. brew --cellar and brew --caskroom print the right folders on both Apple silicon and Intel Macs.',
-          'brew info shows one package in detail, including a line under its installed versions with the number of files and their size. Homebrew normally refuses to uninstall a formula that another installed formula depends on. Check brew uses first and keep packages your other tools need. Downloads that Homebrew keeps after installing are a separate folder, covered by the cache guide linked below.',
+          'Start with brew info followed by a formula name, such as brew info node, for its installed versions and sizes. To measure every formula folder, paste the complete block below into macOS Terminal. It checks that Homebrew returned an existing folder before running du. Nothing is deleted.',
+          'The output has one row per immediate subdirectory and a final total for the Cellar. Those package rows are already included in the total, so do not add the total again. Rows are not sorted by size. An empty Cellar produces just its directory total. If du prints an access or read error, treat the result as incomplete; the command keeps the error visible and returns a failure status.',
+          'To inspect the Caskroom, replace --cellar with --caskroom in the same block. A missing Caskroom can mean no casks have been installed. Its size also excludes apps installed elsewhere, usually in Applications. These figures describe the folders du can read, not a guaranteed amount you can reclaim.',
+          'If you see “size scan skipped,” read any Homebrew error above it and check that brew works in this Terminal. The block refuses an empty path, the filesystem root or a missing directory. It avoids the wildcard that can scan unrelated folders when a path lookup fails. Do not add sudo or broaden permissions just to get a complete number.',
+          'Check brew uses --installed with the formula name before considering removal. Homebrew normally refuses to uninstall a formula another installed package needs. Cached downloads are separate from installed packages; use the cache guide linked below to inspect them.',
         ],
         code: [
-          'du -sh "$(brew --cellar)"/* | sort -h',
-          'du -sh "$(brew --caskroom)"/* | sort -h',
-          'brew info node',
+          '(',
+          '  if cleardisk_brew_dir="$(brew --cellar)" &&',
+          '    [ -n "$cleardisk_brew_dir" ] &&',
+          '    [ "$cleardisk_brew_dir" != "/" ] &&',
+          '    [ -d "$cleardisk_brew_dir" ]; then',
+          '    du -h -d 1 "$cleardisk_brew_dir"',
+          '  else',
+          "    printf '%s\\n' 'No valid Homebrew folder; size scan skipped.' >&2",
+          '    exit 1',
+          '  fi',
+          ')',
         ],
       },
       {
@@ -434,9 +445,9 @@ export const devQaGuides: Guide[] = [
           'Dump refuses to overwrite an existing Brewfile; add --force to replace it, or use --file=- to print the list in Terminal instead. brew bundle install with the same --file path installs everything in it again. brew bundle cleanup works the other way and removes what is not in the file, so read its list before adding --force.',
         ],
         code: [
-          'brew bundle dump --file=~/Brewfile',
+          'brew bundle dump --file="$HOME/Brewfile"',
           'brew bundle dump --file=-',
-          'brew bundle install --file=~/Brewfile',
+          'brew bundle install --file="$HOME/Brewfile"',
         ],
       },
     ],
@@ -455,7 +466,7 @@ export const devQaGuides: Guide[] = [
       },
       {
         q: 'Which Homebrew packages are taking up the most disk space?',
-        a: 'Measure formula folders in the Cellar. Caskroom size can miss apps installed elsewhere, usually /Applications, so check those apps separately. brew info shows the installed size of a formula.',
+        a: 'Use brew info with a formula name for its installed size, or the guarded du block above for Cellar folder totals. Read errors mean a partial measurement. Caskroom size can miss apps installed elsewhere, usually /Applications. Folder size alone does not tell you whether a package is safe to remove.',
       },
     ],
     related: [
@@ -472,6 +483,10 @@ export const devQaGuides: Guide[] = [
       {
         label: 'Homebrew: brew bundle and Brewfile',
         url: 'https://docs.brew.sh/Brew-Bundle-and-Brewfile',
+      },
+      {
+        label: 'Apple: du disk-usage manual',
+        url: 'https://github.com/apple-oss-distributions/file_cmds/blob/main/du/du.1',
       },
     ],
   },
