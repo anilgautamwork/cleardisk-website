@@ -185,7 +185,7 @@ Disposition: kept existing pages; refreshed measured priorities, no forced publi
 
 | Priority | Page | Impressions before → after | Lost | Clicks before → after | Disposition / next action |
 | --- | --- | ---: | ---: | ---: | --- |
-| 1 | /homebrew-list-installed-packages | 654 → 212 | 442 | 0 → 0 | Kept after limited source spot-check; October 8 corrections retained. Queue size-command empty/failed-path edge cases. |
+| 1 | /homebrew-list-installed-packages | 654 → 212 | 442 | 0 → 0 | Improved October 20: guarded size lookups, empty-folder and partial-read handling; October 8 listing corrections retained. |
 | 2 | /what-is-system-data-on-mac | 237 → 72 | 165 | 0 → 1 | Keep October 13 correction; this window does not measure its later performance. |
 | 3 | /operation-not-permitted-terminal-mac | 364 → 239 | 125 | 3 → 0 | Keep October 9 correction; monitor and revisit only for a concrete gap. |
 | 4 | /move-files-to-trash-terminal-mac | 126 → 11 | 115 | 1 → 0 | Published October 16 follow-up: reviewed paths, partial failures, Finder fallback and restoration limits. |
@@ -262,3 +262,10 @@ Improved and retained /homebrew-list-installed-packages, priority 1 (654 → 212
 36 disposable shell-fixture cases passed. Full unit suite 58 passed, zero failed/skipped/cancelled; lint/typecheck, full production build with 174 HTML/RSC pairs, 177 local SEO checks and desktop/narrow browser review passed. Pre-publication 177 live routes passed without a repeated 5XX. Final diff and failure paths reviewed. Only the Homebrew guide's editorial date changed; no removals, new pages or indexing claim. Publication pending.
 
 Private rolling metrics September 21–October 20 (current day partial): 57 download requests, 17 completed-transfer events, 372 arrivals and seven checkout events; four cumulative license records and two separate GitHub downloads. Not installs, people, sales or organic conversions. Next daily review October 21: Downloads, then iCloud Keep Downloaded. Next full GSC comparison October 23. Unrelated work preserved.
+
+
+### October 20 publication verified
+
+Source **0c5302b** pushed to main and deployed to existing Worker **4147ddff-7938-428d-920b-2b25e66d0087**. https://cleardisk.app/homebrew-list-installed-packages returns 200/build with the guarded command and October 20 date; sitemap lastmod matches and remains 172 URLs. **177 live HTTP SEO route checks passed**, with no repeated 5XX in the final run. Independent checks verified homepage and three guide RSC responses as 200/build, direct internal snapshot access as 404, /download and DMG HEAD as 200, and appcast 200 with release 2.1.0. Anonymous /analytics and /api/analytics remain 401/no-store/noindex. Verification used QA/HEAD requests to avoid counting test downloads.
+
+Final local results: 58 unit tests passed, zero failed/skipped/cancelled; 36 shell fixture cases passed; lint, typecheck, complete production build (174 HTML/RSC pairs), 177 local HTTP checks, desktop/narrow review and final diff/failure review passed. Temporary browser tab closed, viewport reset and local preview stopped. No indexing submission, observed Google recrawl or ranking recovery claimed. Next daily review October 21: Downloads, then iCloud Keep Downloaded. Next complete-window GSC comparison October 23. Unrelated audit edit and .impeccable preserved.
