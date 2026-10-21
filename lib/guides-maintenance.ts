@@ -1789,78 +1789,83 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'clear-downloads-folder-mac',
-    title: 'Clear the Downloads folder on Mac without losing anything',
+    title: 'How to clear the Downloads folder on Mac safely',
     description:
-      'Sort the Mac Downloads folder by size, spot installers, archives and duplicates you can drop, empty the Trash, and set Safari and Mail so it stops refilling.',
+      'Review large downloads, keep original files, remove confirmed leftovers and check available storage. Includes Trash recovery, Safari and iCloud cautions.',
     summary:
-      'Downloads is the one folder on a Mac that fills itself. Most of it is installers and archives whose job is done; a few items are the only copy you have. Sort by size, decide by type, and empty the Trash.',
+      'Start with the largest files in Downloads, then check what each one contains and whether you need it. Keep originals and backups before moving confirmed leftovers to the Trash. A smaller Downloads folder alone does not mean your Mac has more available space.',
     published: '2026-09-06',
-    updated: '2026-09-06',
+    updated: '2026-10-21',
     sections: [
       {
         id: 'open-downloads-sorted-by-size',
-        title: '1. Open Downloads sorted by size',
+        title: '1. Find the files and measure the right thing',
         paragraphs: [
-          'Apple’s storage guidance lists deleting files in your Downloads folder among its first suggestions. Open the folder from the Dock or Finder’s sidebar, switch to list view, and click the Size column so the largest items sit at the top. System Settings → General → Storage offers the same list under Documents → Downloads, sorted by size with a Show in Finder option.',
-          'Note the total before you start. Finder shows it at the bottom of the window in list view, or select everything and press Command-I; the Terminal command du -sh ~/Downloads reads it without changing anything.',
+          'In Finder, choose Go → Downloads, then View → as List. Click the Size column to bring large files to the top. If the column is missing, enable it in View → Show View Options. A dash beside a folder is not proof that it is empty; select that folder and choose File → Get Info to inspect its size.',
+          'To measure Downloads itself, select the folder and use Get Info. Finder’s status bar shows an item count and available disk space, not the combined size of the folder’s contents. For a before-and-after storage check, note the available space in System Settings → General → Storage separately.',
+          'The optional Terminal command below reads the default Downloads folder without changing its contents. It reports disk usage for the folder it can read. If it prints an access error or says the folder does not exist, the measurement is incomplete or unavailable. Use Finder to review the location; do not hide errors or add sudo. A custom browser download location needs its own check.',
         ],
-        code: ['du -sh ~/Downloads'],
+        code: ['du -sh "$HOME/Downloads"'],
       },
       {
         id: 'decide-by-type',
-        title: '2. Decide by type, not by name',
+        title: '2. Keep originals and verify suspected leftovers',
         paragraphs: [
-          'Most of the folder falls into a few categories, and each has a clear answer.',
+          'A filename or extension is only a clue. Review a small group at a time and leave uncertain items for later. Keep a separate backup of work you cannot replace.',
         ],
         items: [
-          'Installers and disk images (.dmg, .pkg): the app is already in Applications; the image is a leftover. Eject any mounted image first, then delete it. The installer guide covers the exceptions.',
-          'Archives (.zip) you have already expanded: the expanded folder sits beside them; keep one copy, and only if you still need it.',
-          'Documents and exports you saved here by accident: move them to Documents or the project folder they belong to. Moving does not free space, but it keeps them out of the next cleanup.',
-          'Media you downloaded to watch or listen once: delete, or move to an external drive if you want it later.',
-          'Anything you cannot identify: open it, or leave it for a second pass. Unknown does not mean disposable.',
+          'Installers (.dmg, .pkg): check that installation finished and the app works from Applications, rather than from the mounted disk image. Keep an installer you need for offline reinstalls or an older version. Eject the image before removing a confirmed leftover.',
+          'Archives (.zip): check that extraction completed and the files you need are present. An archive may be your original delivery or backup. A folder with the same name does not establish that you have a complete replacement.',
+          'Documents, receipts and exports: keep the only copy. Move retained work to a suitable project folder; reorganizing it on the same volume does not reclaim its storage.',
+          'Media: if you need it later, copy it to an external drive and verify that copy before deciding what to remove locally. Keep more than one copy of irreplaceable material.',
+          'Unfamiliar downloads: check their origin and Get Info first. Do not launch unknown apps, scripts or installers just to identify them. Similar names, including a “(1)” suffix, do not prove that two files have identical contents.',
         ],
       },
       {
         id: 'delete-and-empty',
-        title: '3. Delete, then empty the Trash',
+        title: '3. Review the Trash before permanent deletion',
         paragraphs: [
-          'Select what goes and press Command-Delete, which Apple documents as the move-to-Trash shortcut. Nothing is freed yet: Apple’s guidance is explicit that space returns only when you empty the Trash. Review the Trash once, then choose Finder → Empty Trash and compare the Downloads total with your first measurement.',
-          'If a file refuses to delete, it is usually a disk image still mounted or a file an app still has open. The Trash guide walks through those cases.',
+          'Select only the files you have reviewed, then press Command-Delete to move them to the Trash. To recover an item still there, select it in the Trash and choose File → Put Back. Trash is temporary storage: automatic removal settings can apply, and it is not a backup.',
+          'Check the entire Trash before choosing Empty Trash, because it may contain files from other folders. Emptying it permanently removes those items; Put Back will no longer recover them. If you are unsure about any item, restore it first and postpone emptying.',
+          'Remeasure Downloads to see what remains there, then check available space in Storage settings. Moving files to Trash can shrink the Downloads total while the files still occupy the disk. Do not report that folder-size reduction as reclaimed space. Storage figures may take time to update and need not match the removed file sizes exactly.',
+          'If Finder refuses a removal, read the specific message and check whether the file is in use, locked or on a disk you cannot write to. Do not force deletion with a Terminal command or change permissions just to finish cleanup. The file-deletion guide below covers troubleshooting.',
         ],
       },
       {
         id: 'stop-it-refilling',
-        title: '4. Stop it refilling',
+        title: '4. Separate download history from saved files',
         paragraphs: [
-          'Two settings decide how fast the folder grows again. In Safari, Apple’s guide describes Safari → Settings → General, where File download location sets the folder and Remove download list items decides when entries leave the list. Choosing Ask for each download makes you decide a destination every time, which is what keeps installers out of Downloads. Other browsers have the same setting under their own downloads preferences.',
-          'Mail saves attachments to Downloads by default; Apple notes you can pick a different folder under Mail → Settings → General. The Downloads list under Documents in Storage settings gives the same view whenever you want a quick check.',
+          'Safari → Settings → General → File download location controls where future downloads are saved. Choose a folder you review regularly, or Ask for each download if you prefer to choose each destination. Moving the destination alone does not reduce how much you download or remove older files.',
+          'Safari’s Clear button and Remove download list items setting remove entries from its download history. They do not delete the saved files. Use the magnifying glass beside a download to locate it in Finder; that shortcut can stop working if you have moved the file.',
+          'Mail → Settings → General lets you choose where attachments you save are placed. Saved attachment copies and Mail’s automatically downloaded attachments are different things. Do not use Message → Remove Attachments as a shortcut for tidying Downloads: for IMAP mail, Apple says it also removes the attachments from the server.',
         ],
       },
       {
         id: 'downloads-elsewhere',
-        title: '5. The other downloads folders',
+        title: '5. Check custom and synced download locations',
         paragraphs: [
-          'Downloads is not the only place downloads land. Mail keeps attachments you opened in a Mail Downloads folder inside its container in your Library, browsers keep their own caches, and messaging apps store received files in their containers. The Mail and Library guides cover those; the check-storage guide shows how the categories add up.',
-          'A free local scan lists every one of those folders with allocated sizes, so you can see whether the Downloads folder was the real problem or only the visible one. ClearDisk shows them, lets you reveal each in Finder, and moves what you choose to the Trash first.',
+          'If your browser saves into iCloud Drive, review that location separately. Deleting an iCloud Drive file affects other devices using it. Remove Download is the option for removing a local downloaded copy while retaining the cloud file; confirm the file is uploaded and available in iCloud before relying on it. Keep a local copy if you need offline access.',
+          'Messaging apps and Mail can keep their own downloaded content outside the main Downloads folder. Use the owning app’s storage controls or its dedicated guide instead of deleting whole Library containers.',
+          'ClearDisk’s free scan can help compare Downloads with other locations it can read. Its allocated-size results can be incomplete when paths are skipped or inaccessible, and a scan cannot decide which file is your only copy. Use it to find candidates, then review their contents and backup status before removal.',
         ],
       },
     ],
     questions: [
       {
         q: "What's safe to delete from the Downloads folder on Mac?",
-        a: "Installers and disk images are usually leftovers once the app is already in Applications, and .zip archives you've already expanded can go once you keep the expanded copy you need. Anything you can't identify is worth opening first, since unknown doesn't mean disposable.",
+        a: 'Confirmed leftovers you no longer need, such as an installer after a successful installation, may be candidates. Keep original documents, needed installers and archives without a verified replacement. A file extension or duplicate-looking name alone is not enough to decide.',
       },
       {
-        q: 'How do I stop installers from piling up in Downloads?',
-        a: "In Safari's settings under General, set File download location to a folder of your choice, or choose Ask for each download so you decide a destination every time, keeping installers out of Downloads by default. Other browsers have the same setting under their own download preferences.",
+        q: 'Does clearing Safari’s downloads list delete my files?',
+        a: 'No. It clears history entries. The saved files remain in their download location until you move or delete them separately in Finder.',
       },
       {
         q: 'Why does my Downloads folder keep filling up with attachments?',
-        a: "Mail saves attachments to Downloads by default, though you can pick a different folder under Mail's Settings, General. Downloads also isn't the only place downloads land, since Mail keeps opened attachments in its own Mail Downloads folder inside your Library too.",
+        a: 'Mail can save attachments there, as can your browser and other apps. Check each app’s save location. Mail’s saved copies are separate from automatically downloaded attachments; removing attachments from an IMAP message can also delete them from the server.',
       },
       {
-        q: 'How do I actually free space after deleting files from Downloads?',
-        a: 'Select what you want gone and press Command-Delete to move it to the Trash, then empty the Trash afterward, since space only returns once you do that. Compare the Downloads total before and after using Get Info or the du -sh ~/Downloads command in Terminal.',
+        q: 'Why is Downloads smaller but my Mac still has little free space?',
+        a: 'Files moved to the Trash still occupy storage. Moving them elsewhere on the same volume also shrinks Downloads without reclaiming their space. Review what remains, and compare available disk space separately from the folder’s size.',
       },
     ],
     related: [
@@ -1877,16 +1882,24 @@ export const maintenanceGuides: Guide[] = [
         url: 'https://support.apple.com/en-us/102624',
       },
       {
+        label: 'Apple: get file, folder and disk information',
+        url: 'https://support.apple.com/guide/mac-help/get-file-folder-and-disk-information-on-mac-mchlp1774/mac',
+      },
+      {
+        label: 'Apple: delete files and folders on Mac',
+        url: 'https://support.apple.com/guide/mac-help/delete-files-and-folders-on-mac-mchlp1093/mac',
+      },
+      {
         label: 'Apple: download items from the web using Safari on Mac',
         url: 'https://support.apple.com/guide/safari/download-items-from-the-web-sfri40598/mac',
       },
       {
-        label: 'Apple: view, save, or delete email attachments in Mail on Mac',
+        label: 'Apple: view, save or delete email attachments in Mail',
         url: 'https://support.apple.com/guide/mail/view-save-or-delete-email-attachments-mlhlp1123/mac',
       },
       {
-        label: 'Apple: Mac keyboard shortcuts',
-        url: 'https://support.apple.com/en-us/102650',
+        label: 'Apple: work with folders and files in iCloud Drive',
+        url: 'https://support.apple.com/guide/mac-help/work-with-folders-and-files-in-icloud-drive-mchl1a02d711/mac',
       },
     ],
   },
