@@ -37,3 +37,10 @@ Private API observed 2026-10-21T12:11:03.451Z. September 22–October 21 inclusi
 ## Publication
 
 Pending deployment and live verification. Next deep review October 22: /keep-icloud-files-downloaded-mac. Next complete-window GSC comparison October 23. No indexing submission or recovery claim.
+
+
+### October 21 publication verified
+
+Source **d23a563** pushed to main and deployed to existing Worker **e41dbb9f-e717-4e51-b95e-6ae8ef54374f**. https://cleardisk.app/clear-downloads-folder-mac returns 200/build with the corrected title, copy and October 21 date. Sitemap lastmod matches; 172 URLs retained. **177 live HTTP SEO route checks passed**, including metadata/schema, related links, 404, sitemap, robots, DMG and OG image. No 5XX was observed in this final run. Independent checks verified homepage and three guide RSC responses as 200/build, internal snapshot access as 404, /download and DMG HEAD as 200, and appcast 200 with release 2.1.0. Anonymous /analytics and /api/analytics remain 401/no-store/noindex. QA/HEAD requests excluded verification downloads.
+
+Final local validation: 58 unit tests passed, zero failed/skipped/cancelled/todo; eight disposable shell-fixture checks passed; lint, typecheck, complete production build with 174 HTML/RSC pairs, 177 local HTTP checks, desktop/narrow browser and final diff/failure review passed. Temporary preview stopped, viewport reset and browser tab closed. No indexing submission, observed Google recrawl or ranking recovery claimed. Next daily review October 22: iCloud Keep Downloaded. Next complete-window Search Console comparison October 23. Unrelated audit edit and .impeccable preserved.
