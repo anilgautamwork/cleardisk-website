@@ -35,3 +35,10 @@ Observed 2026-10-22T10:03:03.478365Z through the protected aggregate API. Septem
 ## Publication
 
 Pending deployment and live verification. Next review October 23: complete Search Console windows and refreshed priorities, then the queued folder-structure article if priorities still support it. Preserve daily recovery review beyond the former campaign period.
+
+
+### October 22 publication verified
+
+Source **6653742** pushed to main and deployed to existing Worker **a15a5edf-7516-4602-be46-8fbcb8f050e3**. https://cleardisk.app/keep-icloud-files-downloaded-mac returns 200/build with corrected download-retention guidance, Finder status steps and October 22 date. Sitemap lastmod matches; 172 URLs retained. **177 live HTTP SEO route checks passed**, including metadata/schema, related links, 404, sitemap, robots, DMG and OG image. No 5XX observed in this final run. Independent checks confirmed homepage and three guide RSC responses as 200/build; internal snapshot access as 404; /download, DMG HEAD and appcast as 200 with release 2.1.0 retained. Anonymous /analytics and /api/analytics remain 401/no-store/noindex. Verification used QA/HEAD requests to exclude test downloads.
+
+Final local checks: 58 full unit tests passed, zero failed/skipped/cancelled/todo; lint/typecheck, complete production build with 174 HTML/RSC pairs, 177 local HTTP checks, desktop/narrow browser review and final diff/failure-path review passed. No live cloud mutation or offline rehearsal was performed; the source-backed guidance does not claim firsthand sync testing. Temporary preview stopped, viewport reset and tab closed. A missing previous-day temporary verification script was recreated before running the successful independent checks; no required check was skipped. No Google submission, observed recrawl or ranking recovery claimed. Next review October 23: complete equal Search Console windows, refreshed priorities and the queued folder-structure guide if still justified. Unrelated audit edit and .impeccable preserved.
