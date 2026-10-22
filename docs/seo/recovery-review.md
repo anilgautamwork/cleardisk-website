@@ -195,7 +195,7 @@ Disposition: kept existing pages; refreshed measured priorities, no forced publi
 | 8 | /mac-log-files | 77 → 14 | 63 | 0 → 0 | Improved October 18: visible measurement errors, fixture limits, log privacy and app-specific cleanup. |
 | 9 | /library-caches-folder-mac | 154 → 100 | 54 | 0 → 0 | Keep October 12 correction; window includes publication day and one following day. |
 | 10 | /clear-downloads-folder-mac | 93 → 42 | 51 | 0 → 0 | Improved October 21: originals, recoverability, measurements and synced locations; publication verification below. |
-| 11 | /keep-icloud-files-downloaded-mac | 95 → 46 | 49 | 0 → 0 | Queued: local copies versus cloud deletion, availability and space limits. |
+| 11 | /keep-icloud-files-downloaded-mac | 95 → 46 | 49 | 0 → 0 | Improved October 22: download/retention scope, Finder status, transfer failures and independent-copy limits; publication verification below. |
 | 12 | /uninstall-node-js-mac | 101 → 57 | 44 | 0 → 0 | Improved October 19: installer-specific removal, shared-tool protection and lookup limits. |
 | 13 | /mac-folder-structure-explained | 51 → 8 | 43 | 0 → 0 | Queued: system/user boundaries and overlapping intent. |
 | 14 | /steam-games-storage-mac | 325 → 285 | 40 | 0 → 2 | Keep October 11 correction; two clicks in the later window. |
@@ -285,3 +285,12 @@ Private rolling September 22–October 21 metrics (current day partial): 54 down
 Source **d23a563** pushed to main and deployed to existing Worker **e41dbb9f-e717-4e51-b95e-6ae8ef54374f**. https://cleardisk.app/clear-downloads-folder-mac returns 200/build with the corrected title, copy and October 21 date. Sitemap lastmod matches; 172 URLs retained. **177 live HTTP SEO route checks passed**, including metadata/schema, related links, 404, sitemap, robots, DMG and OG image. No 5XX was observed in this final run. Independent checks verified homepage and three guide RSC responses as 200/build, internal snapshot access as 404, /download and DMG HEAD as 200, and appcast 200 with release 2.1.0. Anonymous /analytics and /api/analytics remain 401/no-store/noindex. QA/HEAD requests excluded verification downloads.
 
 Final local validation: 58 unit tests passed, zero failed/skipped/cancelled/todo; eight disposable shell-fixture checks passed; lint, typecheck, complete production build with 174 HTML/RSC pairs, 177 local HTTP checks, desktop/narrow browser and final diff/failure review passed. Temporary preview stopped, viewport reset and browser tab closed. No indexing submission, observed Google recrawl or ranking recovery claimed. Next daily review October 22: iCloud Keep Downloaded. Next complete-window Search Console comparison October 23. Unrelated audit edit and .impeccable preserved.
+
+
+## October 22 — iCloud offline-use correction
+
+Improved and retained /keep-icloud-files-downloaded-mac, priority 11 (95 → 46 impressions, zero clicks in both complete September 27–October 3 / October 7–13 windows). Removed unsupported app-session expiry wording, checked current 2.1.0 behavior, and added Finder status checks, transfer/upload failures, offline rehearsal and independent-copy limits. Humanizer and primary Apple sources applied. [Sources, validation and metrics](2026-10-22-icloud-offline-review.md).
+
+Full unit suite 58 passed, zero failed/skipped/cancelled/todo; lint/typecheck, complete build with 174 HTML/RSC pairs, 177 local HTTP SEO checks, desktop/narrow browser and final diff/failure review passed. Pre-publication 177 live routes passed without an observed 5XX. No real iCloud files or settings changed; no live sync experiment claimed. Only this guide's date changed; no new pages, removals or consolidation. Publication pending.
+
+Private rolling September 23–October 22 metrics (current day partial): 381 arrivals, 36 download requests, 17 completed-transfer events and seven checkout events; four cumulative license records and two separate GitHub asset downloads. Not people, installs, sales or organic conversions. Next review October 23: complete GSC windows, refresh priority queue, then folder structure if still justified. Unrelated audit edit and .impeccable preserved.
