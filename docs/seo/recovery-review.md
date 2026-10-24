@@ -335,3 +335,9 @@ Follow-up status: both reviewed guides improved and published with new browser-m
 Kept and improved `/` and `/faq/cleardisk` at the owner's request. More direct paths to existing performance/storage guides; no new articles, removed routes or altered recovery priorities. [Homepage evidence](2026-10-24-homepage-refinement.md). Full tests/build/local HTTP and responsive checks passed; publication pending. Next evidence review remains October 25 with complete equal-length Search Console windows when available.
 
 Homepage follow-up published and verified: 9eec611 → Worker 56549220-c762-4cd4-9e4b-56e3b702679a; 180 live HTTP checks passed, downloads and protected analytics preserved. `/` and `/faq/cleardisk` kept/improved. No change to the October 25 complete-window review priority.
+
+### October 24 heartbeat — quiet verification after publication
+
+Today's owner-requested release, guide reviews and homepage publication are already recorded above. Avoided repeating those edits or adding filler. `/operation-not-permitted-terminal-mac` and `/private-var-folders-mac`: **kept**, existing October 9 corrections retained; read-only live checks returned 200 with expected canonicals and no robots noindex. This was delivery verification, not another full editorial audit. Homepage also returns current content; `/download` still shows 2.2.0. Anonymous analytics page/API remain 401/no-store/noindex. Used ClearDisk-QA, with no DMG request or new download metric.
+
+No code/test change or deployment this heartbeat; the immediately preceding 58-unit/180-live-route verification remains the last full-suite result. No fresh Search Console windows, source research, metrics or indexing/recovery claim. Next review October 25: refresh complete equal-length Search Console windows, then reassess remaining priority 13 folder-structure review. No new owner action needed; unrelated local files preserved.
