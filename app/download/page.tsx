@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 export const metadata = pageMetadata(
   'Download ClearDisk for Mac — Free Disk Space Scanner',
-  'Download ClearDisk 2.1.0 for macOS 15 or later on Apple silicon or Intel. Scan your Mac for free, review large files, and unlock cleanup with a $10 license.',
+  'Download ClearDisk 2.2.0 for macOS 15 or later on Apple silicon or Intel. Scan your Mac for free, review large files, and unlock cleanup with a $10 license.',
   '/download',
 );
 export default async function Download({
@@ -56,21 +56,41 @@ export default async function Download({
           <ArrowDownToLine size={18} />
           Download ClearDisk
         </a>
-        <small>ClearDisk 2.1.0 · DMG</small>
+        <small>ClearDisk 2.2.0 · DMG</small>
         <p className="software-disclosure">
           ClearDisk is a downloadable Mac app. It scans your disk on your Mac,
           shows what uses space and lets you move files you choose to the Trash.
-          It does not change system settings, install extensions or upload your
-          files. Remove it by moving ClearDisk to the Trash.
+          Performance also shows running processes and connection readings.
+          Actions such as quitting apps or rebuilding the Spotlight index need
+          confirmation. It installs no extensions or uploads your files. Turn off
+          optional Start at login before quitting and removing ClearDisk.
         </p>
         <p>
           <a href="https://cleardisk.app/SHA256SUMS.txt">
             SHA-256 checksum for this download
           </a>
         </p>
-        <h2>New in 2.1.0</h2>
+        <h2>New in 2.2.0</h2>
         <p>
-          Open Mac checks in the sidebar for two new read-only tools. No full
+          The WhySlow tools are now part of ClearDisk. Open Performance for CPU
+          and memory readings, process explanations, background items, internet
+          checks and local usage charts. Enable a menu-bar monitor if you want
+          to keep readings visible while working.
+        </p>
+        <p>
+          Review supported Chrome, Brave and Edge tabs with optional browser
+          Automation access. The internet speed test uses Apple’s servers after
+          confirmation and consumes network data. Your existing license covers
+          the licensed performance actions; no second purchase is needed.
+        </p>
+        <p>
+          These readings help investigate a slowdown. They are not a hardware
+          diagnosis, and missing readings do not mean everything is healthy.
+          <Link href="/features"> Explore the features and limits</Link>.
+        </p>
+        <h2>Also included: Mac checks</h2>
+        <p>
+          Open Mac checks in the sidebar for two read-only tools. No full
           disk scan is needed, and neither check changes or removes files.
         </p>
         <p>
@@ -91,7 +111,7 @@ export default async function Download({
         <p>
           On ClearDisk 2.0.0 or later, choose ClearDisk → Check for Updates… to download
           and install a signed update from the app. If you have 1.1.1 or earlier,
-          download 2.1.0 here once to get the updater. Your license stays valid.
+          download 2.2.0 here once to get the updater. Your license stays valid.
         </p>
         <h2>Three small steps. More clarity.</h2>
         <ol>

@@ -24,6 +24,44 @@ export default function Features() {
         <DownloadButton />
         <div className="product-sections">
           <section>
+            <h2>Performance, now inside ClearDisk</h2>
+            <p>
+              ClearDisk 2.2.0 includes the WhySlow tools. Inspect CPU activity,
+              memory pressure, thermal state and running processes. Review
+              background items, follow local usage charts or enable an optional
+              menu-bar monitor. Readings depend on hardware and permissions;
+              they are not a hardware diagnosis or a guaranteed speed boost.
+            </p>
+            <Link href="/blog/kernel-task-high-cpu-mac">
+              What high kernel_task CPU can mean
+            </Link>
+          </section>
+          <section>
+            <h2>Internet and browser checks</h2>
+            <p>
+              Inspect connection information and available per-app bandwidth
+              readings. Run Apple’s networkQuality test after confirmation, or
+              review supported Chrome, Brave and Edge tabs with optional
+              Automation access. Private browser windows are excluded. Tab and
+              extension memory figures are estimates, not precise measurements.
+            </p>
+            <Link href="/blog/networkquality-mac-internet-test">
+              Test a slow connection with Apple’s tool
+            </Link>
+          </section>
+          <section>
+            <h2>Choose an action after reviewing the evidence</h2>
+            <p>
+              Your existing license covers licensed performance actions,
+              including quitting apps, supported browser tab actions and
+              rebuilding Spotlight’s index. Actions ask for confirmation;
+              protected system processes cannot be quit through ClearDisk.
+              Force Quit can lose unsaved work. Monitoring alone changes none
+              of your files.
+            </p>
+            <Link href="/privacy">Read about local history and permissions</Link>
+          </section>
+          <section>
             <h2>A visual view of your disk</h2>
             <p>
               Explore a treemap, browse folders, search scanned paths and find
@@ -74,7 +112,7 @@ export default function Features() {
               be read. macOS manages these files; ClearDisk does not remove them,
               and protected locations can leave an incomplete total.
             </p>
-            <Link href="/download">Get Mac checks in ClearDisk 2.1.0</Link>
+            <Link href="/download">Get Mac checks in ClearDisk 2.2.0</Link>
           </section>
           <section>
             <h2>Find Intel-only apps</h2>

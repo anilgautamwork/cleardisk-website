@@ -1,5 +1,5 @@
 CLEARDISK PRESS KIT
-Updated: 16 October 2026
+Updated: 24 October 2026
 Website: https://cleardisk.app
 Press contact: hello@cleardisk.app
 
@@ -7,17 +7,18 @@ SHORT DESCRIPTION
 ClearDisk is a Mac storage app that helps you find large files, understand System Data and review developer clutter. Scans run locally and are free. A one-time license unlocks cleanup, with a review before removal and a Move to Trash option.
 
 FACTS
-Release: 2.1.0 (build 12), released 4 October 2026.
+Release: 2.2.0 (build 13), released 24 October 2026.
 Requirements: macOS 15 or later; Apple silicon and Intel Macs.
 Price: free scans; US $10 one-time cleanup license for up to three Macs you own. No subscription. Local pricing appears at checkout. 30-day refund policy.
 Publisher: TechMarbles Web Solutions Pvt. Ltd., Mohali, India.
 Maker contact: interview requests for Anil Gautam via hello@cleardisk.app.
 Distribution: signed and notarized macOS app. Notarization is not an Apple endorsement.
 Download: https://cleardisk.app/download
-Release: https://github.com/anilgautamwork/cleardisk-app/releases/tag/v2.1.0
-Privacy: file scans stay on the Mac. Activation and updates use the network. Activation sends the license key, device identifier, computer name and app version. Files and scan results are not uploaded.
+Release: https://github.com/anilgautamwork/cleardisk-app/releases/tag/v2.2.0
+Privacy: file scans stay on the Mac. Activation, updates and an explicitly requested Apple networkQuality speed test use the network. Activation sends the license key, device identifier, computer name and app version. Files and scan results are not uploaded.
 
 REVIEWER NOTES
+Performance in 2.2.0 brings the WhySlow tools into ClearDisk: CPU/memory readings, process explanations, background items, internet checks, local usage charts and optional menu-bar monitoring. Supported Chrome/Brave/Edge browser review requires Automation access. Usage history is local and can be disabled or cleared. Confirmed performance actions use the existing license. Monitoring cannot diagnose hardware faults or guarantee a faster Mac.
 Scan totals are not guaranteed reclaimable space. Use disposable sample files to demonstrate cleanup. Undo requires the items to remain in Trash; permanent deletion cannot be undone.
 Mac checks in 2.1.0 measure readable recognized Apple Intelligence model-asset folders; protected or partial locations are reported. No model deletion or complete-footprint guarantee.
 Intel-app checks inspect main executables under /Applications and ~/Applications, including subfolders. Helpers, plug-ins and other locations are outside the scan. Results do not guarantee future macOS compatibility.

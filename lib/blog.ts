@@ -1,6 +1,8 @@
 import type { Guide } from './guides.ts';
+import { performancePosts } from './blog-performance.ts';
 
 export const blogPosts: Guide[] = [
+  ...performancePosts,
   {
     slug: 'blog/appcleaner-os-x',
     title: 'AppCleaner for OS X: uninstalling apps safely',

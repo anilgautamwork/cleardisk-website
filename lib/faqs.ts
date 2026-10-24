@@ -422,7 +422,7 @@ export const faqTopics: FaqTopic[] = [
       'Short answers about ClearDisk for Mac: what the free scan shows, what the one-time license unlocks, privacy, Full Disk Access, refunds and lost keys.',
     intro:
       'ClearDisk is a Mac app that shows what fills your disk, explains System Data in plain words and moves the files you choose to the Trash. These are the questions people ask before downloading or buying.',
-    updated: '2026-09-06',
+    updated: '2026-10-24',
     questions: [
       {
         id: 'is-scanning-free',
@@ -435,7 +435,7 @@ export const faqTopics: FaqTopic[] = [
         id: 'price',
         question: 'How much does ClearDisk cost, and is it a subscription?',
         answer:
-          'A one-time license of $10, shown in your local currency at checkout, covers up to three Macs you own including ClearDisk 2.1.0. There is no monthly or annual charge.',
+          'A one-time license of $10, shown in your local currency at checkout, covers up to three Macs you own including ClearDisk 2.2.0. There is no monthly or annual charge.',
       },
       {
         id: 'what-cleanup-does',
@@ -448,7 +448,7 @@ export const faqTopics: FaqTopic[] = [
         id: 'uploads',
         question: 'Does ClearDisk upload my files?',
         answer:
-          'No. Scanning and analysis run on your Mac, and file names and scan results are never uploaded. License activation sends your key, a device identifier, your computer name and the app version. Software update checks and downloads also use the network; they do not upload your files or scan results.',
+          'No. Scanning and analysis run on your Mac, and file names and scan results are never uploaded. License activation sends your key, a device identifier, your computer name and the app version. Software updates and an optional Apple networkQuality speed test also use the network; they do not upload your files or scan results.',
       },
       {
         id: 'full-disk-access',
@@ -461,7 +461,7 @@ export const faqTopics: FaqTopic[] = [
         id: 'what-it-does-not-do',
         question: 'What does ClearDisk not do?',
         answer:
-          'It does not clean memory, remove malware, repair iCloud sync, find duplicates or promise a fixed amount of freed space. It reports Time Machine snapshots as a count, not a size, because macOS does not expose one.',
+          'It does not clean memory, remove malware, repair iCloud sync, find duplicate files or promise a fixed amount of freed space. It reports Time Machine snapshots as a count, not a size, because macOS does not expose one.',
         guide: 'best-free-mac-cleaner',
       },
       {
@@ -486,7 +486,7 @@ export const faqTopics: FaqTopic[] = [
         id: 'remove-cleardisk',
         question: 'How do I remove ClearDisk?',
         answer:
-          'Move ClearDisk from Applications to the Trash and empty it. It installs no extensions and changes no system settings, so nothing else needs undoing.',
+          'Turn off Start at login in Performance settings if enabled, quit ClearDisk, then move it from Applications to the Trash. ClearDisk installs no extensions. Optional usage history and saved preferences are local; clear history in Performance settings before uninstalling if you want to remove it.',
         guide: 'uninstall-apps-on-mac',
       },
     ],

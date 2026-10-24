@@ -6,7 +6,7 @@ import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata(
   'ClearDisk Blog — Make room for what matters',
-  'Practical notes from the makers of ClearDisk on Mac cleanup, storage decisions and keeping the files that matter. Read our latest article and storage guides.',
+  'Practical notes from the makers of ClearDisk on Mac storage, performance checks and keeping the files that matter. Read our latest article and storage guides.',
   '/blog',
 );
 
@@ -27,7 +27,7 @@ export default function Blog() {
             <span>what matters.</span>
           </h1>
           <p>
-            A closer look at the decisions behind a cleaner Mac.
+            Practical help with Mac storage, performance and everyday problems.
             <br />
             From the people building ClearDisk.
           </p>
@@ -36,7 +36,7 @@ export default function Blog() {
           {blogPosts.map((post) => (
             <article key={post.slug}>
               <span className="eyebrow">
-                MAC CLEANUP ·{' '}
+                MAC NOTES ·{' '}
                 <time dateTime={post.published}>
                   {new Intl.DateTimeFormat('en-US', {
                     dateStyle: 'long',

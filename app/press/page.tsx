@@ -78,7 +78,7 @@ export default function Press() {
           <dl className="press-facts">
             <div>
               <dt>Current release</dt>
-              <dd>2.1.0 (build 12) · released 4 October 2026</dd>
+              <dd>2.2.0 (build 13) · released 24 October 2026</dd>
             </div>
             <div>
               <dt>Requirements</dt>
@@ -96,7 +96,8 @@ export default function Press() {
               <dt>Privacy</dt>
               <dd>
                 File scans stay on your Mac. License activation and software
-                updates use the network; files and scan results are not
+                updates use the network, as does an optional Apple speed test;
+                files and scan results are not
                 uploaded.
               </dd>
             </div>
@@ -105,7 +106,7 @@ export default function Press() {
               <dd>
                 Signed and notarized macOS app. Available from the{' '}
                 <Link href="/download">download page</Link> and{' '}
-                <a href="https://github.com/anilgautamwork/cleardisk-app/releases/tag/v2.1.0">
+                <a href="https://github.com/anilgautamwork/cleardisk-app/releases/tag/v2.2.0">
                   GitHub release
                 </a>
                 . Notarization is not an Apple endorsement.
@@ -220,6 +221,14 @@ export default function Press() {
         <section className="press-section" aria-labelledby="reviewers">
           <h2 id="reviewers">Notes for reviewers</h2>
           <ul className="press-review-notes">
+            <li>
+              <strong>Performance arrived in 2.2.0.</strong> The WhySlow tools
+              now live inside ClearDisk: CPU and memory readings, process
+              explanations, background items, internet checks and local usage
+              charts. The menu-bar monitor is optional. Browser review needs
+              Automation permission; performance readings do not diagnose
+              hardware faults or guarantee a faster Mac.
+            </li>
             <li>
               <strong>Start with a free scan.</strong> Compare the large-file
               list, treemap and System Data breakdown. Scan totals describe what

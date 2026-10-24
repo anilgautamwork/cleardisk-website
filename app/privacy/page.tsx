@@ -29,6 +29,28 @@ export default function Privacy() {
           names, contents and reports are not sent to website analytics. Apple’s
           own iCloud synchronization operates separately.
         </p>
+        <h2>Performance and browser checks</h2>
+        <p>
+          Performance reads local system and process information. Optional usage
+          history is kept on your Mac for up to 30 days and can be disabled or
+          cleared in Performance settings. The optional menu-bar monitor keeps
+          sampling while enabled; Start at login is a separate choice.
+        </p>
+        <p>
+          Browser review asks for macOS Automation permission to inspect
+          supported Chrome, Brave and Edge windows and tabs. Private windows are
+          excluded. Tab details are processed locally and are not sent to our
+          analytics. Browser changes require confirmation. You can revoke
+          Automation permission in System Settings.
+        </p>
+        <p>
+          Internet readings inspect the connection and available per-app
+          traffic. The speed test is optional: after confirmation it runs
+          Apple’s networkQuality tool against Apple’s servers and transfers
+          test data. Apple receives the network request; the result is saved
+          locally. This test consumes bandwidth and is separate from local
+          disk scanning.
+        </p>
         <h2>The website preview</h2>
         <p>
           The interactive Mac window uses example data. It does not read your

@@ -6,6 +6,30 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>ClearDisk</title>
         <item>
+            <title>2.2.0</title>
+            <pubDate>Sat, 24 Oct 2026 09:15:53 +0530</pubDate>
+            <link>https://cleardisk.app/download</link>
+            <sparkle:version>13</sparkle:version>
+            <sparkle:shortVersionString>2.2.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>ClearDisk 2.2.0</title></head><body>
+<h1>ClearDisk 2.2.0</h1>
+<p>Storage and performance checks in one app. Open Performance in the sidebar.</p>
+<ul>
+<li>See CPU activity, memory pressure, thermal state and running processes, with explanations of common background processes.</li>
+<li>Review background items, connection information and per-app network activity. An optional speed test uses Apple's networkQuality service after confirmation.</li>
+<li>Follow CPU and memory charts, keep optional local usage history, and enable an optional menu-bar monitor.</li>
+<li>Review supported Chrome, Brave and Edge tabs after granting browser Automation access. Review windows, duplicate tabs and estimated extension usage.</li>
+<li>Use your existing ClearDisk license for performance actions. Quitting apps, changing browser tabs, rebuilding Spotlight's index and restarting require confirmation; protected system processes cannot be quit through ClearDisk.</li>
+</ul>
+<p>Monitoring is not a hardware diagnostic or a guarantee of better performance. Available readings depend on macOS permissions and hardware. History stays on your Mac. Login startup is optional. Existing disk cleanup, iCloud Doctor and Mac checks remain available.</p>
+<p>Requires macOS 15 or later on Apple silicon or Intel. Existing licenses remain valid.</p>
+</body></html>
+]]></description>
+            <enclosure url="https://cleardisk.app/updates/ClearDisk-2.2.0-13.dmg" length="8343384" type="application/octet-stream" sparkle:edSignature="uDunuGMiayIdiC5j6ww28jtrSOqYkuvH9yOLPmAWq4H/wKXcHYOTnBNz2FFUUNfSHWTQfwG55rdwVNJDEhZ6Aw=="/>
+        </item>
+        <item>
             <title>2.1.0</title>
             <pubDate>Sun, 04 Oct 2026 03:26:16 +0530</pubDate>
             <link>https://cleardisk.app/download</link>
@@ -44,26 +68,9 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
 ]]></description>
             <enclosure url="https://cleardisk.app/updates/ClearDisk-2.0.0-11.dmg" length="6048127" type="application/octet-stream" sparkle:edSignature="M3edZhzc1GxBy3jsnoXkHtXYW+PHexgwT1op2RlJE4L3liwD6S1MIzKoMtZvg9MAH0DKFcpGMlEVnUAa8hrkDA=="/>
         </item>
-        <item>
-            <title>2.0.0</title>
-            <pubDate>Tue, 22 Sep 2026 18:20:15 +0530</pubDate>
-            <link>https://cleardisk.app/download</link>
-            <sparkle:version>10</sparkle:version>
-            <sparkle:shortVersionString>2.0.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[<h2>ClearDisk 2.0.0</h2>
-<ul>
-<li>Type <strong>delete</strong> to confirm permanent removal, without retyping long filenames. Move to Trash remains available.</li>
-<li>Check for Updates in the ClearDisk menu. Future releases download, verify, install and relaunch from the app when you choose.</li>
-<li>Updates are signed and verified before installation. Restart waits until active cleanup or iCloud file operations finish.</li>
-</ul>
-<p>Your existing license continues to work. ClearDisk 1.1.1 users need one manual download to get the new updater.</p>
-]]></description>
-            <enclosure url="https://cleardisk.app/updates/ClearDisk-2.0.0-10.dmg" length="5133890" type="application/octet-stream" sparkle:edSignature="mMW7jXiTgXLcD13UTA23oAlAC8/bBhI0ykl1vFNzJTcUpxRtMmRZ8ipq50mPwdt2/uF6yw5M+58ZE5dKfd+lAw=="/>
-        </item>
     </channel>
 </rss>
 <!-- sparkle-signatures:
-edSignature: o+xcUX2jEpp2zJ6rE8EBY2H/Y0fwRlBD1zBM7q/C+jYWK63hhQMEvZ/KumKn4PNmbJ1mtN6CiD8Pbm6uco5sAA==
-length: 4617
+edSignature: B5WIGO5ke2V8qJY+XKSPHTwiBZNXYDWrw/qmLhJkDWKDkFZB4CJDfkXacWxm8L7RyMkhkDG6+Q0amq+dWeP5DA==
+length: 5468
 -->
