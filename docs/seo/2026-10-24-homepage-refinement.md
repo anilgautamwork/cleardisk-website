@@ -26,3 +26,11 @@ Humanizer applied for concrete prose; Impeccable used for layout/clarity and fin
 ## Publication
 
 Pending production deployment and live verification. Changed content routes: `/` and `/faq/cleardisk`; shared CSS also includes the under-360px header correction. No Search Console refresh, indexing submission, observed Google recrawl or new download metrics in this task. Existing recovery queue remains due for a complete-window evidence refresh. Existing unrelated audit edit and `.impeccable/` preserved.
+
+### Publication verified
+
+Source **9eec611** pushed to main and deployed to the existing personal Cloudflare Worker **56549220-c762-4cd4-9e4b-56e3b702679a**. Live homepage and `/faq/cleardisk` return 200 with the revised content. **180 live HTTP SEO route checks passed**. Homepage HTML/RSC delivery and seven FAQ entries verified; direct internal snapshots return 404. Sitemap remains 175 URLs, with the product FAQ date October 24; homepage entry remains undated as before.
+
+Anonymous `/analytics` and `/api/analytics` return 401/no-store/noindex. `/download` still offers 2.2.0. Public and immutable DMGs remain 8,343,384 bytes with SHA256 `c4eef9f0fb016a4d1598ac2027779b209be187722edecfb08c0954863abde746`; updater feed and checksum match committed bytes. Verification used `ClearDisk-QA`, excluded from download metrics. No payment or license implementation changed.
+
+Live desktop inspection confirms current hero/feature shortcuts, one H1 and no overflow. Local mobile menu also checked open at 320px. Preview stopped and viewport reset; live homepage retained for owner review. No observed Google indexing, rankings, conversions or load-time improvement claimed.

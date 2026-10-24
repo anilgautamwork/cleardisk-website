@@ -917,3 +917,5 @@ Follow-up publication verified: e13d027 → Worker 3702a0fd-e779-480a-bafe-48e54
 ## 2026-10-24 — homepage refinement
 
 Owner requested homepage additions/optimization. Improved the hero, feature navigation, free/paid comparison, product FAQ and relevant guide links; added iCloud and Mac-check coverage from the released 2.2.0 source. Second storage demo now optional. Full 58-test suite (zero failures/skips), lint/typecheck, production build and 180 local HTTP checks passed. Desktop/390px/320px review completed, including a corrected narrow overflow. [Detailed changes and validation](2026-10-24-homepage-refinement.md). Publication pending live verification; no ranking, indexing or speed gain claim.
+
+Homepage publication verified: source **9eec611**, Worker **56549220-c762-4cd4-9e4b-56e3b702679a**. Revised `/` and `/faq/cleardisk` live; 180 live HTTP SEO checks passed. Homepage HTML/RSC, sitemap, unchanged signed 2.2.0 download/feed and anonymous analytics protection verified. Full unit suite remains 58 passed, zero failed/skipped. No new GSC/traffic result claimed. See homepage evidence for layout measurements and limits.

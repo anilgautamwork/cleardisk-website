@@ -333,3 +333,5 @@ Follow-up status: both reviewed guides improved and published with new browser-m
 ### October 24 homepage follow-up
 
 Kept and improved `/` and `/faq/cleardisk` at the owner's request. More direct paths to existing performance/storage guides; no new articles, removed routes or altered recovery priorities. [Homepage evidence](2026-10-24-homepage-refinement.md). Full tests/build/local HTTP and responsive checks passed; publication pending. Next evidence review remains October 25 with complete equal-length Search Console windows when available.
+
+Homepage follow-up published and verified: 9eec611 → Worker 56549220-c762-4cd4-9e4b-56e3b702679a; 180 live HTTP checks passed, downloads and protected analytics preserved. `/` and `/faq/cleardisk` kept/improved. No change to the October 25 complete-window review priority.
