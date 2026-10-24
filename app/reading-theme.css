@@ -1537,3 +1537,88 @@ article.guide-card:focus-within {
 .guide-questions h3 + p {
   margin-top: 0;
 }
+
+/* Homepage: direct routes to the combined app's tools, without a second hero demo. */
+.home-shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 28px;
+}
+.home-shortcuts a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  color: var(--reading-link);
+  font-size: 15px;
+  font-weight: 600;
+  text-underline-offset: 4px;
+}
+.home-shortcuts a:hover {
+  text-decoration: underline;
+}
+.home-performance .product-sections,
+.home-extra-tools .product-sections {
+  margin-top: 36px;
+  margin-bottom: 0;
+}
+.home-performance,
+.home-extra-tools,
+#features,
+#icloud,
+#mac-checks,
+#cleanup-preview {
+  scroll-margin-top: 100px;
+}
+.home-demo details {
+  border-block: 1px solid #dedee5;
+  padding-block: 24px;
+}
+.home-demo summary {
+  color: var(--reading-link);
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  padding-block: 12px;
+}
+.home-demo details > p {
+  color: var(--reading-text);
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 12px 0 24px;
+}
+.home-demo .demo-stage {
+  margin-top: 24px;
+}
+.home-shortcuts a:focus-visible,
+.home-demo summary:focus-visible {
+  outline: 3px solid var(--reading-link);
+  outline-offset: 5px;
+  border-radius: 4px;
+}
+@media (max-width: 640px) {
+  .home-shortcuts {
+    gap: 4px 18px;
+  }
+  .home-shortcuts a {
+    font-size: 14px;
+  }
+  .home-demo summary {
+    font-size: 18px;
+  }
+}
+@media (max-width: 360px) {
+  .header .brand {
+    font-size: 17px;
+    gap: 6px;
+  }
+  .header .download-button {
+    padding-inline: 12px;
+  }
+  .safety-visual .shield-orbit {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+}

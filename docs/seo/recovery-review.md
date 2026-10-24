@@ -329,3 +329,7 @@ Kept and improved /google-chrome-taking-up-space-mac and /mac-running-slow-low-s
 Next review: October 25, refresh complete equal-length Search Console windows when access is available before assigning new high-loss priorities. Retain the existing queue and avoid further article expansion solely to fill keywords. No consolidation, noindex or redirect proposed in this follow-up.
 
 Follow-up status: both reviewed guides improved and published with new browser-memory article; source e13d027, Worker 3702a0fd-e779-480a-bafe-48e54c1a0921. Verified 58 unit tests and 180 local/180 live route checks, lint/typecheck/build, sitemap dates, download integrity and protected analytics. Indexing/recovery unverified; next review remains October 25.
+
+### October 24 homepage follow-up
+
+Kept and improved `/` and `/faq/cleardisk` at the owner's request. More direct paths to existing performance/storage guides; no new articles, removed routes or altered recovery priorities. [Homepage evidence](2026-10-24-homepage-refinement.md). Full tests/build/local HTTP and responsive checks passed; publication pending. Next evidence review remains October 25 with complete equal-length Search Console windows when available.

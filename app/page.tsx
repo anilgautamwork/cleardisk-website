@@ -27,43 +27,28 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from '@/components/ui/accordion';
-// Reuse the reviewed topic answers so homepage copy and JSON-LD stay aligned.
-const storageAnswers: [string, string, string?][] = [
-  ['mac-storage-full', 'what-to-clear-first'],
-  ['mac-storage-full', 'check-storage'],
-  ['system-data', 'hundred-gb'],
-  ['system-data', 'keeps-growing'],
-  ['clear-cache', 'safe-to-delete-caches'],
-  ['mac-storage-full', 'still-full-after-deleting'],
-].map(([topic, id]) => {
-  const answer = getFaqTopic(topic)!.questions.find((item) => item.id === id)!;
+// Use the same reviewed product answers in the page and its structured data.
+const productAnswers: [string, string, string?][] = [
+  'is-scanning-free',
+  'price',
+  'uploads',
+  'which-macs',
+  'refund',
+].map((id) => {
+  const answer = getFaqTopic('cleardisk')!.questions.find(
+    (item) => item.id === id,
+  )!;
   return [answer.question, answer.answer, answer.guide];
 });
 const faqs: [string, string, string?][] = [
-  ...storageAnswers,
+  ...productAnswers,
   [
-    'What’s actually hiding in System Data?',
-    'Caches, logs, app containers, developer files, device backups and more. ClearDisk breaks down the files it finds into named groups, explains what they do, and labels them Safe, Review or Leave it. Some macOS-managed storage, including local snapshots, is reported separately.',
+    'Do existing owners need a separate WhySlow license?',
+    'No. The WhySlow performance tools are included in ClearDisk 2.2.0. Your existing ClearDisk key covers licensed performance actions as well as cleanup and iCloud Doctor actions. Update ClearDisk from the app to get the current version.',
   ],
   [
-    'Will it delete something I need?',
-    'You choose what to remove and confirm before anything changes. ClearDisk moves files to the Trash by default and protects sensitive system and account folders. Review backups and personal files carefully. Permanent deletion is a separate, explicit action.',
-  ],
-  [
-    'Is scanning really free?',
-    'Yes. Storage scans, CPU and memory readings, process explanations and usage charts are free. A $10 one-time license unlocks cleanup and guided performance actions inside ClearDisk.',
-  ],
-  [
-    'Is this another subscription?',
-    'No. The $10 one-time license covers up to three Macs you own including ClearDisk 2.2.0. There is no monthly or annual charge.',
-  ],
-  [
-    'Does ClearDisk upload my files?',
-    'Scanning and file analysis run locally on your Mac. Your files, file names and scan results are not uploaded. License activation sends your key, a device identifier, your computer name and the app version to manage the three-Mac limit. Payment is handled by Stripe.',
-  ],
-  [
-    'Will it work on my Mac?',
-    'ClearDisk requires macOS 15 Sequoia or newer. The download includes both Apple silicon and Intel versions in one app. Grant Full Disk Access when prompted to see files macOS otherwise keeps private.',
+    'Does a scan change or delete anything?',
+    'No. A scan reports what ClearDisk can inspect. You choose and confirm cleanup separately. Files go to the Trash by default; permanent deletion has a separate typed confirmation. Review personal files and backups before removing them. Performance actions also ask for confirmation; save work before closing an app or tab.',
   ],
 ];
 const faqSchema = {
@@ -90,15 +75,14 @@ export default async function Home() {
             <div className="hero-intro">
               <div className="hero-copy" data-reveal>
                 <h1>
-                  A Mac cleaner that puts you in control.
+                  See what’s filling your Mac.
                   <br />
-                  <span>Find the clutter. Choose what goes.</span>
+                  <span>And what’s keeping it busy.</span>
                 </h1>
                 <p className="hero-description">
-                  ClearDisk helps you understand System Data, review app caches
-                  and find large files. Now check CPU, memory pressure and
-                  browser activity in the same app. Scans and performance
-                  diagnostics are free.
+                  Mac cleanup, CPU and memory monitoring, and iCloud Drive
+                  diagnostics in one app. Inspect for free. Choose what to
+                  change.
                 </p>
                 <div className="hero-ctas">
                   <DownloadButton label="Download for Mac" />
@@ -119,6 +103,23 @@ export default async function Home() {
                   <span>Files stay on your Mac</span>
                 </div>
               </div>
+              <nav
+                className="home-shortcuts"
+                aria-label="Explore ClearDisk features"
+              >
+                <a href="#features">
+                  Storage cleanup <ArrowRight size={14} />
+                </a>
+                <a href="#performance">
+                  Performance <ArrowRight size={14} />
+                </a>
+                <a href="#icloud">
+                  iCloud Doctor <ArrowRight size={14} />
+                </a>
+                <a href="#mac-checks">
+                  Mac checks <ArrowRight size={14} />
+                </a>
+              </nav>
               <StoragePreview />
             </div>
             <div className="landing-details">
@@ -138,27 +139,7 @@ export default async function Home() {
                   <Link href="/faq/cleardisk"> uninstall FAQ</Link>.
                 </p>
               </details>
-              <Link href="/features#performance">
-                New in 2.2.0: WhySlow performance tools, included
-                <ArrowRight size={16} aria-hidden="true" />
-              </Link>
-              <Link href="/icloud-doctor">
-                Also includes iCloud Drive sync and storage diagnostics
-                <ArrowRight size={16} aria-hidden="true" />
-              </Link>
             </div>
-            <div className="demo-intro" data-reveal>
-              <div>
-                <span className="eyebrow">A CLEARER VIEW</span>
-                <h2>Your storage. Without the mystery.</h2>
-              </div>
-              <p>
-                Try the interactive preview below.
-                <br />
-                Every choice stays in your hands.
-              </p>
-            </div>
-            <ProductDemo />
           </div>
         </section>
         <section className="trust-strip wrap" aria-label="Product benefits">
@@ -179,12 +160,16 @@ export default async function Home() {
             No subscription. Ever.
           </span>
         </section>
-        <section className="section wrap" aria-labelledby="performance-heading">
+        <section
+          className="section wrap home-performance"
+          id="performance"
+          aria-labelledby="performance-heading"
+        >
           <div className="section-heading">
             <h2 id="performance-heading">Find what’s keeping your Mac busy.</h2>
             <p>
-              ClearDisk 2.2.0 brings the WhySlow tools into the app you already
-              use for storage.
+              The WhySlow tools are now included in ClearDisk 2.2.0. Check the
+              readings while the slowdown is happening.
             </p>
           </div>
           <div className="product-sections">
@@ -221,16 +206,11 @@ export default async function Home() {
         </section>
         <section className="section wrap features" id="features">
           <div className="section-heading">
-            <span className="eyebrow">MEET YOUR MISSING SPACE</span>
-            <h2>
-              It’s your Mac.
-              <br />
-              <span>Know what’s on it.</span>
-            </h2>
+            <h2>Find the files worth reviewing.</h2>
             <p>
-              That mysterious “System Data” number? Let’s open it up.
-              <br />
-              ClearDisk turns hidden storage into a clear next step.
+              Start with System Data, large files or developer folders. A
+              category’s size is a starting point, not a promise of removable
+              space.
             </p>
           </div>
           <div className="feature-grid">
@@ -241,9 +221,9 @@ export default async function Home() {
                 </span>
                 <h3>See what’s inside your Mac’s System Data.</h3>
                 <p>
-                  Caches. Old backups. Years of app leftovers.
-                  <br />
-                  See exactly what’s taking up room—and what to do with it.
+                  Inspect the caches, device backups and app support files
+                  ClearDisk can read. See what each group contains before
+                  deciding whether to keep it.
                 </p>
                 <Link className="text-link" href="/system-data-too-large">
                   Is your System Data too large? <ArrowRight size={14} />
@@ -292,7 +272,7 @@ export default async function Home() {
               <span className="icon-tile">
                 <FileSearch />
               </span>
-              <h3>Big files. Bigger picture.</h3>
+              <h3>Find large files on the storage map.</h3>
               <p>
                 Spot the files you forgot about.
                 <br />
@@ -320,11 +300,11 @@ export default async function Home() {
                 <span className="icon-tile">
                   <Code2 />
                 </span>
-                <h3>Built things? Unbuild the clutter.</h3>
+                <h3>Review old builds and developer caches.</h3>
                 <p>
                   Find forgotten node_modules, Xcode builds and tool caches.
                   <br />
-                  Keep your projects. Reclaim the space around them.
+                  Check what your tools can rebuild before removing anything.
                 </p>
                 <Link className="text-link" href="/clear-xcode-derived-data">
                   Clear Xcode Derived Data <ArrowRight size={14} />
@@ -347,6 +327,47 @@ export default async function Home() {
             </article>
           </div>
         </section>
+        <section
+          className="section wrap home-extra-tools"
+          aria-labelledby="more-tools-heading"
+        >
+          <div className="section-heading">
+            <h2 id="more-tools-heading">Look beyond disk space.</h2>
+            <p>
+              Check cloud file states and app compatibility in the same place.
+            </p>
+          </div>
+          <div className="product-sections">
+            <section id="icloud">
+              <h3>Understand your iCloud Drive</h3>
+              <p>
+                See accessible file states, pending transfers and reported
+                errors. Distinguish cloud-only files from downloaded copies.
+                With your license, remove eligible local downloads while keeping
+                cloud originals, or create verified document archives.
+              </p>
+              <p>
+                Local-copy removal frees Mac storage, not iCloud quota. iCloud
+                Doctor does not inspect Photos or guarantee a sync repair.
+              </p>
+              <Link href="/icloud-doctor">Explore iCloud Doctor</Link>
+            </section>
+            <section id="mac-checks">
+              <h3>Check AI storage and Intel-only apps</h3>
+              <p>
+                Measure recognized Apple Intelligence model folders and see
+                which locations could not be read. These files stay under macOS
+                control; ClearDisk does not remove them.
+              </p>
+              <p>
+                Find Intel-only apps in your Applications folders without
+                launching them. Review results with each app’s developer; the
+                scan does not check every plug-in or helper program.
+              </p>
+              <Link href="/features">See Mac checks and their limits</Link>
+            </section>
+          </div>
+        </section>
         <section className="section safety-section" id="how-it-works">
           <div className="wrap safety-layout">
             <div className="safety-visual" aria-hidden="true">
@@ -366,15 +387,10 @@ export default async function Home() {
               </span>
             </div>
             <div className="safety-copy">
-              <span className="eyebrow">A LITTLE CARE GOES A LONG WAY</span>
-              <h2>
-                Clear the clutter.
-                <br />
-                <span>Keep the confidence.</span>
-              </h2>
+              <h2>Review first. Confirm what changes.</h2>
               <p>
-                Your photos, your projects, your life. Cleaning your Mac should
-                feel reassuring. ClearDisk gives you a say at every step.
+                A scan does not delete anything. Look at the files, keep what
+                you need, and confirm each cleanup.
               </p>
               <ol className="steps">
                 <li>
@@ -399,13 +415,14 @@ export default async function Home() {
                   <div>
                     <h3>Make room, on your terms.</h3>
                     <p>
-                      Move files to Trash. Restore them if you change your mind.
+                      Move files to Trash. Restore them before emptying it if
+                      you change your mind.
                     </p>
                   </div>
                 </li>
               </ol>
-              <a className="text-link" href="#demo">
-                Take the preview for a spin <ArrowRight size={16} />
+              <a className="text-link" href="#cleanup-preview">
+                Try a cleanup with example files <ArrowRight size={16} />
               </a>
               <p>
                 <Link href="/find-large-files-on-mac#sample-scan">
@@ -420,24 +437,34 @@ export default async function Home() {
             </div>
           </div>
         </section>
+        <div className="wrap home-demo" id="cleanup-preview">
+          <details>
+            <summary>Try the interactive cleanup preview</summary>
+            <p>
+              Example data only. This preview cannot access or change your
+              files.
+            </p>
+            <ProductDemo />
+          </details>
+        </div>
         <section className="section wrap pricing" id="pricing">
           <div className="section-heading">
-            <span className="eyebrow">LESS CLUTTER. INCLUDING THE PRICE.</span>
-            <h2>
-              Buy once.
-              <br />
-              <span>Breathe easier.</span>
-            </h2>
-            <p>Your storage shouldn’t come with another subscription.</p>
+            <h2>Free to inspect. Pay once to act.</h2>
+            <p>
+              One license covers cleanup, iCloud Doctor actions and Performance.
+            </p>
           </div>
           <div className="pricing-grid">
             <article className="price-card free-card">
-              <span className="plan-name">GET THE FULL PICTURE</span>
-              <h3>Look around. It’s free.</h3>
+              <span className="plan-name">FREE DIAGNOSTICS</span>
+              <h3>Start with the free app.</h3>
               <div className="price">
-                $0<span>forever to scan</span>
+                $0<span>scans & diagnostics</span>
               </div>
-              <p>Find out where your space went before spending a cent.</p>
+              <p>
+                Inspect your disk and running apps before deciding what needs
+                attention.
+              </p>
               <ul>
                 <li>
                   <Check />
@@ -455,18 +482,21 @@ export default async function Home() {
                   <Check />
                   CPU, memory and process diagnostics
                 </li>
+                <li>
+                  <Check /> iCloud file states &amp; Mac checks
+                </li>
               </ul>
               <Link className="button secondary" href="/download">
                 Download ClearDisk <ArrowUpRight size={17} />
               </Link>
-              <small>No card. No account. Just clarity.</small>
+              <small>No account or payment card required.</small>
             </article>
             <article className="price-card paid-card">
               <div className="plan-top">
-                <span className="plan-name">MAKE ROOM FOR MORE</span>
+                <span className="plan-name">CLEARDISK LICENSE</span>
                 <span className="one-time">ONE-TIME PURCHASE</span>
               </div>
-              <h3>A lighter Mac, for keeps.</h3>
+              <h3>Unlock guided actions.</h3>
               <div className="price">
                 {price.display}
                 <span>{price.code} · pay once</span>
@@ -477,7 +507,7 @@ export default async function Home() {
               <ul>
                 <li>
                   <Check />
-                  Everything in the free scanner
+                  Everything in the free app
                 </li>
                 <li>
                   <Check />
@@ -490,6 +520,9 @@ export default async function Home() {
                 <li>
                   <Check />
                   Use on 3 Macs you own
+                </li>
+                <li>
+                  <Check /> iCloud local-copy removal &amp; verified archives
                 </li>
                 <li>
                   <Check />
@@ -506,24 +539,16 @@ export default async function Home() {
             </article>
           </div>
           <p className="price-note">
-            Start with a free scan. Upgrade when you’re ready.
+            Already own ClearDisk? Your current key includes the Performance
+            tools. <Link href="/pricing">Compare all features</Link>.
           </p>
         </section>
         <section className="section wrap faq-section" id="faq">
           <div>
-            <span className="eyebrow">GOOD QUESTIONS</span>
-            <h2>
-              A little more
-              <br />
-              <span>clarity.</span>
-            </h2>
-            <p>Understand the files behind the number.</p>
-            <Link className="text-link" href="/what-is-system-data-on-mac">
-              What is System Data? <ArrowRight size={15} />
-            </Link>
-            <p>More questions, with short answers.</p>
-            <Link className="text-link" href="/faq">
-              Browse the FAQ <ArrowRight size={15} />
+            <h2>Before you download.</h2>
+            <p>Compatibility, privacy and what your license includes.</p>
+            <Link className="text-link" href="/faq/cleardisk">
+              All ClearDisk questions <ArrowRight size={15} />
             </Link>
             <p>Something else on your mind?</p>
             <a className="text-link" href="mailto:hello@cleardisk.app">
@@ -548,7 +573,6 @@ export default async function Home() {
           </Accordion>
         </section>
         <section className="section wrap home-guides">
-          <span className="eyebrow">CLARITY BEFORE CLEANUP</span>
           <h2>Start with your question.</h2>
           <div className="guide-grid">
             <Link className="guide-card" href="/clear-system-data-on-mac">
@@ -561,24 +585,27 @@ export default async function Home() {
                 Read the guide <ArrowRight size={16} />
               </span>
             </Link>
-            <Link className="guide-card" href="/clear-cache-on-mac">
-              <h3>Review app caches before you clear them.</h3>
+            <Link className="guide-card" href="/mac-running-slow-low-storage">
+              <h3>Why is my Mac running slowly?</h3>
               <p>
-                Safari, Chrome, app caches and the Library folder, without
-                deleting what apps still need.
+                Separate storage, CPU, memory and connection problems before
+                changing anything.
               </p>
               <span>
-                Clear it safely <ArrowRight size={16} />
+                Check the causes <ArrowRight size={16} />
               </span>
             </Link>
-            <Link className="guide-card" href="/how-to-check-storage-on-mac">
-              <h3>How do I check what is using space?</h3>
+            <Link
+              className="guide-card"
+              href="/blog/chrome-using-too-much-memory-mac"
+            >
+              <h3>Is Chrome using too much memory?</h3>
               <p>
-                Read Storage settings, open each category, and see what the bar
-                hides.
+                Check memory pressure, find a busy tab and compare results after
+                one change.
               </p>
               <span>
-                Check your storage <ArrowRight size={16} />
+                Review browser activity <ArrowRight size={16} />
               </span>
             </Link>
             <Link className="guide-card" href="/uninstall-apps-on-mac">
@@ -593,20 +620,23 @@ export default async function Home() {
             </Link>
           </div>
           <Link className="text-link" href="/guides">
-            Explore all storage guides <ArrowRight size={16} />
+            Explore all Mac guides <ArrowRight size={16} />
           </Link>
         </section>
         <section className="closing wrap">
           <div className="closing-glow" />
           <Mark large />
           <h2>
-            Make room for
+            Start with a clearer picture
             <br />
-            <span>your next big thing.</span>
+            <span>of your Mac.</span>
           </h2>
-          <p>Your next project. Your next memory. Your next “why not?”</p>
+          <p>
+            Download ClearDisk. Scan your storage and check performance for
+            free.
+          </p>
           <DownloadButton />
-          <small>Made for Mac. Designed for peace of mind.</small>
+          <small>macOS 15+ · Apple silicon & Intel · No subscription</small>
         </section>
       </main>
       <Footer />

@@ -428,7 +428,7 @@ export const faqTopics: FaqTopic[] = [
         id: 'is-scanning-free',
         question: 'Is scanning really free?',
         answer:
-          'Yes. Unlimited local scans, the System Data breakdown, the storage map, the largest-files list and Reveal in Finder are free with no account. Cleanup from inside the app is the paid part.',
+          'Yes. Unlimited local storage scans, the System Data breakdown, the storage map, the largest-files list and Reveal in Finder are free with no account. CPU and memory readings, process diagnostics and local usage charts are also free. The one-time license unlocks cleanup and guided performance and iCloud Doctor actions.',
         guide: 'disk-space-analyzer-mac',
       },
       {
