@@ -9,8 +9,21 @@ export const fileQaGuides: Guide[] = [
     summary:
       'Chrome’s disk use is split between two folders: ~/Library/Application Support/Google/Chrome, which holds your profiles, site storage, extensions and the on-device AI model, and ~/Library/Caches/Google/Chrome, which holds the cache. Measure both, then clear from inside Chrome: All sites for site storage, Delete browsing data for the cache, and Manage Chrome profiles for profiles you no longer use.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-10-24',
     sections: [
+      {
+        id: 'memory-versus-storage',
+        title: 'Is Chrome using disk storage or RAM?',
+        paragraphs: [
+          'This guide covers files stored on your disk. If Activity Monitor shows high memory use while Chrome is running, start with its tabs and extensions instead of deleting your profile. The browser memory guide walks through Chrome Task Manager and Memory Saver.',
+        ],
+        links: [
+          {
+            label: 'Chrome using too much memory on Mac',
+            href: '/blog/chrome-using-too-much-memory-mac',
+          },
+        ],
+      },
       {
         id: 'where-chrome-keeps-files',
         title: 'Where Chrome keeps its files',

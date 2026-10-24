@@ -30,3 +30,39 @@ Live /download, /features, /press, /faq/cleardisk and both new blog articles ret
 End-to-end production update verified: installed 2.1.0 offered 2.2.0, downloaded, installed and relaunched. About shows 2.2.0 (13), and the existing developer license remains active. No security permissions were expanded. Optional menu-bar popover and live browser/admin actions retain the documented validation limits.
 
 Google indexing, rankings and traffic recovery have not been confirmed by publication. No new aggregate traffic/download metrics were retrieved during this release task; no counts are invented. Existing recovery queue remains, with a complete-window GSC refresh as the next priority. Unrelated audit edit and .impeccable directory preserved.
+
+## Follow-up: explain the combined app and cover browser memory
+
+Owner authorized deployment of the website updates and useful additional content. App 2.2.0 was already published, so this follow-up does not change the binary, update feed, license enforcement or payment mode.
+
+- Homepage, Features, Pricing and shared navigation now explain the combined storage/performance app, free diagnostics and concrete licensed actions. Existing owners retain their key. Corrected the homepage's obsolete claim that the app never changes settings, clarified local history and optional login/browser access, and replaced the separate-app footer promotion with an internal link to the included tools.
+- Added /blog/chrome-using-too-much-memory-mac. The existing Chrome guide covers persistent disk storage; the new article covers RAM, Chrome Task Manager and Memory Saver. No near-duplicate general slow-Mac article was added.
+- Improved /google-chrome-taking-up-space-mac with an explicit RAM/storage distinction and /mac-running-slow-low-storage with repeatable observation, one-change comparisons and current product scope. Both are kept and improved, not proposed for removal. Updated lastmod only for changed articles.
+- Humanizer applied to final prose. No firsthand benchmark, measured speed improvement, invented screenshot or personal author was added. Built-in alternatives and unsaved-work risks remain clear.
+
+### Search intent and evidence
+
+| Page | Search intent / natural terms | Evidence status |
+| --- | --- | --- |
+| / | Mac cleaner, Mac performance monitor | Product positioning; no current keyword-volume claim |
+| /features#performance | CPU monitoring, memory pressure, process and browser review | Confirmed in released 2.2.0 source |
+| /blog/chrome-using-too-much-memory-mac | Chrome using too much memory on Mac, Chrome Memory Saver, Chrome Task Manager | Distinct editorial gap after registry review; volume and rankings unverified |
+| /google-chrome-taking-up-space-mac | Chrome disk storage | Saved GSC page evidence: 16 impressions Sep 27–Oct 3 versus 89 Oct 7–13, zero clicks both; observed Oct 16, not current |
+| /mac-running-slow-low-storage | Mac running slow, storage versus CPU/memory | Saved GSC page evidence: 1 impression in each same seven-day window, zero clicks; product-linked improvement, not a measured high-loss priority |
+
+Do not describe these pages as today's top-loss queue or the new topic as a verified high-volume query. No fresh Search Console query/volume data or download metrics was retrieved in this follow-up. The existing recovery queue and weekly complete-window review remain the next source of prioritization.
+
+### Source checks, October 24
+
+- Google Chrome Help: https://support.google.com/chrome/answer/12929150?hl=en — Memory Saver, exceptions, reload behavior and Mac tab-memory preview.
+- Google Chrome Help: https://support.google.com/chrome/answer/1385029?hl=en — Task Manager, extension review and unsaved-work warning.
+- Apple: https://support.apple.com/guide/activity-monitor/view-memory-usage-actmntr1004/mac — memory pressure, RAM and swap interpretation.
+- App source: PerformanceUI/BrowserPanel.swift, PerformanceSettings.swift and PerformanceCoordinator.swift — supported browsers, optional access, paid confirmation actions and shared license. Source-backed claims, not a new live-browser-action test.
+
+### Validation before publication
+
+Full unit suite: 58 passed, 0 failed, 0 skipped/cancelled/todo. Lint and typecheck passed. Initial sandbox build compiled but could not launch the snapshot preview; rerunning with local-preview permission completed. Initial deployment-state query raced the build's generated config; the read-only query by Worker name then verified c8e02a7e-4007-4cde-ac8f-cedff1fbf2d3 as the current deployment. No production change resulted from either failed check.
+
+Desktop 1440px and mobile 390px browser review of homepage, pricing and the new article found no horizontal overflow; existing reading and product-page styles retained. Static design detector passed for the changed page/navigation files. Initial full HTTP SEO check passed all 180 routes. Final footer/history corrections require the final rebuild and HTTP recheck before publication; record the deployment and live results below.
+
+Final pre-publication check: rebuilt 177 public HTML/RSC pairs; full 180-route local HTTP SEO suite passed again. Final 58-unit suite still has zero failures/skips; lint/typecheck/diff whitespace checks passed. Mobile menu opens, the Performance link reaches the section and closes the menu; footer now links to the included tools. Final review checked free/paid claims against app source, permission and missing-reading limits, unsaved-work warnings, canonical/schema/related links and preservation of app/payment assets. No new browser permission or destructive action was exercised. Upstream main matched local HEAD before commit. Deployment and live checks follow.

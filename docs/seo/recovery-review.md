@@ -321,3 +321,9 @@ Live /download, /features, /press, /faq/cleardisk and both new blog articles ret
 End-to-end production update verified: installed 2.1.0 offered 2.2.0, downloaded, installed and relaunched. About shows 2.2.0 (13), and the existing developer license remains active. No security permissions were expanded. Optional menu-bar popover and live browser/admin actions retain the documented validation limits.
 
 Google indexing, rankings and traffic recovery have not been confirmed by publication. No new aggregate traffic/download metrics were retrieved during this release task; no counts are invented. Existing recovery queue remains, with a complete-window GSC refresh as the next priority. Unrelated audit edit and .impeccable directory preserved.
+
+## 2026-10-24 — owner-requested combined-app follow-up
+
+Kept and improved /google-chrome-taking-up-space-mac and /mac-running-slow-low-storage. Added a distinct browser-RAM article, /blog/chrome-using-too-much-memory-mac, rather than duplicating either existing guide. These choices are product/editorial opportunities, not a refreshed top-loss ranking: saved Oct 16 GSC evidence compares Sep 27–Oct 3 with Oct 7–13 and is historical. No current query volume available. Corrected product marketing scope across homepage/Features/Pricing and navigation. Detailed source checks, tests and publication: [October 24 evidence](2026-10-24-performance-articles.md).
+
+Next review: October 25, refresh complete equal-length Search Console windows when access is available before assigning new high-loss priorities. Retain the existing queue and avoid further article expansion solely to fill keywords. No consolidation, noindex or redirect proposed in this follow-up.

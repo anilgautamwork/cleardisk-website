@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { Header, Footer, DownloadButton } from '@/components/brand';
 import { pageMetadata } from '@/lib/seo';
 export const metadata = pageMetadata(
-  'ClearDisk features — understand your Mac storage',
-  'Explore ClearDisk’s local disk scanner, storage map, System Data breakdown, developer cleanup, iCloud Doctor and read-only Mac checks. Free scanning on macOS 15 and later.',
+  'ClearDisk Features: Storage, Performance & Browser Tools',
+  'Explore free Mac storage scans, CPU and memory monitoring, browser review and iCloud diagnostics. See what the one-time ClearDisk license unlocks.',
   '/features',
 );
 export default function Features() {
@@ -12,18 +12,19 @@ export default function Features() {
       <Header />
       <main id="main-content" tabIndex={-1} className="wrap product-page">
         <h1>
-          Understand your space.
+          See your storage.
           <br />
-          Choose what stays.
+          Understand your slowdown.
         </h1>
         <p>
-          ClearDisk is a Mac cleanup app that brings your storage into view, from large downloads to
-          the files behind System Data. Scan for free, inspect the details, and
-          review every cleanup.
+          ClearDisk combines disk cleanup with the WhySlow performance tools.
+          Find large files, check CPU and memory activity, and inspect iCloud
+          Drive in one Mac app. Scans and diagnostics are free; your license
+          unlocks cleanup and guided actions.
         </p>
         <DownloadButton />
         <div className="product-sections">
-          <section>
+          <section id="performance">
             <h2>Performance, now inside ClearDisk</h2>
             <p>
               ClearDisk 2.2.0 includes the WhySlow tools. Inspect CPU activity,
@@ -55,11 +56,13 @@ export default function Features() {
               Your existing license covers licensed performance actions,
               including quitting apps, supported browser tab actions and
               rebuilding Spotlight’s index. Actions ask for confirmation;
-              protected system processes cannot be quit through ClearDisk.
-              Force Quit can lose unsaved work. Monitoring alone changes none
-              of your files.
+              protected system processes cannot be quit through ClearDisk. Force
+              Quit can lose unsaved work. Monitoring does not remove your
+              files. Usage history is stored locally.
             </p>
-            <Link href="/privacy">Read about local history and permissions</Link>
+            <Link href="/privacy">
+              Read about local history and permissions
+            </Link>
           </section>
           <section>
             <h2>A visual view of your disk</h2>
@@ -109,8 +112,8 @@ export default function Features() {
             <p>
               Open Mac checks to inspect recognized Apple Intelligence model and
               support folders. See measured sizes and which locations could not
-              be read. macOS manages these files; ClearDisk does not remove them,
-              and protected locations can leave an incomplete total.
+              be read. macOS manages these files; ClearDisk does not remove
+              them, and protected locations can leave an incomplete total.
             </p>
             <Link href="/download">Get Mac checks in ClearDisk 2.2.0</Link>
           </section>
@@ -139,9 +142,10 @@ export default function Features() {
           <section>
             <h2>Built for your Mac</h2>
             <p>
-              For MacBook Air, MacBook Pro and desktop Macs running macOS 15
-              or later. ClearDisk supports Apple silicon and Intel. Scan results stay on your Mac. Existing ClearDisk licenses
-              include the iCloud Doctor actions.
+              For MacBook Air, MacBook Pro and desktop Macs running macOS 15 or
+              later. ClearDisk supports Apple silicon and Intel. Scan results
+              stay on your Mac. Existing ClearDisk licenses include the iCloud
+              Doctor actions.
             </p>
             <Link href="/pricing">Compare free scanning and the license</Link>
           </section>

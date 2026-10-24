@@ -7,6 +7,7 @@ const groups = [
     label: 'Features',
     links: [
       ['All features', '/features'],
+      ['Performance monitor', '/features#performance'],
       ['iCloud Doctor', '/icloud-doctor'],
       ['System Data explained', '/what-is-system-data-on-mac'],
       ['Visual disk analysis', '/disk-space-analyzer-mac'],
@@ -15,7 +16,7 @@ const groups = [
   {
     label: 'Learn',
     links: [
-      ['Storage guides', '/guides'],
+      ['Mac troubleshooting guides', '/guides'],
       ['Blog', '/blog'],
       ['Frequently asked questions', '/faq'],
       ['About ClearDisk', '/about'],

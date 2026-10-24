@@ -13,8 +13,8 @@ import { ClickAttribution } from '@/components/click-attribution';
 import { VisitBeacon } from '@/components/visit-beacon';
 export const metadata: Metadata = {
   ...pageMetadata(
-    'Mac Cleaner for System Data & Caches | ClearDisk',
-    'Understand System Data, review caches and find large files with ClearDisk, a Mac cleanup app. Free local scans. One-time paid cleanup. No subscription.',
+    'Mac Cleaner & Performance Monitor | ClearDisk',
+    'Find large files, understand System Data and check CPU, memory and browser activity on your Mac. Free scans and diagnostics. $10 one-time license for actions.',
     '/',
   ),
   verification: { google: 'w3gXqPIEHaBWE1faIs43-l-ZJhzy5RO7sLLwcObUlQE' },

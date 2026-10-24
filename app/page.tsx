@@ -51,7 +51,7 @@ const faqs: [string, string, string?][] = [
   ],
   [
     'Is scanning really free?',
-    'Yes. Explore your storage, inspect the System Data breakdown and find your biggest files for free. Cleanup inside the app is a $10 one-time license.',
+    'Yes. Storage scans, CPU and memory readings, process explanations and usage charts are free. A $10 one-time license unlocks cleanup and guided performance actions inside ClearDisk.',
   ],
   [
     'Is this another subscription?',
@@ -96,8 +96,9 @@ export default async function Home() {
                 </h1>
                 <p className="hero-description">
                   ClearDisk helps you understand System Data, review app caches
-                  and find large files on your MacBook or desktop Mac. Scan for
-                  free. Choose what to remove.
+                  and find large files. Now check CPU, memory pressure and
+                  browser activity in the same app. Scans and performance
+                  diagnostics are free.
                 </p>
                 <div className="hero-ctas">
                   <DownloadButton label="Download for Mac" />
@@ -106,8 +107,8 @@ export default async function Home() {
                   </Link>
                 </div>
                 <p className="hero-offer">
-                  Free to scan.{' '}
-                  <strong>Cleanup is {price.display}, once.</strong> No
+                  Free scans and diagnostics.{' '}
+                  <strong>Unlock actions for {price.display}, once.</strong> No
                   subscription.
                 </p>
                 <div className="hero-details">
@@ -128,11 +129,19 @@ export default async function Home() {
               <details>
                 <summary>What does ClearDisk install?</summary>
                 <p className="software-disclosure">
-                  ClearDisk is a downloadable Mac app. It does not change system
-                  settings, install extensions or upload your files. To
-                  uninstall, move ClearDisk to the Trash.
+                  ClearDisk is a Mac app with local storage scans and
+                  performance readings. Cleanup and guided actions require your
+                  confirmation. Browser access and starting at login are
+                  optional. Before uninstalling, turn off Start at Login, quit
+                  ClearDisk, then move it to the Trash. Local settings and
+                  history may remain; see the
+                  <Link href="/faq/cleardisk"> uninstall FAQ</Link>.
                 </p>
               </details>
+              <Link href="/features#performance">
+                New in 2.2.0: WhySlow performance tools, included
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
               <Link href="/icloud-doctor">
                 Also includes iCloud Drive sync and storage diagnostics
                 <ArrowRight size={16} aria-hidden="true" />
@@ -169,6 +178,46 @@ export default async function Home() {
             <Check />
             No subscription. Ever.
           </span>
+        </section>
+        <section className="section wrap" aria-labelledby="performance-heading">
+          <div className="section-heading">
+            <h2 id="performance-heading">Find what’s keeping your Mac busy.</h2>
+            <p>
+              ClearDisk 2.2.0 brings the WhySlow tools into the app you already
+              use for storage.
+            </p>
+          </div>
+          <div className="product-sections">
+            <section>
+              <h3>Check before you change anything</h3>
+              <p>
+                Follow CPU and memory pressure, inspect running apps and
+                background items, or check your internet connection. Usage
+                charts keep local history; the optional menu-bar monitor keeps
+                readings within reach. These diagnostics are free.
+              </p>
+              <Link href="/features#performance">
+                Explore the Performance tools
+              </Link>
+            </section>
+            <section>
+              <h3>One license for cleanup and guided actions</h3>
+              <p>
+                The {price.display} license also covers confirmed app quit
+                actions, duplicate-tab cleanup and window merging in supported
+                Chrome, Brave and Edge browsers, plus Spotlight reindexing.
+                Existing ClearDisk owners can use their current key. Save your
+                work before closing apps or tabs; no tool can promise a faster
+                Mac for every problem.
+              </p>
+              <Link href="/pricing">See exactly what the license includes</Link>
+              <p>
+                <Link href="/blog/chrome-using-too-much-memory-mac">
+                  Chrome using too much memory? Start here.
+                </Link>
+              </p>
+            </section>
+          </div>
         </section>
         <section className="section wrap features" id="features">
           <div className="section-heading">
@@ -365,7 +414,8 @@ export default async function Home() {
                 and the{' '}
                 <Link href="/mac-storage-not-updating-after-deleting-files#sample-trash">
                   Move to Trash and Put Back walkthrough
-                </Link>.
+                </Link>
+                .
               </p>
             </div>
           </div>
@@ -403,7 +453,7 @@ export default async function Home() {
                 </li>
                 <li>
                   <Check />
-                  Reveal files in Finder
+                  CPU, memory and process diagnostics
                 </li>
               </ul>
               <Link className="button secondary" href="/download">
@@ -421,7 +471,9 @@ export default async function Home() {
                 {price.display}
                 <span>{price.code} · pay once</span>
               </div>
-              <p>Unlock cleanup inside the app.</p>
+              <p>
+                Unlock cleanup, iCloud Doctor and guided performance actions.
+              </p>
               <ul>
                 <li>
                   <Check />
@@ -441,7 +493,7 @@ export default async function Home() {
                 </li>
                 <li>
                   <Check />
-                  ClearDisk 2.2.0 included
+                  App quit, browser tab actions & Spotlight reindexing
                 </li>
               </ul>
               <Link className="button primary" href="/buy-now">

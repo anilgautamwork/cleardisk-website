@@ -1259,7 +1259,8 @@ article.guide-card:focus-within {
   border-top: 1px solid var(--border);
   padding-top: 28px;
 }
-.product-sections h2 {
+.product-sections h2,
+.product-sections h3 {
   font-size: 27px;
   margin: 0 0 16px;
   letter-spacing: -0.025em;

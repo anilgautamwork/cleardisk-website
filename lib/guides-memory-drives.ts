@@ -217,8 +217,25 @@ export const memoryDriveGuides: Guide[] = [
     summary:
       'Low storage is one cause of a slow Mac, not the only one. Check free space, then Activity Monitor’s CPU, Memory and Energy tabs, then what opens at login. Fix the cause you can actually see.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-10-24',
     sections: [
+      {
+        id: 'compare-the-same-task',
+        title: 'Keep a short record before changing anything',
+        paragraphs: [
+          'Note the app and task that feels slow, the available disk space, and the CPU and memory readings while it happens. Make one change, then repeat that task with the other conditions as similar as possible. If an export finishes and CPU use settles, that is different from an app staying busy while idle. A single reading cannot diagnose every slowdown.',
+        ],
+        links: [
+          {
+            label: 'When kernel_task is using a lot of CPU',
+            href: '/blog/kernel-task-high-cpu-mac',
+          },
+          {
+            label: 'Investigate Chrome memory use',
+            href: '/blog/chrome-using-too-much-memory-mac',
+          },
+        ],
+      },
       {
         id: 'check-free-space',
         title: '1. Check free storage',
@@ -248,7 +265,7 @@ export const memoryDriveGuides: Guide[] = [
         title: '4. Review what opens at login',
         paragraphs: [
           'Apps that open automatically keep running whether you need them or not. Open System Settings → General → Login Items & Extensions (called Login Items in some earlier releases). Review Open at Login and remove apps you don’t need at startup. App Background Activity lets apps check for updates or sync while closed; turning an item off can stop that feature of the app.',
-          'Change a few items at a time and restart, so you can tell which change helped. If you suspect third-party software, starting in safe mode, which skips login items and extensions that aren’t required by macOS, shows whether the Mac behaves better without them.',
+          'Change one optional item at a time and restart after saving your work, so you can tell which change helped. If you suspect third-party software, starting in safe mode, which skips login items and extensions that aren’t required by macOS, shows whether the Mac behaves better without them.',
         ],
       },
       {
@@ -257,6 +274,20 @@ export const memoryDriveGuides: Guide[] = [
         paragraphs: [
           'Apple also lists apps that aren’t compatible with your Mac and simply having too many apps open. An app that requires a different processor or graphics hardware can run poorly; check its requirements and look for an updated version. Keep macOS and your apps up to date, and restart after long sessions with heavy apps. If the slowdown began right after you installed something, that app is the first suspect.',
           'If the disk itself might be the problem, Apple suggests checking it with Disk Utility; the First Aid guide linked below explains the order and what a failure means. A Mac that slows down right after a macOS update is often still finishing background work, which has its own guide.',
+        ],
+      },
+      {
+        id: 'cleardisk-performance',
+        title: 'Use ClearDisk for a combined view',
+        paragraphs: [
+          'ClearDisk 2.2.0 includes the WhySlow tools alongside its storage scanner. Open Performance to inspect CPU, memory pressure, processes, background items and local usage history. Readings are free; an existing license covers guided actions such as quitting an eligible app or reviewing supported browser tab cleanup. Save your work before closing anything.',
+          'The built-in checks above work without ClearDisk. If a reading is unavailable because of hardware or permissions, treat it as unknown. Freeing storage cannot promise to solve a CPU, network or hardware problem.',
+        ],
+        links: [
+          {
+            label: 'Performance features and limitations',
+            href: '/features#performance',
+          },
         ],
       },
     ],
