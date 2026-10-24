@@ -35,3 +35,8 @@ Fresh reviewer disposition: ship after the known screenshot-height correction an
 Validation: full unit suite 55 passed, 0 skipped; lint and typecheck passed; Cloudflare production build passed. Local HTTP SEO suite passed for 177 HTML routes and 172 sitemap entries. All six individual assets matched source bytes; the ZIP integrity check passed with five entries. Keyboard Tab reached the press email with a visible solid focus outline. Local /analytics fails closed with 503 because owner credentials are not configured in the preview; production protection must be checked after deployment. Build retained existing Vite configLoader and Node deprecation warnings.
 
 Published to https://cleardisk.app/press from commit dfd78d6 on 16 October 2026. Cloudflare Worker version a52686de-5c79-4f6f-8159-276bbd9aad8a. Live HTTP SEO suite passed all 177 HTML routes; sitemap contains 172 URLs including /press. Six live assets matched source bytes, the ZIP passed its five-entry integrity check, and the browser loaded all artwork. Download page, DMG HEAD and signed appcast returned 200; appcast remains 2.1.0. Anonymous /analytics and /api/analytics both returned 401 with no-store and noindex. QA download checks used ClearDisk-QA/HEAD and did not count as app downloads. Publication is verified; Google indexing is not claimed.
+
+
+## October 24 release refresh
+
+Current facts updated to 2.2.0 (13), with Performance scope and optional network-test disclosure. Plain-text fact sheet and five-entry ZIP match. Original artwork and earlier sample screenshot provenance unchanged. Live assets match source. See releases-2.2.0.md for deployment, verification and test limits.
