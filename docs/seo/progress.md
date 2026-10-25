@@ -921,3 +921,12 @@ Owner requested homepage additions/optimization. Improved the hero, feature navi
 Homepage publication verified: source **9eec611**, Worker **56549220-c762-4cd4-9e4b-56e3b702679a**. Revised `/` and `/faq/cleardisk` live; 180 live HTTP SEO checks passed. Homepage HTML/RSC, sitemap, unchanged signed 2.2.0 download/feed and anonymous analytics protection verified. Full unit suite remains 58 passed, zero failed/skipped. No new GSC/traffic result claimed. See homepage evidence for layout measurements and limits.
 
 October 24 heartbeat: quiet follow-up after today's verified publication. Priority permission/private-var guides kept; both return 200, expected canonicals and no noindex. Current homepage/download and anonymous analytics denial also verified. No further code edit, deployment or article; no new GSC/metrics/recovery claim. Full-suite results above were not rerun for this documentation-only entry. Next complete-window review remains October 25; details in recovery-review.md.
+
+
+## 2026-10-25 — weekly recovery measurement
+
+Refreshed the 15-page measured queue using complete October 9–15 versus October 16–22 GSC windows: impressions 5,102 → 194, clicks 35 → 2, average position 11.3 → 41.6. No confirmed causal diagnosis. Steam, permission-error and private-var retained; Downloads-missing read and queued for a deeper review. [Evidence and limits](2026-10-25-recovery-measurement.md). Humanizer applied to neutral report prose; Google's primary traffic-drop guide checked.
+
+180 live HTTP SEO checks passed. Manual actions/security reports show no issues; indexing data is dated October 16, 169 indexed/13 excluded. The checksum soft-404 example is historical and remains a noindex resource. Crawl report through October 21 shows no host issue; 49 other 4XX unchanged, visible examples September 27. Anonymous analytics protection and release resource HEAD responses verified. Current 2.2.0 download and Worker 56549220-c762-4cd4-9e4b-56e3b702679a retained. Aggregate counters logged without credentials; counts do not establish installs/sales/recovery.
+
+Changed public URLs: none. No code/test/UI changes, deployment or indexing submission; full suite/build/lint/typecheck/responsive checks not rerun for docs only. Previous unit result 58 passed, zero failed/skipped. Next content review October 26; weekly GSC review November 1.

@@ -2,7 +2,7 @@
 
 Owner authorized ongoing daily review and fixes on October 9, 2026. The existing heartbeat is now **ClearDisk daily content recovery**, active daily at 10:00 Asia/Kolkata, without the old October 12 end date. Its identifier remains cleardisk-30-day-publishing-plan to avoid a duplicate automation. Prior campaign history is preserved. No bulk new articles. No automatic deletion/noindex for zero traffic, and no batch consolidation without evidence and owner approval.
 
-Current queue: [October 16 measured priorities](#october-16--weekly-measurement-and-refreshed-queue). The original queue below is preserved as history.
+Current queue: [October 25 measured priorities](#october-25--weekly-measurement-and-refreshed-queue). The original queue below is preserved as history.
 
 ## Historical October 9 priority queue
 
@@ -341,3 +341,34 @@ Homepage follow-up published and verified: 9eec611 → Worker 56549220-c762-4cd4
 Today's owner-requested release, guide reviews and homepage publication are already recorded above. Avoided repeating those edits or adding filler. `/operation-not-permitted-terminal-mac` and `/private-var-folders-mac`: **kept**, existing October 9 corrections retained; read-only live checks returned 200 with expected canonicals and no robots noindex. This was delivery verification, not another full editorial audit. Homepage also returns current content; `/download` still shows 2.2.0. Anonymous analytics page/API remain 401/no-store/noindex. Used ClearDisk-QA, with no DMG request or new download metric.
 
 No code/test change or deployment this heartbeat; the immediately preceding 58-unit/180-live-route verification remains the last full-suite result. No fresh Search Console windows, source research, metrics or indexing/recovery claim. Next review October 25: refresh complete equal-length Search Console windows, then reassess remaining priority 13 folder-structure review. No new owner action needed; unrelated local files preserved.
+
+
+## October 25 — weekly measurement and refreshed queue
+
+Complete October 9–15 versus October 16–22 GSC windows: impressions 5,102 → 194, clicks 35 → 2, average position 11.3 → 41.6. This confirms a large measured decline, not a proven spam-update cause. [Detailed evidence, query examples, report dates, limits and metrics](2026-10-25-recovery-measurement.md).
+
+| Priority | Page | Impressions Oct 9–15 → Oct 16–22 | Lost | Clicks before → after | Disposition / next review |
+| --- | --- | ---: | ---: | ---: | --- |
+| 1 | /steam-games-storage-mac | 250 → 7 | 243 | 2 → 0 | Keep October 11 safety corrections; reassess query intent and indexing before another rewrite. |
+| 2 | /operation-not-permitted-terminal-mac | 209 → 3 | 206 | 0 → 0 | Keep October 9 correction; verify indexed rendering and permission-error intent. |
+| 3 | /homebrew-list-installed-packages | 178 → 1 | 177 | 0 → 0 | Keep October 20 path guards; allow time for recrawl. |
+| 4 | /downloads-folder-missing-mac | 157 → 2 | 155 | 0 → 0 | Next deep review: qualify missing-shortcut assumptions, distinguish missing files, and check recovery steps. |
+| 5 | /reinstall-command-line-tools-mac | 137 → 3 | 134 | 1 → 0 | Queued: installation detection, version compatibility and destructive reinstall steps. |
+| 6 | /whatsapp-taking-up-space-on-mac | 133 → 0 | 133 | 2 → 0 | Queued: cache versus personal chat/media data and app-version scope. |
+| 7 | /mac-swap-memory | 130 → 1 | 129 | 0 → 0 | Queued: avoid deleting swap files; distinguish pressure, disk usage and RAM. |
+| 8 | /private-var-folders-mac | 129 → 4 | 125 | 1 → 0 | Keep October 9 guarded measurements; no blanket folder deletion. |
+| 9 | /uninstall-rosetta-2-mac | 121 → 1 | 120 | 2 → 0 | Queued: supported removal options, security boundaries and Intel-app dependencies. |
+| 10 | /photos-library-taking-up-space-mac | 112 → 0 | 112 | 1 → 0 | Queued: sync/deletion scope, original backups and Optimize Storage limits. |
+| 11 | /stop-mac-hidden-files-on-usb | 107 → 1 | 106 | 2 → 0 | Queued: metadata scope and unsupported blanket cleanup. |
+| 12 | /how-to-check-storage-on-mac | 100 → 0 | 100 | 0 → 0 | Queued: actual versus available/purgeable space and version-specific UI. |
+| 13 | /mac-storage-full-after-macos-update | 95 → 0 | 95 | 0 → 0 | Queued: post-update storage, snapshots and unsupported removal advice. |
+| 14 | /ios-files-on-mac | 98 → 9 | 89 | 0 → 0 | Queued: device-backup scope, restore requirements and supported removal. |
+| 15 | /delete-macos-installer-mac | 86 → 0 | 86 | 1 → 0 | Queued: installer versus installed OS; keep copies needed for reinstall. |
+
+The caches guide ties at the priority-15 boundary (86 → 0); retained October 12 corrections. Steam, permission-error and private-var guides kept; current delivery verified, no repeat full editorial audit claimed. Downloads-missing read and kept pending deeper correction of overconfident diagnosis/recovery wording. No removal/consolidation proposed.
+
+Manual actions/security: no issues. Index report dated October 16: 169 indexed, 13 excluded; sole soft 404 is the checksum text file. Crawl report through October 21: healthy host, other 4XX unchanged at 49 with September 27 examples. All 180 live HTTP SEO checks passed; anonymous analytics stays protected; download/feed/checksum HEAD returned 200. Current app 2.2.0 and Worker 56549220-c762-4cd4-9e4b-56e3b702679a unchanged.
+
+Aggregate observation 10:03:29Z: rolling-30-day arrivals 396, download requests 31, finished transfers 19, checkout events 5; seven-row totals 37/4/3/0 respectively. Four all-time license records and two GitHub downloads separately. These are events/requests, not people, installs or sales. No credentials exposed.
+
+Documentation-only run; no build, unit/lint/typecheck or responsive tests rerun and no deployment. Prior full suite remains 58 passed, zero failed/skipped; today’s 180 live route checks are fresh. Humanizer used for factual report prose; Google primary traffic-drop guidance checked. Next content review October 26: Downloads-missing then Command Line Tools; next equal-window measurement November 1. Preserve unrelated audit edits and .impeccable.
