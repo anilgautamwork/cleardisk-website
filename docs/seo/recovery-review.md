@@ -352,7 +352,7 @@ Complete October 9–15 versus October 16–22 GSC windows: impressions 5,102 �
 | 1 | /steam-games-storage-mac | 250 → 7 | 243 | 2 → 0 | Keep October 11 safety corrections; reassess query intent and indexing before another rewrite. |
 | 2 | /operation-not-permitted-terminal-mac | 209 → 3 | 206 | 0 → 0 | Keep October 9 correction; verify indexed rendering and permission-error intent. |
 | 3 | /homebrew-list-installed-packages | 178 → 1 | 177 | 0 → 0 | Keep October 20 path guards; allow time for recrawl. |
-| 4 | /downloads-folder-missing-mac | 157 → 2 | 155 | 0 → 0 | Next deep review: qualify missing-shortcut assumptions, distinguish missing files, and check recovery steps. |
+| 4 | /downloads-folder-missing-mac | 157 → 2 | 155 | 0 → 0 | Improved October 26 in Monday batch: shortcut/file distinction, browser checks and backup limits; publication verification below. |
 | 5 | /reinstall-command-line-tools-mac | 137 → 3 | 134 | 1 → 0 | Queued: installation detection, version compatibility and destructive reinstall steps. |
 | 6 | /whatsapp-taking-up-space-on-mac | 133 → 0 | 133 | 2 → 0 | Queued: cache versus personal chat/media data and app-version scope. |
 | 7 | /mac-swap-memory | 130 → 1 | 129 | 0 → 0 | Queued: avoid deleting swap files; distinguish pressure, disk usage and RAM. |
@@ -372,3 +372,12 @@ Manual actions/security: no issues. Index report dated October 16: 169 indexed, 
 Aggregate observation 10:03:29Z: rolling-30-day arrivals 396, download requests 31, finished transfers 19, checkout events 5; seven-row totals 37/4/3/0 respectively. Four all-time license records and two GitHub downloads separately. These are events/requests, not people, installs or sales. No credentials exposed.
 
 Documentation-only run; no build, unit/lint/typecheck or responsive tests rerun and no deployment. Prior full suite remains 58 passed, zero failed/skipped; today’s 180 live route checks are fresh. Humanizer used for factual report prose; Google primary traffic-drop guidance checked. Next content review October 26: Downloads-missing then Command Line Tools; next equal-window measurement November 1. Preserve unrelated audit edits and .impeccable.
+
+
+## October 26 — Monday review of Downloads-missing guide
+
+Disposition: **improved**; retained /downloads-folder-missing-mac. Fresh authenticated query evidence confirms the existing shortcut-restoration and missing-file intents in the complete October 9–15 / October 16–22 windows (157 → 2 impressions, zero clicks both). Full details, sources and exact query observations: [Monday publishing log](monday-publishing.md). No new article or consolidation.
+
+Corrected diagnosis/recovery overclaims, Safari list-versus-file behavior and optional read-only path interpretation. Disposable checks include a broken symbolic link that still returns status 0. Full 58 unit tests passed, zero failed/skipped/cancelled/todo; lint/typecheck/build (177 snapshot pairs), 180 local HTTP checks and desktop/390px review passed. Final diff and failure paths reviewed. Publication pending. Existing unrelated edits preserved.
+
+Next daily content review: Command Line Tools, not a repeat of Downloads. Next complete-window measurement November 1 and Monday selection November 2. No new indexing or recovery claim; no fresh aggregate download measurement today.

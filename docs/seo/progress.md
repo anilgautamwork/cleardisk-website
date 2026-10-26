@@ -930,3 +930,10 @@ Refreshed the 15-page measured queue using complete October 9–15 versus Octobe
 180 live HTTP SEO checks passed. Manual actions/security reports show no issues; indexing data is dated October 16, 169 indexed/13 excluded. The checksum soft-404 example is historical and remains a noindex resource. Crawl report through October 21 shows no host issue; 49 other 4XX unchanged, visible examples September 27. Anonymous analytics protection and release resource HEAD responses verified. Current 2.2.0 download and Worker 56549220-c762-4cd4-9e4b-56e3b702679a retained. Aggregate counters logged without credentials; counts do not establish installs/sales/recovery.
 
 Changed public URLs: none. No code/test/UI changes, deployment or indexing submission; full suite/build/lint/typecheck/responsive checks not rerun for docs only. Previous unit result 58 passed, zero failed/skipped. Next content review October 26; weekly GSC review November 1.
+
+
+## 26 October 2026 — Monday Downloads guide improvement prepared
+
+Improved /downloads-folder-missing-mac using authenticated Search Console queries and current Apple sources. Complete October 9–15 versus October 16–22 page impressions 157 → 2; no clicks in either window. Separate missing-shortcut, missing-file and browser-save checks replace categorical diagnosis; backup prerequisites and disposable command results make the limits explicit. Humanizer applied. [Evidence, sources and next actions](monday-publishing.md).
+
+Full 58 unit tests passed, zero failed/skipped/cancelled/todo; lint/typecheck/build (177 HTML/RSC pairs) and 180 local HTTP checks passed. Desktop/390px and final diff/failure review completed. Publication pending; no new URL, indexing claim or recovery promise. Unrelated edits retained. Next daily review Command Line Tools; weekly measurement November 1.

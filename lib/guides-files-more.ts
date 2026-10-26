@@ -388,65 +388,76 @@ export const moreFileGuides: Guide[] = [
     description:
       'Downloads gone from the Dock or Finder sidebar? Open it with Option-Command-L, add it back in Finder settings or the Dock, and check before making a new one.',
     summary:
-      'The folder is almost always still at ~/Downloads; only a shortcut to it was removed. Press Option-Command-L to open it, then add it back in Finder → Settings → Sidebar or drag it to the right side of the Dock.',
+      'Open Finder and press Option-Command-L to check Downloads directly. If your files are there, restore its sidebar or Dock shortcut. If the folder opens but files are missing, check your browser’s save location, Trash and backups before changing anything.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-10-26',
     sections: [
       {
         id: 'check-it-exists',
         title: '1. Check that the folder still exists',
         paragraphs: [
-          'In Finder, choose Go → Downloads, or press Option-Command-L, which Apple lists as the shortcut for opening the Downloads folder. If a window opens, the folder is fine and only a sidebar or Dock shortcut disappeared. Shift-Command-H opens your home folder, where Downloads sits beside Desktop, Documents and Pictures.',
-          'The full path is /Users/yourname/Downloads, written ~/Downloads for short, and Shift-Command-G opens Go to Folder if you want to type it. Removing a shortcut never deletes the folder: Apple notes that dragging an item out of the sidebar or the Dock removes only the link, and the item stays where it was.',
-          'Terminal gives the same answer without changing anything. The command below prints the folder’s details if it exists, and “No such file or directory” if it doesn’t.',
+          'Click Finder first, then choose Go → Downloads or press Option-Command-L. If Downloads opens and contains the files you expect, follow the sidebar or Dock steps below. An empty window proves the folder opens; it does not prove that your files are still there. For missing files, skip to the browser and recovery checks.',
+          'You can also press Shift-Command-G in Finder, enter ~/Downloads and press Return. The tilde means your current account’s home folder. If you recently switched accounts, check that you are using the account that received the download. Do not move another account’s files or change permissions to force access.',
+          'If Finder reports that the folder cannot be found, continue with the recovery section. An access-denied message needs a different diagnosis; it is not evidence that the folder was deleted.',
         ],
-        code: ['ls -ld ~/Downloads'],
       },
       {
         id: 'finder-sidebar',
         title: '2. Put it back in the Finder sidebar',
         paragraphs: [
-          'Choose Finder → Settings, click Sidebar and select Downloads in the Favorites list. It reappears straight away. Alternatively, open your home folder and drag Downloads into the Favorites section of the sidebar, then drag it up or down to change its position.',
-          'If the whole Favorites section has collapsed, hold the pointer over its heading until Show appears and click it. If the sidebar itself is gone, choose View → Show Sidebar. Sidebar choices belong to your user account, so another account on the same Mac keeps its own list.',
+          'Choose Finder → Settings, click Sidebar and select Downloads in the Favorites list. If the folder still exists, this restores its shortcut. Alternatively, open your home folder and drag Downloads into the Favorites section of the sidebar, then drag it up or down to change its position.',
+          'If Favorites is collapsed, hover over its heading and use its show control. If the sidebar is missing, choose View → Show Sidebar. When that command is dimmed, choose View → Show Toolbar first. Restoring this shortcut changes navigation; it does not restore deleted files.',
         ],
       },
       {
         id: 'dock',
         title: '3. Put it back in the Dock',
         paragraphs: [
-          'Open your home folder with Shift-Command-H and drag Downloads to the right side of the Dock, past the divider near the Trash. Apple’s Dock guide puts files and folders on that side and apps on the other. Control-click the new icon to choose whether it displays as a folder or a stack, and how its contents open. To remove it again, drag it out of the Dock until Remove appears; the folder itself stays put.',
-          'Drag the Downloads folder from your home folder, not a file from inside it and not a similarly named folder somewhere else. If you add a Downloads folder from iCloud Drive or a backup, the Dock will point there, while new downloads keep landing in the real one.',
+          'In Finder, press Shift-Command-H and locate Downloads. Drag the folder to the files-and-folders side of the Dock’s divider, near the Trash: to the right in a horizontal Dock, or below the divider in a vertical Dock. Then click it to check that it opens the folder you intended. Control-click its icon to change folder or stack display options.',
+          'Choose the Downloads folder you just checked, rather than a similarly named folder in a backup or cloud drive. The Dock shortcut does not set your browser’s save location. Dragging that shortcut out until Remove appears removes the alias; it leaves the folder and its contents in place.',
         ],
       },
       {
         id: 'if-it-is-really-gone',
         title: '4. If Go → Downloads can’t find it',
         paragraphs: [
-          'This is rare. Look in the Trash first and use File → Put Back if the folder is there. Then search Finder for a folder named Downloads: it may have been dragged into Documents, iCloud Drive or another folder by accident. If so, move it back into your home folder rather than making a new one.',
-          'Don’t create a second Downloads folder while the original still exists somewhere, or files end up split between the two. Only when the folder is truly gone, create a new folder named Downloads in your home folder, then check that your browser saves there. If the folder was deleted and the Trash has since been emptied, Time Machine can restore it with its contents; the Trash recovery guide covers that.',
+          'Check the Trash without emptying it. If you find the missing item, select it and use File → Put Back when available. Search Finder for a known filename as well as Downloads; inspect the location and contents before assuming a matching folder is the original. If a restore or move asks to replace an existing item, cancel and compare the copies first.',
+          'If you have a Time Machine backup containing the missing items, open their former location in Finder, open Time Machine and choose a backup from before the loss. Select the items and click Restore. For a missing Downloads folder, start from your home folder. Recovery depends on those items having been backed up; turning on Time Machine after deletion does not recreate an earlier copy.',
+          'Creating a new empty folder named Downloads only gives future downloads somewhere to go. Check recovery options first, and never replace a populated folder to make the name match. If no copy can be found, ClearDisk’s storage scan cannot recover deleted data. Postpone cleanup while you look for missing files.',
         ],
       },
       {
         id: 'icloud-and-browsers',
-        title: 'iCloud and browser settings',
+        title: '5. If the folder opens but a download is missing',
         paragraphs: [
-          'Turning on Desktop & Documents Folders in iCloud moves those two folders into iCloud Drive. Apple’s description covers Desktop and Documents only, and Downloads stays in your home folder. If Desktop or Documents look empty after an iCloud change, that is a different problem, covered in its own guide.',
-          'If downloads seem to vanish, the browser may be saving somewhere else. In Safari, Settings → General → File download location shows the folder; other browsers have the same choice in their download settings. Set it back to Downloads and new files will appear where you expect.',
+          'In Safari, open the downloads list and click the magnifying glass beside a completed item to reveal it in Finder. A paused or incomplete transfer is not a finished file. If you moved the file since downloading it, Safari may no longer find it at the recorded location; search Finder by its name.',
+          'Check Safari → Settings → General → File download location. It can point somewhere other than Downloads. Changing it affects future downloads and does not move earlier files. Safari also removes entries from its downloads list according to a separate setting; an entry disappearing from that list does not establish that the saved file was deleted.',
+          'The Desktop & Documents setting in iCloud Drive covers those two folders, not the standard Downloads folder. A file deliberately saved into iCloud Drive is a separate case. Check its actual location and sync status before moving or deleting it; the related iCloud guide covers missing Desktop and Documents files.',
         ],
+      },
+      {
+        id: 'read-only-terminal-check',
+        title: 'Optional: inspect the path in Terminal',
+        paragraphs: [
+          'This read-only command describes the path itself. A line beginning with d identifies a directory; l identifies a symbolic link and shows its target. A regular file begins with a dash. A symbolic link can exist even when its target is missing, so a successful command alone does not prove Downloads is usable.',
+          '“No such file or directory” means this path could not be found. Permission errors are a reason to stop and inspect the access problem, not to run a recursive permissions reset. The command does not list the folder’s contents or confirm that your files are intact.',
+          'Checked on macOS 27.0.1 with disposable examples: directory, regular file and symbolic-link paths returned status 0; a missing path returned status 1. A broken symbolic link also returned 0. These checks did not test recovery of deleted files or change a real Downloads folder.',
+        ],
+        code: ['ls -ld ~/Downloads'],
       },
     ],
     questions: [
       {
         q: 'Did removing the Downloads icon from my Dock delete the folder too?',
-        a: "No. Apple notes that dragging an item out of the sidebar or Dock removes only the link, and the folder itself stays at ~/Downloads. Press Option-Command-L to open it directly and confirm it's still there.",
+        a: "No. Removing the Dock shortcut removes its alias, not the original folder. Open Finder and press Option-Command-L, then check the contents. Missing files need their own browser, Trash or backup checks.",
       },
       {
         q: 'How do I get the Downloads folder back into the Finder sidebar?',
-        a: 'Choose Finder → Settings, click Sidebar, and select Downloads in the Favorites list, and it reappears right away. You can also drag it there yourself from your home folder.',
+        a: 'Choose Finder → Settings, click Sidebar, and select Downloads in the Favorites list. This restores a shortcut to an existing folder; it does not recover deleted files. You can also drag Downloads there from your home folder.',
       },
       {
         q: 'Why do my downloaded files seem to keep disappearing?',
-        a: 'Your browser may be saving them somewhere other than Downloads. In Safari this is set under Settings → General → File download location, and other browsers have the same option in their own download settings.',
+        a: 'Check the browser’s download status and save location, then search Finder for the filename. Safari’s downloads list can lose an entry independently of the saved file. If the file is missing too, check Trash and an existing backup before creating folders or running cleanup.',
       },
       {
         q: 'Does turning on Desktop & Documents Folders in iCloud move my Downloads folder too?',
@@ -454,9 +465,9 @@ export const moreFileGuides: Guide[] = [
       },
     ],
     related: [
+      'recover-files-from-trash-mac',
       'clear-downloads-folder-mac',
       'icloud-desktop-documents-files-missing-mac',
-      'mac-folder-structure-explained',
       'show-library-folder-mac',
     ],
     sources: [
@@ -471,6 +482,22 @@ export const moreFileGuides: Guide[] = [
       {
         label: 'Apple: use the Dock on Mac',
         url: 'https://support.apple.com/guide/mac-help/use-the-dock-mh35859/mac',
+      },
+      {
+        label: 'Apple: find downloaded items in Safari',
+        url: 'https://support.apple.com/guide/safari/download-items-from-the-web-sfri40598/mac',
+      },
+      {
+        label: 'Apple: recover an item before emptying the Trash',
+        url: 'https://support.apple.com/en-ie/guide/mac-help/mchlp1093/mac',
+      },
+      {
+        label: 'Apple: restore items backed up with Time Machine',
+        url: 'https://support.apple.com/guide/mac-help/restore-files-mh11422/mac',
+      },
+      {
+        label: 'Apple: Desktop and Documents in iCloud Drive',
+        url: 'https://support.apple.com/en-us/109344',
       },
     ],
   },

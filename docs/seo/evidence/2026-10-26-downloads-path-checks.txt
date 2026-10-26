@@ -1,0 +1,26 @@
+October 26, 2026 — disposable path inspection
+System: 27.0.1
+No personal Downloads folder inspected. No user files deleted, no privacy permissions changed.
+The published ls -ld ~/Downloads uses the same flags; fixture paths replace its argument here.
+Case: existing
+exit: 0
+stdout: drwxr-xr-x@ 2 mac  wheel  64 Oct 26 11:03 <fixture>/existing
+stderr:
+Case: regular-file
+exit: 0
+stdout: -rw-r--r--@ 1 mac  wheel  19 Oct 26 11:03 <fixture>/regular-file
+stderr:
+Case: link
+exit: 0
+stdout: lrwxr-xr-x@ 1 mac  wheel  56 Oct 26 11:03 <fixture>/link -> <fixture>/existing
+stderr:
+Case: broken-link
+exit: 0
+stdout: lrwxr-xr-x@ 1 mac  wheel  62 Oct 26 11:03 <fixture>/broken-link -> <fixture>/missing-target
+stderr:
+Case: missing
+exit: 1
+stdout:
+stderr: ls: <fixture>/missing: No such file or directory
+Observations: an existing directory begins d; a regular file begins -; symlinks begin l and show a target. A dangling symlink still exits 0, so successful ls does not establish a usable folder. A missing path exits 1. -d does not list contents and proves nothing about file completeness or readability.
+Fixture retained at: /private/tmp/cleardisk-downloads-check-5qxm28ve
