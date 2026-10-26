@@ -956,3 +956,10 @@ Full unit suites: 214 native and 58 website tests passed, zero failed/skipped; w
 Published website `990303b`, app tag `v2.2.1` / `9ba9a67`, Worker **4be98f82-8ae6-46c2-921e-f591547ce568**. GitHub release workflow **40308485265 succeeded**; release DMG digest/size match the notarized archive. Live homepage/download/press show 2.2.1. Signed appcast, actual archive checksum, download HEAD and anonymous analytics 401 verified. **180 live HTTP SEO checks passed**; sitemap remains 175 URLs. ClearDisk-QA verification excluded from download metrics; no new installs, Google indexing or recovery claim.
 
 Final validation: **214 app tests and 58 website tests passed, zero failures/skips**, website lint/typecheck/build (177 snapshots), 180 local and 180 live HTTP checks. Final download layout reviewed at 1280/390px. Final native menu click-through and local installed-app update were not exercised after the last refinements; earlier previews and owner screenshots informed the fixes. Unrelated audit edit and `.impeccable/` remain untouched.
+
+
+## 2026-10-26 — Command Line Tools correction prepared
+
+Improved existing /reinstall-command-line-tools-mac from the measured recovery queue, using Apple documentation, installed manuals and read-only macOS checks. Humanizer applied. Corrected package-receipt and repair claims; path selection and compatible updates now precede conditional permanent removal. No new article or indexing claim. [Evidence and validation](2026-10-26-command-line-tools-review.md).
+
+Full 58 unit tests passed, zero failed/skipped; lint/typecheck/build (177 snapshots), 180 local HTTP checks and desktop/narrow review passed. Publication pending. Existing release 2.2.1 and unrelated local edits retained. Next content review October 27; GSC complete-window review November 1.

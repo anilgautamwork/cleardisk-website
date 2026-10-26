@@ -353,7 +353,7 @@ Complete October 9–15 versus October 16–22 GSC windows: impressions 5,102 �
 | 2 | /operation-not-permitted-terminal-mac | 209 → 3 | 206 | 0 → 0 | Keep October 9 correction; verify indexed rendering and permission-error intent. |
 | 3 | /homebrew-list-installed-packages | 178 → 1 | 177 | 0 → 0 | Keep October 20 path guards; allow time for recrawl. |
 | 4 | /downloads-folder-missing-mac | 157 → 2 | 155 | 0 → 0 | Improved October 26 in Monday batch: shortcut/file distinction, browser checks and backup limits; publication verification below. |
-| 5 | /reinstall-command-line-tools-mac | 137 → 3 | 134 | 1 → 0 | Queued: installation detection, version compatibility and destructive reinstall steps. |
+| 5 | /reinstall-command-line-tools-mac | 137 → 3 | 134 | 1 → 0 | Improved October 26: receipt/selection limits, compatible updates before conditional removal and read-only verification; publication details below. |
 | 6 | /whatsapp-taking-up-space-on-mac | 133 → 0 | 133 | 2 → 0 | Queued: cache versus personal chat/media data and app-version scope. |
 | 7 | /mac-swap-memory | 130 → 1 | 129 | 0 → 0 | Queued: avoid deleting swap files; distinguish pressure, disk usage and RAM. |
 | 8 | /private-var-folders-mac | 129 → 4 | 125 | 1 → 0 | Keep October 9 guarded measurements; no blanket folder deletion. |
@@ -383,3 +383,10 @@ Corrected diagnosis/recovery overclaims, Safari list-versus-file behavior and op
 Next daily content review: Command Line Tools, not a repeat of Downloads. Next complete-window measurement November 1 and Monday selection November 2. No new indexing or recovery claim; no fresh aggregate download measurement today.
 
 October 26 publication verified: **deee22c → 7198d405-d7f5-4b97-871a-85e37b0b322e**. All **180 live HTTP checks passed**, changed guide 200, sitemap October 26/175 URLs, release 2.2.0 and archive checksum unchanged, anonymous analytics 401/no-store/noindex. The edge omits DMG HEAD length; verified actual versioned-archive bytes instead. QA requests excluded from download metrics. See Monday log for exact evidence and test limits. Downloads is complete for this batch; next content review is Command Line Tools. No indexing/recovery claim.
+
+
+## October 26 — Command Line Tools recovery review
+
+**Improved and retained** /reinstall-command-line-tools-mac, priority 5 (137 → 3 impressions; 1 → 0 clicks in complete October 9–15 / October 16–22 windows from the October 25 authenticated evidence). No new GSC pull or search-volume claim. Reordered diagnosis/update/removal, corrected receipt and path overclaims, added real read-only command observations and preserved existing anchors. No other guide edited. [Sources, checks, limits and publication](2026-10-26-command-line-tools-review.md).
+
+Full 58 unit tests passed, zero failures/skips; lint/typecheck/build with 177 snapshots, 180 local HTTP checks, final diff/failure and desktop/390px review passed. Publication pending; current 2.2.1 download/payment/privacy behavior preserved. Next page October 27: WhatsApp storage. Next complete-window trend review November 1.

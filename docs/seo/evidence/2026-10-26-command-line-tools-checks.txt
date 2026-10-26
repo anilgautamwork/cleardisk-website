@@ -1,0 +1,37 @@
+Read-only Command Line Tools checks, 2026-10-26
+macOS 27.0.1
+No installation, removal, switching, package forgetting or license acceptance performed.
+
+$ /usr/bin/xcode-select -p
+/Applications/Xcode.app/Contents/Developer
+
+exit=0
+
+$ /usr/sbin/pkgutil --pkg-info=com.apple.pkg.CLTools_Executables
+package-id: com.apple.pkg.CLTools_Executables
+version: 27.0.0.0.1788430756
+volume: /
+location: /
+install-time: 1790652045
+
+exit=0
+
+$ /usr/bin/xcrun --find clang
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+
+exit=0
+
+$ /usr/bin/xcrun --show-sdk-path
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
+
+exit=0
+
+$ /usr/bin/printenv DEVELOPER_DIR
+
+
+exit=1
+
+$ env DEVELOPER_DIR="<disposable>/missing-tools" /usr/bin/xcrun --find clang
+
+xcrun: error: missing DEVELOPER_DIR path: <disposable>/missing-tools
+exit=1

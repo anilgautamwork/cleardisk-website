@@ -691,104 +691,121 @@ export const devQaGuides: Guide[] = [
     slug: 'reinstall-command-line-tools-mac',
     title: 'How to reinstall the Xcode Command Line Tools on Mac',
     description:
-      'Reinstall the Xcode Command Line Tools on Mac: check the version, remove the folder Apple documents, run xcode-select --install, and fix xcrun path errors.',
+      'Reinstall Xcode Command Line Tools on Mac after checking the active path, package receipt and compatible updates. Includes xcrun checks and removal limits.',
     summary:
-      'Apple’s documented reinstall is two steps: remove /Library/Developer/CommandLineTools with sudo rm -rf, then run xcode-select --install and click Install. Check first with xcode-select -p and pkgutil: after a macOS upgrade, the install step alone often fixes things.',
+      'Start with the active developer path and the exact error. A stale path, an incompatible package and a command that needs full Xcode require different fixes. Check for a compatible update before removing the standalone tools.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-10-26',
     sections: [
       {
         id: 'check',
-        title: '1. Check what is installed and active',
+        title: '1. Check the active path and package receipt',
         paragraphs: [
-          'The Command Line Tools are Apple’s package of compilers, git, headers and the macOS SDK for work outside Xcode, and Apple installs them at /Library/Developer/CommandLineTools. xcode-select -p prints which developer folder your Mac is using. That path means the standalone tools; a path inside Xcode.app means Xcode’s own copy, in which case you may not need the package at all.',
-          'pkgutil --pkg-info=com.apple.pkg.CLTools_Executables is Apple’s documented way to read the installed version; it prints a package ID, a version line and an install time. If it reports no receipt, the package is not installed. Only one version can be installed at a time, and installing a new one replaces the old.',
+          'Run these checks in the same Terminal session where the problem occurs. They inspect configuration; they do not install or remove tools. If you run them on a different Mac, in a remote shell or from an IDE, the result may differ.',
+          'xcode-select -p prints the selected developer directory. /Library/Developer/CommandLineTools is the standalone package; a path inside Xcode.app uses the full app. pkgutil reports the standalone package receipt and version. A receipt does not verify every installed file, and no receipt does not prove that Xcode or usable developer tools are absent.',
+          'printenv DEVELOPER_DIR shows a shell override when one is set. No output with exit status 1 means that variable is unset. A stale override can direct tools to a missing location even when another installation is available.',
         ],
         code: [
           'xcode-select -p',
           'pkgutil --pkg-info=com.apple.pkg.CLTools_Executables',
-          'ls /Library/Developer/CommandLineTools/usr/bin',
+          'printenv DEVELOPER_DIR',
         ],
       },
       {
         id: 'match-the-error',
-        title: 'Match the error to the fix',
+        title: 'Match the error before choosing a fix',
         paragraphs: [
-          'Three messages cover most cases, listed below in order. The first means the tools folder is missing or incomplete, which is common after a macOS upgrade; installing again (step 3) fixes it without removing anything. The second means macOS still has the package registered: install updates through Software Update, or remove and reinstall if the tools are broken.',
-          'The third means the command needs the full Xcode app. Apple notes that tools such as xcodebuild ship only with Xcode, so install Xcode and switch to it (step 5) rather than reinstalling the standalone package.',
+          'Keep the complete error message, including the path it names. A successful package installation can still leave a command pointing at another developer directory.',
         ],
         items: [
-          'xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun',
-          'xcode-select: note: Command line tools are already installed. Use "Software Update" in System Settings or the softwareupdate command line interface to install updates',
-          "xcode-select: error: tool 'xcodebuild' requires Xcode, but active developer directory '/Library/Developer/CommandLineTools' is a command line tools instance",
-        ],
-      },
-      {
-        id: 'remove',
-        title: '2. Remove the old tools',
-        paragraphs: [
-          'Apple’s page documents one removal command, and this is one of the rare cases where sudo rm -rf is the right tool, because Apple specifies it for exactly this folder. It deletes the CommandLineTools folder without a confirmation and without using the Trash, so copy the path precisely and change nothing. It does not touch Xcode.app, your projects or Homebrew, but git, clang and make stop working until the tools are back.',
-          'Apple’s page also describes deleting the package receipt with pkgutil --forget, but only to stop Software Update offering the tools again. Skip that step when you are reinstalling.',
-        ],
-        code: ['sudo rm -rf /Library/Developer/CommandLineTools'],
-      },
-      {
-        id: 'install',
-        title: '3. Install them again',
-        paragraphs: [
-          'Run xcode-select --install. Terminal prints “install requested for command line developer tools” and a dialog opens: click Install, agree to the license, and click Done when it finishes. On a Mac without the tools, running a command such as git brings up the same dialog.',
-          'If the dialog cannot find the software, or you need a specific version, sign in to Apple’s developer downloads page, which does not require a paid membership, search for Command Line Tools, and download the version Apple’s Xcode support page lists for your macOS. Afterwards, run pkgutil and xcode-select -p again to confirm the version and path. After later macOS upgrades, Software Update and softwareupdate --list offer newer releases, which replace the installed one.',
-        ],
-        code: [
-          'xcode-select --install',
-          'pkgutil --pkg-info=com.apple.pkg.CLTools_Executables',
-          'softwareupdate --list',
-        ],
-      },
-      {
-        id: 'without-the-dialog',
-        title: '4. Install without the dialog',
-        paragraphs: [
-          'Over SSH or in a setup script there is no one to click Install. The documented route is the downloaded package: mount the disk image, check /Volumes for its name, and install the package inside with installer, which needs administrator rights. When Software Update is already offering the tools, softwareupdate --install with the exact label from softwareupdate --list works too. Replace the capitalised placeholders below with your real names.',
-          'Scripts that install the tools unattended on a fresh Mac, Homebrew’s installer among them, create a placeholder file that makes softwareupdate list the Command Line Tools, then install that label. Apple does not document the placeholder, so it can stop working in any release; use the package when you need something predictable.',
-        ],
-        code: [
-          'hdiutil attach ~/Downloads/DOWNLOADED.dmg',
-          'ls /Volumes',
-          'sudo installer -pkg "/Volumes/VOLUME/PACKAGE.pkg" -target /',
-          'sudo softwareupdate --install "LABEL"',
+          'Invalid active developer path or missing xcrun: inspect the named path and any DEVELOPER_DIR override. A moved Xcode app or missing standalone directory needs a different response from an incompatible installed package.',
+          'Command line tools are already installed: this message alone does not show that the installation is broken. Check Software Update and the selected path before deciding to remove anything.',
+          'Tool xcodebuild requires Xcode: install or select the full Xcode app. Reinstalling the standalone package will not add tools that Apple ships only with Xcode.',
+          'License or first-launch setup error: open the selected Xcode app and complete its requested setup. Replacing the standalone package does not address an unfinished Xcode setup.',
         ],
       },
       {
         id: 'switch',
-        title: '5. Point xcode-select at the right tools',
+        title: '2. Correct a stale selection if the tools already exist',
         paragraphs: [
-          'With both Xcode and the standalone tools installed, xcode-select decides which set Terminal uses. --switch takes either /Library/Developer/CommandLineTools or an Xcode app, needs sudo, and changes the setting for every user on the Mac. --reset clears any chosen path, so macOS falls back to its default search. To change it for one shell only, the manual page describes setting DEVELOPER_DIR instead.',
-          'Keeping both on disk is a storage decision. Apple’s page notes that Xcode already includes the command-line tools, so a Mac with Xcode can often do without the separate package; the developer storage guide covers that trade-off.',
+          'If the error names an old or moved Xcode copy, check the app’s actual location first. To test an installed Xcode at the standard path for one command, use the example below. It does not change the system-wide selection. If your app has another name or location, use that exact path.',
+          'A successful result is the path to clang inside that Xcode installation. If you need to make it the default, sudo xcode-select --switch /Applications/Xcode.app changes the selection for all users. For an existing standalone package, the corresponding destination is /Library/Developer/CommandLineTools. Choose the installation you intend to use; do not run both switches as a sequence.',
+          'xcode-select --reset clears a custom system-wide selection. It does not repair missing files or remove a DEVELOPER_DIR override in your shell. Check the override’s source before changing shell or IDE configuration.',
         ],
         code: [
-          'sudo xcode-select --switch /Applications/Xcode.app',
-          'sudo xcode-select --switch /Library/Developer/CommandLineTools',
-          'sudo xcode-select --reset',
+          'env DEVELOPER_DIR="/Applications/Xcode.app" xcrun --find clang',
         ],
+      },
+      {
+        id: 'install',
+        title: '3. Install or update a compatible package',
+        paragraphs: [
+          'For a missing standalone package, xcode-select --install requests Apple’s installer. Finish the dialog before checking again. If macOS reports that tools are already installed, open System Settings → General → Software Update and look for a compatible update.',
+          'If the installer cannot find a package, check Apple’s system-requirements table and the Command Line Tools download details for your macOS version. Apple’s developer downloads require an Apple Account, but no paid membership. Choose the compatible package rather than assuming the highest version number will run on your Mac.',
+          'If the downloaded installer reports an unsupported macOS version or fails, keep its error and resolve that mismatch before deleting a working installation. Xcode already includes developer tools; you may only need to select it.',
+        ],
+        code: ['xcode-select --install'],
+        links: [
+          {
+            label: 'Apple: Command Line Tools installation and updates',
+            href: 'https://developer.apple.com/documentation/xcode/installing-the-command-line-tools',
+          },
+          {
+            label: 'Apple: SDK and system requirements',
+            href: 'https://developer.apple.com/xcode/system-requirements',
+          },
+          {
+            label: 'Apple: developer downloads and account requirements',
+            href: 'https://developer.apple.com/xcode/resources/',
+          },
+        ],
+      },
+      {
+        id: 'remove',
+        title:
+          '4. Remove the standalone package only if a reinstall is still needed',
+        paragraphs: [
+          'Use this step after checking the selection and compatible updates, when you have decided to replace the standalone installation. Save work and stop builds that depend on it. Have a compatible installer available first; removal does not guarantee that the replacement download will succeed.',
+          'Apple documents the exact command below to uninstall the standalone package. It permanently removes that directory without moving it to Trash or asking for a second confirmation. Do not shorten the path or substitute another folder. Tools and builds that rely on this installation may stop working until it is restored.',
+          'After removal, install the compatible package and repeat the verification checks below. Do not forget package receipts as a routine repair step: Apple describes receipt removal separately as an opt-out from package updates.',
+        ],
+        code: ['sudo rm -rf /Library/Developer/CommandLineTools'],
+      },
+      {
+        id: 'without-the-dialog',
+        title: 'Installing over SSH or on a managed Mac',
+        paragraphs: [
+          'The graphical installer needs someone to complete its dialog. For an unattended installation, an administrator can use a compatible package downloaded from Apple and the macOS installer tool. Confirm the package path and deployment requirements before running an administrator installation.',
+          'On a managed Mac, follow the organization’s software-deployment process. Avoid relying on undocumented placeholder files to force a package into Software Update. A package that cannot be found or is not offered for this Mac needs investigation, not repeated deletion.',
+        ],
+      },
+      {
+        id: 'verify',
+        title: '5. Verify the compiler and SDK, then retry the failed command',
+        paragraphs: [
+          'xcrun --find clang should return a compiler path under the intended developer installation. xcrun --show-sdk-path should return the selected SDK path. Errors here are useful: keep their full text instead of hiding stderr. A path lookup alone does not prove that your project will build; retry the original command after these checks.',
+          'In our read-only check on macOS 27.0.1 on October 26, 2026, the standalone package had a receipt while xcode-select and xcrun selected /Applications/Xcode.app/Contents/Developer. Setting DEVELOPER_DIR to a nonexistent disposable path for one command produced a missing-path error and exit status 1. No installed tools were removed, switched or reinstalled for this check.',
+          'ClearDisk can help inspect developer storage, but it does not repair the selected toolchain or validate a Command Line Tools installation. Keep cleanup separate from diagnosing a failed build.',
+        ],
+        code: ['xcrun --find clang', 'xcrun --show-sdk-path'],
       },
     ],
     questions: [
       {
         q: 'How do I check if the Xcode Command Line Tools are installed on my Mac?',
-        a: "Run pkgutil --pkg-info=com.apple.pkg.CLTools_Executables, which prints a package ID, version, and install time if they're installed, or reports no receipt if they aren't. xcode-select -p also shows which developer folder is currently active.",
+        a: 'Check the standalone package receipt with pkgutil --pkg-info=com.apple.pkg.CLTools_Executables, then inspect xcode-select -p and xcrun --find clang. A receipt describes installation records; it does not prove that every file is present or that the standalone package is selected. Full Xcode can provide the tools separately.',
       },
       {
         q: 'Why does Terminal say the active developer path is invalid after a macOS upgrade?',
-        a: 'This usually means the Command Line Tools folder is missing or incomplete, which is common after an upgrade. Running xcode-select --install again typically fixes it without needing to remove anything first.',
+        a: 'Inspect the exact path in the error and any DEVELOPER_DIR override. The selected folder may be missing or moved. Also check for a Command Line Tools update compatible with the new macOS version. The error alone does not establish that reinstalling is the correct fix.',
       },
       {
         q: 'Do I need to remove the old Command Line Tools before reinstalling them?',
-        a: "Only if they're broken or already registered incorrectly. Apple documents removing /Library/Developer/CommandLineTools with sudo rm -rf first in that case, then reinstalling with xcode-select --install.",
+        a: 'Try a compatible update and check the selected path first. Apple documents how to uninstall the standalone package, but removal is permanent and can interrupt dependent tools. Have the compatible replacement available before choosing that route.',
       },
       {
         q: 'Can Xcode and the standalone Command Line Tools both be installed at the same time?',
-        a: 'Yes, and xcode-select decides which one Terminal actually uses, with --switch changing it for every user. Since Xcode already includes the command-line tools, a Mac with Xcode can often do without the separate package.',
+        a: 'Yes. The active developer directory and any DEVELOPER_DIR override determine which installation Apple’s tool shims use. Xcode includes its own tools, so a separate standalone package is not always necessary.',
       },
     ],
     related: [
@@ -803,8 +820,8 @@ export const devQaGuides: Guide[] = [
         url: 'https://developer.apple.com/documentation/xcode/installing-the-command-line-tools',
       },
       {
-        label: 'Apple Developer: Xcode support',
-        url: 'https://developer.apple.com/support/xcode/',
+        label: 'Apple Developer: SDK and system requirements',
+        url: 'https://developer.apple.com/xcode/system-requirements',
       },
       {
         label: 'Apple Developer: Xcode resources',
