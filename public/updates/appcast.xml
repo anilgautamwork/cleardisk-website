@@ -6,6 +6,19 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>ClearDisk</title>
         <item>
+            <title>2.2.1</title>
+            <pubDate>Mon, 26 Oct 2026 14:53:49 +0530</pubDate>
+            <link>https://cleardisk.app/download</link>
+            <sparkle:version>14</sparkle:version>
+            <sparkle:shortVersionString>2.2.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h2>ClearDisk 2.2.1</h2>
+<ul><li>Disk scan, Why Slow and Permissions stay visible above the scrolling sidebar.</li><li>Why Slow opens running apps and processes for quick, confirmed quit actions.</li><li>A horizontal status bar shows disk space, CPU load and memory pressure.</li><li>Enable the menu-bar icon for live readings and running apps sorted by memory or CPU, with confirmed quit actions.</li><li>Monitoring runs while the app window or optional menu bar is open.</li><li>Review large files, caches and developer junk from your latest scan in the menu.</li><li>Permissions explains disk access and offers a single-folder scan.</li><li>Back returns to your previous workspace without resetting scan progress or results.</li><li>Storage sections explain when a scan is needed.</li></ul>
+<p>No changes to your license or macOS permissions.</p>
+]]></description>
+            <enclosure url="https://cleardisk.app/updates/ClearDisk-2.2.1-14.dmg" length="8529684" type="application/octet-stream" sparkle:edSignature="ZRV9bFrvo8H6UwPP0N701ozXoATKFYKS/v+lQgwwRVKXNrWFz5jrcD3whG7jnCwdwvO8c3ey+6foSlosadWgBA=="/>
+        </item>
+        <item>
             <title>2.2.0</title>
             <pubDate>Sat, 24 Oct 2026 09:15:53 +0530</pubDate>
             <link>https://cleardisk.app/download</link>
@@ -50,27 +63,9 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
 ]]></description>
             <enclosure url="https://cleardisk.app/updates/ClearDisk-2.1.0-12.dmg" length="6287199" type="application/octet-stream" sparkle:edSignature="JN7j/uTPvYyHV4UpxZ8prEqaYuVT0bCiCwXpZpE0HwVfulyOeM/vf+nutCcRH8w2D3mWdyhUaMiumbClFfS9CQ=="/>
         </item>
-        <item>
-            <title>2.0.0</title>
-            <pubDate>Tue, 22 Sep 2026 18:28:42 +0530</pubDate>
-            <link>https://cleardisk.app/download</link>
-            <sparkle:version>11</sparkle:version>
-            <sparkle:shortVersionString>2.0.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[<h2>ClearDisk 2.0.0</h2>
-<ul>
-<li>Type <strong>delete</strong> to confirm permanent removal, without retyping long filenames. Move to Trash remains available.</li>
-<li>Check for Updates in the ClearDisk menu. Future releases download, verify, install and relaunch from the app when you choose.</li>
-<li>Updates are signed and verified before installation. Restart waits until active cleanup or iCloud file operations finish.</li>
-<li>A clearer drag-to-Applications installer with ClearDisk branding.</li>
-</ul>
-<p>Your existing license continues to work. ClearDisk 1.1.1 users need one manual download to get the new updater.</p>
-]]></description>
-            <enclosure url="https://cleardisk.app/updates/ClearDisk-2.0.0-11.dmg" length="6048127" type="application/octet-stream" sparkle:edSignature="M3edZhzc1GxBy3jsnoXkHtXYW+PHexgwT1op2RlJE4L3liwD6S1MIzKoMtZvg9MAH0DKFcpGMlEVnUAa8hrkDA=="/>
-        </item>
     </channel>
 </rss>
 <!-- sparkle-signatures:
-edSignature: B5WIGO5ke2V8qJY+XKSPHTwiBZNXYDWrw/qmLhJkDWKDkFZB4CJDfkXacWxm8L7RyMkhkDG6+Q0amq+dWeP5DA==
-length: 5468
+edSignature: B431YM0IgosnUECCJsAmoiyhCbI4AQfHmgsEoWUNGP5ul0i0tu6HThghAfZ3TWz9OYhdEqShx+Amu/x6Gq+2Dg==
+length: 5688
 -->

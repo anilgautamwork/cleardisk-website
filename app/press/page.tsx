@@ -78,7 +78,7 @@ export default function Press() {
           <dl className="press-facts">
             <div>
               <dt>Current release</dt>
-              <dd>2.2.0 (build 13) · released 24 October 2026</dd>
+              <dd>2.2.1 (build 14) · released 26 October 2026</dd>
             </div>
             <div>
               <dt>Requirements</dt>
@@ -106,7 +106,7 @@ export default function Press() {
               <dd>
                 Signed and notarized macOS app. Available from the{' '}
                 <Link href="/download">download page</Link> and{' '}
-                <a href="https://github.com/anilgautamwork/cleardisk-app/releases/tag/v2.2.0">
+                <a href="https://github.com/anilgautamwork/cleardisk-app/releases/tag/v2.2.1">
                   GitHub release
                 </a>
                 . Notarization is not an Apple endorsement.

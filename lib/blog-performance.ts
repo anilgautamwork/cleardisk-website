@@ -319,7 +319,7 @@ export const performancePosts: Guide[] = [
           'You can run the Terminal version above without ClearDisk or a license. We make ClearDisk and offer its interface as another way to inspect the problem, not as a promise to speed up the internet.',
         ],
         links: [
-          { label: 'Download ClearDisk 2.2.0', href: '/download' },
+          { label: 'Download ClearDisk', href: '/download' },
           { label: 'What Performance reads and stores', href: '/privacy' },
         ],
       },

@@ -44,7 +44,7 @@ const faqs: [string, string, string?][] = [
   ...productAnswers,
   [
     'Do existing owners need a separate WhySlow license?',
-    'No. The WhySlow performance tools are included in ClearDisk 2.2.0. Your existing ClearDisk key covers licensed performance actions as well as cleanup and iCloud Doctor actions. Update ClearDisk from the app to get the current version.',
+    'No. The WhySlow performance tools are included in ClearDisk 2.2.1. Your existing ClearDisk key covers licensed performance actions as well as cleanup and iCloud Doctor actions. Update ClearDisk from the app to get the current version.',
   ],
   [
     'Does a scan change or delete anything?',
@@ -168,7 +168,7 @@ export default async function Home() {
           <div className="section-heading">
             <h2 id="performance-heading">Find what’s keeping your Mac busy.</h2>
             <p>
-              The WhySlow tools are now included in ClearDisk 2.2.0. Check the
+              The WhySlow tools are now included in ClearDisk 2.2.1. Check the
               readings while the slowdown is happening.
             </p>
           </div>

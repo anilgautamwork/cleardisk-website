@@ -27,7 +27,7 @@ export default function Features() {
           <section id="performance">
             <h2>Performance, now inside ClearDisk</h2>
             <p>
-              ClearDisk 2.2.0 includes the WhySlow tools. Inspect CPU activity,
+              ClearDisk 2.2.1 includes the WhySlow tools. Inspect CPU activity,
               memory pressure, thermal state and running processes. Review
               background items, follow local usage charts or enable an optional
               menu-bar monitor. Readings depend on hardware and permissions;
@@ -115,7 +115,7 @@ export default function Features() {
               be read. macOS manages these files; ClearDisk does not remove
               them, and protected locations can leave an incomplete total.
             </p>
-            <Link href="/download">Get Mac checks in ClearDisk 2.2.0</Link>
+            <Link href="/download">Get Mac checks in ClearDisk 2.2.1</Link>
           </section>
           <section>
             <h2>Find Intel-only apps</h2>

@@ -54,7 +54,7 @@ export default async function Pricing() {
                 Close duplicate tabs and merge windows in Chrome, Brave and Edge
               </li>
               <li>Rebuild Spotlight’s index after reviewing the warning</li>
-              <li>Three personal Macs, including ClearDisk 2.2.0</li>
+              <li>Three personal Macs, including ClearDisk 2.2.1</li>
               <li>30-day refund policy</li>
             </ul>
             <Link className="button primary" href="/buy-now">
@@ -64,7 +64,7 @@ export default async function Pricing() {
           <section>
             <h2>Already have a license?</h2>
             <p>
-              Your existing license works with ClearDisk 2.2.0, including iCloud
+              Your existing license works with ClearDisk 2.2.1, including iCloud
               Doctor and the new Performance actions. Download the update and
               activate with your key. You do not need a second purchase.
             </p>

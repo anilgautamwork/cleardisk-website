@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 export const metadata = pageMetadata(
   'Download ClearDisk for Mac — Free Disk Space Scanner',
-  'Download ClearDisk 2.2.0 for macOS 15 or later on Apple silicon or Intel. Scan your Mac for free, review large files, and unlock cleanup with a $10 license.',
+  'Download ClearDisk 2.2.1 for macOS 15 or later on Apple silicon or Intel. Scan your Mac for free, review large files, and unlock cleanup with a $10 license.',
   '/download',
 );
 export default async function Download({
@@ -56,7 +56,7 @@ export default async function Download({
           <ArrowDownToLine size={18} />
           Download ClearDisk
         </a>
-        <small>ClearDisk 2.2.0 · DMG</small>
+        <small>ClearDisk 2.2.1 · DMG</small>
         <p className="software-disclosure">
           ClearDisk is a downloadable Mac app. It scans your disk on your Mac,
           shows what uses space and lets you move files you choose to the Trash.
@@ -70,9 +70,36 @@ export default async function Download({
             SHA-256 checksum for this download
           </a>
         </p>
-        <h2>New in 2.2.0</h2>
+        <h2>New in 2.2.1: readings and controls within reach</h2>
         <p>
-          The WhySlow tools are now part of ClearDisk. Open Performance for CPU
+          Disk scan, Why Slow and Permissions stay visible above the scrolling sidebar.
+          Check disk access, return from Mac checks or Why Slow, or choose a
+          folder to scan. Opening Permissions keeps scan progress and results;
+          Back returns to your previous workspace.
+        </p>
+        <p>
+          Storage sections become available after a scan. ClearDisk explains
+          that state and leaves the scan controls within reach. macOS permissions
+          remain your choice in System Settings.
+        </p>
+        <p>
+          Why Slow opens the running-process list. Sort by CPU or
+          memory and quit an app you no longer need, with confirmation before
+          each quit. Protected system processes remain protected.
+        </p>
+        <p>
+          A horizontal status bar shows disk space, CPU load and memory pressure.
+          Turn on Menu bar there for readings and the five biggest running apps,
+          sorted by memory or CPU. Its Quit buttons open a confirmation in
+          ClearDisk. After a disk or folder scan, the menu also shows the three
+          largest files over 100 MB, measured cache sizes where available, and
+          developer junk. Review buttons open the app’s existing cleanup screens;
+          the menu does not delete files. Monitoring runs while the window is open, or while the
+          menu-bar option is enabled; local history follows your existing setting.
+        </p>
+        <h2>Performance tools included</h2>
+        <p>
+          The WhySlow tools are now part of ClearDisk. Open Why Slow for CPU
           and memory readings, process explanations, background items, internet
           checks and local usage charts. Enable a menu-bar monitor if you want
           to keep readings visible while working.
@@ -111,7 +138,7 @@ export default async function Download({
         <p>
           On ClearDisk 2.0.0 or later, choose ClearDisk → Check for Updates… to download
           and install a signed update from the app. If you have 1.1.1 or earlier,
-          download 2.2.0 here once to get the updater. Your license stays valid.
+          download 2.2.1 here once to get the updater. Your license stays valid.
         </p>
         <h2>Three small steps. More clarity.</h2>
         <ol>
