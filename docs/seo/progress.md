@@ -937,3 +937,9 @@ Changed public URLs: none. No code/test/UI changes, deployment or indexing submi
 Improved /downloads-folder-missing-mac using authenticated Search Console queries and current Apple sources. Complete October 9–15 versus October 16–22 page impressions 157 → 2; no clicks in either window. Separate missing-shortcut, missing-file and browser-save checks replace categorical diagnosis; backup prerequisites and disposable command results make the limits explicit. Humanizer applied. [Evidence, sources and next actions](monday-publishing.md).
 
 Full 58 unit tests passed, zero failed/skipped/cancelled/todo; lint/typecheck/build (177 HTML/RSC pairs) and 180 local HTTP checks passed. Desktop/390px and final diff/failure review completed. Publication pending; no new URL, indexing claim or recovery promise. Unrelated edits retained. Next daily review Command Line Tools; weekly measurement November 1.
+
+## 26 October 2026 — Monday Downloads update published and verified
+
+Published https://cleardisk.app/downloads-folder-missing-mac from **deee22c**, Worker **7198d405-d7f5-4b97-871a-85e37b0b322e**. All **180 live HTTP SEO checks passed**; corrected content and October 26 sitemap date verified (175 URLs). Download 2.2.0, archive bytes/checksum and private analytics protection retained. CDN omits DMG HEAD Content-Length, so the additional header assertion was replaced by actual archive checksum verification. ClearDisk-QA used; no counted download GET.
+
+Final full unit suite **58 passed, 0 failed/skipped/cancelled/todo**; lint/typecheck/build, 180 local checks and desktop/390px review passed. [Full sources, GSC evidence, validation and limitations](monday-publishing.md). No observed indexing or recovery claim. Next daily guide Command Line Tools; next weekly measurement November 1 and Monday selection November 2.
