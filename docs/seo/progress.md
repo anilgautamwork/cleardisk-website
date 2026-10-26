@@ -963,3 +963,12 @@ Final validation: **214 app tests and 58 website tests passed, zero failures/ski
 Improved existing /reinstall-command-line-tools-mac from the measured recovery queue, using Apple documentation, installed manuals and read-only macOS checks. Humanizer applied. Corrected package-receipt and repair claims; path selection and compatible updates now precede conditional permanent removal. No new article or indexing claim. [Evidence and validation](2026-10-26-command-line-tools-review.md).
 
 Full 58 unit tests passed, zero failed/skipped; lint/typecheck/build (177 snapshots), 180 local HTTP checks and desktop/narrow review passed. Publication pending. Existing release 2.2.1 and unrelated local edits retained. Next content review October 27; GSC complete-window review November 1.
+
+
+## 2026-10-26 — Command Line Tools publication verified
+
+Published source commit **cf928bf5677c2883e3953a65ea1f01185c2cbd04** to main and Cloudflare Worker **95c627ac-961a-4adf-86f4-52d534629d48**. The changed guide returns 200 with the corrected receipt guidance and explicit test limits. All **180 live HTTP SEO checks passed**; sitemap contains 175 URLs and this guide’s lastmod is 2026-10-26.
+
+Final validation: **58 unit tests passed, zero failed/skipped/cancelled/todo**, lint/typecheck, production build (177 HTML/RSC pairs), 180 local and 180 live HTTP checks, final diff/failure-path review and desktop/390px visual checks passed. Anonymous /analytics and /api/analytics remain 401/no-store/noindex. Download HEAD returns 200; the actual versioned 2.2.1 archive remains 8,529,684 bytes with SHA-256 ebe7cc41c8fa9f293cc84f54d2e22835861541d75bbb516a7e40907dd15ed0eb. Live appcast matches the committed signed feed. ClearDisk-QA checks excluded from download metrics. No Google indexing, traffic recovery, reinstall or project build-recovery claim.
+
+Disposition: improved and retained. Next content review October 27: WhatsApp storage; next complete equal-window Search Console review November 1. Publication evidence update is documentation-only; no additional code changes or test reruns required. Unrelated audit edits and .impeccable preserved.
