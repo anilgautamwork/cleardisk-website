@@ -949,3 +949,10 @@ Final full unit suite **58 passed, 0 failed/skipped/cancelled/todo**; lint/typec
 Updated current-version product metadata, download instructions and press fact sheet/ZIP for 2.2.1 (14). Documents pinned Disk scan, Why Slow and Permissions; horizontal status readings; optional menu-bar running apps and completed-scan storage review. Existing licenses, OS-controlled permissions and payment behavior remain unchanged. No new guides or indexing claims. Historical feature announcements remain historical. Claims checked against native implementation.
 
 Full unit suites: 214 native and 58 website tests passed, zero failed/skipped; website lint/typecheck passed. Final production build passed (177 HTML/RSC snapshot pairs), 180 local HTTP checks passed, final 1280/390px layout reviewed. Native app/DMG notarization and signed feed verified; archive SHA-256 ebe7cc41c8fa9f293cc84f54d2e22835861541d75bbb516a7e40907dd15ed0eb (8,529,684 bytes). Native final click-through limits are recorded in app release evidence. Deployment verification pending. Unrelated audit edit and `.impeccable/` preserved.
+
+
+## 2026-10-26 — 2.2.1 published and verified
+
+Published website `990303b`, app tag `v2.2.1` / `9ba9a67`, Worker **4be98f82-8ae6-46c2-921e-f591547ce568**. GitHub release workflow **40308485265 succeeded**; release DMG digest/size match the notarized archive. Live homepage/download/press show 2.2.1. Signed appcast, actual archive checksum, download HEAD and anonymous analytics 401 verified. **180 live HTTP SEO checks passed**; sitemap remains 175 URLs. ClearDisk-QA verification excluded from download metrics; no new installs, Google indexing or recovery claim.
+
+Final validation: **214 app tests and 58 website tests passed, zero failures/skips**, website lint/typecheck/build (177 snapshots), 180 local and 180 live HTTP checks. Final download layout reviewed at 1280/390px. Final native menu click-through and local installed-app update were not exercised after the last refinements; earlier previews and owner screenshots informed the fixes. Unrelated audit edit and `.impeccable/` remain untouched.

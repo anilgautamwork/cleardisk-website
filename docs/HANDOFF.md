@@ -1,3 +1,7 @@
+## Current release — ClearDisk 2.2.1 (14), 26 October 2026
+
+Published app tag `v2.2.1` at `9ba9a67`; website release source `990303b`; Worker `4be98f82-8ae6-46c2-921e-f591547ce568`. Adds pinned Why Slow, Disk scan and Permissions, a horizontal status bar, and menu-bar app/storage review. Existing license and Stripe mode unchanged. Universal signed/notarized archive is `/updates/ClearDisk-2.2.1-14.dmg`, 8,529,684 bytes, SHA-256 `ebe7cc41c8fa9f293cc84f54d2e22835861541d75bbb516a7e40907dd15ed0eb`. GitHub workflow 40308485265 succeeded. See seo/progress.md for web validation. This supersedes current-release claims below; historical guide evidence remains unchanged.
+
 ## Current release — ClearDisk 2.2.0 (13), 24 October 2026
 
 Published on cleardisk.app and the signed update feed; GitHub release v2.2.0 verified. Integrates WhySlow performance tools using existing ClearDisk licensing, with no payment-mode changes. Owner's installed app updated from 2.1.0 through Sparkle and retained its license. Website source 028ea9a; app tag source b95cdf2; Worker c8e02a7e-4007-4cde-ac8f-cedff1fbf2d3. 200 app tests, 58 web tests, 179 live HTTP checks passed. See [release evidence and validation limits](releases-2.2.0.md). This supersedes current-release claims in the historical entries below.
