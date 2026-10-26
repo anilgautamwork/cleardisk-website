@@ -7,7 +7,8 @@ const groups = [
     label: 'Features',
     links: [
       ['All features', '/features'],
-      ['Performance monitor', '/features#performance'],
+      ['Why Slow', '/features#performance'],
+      ['Menu-bar monitor', '/features#menu-bar'],
       ['iCloud Doctor', '/icloud-doctor'],
       ['System Data explained', '/what-is-system-data-on-mac'],
       ['Visual disk analysis', '/disk-space-analyzer-mac'],

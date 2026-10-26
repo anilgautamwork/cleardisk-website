@@ -422,8 +422,26 @@ export const faqTopics: FaqTopic[] = [
       'Short answers about ClearDisk for Mac: what the free scan shows, what the one-time license unlocks, privacy, Full Disk Access, refunds and lost keys.',
     intro:
       'ClearDisk is a Mac app that shows what fills your disk, explains System Data in plain words and moves the files you choose to the Trash. These are the questions people ask before downloading or buying.',
-    updated: '2026-10-24',
+    updated: '2026-10-26',
     questions: [
+      {
+        id: 'menu-bar-monitor',
+        question: 'What does the ClearDisk menu-bar monitor show?',
+        answer:
+          'Enable the optional icon from ClearDisk’s top status bar. It shows CPU load, memory use and pressure, available disk space and up to five running apps sorted by memory or CPU. Readings are free. Quit opens a licensed confirmation in ClearDisk; protected system processes cannot be closed. Monitoring runs while the main window is open or the menu bar is enabled.',
+      },
+      {
+        id: 'menu-storage-review',
+        question: 'Can I review large files and caches from the menu bar?',
+        answer:
+          'Yes, after a completed disk or folder scan. The menu shows up to three files of at least 100 MB, available cache measurements and developer junk, with the scan date and scope. Review opens the findings in ClearDisk. Nothing is deleted from the menu; check what you need before confirming licensed cleanup in the app.',
+      },
+      {
+        id: 'permission-navigation',
+        question: 'Where can I check permissions or return to my disk scan?',
+        answer:
+          'Disk scan, Why Slow and Permissions stay at the top of the sidebar. Permissions shows disk-access help and a folder-scan option. Back returns to the previous workspace, preserving scan progress and results. You control access in macOS; ClearDisk cannot grant itself permissions.',
+      },
       {
         id: 'is-scanning-free',
         question: 'Is scanning really free?',

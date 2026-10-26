@@ -17,6 +17,7 @@ import { Header, Footer, DownloadButton, Mark } from '@/components/brand';
 import { visitorPrice } from '@/lib/visitor-price';
 import { JsonLd } from '@/components/json-ld';
 import { softwareSchema, websiteSchema, SITE_URL } from '@/lib/seo';
+import { MonitorPreview } from '@/components/monitor-preview';
 import { StoragePreview } from '@/components/storage-preview';
 import { PageMotion } from '@/components/motion';
 import { ProductDemo } from '@/components/product-demo';
@@ -111,7 +112,7 @@ export default async function Home() {
                   Storage cleanup <ArrowRight size={14} />
                 </a>
                 <a href="#performance">
-                  Performance <ArrowRight size={14} />
+                  Why Slow <ArrowRight size={14} />
                 </a>
                 <a href="#icloud">
                   iCloud Doctor <ArrowRight size={14} />
@@ -168,21 +169,44 @@ export default async function Home() {
           <div className="section-heading">
             <h2 id="performance-heading">Find what’s keeping your Mac busy.</h2>
             <p>
-              The WhySlow tools are now included in ClearDisk 2.2.1. Check the
-              readings while the slowdown is happening.
+              Open Why Slow to see running apps, CPU activity and memory
+              pressure. It’s built into ClearDisk 2.2.1, alongside disk cleanup.
             </p>
+          </div>
+          <div className="monitor-feature">
+            <div className="monitor-feature-copy">
+              <h3>Your Mac’s readings, one click away.</h3>
+              <p>
+                Enable the menu-bar icon from ClearDisk’s top bar. See CPU load,
+                memory use and available disk space, then sort up to five
+                running apps by memory or CPU. Choose Quit to open a
+                confirmation in ClearDisk; protected system processes stay
+                protected.
+              </p>
+              <p>
+                After a completed disk scan, the menu also shows large files,
+                measured caches and developer junk. Review opens the findings in
+                the app so you can decide what to keep. Nothing is deleted from
+                the menu.
+              </p>
+              <Link className="text-link" href="/features#menu-bar">
+                See how the menu-bar monitor works <ArrowRight size={14} />
+              </Link>
+            </div>
+            <MonitorPreview />
           </div>
           <div className="product-sections">
             <section>
-              <h3>Check before you change anything</h3>
+              <h3>Disk scan, Why Slow and Permissions stay in reach</h3>
               <p>
-                Follow CPU and memory pressure, inspect running apps and
-                background items, or check your internet connection. Usage
-                charts keep local history; the optional menu-bar monitor keeps
-                readings within reach. These diagnostics are free.
+                These shortcuts stay at the top of the sidebar, even before your
+                first scan. The horizontal status bar shows disk space, CPU and
+                memory across the app. Open Permissions for disk-access help or
+                choose a folder to scan; Back returns you to your workspace
+                without losing scan results.
               </p>
               <Link href="/features#performance">
-                Explore the Performance tools
+                Explore Why Slow and the other tools
               </Link>
             </section>
             <section>

@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { Header, Footer, DownloadButton } from '@/components/brand';
+import { MonitorPreview } from '@/components/monitor-preview';
 import { pageMetadata } from '@/lib/seo';
 export const metadata = pageMetadata(
-  'ClearDisk Features: Storage, Performance & Browser Tools',
-  'Explore free Mac storage scans, CPU and memory monitoring, browser review and iCloud diagnostics. See what the one-time ClearDisk license unlocks.',
+  'ClearDisk Features: Why Slow, Menu Bar & Mac Cleanup',
+  'Check CPU, memory and disk space from your menu bar. Explore Why Slow, large-file review, cache cleanup and iCloud tools, with free scans in ClearDisk.',
   '/features',
 );
 export default function Features() {
@@ -23,18 +24,83 @@ export default function Features() {
           unlocks cleanup and guided actions.
         </p>
         <DownloadButton />
+        <nav className="feature-page-shortcuts" aria-label="Feature sections">
+          <a href="#performance">Why Slow</a>
+          <a href="#menu-bar">Menu-bar monitor</a>
+          <a href="#storage-review">Large files and caches</a>
+          <a href="#permissions">Permissions</a>
+        </nav>
         <div className="product-sections">
           <section id="performance">
-            <h2>Performance, now inside ClearDisk</h2>
+            <h2>Why Slow: find the apps keeping your Mac busy</h2>
             <p>
-              ClearDisk 2.2.1 includes the WhySlow tools. Inspect CPU activity,
-              memory pressure, thermal state and running processes. Review
-              background items, follow local usage charts or enable an optional
-              menu-bar monitor. Readings depend on hardware and permissions;
-              they are not a hardware diagnosis or a guaranteed speed boost.
+              Choose Why Slow at the top of the sidebar to open running
+              processes. Sort by CPU or memory, inspect thermal state and
+              background items, and follow local usage charts. You can open
+              these tools before scanning your disk. Readings depend on hardware
+              and permissions; they are not a hardware diagnosis or a guaranteed
+              speed boost.
             </p>
             <Link href="/blog/kernel-task-high-cpu-mac">
               What high kernel_task CPU can mean
+            </Link>
+          </section>
+          <section id="permissions">
+            <h2>Find your way back, and check disk access</h2>
+            <p>
+              Disk scan, Why Slow and Permissions stay above the scrolling
+              workspace list. Open Permissions to check disk access and read the
+              macOS setup steps, or choose a folder instead of a full-disk scan.
+              ClearDisk cannot grant itself macOS permissions.
+            </p>
+            <p>
+              Back returns to the previous workspace. Opening permission help
+              preserves scan progress and results, and storage sections explain
+              why they are unavailable before a scan finishes.
+            </p>
+            <Link href="/faq/cleardisk">Read the permissions questions</Link>
+          </section>
+          <section id="menu-bar" className="feature-menu-detail">
+            <div>
+              <h2>CPU, memory and disk space from your menu bar</h2>
+              <p>
+                Enable the optional icon from the horizontal status bar in
+                ClearDisk. Click it for whole-Mac CPU load, memory used, memory
+                pressure and available disk space. The same readings stay
+                visible across the top of the main window.
+              </p>
+              <p>
+                The menu lists up to five running apps, sorted by memory or CPU.
+                Its Quit buttons open a confirmation in the main app and use
+                your existing license. Save work before quitting; protected
+                system processes cannot be closed through ClearDisk.
+              </p>
+              <p>
+                Monitoring runs while the main window is open or the menu-bar
+                monitor is enabled. Usage history stays local and follows your
+                history setting. The menu shows the last check time; stale or
+                unavailable readings are marked.
+              </p>
+            </div>
+            <MonitorPreview />
+          </section>
+          <section id="storage-review">
+            <h2>Review large files, caches and developer junk</h2>
+            <p>
+              Complete a disk or folder scan to add storage findings to the
+              menu. See up to three large files of at least 100 MB, available
+              cache measurements and developer-junk totals. Review links open
+              the corresponding screen in ClearDisk. Scan date, scope and
+              skipped-file limits help you judge what the results cover.
+            </p>
+            <p>
+              Size alone does not make a file safe to delete. Inspect personal
+              files, backups and app data before choosing cleanup. Removal
+              happens in the app with your confirmation and license, never
+              directly from the menu.
+            </p>
+            <Link href="/find-large-files-on-mac">
+              How to review large files
             </Link>
           </section>
           <section>
@@ -57,8 +123,8 @@ export default function Features() {
               including quitting apps, supported browser tab actions and
               rebuilding Spotlight’s index. Actions ask for confirmation;
               protected system processes cannot be quit through ClearDisk. Force
-              Quit can lose unsaved work. Monitoring does not remove your
-              files. Usage history is stored locally.
+              Quit can lose unsaved work. Monitoring does not remove your files.
+              Usage history is stored locally.
             </p>
             <Link href="/privacy">
               Read about local history and permissions
