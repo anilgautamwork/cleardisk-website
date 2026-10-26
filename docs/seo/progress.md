@@ -978,3 +978,10 @@ Disposition: improved and retained. Next content review October 27: WhatsApp sto
 Owner-requested homepage, Features and ClearDisk FAQ update covers Why Slow, menu-bar CPU/memory/disk readings, confirmed app quit, completed-scan large-file/cache/developer-junk review and Permissions/Back navigation. Static illustration explicitly labels example values. Product claims checked against released 2.2.1 source and notes. Navigation adds direct Why Slow and menu-bar links. No new article or search-performance claim.
 
 Full 58 unit tests passed, zero failures/skips; lint/typecheck/build (177 snapshot pairs), 180 local HTTP checks, final diff and desktop/390px review passed. Existing release, payment and private analytics unchanged. See [feature presentation evidence](2026-10-26-feature-presentation.md). Publication pending.
+
+
+## 2026-10-26 — Feature presentation published
+
+Published source **9ab8a1d** to main and Worker **3490aff3-bd93-47db-957d-21d01a41a331**. Live homepage, /features and /faq/cleardisk return 200 with the new content. Full **180 live HTTP SEO checks passed**, in addition to 58 unit tests (zero failed/skipped/cancelled/todo), lint, typecheck, production build, 180 local HTTP checks and desktop/narrow visual review. Live Features illustration verified visually; viewport override reset after review.
+
+Sitemap remains 175 URLs and /faq/cleardisk has October 26 lastmod. /analytics and /api/analytics remain 401/no-store/noindex anonymously. Current DMG HEAD returns 200; actual versioned 2.2.1 archive remains 8,529,684 bytes with SHA-256 ebe7cc41c8fa9f293cc84f54d2e22835861541d75bbb516a7e40907dd15ed0eb. Signed appcast matches the committed feed. ClearDisk-QA checks and versioned archive GET avoid counted verification downloads. No fresh metrics, indexing or traffic gains claimed. Unrelated local edits preserved.
