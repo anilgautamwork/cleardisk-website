@@ -985,3 +985,10 @@ Full 58 unit tests passed, zero failures/skips; lint/typecheck/build (177 snapsh
 Published source **9ab8a1d** to main and Worker **3490aff3-bd93-47db-957d-21d01a41a331**. Live homepage, /features and /faq/cleardisk return 200 with the new content. Full **180 live HTTP SEO checks passed**, in addition to 58 unit tests (zero failed/skipped/cancelled/todo), lint, typecheck, production build, 180 local HTTP checks and desktop/narrow visual review. Live Features illustration verified visually; viewport override reset after review.
 
 Sitemap remains 175 URLs and /faq/cleardisk has October 26 lastmod. /analytics and /api/analytics remain 401/no-store/noindex anonymously. Current DMG HEAD returns 200; actual versioned 2.2.1 archive remains 8,529,684 bytes with SHA-256 ebe7cc41c8fa9f293cc84f54d2e22835861541d75bbb516a7e40907dd15ed0eb. Signed appcast matches the committed feed. ClearDisk-QA checks and versioned archive GET avoid counted verification downloads. No fresh metrics, indexing or traffic gains claimed. Unrelated local edits preserved.
+
+
+## 2026-10-27 — WhatsApp guide correction prepared
+
+Existing /whatsapp-taking-up-space-on-mac improved from measured priority 6, with official Mac-specific source checks and Humanizer. Deleting messages can sync to other signed-in devices; warning now precedes cleanup. Removed unsupported folder layout, immediate-size-reduction and recovery claims. Read-only fixture checks and explicit limits added. [Evidence and actual aggregate metrics](2026-10-27-whatsapp-storage-review.md).
+
+Final 58 unit tests passed, zero failed/skipped/cancelled/todo; lint/typecheck/build (177 pairs), 180 local HTTP checks, final diff and desktop/390px review passed. No new guide, indexing or recovery claim. Publication pending; release 2.2.1, payments, protected analytics and unrelated local edits preserved. Next content review October 28, GSC November 1.

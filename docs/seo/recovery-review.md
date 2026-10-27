@@ -354,7 +354,7 @@ Complete October 9–15 versus October 16–22 GSC windows: impressions 5,102 �
 | 3 | /homebrew-list-installed-packages | 178 → 1 | 177 | 0 → 0 | Keep October 20 path guards; allow time for recrawl. |
 | 4 | /downloads-folder-missing-mac | 157 → 2 | 155 | 0 → 0 | Improved October 26 in Monday batch: shortcut/file distinction, browser checks and backup limits; publication verification below. |
 | 5 | /reinstall-command-line-tools-mac | 137 → 3 | 134 | 1 → 0 | Improved October 26: receipt/selection limits, compatible updates before conditional removal and read-only verification; publication details below. |
-| 6 | /whatsapp-taking-up-space-on-mac | 133 → 0 | 133 | 2 → 0 | Queued: cache versus personal chat/media data and app-version scope. |
+| 6 | /whatsapp-taking-up-space-on-mac | 133 → 0 | 133 | 2 → 0 | Improved October 27: linked-device deletion scope, backup limits and safe measurement; publication below. |
 | 7 | /mac-swap-memory | 130 → 1 | 129 | 0 → 0 | Queued: avoid deleting swap files; distinguish pressure, disk usage and RAM. |
 | 8 | /private-var-folders-mac | 129 → 4 | 125 | 1 → 0 | Keep October 9 guarded measurements; no blanket folder deletion. |
 | 9 | /uninstall-rosetta-2-mac | 121 → 1 | 120 | 2 → 0 | Queued: supported removal options, security boundaries and Intel-app dependencies. |
@@ -399,3 +399,10 @@ Published source commit **cf928bf5677c2883e3953a65ea1f01185c2cbd04** to main and
 Final validation: **58 unit tests passed, zero failed/skipped/cancelled/todo**, lint/typecheck, production build (177 HTML/RSC pairs), 180 local and 180 live HTTP checks, final diff/failure-path review and desktop/390px visual checks passed. Anonymous /analytics and /api/analytics remain 401/no-store/noindex. Download HEAD returns 200; the actual versioned 2.2.1 archive remains 8,529,684 bytes with SHA-256 ebe7cc41c8fa9f293cc84f54d2e22835861541d75bbb516a7e40907dd15ed0eb. Live appcast matches the committed signed feed. ClearDisk-QA checks excluded from download metrics. No Google indexing, traffic recovery, reinstall or project build-recovery claim.
 
 Disposition: improved and retained. Next content review October 27: WhatsApp storage; next complete equal-window Search Console review November 1. Publication evidence update is documentation-only; no additional code changes or test reruns required. Unrelated audit edits and .impeccable preserved.
+
+
+## October 27 — WhatsApp storage safety review
+
+**Improved and retained** /whatsapp-taking-up-space-on-mac, priority 6: 133 → 0 impressions and 2 → 0 clicks in complete October 9–15 / October 16–22 windows saved October 25. No fresh GSC pull today. Corrected synced deletion scope, unsupported folder/recovery promises and measurement error handling. Used current official Mac help and Humanizer; only disposable measurements tested. [Evidence, sources, metrics and limitations](2026-10-27-whatsapp-storage-review.md).
+
+58 unit tests passed, zero failed/skipped/cancelled/todo; lint/typecheck, build (177 snapshot pairs), 180 final local HTTP checks, desktop/390px and final diff/failure-path review passed. Corrected mobile overflow and regenerated stale intermediate snapshots before publication. No new article, removal or consolidation. Publication pending. Next page October 28: mac-swap-memory. Next complete-window GSC review November 1.

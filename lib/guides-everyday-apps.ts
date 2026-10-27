@@ -299,81 +299,102 @@ export const everydayAppGuides: Guide[] = [
     slug: 'whatsapp-taking-up-space-on-mac',
     title: 'WhatsApp taking up space on Mac: media and storage',
     description:
-      'Where WhatsApp stores chats and media on Mac, how to delete media and stop auto-downloads in the app, and why deleting its folder deletes your chat history.',
+      'Review WhatsApp media on your Mac, check what deletion syncs to linked devices, reduce auto-downloads and measure storage without deleting chat folders.',
     summary:
-      'WhatsApp for Mac keeps its chat database and downloaded media in ~/Library/Group Containers/group.net.whatsapp.WhatsApp.shared. Trim it inside WhatsApp, by deleting media chat by chat and turning off media auto-download, rather than deleting that folder.',
+      'Start inside WhatsApp and save any media you need before deleting it. Message deletion can sync across your signed-in devices, so Delete for me is not a promise of Mac-only removal. Measure local storage separately and leave WhatsApp’s databases and account folders alone.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-10-27',
     sections: [
       {
-        id: 'where-it-lives',
-        title: 'Where WhatsApp stores data on a Mac',
+        id: 'before-deleting',
+        title: 'Save what you need before deleting media',
         paragraphs: [
-          'The current WhatsApp app for Mac keeps most of its data in a Group Container named group.net.whatsapp.WhatsApp.shared. It holds ChatStorage.sqlite, the chat database for this Mac, and a Message folder whose Media subfolder holds photos, videos, voice messages and documents. Those subfolders are named by chat identifiers rather than contact names, which makes Finder a poor tool for choosing what to delete.',
-          'A smaller container, ~/Library/Containers/net.whatsapp.WhatsApp, holds the app’s own files. The commands below only measure. If you still use an older WhatsApp desktop build, its folders may differ.',
+          'Open a photo, video or document you want to keep and save a separate copy to a folder you back up. Open that copy outside WhatsApp to check it. A message still visible on another device is not an independent backup.',
+          'WhatsApp says message deletions, whether for yourself or everyone, sync across online devices where you are signed in. Delete for me leaves recipients’ chats alone, but you should not treat it as a way to remove only the Mac’s downloaded copy. Delete for everyone requests removal from other participants’ chats and is not needed just to tidy your own storage.',
+          'Use the Mac-specific help linked below. The storage controls available on a phone are not evidence that the same controls exist in the Mac app. If your confirmation describes a different effect from the one you intend, cancel it.',
+        ],
+      },
+      {
+        id: 'where-it-lives',
+        title: 'Measure the Mac copy without changing it',
+        paragraphs: [
+          'App data and files you saved elsewhere are separate. Review Downloads or the folder you chose when saving attachments. Removing an unwanted saved copy in Finder does not mean the copy inside WhatsApp has also been removed.',
+          'The command below checks one local app-data folder. That folder exists on our review Mac with WhatsApp 26.41.74 installed, but that does not establish its contents or make it a universal path for every build. Older desktop apps and WhatsApp Web can use different storage locations.',
+          'If that folder exists, the optional command below reports its disk usage without deleting anything. Keep any errors visible. No such file or directory means this path is absent, not that WhatsApp uses no space. Operation not permitted or Permission denied means the measurement is incomplete; do not add sudo or change privacy settings just to force a result.',
         ],
         code: [
           'du -sh "$HOME/Library/Group Containers/group.net.whatsapp.WhatsApp.shared"',
-          'du -sh "$HOME/Library/Group Containers/group.net.whatsapp.WhatsApp.shared/Message"',
+        ],
+        items: [
+          'A size followed by the path is the disk usage du could read; it is not a list of safely removable files.',
+          'A partial result with an error is not a complete total. Finder’s Get Info or a permitted app scan can provide another view, with their own access limits.',
+          'On macOS 27.0.1, we tested du -sh against a disposable folder containing a 1 MiB file: it reported 1.0M and exited with status 0. A missing fixture path produced an error and status 1. We did not inspect private chats or test deletion/recovery in WhatsApp.',
         ],
       },
       {
         id: 'delete-media',
-        title: '1. Delete media from the chats that use the most',
+        title: '1. Review selected media inside WhatsApp',
         paragraphs: [
-          'WhatsApp’s help says its Free up storage feature is not available in the Mac app, so work chat by chat. Open a chat, click its name to open chat info, then click Media, Links, and Docs. Click Select, choose the items, click the trash icon and choose Delete for me. Documents and links are removed the same way from their own tabs.',
-          'There is no single step that deletes all media from a chat. Before you delete, save any photo or document you want to keep to a folder you back up. Busy groups that share video are usually the best place to start.',
+          'WhatsApp’s Mac Help Center currently directs media cleanup through individual chats. Open a chat, click its name, then open Media, Links, and Docs. Choose Select, mark the items you no longer need and click the trash icon. Review the confirmation and choose Delete for me only if you want to remove your copy; cancel if the scope is unclear.',
+          'Start with a small selection after saving anything important. Check the conversation afterward, including on your other signed-in devices. Do not assume every removed attachment can be downloaded again. For documents, use the corresponding tab and check each file before selecting it.',
+          'The separate Free up storage help page marks that feature unavailable on Mac when checked on October 27, 2026. If a newer app offers different storage controls, follow its current Mac help and confirmation text. No bulk deletion or unlinking is necessary for the steps above.',
         ],
       },
       {
         id: 'auto-download',
-        title: '2. Stop media downloading automatically',
+        title: '2. Reduce future automatic downloads',
         paragraphs: [
-          'Click Settings, or your profile picture, then Storage and data. In the Media auto-download section, turn off the types you don’t want saved automatically, such as videos and documents. Media then downloads only when you open it.',
-          'This slows future growth; it does not remove anything already downloaded. WhatsApp also notes that where saved files go is determined by your computer settings, so media you explicitly saved may sit in Downloads rather than in WhatsApp’s container.',
+          'Open Settings or your profile picture, then Storage and data. Under Media auto-download, turn off the offered media types you do not want downloaded automatically. The exact controls can vary by app version.',
+          'This changes future downloading; it does not remove existing attachments or the copies you saved in Finder. Media you choose to download can still add to storage. Recheck the settings if the folder begins growing again.',
         ],
       },
       {
         id: 'keep-the-container',
-        title: '3. Don’t delete the container to save space',
+        title: '3. Keep databases and account folders intact',
         paragraphs: [
-          'Moving group.net.whatsapp.WhatsApp.shared to the Trash removes the chat history stored on this Mac together with the data that links it to your account. You would need to link the Mac again from your phone, and you should not count on every old message and file coming back.',
-          'If a disk scan, including ClearDisk’s, shows this folder near the top, treat it as chat data to review in the app, not as cache. The Group Containers guide linked below explains why these folders need care. To remove WhatsApp from the Mac entirely, follow the uninstall guide instead of deleting folders one by one.',
+          'An app container can hold message databases, media and account state together. Its name or large size does not make the whole folder a disposable cache. Do not move the Group Container, a database such as ChatStorage.sqlite, or an unfamiliar subfolder to the Trash as a storage shortcut.',
+          'A disk scan, including ClearDisk’s, can help locate a large folder. It cannot establish that a WhatsApp message or attachment is backed up elsewhere. Return to WhatsApp to review chat media; use Finder for separate files you knowingly saved.',
+          'If you intend to stop using WhatsApp entirely, follow the uninstall guide and WhatsApp’s account/device instructions. Reinstalling or relinking should not be treated as a guaranteed way to restore everything. These steps are outside a routine media cleanup.',
         ],
       },
       {
         id: 'measure-again',
-        title: '4. Measure again after trimming',
+        title: '4. Check the result before removing more',
         paragraphs: [
-          'Run the measuring commands again once you have worked through the largest chats. The Message folder is where deleted media should show up as a smaller number. If one chat still accounts for most of the space and you no longer need it at all, deleting the whole chat removes its messages as well as its media, so export or save anything important first.',
-          'Storage settings can lag behind the Finder numbers for a while, so wait a few minutes before deciding that something else needs deleting.',
+          'Repeat the same measurement after your selected cleanup, using the same path and access conditions. Note the before and after values. Keep new downloads in mind when comparing results, and check separately for copies saved in Downloads.',
+          'A smaller attachment selection does not guarantee an immediate matching reduction in the container’s disk usage. Other app data remains, and a folder total is not a measurement of just the selected media. An unchanged number is a reason to investigate, not to delete database files or a whole chat.',
+          'If you cannot account for a large total using WhatsApp’s controls, contact WhatsApp support with your app version and the storage figures. Avoid sharing private chat names or attachments in a public screenshot.',
         ],
       },
       {
         id: 'phone-storage',
-        title: 'Your phone has its own storage tools',
+        title: 'Phone storage and deletion scope are different questions',
         paragraphs: [
-          'The Mac app is a linked device with its own local copy of chats and media, so freeing space on the Mac and on your phone are separate jobs. WhatsApp’s Free up storage screen is available in the Android and iPhone apps.',
-          'If both devices are short of space, deal with each one separately: the phone app’s storage screen for the phone, and the chat-by-chat steps above for the Mac.',
+          'Your Mac and phone each use local storage. Check storage on the device that is running out of space; a smaller phone total does not prove the Mac has freed the same amount.',
+          'The phone has its own storage-management tools, but message deletion can still sync between your signed-in devices. Save separate copies of important media before using those tools too. Do not use the presence of another linked device as your recovery plan.',
         ],
       },
     ],
     questions: [
       {
-        q: 'Is there a one-click way to free up storage in WhatsApp on Mac?',
-        a: "No. WhatsApp's Free up storage feature isn't available in the Mac app, only on Android and iPhone. On the Mac you work chat by chat, through each chat's Media, Links and Docs tabs instead.",
+        q: 'Does Delete for me remove media only from my Mac?',
+        a: 'Do not assume so. WhatsApp says message deletions sync across online devices where you are signed in. Delete for me leaves recipients’ chats alone; save a separate copy of media you need before deleting your copy.',
       },
       {
-        q: "What happens if I delete WhatsApp's Group Container folder to save space?",
-        a: "It removes the chat history stored on that Mac along with the data linking it to your account, so you'd need to re-link the Mac from your phone, with no guarantee every message and file comes back.",
+        q: 'Can I delete WhatsApp’s Group Container as a cache?',
+        a: 'Do not treat the whole folder as cache. It can contain message databases and account data alongside media. Review attachments inside WhatsApp and remove only separate Finder copies you understand.',
       },
       {
-        q: 'Does turning off media auto-download in WhatsApp delete files already downloaded?',
-        a: 'No, it only slows future growth by downloading media only when you open it. Anything already saved in the Media folder stays exactly where it is until you delete it yourself.',
+        q: 'Does switching off auto-download remove existing files?',
+        a: 'No. It changes future automatic downloads. Existing app data and files you saved separately remain until you deliberately remove them.',
       },
       {
-        q: "Why are WhatsApp's media folders hard to sort through in Finder?",
-        a: 'Because subfolders are named by chat identifiers rather than contact names, which makes Finder a poor tool for choosing what to delete; removing media inside the app itself is the more reliable route.',
+        q: 'Why does the measuring command report a missing path or permission error?',
+        a: 'A missing path can mean your WhatsApp build stores data elsewhere. A permission error means du could not read everything. Neither result proves there is no stored media or that a displayed total is complete.',
+      },
+      {
+        q: 'Is Manage Storage available in WhatsApp for Mac?',
+        a: 'WhatsApp’s Free up storage help page marks the feature unavailable on Mac when checked on October 27, 2026. Its Mac media-deletion guide uses chat info and Media, Links, and Docs. Follow current Mac-specific help if your app shows different controls.',
       },
     ],
     related: [
@@ -384,16 +405,19 @@ export const everydayAppGuides: Guide[] = [
     ],
     sources: [
       {
-        label: 'WhatsApp Help Center: how to delete media (Mac)',
+        label: 'WhatsApp: delete media, including Mac steps',
         url: 'https://faq.whatsapp.com/372400548572711/?cms_platform=mac-desktop',
       },
       {
-        label: 'WhatsApp Help Center: how to configure auto-download (Mac)',
+        label: 'WhatsApp: message deletion and linked-device scope',
+        url: 'https://faq.whatsapp.com/1370476507114859/?cms_platform=mac-desktop',
+      },
+      {
+        label: 'WhatsApp: configure auto-download on Mac',
         url: 'https://faq.whatsapp.com/366146522333492/?cms_platform=mac-desktop',
       },
       {
-        label:
-          'WhatsApp Help Center: how to free up storage (Mac availability)',
+        label: 'WhatsApp: Free up storage availability on Mac',
         url: 'https://faq.whatsapp.com/5503646096388294/?cms_platform=mac-desktop',
       },
     ],
