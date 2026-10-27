@@ -406,3 +406,12 @@ Disposition: improved and retained. Next content review October 27: WhatsApp sto
 **Improved and retained** /whatsapp-taking-up-space-on-mac, priority 6: 133 → 0 impressions and 2 → 0 clicks in complete October 9–15 / October 16–22 windows saved October 25. No fresh GSC pull today. Corrected synced deletion scope, unsupported folder/recovery promises and measurement error handling. Used current official Mac help and Humanizer; only disposable measurements tested. [Evidence, sources, metrics and limitations](2026-10-27-whatsapp-storage-review.md).
 
 58 unit tests passed, zero failed/skipped/cancelled/todo; lint/typecheck, build (177 snapshot pairs), 180 final local HTTP checks, desktop/390px and final diff/failure-path review passed. Corrected mobile overflow and regenerated stale intermediate snapshots before publication. No new article, removal or consolidation. Publication pending. Next page October 28: mac-swap-memory. Next complete-window GSC review November 1.
+
+
+## October 27 publication verified
+
+Published source **18c2a1f94afac286d1458aabb7eed2fdf20e2b5b** to main and Worker **65df2bae-857b-42ef-b4be-015098c90e82**. Changed guide returns 200 with final wording and October 27 date, confirmed by HTTP and browser. Sitemap retains 175 URLs and the guide’s lastmod is 2026-10-27. All **180 live HTTP SEO checks passed** on the complete retry; the initial run terminated with ECONNRESET before completion and is not counted as a pass.
+
+Final validation: **58 unit tests passed, zero failed/skipped/cancelled/todo**, lint/typecheck, clean production build (177 HTML/RSC pairs), 180 local and 180 live HTTP checks, desktop/390px review and final diff/failure-path review. Anonymous /analytics and /api/analytics remain 401/no-store/noindex. Download HEAD returns 200; actual versioned 2.2.1 archive remains 8,529,684 bytes, SHA-256 ebe7cc41c8fa9f293cc84f54d2e22835861541d75bbb516a7e40907dd15ed0eb; signed appcast matches the committed feed. QA checks and versioned archive GET avoid counted verification downloads. No indexing or traffic-recovery result claimed.
+
+Disposition: improved and retained. Next page October 28: mac-swap-memory; next complete-window Search Console review November 1. Browser viewport reset and temporary tabs/preview closed. Unrelated audit edits and .impeccable preserved. This publication log is documentation-only.

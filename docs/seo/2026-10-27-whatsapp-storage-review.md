@@ -37,3 +37,12 @@ Baseline main **6b1a544**, synchronized with origin; baseline Worker **3490aff3-
 Full unit suite **58 passed, zero failed/skipped/cancelled/todo**, lint and typecheck passed after the final copy change. Production build generated **177 HTML/RSC pairs**; **180 final local HTTP SEO checks passed**. Final diff reviewed for deletion scope, missing paths, incomplete permissions, backup and recovery claims. Desktop 1280px and narrow 390px reviewed. Mobile check found a long inline path overflowing; replaced it with a reference to the existing horizontally scrollable command. Final mobile document width is 390px at 390px viewport.
 
 An intermediate rebuild while the old preview occupied the snapshot port captured stale HTML; it was not deployed. Stopped the preview, rebuilt cleanly, confirmed final text in the generated HTML and RSC output, and reran the complete HTTP suite against port 3115. Use a separate review port for future runs. Publication pending. Next content review October 28: priority 7 `/mac-swap-memory`; next complete equal-window GSC review November 1. No recovery guarantee or indexing submission.
+
+
+## October 27 publication verified
+
+Published source **18c2a1f94afac286d1458aabb7eed2fdf20e2b5b** to main and Worker **65df2bae-857b-42ef-b4be-015098c90e82**. Changed guide returns 200 with final wording and October 27 date, confirmed by HTTP and browser. Sitemap retains 175 URLs and the guide’s lastmod is 2026-10-27. All **180 live HTTP SEO checks passed** on the complete retry; the initial run terminated with ECONNRESET before completion and is not counted as a pass.
+
+Final validation: **58 unit tests passed, zero failed/skipped/cancelled/todo**, lint/typecheck, clean production build (177 HTML/RSC pairs), 180 local and 180 live HTTP checks, desktop/390px review and final diff/failure-path review. Anonymous /analytics and /api/analytics remain 401/no-store/noindex. Download HEAD returns 200; actual versioned 2.2.1 archive remains 8,529,684 bytes, SHA-256 ebe7cc41c8fa9f293cc84f54d2e22835861541d75bbb516a7e40907dd15ed0eb; signed appcast matches the committed feed. QA checks and versioned archive GET avoid counted verification downloads. No indexing or traffic-recovery result claimed.
+
+Disposition: improved and retained. Next page October 28: mac-swap-memory; next complete-window Search Console review November 1. Browser viewport reset and temporary tabs/preview closed. Unrelated audit edits and .impeccable preserved. This publication log is documentation-only.
