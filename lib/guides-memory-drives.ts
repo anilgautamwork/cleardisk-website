@@ -41,18 +41,18 @@ export const memoryDriveGuides: Guide[] = [
     slug: 'mac-swap-memory',
     title: 'Mac swap memory: what Swap Used means and when to act',
     description:
-      'What Swap Used means in Activity Monitor on Mac, where macOS keeps its swap files, how to check them in Terminal, and when high swap is worth acting on.',
+      'Check Swap Used and Memory Pressure on Mac, compare readings after closing an app, and understand Terminal output without deleting system-managed swap files.',
     summary:
-      'Swap is disk space macOS uses when RAM is under pressure. Some swap is normal; Memory Pressure is the figure that matters. If it stays yellow or red, reduce what is running, and make sure the startup disk has room for swap.',
+      'Swap Used measures startup-disk space used for virtual memory. Check it alongside Memory Pressure and the slowdown you are experiencing. Save your work, close an app you no longer need, then compare. Leave swap files under macOS control.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-10-28',
     sections: [
       {
         id: 'what-swap-is',
         title: 'What swap is',
         paragraphs: [
-          'Your Mac keeps active work in RAM. When apps ask for more memory than is free, macOS first compresses memory that hasn’t been used recently, then moves some of it to swap files on the startup disk. Reading data back from disk is slower than reading it from RAM, which is why heavy swapping can make a Mac feel sluggish.',
-          'A Swap Used figure above zero is not a fault. macOS can leave data in swap long after the pressure that put it there has passed, so a number that looks large on its own tells you little. Apple’s Activity Monitor guide describes Swap Used simply as the space being used on your startup disk to swap unused files to and from RAM.',
+          'macOS uses RAM, memory compression and disk-backed virtual memory to support your apps. Activity Monitor’s Swap Used is storage on the startup disk used to move data to and from RAM. It is different from installed RAM and from the Memory figure beside an individual process.',
+          'A nonzero reading alone does not diagnose a fault or tell you which app to close. There is no single Swap Used target in Apple’s guidance that applies to every Mac and workload. Start with the Memory Pressure graph and whether ordinary work is responding normally.',
         ],
       },
       {
@@ -60,7 +60,7 @@ export const memoryDriveGuides: Guide[] = [
         title: 'Read the Memory tab in Activity Monitor',
         paragraphs: [
           'Open Activity Monitor from Applications → Utilities and click Memory. The panel at the bottom of the window shows Memory Pressure as a graph, along with Physical Memory, Memory Used, Cached Files and Swap Used, plus a breakdown of the memory in use.',
-          'Memory Pressure is the figure to watch. Apple says it reflects free memory, swap rate, wired memory and file cached memory together. Green means RAM is being used efficiently, yellow means the Mac might eventually need more RAM, and red means it needs more. Brief yellow during a heavy task is different from a graph that stays high all day.',
+          'Apple describes green as efficient memory use, yellow as a possible need for more RAM and red as a need for more RAM. Watch the graph during the task that feels slow. One brief change is less useful than a pattern you can reproduce.',
         ],
         items: [
           'App Memory: memory being used by apps.',
@@ -73,36 +73,52 @@ export const memoryDriveGuides: Guide[] = [
         id: 'where-swap-lives',
         title: 'Where the swap files live',
         paragraphs: [
-          'On recent macOS releases, swap files sit on a separate APFS volume named VM, mounted at /System/Volumes/VM. Older articles point to /private/var/vm. The VM volume shares free space with the other volumes in the startup disk’s container, so it doesn’t need a fixed-size partition of its own.',
-          'You can look without changing anything. The first command below prints total, used and free swap; the second lists the swap files and their sizes. Don’t delete, move or edit these files: macOS creates and removes them as needed, and they are in use while the Mac is running.',
+          'On our macOS 27.0.1 check, the VM volume was mounted at /System/Volumes/VM. Treat this as an observed location, not a promise that every macOS version has the same layout. You do not need to open it to use Activity Monitor.',
+          'These optional commands only read information: sysctl reports swap allocation and usage; ls lists visible directory entries and sizes. Keep errors visible. A missing path or a permission error is not a zero measurement. Use Activity Monitor if access is unavailable; do not add sudo or expand privacy permissions for this check.',
         ],
         code: ['sysctl vm.swapusage', 'ls -lh /System/Volumes/VM'],
+        items: [
+          'total, used and free describe swap, not installed RAM or the disk’s remaining free space. Read the units printed beside the values.',
+          'A directory listing is not the same measurement as Swap Used. An empty listing alone does not establish that swapping is disabled.',
+          'Our October 28, 2026 read-only check returned total = 0.00M, used = 0.00M and free = 0.00M, followed by (encrypted). The directory listing returned total 0. Both commands exited successfully. This is one observation, not a recommended target; no memory load or cleanup experiment was performed.',
+          'Leave swap files and the VM volume alone. Do not delete them, move them, disable swap or use a memory stress command to test this guide.',
+        ],
       },
       {
         id: 'low-disk-space',
         title: 'Why low disk space matters for swap',
         paragraphs: [
-          'Swap lives on the startup disk, so it competes with your files for free space. When the disk is nearly full, macOS has less room to grow swap during a heavy task. That is one path to the “Your system has run out of application memory” alert, and one reason Apple lists both low free space and memory demand among the causes of a slow Mac.',
-          'Freeing storage gives swap room; it doesn’t add RAM. Disk cleanup tools, ClearDisk included, change how much storage is free, not how much memory your apps use. If Memory Pressure is red while the disk has plenty of space, the answer lies in what you run, not in what you store.',
+          'Apple lists limited startup-disk space and apps needing more memory as separate possible causes of slow performance. Check Apple menu → System Settings → General → Storage as well as the Memory tab. Review your own unneeded files if storage is running out; system-managed swap files are not cleanup candidates.',
+          'Freeing disk space does not add RAM or establish that a memory problem is fixed. A ClearDisk storage scan can help you find files to review, but it does not make a swap file safe to remove. Recheck the workload after any change instead of assuming more free storage resolved it.',
         ],
       },
       {
         id: 'reduce-pressure',
         title: 'Bring memory pressure down',
         paragraphs: [
-          'In the Memory tab, sort by the Memory column to see which processes hold the most. Quit apps you aren’t using, close browser windows and tabs you don’t need, and save your work before quitting anything large. If one app’s memory keeps climbing while it sits idle, quit and reopen it, check for an update, and report it to the developer.',
+          'In Activity Monitor, choose View → All Processes, then Memory and sort the Memory column from largest to smallest. A large process is a candidate to investigate, not an instruction to kill it. Recognize the app and save its work first. Avoid quitting unfamiliar system processes or helpers used by other apps.',
+          'Close an unused app with Command-Q or its own Quit menu. If using Activity Monitor’s Stop button, choose Quit first. Reserve Force Quit for an unresponsive app: it stops immediately and can lose unsaved work or disrupt other apps that depend on the process.',
           'If pressure stays red during work you do every day, the Mac may have less memory than the workload needs. Apple’s guide explains how to check: hold Option, choose Apple menu → System Information, and click Memory under Hardware. If no Memory Slots section appears, the memory can’t be upgraded, and the realistic options are running fewer heavy apps at once or choosing more memory next time.',
+        ],
+      },
+      {
+        id: 'compare-after-quitting',
+        title: 'Compare the same task after closing one app',
+        paragraphs: [
+          'Before changing anything, note Memory Pressure, Swap Used, the app you suspect and what feels slow. Close one unneeded app normally, then allow several Activity Monitor refreshes and try the same task again. Changing one thing makes the comparison easier to interpret.',
+          'If pressure eases and the task responds better, that is useful evidence that reducing the workload helped. Do not require Swap Used to reach zero before accepting an improvement. If the Mac stays slow with green pressure, check CPU activity and the app’s own troubleshooting guidance rather than continuing to clear memory.',
+          'If the same app repeatedly grows in memory during ordinary use, record its version and the steps that trigger it, then contact its developer. Remove document names and other private details from screenshots. This comparison can narrow the problem; it does not prove a memory leak or a hardware fault.',
         ],
       },
     ],
     questions: [
       {
         q: 'Does a high Swap Used number mean something is wrong with my Mac?',
-        a: 'Not by itself. macOS can leave data in swap long after the pressure that put it there has passed, so a large Swap Used figure on its own tells you little. Memory Pressure is the figure that actually matters, not Swap Used.',
+        a: 'Not by itself. Compare Memory Pressure and responsiveness during the same task. A single swap total does not identify a faulty app, a memory leak or a need to replace the Mac.',
       },
       {
         q: 'What do the colors in the Memory Pressure graph mean?',
-        a: 'Green means RAM is being used efficiently, yellow means the Mac might eventually need more RAM, and red means it needs more right now. Brief yellow during a heavy task is different from a graph that stays high all day.',
+        a: 'Apple describes green as efficient memory use, yellow as a possible need for more RAM and red as a need for more RAM. Check whether the pattern persists during the work you need to do.',
       },
       {
         q: 'Can I delete or move swap files to free up disk space?',
@@ -120,7 +136,15 @@ export const memoryDriveGuides: Guide[] = [
       'apfs-container-vs-volume',
       'mac-storage-full',
     ],
-    sources: [memoryUsage, needsRam, runsSlowly],
+    sources: [
+      memoryUsage,
+      needsRam,
+      runsSlowly,
+      {
+        label: 'Apple: quit an app or process in Activity Monitor',
+        url: 'https://support.apple.com/guide/activity-monitor/quit-a-process-actmntr1002/mac',
+      },
+    ],
   },
   {
     slug: 'mac-out-of-application-memory',

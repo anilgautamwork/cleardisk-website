@@ -1001,3 +1001,10 @@ Published source **18c2a1f94afac286d1458aabb7eed2fdf20e2b5b** to main and Worker
 Final validation: **58 unit tests passed, zero failed/skipped/cancelled/todo**, lint/typecheck, clean production build (177 HTML/RSC pairs), 180 local and 180 live HTTP checks, desktop/390px review and final diff/failure-path review. Anonymous /analytics and /api/analytics remain 401/no-store/noindex. Download HEAD returns 200; actual versioned 2.2.1 archive remains 8,529,684 bytes, SHA-256 ebe7cc41c8fa9f293cc84f54d2e22835861541d75bbb516a7e40907dd15ed0eb; signed appcast matches the committed feed. QA checks and versioned archive GET avoid counted verification downloads. No indexing or traffic-recovery result claimed.
 
 Disposition: improved and retained. Next page October 28: mac-swap-memory; next complete-window Search Console review November 1. Browser viewport reset and temporary tabs/preview closed. Unrelated audit edits and .impeccable preserved. This publication log is documentation-only.
+
+
+## October 28 — swap-memory review
+
+**Improved and retained** /mac-swap-memory, priority 7 from October 25 authenticated evidence: complete October 9–15 / October 16–22 windows, 130 → 1 impressions, zero clicks both. No fresh GSC pull. Added safe quitting, command-error interpretation and actual read-only output with limits; a repeatable comparison replaces broad diagnosis. Humanizer applied, current Apple sources checked. [Evidence, validation and actual aggregate metrics](2026-10-28-swap-memory-review.md).
+
+58 unit tests passed, zero failed/skipped/cancelled/todo; lint/typecheck/build (177 pairs), 180 local HTTP checks, final diff/failure-path and desktop/390px review passed. Publication pending. No new guide or removal. Next page October 29: uninstall-rosetta-2-mac; private-var-folders keeps earlier corrections. Weekly complete-window GSC review November 1.
