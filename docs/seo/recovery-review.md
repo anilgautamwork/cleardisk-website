@@ -422,3 +422,12 @@ Disposition: improved and retained. Next page October 28: mac-swap-memory; next 
 **Improved and retained** /mac-swap-memory, priority 7 from October 25 authenticated evidence: complete October 9–15 / October 16–22 windows, 130 → 1 impressions, zero clicks both. No fresh GSC pull. Added safe quitting, command-error interpretation and actual read-only output with limits; a repeatable comparison replaces broad diagnosis. Humanizer applied, current Apple sources checked. [Evidence, validation and actual aggregate metrics](2026-10-28-swap-memory-review.md).
 
 58 unit tests passed, zero failed/skipped/cancelled/todo; lint/typecheck/build (177 pairs), 180 local HTTP checks, final diff/failure-path and desktop/390px review passed. Publication pending. No new guide or removal. Next page October 29: uninstall-rosetta-2-mac; private-var-folders keeps earlier corrections. Weekly complete-window GSC review November 1.
+
+
+## October 28 publication verified
+
+Source **6ff094059a8835965747714fc8c86f4e5e730822** published to main and Worker **2b60a544-d893-4b3e-87d1-dce6bb55dfa2**. /mac-swap-memory returns 200 with the final comparison steps and date, confirmed by HTTP and live browser. Sitemap retains 175 URLs; guide lastmod is 2026-10-28. **180 live HTTP SEO checks passed**.
+
+Final checks: **58 unit tests passed, zero failed/skipped/cancelled/todo**, lint/typecheck/build (177 pairs), 180 local and 180 live HTTP checks, final diff/failure paths and desktop/390px review. /analytics and /api/analytics still reject anonymous access with 401/no-store/noindex. Download HEAD 200; versioned 2.2.1 archive remains 8,529,684 bytes, SHA-256 ebe7cc41c8fa9f293cc84f54d2e22835861541d75bbb516a7e40907dd15ed0eb. Signed appcast matches source. QA and versioned-archive verification excluded from download counters. No fresh Google indexing or recovery claim.
+
+Guide improved/retained. Next editorial review October 29: uninstall-rosetta-2-mac; weekly GSC review November 1. Preview stopped, temporary browser tab closed and viewport reset. Unrelated edits preserved. This evidence update is documentation-only.

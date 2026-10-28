@@ -31,3 +31,12 @@ Full `npm test`: **58 passed, zero failed/skipped/cancelled/todo**. Lint and typ
 ## Aggregate metrics
 
 Authenticated observation **2026-10-28T10:03:32.272Z**. Rolling September 29–October 28 (current day partial): **401 arrival events, 29 download requests, 19 finished-transfer events, 6 checkout events**. Complete October 21–27 totals: **76 / 6 / 5 / 1** respectively. Separately **4 all-time license records** and **2 GitHub asset downloads**. Counters do not establish unique people, installs, organic conversions or confirmed sales. Credentials remained private. Verification uses ClearDisk-QA and HEAD/versioned archive paths to avoid counted test downloads.
+
+
+## October 28 publication verified
+
+Source **6ff094059a8835965747714fc8c86f4e5e730822** published to main and Worker **2b60a544-d893-4b3e-87d1-dce6bb55dfa2**. /mac-swap-memory returns 200 with the final comparison steps and date, confirmed by HTTP and live browser. Sitemap retains 175 URLs; guide lastmod is 2026-10-28. **180 live HTTP SEO checks passed**.
+
+Final checks: **58 unit tests passed, zero failed/skipped/cancelled/todo**, lint/typecheck/build (177 pairs), 180 local and 180 live HTTP checks, final diff/failure paths and desktop/390px review. /analytics and /api/analytics still reject anonymous access with 401/no-store/noindex. Download HEAD 200; versioned 2.2.1 archive remains 8,529,684 bytes, SHA-256 ebe7cc41c8fa9f293cc84f54d2e22835861541d75bbb516a7e40907dd15ed0eb. Signed appcast matches source. QA and versioned-archive verification excluded from download counters. No fresh Google indexing or recovery claim.
+
+Guide improved/retained. Next editorial review October 29: uninstall-rosetta-2-mac; weekly GSC review November 1. Preview stopped, temporary browser tab closed and viewport reset. Unrelated edits preserved. This evidence update is documentation-only.
