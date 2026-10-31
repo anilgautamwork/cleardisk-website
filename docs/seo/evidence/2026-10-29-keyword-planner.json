@@ -1,0 +1,1082 @@
+{
+  "at": "2026-10-28T21:33:01.219Z",
+  "source": "Google Ads API",
+  "country": "us",
+  "language": "English",
+  "network": "Google Search",
+  "mode": "metrics",
+  "notes": "Recovered from Query Mine cache. Google Keyword Planner averages, Oct 2025\u2013Sep 2026. Close variants may overlap. Advertiser competition is not SEO difficulty. Null means unavailable.",
+  "rows": [
+    {
+      "keyword": "mac running slow",
+      "groupTerm": "mac running slow",
+      "closeVariants": [],
+      "volume": 1300,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 1300
+        },
+        {
+          "month": "2025-11",
+          "searches": 1300
+        },
+        {
+          "month": "2025-12",
+          "searches": 1300
+        },
+        {
+          "month": "2026-01",
+          "searches": 1300
+        },
+        {
+          "month": "2026-02",
+          "searches": 1300
+        },
+        {
+          "month": "2026-03",
+          "searches": 1300
+        },
+        {
+          "month": "2026-04",
+          "searches": 1300
+        },
+        {
+          "month": "2026-05",
+          "searches": 1300
+        },
+        {
+          "month": "2026-06",
+          "searches": 1000
+        },
+        {
+          "month": "2026-07",
+          "searches": 1000
+        },
+        {
+          "month": "2026-08",
+          "searches": 1300
+        },
+        {
+          "month": "2026-09",
+          "searches": 1300
+        }
+      ]
+    },
+    {
+      "keyword": "why is my mac so slow",
+      "groupTerm": "why is my mac so slow",
+      "closeVariants": [],
+      "volume": 5400,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 6600
+        },
+        {
+          "month": "2025-11",
+          "searches": 5400
+        },
+        {
+          "month": "2025-12",
+          "searches": 4400
+        },
+        {
+          "month": "2026-01",
+          "searches": 5400
+        },
+        {
+          "month": "2026-02",
+          "searches": 5400
+        },
+        {
+          "month": "2026-03",
+          "searches": 5400
+        },
+        {
+          "month": "2026-04",
+          "searches": 5400
+        },
+        {
+          "month": "2026-05",
+          "searches": 4400
+        },
+        {
+          "month": "2026-06",
+          "searches": 4400
+        },
+        {
+          "month": "2026-07",
+          "searches": 4400
+        },
+        {
+          "month": "2026-08",
+          "searches": 5400
+        },
+        {
+          "month": "2026-09",
+          "searches": 6600
+        }
+      ]
+    },
+    {
+      "keyword": "mac cleaner",
+      "groupTerm": "mac cleaner",
+      "closeVariants": [],
+      "volume": 1900,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 1900
+        },
+        {
+          "month": "2025-11",
+          "searches": 1600
+        },
+        {
+          "month": "2025-12",
+          "searches": 1600
+        },
+        {
+          "month": "2026-01",
+          "searches": 1900
+        },
+        {
+          "month": "2026-02",
+          "searches": 1600
+        },
+        {
+          "month": "2026-03",
+          "searches": 3600
+        },
+        {
+          "month": "2026-04",
+          "searches": 2400
+        },
+        {
+          "month": "2026-05",
+          "searches": 1600
+        },
+        {
+          "month": "2026-06",
+          "searches": 1600
+        },
+        {
+          "month": "2026-07",
+          "searches": 1300
+        },
+        {
+          "month": "2026-08",
+          "searches": 1600
+        },
+        {
+          "month": "2026-09",
+          "searches": 1600
+        }
+      ]
+    },
+    {
+      "keyword": "best free mac cleaner",
+      "groupTerm": "best free mac cleaner",
+      "closeVariants": [],
+      "volume": 320,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 260
+        },
+        {
+          "month": "2025-11",
+          "searches": 260
+        },
+        {
+          "month": "2025-12",
+          "searches": 260
+        },
+        {
+          "month": "2026-01",
+          "searches": 260
+        },
+        {
+          "month": "2026-02",
+          "searches": 320
+        },
+        {
+          "month": "2026-03",
+          "searches": 320
+        },
+        {
+          "month": "2026-04",
+          "searches": 480
+        },
+        {
+          "month": "2026-05",
+          "searches": 320
+        },
+        {
+          "month": "2026-06",
+          "searches": 480
+        },
+        {
+          "month": "2026-07",
+          "searches": 260
+        },
+        {
+          "month": "2026-08",
+          "searches": 260
+        },
+        {
+          "month": "2026-09",
+          "searches": 260
+        }
+      ]
+    },
+    {
+      "keyword": "clear system data on mac",
+      "groupTerm": "clear system data on mac",
+      "closeVariants": [],
+      "volume": 390,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 320
+        },
+        {
+          "month": "2025-11",
+          "searches": 320
+        },
+        {
+          "month": "2025-12",
+          "searches": 390
+        },
+        {
+          "month": "2026-01",
+          "searches": 390
+        },
+        {
+          "month": "2026-02",
+          "searches": 390
+        },
+        {
+          "month": "2026-03",
+          "searches": 390
+        },
+        {
+          "month": "2026-04",
+          "searches": 390
+        },
+        {
+          "month": "2026-05",
+          "searches": 320
+        },
+        {
+          "month": "2026-06",
+          "searches": 390
+        },
+        {
+          "month": "2026-07",
+          "searches": 320
+        },
+        {
+          "month": "2026-08",
+          "searches": 390
+        },
+        {
+          "month": "2026-09",
+          "searches": 390
+        }
+      ]
+    },
+    {
+      "keyword": "how to clear cache on mac",
+      "groupTerm": "how to clear cache on mac",
+      "closeVariants": [],
+      "volume": 22200,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 22200
+        },
+        {
+          "month": "2025-11",
+          "searches": 22200
+        },
+        {
+          "month": "2025-12",
+          "searches": 18100
+        },
+        {
+          "month": "2026-01",
+          "searches": 33100
+        },
+        {
+          "month": "2026-02",
+          "searches": 22200
+        },
+        {
+          "month": "2026-03",
+          "searches": 27100
+        },
+        {
+          "month": "2026-04",
+          "searches": 22200
+        },
+        {
+          "month": "2026-05",
+          "searches": 18100
+        },
+        {
+          "month": "2026-06",
+          "searches": 18100
+        },
+        {
+          "month": "2026-07",
+          "searches": 18100
+        },
+        {
+          "month": "2026-08",
+          "searches": 18100
+        },
+        {
+          "month": "2026-09",
+          "searches": 22200
+        }
+      ]
+    },
+    {
+      "keyword": "free up space on mac",
+      "groupTerm": "free up space on mac",
+      "closeVariants": [],
+      "volume": 1000,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 880
+        },
+        {
+          "month": "2025-11",
+          "searches": 1000
+        },
+        {
+          "month": "2025-12",
+          "searches": 880
+        },
+        {
+          "month": "2026-01",
+          "searches": 1300
+        },
+        {
+          "month": "2026-02",
+          "searches": 1300
+        },
+        {
+          "month": "2026-03",
+          "searches": 1300
+        },
+        {
+          "month": "2026-04",
+          "searches": 1300
+        },
+        {
+          "month": "2026-05",
+          "searches": 1300
+        },
+        {
+          "month": "2026-06",
+          "searches": 1000
+        },
+        {
+          "month": "2026-07",
+          "searches": 1000
+        },
+        {
+          "month": "2026-08",
+          "searches": 1300
+        },
+        {
+          "month": "2026-09",
+          "searches": 1600
+        }
+      ]
+    },
+    {
+      "keyword": "disk space analyzer mac",
+      "groupTerm": "disk space analyzer mac",
+      "closeVariants": [],
+      "volume": 880,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 880
+        },
+        {
+          "month": "2025-11",
+          "searches": 480
+        },
+        {
+          "month": "2025-12",
+          "searches": 880
+        },
+        {
+          "month": "2026-01",
+          "searches": 1000
+        },
+        {
+          "month": "2026-02",
+          "searches": 880
+        },
+        {
+          "month": "2026-03",
+          "searches": 720
+        },
+        {
+          "month": "2026-04",
+          "searches": 1000
+        },
+        {
+          "month": "2026-05",
+          "searches": 1300
+        },
+        {
+          "month": "2026-06",
+          "searches": 1000
+        },
+        {
+          "month": "2026-07",
+          "searches": 1000
+        },
+        {
+          "month": "2026-08",
+          "searches": 590
+        },
+        {
+          "month": "2026-09",
+          "searches": 320
+        }
+      ]
+    },
+    {
+      "keyword": "mac memory pressure",
+      "groupTerm": "mac memory pressure",
+      "closeVariants": [],
+      "volume": 140,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 140
+        },
+        {
+          "month": "2025-11",
+          "searches": 170
+        },
+        {
+          "month": "2025-12",
+          "searches": 140
+        },
+        {
+          "month": "2026-01",
+          "searches": 140
+        },
+        {
+          "month": "2026-02",
+          "searches": 110
+        },
+        {
+          "month": "2026-03",
+          "searches": 260
+        },
+        {
+          "month": "2026-04",
+          "searches": 210
+        },
+        {
+          "month": "2026-05",
+          "searches": 140
+        },
+        {
+          "month": "2026-06",
+          "searches": 110
+        },
+        {
+          "month": "2026-07",
+          "searches": 110
+        },
+        {
+          "month": "2026-08",
+          "searches": 110
+        },
+        {
+          "month": "2026-09",
+          "searches": 140
+        }
+      ]
+    },
+    {
+      "keyword": "windowserver high cpu",
+      "groupTerm": "windowserver high cpu",
+      "closeVariants": [],
+      "volume": 40,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 40
+        },
+        {
+          "month": "2025-11",
+          "searches": 30
+        },
+        {
+          "month": "2025-12",
+          "searches": 40
+        },
+        {
+          "month": "2026-01",
+          "searches": 40
+        },
+        {
+          "month": "2026-02",
+          "searches": 50
+        },
+        {
+          "month": "2026-03",
+          "searches": 40
+        },
+        {
+          "month": "2026-04",
+          "searches": 40
+        },
+        {
+          "month": "2026-05",
+          "searches": 40
+        },
+        {
+          "month": "2026-06",
+          "searches": 40
+        },
+        {
+          "month": "2026-07",
+          "searches": 50
+        },
+        {
+          "month": "2026-08",
+          "searches": 50
+        },
+        {
+          "month": "2026-09",
+          "searches": 50
+        }
+      ]
+    },
+    {
+      "keyword": "kernel task high cpu",
+      "groupTerm": "kernel task high cpu",
+      "closeVariants": [],
+      "volume": 10,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 20
+        },
+        {
+          "month": "2025-11",
+          "searches": 10
+        },
+        {
+          "month": "2025-12",
+          "searches": 20
+        },
+        {
+          "month": "2026-01",
+          "searches": 20
+        },
+        {
+          "month": "2026-02",
+          "searches": 10
+        },
+        {
+          "month": "2026-03",
+          "searches": 10
+        },
+        {
+          "month": "2026-04",
+          "searches": 10
+        },
+        {
+          "month": "2026-05",
+          "searches": 10
+        },
+        {
+          "month": "2026-06",
+          "searches": 10
+        },
+        {
+          "month": "2026-07",
+          "searches": 10
+        },
+        {
+          "month": "2026-08",
+          "searches": 10
+        },
+        {
+          "month": "2026-09",
+          "searches": 10
+        }
+      ]
+    },
+    {
+      "keyword": "mac swap memory",
+      "groupTerm": "mac swap memory",
+      "closeVariants": [],
+      "volume": 70,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 50
+        },
+        {
+          "month": "2025-11",
+          "searches": 50
+        },
+        {
+          "month": "2025-12",
+          "searches": 50
+        },
+        {
+          "month": "2026-01",
+          "searches": 50
+        },
+        {
+          "month": "2026-02",
+          "searches": 50
+        },
+        {
+          "month": "2026-03",
+          "searches": 140
+        },
+        {
+          "month": "2026-04",
+          "searches": 90
+        },
+        {
+          "month": "2026-05",
+          "searches": 50
+        },
+        {
+          "month": "2026-06",
+          "searches": 50
+        },
+        {
+          "month": "2026-07",
+          "searches": 50
+        },
+        {
+          "month": "2026-08",
+          "searches": 50
+        },
+        {
+          "month": "2026-09",
+          "searches": 50
+        }
+      ]
+    },
+    {
+      "keyword": "apple intelligence storage",
+      "groupTerm": "apple intelligence storage",
+      "closeVariants": [],
+      "volume": 40,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 20
+        },
+        {
+          "month": "2025-11",
+          "searches": 30
+        },
+        {
+          "month": "2025-12",
+          "searches": 30
+        },
+        {
+          "month": "2026-01",
+          "searches": 30
+        },
+        {
+          "month": "2026-02",
+          "searches": 20
+        },
+        {
+          "month": "2026-03",
+          "searches": 20
+        },
+        {
+          "month": "2026-04",
+          "searches": 40
+        },
+        {
+          "month": "2026-05",
+          "searches": 30
+        },
+        {
+          "month": "2026-06",
+          "searches": 50
+        },
+        {
+          "month": "2026-07",
+          "searches": 40
+        },
+        {
+          "month": "2026-08",
+          "searches": 70
+        },
+        {
+          "month": "2026-09",
+          "searches": 140
+        }
+      ]
+    },
+    {
+      "keyword": "find intel apps on mac",
+      "groupTerm": "find intel apps on mac",
+      "closeVariants": [],
+      "volume": 10,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 0
+        },
+        {
+          "month": "2025-11",
+          "searches": 0
+        },
+        {
+          "month": "2025-12",
+          "searches": 0
+        },
+        {
+          "month": "2026-01",
+          "searches": 0
+        },
+        {
+          "month": "2026-02",
+          "searches": 0
+        },
+        {
+          "month": "2026-03",
+          "searches": 0
+        },
+        {
+          "month": "2026-04",
+          "searches": 0
+        },
+        {
+          "month": "2026-05",
+          "searches": 20
+        },
+        {
+          "month": "2026-06",
+          "searches": 20
+        },
+        {
+          "month": "2026-07",
+          "searches": 20
+        },
+        {
+          "month": "2026-08",
+          "searches": 10
+        },
+        {
+          "month": "2026-09",
+          "searches": 30
+        }
+      ]
+    },
+    {
+      "keyword": "external hard drive not showing up mac",
+      "groupTerm": "external hard drive not showing up mac",
+      "closeVariants": [],
+      "volume": 1000,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 1000
+        },
+        {
+          "month": "2025-11",
+          "searches": 880
+        },
+        {
+          "month": "2025-12",
+          "searches": 1300
+        },
+        {
+          "month": "2026-01",
+          "searches": 1300
+        },
+        {
+          "month": "2026-02",
+          "searches": 1000
+        },
+        {
+          "month": "2026-03",
+          "searches": 1000
+        },
+        {
+          "month": "2026-04",
+          "searches": 1000
+        },
+        {
+          "month": "2026-05",
+          "searches": 1000
+        },
+        {
+          "month": "2026-06",
+          "searches": 880
+        },
+        {
+          "month": "2026-07",
+          "searches": 1000
+        },
+        {
+          "month": "2026-08",
+          "searches": 1000
+        },
+        {
+          "month": "2026-09",
+          "searches": 1300
+        }
+      ]
+    },
+    {
+      "keyword": "icloud drive taking up space on mac",
+      "groupTerm": "icloud drive taking up space on mac",
+      "closeVariants": [],
+      "volume": 50,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 50
+        },
+        {
+          "month": "2025-11",
+          "searches": 50
+        },
+        {
+          "month": "2025-12",
+          "searches": 50
+        },
+        {
+          "month": "2026-01",
+          "searches": 70
+        },
+        {
+          "month": "2026-02",
+          "searches": 50
+        },
+        {
+          "month": "2026-03",
+          "searches": 50
+        },
+        {
+          "month": "2026-04",
+          "searches": 50
+        },
+        {
+          "month": "2026-05",
+          "searches": 50
+        },
+        {
+          "month": "2026-06",
+          "searches": 50
+        },
+        {
+          "month": "2026-07",
+          "searches": 50
+        },
+        {
+          "month": "2026-08",
+          "searches": 50
+        },
+        {
+          "month": "2026-09",
+          "searches": 70
+        }
+      ]
+    },
+    {
+      "keyword": "appcleaner",
+      "groupTerm": "appcleaner",
+      "closeVariants": [],
+      "volume": 5400,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 4400
+        },
+        {
+          "month": "2025-11",
+          "searches": 3600
+        },
+        {
+          "month": "2025-12",
+          "searches": 4400
+        },
+        {
+          "month": "2026-01",
+          "searches": 5400
+        },
+        {
+          "month": "2026-02",
+          "searches": 5400
+        },
+        {
+          "month": "2026-03",
+          "searches": 6600
+        },
+        {
+          "month": "2026-04",
+          "searches": 6600
+        },
+        {
+          "month": "2026-05",
+          "searches": 5400
+        },
+        {
+          "month": "2026-06",
+          "searches": 4400
+        },
+        {
+          "month": "2026-07",
+          "searches": 4400
+        },
+        {
+          "month": "2026-08",
+          "searches": 4400
+        },
+        {
+          "month": "2026-09",
+          "searches": 4400
+        }
+      ]
+    },
+    {
+      "keyword": "cleanmymac alternative",
+      "groupTerm": "cleanmymac alternative",
+      "closeVariants": [],
+      "volume": 140,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 110
+        },
+        {
+          "month": "2025-11",
+          "searches": 110
+        },
+        {
+          "month": "2025-12",
+          "searches": 140
+        },
+        {
+          "month": "2026-01",
+          "searches": 140
+        },
+        {
+          "month": "2026-02",
+          "searches": 140
+        },
+        {
+          "month": "2026-03",
+          "searches": 110
+        },
+        {
+          "month": "2026-04",
+          "searches": 140
+        },
+        {
+          "month": "2026-05",
+          "searches": 170
+        },
+        {
+          "month": "2026-06",
+          "searches": 140
+        },
+        {
+          "month": "2026-07",
+          "searches": 140
+        },
+        {
+          "month": "2026-08",
+          "searches": 140
+        },
+        {
+          "month": "2026-09",
+          "searches": 170
+        }
+      ]
+    },
+    {
+      "keyword": "mac menu bar cpu memory monitor",
+      "groupTerm": "mac menu bar cpu memory monitor",
+      "closeVariants": [],
+      "volume": null,
+      "monthly": []
+    },
+    {
+      "keyword": "mac startup disk full",
+      "groupTerm": "mac startup disk full",
+      "closeVariants": [],
+      "volume": 50,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 10
+        },
+        {
+          "month": "2025-11",
+          "searches": 10
+        },
+        {
+          "month": "2025-12",
+          "searches": 210
+        },
+        {
+          "month": "2026-01",
+          "searches": 20
+        },
+        {
+          "month": "2026-02",
+          "searches": 20
+        },
+        {
+          "month": "2026-03",
+          "searches": 110
+        },
+        {
+          "month": "2026-04",
+          "searches": 30
+        },
+        {
+          "month": "2026-05",
+          "searches": 20
+        },
+        {
+          "month": "2026-06",
+          "searches": 70
+        },
+        {
+          "month": "2026-07",
+          "searches": 10
+        },
+        {
+          "month": "2026-08",
+          "searches": 20
+        },
+        {
+          "month": "2026-09",
+          "searches": 10
+        }
+      ]
+    }
+  ]
+}

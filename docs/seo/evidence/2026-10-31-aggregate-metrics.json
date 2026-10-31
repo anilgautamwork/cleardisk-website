@@ -1,0 +1,29 @@
+{
+  "observed": "2026-10-31T15:54:06.245Z",
+  "github_downloads_separate": 2,
+  "all_time_license_records": 4,
+  "visits": {
+    "rolling30": 388,
+    "latest7_rows": 104,
+    "first_date": "2026-10-02",
+    "last_date": "2026-10-31"
+  },
+  "downloads": {
+    "rolling30": 46,
+    "latest7_rows": 28,
+    "first_date": "2026-10-02",
+    "last_date": "2026-10-31"
+  },
+  "downloads-done": {
+    "rolling30": 33,
+    "latest7_rows": 24,
+    "first_date": "2026-10-02",
+    "last_date": "2026-10-31"
+  },
+  "checkouts": {
+    "rolling30": 6,
+    "latest7_rows": 4,
+    "first_date": "2026-10-02",
+    "last_date": "2026-10-31"
+  }
+}
