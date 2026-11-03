@@ -1039,3 +1039,12 @@ Preserved unrelated audit edits, .impeccable and all prepared source edits. This
 [Fresh evidence and decisions](2026-11-02-monday-search-review.md). Complete October 23–29 versus October 16–22 Web windows: **20 vs 194 impressions, 0 vs 2 clicks** (89.7% impression decline). Cache query 0 vs 18 impressions; several external-drive queries fell to zero. Existing pages cover these intents; no duplicate articles added. Sitemap successfully read November 2 with 175 discovered URLs; current manual-action and security reports both show no issues. Aggregate indexing is still dated October 23, 88 indexed/95 excluded; no newer indexing conclusion is possible from it. Validation now says Started, not initiated by this run.
 
 Kept the pending cache/slow-Mac improvements and About edit intact; no further source edits while required local visual checks remain blocked by the earlier browser-access denial. Fresh **180 live HTTP SEO checks passed** against the committed registry, not dirty unpublished copy. No new unit/lint/build run or publication claimed. Humanizer applied to evidence prose. Original Query Mine metrics retain their October 29 observation date; no new volumes invented. No new aggregate download pull. All unrelated changes preserved. Next weekly selection November 9; finish pending preview/publication when the owner allows access.
+
+
+## November 3 — quiet verification
+
+No application changes or publication. Preserved the pending cache, slow-Mac and About improvements and unrelated edits. Required desktop/narrow preview remains pending the unanswered browser-access request; no retry or workaround was attempted.
+
+Eight live checks completed with ClearDisk-QA: the Terminal permissions, private-var-folders, clear-cache and slow-Mac pages return 200, index/follow and self-referencing canonicals; sitemap returns 200 with 175 URLs; download HEAD returns 200; anonymous analytics page/API both return 401, private/no-store and noindex/nofollow. Download verification used HEAD only. This is a sample verification, not another full 180-route run. No new unit/lint/build, archive checksum, deployment-history or aggregate-metrics check is claimed.
+
+Disposition: keep the published Terminal and private-var-folders pages; cache/slow-Mac improvements remain unpublished. November 2 Search Console evidence remains the latest complete-window comparison; no new indexing or recovery claim. Next routine review November 4, next weekly search comparison November 9; finish the pending visual checks when access is authorized.
