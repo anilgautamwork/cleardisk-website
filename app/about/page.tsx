@@ -34,8 +34,10 @@ export default function About() {
         <p>
           Anil Gautam also makes{' '}
           <a href="https://whyslow.app/?ref=cleardisk">WhySlow</a>, a Mac app
-          that explains in plain English why your Mac is slow. ClearDisk frees
-          storage; WhySlow explains CPU and memory slowdowns.
+          that explains in plain English why your Mac is slow. The WhySlow
+          performance tools are now included in ClearDisk. Choose
+          Why Slow in ClearDisk to inspect CPU and memory alongside your storage,
+          or use its optional menu-bar monitor.
         </p>
         <h2>How it works, and what it never does</h2>
         <p>
@@ -53,6 +55,20 @@ export default function About() {
           includes ClearDisk 2.2.1. Prices are shown in your local currency at
           checkout. If ClearDisk is not for you, ask for a refund within 30 days
           from <a href="mailto:hello@cleardisk.app">hello@cleardisk.app</a>.
+        </p>
+        <h2>Using our guides</h2>
+        <p>
+          Our guides link to Apple and app developers’ documentation and explain
+          where a cleanup step can affect your files. Any sample output or test
+          applies to the stated setup. We sell ClearDisk, so descriptions of its
+          features come from its maker. You can follow the built-in macOS steps
+          without buying it.
+        </p>
+        <p>
+          Start with <Link href="/clear-cache-on-mac">cache cleanup</Link> or{' '}
+          <Link href="/mac-running-slow-low-storage">checks for a slow Mac</Link>.
+          If a step no longer matches your version, send the page URL and app or
+          macOS version to our support address. Do not include private files.
         </p>
         <h2>Support</h2>
         <p>

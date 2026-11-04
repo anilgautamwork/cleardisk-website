@@ -114,14 +114,31 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'clear-cache-on-mac',
-    title: 'How to clear cache on Mac safely',
+    title: 'How to clear cache on Mac: Safari, Chrome and app caches',
     description:
-      'Clear cache on Mac the safe way: use each app’s own controls, know what Safari, Chrome and system caches actually hold, and skip the blanket Library deletion.',
+      'Clear Safari, Chrome or app caches on Mac without deleting everything in Library. Choose the right data, check the result and understand what comes back.',
     summary:
       'Caches are working files an app can rebuild. macOS counts most of them inside System Data. Clear them from the app that made them, and avoid emptying Library folders wholesale.',
     published: '2026-09-05',
-    updated: '2026-09-30',
+    updated: '2026-11-04',
     sections: [
+      {
+        id: 'choose-your-cache',
+        title: 'Which cache should you clear?',
+        paragraphs: [
+          'Start with the problem. A broken web page, an app with stale previews and a full disk need different checks. These steps apply to MacBook Air, MacBook Pro and desktop Macs; browser and app versions determine the menu labels.',
+        ],
+        items: [
+          'One website looks wrong: reload it, then try that browser’s cache control. Removing cookies is a separate choice that can sign you out.',
+          'One app shows old previews or reports a cache error: use its documented cache or troubleshooting control. Keep projects and offline downloads unless you mean to remove them.',
+          'You need storage: identify a large cache before clearing it. A small browser cache may make little difference to a full disk.',
+          'The whole Mac feels slow: check CPU and memory pressure first. Deleting caches can make the next launch slower while files rebuild.',
+        ],
+        links: [
+          { label: 'Check why your Mac is running slowly', href: '/mac-running-slow-low-storage' },
+          { label: 'Find large files before choosing cleanup', href: '/find-large-files-on-mac' },
+        ],
+      },
       {
         id: 'what-a-cache-is',
         title: '1. Know what a cache is and where it lives',
@@ -140,9 +157,9 @@ export const maintenanceGuides: Guide[] = [
       },
       {
         id: 'other-browsers',
-        title: '3. Clear Chrome and Firefox from their own settings',
+        title: '3. Clear Chrome’s cached images and files',
         paragraphs: [
-          'Chrome and Firefox keep their caches in their own profile folders and each offers a clear-browsing-data dialog where cached images and files can be selected on their own, separate from cookies, history and passwords. The browser cache guide linked below walks through each dialog and what every checkbox removes.',
+          'In Chrome, open the three-dot menu → Delete browsing data and choose a time range. For a cache-only clear, select Cached images and files and leave unrelated data types unselected. Review the selected boxes before choosing Delete data. Cookies and site data affect logins and preferences; clearing the download history does not delete the downloaded files.',
         ],
       },
       {
@@ -167,6 +184,20 @@ export const maintenanceGuides: Guide[] = [
           'Compare Storage settings before and after. If System Data climbs straight back, the guide on recurring growth explains how to find the app responsible.',
         ],
       },
+      {
+        id: 'check-the-result',
+        title: 'Check whether clearing the cache helped',
+        paragraphs: [
+          'For a website problem, reopen the same page and repeat the action that failed. The first load may take longer as images download again. If the problem remains, stop repeating cleanup: check the site’s status, extensions or the browser’s troubleshooting guidance.',
+          'For storage, record available space in System Settings before cleanup and compare it after the app has finished. If you used Trash, those files still occupy space until you empty it. Check that the app and your work are intact first. Caches can grow again during normal use; there is no fixed amount of space this procedure will recover.',
+          'ClearDisk can help locate large files and measured cache groups after a scan. Its menu-bar storage review opens the main app to inspect results; it does not delete from the menu. Review each path and the scan’s scope before choosing licensed cleanup. You can also follow the app’s own free cleanup controls.',
+        ],
+        links: [
+          { label: 'Browser-specific steps, including Firefox', href: '/clear-browser-cache-mac' },
+          { label: 'ClearDisk’s cache and large-file review', href: '/features#storage-review' },
+          { label: 'Why storage may not update after deletion', href: '/mac-storage-not-updating-after-deleting-files' },
+        ],
+      },
     ],
     questions: [
       {
@@ -178,8 +209,8 @@ export const maintenanceGuides: Guide[] = [
         a: 'For cached page resources, enable the Develop menu under Safari → Settings → Advanced, then choose Develop → Empty Caches. Privacy → Manage Website Data is a broader action: removing a site’s data may sign you out and change its behaviour. Choose the action that matches the problem.',
       },
       {
-        q: 'Is there a keyboard shortcut to clear cache and cookies?',
-        a: 'Not for cookies. With the Develop menu enabled, Option-Command-E empties Safari’s caches; website data and cookies are removed from the Privacy settings pane.',
+        q: 'Does clearing cache delete downloaded files?',
+        a: 'Chrome’s cached-images-and-files control removes stored page resources. Its download-history control removes the list, not the files in Downloads. Other apps use different storage categories, so check whether their cleanup includes offline media, attachments or project data before confirming.',
       },
       {
         q: 'How do I clear the system cache?',
@@ -194,6 +225,7 @@ export const maintenanceGuides: Guide[] = [
     ],
     sources: [
       settings,
+      { label: 'Google: what Chrome browsing-data controls delete', url: 'https://support.google.com/chrome/answer/2392709?co=GENIE.Platform%3DDesktop&hl=en' },
       {
         label: 'Apple: manage cookies and website data in Safari',
         url: 'https://support.apple.com/en-gb/guide/safari/sfri11471/mac',

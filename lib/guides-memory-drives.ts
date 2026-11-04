@@ -235,14 +235,32 @@ export const memoryDriveGuides: Guide[] = [
   },
   {
     slug: 'mac-running-slow-low-storage',
-    title: 'Mac running slow? Check storage, memory and CPU first',
+    title: 'Why is my Mac so slow? Check CPU, memory and storage',
     description:
-      'A calm checklist for a slow Mac: check free storage, then Memory Pressure and CPU in Activity Monitor, then login items, and fix the cause you actually find.',
+      'Find why your Mac is slow: separate one-app, memory, disk and internet problems. Follow Activity Monitor checks and compare results after one change.',
     summary:
       'Low storage is one cause of a slow Mac, not the only one. Check free space, then Activity Monitor’s CPU, Memory and Energy tabs, then what opens at login. Fix the cause you can actually see.',
     published: '2026-09-24',
-    updated: '2026-10-24',
+    updated: '2026-11-04',
     sections: [
+      {
+        id: 'match-the-symptom',
+        title: 'Start with what feels slow',
+        paragraphs: [
+          'Notice when the delay happens before installing a cleaner or closing processes. The same spinning pointer can appear during a large export, a stalled web request or a shortage of memory.',
+        ],
+        items: [
+          'Only one app is slow: save your work, check its CPU and memory use, then try the same task after a normal quit and relaunch.',
+          'Several apps hesitate when you switch between them: watch Memory Pressure during the delay. A large Memory Used number alone is not evidence of a problem.',
+          'Saving or installing fails with a storage warning: check available space and the amount the operation needs.',
+          'Web pages and downloads are slow but local apps respond normally: investigate the connection before removing files.',
+          'The slowdown began after an update or restart: inspect the busy process and review login items. Do not assume every background task is stuck.',
+        ],
+        links: [
+          { label: 'Test a slow internet connection on Mac', href: '/blog/networkquality-mac-internet-test' },
+          { label: 'Check a slowdown after a macOS update', href: '/mac-slow-after-macos-update' },
+        ],
+      },
       {
         id: 'compare-the-same-task',
         title: 'Keep a short record before changing anything',
@@ -265,7 +283,7 @@ export const memoryDriveGuides: Guide[] = [
         title: '1. Check free storage',
         paragraphs: [
           'Apple’s “If your Mac runs slowly” page lists a startup disk without enough free space as a possible cause. Open System Settings → General → Storage and read the available figure at the top. A nearly full disk leaves less room for swap and temporary files, and some apps slow down or fail to save when they can’t write.',
-          'If space is tight, move or delete files you understand, and review the recommendations in the same Storage settings. If there is plenty of free space, skip ahead: cleaning more won’t make the Mac faster. ClearDisk’s free scan can show what is using the space; it doesn’t change CPU load or memory use.',
+          'If space is tight, review the recommendations in Storage settings and files you understand. If the task has enough room, investigate CPU and memory next. ClearDisk’s disk scan identifies storage; its separate Why Slow view helps inspect performance. A storage scan by itself does not resolve a busy process.',
         ],
       },
       {
@@ -304,7 +322,7 @@ export const memoryDriveGuides: Guide[] = [
         id: 'cleardisk-performance',
         title: 'Use ClearDisk for a combined view',
         paragraphs: [
-          'ClearDisk 2.2.0 includes the WhySlow tools alongside its storage scanner. Open Performance to inspect CPU, memory pressure, processes, background items and local usage history. Readings are free; an existing license covers guided actions such as quitting an eligible app or reviewing supported browser tab cleanup. Save your work before closing anything.',
+          'In ClearDisk 2.2.1, choose Why Slow at the top of the sidebar to inspect CPU, memory pressure, running processes, background items and local usage history. No disk scan is needed first. Readings are free; an existing license covers guided actions such as quitting an eligible app. Save work before confirming a quit. The optional menu-bar monitor also shows CPU, memory and disk space, with the time of the last check.',
           'The built-in checks above work without ClearDisk. If a reading is unavailable because of hardware or permissions, treat it as unknown. Freeing storage cannot promise to solve a CPU, network or hardware problem.',
         ],
         links: [
@@ -314,11 +332,24 @@ export const memoryDriveGuides: Guide[] = [
           },
         ],
       },
+      {
+        id: 'repeat-and-compare',
+        title: 'Repeat the task and compare the result',
+        paragraphs: [
+          'Return to the task you recorded earlier. After saving work and making one relevant change, such as closing an unused project, repeat it and record whether the delay improved, stayed the same or became worse. Compare the busy app, memory pressure and available storage with your earlier readings.',
+          'If closing an app helps but the problem returns when you reopen it, check its updates, plug-ins and workload. If little changes, restore settings you still need and investigate another cause. A normal CPU reading does not rule out a network or disk problem. Persistent freezes, crashes or storage errors warrant app support or Apple diagnostics rather than repeated cleanup.',
+        ],
+        links: [
+          { label: 'Understand Swap Used and memory pressure', href: '/mac-swap-memory' },
+          { label: 'When cache cleanup is useful', href: '/clear-cache-on-mac' },
+          { label: 'Check ClearDisk’s free and licensed features', href: '/pricing' },
+        ],
+      },
     ],
     questions: [
       {
         q: 'Will freeing up disk space make my Mac faster?',
-        a: "Only if storage was actually tight. A nearly full disk leaves less room for swap and temporary files and can slow some apps, but if there's already plenty of free space, cleaning more won't make the Mac faster, so check other causes instead.",
+        a: 'It can help when insufficient space prevents an app from saving, creating temporary files or using swap. If the task has enough space, investigate CPU, memory and other causes before deleting more files. Free space alone does not establish the cause of a slowdown.',
       },
       {
         q: 'How do I find which app is slowing down my Mac?',
@@ -330,7 +361,7 @@ export const memoryDriveGuides: Guide[] = [
       },
       {
         q: 'Could apps that open at login be slowing my Mac down?',
-        a: "Possibly. Review Open at Login and App Background Activity in Login Items and Extensions settings, and remove apps you don't need at startup, changing a few at a time and restarting so you can tell which change actually helped.",
+        a: "Possibly. Review Open at Login and App Background Activity in Login Items and Extensions settings. Change one optional item at a time, save your work and restart so you can compare the result. Disabling background activity may stop that app's syncing or update checks.",
       },
     ],
     related: [
@@ -341,6 +372,7 @@ export const memoryDriveGuides: Guide[] = [
     ],
     sources: [
       runsSlowly,
+      { label: 'Apple: quit versus force quit in Activity Monitor', url: 'https://support.apple.com/guide/activity-monitor/quit-a-process-actmntr1002/mac' },
       memoryUsage,
       {
         label: 'Apple: change Login Items & Extensions settings',
