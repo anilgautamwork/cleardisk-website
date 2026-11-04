@@ -1078,3 +1078,19 @@ Visual review remains incomplete despite the owner's conversational approval: br
 ## November 4 — owner visual review completed; publication authorized
 
 Owner confirmed the requested manual desktop/narrow review of /clear-cache-on-mac, /mac-running-slow-low-storage and /about: "Checked, looks fine. Please publish the guide improvements now." This is owner-performed visual verification; agent browser access remains denied and was not bypassed. Source is unchanged since the recorded 58 passing unit tests, lint/typecheck, 177-pair production build, 180 local HTTP SEO checks and final diff/failure-path review. No additional test run claimed. Both revised guides carry November 4 modification dates. Publication proceeds with only the three reviewed source files; unrelated audit and .impeccable changes stay excluded.
+
+
+## November 4 — reviewed guide improvements published
+
+Owner-approved source commit **14add60** is pushed to main and deployed to the existing personal-account cleardisk.app Worker. Deployment history confirms **100% cd40ddb6-e724-42f4-8bab-956f59269148**, deployed 2026-11-04T11:06:03.962Z. GitHub synchronization succeeded with the existing work-account HTTPS credential; no force push, rule change or persistent credential change.
+
+Published improvements:
+- https://cleardisk.app/clear-cache-on-mac — symptom-led Safari, Chrome and app-cache steps, expected results, data-loss boundaries and accurate menu-bar behavior. **Improved and published.**
+- https://cleardisk.app/mac-running-slow-low-storage — CPU, memory, storage and network triage, released Why Slow tools, repeat-task comparison and one-change-at-a-time login-item guidance. **Improved and published.**
+- https://cleardisk.app/about — included performance tools, guide-source/test limitations, maker disclosure and correction contact. **Improved and published.**
+
+Exact reviewed source passed **58 unit tests, 0 failed/skipped/cancelled/todo**, lint, typecheck, Cloudflare production build (**177 HTML/RSC snapshot pairs**) and **180 local HTTP SEO checks** before deployment. Owner supplied the visual approval; agent browser access to localhost remained denied and was not bypassed. Final diff and FAQ/schema/link failure paths reviewed. After deployment, **180 live HTTP SEO route checks passed**, including head metadata, structured data, internal links, 404 handling, sitemap, robots, download HEAD and OG image. All three changed routes return 200 and their new copy is present; both guides and their sitemap entries show **2026-11-04**. Sitemap remains **175 URLs**. About retains its existing undated sitemap entry.
+
+Released download preserved: /ClearDisk.dmg HEAD 200; versioned 2.2.1 (14) archive GET verified **8,529,684 bytes**, SHA-256 **ebe7cc41c8fa9f293cc84f54d2e22835861541d75bbb516a7e40907dd15ed0eb**; live appcast matches the committed file. Anonymous /analytics and /api/analytics remain **401**, private/no-store and noindex/nofollow. QA user agent, HEAD-only public download check and versioned archive path exclude verification from download counts. No payment, license or app-binary changes.
+
+Source checks and limitations remain in the preceding November 4 entry (fresh Chrome/Apple slow-Mac checks; prior October 29 Safari/Activity Monitor evidence retained where refresh failed). No new GSC inspection, indexing submission, download-metric pull or recovery claim. Publication is verified; Google indexing/ranking is not. No new article, deletion, noindex or redirect. Unrelated audit edits and .impeccable remain untouched. Next daily review November 5; next complete-window search comparison and weekly selection November 9. Do not repeat these completed improvements without new evidence.

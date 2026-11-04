@@ -1,3 +1,7 @@
+## Latest website publication — 4 November 2026
+
+Reviewed cache-cleanup and slow-Mac guides plus About disclosures are live from source **14add60**; Worker **cd40ddb6-e724-42f4-8bab-956f59269148**. 58 unit tests, lint/typecheck, 177-pair production build, owner visual review, 180 local and 180 live HTTP SEO checks completed. Guide sitemap dates are November 4. ClearDisk 2.2.1 (14), download checksum, updater, payment/license behavior and anonymous analytics protection are preserved. Publication is verified, not Google indexing or recovery. Details and next actions: [SEO progress](seo/progress.md) and [recovery queue](seo/recovery-review.md). Pending guide publication and GitHub-push blocker notes below are historical and resolved for this batch.
+
 ## Current release — ClearDisk 2.2.1 (14), 26 October 2026
 
 Published app tag `v2.2.1` at `9ba9a67`; website release source `990303b`; Worker `4be98f82-8ae6-46c2-921e-f591547ce568`. Adds pinned Why Slow, Disk scan and Permissions, a horizontal status bar, and menu-bar app/storage review. Existing license and Stripe mode unchanged. Universal signed/notarized archive is `/updates/ClearDisk-2.2.1-14.dmg`, 8,529,684 bytes, SHA-256 `ebe7cc41c8fa9f293cc84f54d2e22835861541d75bbb516a7e40907dd15ed0eb`. GitHub workflow 40308485265 succeeded. See seo/progress.md for web validation. This supersedes current-release claims below; historical guide evidence remains unchanged.
