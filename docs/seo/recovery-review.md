@@ -469,3 +469,21 @@ Disposition: keep the published Terminal and private-var-folders pages; cache/sl
 [Evidence and recommendations](2026-11-04-search-download-diagnosis.md). Fresh complete GSC weeks October 26–November 1 versus October 19–25: 20/65 impressions and 0/1 clicks. Indexing report still dated October 23; current manual/security reports show no issues. Successful Library Caches fetch remains excluded. Complete private-metric weeks October 21–27 and October 28–November 3 show 5 and 27 finished-transfer events respectively, not installs or Google-attributed conversions.
 
 180 live HTTP SEO route checks passed against committed source. No source edit, new unit/build run or deployment. Keep reviewed live pages; pending cache/slow-Mac/About improvements remain unpublished until required visual checks are permitted. No bulk deletion/noindex or rollback justified by the graph alone. Existing source edits preserved. Next complete-window review November 9; daily verification continues without forcing publication.
+
+
+## November 4 — daily follow-up and repository sync failure
+
+Today's owner-requested investigation already completed the current search review and 180 live HTTP SEO checks; this heartbeat did not repeat them or add content. Prepared source work and unrelated edits remain intact. No website deployment or new indexing claim.
+
+Evidence commit 1f6f7e3 remains local. Its initial SSH push failed with publickey authentication. A follow-up used the existing anilgautamwork GitHub CLI credential over HTTPS without changing the active account, remote or persistent credential settings; GitHub rejected main with `fatal error in commit_refs_rules`. No force push or rule change attempted. Repository synchronization is blocked on this remote error; the site is unaffected. No application changes or new unit/lint/build run. Pending visual review still requires the previously requested browser access. Next review November 5; weekly comparison November 9.
+
+
+## November 4 — publication checks refreshed; GitHub push restored
+
+The owner explicitly approved local browser preview and publication. GitHub API reports main unprotected and no active branch rules. Retrying the normal, non-force HTTPS push with the existing work-account credential succeeded: remote main advanced from 8ae56a4 to 1f6f7e3. No branch rule, credential, active-account or persistent Git setting was changed. GitHub status reports an active Git Operations incident (smtdswd1h2w4), consistent with the earlier server rejection but not definitive request-level attribution.
+
+Final source review corrected two remaining slow-Mac FAQ inconsistencies (storage as a possible cause, one login-item change at a time), removed repeated comparison instructions and set both substantive guide modification dates to November 4. About reflects the released Why Slow tools. Humanizer and existing-design review applied. Fresh checks: 58 unit tests passed, zero failed/skipped/cancelled/todo; lint and typecheck passed; Cloudflare build generated 177 HTML/RSC snapshot pairs; 180 local HTTP SEO route checks passed at localhost:3115. About design detector returned no findings. Build has existing native-config/deprecation warnings, no failure. Final diff and affected FAQ/schema/link paths reviewed. No runtime/payment/license/analytics changes.
+
+Chrome and Apple slow-Mac primary guidance refreshed. Apple's Activity Monitor/Safari detail pages could not be refreshed through the web tool (429/unavailable); prior source checks remain dated October 29, and no new firsthand OS test is claimed. Current deployed Worker verified unchanged at 2b60a544-d893-4b3e-87d1-dce6bb55dfa2 before this work.
+
+Visual review remains incomplete despite the owner's conversational approval: browser origin gate again explicitly rejected http://localhost:3115 due to a saved permission or managed policy. Owner was asked to enable that origin in the app settings. No alternate browser/port or other workaround attempted. Local production preview is ready on port 3115. No guide source push or production deployment yet; pending source and unrelated edits remain preserved. Resume desktop/narrow checks after the actual setting permits access, then publish and verify live routes, sitemap dates, download and anonymous analytics protection.
