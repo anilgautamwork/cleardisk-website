@@ -1048,3 +1048,10 @@ No application changes or publication. Preserved the pending cache, slow-Mac and
 Eight live checks completed with ClearDisk-QA: the Terminal permissions, private-var-folders, clear-cache and slow-Mac pages return 200, index/follow and self-referencing canonicals; sitemap returns 200 with 175 URLs; download HEAD returns 200; anonymous analytics page/API both return 401, private/no-store and noindex/nofollow. Download verification used HEAD only. This is a sample verification, not another full 180-route run. No new unit/lint/build, archive checksum, deployment-history or aggregate-metrics check is claimed.
 
 Disposition: keep the published Terminal and private-var-folders pages; cache/slow-Mac improvements remain unpublished. November 2 Search Console evidence remains the latest complete-window comparison; no new indexing or recovery claim. Next routine review November 4, next weekly search comparison November 9; finish the pending visual checks when access is authorized.
+
+
+## November 4 — owner-requested search/download diagnosis
+
+[Evidence and recommendations](2026-11-04-search-download-diagnosis.md). Fresh complete GSC weeks October 26–November 1 versus October 19–25: 20/65 impressions and 0/1 clicks. Indexing report still dated October 23; current manual/security reports show no issues. Successful Library Caches fetch remains excluded. Complete private-metric weeks October 21–27 and October 28–November 3 show 5 and 27 finished-transfer events respectively, not installs or Google-attributed conversions.
+
+180 live HTTP SEO route checks passed against committed source. No source edit, new unit/build run or deployment. Keep reviewed live pages; pending cache/slow-Mac/About improvements remain unpublished until required visual checks are permitted. No bulk deletion/noindex or rollback justified by the graph alone. Existing source edits preserved. Next complete-window review November 9; daily verification continues without forcing publication.
