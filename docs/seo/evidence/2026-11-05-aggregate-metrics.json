@@ -1,0 +1,17 @@
+{
+  "observed": "2026-11-05T10:08:34.155Z",
+  "windows": {
+    "2026-10-22 through 2026-10-28": {
+      "visits": 77,
+      "downloads": 10,
+      "downloads-done": 8,
+      "checkouts": 1
+    },
+    "2026-10-29 through 2026-11-04": {
+      "visits": 75,
+      "downloads": 28,
+      "downloads-done": 24,
+      "checkouts": 3
+    }
+  }
+}
