@@ -394,7 +394,7 @@ export const storageGuides: Guide[] = [
   },
   {
     slug: 'mac-storage-not-updating-after-deleting-files',
-    title: 'Deleted Files on Mac But Still No Space? 5 Reasons & Fixes',
+    title: 'Deleted Files on Mac But Still No Space? 5 Fixes',
     h1: 'Mac storage not updating after deleting files',
     description:
       'Deleted files on Mac but storage is not updating? Check Trash, APFS snapshots, external volumes, and iCloud placeholders to reclaim your free disk space.',

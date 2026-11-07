@@ -477,7 +477,7 @@ export const systemFolderGuides: Guide[] = [
   },
   {
     slug: 'mac-storage-calculating',
-    title: 'Mac Storage Stuck on “Calculating…”? Why & How to Fix It',
+    title: 'Mac Storage Stuck on “Calculating…”? Why & Fix',
     h1: 'Mac storage stuck on Calculating: why it happens and what to do',
     description:
       'Mac storage stuck on “Calculating…” in System Settings? Check free space immediately with df -h /, let Spotlight finish indexing, or restart in Safe Mode.',
@@ -871,7 +871,7 @@ export const systemFolderGuides: Guide[] = [
   },
   {
     slug: 'mac-log-files',
-    title: 'Mac Log Files: Check & Clear ~/Library/Logs and /var/log',
+    title: 'Mac Log Files: Clear ~/Library/Logs and /var/log',
     h1: 'Where Mac log files live and which ones you can clear',
     description:
       'Where Mac log files live: inspect ~/Library/Logs, /Library/Logs, and /private/var/log in Console or Terminal, and safely remove runaway app log files.',
@@ -990,7 +990,7 @@ export const systemFolderGuides: Guide[] = [
   },
   {
     slug: 'mac-folder-structure-explained',
-    title: 'macOS Folder Structure Explained: Users, Library & System',
+    title: 'macOS Folder Structure: Users, Library & System',
     h1: 'macOS folder structure explained',
     description:
       'macOS folder structure explained: how Macintosh HD and Macintosh HD - Data split /System, /Library, /Users, ~/Library, and /private, and what you can clean.',

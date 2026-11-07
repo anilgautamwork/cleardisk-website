@@ -103,7 +103,7 @@ export const creativeGuides: Guide[] = [
   },
   {
     slug: 'clear-davinci-resolve-cache-mac',
-    title: 'How to Clear DaVinci Resolve Cache on Mac (Render & Proxy)',
+    title: 'Clear DaVinci Resolve Cache on Mac (Render & Proxy)',
     h1: 'How to clear DaVinci Resolve cache on Mac',
     description:
       'How to clear DaVinci Resolve cache on Mac: locate CacheClip in Project Settings, run Playback → Delete Render Cache, and remove optimized media safely.',

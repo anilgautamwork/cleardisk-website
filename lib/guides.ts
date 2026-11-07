@@ -206,7 +206,7 @@ const foundationGuides: Guide[] = [
   },
   {
     slug: 'what-is-system-data-on-mac',
-    title: 'What Is System Data on Mac? Where It Lives & What’s Safe',
+    title: 'What Is System Data on Mac? Why It’s Huge, Where It Lives',
     h1: 'What is System Data on Mac?',
     description:
       'What is System Data on Mac, where it lives in macOS storage, why its size changes, and how to tell rebuildable caches from app files you should keep.',

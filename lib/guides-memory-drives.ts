@@ -237,7 +237,7 @@ export const memoryDriveGuides: Guide[] = [
   },
   {
     slug: 'mac-running-slow-low-storage',
-    title: 'Why Is My Mac So Slow? Check Storage, CPU & Memory First',
+    title: 'Why Is My Mac So Slow? Check Storage, CPU & Memory',
     h1: 'Why is my Mac running slow?',
     description:
       'Why is my Mac so slow? Check free SSD storage, Activity Monitor CPU and Memory Pressure, login items, and background tasks to fix the actual bottleneck.',

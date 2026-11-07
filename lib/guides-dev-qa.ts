@@ -693,7 +693,7 @@ export const devQaGuides: Guide[] = [
   },
   {
     slug: 'reinstall-command-line-tools-mac',
-    title: '“Command Line Tools Already Installed” Mac Fix & Reinstall',
+    title: '“Command Line Tools Already Installed” Mac Fix',
     h1: 'How to reinstall Command Line Tools on Mac',
     description:
       'Fix “Command Line Tools are already installed” or invalid developer path errors on Mac: check xcode-select -p, update via Software Update, or reinstall.',

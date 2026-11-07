@@ -280,7 +280,7 @@ export const driveGuides: Guide[] = [
   },
   {
     slug: 'disk-utility-mac',
-    title: 'Disk Utility on Mac: Check Drives, Containers & First Aid',
+    title: 'Disk Utility on Mac: Check Drives, Containers, First Aid',
     h1: 'How to use Disk Utility on Mac',
     description:
       'How to use Disk Utility on Mac: show all devices, read free and purgeable space, run First Aid in the right order, and mount, erase or partition drives.',

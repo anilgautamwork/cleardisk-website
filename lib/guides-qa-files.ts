@@ -3,7 +3,7 @@ import type { Guide } from './guides.ts';
 export const fileQaGuides: Guide[] = [
   {
     slug: 'google-chrome-taking-up-space-mac',
-    title: 'Google Chrome Taking Up Space on Mac? Clear Profile & Cache',
+    title: 'Google Chrome Taking Up Space on Mac? Clear Profile',
     h1: 'Google Chrome taking up space on Mac: what to clear',
     description:
       'Why Google Chrome takes up gigabytes of space on Mac: measure profiles, site storage, extensions, cache and OptGuideOnDeviceModel, then clear them safely.',
@@ -542,7 +542,7 @@ export const fileQaGuides: Guide[] = [
   },
   {
     slug: 'ds-store-files-mac',
-    title: 'What Are .DS_Store Files on Mac & Are They Safe to Delete?',
+    title: 'What Are .DS_Store Files on Mac & Are They Safe?',
     h1: 'What .DS_Store files are on Mac and when you can delete them',
     description:
       '.DS_Store files store the Finder’s view settings. Deleting one is safe but resets that folder’s layout. Stop them on network shares, and keep them out of Git.',
@@ -641,7 +641,7 @@ export const fileQaGuides: Guide[] = [
   },
   {
     slug: 'stop-mac-hidden-files-on-usb',
-    title: 'Remove ._ Files & .DS_Store on USB Drives (Mac dot_clean)',
+    title: 'Remove ._ Files & .DS_Store on USB Drives (dot_clean)',
     h1: 'How to remove ._ files and hidden Mac files from a USB drive',
     description:
       'Remove ._ AppleDouble files, .DS_Store, .Trashes and .Spotlight-V100 from USB drives and SD cards on Mac using dot_clean -m, Spotlight Privacy and Trash.',
@@ -749,7 +749,7 @@ export const fileQaGuides: Guide[] = [
   },
   {
     slug: 'relocated-items-folder-mac',
-    title: 'Relocated Items on Mac Desktop: What It Is & Safe to Delete',
+    title: 'Relocated Items on Mac Desktop: Safe to Delete?',
     h1: 'What the Relocated Items folder on your Mac desktop is',
     description:
       'Why the Relocated Items folder appears on your Mac Desktop after a macOS update, what /Users/Shared/Relocated Items holds, and how to delete it safely.',

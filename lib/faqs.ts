@@ -111,7 +111,7 @@ export const faqTopics: FaqTopic[] = [
   },
   {
     slug: 'mac-storage-full',
-    title: 'FAQ: Full Mac Disk Questions & Short Answers | ClearDisk',
+    title: 'FAQ: Full Mac Disk Questions & Answers | ClearDisk',
     description:
       'Short FAQ answers for a full Mac disk: why space stays low after deleting, why updates report not enough space, what purgeable means, and which guide to read.',
     intro:

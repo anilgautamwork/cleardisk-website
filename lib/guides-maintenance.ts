@@ -852,7 +852,7 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'delete-macos-installer-mac',
-    title: 'Delete macOS Installer & Old .dmg Files on Mac (Save GBs)',
+    title: 'Delete macOS Installer & Old .dmg Files on Mac',
     h1: 'How to delete a macOS installer and leftover disk images',
     description:
       'Delete macOS installer apps and leftover .dmg files on macOS Sequoia to reclaim 12–15 GB fast. Learn when an installer is still in use and safe to trash.',
@@ -1337,7 +1337,7 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'how-to-check-storage-on-mac',
-    title: 'How to Check Storage on Mac (Settings, Finder & Terminal)',
+    title: 'How to Check Storage on Mac (Settings, Finder, Terminal)',
     h1: 'How to check storage on your Mac',
     description:
       'Learn how to check storage on Mac in System Settings, Finder, Disk Utility, and Terminal, read the storage bar, and inspect what System Data hides.',
@@ -1665,7 +1665,7 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'delete-files-on-mac',
-    title: 'How to Delete Files on Mac (Shortcuts, Trash & Permanent)',
+    title: 'How to Delete Files on Mac (Shortcuts, Trash, Permanent)',
     h1: 'How to delete files on Mac',
     description:
       'Learn how to delete files on Mac using Command-Delete, Empty Trash, and Delete Immediately (Option-Command-Delete), plus how to unlock stubborn items.',
@@ -2082,7 +2082,7 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'containers-folder-mac',
-    title: 'Containers Folder on Mac: Group Containers & Safe Cleanup',
+    title: 'Containers Folder on Mac: Group Containers & Cleanup',
     h1: 'Containers and Group Containers folders on Mac: what is safe to delete?',
     description:
       'What is the Containers folder on Mac? Learn what ~/Library/Containers and Group Containers store on macOS Sequoia and how to shrink large app data safely.',

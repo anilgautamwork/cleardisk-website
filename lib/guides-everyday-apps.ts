@@ -520,7 +520,7 @@ export const everydayAppGuides: Guide[] = [
   },
   {
     slug: 'steam-games-storage-mac',
-    title: 'How to Uninstall Steam Games on Mac & Remove Leftover Files',
+    title: 'Uninstall Steam Games on Mac & Remove Leftover Files',
     h1: 'How to uninstall Steam games on Mac and clear leftover files',
     description:
       'How to uninstall Steam games on Mac: check game sizes in Steam Settings → Storage, uninstall or move games to an external SSD, and check steamapps/common.',
@@ -630,7 +630,7 @@ export const everydayAppGuides: Guide[] = [
   },
   {
     slug: 'apple-tv-downloads-mac',
-    title: 'Delete Apple TV Downloads on Mac & Remove Offline Movies',
+    title: 'Delete Apple TV Downloads on Mac & Offline Movies',
     h1: 'How to delete Apple TV downloads on Mac',
     description:
       'How to delete Apple TV downloads on Mac: remove offline movies and episodes from Downloaded, turn on auto-delete for watched shows, and check ~/Movies/TV.',

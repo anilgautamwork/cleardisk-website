@@ -729,7 +729,7 @@ export const systemQaGuides: Guide[] = [
   },
   {
     slug: 'list-disks-terminal-mac',
-    title: 'List Disks & Partitions in Terminal on Mac (diskutil list)',
+    title: 'List Disks & Partitions in Mac Terminal (diskutil list)',
     h1: 'How to list disks and partitions in Terminal on Mac',
     description:
       'macOS has no lsblk. diskutil list shows every disk, partition and APFS volume; filters, diskutil info, df and system_profiler show drives and free space.',
