@@ -418,17 +418,17 @@ export const systemQaGuides: Guide[] = [
     slug: 'uninstall-rosetta-2-mac',
     title: 'Can you uninstall Rosetta 2 on Mac? What to do instead',
     description:
-      'Apple offers no way to uninstall Rosetta 2, and it uses little space. Check whether it’s installed, which apps still need it, and why removing it is risky.',
+      'Should you remove Rosetta 2? Understand its protected storage, check Intel-app dependencies and update apps and plug-ins without disabling Mac security.',
     summary:
-      'Not in any supported way: Apple provides a command to install Rosetta 2 but none to remove it, its files are protected by System Integrity Protection, and they take up only a few megabytes. Leave it installed; if you want to stop relying on it, find and replace your Intel apps.',
+      'Apple’s current user guidance documents installing Rosetta, but provides no uninstall procedure. Leave its protected files alone. To reduce your reliance on Rosetta, update Intel apps and their plug-ins. Measuring a few visible folders does not tell you the total space used by translated code.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-05',
     sections: [
       {
         id: 'what-rosetta-is',
         title: 'What Rosetta 2 is',
         paragraphs: [
-          'Rosetta 2 translates apps built for Intel processors so they run on a Mac with Apple silicon. macOS doesn’t install it up front: you are asked the first time you open an Intel app, or you can install it with softwareupdate --install-rosetta. Intel Macs don’t use it.',
+          'Rosetta 2 translates apps built for Intel processors so they run on a Mac with Apple silicon. If it is missing, macOS asks you to install it when you open an Intel app. Apple also documents installation with softwareupdate --install-rosetta. Intel Macs don’t use it.',
           'It also has an end date in Apple’s plans. Apple’s support article says Rosetta is available on Apple silicon Macs through macOS 27, and that from macOS 28 it will work only for certain older, unmaintained games that rely on Intel frameworks. That is a better reason to review your Intel apps than disk space.',
         ],
       },
@@ -436,8 +436,8 @@ export const systemQaGuides: Guide[] = [
         id: 'check-installed',
         title: '1. Check whether Rosetta is installed',
         paragraphs: [
-          'oahd is the Rosetta service; if pgrep prints a process number, Rosetta is installed and running. The arch line asks macOS to run a tiny system tool as Intel code: it prints the message when Rosetta works, and fails with “Bad CPU type in executable” when Rosetta isn’t installed.',
-          'pkgutil lists installer receipts. On a Mac with Rosetta you’ll see com.apple.pkg.RosettaUpdateAuto. On an Intel Mac none of this applies.',
+          'These checks apply to a Mac with Apple silicon. pgrep shows whether a matching Rosetta service is running now; no output does not prove Rosetta is absent. The arch line tries to run a small system command as Intel code. A success message confirms that this command ran; an error needs to be read in context, rather than treated as a complete installation diagnosis.',
+          'pkgutil lists installer receipts, which can include com.apple.pkg.RosettaUpdateAuto. A receipt records an installation; it does not test whether a particular app or plug-in works. Do not install Rosetta just to measure storage. These commands do not remove anything.',
         ],
         code: [
           '/usr/bin/pgrep oahd',
@@ -447,10 +447,10 @@ export const systemQaGuides: Guide[] = [
       },
       {
         id: 'how-little-space',
-        title: '2. See how little space it takes',
+        title: '2. Understand what a folder size leaves out',
         paragraphs: [
-          'Rosetta’s programs are small. On a Mac with macOS Tahoe 26.6 that we checked, the two folders in the du line came to about 1 MB together. Rosetta is not a meaningful source of used storage, and removing it wouldn’t change the numbers in Storage settings.',
-          'The Rosetta service keeps its working data in /var/db/oah, which macOS protects: du reports “Operation not permitted”. The ls -lO line shows the restricted flag on the folders inside /Library/Apple, which is System Integrity Protection marking the folder as off-limits, even to administrators.',
+          'The du command below measures two program locations. It does not measure all Rosetta storage. Apple documents a separate cache of translated code in a protected Data Vault. A small result for these program folders cannot establish the size of that cache or how much space could be reclaimed.',
+          'If a path is missing or access is denied, keep the error visible and treat the measurement as incomplete. The ls command displays file flags; a restricted flag identifies system protection. Do not change permissions or disable System Integrity Protection to complete a size estimate.',
         ],
         code: [
           'du -sh /Library/Apple/usr/libexec/oah /usr/libexec/rosetta',
@@ -461,36 +461,45 @@ export const systemQaGuides: Guide[] = [
         id: 'why-no-uninstall',
         title: 'Why there is no uninstall',
         paragraphs: [
-          'Apple documents how to install Rosetta and nothing about removing it. Parts of it live in /usr and /var, which Apple lists among the locations System Integrity Protection guards, and the rest sits under /Library/Apple with the same restricted flag. Deleting those files means starting up in macOS Recovery and turning System Integrity Protection off, which lowers the Mac’s protection against malicious software, all to save a megabyte or two.',
-          'It also doesn’t stick. The next Intel app, or an installer or plug-in built for Intel, asks to install Rosetta again. We don’t recommend removing it, and this guide doesn’t give steps for it. If you simply don’t want Rosetta in use, stop opening Intel apps; when there is nothing to translate, it has nothing to do.',
+          'Apple’s installation instructions do not include an uninstall procedure. Its security documentation explains that System Integrity Protection restricts changes to protected operating-system files and that Rosetta controls access to its translation cache. Avoid cleanup instructions that ask you to disable those protections or manually delete Rosetta’s files.',
+          'An Intel app still needs translation on Apple silicon. Removing support can interrupt an app, installer or plug-in you use. Review those dependencies first. If disk space is the problem, inspect large personal files and app-managed storage instead of trying to remove this system component.',
         ],
       },
       {
         id: 'find-intel-apps',
         title: '3. Find the apps that still need Rosetta',
         paragraphs: [
-          'For one app, select it in Finder and choose File → Get Info. Apple lists the Kind values: Application (Intel) needs Rosetta, while Application (Universal) and Application (Apple silicon) don’t. For every app at once, hold Option, choose Apple menu → System Information, then click Applications under Software and sort by the Kind column, which reads Intel, Universal, Apple Silicon, iOS or Other.',
-          'The Terminal line prints the names of Intel apps from the same report; it can take a minute on a Mac with many apps. Check each developer’s site for a Universal or Apple silicon version, or look for a replacement. Updating usually removes the need for Rosetta entirely.',
-          'Command-line tools count too. On a Mac with Apple silicon, Homebrew’s native installation lives in /opt/homebrew; one under /usr/local is normally the Intel version, and the tools it installed run through Rosetta. brew config shows which prefix you are using, and its Rosetta 2 line reads true when that Homebrew is running under translation.',
+          'For one app, select it in Finder and choose File → Get Info. Application (Intel) identifies an Intel app; Universal and Apple silicon apps can run natively. A Universal app may still have Open using Rosetta enabled to load an Intel-only plug-in. Check the app’s extensions, updaters and other add-ons separately before concluding that you no longer need translation.',
+          'For a broader list, open System Information and review Applications under Software. The Terminal filter below extracts Intel entries from the English-language report; no matches do not prove there are no Intel components. Report formatting and language can affect this filter. It is an inventory aid, not a complete compatibility check.',
+          'Command-line tools count too. Homebrew’s default Apple silicon prefix is /opt/homebrew; /usr/local can hold a separate Intel installation. brew config reports the installation selected by your shell, not every installation on the Mac. Skip this command if you do not use Homebrew, and do not delete either prefix as a shortcut.',
         ],
         code: [
           "system_profiler SPApplicationsDataType | awk '/^    [^ ].*:$/ {app=$0} /Kind: Intel/ {print app}'",
           "brew config | grep -E 'HOMEBREW_PREFIX|Rosetta'",
         ],
       },
+      {
+        id: 'check-after-updating',
+        title: '4. Check your work after updating',
+        paragraphs: [
+          'Use the App Store, the app’s updater or its developer’s website to find an Apple silicon version. Update required plug-ins too. After saving your work, quit and reopen the app, then try a normal task with a copy of a document or project.',
+          'If a Universal app has Open using Rosetta selected, deselect it only after its required add-ons support Apple silicon. Confirm that the app opens and the needed plug-ins load. If they fail, restore the setting while you check compatibility with the developer. Keep your working project backups.',
+          'A successful check confirms that workflow on your current Mac. It does not establish compatibility with every future macOS release or the limited game exceptions Apple describes for macOS 28.',
+        ],
+      },
     ],
     questions: [
       {
         q: 'Can you uninstall Rosetta 2 on Mac?',
-        a: "Not in any supported way. Apple provides a command to install it but none to remove it, its files are protected by System Integrity Protection, and they only take up a few megabytes, so there's no real space to gain.",
+        a: "Apple’s current installation guidance provides no uninstall procedure. Leave protected Rosetta files alone and update the Intel apps and add-ons you rely on. Do not disable Mac security to remove them.",
       },
       {
         q: 'How much space does Rosetta 2 take up on Mac?',
-        a: "Very little; on a Mac checked for this guide running macOS Tahoe 26.6, its two main folders came to about 1 MB together. That makes Rosetta a non-issue for storage, and removing it wouldn't change the numbers in Storage settings.",
+        a: "A measurement of its visible program folders is not a total. Rosetta also keeps translated code in a protected cache, as Apple’s security documentation explains. This guide does not establish a universal size or an amount that is safe to reclaim.",
       },
       {
         q: 'How do I check if an app needs Rosetta 2 on Mac?',
-        a: "Select the app in Finder and choose File then Get Info; Apple's Kind values show Application (Intel) as needing Rosetta, while Universal and Apple silicon versions don't. For every app at once, use System Information's Applications list and sort by the Kind column.",
+        a: "In Finder, select the app and choose File then Get Info. Intel apps need translation on Apple silicon. Universal apps can run natively but may be set to Open using Rosetta for Intel-only add-ons. Check plug-ins, extensions and updaters as well as the main app.",
       },
       {
         q: 'Will Rosetta 2 stop working on newer macOS?',
@@ -498,6 +507,7 @@ export const systemQaGuides: Guide[] = [
       },
     ],
     related: [
+      'find-large-files-on-mac',
       'uninstall-apps-on-mac',
       'delete-built-in-apps-mac',
       'how-to-check-storage-on-mac',
@@ -511,6 +521,14 @@ export const systemQaGuides: Guide[] = [
       {
         label: 'Apple: about System Integrity Protection on your Mac',
         url: 'https://support.apple.com/en-us/102149',
+      },
+      {
+        label: 'Apple Platform Security: Rosetta translation and its protected cache',
+        url: 'https://support.apple.com/guide/security/secebb113be1/web',
+      },
+      {
+        label: 'Homebrew: default installation prefixes',
+        url: 'https://docs.brew.sh/FAQ#why-is-the-default-installation-prefix-opthomebrew-on-apple-silicon',
       },
     ],
   },
