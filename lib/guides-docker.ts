@@ -234,7 +234,7 @@ export const dockerGuides: Guide[] = [
     title: 'Docker Dangling vs Unused Images: prune vs prune -a',
     h1: 'Docker dangling vs unused images: what prune vs prune -a removes',
     description:
-      'Docker dangling vs unused images explained: what <none>:<none> means, how to list each on Mac, and why docker image prune vs prune -a free different space.',
+      'Docker dangling vs unused images explained: what untagged layers mean, how to list each on Mac, and why docker image prune vs prune -a free different space.',
     summary:
       'In Docker, a dangling image is an untagged <none>:<none> build layer referenced by no container, whereas an unused image is any image (including tagged ones like postgres:16) with no running or stopped container. Running docker image prune removes only dangling images, while docker image prune -a removes all unused images.',
     published: '2026-09-24',

@@ -121,11 +121,24 @@ await test('sitemap advertises only canonical published pages when indexing enab
     assert.ok(!urls.includes(canonical(path)));
 });
 await test('guide titles and descriptions fit search snippets', () => {
+  const esc = (s: string) =>
+    s
+      .replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/'/g, '&#x27;');
   for (const guide of guides) {
     assert.ok(guide.title.length < 60, guide.slug + ': title under 60');
+    assert.ok(esc(guide.title).length < 60, guide.slug + ': html title under 60');
     assert.ok(
       guide.description.length >= 140 && guide.description.length <= 158,
       guide.slug + ': description 140-158',
+    );
+    assert.ok(
+      esc(guide.description).length >= 140 &&
+        esc(guide.description).length <= 158,
+      guide.slug + ': html description 140-158',
     );
   }
 });
