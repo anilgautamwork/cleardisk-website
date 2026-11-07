@@ -4,13 +4,14 @@ import type { Guide } from './guides.ts';
 export const icloudGuides: Guide[] = [
   {
     slug: 'icloud-drive-stuck-uploading-mac',
-    title: 'iCloud Drive stuck uploading on Mac: what to check',
+    title: 'iCloud Drive Stuck Uploading on Mac? How to Unstick Sync',
+    h1: 'iCloud Drive stuck uploading or syncing on Mac',
     description:
-      'Investigate iCloud Drive waiting to upload on Mac: compare file status, check account and disk space, preserve unsynced work, and collect useful evidence.',
+      'iCloud Drive stuck uploading on Mac? Check Finder iCloud Status, compare local and iCloud.com files, verify storage quotas, and protect unsynced work.',
     summary:
-      'A pending upload is an observation, not proof that synchronization is broken. Find the affected files, protect their latest contents, and compare the same evidence later.',
+      'When iCloud Drive is stuck uploading on Mac, open Finder in List view with the iCloud Status column enabled to see which specific file shows Waiting to Upload. Compare local and iCloud.com copies, check both iCloud and local SSD capacity, and save an independent backup before troubleshooting.',
     published: '2026-09-09',
-    updated: '2026-09-09',
+    updated: '2026-11-07',
     sections: [
       {
         id: '1-start-with-one-affected-file',
@@ -90,13 +91,14 @@ export const icloudGuides: Guide[] = [
   },
   {
     slug: 'icloud-drive-status-icons-mac',
-    title: 'iCloud Drive status icons on Mac, explained',
+    title: 'iCloud Drive Status Icons on Mac: What Cloud Symbols Mean',
+    h1: 'iCloud Drive status icons on Mac, explained',
     description:
-      'Understand Finder’s iCloud status column on Mac, distinguish cloud-only files from pending uploads, and use the status to choose the right next step safely.',
+      'iCloud Drive status icons on Mac explained: what cloud symbols, pie charts, Keep Downloaded, Waiting to Upload, and Out of Space mean in Finder List view.',
     summary:
-      'File location and file availability are different facts. Use Finder’s iCloud Status column to understand what macOS reports before downloading, archiving or removing anything.',
+      'iCloud Drive status icons on Mac show whether each file is cloud-only (In iCloud), locally cached (Downloaded), pinned offline (Keep Downloaded), or Waiting to Upload. Turn on the iCloud Status column in Finder List view before downloading, archiving, or using Remove Download.',
     published: '2026-09-09',
-    updated: '2026-10-06',
+    updated: '2026-11-07',
     sections: [
       {
         id: '1-make-status-visible',
@@ -261,13 +263,14 @@ export const icloudGuides: Guide[] = [
   },
   {
     slug: 'icloud-remove-download-missing-mac',
-    title: 'iCloud Remove Download missing on Mac?',
+    title: '“Remove Download” Missing in iCloud Drive on Mac? Fix It',
+    h1: 'Why Remove Download is missing in iCloud Drive on Mac',
     description:
-      'Check why Remove Download may be unavailable for an iCloud Drive file on Mac, inspect its current state, and avoid confusing local removal with deletion.',
+      'Why is Remove Download missing in iCloud Drive on Mac? Check whether the file is already cloud-only, pinned with Keep Downloaded, or still uploading.',
     summary:
-      'An unavailable control is a reason to inspect the file’s location and state. Deleting the file is not a substitute for removing its local download.',
+      'When Remove Download is missing in iCloud Drive on Mac, the file is either already cloud-only, pinned with Keep Downloaded, waiting to upload, or stored outside iCloud Drive. Inspect the iCloud Status column in Finder first, and never drag the file to Trash as a substitute.',
     published: '2026-09-09',
-    updated: '2026-09-09',
+    updated: '2026-11-07',
     sections: [
       {
         id: '1-confirm-the-actual-location',
@@ -338,13 +341,14 @@ export const icloudGuides: Guide[] = [
   },
   {
     slug: 'keep-icloud-files-downloaded-mac',
-    title: 'Keep iCloud files downloaded for offline use on Mac',
+    title: 'How to Keep iCloud Files Downloaded on Mac (Offline)',
+    h1: 'How to keep iCloud files downloaded on Mac',
     description:
-      'Prepare iCloud Drive documents for offline work on Mac: distinguish Download Now from Keep Downloaded, check supporting files, and verify before travelling.',
+      'How to keep iCloud files downloaded on Mac for offline use: use Finder’s Keep Downloaded vs Download Now, verify linked assets, and prevent auto-eviction.',
     summary:
-      'Download Now requests a local copy. Keep Downloaded asks Finder to retain selected content. Prepare and verify the files your work needs before losing your connection.',
+      'To keep iCloud files downloaded on Mac even when Optimize Mac Storage is on, Control-click the file or folder in Finder and choose Keep Downloaded instead of Download Now. Verify in Finder’s iCloud Status column that all transfers and linked assets finish before working offline.',
     published: '2026-09-09',
-    updated: '2026-10-22',
+    updated: '2026-11-07',
     sections: [
       {
         id: '1-make-an-offline-working-set',

@@ -12,11 +12,12 @@ const needMoreRam = {
 export const systemQaGuides: Guide[] = [
   {
     slug: 'free-command-on-mac',
-    title: 'Is there a free command on Mac? Check RAM in Terminal',
+    title: '“free: command not found” on Mac: Check RAM in Terminal',
+    h1: 'What to use instead of the Linux free command on Mac',
     description:
-      'macOS has no free command. Use top, vm_stat, sysctl and memory_pressure to see used, free and swap memory in Terminal, and learn which number matters.',
+      'Fix “free: command not found” on Mac: use top -l 1, vm_stat, sysctl and memory_pressure in Terminal to check used, free and swap RAM on macOS accurately.',
     summary:
-      'macOS does not include Linux’s free command. Use top for a RAM summary, sysctl for installed memory and swap, and vm_stat for page counts. To judge a shortage, check Activity Monitor’s Memory Pressure graph during the workload that feels slow. These checks do not measure free disk space.',
+      'macOS does not include the Linux free command, which is why running free in Terminal returns “free: command not found”. Instead, run top -l 1 | grep "^PhysMem:" for a one-line RAM summary, sysctl hw.memsize vm.swapusage for total RAM and swap, or vm_stat and memory_pressure for page-level memory diagnostics.',
     published: '2026-09-24',
     updated: '2026-10-15',
     sections: [
@@ -217,11 +218,12 @@ export const systemQaGuides: Guide[] = [
   },
   {
     slug: 'purge-command-mac-memory',
-    title: 'sudo purge on Mac: does it clear RAM, and should you?',
+    title: 'sudo purge on Mac: What the purge Command Does to Memory',
+    h1: 'What sudo purge does on Mac and when to use it',
     description:
-      'What the Mac purge command does to cached file data, why it is not a disk cleaner, and how to check memory pressure before changing your workload.',
+      'What sudo purge does on Mac: how the purge command flushes the disk buffer cache in RAM, why it does not free disk space, and how to check memory pressure.',
     summary:
-      'purge is a performance-testing tool that flushes the disk buffer cache held in RAM. It does not free the anonymous memory allocated by your apps and is not a way to clear System Data or purgeable disk space. For a slow Mac, check Memory Pressure during the problem before trying to reduce memory use.',
+      'Running sudo purge on a Mac flushes the non-essential disk buffer cache held in RAM to simulate a cold cache for performance testing, without clearing app memory or deleting any files on disk. For everyday slowdowns or high System Data, skip sudo purge and check Activity Monitor’s Memory Pressure graph or Storage settings instead.',
     published: '2026-09-24',
     updated: '2026-10-16',
     sections: [
@@ -319,11 +321,12 @@ export const systemQaGuides: Guide[] = [
   },
   {
     slug: 'remove-background-items-mac',
-    title: 'How to remove background items on Mac after uninstalling',
+    title: 'Remove “Allow in the Background” Login Items on Mac',
+    h1: 'How to remove background items and LaunchAgents on Mac',
     description:
-      'Deleted an app but it still shows under Allow in the Background? Turn it off, find the launch agent it left behind, remove it safely, or reset with sfltool.',
+      'Remove leftover “Allow in the Background” login items on Mac after uninstalling an app: inspect LaunchAgents and LaunchDaemons or reset with sfltool.',
     summary:
-      'Turn the item off in System Settings → General → Login Items & Extensions first. If the app is gone but the entry stays, find its leftover launch agent or daemon in /Library/LaunchAgents, /Library/LaunchDaemons or ~/Library/LaunchAgents and move it to the Trash. sfltool resetbtm resets the list as a last resort.',
+      'To remove an “Allow in the Background” entry left behind by an uninstalled Mac app, toggle it off in System Settings → General → Login Items & Extensions, then move its orphaned .plist file from /Library/LaunchAgents, /Library/LaunchDaemons, or ~/Library/LaunchAgents to the Trash and restart. If the stale row still remains after its plist is gone, run sfltool resetbtm in Terminal.',
     published: '2026-09-24',
     updated: '2026-09-24',
     sections: [
@@ -416,7 +419,8 @@ export const systemQaGuides: Guide[] = [
   },
   {
     slug: 'uninstall-rosetta-2-mac',
-    title: 'Can you uninstall Rosetta 2 on Mac? What to do instead',
+    title: 'How to Uninstall Rosetta 2 on Mac (Size & SIP Rules)',
+    h1: 'Can you uninstall Rosetta 2 on an Apple silicon Mac?',
     description:
       'Should you remove Rosetta 2? Understand its protected storage, check Intel-app dependencies and update apps and plug-ins without disabling Mac security.',
     summary:
@@ -631,11 +635,12 @@ export const systemQaGuides: Guide[] = [
   },
   {
     slug: 'com-apple-bird-taking-space',
-    title: 'What is com.apple.bird, and why is it so big on Mac?',
+    title: 'com.apple.bird High Disk Usage or Caches on Mac Explained',
+    h1: 'What com.apple.bird is on Mac and why its cache grows',
     description:
-      'bird is the macOS process behind iCloud Drive, and com.apple.bird is its cache. Where its files live, how to size them, and the safe way to shrink them.',
+      'Why com.apple.bird and iCloud Drive use disk space or CPU on Mac: compare ~/Library/Caches/com.apple.bird and Mobile Documents, and shrink local copies.',
     summary:
-      'bird is the macOS daemon that syncs iCloud Drive, and com.apple.bird is its cache folder. When bird seems to use a lot of space, the space is usually iCloud Drive files stored on the Mac; reduce it with Remove Download or Optimize Mac Storage, not by deleting bird’s folders.',
+      'bird is the macOS background daemon that syncs iCloud Drive, and com.apple.bird is its cache identifier; when tools report high disk usage under bird, the space is almost always downloaded iCloud Drive files in ~/Library/Mobile Documents rather than the cache folder itself. Use Finder’s Remove Download or enable Optimize Mac Storage to free local space safely without deleting your cloud files.',
     published: '2026-09-24',
     updated: '2026-09-24',
     sections: [
@@ -724,7 +729,8 @@ export const systemQaGuides: Guide[] = [
   },
   {
     slug: 'list-disks-terminal-mac',
-    title: 'lsblk on Mac: list disks and partitions in Terminal',
+    title: 'List Disks & Partitions in Terminal on Mac (diskutil list)',
+    h1: 'How to list disks and partitions in Terminal on Mac',
     description:
       'macOS has no lsblk. diskutil list shows every disk, partition and APFS volume; filters, diskutil info, df and system_profiler show drives and free space.',
     summary:
@@ -832,11 +838,12 @@ export const systemQaGuides: Guide[] = [
   },
   {
     slug: 'show-folder-sizes-finder-mac',
-    title: 'How to show folder sizes in Finder on Mac',
+    title: 'How to Show Folder Sizes in Finder on Mac (Calculate All)',
+    h1: 'How to show folder sizes in Finder on Mac',
     description:
-      'Show folder sizes in Finder: turn on Calculate all sizes in List view, total selected files with the Inspector, and compare many folders with du.',
+      'How to show folder sizes in Finder on Mac: turn on Calculate all sizes in View Options (Command-J), total selected items with Option-Command-I, or use du.',
     summary:
-      'In List view, choose View → Show View Options and turn on Calculate all sizes; folders then show their size and can be sorted by it. To total several selected items, press Option-Command-I for the Inspector. Get Info (Command-I) sizes a single folder.',
+      'To show folder sizes in Finder on a Mac, switch to List view (Command-2), press Command-J to open View Options, and check Calculate all sizes so every folder displays its total size in the Size column. To see the combined size of multiple selected files or folders at once, press Option-Command-I to open the live Inspector window.',
     published: '2026-09-24',
     updated: '2026-09-24',
     sections: [

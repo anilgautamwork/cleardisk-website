@@ -41,13 +41,14 @@ const diskInfo = {
 export const driveGuides: Guide[] = [
   {
     slug: 'external-hard-drive-not-showing-up-mac',
-    title: 'External hard drive not showing up on Mac: what to check',
+    title: 'External Hard Drive Not Showing Up on Mac? 7 Fixes',
+    h1: 'External hard drive not showing up on Mac',
     description:
       'Find out why an external drive isn’t showing up on your Mac: Finder settings, cables and power, Disk Utility’s device list, mounting, First Aid and formats.',
     summary:
       'A drive can be missing from Finder, missing from Disk Utility, or visible but not mounted. Each points to a different fix, so work out which one you have before trying anything else.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'check-finder-settings',
@@ -279,13 +280,14 @@ export const driveGuides: Guide[] = [
   },
   {
     slug: 'disk-utility-mac',
-    title: 'Disk Utility on Mac: check, repair and mount your drives',
+    title: 'Disk Utility on Mac: Check Drives, Containers & First Aid',
+    h1: 'How to use Disk Utility on Mac',
     description:
       'How to use Disk Utility on Mac: show all devices, read free and purgeable space, run First Aid in the right order, and mount, erase or partition drives.',
     summary:
       'Disk Utility is the Mac’s built-in tool for the drives themselves: formats, partitions, repairs and capacity. It won’t tell you which files fill the disk, but it tells you whether the disk is healthy and how full it really is.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'open-disk-utility',

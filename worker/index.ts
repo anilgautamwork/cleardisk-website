@@ -1,5 +1,6 @@
 import handler from 'vinext/server/fetch-handler';
 import { publicSnapshot } from '../lib/public-snapshot';
+import { mergedGuideRedirects } from '../lib/seo';
 import { DownloadMetrics } from './download-metrics';
 import {
   aggregateDays,
@@ -213,6 +214,12 @@ const worker = {
       const event = await visitEvent(request);
       if (event) count(env, ctx, 'visits', event.source, request);
       return new Response(null, { status: 204, headers: privateHeaders });
+    }
+    const redirectTarget = mergedGuideRedirects[path];
+    if (redirectTarget) {
+      const url = new URL(request.url);
+      url.pathname = redirectTarget;
+      return Response.redirect(url.toString(), 301);
     }
     const snapshot = await publicSnapshot(request, env.ASSETS);
     if (snapshot) return snapshot;

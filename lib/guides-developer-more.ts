@@ -519,13 +519,14 @@ export const moreDeveloperGuides: Guide[] = [
   },
   {
     slug: 'android-studio-disk-space-mac',
-    title: 'Android Studio taking up space on Mac: what to remove',
+    title: 'Android Studio Taking Up Space on Mac: Clear AVDs & SDK',
+    h1: 'Android Studio disk space on Mac',
     description:
-      'Where Android Studio keeps the SDK, emulators and caches on a Mac, how to remove old system images in SDK Manager, and wipe or delete virtual devices safely.',
+      'Android Studio disk space on Mac: measure ~/Library/Android/sdk and ~/.android/avd, remove old SDK system images, and wipe or delete emulators safely.',
     summary:
-      'Android Studio’s space is mostly the SDK in ~/Library/Android/sdk, emulator devices in ~/.android/avd and the Gradle cache in ~/.gradle. Remove unused SDK packages in SDK Manager and unused devices in Device Manager rather than in Finder.',
+      'Android Studio disk space on Mac is mostly the SDK in ~/Library/Android/sdk, emulator AVDs in ~/.android/avd, and the Gradle cache in ~/.gradle. Remove unused SDK system images in SDK Manager and wipe or delete emulators in Device Manager rather than Finder.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'measure-the-folders',
@@ -614,14 +615,23 @@ export const moreDeveloperGuides: Guide[] = [
   },
   {
     slug: 'developer-storage-on-mac',
-    title: 'Developer storage on Mac: what it is and what to delete',
+    title: 'Developer Storage on Mac: Clear Xcode, Docker & Caches',
+    h1: 'Developer storage on Mac: what it is and how to clear it',
     description:
-      'What the Developer category in Mac Storage settings counts, from Xcode build files to device support and Command Line Tools, and what is safe to delete.',
+      'Developer storage on Mac explained: what the macOS Ventura+ Developer category counts, how to clear Xcode DerivedData, and what stays in System Data.',
     summary:
-      'The Developer category in System Settings → General → Storage counts files from Xcode and Apple’s developer tools: project build data, archives, Xcode caches, device support files and the Command Line Tools. Build data and caches come back on their own; archives and tools deserve a second look.',
+      'Developer storage on Mac in System Settings → General → Storage counts Apple developer tools: Xcode project build data, archives, Xcode caches, device support, and Command Line Tools. Clear project build files and caches safely, review archives first, and check non-Apple tool caches separately.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
+      {
+        id: 'why-developer-category-appears',
+        title: 'Why the “Developer” storage category appears on Apple Silicon and macOS Ventura+',
+        paragraphs: [
+          'On macOS Ventura and later (especially noticeable on Apple Silicon Macs with 256 GB or 512 GB SSDs), System Settings → General → Storage adds a dedicated Developer row as soon as macOS detects Xcode, `/Library/Developer/CommandLineTools`, or `~/Library/Developer` build artifacts. Even if you never installed the full Xcode app, running `git` or Homebrew in Terminal installs the Command Line Tools and makes the Developer category appear.',
+          'For step-by-step cleanup of the largest item inside that row, see our dedicated guide to `/clear-xcode-derived-data` alongside the breakdown below.',
+        ],
+      },
       {
         id: 'open-the-category',
         title: '1. Open the Developer category',
@@ -826,13 +836,14 @@ export const moreDeveloperGuides: Guide[] = [
   },
   {
     slug: 'clear-cargo-cache-mac',
-    title: 'Clear the Cargo cache and Rust target folders on Mac',
+    title: 'How to Clear Cargo Cache on Mac (~/.cargo/registry)',
+    h1: 'How to clear the Cargo cache on Mac',
     description:
-      'Where Rust uses disk space on a Mac: the ~/.cargo registry, target folders in each project and rustup toolchains, plus the commands that clean each safely.',
+      'Use cargo clean and clear the Cargo cache on Mac: shrink ~/.cargo/registry and ~/.cargo/git, clean project target folders, and remove old rustup toolchains.',
     summary:
-      'Cargo’s download cache lives in ~/.cargo/registry and can be removed; Cargo downloads crates again when needed. The larger space is usually each project’s target folder, cleaned with cargo clean, and old rustup toolchains in ~/.rustup.',
+      'To clear the Cargo cache on Mac, delete ~/.cargo/registry and ~/.cargo/git while editors are closed, then run cargo clean inside inactive Rust projects to remove their target folders. Cargo re-downloads crates on the next build, while cargo clean reclaims the largest per-project build artifacts.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'measure',
@@ -925,13 +936,14 @@ export const moreDeveloperGuides: Guide[] = [
   },
   {
     slug: 'clear-jetbrains-cache-mac',
-    title: 'How to clear JetBrains IDE caches on Mac',
+    title: 'Clear JetBrains Cache on Mac (IntelliJ, PyCharm, WebStorm)',
+    h1: 'How to clear JetBrains IDE caches and logs on Mac',
     description:
-      'Clear IntelliJ IDEA, PyCharm or WebStorm caches on a Mac with Invalidate Caches, find their folders in ~/Library, and remove leftovers from old IDE versions.',
+      'Clear JetBrains cache on Mac for IntelliJ IDEA, PyCharm, and WebStorm: run Invalidate Caches, clean ~/Library/Caches/JetBrains, and delete old IDE folders.',
     summary:
-      'Use File → Invalidate Caches in the IDE to clear caches for the version you run. The bigger saving is usually folders left by older versions in ~/Library/Caches/JetBrains, which Help → Delete Leftover IDE Directories removes.',
+      'To clear the JetBrains cache on Mac, run File → Invalidate Caches inside IntelliJ IDEA, PyCharm, or WebStorm for the current release. For a much larger storage saving, use Help → Delete Leftover IDE Directories to remove old version folders in ~/Library/Caches/JetBrains and ~/Library/Logs/JetBrains.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'three-folders',
@@ -1021,13 +1033,14 @@ export const moreDeveloperGuides: Guide[] = [
   },
   {
     slug: 'virtual-machine-disk-space-mac',
-    title: 'Virtual machine disk space on Mac: Parallels, UTM, Fusion',
+    title: 'Virtual Machine Disk Space on Mac (Parallels, UTM, VMware)',
+    h1: 'Reclaim virtual machine disk space on Mac',
     description:
-      'Find where Parallels, UTM and VMware Fusion keep virtual machines on a Mac, reclaim unused space inside a VM disk, and remove old VMs or snapshots safely.',
+      'Reclaim virtual machine disk space on Mac: locate Parallels (.pvm), UTM (.utm), and VMware Fusion bundles, compact virtual disks, and delete old snapshots.',
     summary:
-      'A virtual machine is a whole computer in one bundle, so treat it like one. Parallels keeps VMs in ~/Parallels by default, UTM inside its app container and Fusion in Documents. Reclaim unused space with the app’s own tools before deleting anything.',
+      'Virtual machine disk space on Mac sits in ~/Parallels (.pvm), UTM’s container in ~/Library/Containers (.utm), or ~/Documents/Virtual Machines (.vmwarevm). Delete old snapshots and run the VM app’s disk-reclaim tool before moving or deleting any virtual machine bundle.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'whole-computer',
@@ -1116,13 +1129,14 @@ export const moreDeveloperGuides: Guide[] = [
   },
   {
     slug: 'ncdu-on-mac',
-    title: 'How to install and use ncdu on Mac',
+    title: 'ncdu on Mac: Install with Homebrew & Scan Disk Space',
+    h1: 'How to install and use ncdu on Mac',
     description:
-      'Install ncdu on a Mac with Homebrew, browse folder sizes in Terminal, run it read-only, and learn which key deletes files permanently before you press it.',
+      'Install and use ncdu on Mac with Homebrew: run ncdu -r -x ~ in Terminal to scan folder sizes in read-only mode and find large directories safely.',
     summary:
-      'Install ncdu with brew install ncdu, then run ncdu -r -x ~ to browse your home folder by size in read-only mode. Without -r, its d key deletes files permanently, with no Trash.',
+      'To use ncdu on Mac, install it with brew install ncdu and run ncdu -r -x ~ in Terminal to scan your home folder in read-only mode. It sorts every directory by actual disk usage so you can drill down with the arrow keys without risking a permanent d-key deletion.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'install',

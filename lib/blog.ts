@@ -5,13 +5,14 @@ export const blogPosts: Guide[] = [
   ...performancePosts,
   {
     slug: 'blog/appcleaner-os-x',
-    title: 'AppCleaner for OS X: uninstalling apps safely',
+    title: 'AppCleaner for Mac: Still Worth It? + Alternatives',
+    h1: 'AppCleaner for Mac (OS X): how it works and alternatives',
     description:
-      'Find the right AppCleaner version for OS X or macOS, review related files before uninstalling, and decide what to check if your Mac is still low on space.',
+      'Is AppCleaner for Mac still worth it? Check macOS compatibility, see how it removes app leftovers, and compare built-in and disk scanner alternatives.',
     summary:
-      'Trying to remove an old app? Check which AppCleaner download fits your Mac, review its file list, and find out where to look if storage is still full.',
+      'Trying to remove an old app on Mac? Check whether AppCleaner still fits your macOS version, what it removes, and which alternatives help when your disk stays full.',
     published: '2026-09-26',
-    updated: '2026-09-26',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'which-version',
@@ -167,19 +168,20 @@ export const blogPosts: Guide[] = [
   },
   {
     slug: 'blog/how-should-i-clean-my-mac',
-    title: 'How should I clean my Mac? Decide before you delete',
+    title: 'How Should I Clean My Mac? A Safe Monthly Checklist',
+    h1: 'How should I clean my Mac?',
     description:
-      'Decide what to clean on your Mac, what to keep, and when a scanner helps. A practical look at System Data, large files, developer folders and safer removal.',
+      'How to clean your Mac safely on a regular schedule: a monthly checklist for Downloads, caches, System Data, and developer folders without losing work.',
     summary:
-      'You need room for your work, not another afternoon spent opening folders. Start with the files you understand. Use a scanner when you need a clearer picture.',
+      'Want a repeatable routine to clean your Mac? Follow this safe checklist for Downloads, app caches, System Data, and project folders before installing another cleaner.',
     published: '2026-09-26',
-    updated: '2026-09-26',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'start-with-the-job',
         title: 'What are you trying to make room for?',
         paragraphs: [
-          'An update will not install. A video export stops halfway through. Or your Mac keeps warning you that its disk is nearly full. Each is a reason to check storage. None tells you which files you can afford to lose.',
+          'Cleaning your Mac works best as a short, predictable routine rather than an emergency folder hunt. Start by checking how much working room your Mac has right now before changing anything.',
           'Open System Settings → General → Storage and note the available space. If a task names an amount it needs, keep that figure nearby. It gives you a useful stopping point: enough room to finish the job, rather than the smallest possible System Data bar.',
           'This is the approach we recommend as the makers of ClearDisk. You can do the first checks with the tools already on your Mac. Our scanner becomes useful when those checks leave you asking where the rest of the space went.',
         ],
@@ -187,6 +189,10 @@ export const blogPosts: Guide[] = [
           {
             label: 'Apple’s storage cleanup guidance',
             href: 'https://support.apple.com/en-us/102624',
+          },
+          {
+            label: 'Step-by-step guide: how to free up space on Mac',
+            href: '/free-up-space-on-mac',
           },
         ],
       },
@@ -247,8 +253,8 @@ export const blogPosts: Guide[] = [
             href: 'https://support.apple.com/guide/mac-help/mchl3d437fbc/mac',
           },
           {
-            label: 'Understand a growing System Data total',
-            href: '/system-data-keeps-growing',
+            label: 'How to clear System Data on Mac and stop recurring growth',
+            href: '/clear-system-data-on-mac',
           },
         ],
       },

@@ -2,7 +2,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, ArrowUpRight, ShieldCheck } from 'lucide-react';
 import { Header, Footer, DownloadButton } from './brand';
-import { getGuide, type Guide } from '@/lib/guides';
+import {
+  getClusterGuidesForPillar,
+  getGuide,
+  getGuideCluster,
+  type Guide,
+} from '@/lib/guides';
 import { guideSchema, softwareSchema } from '@/lib/seo';
 import { visitorPrice } from '@/lib/visitor-price';
 import { JsonLd } from './json-ld';
@@ -15,6 +20,18 @@ export async function GuideArticle({
   collection?: 'guides' | 'blog';
 }) {
   const price = await visitorPrice();
+  const cluster =
+    collection === 'guides' ? getGuideCluster(guide.slug) : undefined;
+  const pillarClusters =
+    collection === 'guides' ? getClusterGuidesForPillar(guide.slug) : [];
+  const clusterPeers = [
+    ...new Map(
+      pillarClusters
+        .flatMap((group) => group.guides)
+        .filter((item) => item.slug !== guide.slug)
+        .map((item) => [item.slug, item]),
+    ).values(),
+  ];
   return (
     <>
       <Header />
@@ -30,7 +47,7 @@ export async function GuideArticle({
         </nav>
         <header className="guide-heading">
           <span className="eyebrow">A LITTLE MORE CLARITY</span>
-          <h1>{guide.title}</h1>
+          <h1>{guide.h1 ?? guide.title}</h1>
           <p className="guide-summary">{guide.summary}</p>
           <div className="guide-byline">
             <span>By ClearDisk</span>
@@ -166,10 +183,27 @@ export async function GuideArticle({
             </section>
           </article>
         </div>
-        {guide.slug.includes('icloud') && (
+        {cluster && (
           <p className="icloud-home-note">
-            <Link href="/icloud-doctor">
-              Explore iCloud Doctor inside ClearDisk →
+            {cluster.pillar.href !== '/' + guide.slug && (
+              <>
+                Main guide:{' '}
+                <Link href={cluster.pillar.href}>{cluster.pillar.label}</Link>
+                {' · '}
+              </>
+            )}
+            {cluster.secondaryPillar &&
+              cluster.secondaryPillar.href !== '/' + guide.slug && (
+                <>
+                  Related pillar:{' '}
+                  <Link href={cluster.secondaryPillar.href}>
+                    {cluster.secondaryPillar.label}
+                  </Link>
+                  {' · '}
+                </>
+              )}
+            <Link href={'/guides#' + cluster.id}>
+              Browse all {cluster.cluster} guides →
             </Link>
           </p>
         )}
@@ -213,6 +247,22 @@ export async function GuideArticle({
             })}
           </div>
         </section>
+        {clusterPeers.length > 0 && (
+          <section className="related-guides">
+            <span className="eyebrow">COMPLETE TOPIC DIRECTORY</span>
+            <h2>All guides in this cluster.</h2>
+            <ul className="article-links">
+              {clusterPeers.map((peer) => (
+                <li key={peer.slug}>
+                  <Link href={'/' + peer.slug}>
+                    {peer.title}{' '}
+                    <ArrowRight size={14} aria-hidden="true" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
       </main>
       <Footer />
       <JsonLd data={guideSchema(guide, collection)} />

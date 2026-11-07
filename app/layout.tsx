@@ -13,8 +13,8 @@ import { ClickAttribution } from '@/components/click-attribution';
 import { VisitBeacon } from '@/components/visit-beacon';
 export const metadata: Metadata = {
   ...pageMetadata(
-    'Mac Cleaner & Performance Monitor | ClearDisk',
-    'Find large files, understand System Data and check CPU, memory and browser activity on your Mac. Free scans and diagnostics. $10 one-time license for actions.',
+    'Mac Cleaner: Free Storage Scan & Performance Monitor | ClearDisk',
+    'Mac cleaner with free storage scans, System Data breakdown, CPU and memory menu-bar monitoring, and iCloud Drive diagnostics. $10 one-time license for actions.',
     '/',
   ),
   verification: { google: 'w3gXqPIEHaBWE1faIs43-l-ZJhzy5RO7sLLwcObUlQE' },

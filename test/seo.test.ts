@@ -4,10 +4,16 @@ import {
   canonical,
   guideSchema,
   faqSchema,
+  mergedGuideRedirects,
   shouldIndex,
   sitemapEntries,
 } from '../lib/seo.ts';
-import { guides, getGuide } from '../lib/guides.ts';
+import {
+  guides,
+  getGuide,
+  guideGroups,
+  getGuideCluster,
+} from '../lib/guides.ts';
 import { blogPosts } from '../lib/blog.ts';
 import { faqTopics, getFaqTopic } from '../lib/faqs.ts';
 
@@ -29,8 +35,6 @@ await test('all published problems have complete discoverable guides', () => {
   const required = [
     'clear-system-data-on-mac',
     'what-is-system-data-on-mac',
-    'system-data-too-large',
-    'system-data-keeps-growing',
     'mac-storage-full',
     'free-up-space-on-mac',
     'clear-cache-on-mac',
@@ -61,7 +65,23 @@ await test('all published problems have complete discoverable guides', () => {
     'containers-folder-mac',
   ];
   for (const slug of required) assert.ok(getGuide(slug));
-  assert.equal(guides.length, 152);
+  assert.equal(guides.length, 150);
+  assert.equal(getGuide('system-data-too-large'), undefined);
+  assert.equal(getGuide('system-data-keeps-growing'), undefined);
+  assert.equal(
+    mergedGuideRedirects['/system-data-too-large'],
+    '/clear-system-data-on-mac',
+  );
+  assert.equal(
+    mergedGuideRedirects['/system-data-keeps-growing'],
+    '/clear-system-data-on-mac',
+  );
+  const groupedSlugs = guideGroups.flatMap((g) =>
+    g.guides.map((guide) => guide.slug),
+  );
+  assert.equal(groupedSlugs.length, guides.length);
+  assert.equal(new Set(groupedSlugs).size, guides.length);
+  for (const guide of guides) assert.ok(getGuideCluster(guide.slug));
   assert.equal(getGuide('not-a-real-guide'), undefined);
   assert.equal(new Set(guides.map((g) => g.slug)).size, guides.length);
   for (const guide of guides) {
@@ -80,11 +100,24 @@ await test('all published problems have complete discoverable guides', () => {
 });
 await test('sitemap advertises only canonical published pages when indexing enabled', () => {
   assert.deepEqual(sitemapEntries(false), []);
-  const urls = sitemapEntries(true).map((entry) => entry.url);
+  const entries = sitemapEntries(true);
+  const urls = entries.map((entry) => entry.url);
   assert.equal(new Set(urls).size, urls.length);
+  for (const entry of entries) {
+    assert.ok(
+      entry.lastModified && Number.isFinite(Date.parse(String(entry.lastModified))),
+      entry.url + ': valid lastModified',
+    );
+  }
   for (const guide of guides)
     assert.ok(urls.includes(canonical('/' + guide.slug)));
-  for (const path of ['/thanks', '/buy-now', '/api/key'])
+  for (const path of [
+    '/thanks',
+    '/buy-now',
+    '/api/key',
+    '/system-data-too-large',
+    '/system-data-keeps-growing',
+  ])
     assert.ok(!urls.includes(canonical(path)));
 });
 await test('guide titles and descriptions fit search snippets', () => {

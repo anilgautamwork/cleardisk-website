@@ -24,13 +24,14 @@ const desktopImages = {
 export const dockerGuides: Guide[] = [
   {
     slug: 'delete-docker-images-mac',
-    title: 'How to delete Docker images on Mac, one or all',
+    title: 'How to Delete Docker Images on Mac (docker rmi & Prune)',
+    h1: 'How to delete Docker images on Mac',
     description:
-      'Delete Docker images on a Mac: remove one by name or ID, match names with a filter, clear every unused image with prune -a, and know why the space may lag.',
+      'How to delete Docker images on Mac: remove one image with docker image rm, match tags by pattern, run docker image prune -a, and reclaim Docker.raw space.',
     summary:
-      'Delete one image with docker image rm followed by its name:tag or ID, or every image that no container uses with docker image prune -a. Removing a name:tag only untags the image when it has other tags, and Docker Desktop hands freed space back to macOS through its disk image.',
+      'To delete Docker images on Mac, run docker image rm <name:tag> for a single image or docker image prune -a to remove every image not used by a running or stopped container. Docker Desktop then returns the freed blocks inside Docker.raw to macOS within a few seconds.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'list-images',
@@ -230,13 +231,14 @@ export const dockerGuides: Guide[] = [
   },
   {
     slug: 'docker-dangling-vs-unused-images',
-    title: 'Dangling vs unused Docker images: the difference',
+    title: 'Docker Dangling vs Unused Images: prune vs prune -a',
+    h1: 'Docker dangling vs unused images: what prune vs prune -a removes',
     description:
-      'Dangling vs unused Docker images: what an untagged “none” image is, how to list each kind on a Mac, and why prune and prune -a remove such different amounts.',
+      'Docker dangling vs unused images explained: what <none>:<none> means, how to list each on Mac, and why docker image prune vs prune -a free different space.',
     summary:
-      'A dangling image has no name or tag (it shows as <none>:<none>) and no container uses it; usually it’s an old build whose tag moved to a newer one. An unused image can have a perfectly good name, but no container, running or stopped, is based on it. docker image prune removes only dangling images; docker image prune -a removes every unused one.',
+      'In Docker, a dangling image is an untagged <none>:<none> build layer referenced by no container, whereas an unused image is any image (including tagged ones like postgres:16) with no running or stopped container. Running docker image prune removes only dangling images, while docker image prune -a removes all unused images.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'what-dangling-means',
@@ -620,13 +622,14 @@ export const dockerGuides: Guide[] = [
   },
   {
     slug: 'remove-docker-volumes-mac',
-    title: 'How to remove Docker volumes on Mac, and fix “in use”',
+    title: 'How to Remove Docker Volumes on Mac (Inspect First)',
+    h1: 'How to remove Docker volumes on Mac',
     description:
-      'Remove Docker volumes on a Mac: list and back up database volumes, delete with docker volume rm or prune, and fix “volume is in use” with no containers.',
+      'How to remove Docker volumes on Mac: inspect and back up database volumes, run docker volume rm or prune -a, and fix “volume is in use” conflict errors.',
     summary:
-      'List volumes with docker volume ls, back up any that hold data you need, then delete one with docker volume rm or unused ones with docker volume prune. If Docker says a volume is in use while nothing is running, a stopped container still references it: find it with docker ps -a --filter "volume=NAME" and remove that container first.',
+      'To remove Docker volumes on Mac, list them with docker volume ls, back up any database volumes first, and run docker volume rm <name> or docker volume prune. If Docker reports “volume is in use” when nothing is running, find the stopped container holding it with docker ps -a --filter "volume=NAME" and remove that container first.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'list-volumes',

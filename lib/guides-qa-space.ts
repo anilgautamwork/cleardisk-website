@@ -105,11 +105,12 @@ export const spaceQaGuides: Guide[] = [
   },
   {
     slug: 'find-what-is-filling-disk-mac',
-    title: 'How to find what’s slowly filling your Mac’s disk',
+    title: 'What Is Taking Up Space on My Mac? Find Hidden Storage Hogs',
+    h1: 'How to find what is filling up your Mac disk',
     description:
-      'Find what keeps filling your Mac’s disk: log free space, rank apps by Bytes Written, list big files changed in the last two days and compare folder sizes.',
+      'Find what is taking up space on your Mac and slowly filling the disk: check Bytes Written in Activity Monitor, list recent large files, and diff folders.',
     summary:
-      'Measure first, then catch the writer. Log free space with df, check which apps write the most in Activity Monitor’s Disk tab, list large files changed in the last two days, and compare folder sizes a day apart. Growth you can pin to one path or one app has a fix; growth you only see in a category total doesn’t yet.',
+      'To find what is taking up space on your Mac or slowly filling the startup disk, sort Activity Monitor’s Disk tab by Bytes Written to spot heavy writers, list files over 500 MB modified in the last two days with find, and compare folder sizes a day apart with du. Pinning growth to a specific path in ~/Library or a specific process tells you whether a cache, sync folder, or local snapshot is responsible.',
     published: '2026-09-24',
     updated: '2026-09-24',
     sections: [
@@ -195,7 +196,7 @@ export const spaceQaGuides: Guide[] = [
       },
     ],
     related: [
-      'system-data-keeps-growing',
+      'clear-system-data-on-mac',
       'check-disk-space-mac-terminal',
       'time-machine-snapshots',
       'find-large-files-on-mac',
@@ -444,11 +445,12 @@ export const spaceQaGuides: Guide[] = [
   },
   {
     slug: 'time-machine-drive-size',
-    title: 'How big should a Time Machine backup drive be?',
+    title: 'What Size Time Machine Drive Do You Need for Your Mac?',
+    h1: 'How big your Time Machine backup drive should be',
     description:
-      'Apple recommends a Time Machine disk at least twice your Mac’s storage capacity. What that buys, what makes backups grow, and when a smaller disk works.',
+      'What size Time Machine drive you need for a Mac: why Apple recommends 2x your Mac’s capacity, how backup history grows, and when a smaller APFS disk works.',
     summary:
-      'Apple’s guidance is a backup disk with at least twice the storage capacity of your Mac, so a Mac with 1 TB pairs with a 2 TB drive. A smaller disk still works if it holds one full backup of what you back up; the extra room buys history, because Time Machine deletes the oldest backups when space runs low.',
+      'Apple recommends a Time Machine backup drive with at least twice the storage capacity of your Mac (for example, a 2 TB external drive for a 1 TB Mac) formatted as APFS or APFS Encrypted. A smaller drive still works as long as it fits one complete backup of your data, while the extra capacity determines how many months of older file versions Time Machine can keep before thinning.',
     published: '2026-09-24',
     updated: '2026-09-24',
     sections: [
@@ -542,7 +544,8 @@ export const spaceQaGuides: Guide[] = [
   },
   {
     slug: 'delete-old-time-machine-backups',
-    title: 'How to delete old Time Machine backups on Mac',
+    title: 'How to Delete Old Time Machine Backups on Mac Safely',
+    h1: 'How to delete old Time Machine backups on Mac',
     description:
       'Delete old Time Machine backups safely: let Time Machine thin them itself, or remove a chosen backup with tmutil delete. Never pull folders out by hand.',
     summary:

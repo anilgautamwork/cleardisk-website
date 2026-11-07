@@ -297,13 +297,14 @@ export const everydayAppGuides: Guide[] = [
   },
   {
     slug: 'whatsapp-taking-up-space-on-mac',
-    title: 'WhatsApp taking up space on Mac: media and storage',
+    title: 'WhatsApp Taking Up Space on Mac? Clear Media & Cache',
+    h1: 'WhatsApp taking up space on Mac: how to clear media',
     description:
-      'Review WhatsApp media on your Mac, check what deletion syncs to linked devices, reduce auto-downloads and measure storage without deleting chat folders.',
+      'WhatsApp taking up space on Mac? Clear large chat media in Media, Links, and Docs, turn off auto-download, and measure the Group Container safely.',
     summary:
-      'Start inside WhatsApp and save any media you need before deleting it. Message deletion can sync across your signed-in devices, so Delete for me is not a promise of Mac-only removal. Measure local storage separately and leave WhatsApp’s databases and account folders alone.',
+      'When WhatsApp is taking up space on Mac, open large chats and delete unneeded videos or attachments from Media, Links, and Docs after saving copies you want to keep. Turn off Media auto-download in Settings → Storage and data, and never delete the ChatStorage.sqlite database in ~/Library/Group Containers.',
     published: '2026-09-24',
-    updated: '2026-10-27',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'before-deleting',
@@ -519,13 +520,14 @@ export const everydayAppGuides: Guide[] = [
   },
   {
     slug: 'steam-games-storage-mac',
-    title: 'Where are Steam games stored on Mac? Find and trim them',
+    title: 'How to Uninstall Steam Games on Mac & Remove Leftover Files',
+    h1: 'How to uninstall Steam games on Mac and clear leftover files',
     description:
-      'Find where Steam stores games on Mac, see how much space each one takes in Storage settings, and check save backups before uninstalling or moving games.',
+      'How to uninstall Steam games on Mac: check game sizes in Steam Settings → Storage, uninstall or move games to an external SSD, and check steamapps/common.',
     summary:
-      'Steam keeps games in ~/Library/Application Support/Steam/steamapps, with each game under steamapps/common. Use Steam → Settings → Storage to see sizes, uninstall games you are not playing, or move them to a library folder on another drive.',
+      'To uninstall Steam games on Mac, open Steam → Settings → Storage (or Control-click a game and choose Manage → Uninstall) after confirming your Steam Cloud saves synced. Installed games live in ~/Library/Application Support/Steam/steamapps/common, where you can check for leftover folders after uninstalling.',
     published: '2026-09-24',
-    updated: '2026-10-11',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'default-location',
@@ -628,13 +630,14 @@ export const everydayAppGuides: Guide[] = [
   },
   {
     slug: 'apple-tv-downloads-mac',
-    title: 'Apple TV downloads on Mac: find and remove them',
+    title: 'Delete Apple TV Downloads on Mac & Remove Offline Movies',
+    h1: 'How to delete Apple TV downloads on Mac',
     description:
-      'Find movies and episodes downloaded in the Apple TV app on Mac, remove them from the Downloaded list, and know what you can download again, including rentals.',
+      'How to delete Apple TV downloads on Mac: remove offline movies and episodes from Downloaded, turn on auto-delete for watched shows, and check ~/Movies/TV.',
     summary:
-      'In the Apple TV app, click Downloaded in the sidebar, hold the pointer over an item, click the More button and choose Delete from Library. Purchases stay available to download again; rentals and subscription titles have their own rules.',
+      'To delete Apple TV downloads on Mac, open the Apple TV app, select Downloaded in the sidebar, click the More button on a movie or episode, and choose Delete from Library. Purchased movies stay available to stream or re-download from the cloud, and you can enable automatic removal of watched items in TV → Settings → Files.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'see-downloads',
@@ -720,13 +723,14 @@ export const everydayAppGuides: Guide[] = [
   },
   {
     slug: 'apple-music-downloads-mac',
-    title: 'Music taking up space on Mac: downloads and media files',
+    title: 'Remove Apple Music Downloads on Mac (Keep Cloud Library)',
+    h1: 'How to remove Apple Music downloads on Mac',
     description:
-      'Free music storage on Mac: remove Apple Music downloads, know when Delete from Library is safe, and check or move the Music Media folder to an external drive.',
+      'Remove Apple Music downloads on Mac without deleting your cloud library: use Remove Download vs Delete from Library, and relocate ~/Music/Music to an SSD.',
     summary:
-      'For songs from the Apple Music catalog, use Remove Download: they stay in your library and stream when you are online. Delete from Library removes them everywhere Sync Library is on. Files you imported yourself live in the Music Media folder, which can live on an external drive.',
+      'To remove Apple Music downloads on Mac without losing songs from your library, click the More button next to a song or album in the Music app and choose Remove Download instead of Delete from Library. The local audio file is removed from ~/Music/Music while the track stays in your cloud library to stream anytime.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'three-kinds',

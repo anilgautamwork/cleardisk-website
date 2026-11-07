@@ -1,13 +1,46 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { Header, Footer } from '@/components/brand';
+import { JsonLd } from '@/components/json-ld';
 import { guideGroups } from '@/lib/guides';
-import { pageMetadata } from '@/lib/seo';
+import { canonical, pageMetadata, SITE_URL } from '@/lib/seo';
 export const metadata = pageMetadata(
-  'Mac storage guides — ClearDisk',
-  'Mac storage guides from ClearDisk: what System Data is, why a Mac stays full after deleting files, how to find large files, and cleanup for Xcode and Docker.',
+  'Mac Storage & Cleanup Guides | ClearDisk',
+  'Mac storage and cleanup guides organized by topic: System Data, full startup disks, caches, iCloud Drive, Xcode and Docker developer space, and slow Macs.',
   '/guides',
 );
+const guidesDirectorySchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': canonical('/guides') + '#collection',
+    name: 'Mac storage guides',
+    description:
+      'Sectioned directory of Mac storage, System Data, cache, developer, iCloud Drive, and performance troubleshooting guides.',
+    url: canonical('/guides'),
+    hasPart: guideGroups.map((group) => ({
+      '@type': 'CollectionPage',
+      name: group.cluster,
+      headline: group.title,
+      description: group.description,
+      url: canonical('/guides') + '#' + group.id,
+      mainEntityOfPage: canonical(group.pillar.href),
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'ClearDisk', item: SITE_URL },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Storage guides',
+        item: canonical('/guides'),
+      },
+    ],
+  },
+];
 export default function Guides() {
   return (
     <>
@@ -15,15 +48,12 @@ export default function Guides() {
       <main id="main-content" tabIndex={-1} className="wrap guide-directory">
         <header>
           <span className="eyebrow">THE STORAGE FIELD GUIDE</span>
-          <h1>
-            Mac storage guides.
-            <br />
-            <span>Less mystery. More room.</span>
-          </h1>
+          <h1>Mac storage guides</h1>
           <p>
             A full disk starts with a question.
             <br />
-            Find your answer, then choose what to do.
+            Choose your cluster below, start with its pillar guide, then inspect
+            the exact folder or app.
           </p>
         </header>
         <Link href="/clear-system-data-on-mac" className="guide-feature">
@@ -94,13 +124,27 @@ export default function Guides() {
         <nav className="guide-topic-nav" aria-label="Guide topics">
           {guideGroups.map((group) => (
             <a key={group.id} href={'#' + group.id}>
-              {group.title}
+              {group.cluster}
             </a>
           ))}
         </nav>
         {guideGroups.map((group) => (
           <section id={group.id} key={group.id} className="guide-topic-section">
             <h2>{group.title}</h2>
+            <p className="guide-directory-note">
+              {group.description} Start with{' '}
+              <Link href={group.pillar.href}>{group.pillar.label}</Link>
+              {group.secondaryPillar && (
+                <>
+                  {' '}
+                  or{' '}
+                  <Link href={group.secondaryPillar.href}>
+                    {group.secondaryPillar.label}
+                  </Link>
+                </>
+              )}
+              .
+            </p>
             <div className="guide-grid">
               {group.guides.map((guide) => (
                 <article className="guide-card" key={guide.slug}>
@@ -132,6 +176,7 @@ export default function Guides() {
         </p>
       </main>
       <Footer />
+      <JsonLd data={guidesDirectorySchema} />
     </>
   );
 }

@@ -39,13 +39,14 @@ const fileSystems = {
 export const memoryDriveGuides: Guide[] = [
   {
     slug: 'mac-swap-memory',
-    title: 'Mac swap memory: what Swap Used means and when to act',
+    title: 'What Is Swap Used on Mac? Reduce Swap Memory in Activity',
+    h1: 'What Swap Used means on Mac and how to reduce it',
     description:
       'Check Swap Used and Memory Pressure on Mac, compare readings after closing an app, and understand Terminal output without deleting system-managed swap files.',
     summary:
       'Swap Used measures startup-disk space used for virtual memory. Check it alongside Memory Pressure and the slowdown you are experiencing. Save your work, close an app you no longer need, then compare. Leave swap files under macOS control.',
     published: '2026-09-24',
-    updated: '2026-10-28',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'what-swap-is',
@@ -148,13 +149,14 @@ export const memoryDriveGuides: Guide[] = [
   },
   {
     slug: 'mac-out-of-application-memory',
-    title: 'Your system has run out of application memory on Mac',
+    title: '“Your System Has Run Out of Application Memory” Mac Fix',
+    h1: 'How to fix “Your system has run out of application memory” on Mac',
     description:
-      'What to do when your Mac says it has run out of application memory: save your work, quit the app using the most, restart, and leave disk room for swap files.',
+      'Fix “Your system has run out of application memory” on Mac: save open work, quit the heaviest app in Activity Monitor, and free startup-disk room for swap.',
     summary:
-      'Save what you can, then quit the app using the most memory. The alert means RAM, compression and swap couldn’t keep up with demand. If it keeps returning, find the app responsible in Activity Monitor and make sure the startup disk isn’t nearly full.',
+      'When your Mac shows “Your system has run out of application memory,” RAM, memory compression, and startup-disk swap space could not keep up with open apps. Save your work first, quit the largest memory consumer in Activity Monitor, and free disk space if your startup drive is nearly full.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'save-and-quit',
@@ -235,13 +237,14 @@ export const memoryDriveGuides: Guide[] = [
   },
   {
     slug: 'mac-running-slow-low-storage',
-    title: 'Why is my Mac so slow? Check CPU, memory and storage',
+    title: 'Why Is My Mac So Slow? Check Storage, CPU & Memory First',
+    h1: 'Why is my Mac running slow?',
     description:
-      'Find why your Mac is slow: separate one-app, memory, disk and internet problems. Follow Activity Monitor checks and compare results after one change.',
+      'Why is my Mac so slow? Check free SSD storage, Activity Monitor CPU and Memory Pressure, login items, and background tasks to fix the actual bottleneck.',
     summary:
-      'Low storage is one cause of a slow Mac, not the only one. Check free space, then Activity Monitor’s CPU, Memory and Energy tabs, then what opens at login. Fix the cause you can actually see.',
+      'If your Mac is running slow, check four places in order: available startup-disk storage, Activity Monitor’s % CPU column, the Memory Pressure graph, and Login Items & Extensions. Fixing the specific bottleneck you observe works far better than running blind cleanup scripts.',
     published: '2026-09-24',
-    updated: '2026-11-04',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'match-the-symptom',
@@ -834,13 +837,14 @@ export const memoryDriveGuides: Guide[] = [
   },
   {
     slug: 'how-much-storage-mac',
-    title: 'How much storage do you need on a Mac? 256GB vs 512GB',
+    title: 'How Much Storage Do You Need on a Mac? 256GB, 512GB or 1TB',
+    h1: 'How much storage do you need on a Mac?',
     description:
-      'How to choose Mac storage, 256GB, 512GB or more, from the work you do, with headroom for updates and swap, and when external or cloud storage is enough.',
+      'How much storage do you need on a Mac (256GB vs 512GB vs 1TB)? Compare real usage for daily apps, Photos, Xcode, and video, plus headroom for macOS updates.',
     summary:
-      'Choose from your own usage, not a rule of thumb. Measure what you keep locally, add growth, and leave headroom for updates and swap. Plan as if the storage you order is the storage you keep, and choose the larger size if you are unsure.',
+      'How much storage you need on a Mac depends on what you keep locally: 256 GB fits light web and document use with cloud storage, while 512 GB or 1 TB is safer for local Photos libraries, Xcode, Docker, or video editing. Because MacBook SSDs are soldered, size for your local files plus 15–20% free headroom for updates and swap.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'buy-once',
@@ -921,13 +925,14 @@ export const memoryDriveGuides: Guide[] = [
   },
   {
     slug: 'expand-mac-storage-external-ssd',
-    title: 'Expand Mac storage with an external SSD: what to move',
+    title: 'How to Add Storage to a Mac with an External SSD (APFS)',
+    h1: 'How to expand Mac storage with an external SSD',
     description:
       'Expand Mac storage with an external SSD: pick a drive and format, move Photos, Music, projects and virtual machines safely, and keep backups separate.',
     summary:
       'An external SSD is the practical way to add space to a Mac whose internal storage is fixed. Format it as APFS, move large libraries using each app’s own method, keep apps and your home folder on the Mac, and back up the drive too.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'choose-the-drive',

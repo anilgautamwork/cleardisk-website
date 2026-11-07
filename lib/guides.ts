@@ -33,6 +33,7 @@ export type GuideQuestion = { q: string; a: string };
 export type Guide = {
   slug: string;
   title: string;
+  h1?: string;
   description: string;
   summary: string;
   published: string;
@@ -61,13 +62,14 @@ const snapshots = {
 const foundationGuides: Guide[] = [
   {
     slug: 'clear-system-data-on-mac',
-    title: 'How to clear System Data on Mac',
+    title: 'How to Clear System Data on Mac Safely (Step-by-Step)',
+    h1: 'How to clear System Data on Mac',
     description:
-      'A practical guide to clearing System Data on Mac: identify the files behind the number, review what matters, and understand what cleanup can change.',
+      'Learn how to clear System Data on Mac safely without deleting files you need. Find what is inside 100GB+ System Data, stop recurring growth, and free space.',
     summary:
-      'Start by finding the files behind the number. System Data is a storage category, not a single folder you can safely empty. Review identifiable files before removing anything.',
+      'To clear System Data on Mac safely, check System Settings → General → Storage, identify the largest folders in ~/Library/Caches and ~/Library/Application Support, and remove only rebuildable app data or old backups.',
     published: '2026-09-05',
-    updated: '2026-09-30',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'start-with-the-number',
@@ -75,6 +77,16 @@ const foundationGuides: Guide[] = [
         paragraphs: [
           'Open System Settings → General → Storage. Note the available space and the size of System Data. The second number tells you how macOS grouped some files; the first tells you how much room you have to work.',
           'A large category is a reason to investigate, not a target to erase. If an installation is blocked or your Mac cannot save a file, start with the urgent storage-full guide linked below.',
+        ],
+        links: [
+          {
+            label: 'What is System Data on Mac and what belongs inside it',
+            href: '/what-is-system-data-on-mac',
+          },
+          {
+            label: 'Mac storage full: what to delete first',
+            href: '/mac-storage-full',
+          },
         ],
       },
       {
@@ -115,11 +127,46 @@ const foundationGuides: Guide[] = [
         ],
       },
       {
-        id: 'if-it-returns',
-        title: 'If System Data comes back',
+        id: 'system-data-too-large',
+        title: 'System Data taking up 100GB or more?',
         paragraphs: [
-          'Repeated cleanup is not a diagnosis. If the same app recreates a large folder, examine its cache limit, downloads, logging or project settings. The recurring-growth guide explains how to narrow this down.',
-          'If snapshots appear large, first understand how macOS manages them. Apple counts Time Machine local snapshots as available space and removes them automatically as needed. ClearDisk reports a local snapshot count, not their storage size. A count cannot tell you how many gigabytes you could recover.',
+          'Whether Storage settings shows 100GB, 150GB, 200GB or half your drive under System Data on a MacBook Air, MacBook Pro or desktop Mac, there is no universal safe limit. A development or video-editing Mac and a Mac used mainly for email have very different footprints; the diagnosis comes from which folders hold the bytes.',
+          'Match the largest folders to how you use your Mac before removing anything:',
+        ],
+        items: [
+          'Develop apps: inspect Xcode DerivedData, iOS simulators, Docker disk images and package caches, keeping project source and release archives intact.',
+          'Edit video, audio or photos: use your creative app’s media cache and scratch-disk controls rather than deleting project folders in Finder.',
+          'Back up an iPhone or iPad locally: review device backups in Finder or ~/Library/Application Support/MobileSync/Backup before removing older copies.',
+          'Use many desktop apps: inspect ~/Library/Caches and ~/Library/Application Support, and never assume everything in Application Support is a disposable cache.',
+          'Use Time Machine: remember that macOS counts local snapshots as available space and thins them automatically.',
+        ],
+        links: [
+          {
+            label: 'Clear Xcode DerivedData and developer build caches',
+            href: '/clear-xcode-derived-data',
+          },
+          {
+            label: 'Delete old iPhone and iPad backups on Mac',
+            href: '/delete-iphone-backups-on-mac',
+          },
+        ],
+      },
+      {
+        id: 'if-it-returns',
+        title: 'Why System Data keeps growing after cleanup',
+        paragraphs: [
+          'When System Data fills back up after you clean it, deleting the same folder again only hides the symptom. Record a baseline of available space, the System Data figure and the largest paths in a local scan, then compare after one normal piece of work—such as building a project, importing media or syncing mail.',
+          'Once a specific folder grows, check that application’s own cache limit, download retention, project location or logging settings. Also confirm whether your previous cleanup moved files to Trash without emptying it, and remember that ClearDisk reports a Time Machine local snapshot count rather than a guaranteed amount of recoverable space.',
+        ],
+        links: [
+          {
+            label: 'Inspect macOS log files in ~/Library/Logs and /var/log',
+            href: '/mac-log-files',
+          },
+          {
+            label: 'Clean Docker disk space and virtual disks on Mac',
+            href: '/clean-docker-disk-space-mac',
+          },
         ],
       },
     ],
@@ -133,6 +180,14 @@ const foundationGuides: Guide[] = [
         a: 'Open System Settings, General, Storage to see the available space and the System Data size, then look at development tools, creative apps, downloads and backups for a source you recognize. Close the owning app, keep a backup of anything irreplaceable, and start with items you know you no longer need.',
       },
       {
+        q: 'Why does my Mac show 100GB or more of System Data?',
+        a: "A 100GB or 200GB System Data figure usually comes from how you use the Mac, such as developer build folders, creative app media caches, local iPhone or iPad backups, or Time Machine snapshots. Match the largest folder to an app you recognize and use its cleanup controls rather than guessing from the category total.",
+      },
+      {
+        q: 'Why does System Data keep growing back after I clean it?',
+        a: 'Repeatedly deleting the same files hides the symptom rather than fixing the cause. Compare a baseline scan before and after a normal activity like building a project or downloading media, find the specific folder that grew, and adjust that app’s cache limit or download settings.',
+      },
+      {
         q: 'Does emptying the Trash free up System Data space right away?',
         a: 'No. Moving files to the Trash keeps them counted as used space until you empty the Trash yourself, and even then the System Data bar may not fall by the exact amount you removed. Category accounting, permissions and macOS-managed storage can produce different figures than a simple sum of what you deleted.',
       },
@@ -143,21 +198,22 @@ const foundationGuides: Guide[] = [
     ],
     related: [
       'what-is-system-data-on-mac',
-      'system-data-keeps-growing',
       'mac-storage-full',
       'check-disk-space-mac-terminal',
+      'delete-iphone-backups-on-mac',
     ],
     sources: [storage, definition, snapshots],
   },
   {
     slug: 'what-is-system-data-on-mac',
-    title: 'What is System Data on Mac? Storage explained',
+    title: 'What Is System Data on Mac? Where It Lives & What’s Safe',
+    h1: 'What is System Data on Mac?',
     description:
-      'What System Data on Mac actually contains, why its size keeps changing, and how to tell ordinary app files from storage you should leave alone.',
+      'What is System Data on Mac, where it lives in macOS storage, why its size changes, and how to tell rebuildable caches from app files you should keep.',
     summary:
-      'System Data groups files that macOS does not assign to another storage category, including caches, logs and app support data. The total describes storage use; it does not tell you how much can be removed.',
+      'System Data on a Mac is the catch-all macOS storage category for files that do not fit Apps, Documents or Photos—mostly caches, logs, temporary files, VM images and ~/Library support data.',
     published: '2026-09-05',
-    updated: '2026-10-13',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'see-system-data',
@@ -187,8 +243,14 @@ const foundationGuides: Guide[] = [
           'A storage app may group files differently. ClearDisk’s System Data view includes a row for iPhone and iPad backups; that does not reproduce Apple’s category boundaries.',
         ],
         links: [
-          { label: 'Inspect Library caches and their limits', href: '/library-caches-folder-mac' },
-          { label: 'Understand Application Support data', href: '/application-support-folder-mac' },
+          {
+            label: 'Inspect Library caches and their limits',
+            href: '/library-caches-folder-mac',
+          },
+          {
+            label: 'Understand Application Support data',
+            href: '/application-support-folder-mac',
+          },
         ],
       },
       {
@@ -224,9 +286,14 @@ const foundationGuides: Guide[] = [
           'For example, suppose Storage settings shows 80 GB of System Data and a scanner finds 30 GB in selected folders. The 50 GB difference is not evidence of 50 GB of hidden junk. These are illustrative numbers, not a ClearDisk scan or a savings estimate.',
         ],
         links: [
-          { label: 'Follow a reviewed cleanup workflow', href: '/clear-system-data-on-mac' },
-          { label: 'Investigate a number that keeps growing', href: '/system-data-keeps-growing' },
-          { label: 'Deal with a full startup disk', href: '/mac-storage-full' },
+          {
+            label: 'How to clear System Data on Mac step by step',
+            href: '/clear-system-data-on-mac',
+          },
+          {
+            label: 'Deal with a full startup disk',
+            href: '/mac-storage-full',
+          },
         ],
       },
     ],
@@ -258,173 +325,15 @@ const foundationGuides: Guide[] = [
     sources: [definition, storage, snapshots],
   },
   {
-    slug: 'system-data-too-large',
-    title: 'System Data taking up 100GB or more?',
-    description:
-      'System Data using 100GB, 200GB or half your Mac storage? Identify the biggest contributors and review each one before deciding what to remove.',
-    summary:
-      'A number like 100GB or 200GB cannot tell you what is safe to delete. The useful question is which files account for it—and whether you still need them.',
-    published: '2026-09-05',
-    updated: '2026-09-05',
-    sections: [
-      {
-        id: 'size-is-not-a-diagnosis',
-        title: 'There is no useful one-size-fits-all limit',
-        paragraphs: [
-          'A development Mac and a Mac used mainly for email can have very different storage needs. The same 100GB also has a different impact on a small drive and a large one. Start with available space, then identify the largest contributors.',
-          'These steps apply whether you see 100GB, 150GB, 200GB or half the drive labeled System Data, on a MacBook Air, Pro or desktop Mac. The diagnosis comes from what is stored, not from the model name.',
-        ],
-      },
-      {
-        id: 'match-your-workload',
-        title: 'Match the storage to how you use your Mac',
-        paragraphs: [
-          'Use your recent work as a starting point. A large result associated with an application you recognize is easier to evaluate than an unfamiliar folder selected only because it is big.',
-        ],
-        items: [
-          'Develop apps: inspect developer storage and distinguish regenerated files from source, archives and test data.',
-          'Edit video, audio or photos: check the creative app’s own media, cache and project-management controls.',
-          'Back up an iPhone or iPad locally: review which backups you need before removing older copies.',
-          'Use many apps: inspect their downloads and support data; do not assume everything left in Application Support is a cache.',
-          'Use Time Machine: understand local snapshots before trying to count them as removable files.',
-        ],
-      },
-      {
-        id: 'inspect-largest-first',
-        title: 'Inspect the biggest paths first',
-        paragraphs: [
-          'A local scan can help you move from a category total to individual files and folders. In ClearDisk, inspect System Data, Browse and Large Files. Check the full path, the owning application and whether the content can be replaced.',
-          'If a scan cannot access some locations, follow the app’s Full Disk Access guidance rather than interpreting missing results as empty folders. A scanner’s visible total is not a promise to reproduce every number in Apple’s Storage settings.',
-        ],
-      },
-      {
-        id: 'make-a-small-change',
-        title: 'Make one understood change and compare',
-        paragraphs: [
-          'Remove a small selection through the owning app or a reviewed Trash action. Check the application still works and that you retained the files you need. Review Trash separately before emptying it.',
-          'Compare available space and repeat the scan. Keeping the change small helps you learn which action affected the result. Avoid bulk deletion of hidden folders or system resources just to drive the number down.',
-        ],
-      },
-      {
-        id: 'when-to-get-help',
-        title: 'If you still cannot explain the total',
-        paragraphs: [
-          'Use the related guides to check recurring growth and the difference between a category figure and usable space. If an app is producing unexplained data, contact its developer with the path and size—not your private file contents.',
-          'If your Mac is failing to start, repeatedly reporting disk errors, or cannot save essential work, prioritize preserving that work and getting Apple support over experimenting with cleanup.',
-        ],
-      },
-    ],
-    questions: [
-      {
-        q: 'How much System Data is normal on a Mac?',
-        a: "There is no universal safe limit; 100GB, 150GB or 200GB can be normal or not depending on what the Mac is used for and how large its drive is. Start with available space, then identify the largest contributors rather than comparing to another Mac's number.",
-      },
-      {
-        q: 'Why does my Mac show 100GB or more of System Data?',
-        a: "It usually comes from how you use the Mac, such as developer files, creative app caches and projects, local iPhone or iPad backups, or Time Machine snapshots. Match the folder to an activity you recognize, like a creative app's own media and cache controls, rather than guessing from the total alone.",
-      },
-      {
-        q: "How do I find what's taking up System Data on Mac?",
-        a: 'A local scan such as ClearDisk lets you move from a category total to individual files by inspecting System Data, Browse and Large Files, checking each path, its owning app and whether the content is replaceable. If a scan cannot access some locations, grant it Full Disk Access rather than assuming those folders are empty.',
-      },
-      {
-        q: 'Should I delete System Data files to fix a full disk?',
-        a: 'Remove only a small, understood selection through the owning app or a reviewed Trash action, then check the app still works and repeat the scan to compare space. Bulk deletion of hidden folders or system resources just to lower the number is not a good idea.',
-      },
-    ],
-    related: [
-      'what-is-system-data-on-mac',
-      'system-data-keeps-growing',
-      'clear-system-data-on-mac',
-    ],
-    sources: [definition, storage, snapshots],
-  },
-  {
-    slug: 'system-data-keeps-growing',
-    title: 'Why does Mac System Data keep growing?',
-    description:
-      'Why Mac System Data keeps growing after cleanup: a repeatable way to compare scans, identify the responsible app, and stop deleting blindly.',
-    summary:
-      'When space fills again, find what is producing new data. Deleting the same files repeatedly may hide the symptom without changing the cause.',
-    published: '2026-09-05',
-    updated: '2026-09-05',
-    sections: [
-      {
-        id: 'record-a-baseline',
-        title: '1. Record a useful baseline',
-        paragraphs: [
-          'Note available space, the System Data figure and the largest folders in a local scan. Record when you measured them and which applications were running. A screenshot or a short private note is enough; you do not need to upload filenames.',
-          'Use the same tool and scan scope next time. Comparing different measurement methods can make ordinary accounting differences look like growth.',
-        ],
-      },
-      {
-        id: 'repeat-after-work',
-        title: '2. Compare after a normal activity',
-        paragraphs: [
-          'Do one ordinary piece of work, then scan again. For example, compare before and after building a project, importing media or downloading content in an app. Look for a path that grew, not just a larger combined category.',
-          'ClearDisk helps inspect paths and sizes, but the current release does not automatically diagnose the responsible process or maintain a growth-history dashboard. This comparison is a manual workflow.',
-        ],
-      },
-      {
-        id: 'find-the-owner',
-        title: '3. Change the app behavior behind the files',
-        paragraphs: [
-          'Once a folder points to a specific application, inspect that app’s own storage controls. Look for download retention, cache limits, project locations or unusually large logs. Consult its documentation before changing unfamiliar support files.',
-          'If the same large files immediately return, another deletion is unlikely to be the lasting fix. An app update, changed setting or support request may address the source more effectively.',
-        ],
-      },
-      {
-        id: 'check-false-signals',
-        title: '4. Rule out an incomplete cleanup',
-        paragraphs: [
-          'Confirm whether the files were moved to Trash or permanently removed. Trash-first cleanup preserves a recovery opportunity, but it also preserves the files’ disk usage until you empty it.',
-          'Compare available space as well as category totals. Do not assume a changing System Data figure proves a leak, and do not count macOS-managed snapshot space as additional guaranteed savings.',
-        ],
-      },
-      {
-        id: 'avoid-the-loop',
-        title: 'Avoid the delete-and-repeat loop',
-        paragraphs: [
-          'The goal is to keep enough space for your work while retaining the data you need. Repeatedly removing system resources, disabling protection or deleting entire hidden folders is not a sound diagnostic method.',
-          'If you cannot identify the owner, keep your baseline and the changed path available when asking for support. Review any screenshot for personal filenames before sharing it.',
-        ],
-      },
-    ],
-    questions: [
-      {
-        q: 'Why does System Data keep growing back after I clean it?',
-        a: 'Repeatedly deleting the same files hides the symptom rather than fixing the cause. Compare a baseline scan before and after a normal activity like building a project or downloading content, and look for the specific path that grew rather than just a larger combined category total.',
-      },
-      {
-        q: 'How do I stop a Mac app from refilling its storage?',
-        a: "Once you trace a growing folder to a specific app, check that app's own storage controls, such as download retention, cache limits or project locations, rather than deleting the files again. If the same large files return immediately, another deletion won't be a lasting fix.",
-      },
-      {
-        q: 'Does emptying Trash actually free up the space I deleted?',
-        a: 'Only once you empty it. Trash-first cleanup keeps a recovery option, but the files still use disk space until you empty the Trash, so confirm whether items were moved to Trash or permanently removed and compare available space rather than trusting the category figure alone.',
-      },
-      {
-        q: 'Can a Mac cleaner tell me which app is filling up my storage?',
-        a: 'Not automatically. A tool like ClearDisk helps you inspect paths and sizes, but it does not diagnose the responsible process or track growth history for you; comparing scans before and after an ordinary activity is a manual workflow you have to do yourself.',
-      },
-    ],
-    related: [
-      'mac-log-files',
-      'system-data-too-large',
-      'mac-storage-full-after-macos-update',
-      'clear-system-data-on-mac',
-    ],
-    sources: [storage, snapshots],
-  },
-  {
     slug: 'mac-storage-full',
-    title: 'Mac storage full: first steps when the disk is almost full',
+    title: 'Mac Storage Full? What to Delete First (Safe Order)',
+    h1: 'Mac storage full: what to check and delete first',
     description:
-      'A practical sequence for a full Mac startup disk: check usable space, review large files, understand Trash, and investigate what keeps filling it.',
+      'Mac storage full and not sure what to delete first? Follow this safe sequence to check usable space, clear large files, empty Trash, and inspect System Data.',
     summary:
-      'Start with files you recognize and can safely move or remove. If you already deleted things, check Trash and available space before deleting more.',
+      'When your Mac storage is full, start with files you recognize in Downloads and Applications, empty the Trash, and then inspect System Data and large folders before deleting anything else.',
     published: '2026-09-05',
-    updated: '2026-09-30',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'check-the-warning',
@@ -434,8 +343,14 @@ const foundationGuides: Guide[] = [
           'Open System Settings → General → Storage and look at available space. If a download or installer needs more room, use its stated requirement rather than a universal target copied from a cleanup article.',
         ],
         links: [
-          { label: 'Check your Mac’s storage and available space', href: '/how-to-check-storage-on-mac' },
-          { label: 'If the warning is about iCloud storage instead', href: '/icloud-storage-full-but-not-mac' },
+          {
+            label: 'Check your Mac’s storage and available space',
+            href: '/how-to-check-storage-on-mac',
+          },
+          {
+            label: 'If the warning is about iCloud storage instead',
+            href: '/icloud-storage-full-but-not-mac',
+          },
         ],
       },
       {
@@ -452,8 +367,14 @@ const foundationGuides: Guide[] = [
           'Avoid changing protected system folders to make space.',
         ],
         links: [
-          { label: 'Find large files: built-in tools and our sample scan', href: '/find-large-files-on-mac#sample-scan' },
-          { label: 'Keep your photos while reducing local storage', href: '/free-up-space-without-deleting-files#keep-your-photos' },
+          {
+            label: 'Find large files: built-in tools and our sample scan',
+            href: '/find-large-files-on-mac#sample-scan',
+          },
+          {
+            label: 'Keep your photos while reducing local storage',
+            href: '/free-up-space-without-deleting-files#keep-your-photos',
+          },
         ],
       },
       {
@@ -461,11 +382,17 @@ const foundationGuides: Guide[] = [
         title: '3. If storage is still full after deleting files',
         paragraphs: [
           'Check Trash. A move to Trash is reversible storage relocation, not immediate space recovery. Review everything in it before choosing permanent removal.',
-          'If Trash is already empty, compare the same available-space measurement again and inspect the remaining large paths. Another app may be writing new data while you clean. The recurring-growth guide helps isolate that pattern.',
+          'If Trash is already empty, compare the same available-space measurement again and inspect the remaining large paths. Another app may be writing new data while you clean.',
         ],
         links: [
-          { label: 'See what Move to Trash and Put Back actually do', href: '/mac-storage-not-updating-after-deleting-files#sample-trash' },
-          { label: 'Investigate storage that keeps growing', href: '/system-data-keeps-growing' },
+          {
+            label: 'See what Move to Trash and Put Back actually do',
+            href: '/mac-storage-not-updating-after-deleting-files#sample-trash',
+          },
+          {
+            label: 'How to free up space on Mac when the disk stays full',
+            href: '/free-up-space-on-mac',
+          },
         ],
       },
       {
@@ -476,8 +403,14 @@ const foundationGuides: Guide[] = [
           'You remain responsible for choosing what to remove. Some files support active applications or system operation. The scanner is useful because it helps make that choice informed, not because everything it finds should go.',
         ],
         links: [
-          { label: 'Review System Data by file and app', href: '/clear-system-data-on-mac' },
-          { label: 'Compare built-in tools, file scanners and Mac cleaners', href: '/best-free-mac-cleaner' },
+          {
+            label: 'How to clear System Data on Mac by file and app',
+            href: '/clear-system-data-on-mac',
+          },
+          {
+            label: 'Compare built-in tools, file scanners and Mac cleaners',
+            href: '/best-free-mac-cleaner',
+          },
         ],
       },
       {
@@ -520,8 +453,6 @@ const foundationGuides: Guide[] = [
 const deeperGuides: Record<string, string> = {
   'clear-system-data-on-mac': 'find-large-files-on-mac',
   'what-is-system-data-on-mac': 'clear-browser-cache-mac',
-  'system-data-too-large': 'delete-iphone-backups-on-mac',
-  'system-data-keeps-growing': 'clean-docker-disk-space-mac',
   'mac-storage-full': 'purgeable-space-on-mac',
 };
 for (const guide of foundationGuides)
@@ -546,89 +477,410 @@ export const guides: Guide[] = [
   ...spaceQaGuides,
 ];
 
-export const guideGroups = [
-  {
-    id: 'icloud-drive',
-    title: 'iCloud Drive: sync, storage and recovery',
-    guides: icloudGuides,
-  },
+export function getGuide(slug: string): Guide | undefined {
+  return guides.find((guide) => guide.slug === slug);
+}
+
+const bySlugs = (slugs: string[]): Guide[] =>
+  slugs.map((slug) => {
+    const guide = getGuide(slug);
+    if (!guide) throw new Error('Missing guide in cluster: ' + slug);
+    return guide;
+  });
+
+export type GuideGroup = {
+  id: string;
+  cluster: string;
+  title: string;
+  description: string;
+  pillar: { href: string; label: string };
+  secondaryPillar?: { href: string; label: string };
+  guides: Guide[];
+};
+
+export const guideGroups: GuideGroup[] = [
   {
     id: 'system-data',
-    title: 'System Data and a full Mac',
-    guides: foundationGuides,
+    cluster: 'System Data',
+    title: 'System Data & macOS storage categories',
+    description:
+      'What macOS counts inside System Data, Other and Purgeable space, and how to clear System Data safely without breaking active apps.',
+    pillar: {
+      href: '/what-is-system-data-on-mac',
+      label: 'what is System Data on Mac',
+    },
+    secondaryPillar: {
+      href: '/clear-system-data-on-mac',
+      label: 'how to clear System Data on Mac',
+    },
+    guides: bySlugs([
+      'clear-system-data-on-mac',
+      'what-is-system-data-on-mac',
+      'mac-storage-glossary',
+      'purgeable-space-on-mac',
+      'other-storage-on-mac',
+      'ios-files-on-mac',
+      'documents-storage-on-mac',
+      'macos-storage-category-size',
+    ]),
   },
   {
-    id: 'everyday-cleanup',
-    title: 'Everyday cleanup and choosing tools',
-    guides: maintenanceGuides,
+    id: 'storage-full',
+    cluster: 'Storage full',
+    title: 'Storage full & macOS update space',
+    description:
+      'Step-by-step triage when your startup disk is almost full, a macOS update says there is not enough space, or you need to free up space on Mac fast.',
+    pillar: {
+      href: '/mac-storage-full',
+      label: 'Mac storage full: what to delete first',
+    },
+    secondaryPillar: {
+      href: '/free-up-space-on-mac',
+      label: 'how to free up space on Mac',
+    },
+    guides: bySlugs([
+      'mac-storage-full',
+      'free-up-space-on-mac',
+      'not-enough-space-to-update-macos',
+      'delete-macos-installer-mac',
+      'mac-storage-full-after-macos-update',
+      'optimize-storage-mac',
+      'mac-wont-start-disk-full',
+      'disk-almost-full-notification-mac',
+      'find-what-is-filling-disk-mac',
+      'free-up-space-without-deleting-files',
+      'how-much-free-space-to-keep-mac',
+    ]),
   },
   {
-    id: 'files-and-backups',
-    title: 'Files, backups and cloud storage',
-    guides: [...storageGuides, ...moreFileGuides],
+    id: 'check-storage',
+    cluster: 'Check storage',
+    title: 'Check storage, find large files & disk analyzers',
+    description:
+      'How to check storage on Mac in System Settings, Finder and Terminal, find large or duplicate files, and compare visual disk space analyzers.',
+    pillar: {
+      href: '/how-to-check-storage-on-mac',
+      label: 'how to check storage on Mac',
+    },
+    secondaryPillar: {
+      href: '/find-large-files-on-mac',
+      label: 'how to find large files on Mac',
+    },
+    guides: bySlugs([
+      'how-to-check-storage-on-mac',
+      'find-large-files-on-mac',
+      'disk-space-analyzer-mac',
+      'check-disk-space-mac-terminal',
+      'mac-storage-not-updating-after-deleting-files',
+      'ncdu-on-mac',
+      'mac-storage-calculating',
+      'how-much-storage-mac',
+      'find-duplicate-files-mac',
+      'show-folder-sizes-finder-mac',
+    ]),
   },
   {
-    id: 'apps-and-developer-tools',
-    title: 'Apps and developer tools',
-    guides: developerGuides,
+    id: 'caches',
+    cluster: 'Caches',
+    title: 'Caches, Library folders & logs',
+    description:
+      'How to clear cache on Mac across user, browser and system folders, and how to tell ~/Library/Caches apart from Application Support and Containers.',
+    pillar: {
+      href: '/clear-cache-on-mac',
+      label: 'how to clear cache on Mac',
+    },
+    guides: bySlugs([
+      'clear-cache-on-mac',
+      'library-caches-folder-mac',
+      'application-support-folder-mac',
+      'containers-folder-mac',
+      'clear-browser-cache-mac',
+      'sleepimage-file-mac',
+      'private-var-folders-mac',
+      'mac-log-files',
+      'remove-language-files-mac',
+    ]),
   },
   {
-    id: 'external-drives',
-    title: 'External drives and Disk Utility',
-    guides: driveGuides,
+    id: 'icloud-drive',
+    cluster: 'iCloud Drive',
+    title: 'iCloud Drive sync, local copies & cloud storage',
+    description:
+      'Diagnose iCloud Drive not syncing on Mac, understand status icons and com.apple.bird, and free local SSD space without deleting cloud originals.',
+    pillar: {
+      href: '/icloud-doctor',
+      label: 'diagnose iCloud Drive not syncing on Mac with iCloud Doctor',
+    },
+    secondaryPillar: {
+      href: '/icloud-drive-taking-up-space-on-mac',
+      label: 'iCloud Drive taking up space on Mac',
+    },
+    guides: bySlugs([
+      'icloud-drive-taking-up-space-on-mac',
+      'cloud-drive-taking-up-space-on-mac',
+      'icloud-drive-stuck-uploading-mac',
+      'icloud-drive-status-icons-mac',
+      'icloud-storage-full-but-not-mac',
+      'icloud-remove-download-missing-mac',
+      'keep-icloud-files-downloaded-mac',
+      'archive-icloud-drive-to-mac',
+      'icloud-desktop-documents-files-missing-mac',
+      'recover-deleted-icloud-drive-files-mac',
+      'com-apple-bird-taking-space',
+    ]),
   },
   {
-    id: 'storage-categories',
-    title: 'Storage categories and system folders',
-    guides: systemFolderGuides,
+    id: 'developer-storage',
+    cluster: 'Developer storage',
+    title: 'Developer storage: Xcode, Docker, Homebrew & toolchains',
+    description:
+      'Reclaim developer storage on Mac across Xcode DerivedData, iOS simulators, Docker disk images, Homebrew, npm, pnpm, Cargo, Conda, Android Studio and local AI models.',
+    pillar: {
+      href: '/developer-storage-on-mac',
+      label: 'developer storage on Mac',
+    },
+    secondaryPillar: {
+      href: '/clear-xcode-derived-data',
+      label: 'clear Xcode Derived Data on Mac',
+    },
+    guides: bySlugs([
+      'developer-storage-on-mac',
+      'clear-xcode-derived-data',
+      'remove-unused-ios-simulators',
+      'clean-docker-disk-space-mac',
+      'find-node-modules-folders-mac',
+      'clean-homebrew-cache-mac',
+      'clear-npm-cache-mac',
+      'clear-gradle-cache-mac',
+      'clear-cocoapods-cache-mac',
+      'clear-pip-cache-mac',
+      'clean-conda-disk-space-mac',
+      'ollama-models-location-mac',
+      'android-studio-disk-space-mac',
+      'clear-yarn-pnpm-cache-mac',
+      'clear-cargo-cache-mac',
+      'clear-jetbrains-cache-mac',
+      'virtual-machine-disk-space-mac',
+      'delete-docker-images-mac',
+      'remove-docker-containers-mac',
+      'docker-dangling-vs-unused-images',
+      'docker-overlay2-on-mac',
+      'docker-raw-file-mac',
+      'clear-docker-build-cache-mac',
+      'remove-docker-volumes-mac',
+      'docker-image-in-use-conflict',
+      'uninstall-node-js-mac',
+      'uninstall-anaconda-mac',
+      'uninstall-homebrew-mac',
+      'homebrew-list-installed-packages',
+      'pip-no-cache-dir',
+      'xcode-xip-file-mac',
+      'reinstall-command-line-tools-mac',
+    ]),
   },
   {
-    id: 'developer-caches',
-    title: 'Developer caches, toolchains and VMs',
-    guides: moreDeveloperGuides,
+    id: 'trash-and-files',
+    cluster: 'Trash & files',
+    title: 'Trash, hidden files, Downloads & Library folders',
+    description:
+      'How to delete files on Mac, empty a stubborn Trash, show hidden files and ~/Library, and manage Downloads and screenshots.',
+    pillar: {
+      href: '/delete-files-on-mac',
+      label: 'how to delete files on Mac',
+    },
+    secondaryPillar: {
+      href: '/show-hidden-files-mac',
+      label: 'how to show hidden files on Mac',
+    },
+    guides: bySlugs([
+      'delete-files-on-mac',
+      'show-hidden-files-mac',
+      'show-library-folder-mac',
+      'trash-wont-empty-mac',
+      'clear-downloads-folder-mac',
+      'mac-folder-structure-explained',
+      'change-screenshot-location-mac',
+      'recover-files-from-trash-mac',
+      'empty-trash-automatically-mac',
+      'downloads-folder-missing-mac',
+      'move-files-to-trash-terminal-mac',
+      'delete-immediately-skip-trash-mac',
+      'ds-store-files-mac',
+      'stop-mac-hidden-files-on-usb',
+      'relocated-items-folder-mac',
+    ]),
   },
   {
-    id: 'creative-apps',
-    title: 'Video, photo and music apps',
-    guides: creativeGuides,
+    id: 'uninstall-and-apps',
+    cluster: 'Uninstall & apps',
+    title: 'Uninstalling apps, background items & Rosetta 2',
+    description:
+      'How to uninstall apps on Mac completely, clean up leftover Library files and login items, and check built-in apps or Rosetta 2.',
+    pillar: {
+      href: '/uninstall-apps-on-mac',
+      label: 'how to uninstall apps on Mac',
+    },
+    guides: bySlugs([
+      'uninstall-apps-on-mac',
+      'remove-background-items-mac',
+      'uninstall-rosetta-2-mac',
+      'delete-built-in-apps-mac',
+    ]),
   },
   {
-    id: 'everyday-apps',
-    title: 'Chat, streaming and game apps',
-    guides: everydayAppGuides,
+    id: 'photos-and-backups',
+    cluster: 'Photos & backups',
+    title: 'Photos library, iPhone backups & Time Machine',
+    description:
+      'Manage large Photos libraries, old iPhone and iPad backups in Finder, and Time Machine local snapshots and backup drives.',
+    pillar: {
+      href: '/free-up-space-on-mac',
+      label: 'how to free up space on Mac',
+    },
+    secondaryPillar: {
+      href: '/photos-library-taking-up-space-mac',
+      label: 'Photos library taking up space on Mac',
+    },
+    guides: bySlugs([
+      'photos-library-taking-up-space-mac',
+      'move-photos-library-to-external-drive',
+      'photos-optimize-storage-not-working',
+      'delete-iphone-backups-on-mac',
+      'time-machine-snapshots',
+      'time-machine-backup-disk-full',
+      'time-machine-drive-size',
+      'delete-old-time-machine-backups',
+    ]),
   },
   {
-    id: 'memory-and-startup',
-    title: 'Memory, speed and startup disks',
-    guides: memoryDriveGuides,
+    id: 'creative-and-media-apps',
+    cluster: 'Creative & media apps',
+    title: 'Creative & media apps: Adobe, Final Cut, DaVinci & Logic',
+    description:
+      'Clear scratch disks, render files, media caches and sound libraries across Photoshop, Premiere Pro, Lightroom, DaVinci Resolve, Final Cut Pro, Logic Pro and GarageBand.',
+    pillar: {
+      href: '/free-up-space-on-mac',
+      label: 'how to free up space on Mac',
+    },
+    secondaryPillar: {
+      href: '/photoshop-scratch-disk-full-mac',
+      label: 'Photoshop scratch disk full on Mac',
+    },
+    guides: bySlugs([
+      'photoshop-scratch-disk-full-mac',
+      'clear-premiere-pro-media-cache-mac',
+      'clear-davinci-resolve-cache-mac',
+      'clear-lightroom-cache-mac',
+      'adobe-creative-cloud-space-mac',
+      'final-cut-pro-storage-full',
+      'logic-pro-sound-library-space',
+      'garageband-sound-library-mac',
+      'imovie-library-taking-up-space',
+    ]),
   },
   {
-    id: 'docker',
-    title: 'Docker disk space on Mac',
-    guides: dockerGuides,
+    id: 'apps-taking-space',
+    cluster: 'Apps taking space',
+    title: 'Everyday apps: Mail, Messages, Chrome, Steam & chat apps',
+    description:
+      'Reduce local storage used by Mail, Messages, Google Chrome, Steam games, WhatsApp, Telegram, Slack, Microsoft Teams, Spotify, Apple TV and Apple Music.',
+    pillar: {
+      href: '/free-up-space-on-mac',
+      label: 'how to free up space on Mac',
+    },
+    secondaryPillar: {
+      href: '/mail-taking-up-space-on-mac',
+      label: 'Mail taking up space on Mac',
+    },
+    guides: bySlugs([
+      'mail-taking-up-space-on-mac',
+      'messages-taking-up-space-on-mac',
+      'google-chrome-taking-up-space-mac',
+      'chrome-on-device-ai-model-mac',
+      'steam-games-storage-mac',
+      'whatsapp-taking-up-space-on-mac',
+      'telegram-taking-up-space-on-mac',
+      'clear-spotify-cache-mac',
+      'clear-slack-cache-mac',
+      'clear-teams-cache-mac',
+      'apple-tv-downloads-mac',
+      'apple-music-downloads-mac',
+      'podcasts-taking-up-space-mac',
+    ]),
   },
   {
-    id: 'uninstall-developer-tools',
-    title: 'Uninstall and reset developer tools',
-    guides: devQaGuides,
+    id: 'performance-and-memory',
+    cluster: 'Performance & memory',
+    title: 'Performance, memory pressure, swap & CPU processes',
+    description:
+      'Diagnose why your Mac is running slow, out-of-application-memory warnings, swap usage, Spotlight mds_stores CPU spikes and Terminal memory commands.',
+    pillar: {
+      href: '/mac-running-slow-low-storage',
+      label: 'why is my Mac so slow and how low storage affects speed',
+    },
+    guides: bySlugs([
+      'mac-running-slow-low-storage',
+      'mac-out-of-application-memory',
+      'mac-swap-memory',
+      'mac-slow-after-macos-update',
+      'mds-stores-high-cpu-mac',
+      'free-command-on-mac',
+      'purge-command-mac-memory',
+      'operation-not-permitted-terminal-mac',
+    ]),
   },
   {
-    id: 'chrome-trash-hidden-files',
-    title: 'Chrome, Trash and hidden files',
-    guides: fileQaGuides,
+    id: 'disks-and-apfs',
+    cluster: 'Disks & APFS',
+    title: 'Disks, APFS containers, Disk Utility & external drives',
+    description:
+      'Use Disk Utility on Mac, understand APFS containers and Other Volumes, fix external drives not showing up or ejecting, and expand storage with an external SSD.',
+    pillar: {
+      href: '/disk-utility-mac',
+      label: 'Disk Utility on Mac',
+    },
+    secondaryPillar: {
+      href: '/external-hard-drive-not-showing-up-mac',
+      label: 'external hard drive not showing up on Mac',
+    },
+    guides: bySlugs([
+      'disk-utility-mac',
+      'external-hard-drive-not-showing-up-mac',
+      'eject-external-drive-mac',
+      'format-external-hard-drive-mac',
+      'other-volumes-in-container',
+      'disk-utility-first-aid-mac',
+      'apfs-container-vs-volume',
+      'mac-recovery-partition',
+      'expand-mac-storage-external-ssd',
+      'remove-boot-camp-partition',
+      'list-disks-terminal-mac',
+    ]),
   },
   {
-    id: 'macos-questions',
-    title: 'macOS processes, memory and disks',
-    guides: systemQaGuides,
-  },
-  {
-    id: 'planning-space',
-    title: 'Planning space and backups',
-    guides: spaceQaGuides,
+    id: 'mac-cleaner-comparison',
+    cluster: 'Brand & commercial',
+    title: 'Choosing a Mac cleaner or disk scanner',
+    description:
+      'Compare built-in macOS storage tools, visual disk analyzers, app uninstallers and Mac cleaners before installing anything.',
+    pillar: {
+      href: '/',
+      label: 'ClearDisk Mac cleaner',
+    },
+    guides: bySlugs(['best-free-mac-cleaner']),
   },
 ];
 
-export function getGuide(slug: string): Guide | undefined {
-  return guides.find((guide) => guide.slug === slug);
+export function getGuideCluster(slug: string): GuideGroup | undefined {
+  return guideGroups.find((group) =>
+    group.guides.some((guide) => guide.slug === slug),
+  );
+}
+
+export function getClusterGuidesForPillar(slug: string): GuideGroup[] {
+  const path = '/' + slug;
+  return guideGroups.filter(
+    (group) =>
+      group.pillar.href === path || group.secondaryPillar?.href === path,
+  );
 }

@@ -6,6 +6,20 @@ const nextConfig: NextConfig = {
   // one so guide pages expose title, canonical and OG tags in <head> for any
   // crawler or auditor that does not run JavaScript.
   htmlLimitedBots: /./,
+  async redirects() {
+    return [
+      {
+        source: '/system-data-too-large',
+        destination: '/clear-system-data-on-mac',
+        permanent: true,
+      },
+      {
+        source: '/system-data-keeps-growing',
+        destination: '/clear-system-data-on-mac',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

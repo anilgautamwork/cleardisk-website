@@ -3,13 +3,14 @@ import type { Guide } from './guides.ts';
 export const creativeGuides: Guide[] = [
   {
     slug: 'clear-premiere-pro-media-cache-mac',
-    title: 'How to clear the Premiere Pro media cache on Mac',
+    title: 'How to Clear Premiere Pro Media Cache on Mac Safely',
+    h1: 'How to clear Premiere Pro media cache on Mac',
     description:
-      'Clear the Premiere Pro media cache on Mac: find the cache location, choose between deleting unused or all files, and set cleanup by age or size in Settings.',
+      'How to clear Premiere Pro media cache on Mac: find ~/Library/Application Support/Adobe/Common, delete unused or all cache files, and set auto-cleanup.',
     summary:
-      'Use Premiere Pro’s own Media Cache settings: delete unused cache files, or all of them before opening a project. By default the cache lives in ~/Library/Application Support/Adobe/Common, and Premiere Pro rebuilds what it needs.',
+      'To clear the Premiere Pro media cache on Mac, open Premiere Pro → Settings → Media Cache and click Delete next to Remove Media Cache Files. By default the cache lives in ~/Library/Application Support/Adobe/Common, and Premiere Pro safely rebuilds peak (.pek) and conformed audio (.cfa) files when needed.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'what-the-cache-holds',
@@ -102,13 +103,14 @@ export const creativeGuides: Guide[] = [
   },
   {
     slug: 'clear-davinci-resolve-cache-mac',
-    title: 'How to clear the DaVinci Resolve cache on Mac',
+    title: 'How to Clear DaVinci Resolve Cache on Mac (Render & Proxy)',
+    h1: 'How to clear DaVinci Resolve cache on Mac',
     description:
-      'Find the DaVinci Resolve cache location on Mac, clear render cache with Delete Render Cache, set automatic cleanup, and deal with optimized media and proxies.',
+      'How to clear DaVinci Resolve cache on Mac: locate CacheClip in Project Settings, run Playback → Delete Render Cache, and remove optimized media safely.',
     summary:
-      'Resolve writes render cache and optimized media to the Cache files location in Project Settings, by default a CacheClip folder on the first Media Storage volume. Clear render cache with Playback → Delete Render Cache; optimized media and proxies are deleted separately.',
+      'To clear the DaVinci Resolve cache on Mac, open Playback → Delete Render Cache (or Manage Render Cache) to remove render files from the CacheClip folder. Optimized media and proxy files live in the working folders set in Project Settings and can be removed separately in Finder.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'find-cache-location',
@@ -193,13 +195,14 @@ export const creativeGuides: Guide[] = [
   },
   {
     slug: 'clear-lightroom-cache-mac',
-    title: 'Lightroom cache on Mac: where it is and how to clean it',
+    title: 'How to Clear Lightroom Cache & Previews on Mac Safely',
+    h1: 'How to clear Lightroom cache and previews on Mac',
     description:
-      'Lightroom cache location on Mac: purge the Camera Raw cache, shrink Previews.lrdata, discard Smart Previews and old backups, and set the cloud app’s limit.',
+      'How to clear Lightroom cache on Mac: purge the Camera Raw cache in Preferences, shrink Previews.lrdata in ~/Pictures/Lightroom, and prune old backups.',
     summary:
-      'Lightroom Classic keeps a Camera Raw cache, purged in Preferences → Performance, and preview files next to the catalog in ~/Pictures/Lightroom by default. Lightroom, the cloud-based app, has its own cache limit in Preferences → Cache.',
+      'To clear the Lightroom cache on Mac, open Lightroom Classic → Preferences → Performance and click Purge Cache under Camera Raw Cache Settings, then discard 1:1 previews to shrink Previews.lrdata in ~/Pictures/Lightroom. In the cloud-based Lightroom app, lower the local storage limit in Preferences → Cache.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'which-lightroom',
@@ -499,13 +502,14 @@ export const creativeGuides: Guide[] = [
   },
   {
     slug: 'logic-pro-sound-library-space',
-    title: 'Logic Pro sound library taking up space on Mac',
+    title: 'Move Logic Pro Sound Library to an External Drive on Mac',
+    h1: 'How to move the Logic Pro Sound Library to an external drive',
     description:
-      'Logic Pro sound library taking up space? Delete unused sound packs, move the library to an external drive the supported way, and keep your projects working.',
+      'Logic Pro sound library taking up space on Mac? Move Logic Pro Library.bundle to an external SSD, relocate packs in older versions, or delete unused packs.',
     summary:
-      'In Logic Pro, open Sound Library → Manage Packs to see pack sizes and delete what you don’t use. To keep the content but free the startup disk, move the sound library to an external drive with Apple’s method for your version.',
+      'When the Logic Pro sound library takes up space on Mac, move Logic Pro Library.bundle (in Logic Pro 12+) or use Logic Pro → Sound Library → Relocate Sound Library to store it on an external SSD. You can also open Sound Library → Manage Packs to delete individual instrument packs you do not use.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'where-it-lives',

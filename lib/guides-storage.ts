@@ -24,13 +24,14 @@ const cloudFiles = {
 export const storageGuides: Guide[] = [
   {
     slug: 'find-large-files-on-mac',
-    title: 'How to find large files on Mac before deleting anything',
+    title: 'How to Find Large Files on Mac (Finder, Storage & Scan)',
+    h1: 'How to find large files on Mac',
     description:
-      'Find large files on Mac using Storage settings and Finder, then check each file’s location, purpose and backup before deciding what to remove.',
+      'Learn how to find large files on Mac in System Settings, Finder search filters, and ClearDisk’s visual treemap before moving or deleting anything.',
     summary:
-      'Start with the Documents view in Storage settings, then inspect the largest results in Finder. A large file is a candidate for review, not proof that it is unnecessary.',
+      'To find large files on a Mac, open System Settings → General → Storage → Documents to sort Large Files by size, or use Finder search filters and a visual storage scanner to inspect folders before deleting.',
     published: '2026-09-05',
-    updated: '2026-09-30',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'storage-list',
@@ -225,13 +226,14 @@ export const storageGuides: Guide[] = [
   },
   {
     slug: 'icloud-drive-taking-up-space-on-mac',
-    title: 'Why iCloud Drive takes up space on your Mac',
+    title: 'iCloud Drive Taking Up Space on Mac? Free Space Safely',
+    h1: 'iCloud Drive taking up space on your Mac',
     description:
-      'Check which iCloud files are downloaded, remove local downloads without deleting cloud files, and understand Keep Downloaded and offline access.',
+      'iCloud Drive taking up space on Mac? See which synced files are stored locally, use Remove Download safely, and free SSD space without losing cloud files.',
     summary:
-      'iCloud Drive can keep local copies for offline work. To reduce local storage while keeping a synced file, check its upload status and use Remove Download instead of deleting it.',
+      'iCloud Drive takes up local space on your Mac when synced files are downloaded for offline use. Control-click a synced file or folder in Finder and choose Remove Download to free Mac SSD space while keeping the original in iCloud.',
     published: '2026-09-05',
-    updated: '2026-09-09',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'check-status',
@@ -315,13 +317,14 @@ export const storageGuides: Guide[] = [
   },
   {
     slug: 'purgeable-space-on-mac',
-    title: 'Purgeable space on Mac: what it means and what to do',
+    title: 'What Is Purgeable Space on Mac & How to Clear It Safely',
+    h1: 'Purgeable space on Mac: what it means and what to do',
     description:
-      'Understand free versus available Mac storage, why purgeable space is not a junk folder, and how to investigate an operation that still needs more room.',
+      'What is purgeable space on Mac in Disk Utility? See why macOS counts Time Machine local snapshots as available storage and how to reclaim room safely.',
     summary:
-      'Purgeable space is storage macOS can reclaim when needed. It may already be included in available space, so adding it to the available total can count the same capacity twice.',
+      'Purgeable space on a Mac is storage used by Time Machine local snapshots, cached cloud files, and temporary system data that macOS reclaims automatically when needed. It is already counted inside Available space in Disk Utility and Storage settings.',
     published: '2026-09-05',
-    updated: '2026-09-05',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'read-the-labels',
@@ -391,13 +394,14 @@ export const storageGuides: Guide[] = [
   },
   {
     slug: 'mac-storage-not-updating-after-deleting-files',
-    title: 'Mac storage not updating after deleting files?',
+    title: 'Deleted Files on Mac But Still No Space? 5 Reasons & Fixes',
+    h1: 'Mac storage not updating after deleting files',
     description:
-      'Check Trash, the destination volume, cloud-only files and available-space accounting before deleting more to fix a Mac storage number that has not changed.',
+      'Deleted files on Mac but storage is not updating? Check Trash, APFS snapshots, external volumes, and iCloud placeholders to reclaim your free disk space.',
     summary:
-      'First confirm that deletion finished and that you are measuring the drive those files occupied. Then compare available space, rather than relying only on a category bar.',
+      'If your Mac storage is not updating after deleting files, first empty the Trash—files in Trash still occupy disk space—then check whether you deleted cloud-only placeholders, files on an external drive, or items held by APFS local snapshots.',
     published: '2026-09-05',
-    updated: '2026-09-30',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'trash',
@@ -765,13 +769,14 @@ export const storageGuides: Guide[] = [
   },
   {
     slug: 'cloud-drive-taking-up-space-on-mac',
-    title: 'Google Drive, Dropbox or OneDrive taking up space on Mac',
+    title: 'Google Drive, Dropbox & OneDrive Taking Up Space on Mac',
+    h1: 'Google Drive, Dropbox or OneDrive taking up space on Mac',
     description:
-      'Why a cloud drive fills a Mac’s disk, how to switch Google Drive to streaming, make Dropbox files online-only, and free space with OneDrive Files On-Demand.',
+      'Cloud drive taking up space on Mac? Switch Google Drive to Stream files, make Dropbox online-only, and use OneDrive Free up space on macOS Sequoia.',
     summary:
-      'Every desktop sync app can keep a full local copy or a cloud-only placeholder. The space comes back when you switch modes through the app, never by deleting inside a synced folder.',
+      'When Google Drive, Dropbox, or OneDrive takes up space on your Mac, local copies are cached inside ~/Library/CloudStorage. Switch the app to Stream files, Make online-only, or Free up space instead of deleting files inside the synced folder.',
     published: '2026-09-06',
-    updated: '2026-09-06',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'which-mode-is-the-drive-in',
@@ -860,13 +865,14 @@ export const storageGuides: Guide[] = [
   },
   {
     slug: 'photos-library-taking-up-space-mac',
-    title: 'Photos library taking up space on Mac: what to change',
+    title: 'Photos Library Taking Up Space on Mac: 3 Ways to Shrink It',
+    h1: 'Photos library taking up space on your Mac',
     description:
-      'Why the Photos library grows, how Optimize Mac Storage keeps originals in iCloud, what deleting does across devices, and when to move it to another drive.',
+      'Photos library taking up space on Mac? Turn on Optimize Mac Storage, move your library to an external APFS SSD, or delete duplicates without losing originals.',
     summary:
-      'A large Photos library does not mean you need to delete pictures. Start with its location and your backup. Optimize Mac Storage can reduce local storage use; moving the library can put it on an external drive. Deleting photos while iCloud Photos is on also deletes them on your other synced devices.',
+      'To stop the Photos library taking up space on your Mac without losing pictures, turn on Optimize Mac Storage in Photos → Settings → iCloud or move the Photos Library package to an external APFS SSD.',
     published: '2026-09-06',
-    updated: '2026-10-01',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'see-the-library-size',
@@ -959,13 +965,14 @@ export const storageGuides: Guide[] = [
   },
   {
     slug: 'time-machine-backup-disk-full',
-    title: 'Time Machine backup disk full: what happens and what to do',
+    title: 'Time Machine Backup Disk Full on Mac? Why & How to Fix',
+    h1: 'Time Machine backup disk full: what happens and what to do',
     description:
-      'What Time Machine does when its backup disk fills up, why the oldest backups disappear, how to exclude folders, and when a larger disk is the answer.',
+      'Time Machine backup disk full on Mac? Learn why Time Machine automatically thins oldest backups, how to exclude huge folders, and when to switch drives.',
     summary:
-      'Time Machine is designed to fill its disk and then thin the oldest backups. A full backup disk is normal; a Mac that can no longer complete a backup is the problem to fix.',
+      'A full Time Machine backup disk on Mac is normal because Time Machine fills the drive and then deletes the oldest backups automatically. You only need to exclude large folders or switch to a larger drive if a new backup fails to complete.',
     published: '2026-09-06',
-    updated: '2026-09-06',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'what-full-means',
@@ -1028,6 +1035,8 @@ export const storageGuides: Guide[] = [
     ],
     related: [
       'time-machine-snapshots',
+      'delete-old-time-machine-backups',
+      'time-machine-drive-size',
       'find-node-modules-folders-mac',
       'move-photos-library-to-external-drive',
       'mac-storage-full',

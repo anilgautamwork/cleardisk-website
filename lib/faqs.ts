@@ -11,6 +11,7 @@ export type FaqTopic = {
   description: string;
   intro: string;
   updated: string;
+  pillar: { href: string; label: string };
   questions: FaqQuestion[];
 };
 // Every answer is a short, complete reply on its own; `guide` points at the
@@ -18,12 +19,16 @@ export type FaqTopic = {
 export const faqTopics: FaqTopic[] = [
   {
     slug: 'system-data',
-    title: 'System Data on Mac: questions and answers',
+    title: 'FAQ: System Data Questions & Short Answers | ClearDisk',
     description:
-      'Short answers to the questions people ask about System Data on a Mac: what it is, whether it is safe to delete, why it is so large, and how to shrink it.',
+      'Short FAQ answers to common System Data questions on Mac: what the category contains, whether it is safe to delete, and which step-by-step guide to read next.',
     intro:
       'Start with the number in Storage settings, then find the files behind it. These answers explain what System Data includes, where to look and what to leave alone.',
     updated: '2026-10-04',
+    pillar: {
+      href: '/what-is-system-data-on-mac',
+      label: 'What is System Data on Mac?',
+    },
     questions: [
       {
         id: 'what-is-system-data',
@@ -51,14 +56,14 @@ export const faqTopics: FaqTopic[] = [
         question: 'Why is System Data so high on my Mac?',
         answer:
           'Usually one or two producers: a developer tool, a creative app’s caches, old iPhone backups, or Mail and Messages attachments. Finding the producer matters more than the total, because it decides whether the number comes back.',
-        guide: 'system-data-keeps-growing',
+        guide: 'clear-system-data-on-mac',
       },
       {
         id: 'hundred-gb',
         question: 'How do I get rid of 100GB or more of System Data?',
         answer:
           'Identify the largest contributors first, then review files you recognize and can replace or no longer need. Keep required backups and project originals. A 100GB category does not mean 100GB is removable; compare available space after each small change.',
-        guide: 'system-data-too-large',
+        guide: 'clear-system-data-on-mac',
       },
       {
         id: 'how-to-clear',
@@ -72,7 +77,7 @@ export const faqTopics: FaqTopic[] = [
         question: 'Why does System Data keep growing after I clean it?',
         answer:
           'Because the app that produced it is still producing it. Compare two scans a few days apart, identify the folder that grew, and change that app’s cache limit, download or logging setting instead of deleting again.',
-        guide: 'system-data-keeps-growing',
+        guide: 'clear-system-data-on-mac',
       },
       {
         id: 'terminal',
@@ -106,12 +111,16 @@ export const faqTopics: FaqTopic[] = [
   },
   {
     slug: 'mac-storage-full',
-    title: 'Mac storage full: questions and answers',
+    title: 'FAQ: Full Mac Disk Questions & Short Answers | ClearDisk',
     description:
-      'Short answers for a full Mac: why it stays full after deleting, why an update says there is not enough space, what purgeable means, and what to clear first.',
+      'Short FAQ answers for a full Mac disk: why space stays low after deleting, why updates report not enough space, what purgeable means, and which guide to read.',
     intro:
       'A full disk raises the same questions on every Mac. These are the ones people ask most, each with a short answer and the guide that walks through the fix.',
     updated: '2026-09-30',
+    pillar: {
+      href: '/mac-storage-full',
+      label: 'Mac storage full: what to delete first',
+    },
     questions: [
       {
         id: 'still-full-after-deleting',
@@ -187,12 +196,16 @@ export const faqTopics: FaqTopic[] = [
   },
   {
     slug: 'clear-cache',
-    title: 'Clearing cache on Mac: questions and answers',
+    title: 'FAQ: Mac Cache Questions & Short Answers | ClearDisk',
     description:
-      'Short answers about Mac caches: whether deleting them is safe, how to clear Safari and Chrome, what the system cache is, and which developer caches count.',
+      'Short FAQ answers about Mac caches: whether deleting them is safe, how to clear browser caches, what ~/Library/Caches stores, and which dev caches count.',
     intro:
       'Caches are the most-searched cleanup topic on the Mac and the most misunderstood. These answers separate the safe, rebuildable caches from the folders that only look like caches.',
     updated: '2026-09-30',
+    pillar: {
+      href: '/clear-cache-on-mac',
+      label: 'How to clear cache on Mac safely',
+    },
     questions: [
       {
         id: 'safe-to-delete-caches',
@@ -234,7 +247,7 @@ export const faqTopics: FaqTopic[] = [
         question: 'Why does the cache grow back so fast?',
         answer:
           'Because caching is the app’s normal behaviour. If a cache returns to the same size within days, lower the app’s cache limit or change its download settings; deleting it again only repeats the cycle.',
-        guide: 'system-data-keeps-growing',
+        guide: 'clear-system-data-on-mac',
       },
       {
         id: 'developer-caches',
@@ -268,12 +281,16 @@ export const faqTopics: FaqTopic[] = [
   },
   {
     slug: 'uninstall-apps',
-    title: 'Uninstalling apps on Mac: questions and answers',
+    title: 'FAQ: App Removal Questions & Short Answers | ClearDisk',
     description:
-      'Short answers about removing Mac apps: why an app will not delete, how to uninstall completely, what is left in the Library, and whether Apple apps can go.',
+      'Short FAQ answers about removing Mac apps: why an app will not delete, how to remove leftovers in Library, and when to use the developer uninstaller.',
     intro:
       'Dragging an app to the Trash removes the app but not everything it stored. These answers cover the questions that follow, from stubborn apps to the folders they leave behind.',
     updated: '2026-09-15',
+    pillar: {
+      href: '/uninstall-apps-on-mac',
+      label: 'How to uninstall apps on Mac completely',
+    },
     questions: [
       {
         id: 'cant-delete-app',
@@ -342,12 +359,16 @@ export const faqTopics: FaqTopic[] = [
   },
   {
     slug: 'backups-cloud-photos',
-    title: 'Backups, cloud drives and Photos: questions and answers',
+    title: 'FAQ: Mac Backups, iCloud & Photos Questions | ClearDisk',
     description:
-      'Short answers about iPhone backups, Time Machine, iCloud Drive, Google Drive, Dropbox, OneDrive, Photos, Mail and Messages taking up space on a Mac.',
+      'Short FAQ answers about iPhone backups, Time Machine, iCloud Drive, Google Drive, Dropbox, OneDrive, Photos, Mail and Messages storage on a Mac.',
     intro:
       'Backups and synced files are where a Mac’s space goes quietly. These answers cover where each one lives, what deleting does on your other devices, and which controls free space without losing anything.',
     updated: '2026-09-06',
+    pillar: {
+      href: '/free-up-space-on-mac',
+      label: 'How to free up space on Mac',
+    },
     questions: [
       {
         id: 'iphone-backup-location',
@@ -417,12 +438,16 @@ export const faqTopics: FaqTopic[] = [
   },
   {
     slug: 'cleardisk',
-    title: 'ClearDisk: questions and answers',
+    title: 'FAQ: ClearDisk App, License & Privacy | ClearDisk',
     description:
-      'Short answers about ClearDisk for Mac: what the free scan shows, what the one-time license unlocks, privacy, Full Disk Access, refunds and lost keys.',
+      'Short FAQ answers about ClearDisk for Mac: what the free scan shows, what the one-time $10 license unlocks, privacy, Full Disk Access, refunds and keys.',
     intro:
       'ClearDisk is a Mac app that shows what fills your disk, explains System Data in plain words and moves the files you choose to the Trash. These are the questions people ask before downloading or buying.',
     updated: '2026-10-26',
+    pillar: {
+      href: '/',
+      label: 'ClearDisk Mac cleaner and performance monitor',
+    },
     questions: [
       {
         id: 'menu-bar-monitor',
@@ -511,12 +536,16 @@ export const faqTopics: FaqTopic[] = [
   },
   {
     slug: 'disk-cleanup',
-    title: 'Mac disk cleanup: questions and answers',
+    title: 'FAQ: Disk Cleanup Questions & Short Answers | ClearDisk',
     description:
-      'Short answers about cleaning up a Mac disk: the built-in cleanup tool, freeing 20 or 30 GB fast, why a disk fills suddenly, a full disk, and what to keep.',
+      'Short FAQ answers about Mac disk cleanup: built-in storage tools, why a disk fills suddenly, how much free space to keep, and which guide to follow.',
     intro:
       'These are the questions Google shows next to “clear disk space on Mac” searches. Each gets a short, direct answer and a link to the guide with the full steps.',
     updated: '2026-09-30',
+    pillar: {
+      href: '/free-up-space-on-mac',
+      label: 'How to free up space on Mac',
+    },
     questions: [
       {
         id: 'clear-disk-space',
@@ -551,7 +580,7 @@ export const faqTopics: FaqTopic[] = [
         question: 'Why is my disk full all of a sudden?',
         answer:
           'Something produced a lot of data quickly: a macOS update left a snapshot and installer, a cloud drive switched from streaming to mirroring, a backup or export ran, or an app grew its cache. Find what changed in the last few days before deleting anything.',
-        guide: 'system-data-keeps-growing',
+        guide: 'clear-system-data-on-mac',
       },
       {
         id: 'disk-drive-full',

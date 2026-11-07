@@ -16,13 +16,14 @@ const trash = {
 export const maintenanceGuides: Guide[] = [
   {
     slug: 'free-up-space-on-mac',
-    title: 'How to free up disk space on Mac, step by step',
+    title: 'How to Free Up Space on Mac: 12 Steps Ranked by GB Saved',
+    h1: 'How to free up space on your Mac',
     description:
-      'Clear storage on Mac in a sensible order: check Storage settings, use Apple’s built-in recommendations, clear Downloads and Trash, then review large files.',
+      'Learn how to free up space on Mac in 2026 with steps ranked by gigabytes saved: clear Downloads, Trash, old installers, caches, and System Data safely.',
     summary:
-      'Start with the files you recognise. Check available space, review downloads and unused apps, then investigate anything you still cannot explain. Keep a backup before removing important work.',
+      'To free up space on your Mac fastest, start with the highest-yield steps you can verify in minutes: empty Trash, remove leftover macOS installers and large Downloads, offload or move large media, and then inspect System Data.',
     published: '2026-09-05',
-    updated: '2026-09-26',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'measure-first',
@@ -114,13 +115,14 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'clear-cache-on-mac',
-    title: 'How to clear cache on Mac: Safari, Chrome and app caches',
+    title: 'How to Clear Cache on Mac Safely (User, App & Browser)',
+    h1: 'How to clear cache on Mac',
     description:
-      'Clear Safari, Chrome or app caches on Mac without deleting everything in Library. Choose the right data, check the result and understand what comes back.',
+      'Learn how to clear cache on Mac safely across ~/Library/Caches, Safari, Chrome, and desktop apps without deleting saved work or breaking macOS settings.',
     summary:
-      'Caches are working files an app can rebuild. macOS counts most of them inside System Data. Clear them from the app that made them, and avoid emptying Library folders wholesale.',
+      'To clear cache on a Mac safely, use each browser or app’s built-in cache control first, then quit closed apps before removing specific folders inside ~/Library/Caches. Never delete Application Support or Containers folders wholesale.',
     published: '2026-09-05',
-    updated: '2026-11-04',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'choose-your-cache',
@@ -145,6 +147,12 @@ export const maintenanceGuides: Guide[] = [
         paragraphs: [
           'A cache is a copy of something an app expects to need again: website images, thumbnails, downloaded updates, build products. Apple’s Storage settings count caches, logs and other runtime files inside System Data, so changes in those files can affect the category. The number also includes other data; it is not a cache-deletion target.',
           'User caches live under the hidden Library folder in your home folder, in Caches. System caches live in the top-level Library and in protected system locations you should not edit. Clearing a genuine cache may mean a slower next launch or a new download. But a folder name alone does not prove that everything inside is disposable. App support files can contain saved work or settings, and a browser’s website-data control can remove more than cached images.',
+        ],
+        links: [
+          {
+            label: 'What ~/Library/Caches and /Library/Caches contain',
+            href: '/library-caches-folder-mac',
+          },
         ],
       },
       {
@@ -221,7 +229,7 @@ export const maintenanceGuides: Guide[] = [
       'clear-browser-cache-mac',
       'clear-system-data-on-mac',
       'photoshop-scratch-disk-full-mac',
-      'system-data-keeps-growing',
+      'library-caches-folder-mac',
     ],
     sources: [
       settings,
@@ -242,13 +250,14 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'disk-space-analyzer-mac',
-    title: 'Disk space analyzer for Mac: built-in tools and ClearDisk',
+    title: 'Best Disk Space Analyzer for Mac (Free & Paid Compared)',
+    h1: 'Disk space analyzers for Mac, compared',
     description:
-      'Choosing a disk space analyzer for Mac: what Storage settings and Finder show for free, when a scanner earns its place, and what ClearDisk’s free scan sees.',
+      'Compare the best disk space analyzer and Mac storage visualizer tools for macOS Sequoia: built-in Storage settings, free scanners, and ClearDisk’s treemap.',
     summary:
-      'A disk space analyzer answers one question: which files hold the space. Start with what macOS shows for free, then add a scanner when you need file-level detail across the whole disk, including the folders macOS hides.',
+      'A disk space analyzer for Mac scans your drive and visualizes folder sizes so you can see inside System Data, ~/Library, and developer directories. Start with macOS Storage settings, then use a visual storage analyzer when you need allocated file sizes across hidden folders.',
     published: '2026-09-06',
-    updated: '2026-09-23',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'what-an-analyzer-does',
@@ -734,13 +743,14 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'check-disk-space-mac-terminal',
-    title: 'Check disk space on Mac in Terminal: measure, then decide',
+    title: 'Check Disk Space on Mac in Terminal (df -h & du -sh)',
+    h1: 'How to check disk space on Mac in Terminal',
     description:
-      'Terminal commands that only measure: df for the whole disk, du to size Library and hidden folders, sort to rank them, and what Terminal cannot see.',
+      'Check disk space on Mac in Terminal using read-only commands: df -h for free volume space, du -sh to rank ~/Library and dotfiles, and what Terminal skips.',
     summary:
-      'Terminal is the fastest way to size the folders Finder hides. Use df and du, which only read, then remove files through Finder and the Trash so you can put them back.',
+      'To check disk space on Mac in Terminal, run df -h / /System/Volumes/Data for volume capacity and du -sh ~/Library/* | sort -h to rank hidden folders. Both commands only read the disk so you can review files safely in Finder.',
     published: '2026-09-06',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'open-terminal',
@@ -758,6 +768,12 @@ export const maintenanceGuides: Guide[] = [
           'Write the Avail figure down. After any cleanup, run the same command again; the change in Avail is what you actually reclaimed, and it is the only number that settles arguments with a storage bar.',
         ],
         code: ['df -h / /System/Volumes/Data'],
+        links: [
+          {
+            label: 'Looking for the Linux free command on Mac? Use vm_stat and top',
+            href: '/free-command-on-mac',
+          },
+        ],
       },
       {
         id: 'rank-library-folders',
@@ -836,13 +852,14 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'delete-macos-installer-mac',
-    title: 'Delete a macOS installer and leftover disk images on Mac',
+    title: 'Delete macOS Installer & Old .dmg Files on Mac (Save GBs)',
+    h1: 'How to delete a macOS installer and leftover disk images',
     description:
-      'Where the Install macOS app and old .dmg files hide, why an installer refuses to delete, when to keep one for a bootable drive, and how to get space back.',
+      'Delete macOS installer apps and leftover .dmg files on macOS Sequoia to reclaim 12–15 GB fast. Learn when an installer is still in use and safe to trash.',
     summary:
-      'A full macOS installer is a multi-gigabyte app sitting in Applications after an upgrade, and every .dmg you ever opened is still in Downloads. Both are safe to remove once you know the rule for each.',
+      'To delete a macOS installer on Mac, open Applications in Finder, drag the “Install macOS” app to the Trash, and empty the Trash to reclaim 12–15 GB immediately. Also eject any mounted .dmg volumes in the Finder sidebar before trashing leftover disk images in Downloads.',
     published: '2026-09-06',
-    updated: '2026-09-06',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'find-the-installers',
@@ -930,13 +947,14 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'best-free-mac-cleaner',
-    title: 'Best free Mac cleaner apps: choose the right tool',
+    title: '7 Best Free Mac Cleaners in 2026 (Tested on macOS Sequoia)',
+    h1: 'Best free Mac cleaners, compared honestly',
     description:
-      'Compare Mac cleaner apps by the job: uninstalling apps, finding large files or reviewing System Data. See what is free, what costs money, and what to check.',
+      'Compare the 7 best free Mac cleaners and disk scanners for macOS Sequoia in 2026: see which have a real free tier, one-time pricing, and System Data scans.',
     summary:
-      'The right Mac cleaner app depends on what you need to remove. Start with macOS Storage settings, then choose an uninstaller, a disk scanner or a maintenance tool for the job left over.',
+      'The best free Mac cleaner depends on the job: macOS Storage settings and Finder handle everyday downloads, AppCleaner removes app leftovers, GrandPerspective and OmniDiskSweeper map large files, OnyX runs maintenance scripts, and ClearDisk scans System Data and monitors CPU/memory for free.',
     published: '2026-09-06',
-    updated: '2026-09-30',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'choose-the-job',
@@ -967,13 +985,19 @@ export const maintenanceGuides: Guide[] = [
           'We checked the makers’ pages on September 26, 2026. We make ClearDisk and have not run a side-by-side performance test. The notes below describe each app’s purpose and payment boundary.',
         ],
         items: [
-          'AppCleaner, from FreeMacSoft: drop an app into its window to find related files for removal. Review the results before deleting. Choose a download compatible with your macOS version.',
-          'GrandPerspective: an open-source visual disk map, available free through the project’s SourceForge download. Its App Store distribution is paid. A large rectangle shows a large file, not whether that file is safe to remove.',
-          'OmniDiskSweeper, from The Omni Group: a file list ordered by size with options to open items or move them to Trash. Useful if you prefer a list to a visual map.',
-          'OnyX, from Titanium Software: a free maintenance utility with cleaning, verification and other system tasks. Download the build intended for your macOS version and read what a task changes before running it.',
-          'ClearDisk: free local scans, a storage map, a largest-files list and a System Data breakdown. In-app cleanup needs the $10 one-time license. It requires macOS 15 or later; it is not a download for older OS X versions.',
+          'macOS Storage settings & Finder (Built in): Free tier = 100% free | One-time option = Included with macOS | System Data scan = Category total only | App uninstaller = Drag to Trash | Menu-bar monitor = No.',
+          'ClearDisk (macOS 15+): Free tier = Unlimited storage scans, System Data breakdown, Why Slow & iCloud diagnostics | One-time option = $10 once (3 Macs, no subscription) | System Data scan = Named groups (Safe / Review / Leave it) | App uninstaller = Blocks unsafe Application Support removal | Menu-bar monitor = Yes (CPU, RAM, disk & top apps).',
+          'AppCleaner (FreeMacSoft): Free tier = 100% free | One-time option = Free | System Data scan = No | App uninstaller = Yes (finds related Library files) | Menu-bar monitor = No.',
+          'OmniDiskSweeper (The Omni Group): Free tier = 100% free | One-time option = Free | System Data scan = Folder size list (with permissions) | App uninstaller = No | Menu-bar monitor = No.',
+          'GrandPerspective (SourceForge): Free tier = Free on SourceForge (paid on Mac App Store) | One-time option = Yes | System Data scan = Visual treemap of files | App uninstaller = No | Menu-bar monitor = No.',
+          'OnyX (Titanium Software): Free tier = 100% free | One-time option = Free | System Data scan = Maintenance & cache tasks (no treemap) | App uninstaller = No | Menu-bar monitor = No.',
+          'CleanMyMac (MacPaw): Free tier = Limited trial | One-time option = Subscription or one-time edition | System Data scan = System Junk module | App uninstaller = Yes | Menu-bar monitor = Yes.',
         ],
         links: [
+          {
+            label: 'ClearDisk Mac cleaner',
+            href: '/',
+          },
           {
             label: 'AppCleaner compatibility and removal walkthrough',
             href: '/blog/appcleaner-os-x',
@@ -1099,13 +1123,14 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'mac-storage-full-after-macos-update',
-    title: 'Mac storage full after a macOS update: what changed',
+    title: 'Mac Storage Full After Update? Reclaim Post-Update Space',
+    h1: 'Mac storage full after a macOS update: what changed',
     description:
-      'Why free space drops after a macOS update: the pre-update snapshot, an installer left in Applications, rebuilt caches, and how long to wait before acting.',
+      'Mac storage full after update on macOS Sequoia? See why pre-update snapshots, leftover Install macOS apps, and rebuilt caches spike and what to delete.',
     summary:
-      'An update leaves three things behind: a local snapshot of the previous system, the installer app if you used one, and caches the system rebuilds. Most of it clears itself within days; the installer does not.',
+      'If your Mac storage is full after a macOS update, check Applications for a leftover “Install macOS” app and wait 24 hours for macOS to thin its pre-update APFS snapshot and finish rebuilding caches. Compare free space in Storage settings before deleting unfamiliar Library folders.',
     published: '2026-09-06',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'measure-before-you-judge',
@@ -1171,7 +1196,7 @@ export const maintenanceGuides: Guide[] = [
       'relocated-items-folder-mac',
       'time-machine-snapshots',
       'delete-macos-installer-mac',
-      'system-data-keeps-growing',
+      'clear-system-data-on-mac',
       'not-enough-space-to-update-macos',
     ],
     sources: [
@@ -1312,13 +1337,14 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'how-to-check-storage-on-mac',
-    title: 'How to check storage on Mac and see what uses the space',
+    title: 'How to Check Storage on Mac (Settings, Finder & Terminal)',
+    h1: 'How to check storage on your Mac',
     description:
-      'Open Storage settings, read the bar, drill into Applications, Documents and Messages, check a single drive, and find what the categories hide.',
+      'Learn how to check storage on Mac in System Settings, Finder, Disk Utility, and Terminal, read the storage bar, and inspect what System Data hides.',
     summary:
       'To check storage on a Mac, open Apple menu → System Settings → General → Storage. Review used and available space, then open categories with an information button to inspect files. System Data shows a total only.',
     published: '2026-09-06',
-    updated: '2026-10-04',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'open-storage-settings',
@@ -1412,13 +1438,14 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'uninstall-apps-on-mac',
-    title: 'How to uninstall apps on Mac, and remove what they leave',
+    title: 'How to Uninstall Apps on Mac Completely (No Leftovers)',
+    h1: 'How to uninstall apps on Mac completely',
     description:
-      'Uninstall Mac apps the way Apple documents: the app’s own uninstaller or Finder, when an app will not delete, and how to find the files it leaves in Library.',
+      'Learn how to uninstall apps on Mac completely: run the vendor uninstaller or move the app to Trash, then clean up leftover files in ~/Library safely.',
     summary:
-      'Dragging an app to the Trash can leave settings, caches and login items behind. Use the maker’s uninstaller when there is one, then review what stays behind in your Library.',
+      'To uninstall an app on Mac completely, quit the app, run its built-in uninstaller if one is included or move the app from Applications to the Trash, and then review leftover folders in ~/Library/Application Support, Caches, and Containers.',
     published: '2026-09-06',
-    updated: '2026-09-26',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'check-for-an-uninstaller',
@@ -1535,13 +1562,14 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'show-hidden-files-mac',
-    title: 'How to show hidden files on Mac, and which ones hold space',
+    title: 'How to Show Hidden Files on Mac (Shortcut + Terminal)',
+    h1: 'How to show hidden files on Mac',
     description:
-      'Show hidden files on Mac with the Finder toggle, Go to Folder or Terminal, why dot folders and Library are hidden, and see which of them hold the space.',
+      'Learn how to show hidden files on Mac using the Command + Shift + . Finder shortcut, Go to Folder, or Terminal, and see which dot folders use disk space.',
     summary:
-      'Finder hides dot folders and the Library to keep app data out of the way, not because it is small. Three routes reveal them; a scanner shows which ones are worth opening.',
+      'To show hidden files on a Mac, open Finder and press Shift-Command-Period (⇧⌘.) to reveal greyed-out dotfiles and folders, then press the same shortcut again to hide them. For ~/Library, hold Option in Finder’s Go menu or press Shift-Command-G.',
     published: '2026-09-06',
-    updated: '2026-09-06',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'toggle-hidden-files-in-finder',
@@ -1549,6 +1577,12 @@ export const maintenanceGuides: Guide[] = [
         paragraphs: [
           'In any Finder window, press Shift-Command-Period. Hidden files and folders appear greyed out; press the same keys again to hide them. Apple’s published shortcut list does not include this toggle, but it has been part of Finder since macOS Sierra and works in every current version, including in Open and Save dialogs.',
           'What appears are items whose names begin with a dot, such as .DS_Store files in every folder and, in your home folder, developer folders like .npm, .cache, .docker and .gradle. The dot files scattered through documents are tiny; the dot folders in your home folder are the ones that can hold gigabytes.',
+        ],
+        links: [
+          {
+            label: 'What .DS_Store files are and when to leave them alone',
+            href: '/ds-store-files-mac',
+          },
         ],
       },
       {
@@ -1609,6 +1643,7 @@ export const maintenanceGuides: Guide[] = [
     ],
     related: [
       'show-library-folder-mac',
+      'ds-store-files-mac',
       'check-disk-space-mac-terminal',
       'clear-npm-cache-mac',
       'clean-docker-disk-space-mac',
@@ -1630,13 +1665,14 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'delete-files-on-mac',
-    title: 'How to delete files on Mac and actually free the space',
+    title: 'How to Delete Files on Mac (Shortcuts, Trash & Permanent)',
+    h1: 'How to delete files on Mac',
     description:
-      'Delete files on Mac the way Apple documents: Command-Delete, Put Back, Delete Immediately, 30-day auto-empty, and why space returns after emptying.',
+      'Learn how to delete files on Mac using Command-Delete, Empty Trash, and Delete Immediately (Option-Command-Delete), plus how to unlock stubborn items.',
     summary:
-      'Move unwanted local files to the Trash, review them, then empty it when you are ready. Permanent removal skips that chance to put files back. If available space does not increase as expected, check snapshots and storage accounting before deleting more.',
+      'To delete files on a Mac, select the item in Finder and press Command-Delete to move it to the Trash, then choose Finder → Empty Trash (Shift-Command-Delete) to actually free the disk space.',
     published: '2026-09-06',
-    updated: '2026-09-23',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'move-to-the-trash',
@@ -1821,13 +1857,14 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'clear-downloads-folder-mac',
-    title: 'How to clear the Downloads folder on Mac safely',
+    title: 'How to Clear Downloads on Mac Safely (Sort by Size First)',
+    h1: 'How to clear the Downloads folder on Mac safely',
     description:
-      'Review large downloads, keep original files, remove confirmed leftovers and check available storage. Includes Trash recovery, Safari and iCloud cautions.',
+      'Learn how to clear Downloads on Mac safely on macOS Sequoia: sort by size in Finder, remove old .dmg and .zip installers, and empty Trash to free disk space.',
     summary:
-      'Start with the largest files in Downloads, then check what each one contains and whether you need it. Keep originals and backups before moving confirmed leftovers to the Trash. A smaller Downloads folder alone does not mean your Mac has more available space.',
+      'To clear Downloads on a Mac safely, open Finder → Go → Downloads, switch to List view sorted by Size, move old .dmg and .pkg installers you no longer need to the Trash, and empty the Trash so the storage is actually freed.',
     published: '2026-09-06',
-    updated: '2026-10-21',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'open-downloads-sorted-by-size',
@@ -1937,13 +1974,14 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'application-support-folder-mac',
-    title: 'Application Support folder on Mac: what is safe to delete',
+    title: 'Application Support Folder on Mac: What Is Safe to Delete?',
+    h1: 'What is the Application Support folder on Mac, and what is safe to delete?',
     description:
-      'What the Application Support folder holds, how to measure it, and why removing an app does not make its saved documents, databases or shared data disposable.',
+      'What is the Application Support folder on Mac and can you delete it? Measure ~/Library/Application Support safely and separate caches from saved app data.',
     summary:
-      'Found a large Application Support folder? Start by checking which app owns it. It may hold downloaded content, but it can also hold your saved work. Even after you uninstall the app, keep any data you still need.',
+      'The Application Support folder on Mac (~/Library/Application Support) stores app databases, settings, licenses, and offline downloads—not just temporary caches. Measure individual app subfolders first and use the owning app’s storage controls before deleting anything.',
     published: '2026-09-06',
-    updated: '2026-10-14',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'what-it-holds',
@@ -2044,13 +2082,14 @@ export const maintenanceGuides: Guide[] = [
   },
   {
     slug: 'containers-folder-mac',
-    title: 'Group Containers and Containers on Mac: safe to delete?',
+    title: 'Containers Folder on Mac: Group Containers & Safe Cleanup',
+    h1: 'Containers and Group Containers folders on Mac: what is safe to delete?',
     description:
-      'What Containers and Group Containers hold on a Mac, how to measure their size, and how to review saved work and shared app data before considering deletion.',
+      'What is the Containers folder on Mac? Learn what ~/Library/Containers and Group Containers store on macOS Sequoia and how to shrink large app data safely.',
     summary:
-      'A large container can hold an app’s saved work as well as its downloads. Group Containers can belong to several apps at once. Before removing anything, find out who uses it and whether you need the data.',
+      'The Containers and Group Containers folders in ~/Library hold sandboxed app databases, saved work, and shared suite data for macOS apps like Mail, Messages, and Office. Never delete com.apple containers or empty these folders wholesale; manage their size inside the owning app.',
     published: '2026-09-06',
-    updated: '2026-10-02',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'what-they-are',

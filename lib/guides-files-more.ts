@@ -3,13 +3,14 @@ import type { Guide } from './guides.ts';
 export const moreFileGuides: Guide[] = [
   {
     slug: 'change-screenshot-location-mac',
-    title: 'Where Mac screenshots are saved, and how to change it',
+    title: 'How to Change Where Screenshots Are Saved on Mac (⌘⇧5)',
+    h1: 'How to change where screenshots are saved on Mac',
     description:
-      'Mac screenshots save to the Desktop by default. Pick another folder with Shift-Command-5 → Options → Save to, then clear out old ones with a Finder search.',
+      'How to change where screenshots are saved on Mac: press Shift-Command-5, click Options → Save to, pick a custom folder, and find old Desktop screenshots.',
     summary:
-      'By default, macOS saves screenshots to your Desktop as PNG files named with the date and time. To change that, press Shift-Command-5, click Options and choose a folder under Save to.',
+      'To change where screenshots are saved on Mac, press Shift-Command-5 to open the Screenshot toolbar, click Options, and choose a new folder under Save to. By default macOS saves screenshots as PNG files on your Desktop, which also uses iCloud Drive quota if Desktop & Documents sync is on.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'default-location',
@@ -293,13 +294,14 @@ export const moreFileGuides: Guide[] = [
   },
   {
     slug: 'empty-trash-automatically-mac',
-    title: 'Empty the Trash automatically on Mac after 30 days',
+    title: 'Empty Trash Automatically on Mac (30-Day Finder Setting)',
+    h1: 'How to empty Trash automatically on Mac after 30 days',
     description:
       'Turn on automatic Trash emptying on Mac in Finder or Storage settings, what the 30-day timer counts, and what it means for getting deleted files back.',
     summary:
       'Choose Finder → Settings → Advanced and select “Remove items from the Trash after 30 days”, or use the Empty Trash Automatically recommendation in Storage settings. Both change the same setting; the cost is that Put Back stops working for anything deleted more than a month ago.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'turn-on-in-finder',
@@ -384,13 +386,14 @@ export const moreFileGuides: Guide[] = [
   },
   {
     slug: 'downloads-folder-missing-mac',
-    title: 'Downloads folder missing from Dock or Finder on Mac',
+    title: 'Downloads Folder Missing on Mac? Restore Finder & Dock',
+    h1: 'Downloads folder missing on Mac',
     description:
-      'Downloads gone from the Dock or Finder sidebar? Open it with Option-Command-L, add it back in Finder settings or the Dock, and check before making a new one.',
+      'Downloads folder missing on Mac from the Dock or Finder sidebar? Open ~/Downloads with Option-Command-L, restore the shortcut, and check Safari save paths.',
     summary:
-      'Open Finder and press Option-Command-L to check Downloads directly. If your files are there, restore its sidebar or Dock shortcut. If the folder opens but files are missing, check your browser’s save location, Trash and backups before changing anything.',
+      'When the Downloads folder is missing on Mac from the Dock or Finder sidebar, press Option-Command-L in Finder to open ~/Downloads directly and confirm your files are still there. Then re-enable Downloads in Finder → Settings → Sidebar and drag ~/Downloads back to the right side of the Dock.',
     published: '2026-09-24',
-    updated: '2026-10-26',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'check-it-exists',

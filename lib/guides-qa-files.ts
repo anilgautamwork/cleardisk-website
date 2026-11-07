@@ -3,11 +3,12 @@ import type { Guide } from './guides.ts';
 export const fileQaGuides: Guide[] = [
   {
     slug: 'google-chrome-taking-up-space-mac',
-    title: 'Google Chrome taking up space on Mac? What to clear',
+    title: 'Google Chrome Taking Up Space on Mac? Clear Profile & Cache',
+    h1: 'Google Chrome taking up space on Mac: what to clear',
     description:
-      'Where Google Chrome keeps gigabytes on a Mac: profiles, site storage, extensions, cache and its AI model. Measure each part, then clear it from Chrome.',
+      'Why Google Chrome takes up gigabytes of space on Mac: measure profiles, site storage, extensions, cache and OptGuideOnDeviceModel, then clear them safely.',
     summary:
-      'Chrome’s disk use is split between two folders: ~/Library/Application Support/Google/Chrome, which holds your profiles, site storage, extensions and the on-device AI model, and ~/Library/Caches/Google/Chrome, which holds the cache. Measure both, then clear from inside Chrome: All sites for site storage, Delete browsing data for the cache, and Manage Chrome profiles for profiles you no longer use.',
+      'Chrome’s disk usage on Mac splits between ~/Library/Application Support/Google/Chrome (profiles, site storage, extensions, and the OptGuideOnDeviceModel AI weights) and ~/Library/Caches/Google/Chrome (cached images and files). Measure both folders first, then clear site data from chrome://settings/content/all, clear cached files in Delete browsing data, and remove unused profiles.',
     published: '2026-09-24',
     updated: '2026-10-24',
     sections: [
@@ -223,11 +224,12 @@ export const fileQaGuides: Guide[] = [
   },
   {
     slug: 'move-files-to-trash-terminal-mac',
-    title: 'How to move files to the Trash from Terminal on Mac',
+    title: 'Move Files to Trash from Terminal on Mac (Built-In trash)',
+    h1: 'How to move files to Trash from Terminal on Mac',
     description:
-      'Use the built-in Mac trash command with quoted paths, check partial failures, and recover items in Finder. Includes a fallback for older macOS versions.',
+      'Move files to the Trash from Terminal on Mac using the built-in /usr/bin/trash command on macOS 15+, check exit status, or reveal items in Finder safely.',
     summary:
-      'On macOS 15 and later, /usr/bin/trash moves selected files or folders to the Trash. Check the path first, quote it, and use -s to stop if a move fails. Trashing is not the same as permanent deletion, but it is not a backup: confirm the item is in the Trash and leave it there until you are sure you do not need it.',
+      'On macOS 15 and later, run the built-in /usr/bin/trash -v -s command with a quoted path to move files or folders to the Trash from Terminal instead of deleting them permanently with rm. On earlier macOS versions, run open -R to reveal the item in Finder and press Command-Delete.',
     published: '2026-09-24',
     updated: '2026-10-16',
     sections: [
@@ -422,11 +424,12 @@ export const fileQaGuides: Guide[] = [
   },
   {
     slug: 'operation-not-permitted-terminal-mac',
-    title: '“Operation not permitted” in Mac Terminal: what to check',
+    title: 'Fix “Operation Not Permitted” in Terminal on Mac (FDA)',
+    h1: 'How to fix “Operation not permitted” in Terminal on Mac',
     description:
-      'Check why Mac Terminal says “Operation not permitted”: app privacy access, locked files and system protections, with read-only commands to narrow the cause.',
+      'Fix “Operation not permitted” in Terminal on Mac: grant Full Disk Access in Privacy & Security, unlock uchg files in Finder, and check SIP system folders.',
     summary:
-      'Start with the path and the action that failed. macOS privacy controls can block Terminal from reading protected data, but Full Disk Access does not override every restriction. Check app access, file locks and system protections before retrying anything that changes files.',
+      '“Operation not permitted” in Mac Terminal usually means macOS TCC privacy controls blocked your terminal app from reading a protected folder like ~/.Trash, a file has the user-immutable (uchg) lock set, or System Integrity Protection protects the path. Grant Terminal Full Disk Access in System Settings → Privacy & Security for user folders, or unlock the file in Finder Get Info.',
     published: '2026-09-24',
     updated: '2026-10-09',
     sections: [
@@ -539,7 +542,8 @@ export const fileQaGuides: Guide[] = [
   },
   {
     slug: 'ds-store-files-mac',
-    title: 'What is .DS_Store on Mac, and is it safe to delete?',
+    title: 'What Are .DS_Store Files on Mac & Are They Safe to Delete?',
+    h1: 'What .DS_Store files are on Mac and when you can delete them',
     description:
       '.DS_Store files store the Finder’s view settings. Deleting one is safe but resets that folder’s layout. Stop them on network shares, and keep them out of Git.',
     summary:
@@ -637,11 +641,12 @@ export const fileQaGuides: Guide[] = [
   },
   {
     slug: 'stop-mac-hidden-files-on-usb',
-    title: 'How to stop a Mac writing hidden files to USB drives',
+    title: 'Remove ._ Files & .DS_Store on USB Drives (Mac dot_clean)',
+    h1: 'How to remove ._ files and hidden Mac files from a USB drive',
     description:
-      'Why a Mac leaves .Spotlight-V100, .fseventsd, .Trashes and ._ files on USB drives and SD cards, and how to reduce them with Spotlight settings and dot_clean.',
+      'Remove ._ AppleDouble files, .DS_Store, .Trashes and .Spotlight-V100 from USB drives and SD cards on Mac using dot_clean -m, Spotlight Privacy and Trash.',
     summary:
-      'You can reduce them, not switch them all off. Exclude the drive from Spotlight, empty the Trash before ejecting, run dot_clean on ExFAT or FAT32 drives to remove ._ files, then eject properly. macOS has no documented setting that stops every hidden file on removable drives.',
+      'To clean hidden Mac files off a USB drive or SD card, empty the Trash while the drive is connected to clear .Trashes, exclude the volume in Spotlight Privacy to stop .Spotlight-V100 indexing, and run dot_clean -m /Volumes/NAME in Terminal to remove ._ AppleDouble files before ejecting.',
     published: '2026-09-24',
     updated: '2026-09-24',
     sections: [
@@ -744,11 +749,12 @@ export const fileQaGuides: Guide[] = [
   },
   {
     slug: 'relocated-items-folder-mac',
-    title: 'Relocated Items folder on Mac: can you delete it?',
+    title: 'Relocated Items on Mac Desktop: What It Is & Safe to Delete',
+    h1: 'What the Relocated Items folder on your Mac desktop is',
     description:
-      'Relocated Items appears after a macOS upgrade with files the upgrade couldn’t keep in place. See what’s inside, when to delete it, and fix permission errors.',
+      'Why the Relocated Items folder appears on your Mac Desktop after a macOS update, what /Users/Shared/Relocated Items holds, and how to delete it safely.',
     summary:
-      'Relocated Items holds files a macOS upgrade couldn’t leave where they were, usually system configuration files that you or an app changed. Look inside, keep anything you still need, and then you can delete it. The alias on your Desktop is only a shortcut to /Users/Shared/Relocated Items.',
+      'The Relocated Items alias on your Mac Desktop points to /Users/Shared/Relocated Items, where macOS upgrades set aside modified system configuration files they could not keep in place. Once you review the folder and confirm you do not need any old config edits (such as /etc/hosts or SSH settings), it is completely safe to move the folder and Desktop shortcut to the Trash.',
     published: '2026-09-24',
     updated: '2026-09-24',
     sections: [

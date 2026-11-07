@@ -3,8 +3,8 @@ import { Header, Footer, DownloadButton } from '@/components/brand';
 import { MonitorPreview } from '@/components/monitor-preview';
 import { pageMetadata } from '@/lib/seo';
 export const metadata = pageMetadata(
-  'ClearDisk Features: Why Slow, Menu Bar & Mac Cleanup',
-  'Check CPU, memory and disk space from your menu bar. Explore Why Slow, large-file review, cache cleanup and iCloud tools, with free scans in ClearDisk.',
+  'Mac Performance Monitor & Menu-Bar CPU/Memory Stats | ClearDisk',
+  'Mac performance monitor and disk space analyzer in one app. Check menu-bar CPU and memory stats, inspect Why Slow processes, and review large files and caches.',
   '/features',
 );
 export default function Features() {
@@ -13,9 +13,9 @@ export default function Features() {
       <Header />
       <main id="main-content" tabIndex={-1} className="wrap product-page">
         <h1>
-          See your storage.
+          ClearDisk features: storage cleanup,
           <br />
-          Understand your slowdown.
+          Why Slow and menu-bar monitor
         </h1>
         <p>
           ClearDisk combines disk cleanup with the WhySlow performance tools.

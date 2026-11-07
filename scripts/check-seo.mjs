@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { guides } from '../lib/guides.ts';
 import { blogPosts } from '../lib/blog.ts';
 import { faqTopics } from '../lib/faqs.ts';
+import { mergedGuideRedirects } from '../lib/seo.ts';
 const origin = process.env.SITE_CHECK_ORIGIN || 'http://localhost:3001';
 const indexable = process.env.SITE_CHECK_INDEXABLE === 'true';
 const site = 'https://cleardisk.app';
@@ -245,6 +246,20 @@ for (const path of pages) {
       assert.ok(html.includes('href="/' + related + '"'), path + ': related');
   }
 }
+for (const [from, to] of Object.entries(mergedGuideRedirects)) {
+  const redirectResponse = await fetch(new URL(from, origin), {
+    redirect: 'manual',
+    headers: { 'User-Agent': 'ClearDisk-QA' },
+  });
+  assert.equal(redirectResponse.status, 301, from + ': 301 redirect');
+  const location = redirectResponse.headers.get('location') || '';
+  assert.ok(
+    location === to ||
+      location === site + to ||
+      location === origin.replace(/\/$/, '') + to,
+    from + ': redirect location -> ' + to,
+  );
+}
 const missing = await fetch(new URL('/not-a-real-guide', origin));
 assert.equal(missing.status, 404);
 const missingBlog = await fetch(new URL('/blog/not-a-real-article', origin));
@@ -253,11 +268,22 @@ const sitemap = await fetch(new URL('/sitemap.xml', origin));
 assert.equal(sitemap.status, 200);
 const xml = await sitemap.text();
 const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
+const lastmods = [...xml.matchAll(/<lastmod>(.*?)<\/lastmod>/g)].map(
+  (m) => m[1],
+);
 assert.equal(
   urls.length,
   indexable ? guides.length + blogPosts.length + 10 + 1 + faqTopics.length : 0,
 );
-for (const path of ['/thanks', '/buy-now', '/recover', '/api'])
+assert.equal(lastmods.length, urls.length, 'sitemap: every url has lastmod');
+for (const path of [
+  '/thanks',
+  '/buy-now',
+  '/recover',
+  '/api',
+  '/system-data-too-large',
+  '/system-data-keeps-growing',
+])
   assert.ok(
     !urls.some((url) => {
       const pathname = new URL(url).pathname;

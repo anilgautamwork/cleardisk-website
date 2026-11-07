@@ -3,11 +3,12 @@ import type { Guide } from './guides.ts';
 export const devQaGuides: Guide[] = [
   {
     slug: 'uninstall-node-js-mac',
-    title: 'How to uninstall Node.js on Mac safely',
+    title: 'How to Uninstall Node.js on Mac (Homebrew, nvm & pkg)',
+    h1: 'How to uninstall Node.js and npm on Mac',
     description:
-      'Identify your Node.js installer, save global tool details, and remove the right version on Mac. Covers Homebrew, nvm, fnm, Volta and package receipts.',
+      'How to uninstall Node.js and npm on Mac safely: check your active installer with type -a, save global packages, and remove Homebrew, nvm, fnm or pkg builds.',
     summary:
-      'Start by checking which Node.js your shell uses and which installer manages it. Save your global tool list, then follow only the matching removal method. Keep project folders and shared npm directories until you know what they contain.',
+      'Identify which installer owns your active node binary with type -a node npm before removing anything, then use only that installer’s removal command (brew uninstall node, nvm uninstall, fnm uninstall, or pkgutil receipt review). Save your global package list with npm ls -g --depth=0 first and leave shared node_modules folders untouched until you confirm what uses them.',
     published: '2026-09-24',
     updated: '2026-10-19',
     sections: [
@@ -255,11 +256,12 @@ export const devQaGuides: Guide[] = [
   },
   {
     slug: 'uninstall-homebrew-mac',
-    title: 'How to uninstall Homebrew and everything it installed',
+    title: 'How to Completely Uninstall Homebrew on Mac (/opt/homebrew)',
+    h1: 'How to uninstall Homebrew on Mac',
     description:
-      'Remove every Homebrew package on Mac, then Homebrew itself with the official uninstall script. Preview it with --dry-run and see what stays in /opt/homebrew.',
+      'Completely uninstall Homebrew on Mac: back up a Brewfile, remove casks and formulae, run the official uninstall.sh script, and clean up /opt/homebrew.',
     summary:
-      'To remove only the packages, save a Brewfile, then run brew uninstall on your casks and formulae. To remove Homebrew itself, run the official uninstall.sh from Homebrew’s install repository, preview it with --dry-run first, and review the leftover files it lists at the end.',
+      'Back up your installed packages with brew bundle dump, stop active brew services, and run the official Homebrew uninstall.sh script (previewing with --dry-run first) to remove the Cellar and Caskroom. Afterwards, delete any leftover data folders in /opt/homebrew or /usr/local and remove the brew shellenv line from ~/.zprofile.',
     published: '2026-09-24',
     updated: '2026-09-24',
     sections: [
@@ -363,11 +365,12 @@ export const devQaGuides: Guide[] = [
   },
   {
     slug: 'homebrew-list-installed-packages',
-    title: 'brew list: show installed Homebrew packages on Mac',
+    title: 'Homebrew List Installed Packages by Size (brew list)',
+    h1: 'How to list installed Homebrew packages and their sizes on Mac',
     description:
-      'List Homebrew packages on Mac with brew list, brew leaves and brew deps --tree, see which formulae use the most space, and save everything to a Brewfile.',
+      'List installed Homebrew packages on Mac with brew list, brew leaves, and brew deps --tree, check formula disk usage in the Cellar, and save a Brewfile.',
     summary:
-      'Run brew list in Terminal to see installed Homebrew packages. Use brew list --formula for command-line packages or brew list --cask for casks. To check versions, dependencies, disk usage or save a Brewfile, use the commands below.',
+      'Run brew list in Terminal to see all installed formulae and casks, brew leaves --installed-on-request to see top-level packages you chose yourself, and du -h -d 1 "$(brew --cellar)" to measure disk space per package. To back up your entire setup before cleaning up, run brew bundle dump to write a Brewfile.',
     published: '2026-09-24',
     updated: '2026-10-20',
     sections: [
@@ -492,7 +495,8 @@ export const devQaGuides: Guide[] = [
   },
   {
     slug: 'pip-no-cache-dir',
-    title: 'What is pip’s --no-cache-dir good for?',
+    title: 'pip --no-cache-dir on Mac: Install Without Filling Cache',
+    h1: 'How to use pip --no-cache-dir on Mac',
     description:
       'pip’s --no-cache-dir skips the download and wheel caches for one command. When it helps on a Mac or in Docker builds, how to set it, and when purging wins.',
     summary:
@@ -689,11 +693,12 @@ export const devQaGuides: Guide[] = [
   },
   {
     slug: 'reinstall-command-line-tools-mac',
-    title: 'How to reinstall the Xcode Command Line Tools on Mac',
+    title: '“Command Line Tools Already Installed” Mac Fix & Reinstall',
+    h1: 'How to reinstall Command Line Tools on Mac',
     description:
-      'Reinstall Xcode Command Line Tools on Mac after checking the active path, package receipt and compatible updates. Includes xcrun checks and removal limits.',
+      'Fix “Command Line Tools are already installed” or invalid developer path errors on Mac: check xcode-select -p, update via Software Update, or reinstall.',
     summary:
-      'Start with the active developer path and the exact error. A stale path, an incompatible package and a command that needs full Xcode require different fixes. Check for a compatible update before removing the standalone tools.',
+      'Check your active developer path with xcode-select -p and your receipt with pkgutil --pkg-info=com.apple.pkg.CLTools_Executables before removing anything, because a stale path or pending Software Update often causes the error. If the standalone tools in /Library/Developer/CommandLineTools are genuinely broken, remove that folder and run xcode-select --install.',
     published: '2026-09-24',
     updated: '2026-10-26',
     sections: [
@@ -713,7 +718,7 @@ export const devQaGuides: Guide[] = [
       },
       {
         id: 'match-the-error',
-        title: 'Match the error before choosing a fix',
+        title: 'Fix “Command Line Tools are already installed” and path errors',
         paragraphs: [
           'Keep the complete error message, including the path it names. A successful package installation can still leave a command pointing at another developer directory.',
         ],

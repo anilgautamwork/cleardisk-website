@@ -76,14 +76,14 @@ export default async function Home() {
             <div className="hero-intro">
               <div className="hero-copy" data-reveal>
                 <h1>
-                  See what’s filling your Mac.
+                  See what’s filling your Mac,
                   <br />
-                  <span>And what’s keeping it busy.</span>
+                  <span>and what’s keeping it busy.</span>
                 </h1>
                 <p className="hero-description">
-                  Mac cleanup, CPU and memory monitoring, and iCloud Drive
-                  diagnostics in one app. Inspect for free. Choose what to
-                  change.
+                  A native Mac cleaner with local storage scans, CPU and memory
+                  monitoring, and iCloud Drive diagnostics in one app. Inspect
+                  for free. Choose what to change.
                 </p>
                 <div className="hero-ctas">
                   <DownloadButton label="Download for Mac" />
@@ -249,8 +249,8 @@ export default async function Home() {
                   ClearDisk can read. See what each group contains before
                   deciding whether to keep it.
                 </p>
-                <Link className="text-link" href="/system-data-too-large">
-                  Is your System Data too large? <ArrowRight size={14} />
+                <Link className="text-link" href="/clear-system-data-on-mac">
+                  How to clear System Data on Mac <ArrowRight size={14} />
                 </Link>
               </div>
               <div className="breakdown-art">
@@ -564,7 +564,11 @@ export default async function Home() {
           </div>
           <p className="price-note">
             Already own ClearDisk? Your current key includes the Performance
-            tools. <Link href="/pricing">Compare all features</Link>.
+            tools. <Link href="/pricing">Compare all features</Link> or{' '}
+            <Link href="/best-free-mac-cleaner">
+              compare free Mac cleaners and disk scanners
+            </Link>
+            .
           </p>
         </section>
         <section className="section wrap faq-section" id="faq">

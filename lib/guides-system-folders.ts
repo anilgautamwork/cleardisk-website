@@ -32,13 +32,14 @@ const safeMode = {
 export const systemFolderGuides: Guide[] = [
   {
     slug: 'other-storage-on-mac',
-    title: 'Other storage on Mac: what it was and where it went',
+    title: 'What Is “Other” Storage on Mac & How to Clear It Safely',
+    h1: 'What is “Other” storage on Mac?',
     description:
-      'Mac “Other” storage huge? Newer macOS calls it System Data. What the old category held, how to check it on Big Sur or earlier, and where to look first.',
+      'What is “Other” storage on Mac (macOS Big Sur, Catalina & Monterey)? Why newer macOS calls it System Data, and how to clear caches and ~/Library safely.',
     summary:
-      'Other is the name older versions of macOS gave to the catch-all storage category. From macOS Monterey on, the same kind of files appear as System Data. Either way it is a category, not a folder: find the files behind it before deleting anything.',
+      '“Other” storage on Mac is the catch-all category on macOS Big Sur, Catalina, and earlier for caches, logs, app support files, and virtual machine data—renamed to System Data starting in macOS Monterey. Clear it safely by inspecting ~/Library/Caches, Application Support, and large Downloads rather than running admin cleanup scripts.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'other-became-system-data',
@@ -103,7 +104,7 @@ export const systemFolderGuides: Guide[] = [
     related: [
       'what-is-system-data-on-mac',
       'clear-system-data-on-mac',
-      'system-data-too-large',
+      'clear-cache-on-mac',
       'show-library-folder-mac',
     ],
     sources: [
@@ -123,13 +124,14 @@ export const systemFolderGuides: Guide[] = [
   },
   {
     slug: 'ios-files-on-mac',
-    title: 'iOS Files on Mac: backups and updates using space',
+    title: 'What Are iOS Files on Mac Storage & How to Delete Them',
+    h1: 'What are iOS Files on Mac, and what is safe to delete?',
     description:
-      'What the iOS Files category in Mac Storage settings counts: iPhone and iPad backups plus device software. How to review it and what is safe to remove.',
+      'What are iOS Files on Mac Storage? Review iPhone and iPad backups in ~/Library/Application Support/MobileSync/Backup and delete old IPSW update files.',
     summary:
-      'iOS Files is the Storage settings category for iPhone and iPad backups and device software (firmware) kept on your Mac. Review it from Storage settings, keep the backups you still need, and remove software files once your devices are updated.',
+      'iOS Files on Mac Storage counts local iPhone and iPad backups in ~/Library/Application Support/MobileSync/Backup plus downloaded iOS/iPadOS firmware (.ipsw) update files. Open System Settings → General → Storage → iOS Files to delete leftover firmware updates immediately and remove old device backups you no longer need.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'what-it-counts',
@@ -383,13 +385,14 @@ export const systemFolderGuides: Guide[] = [
   },
   {
     slug: 'other-volumes-in-container',
-    title: 'Other Volumes in Container on Mac: what it means',
+    title: 'Other Volumes in Container on Mac: APFS Volumes Explained',
+    h1: 'What “Other Volumes in Container” means on Mac',
     description:
-      'What Other Volumes in Container means on a Mac: the Preboot, Recovery and VM volumes sharing your disk, how to list them, and which ones to leave alone.',
+      'What “Other Volumes in Container” means on Mac: inspect Preboot, Recovery, VM, and extra APFS volumes with diskutil apfs list, and see what is safe to remove.',
     summary:
-      'Other Volumes in Container is space used by the other APFS volumes that share your startup disk: Preboot, Recovery, VM and sometimes a second macOS installation. Most of it is required. Look in Disk Utility before touching anything, and never delete a system volume.',
+      '“Other Volumes in Container” on Mac is the combined space used by APFS volumes sharing your startup container alongside your main Data volume: Macintosh HD (System), Preboot, Recovery, and VM swap. Run diskutil apfs list or open Disk Utility → View → Show All Devices to check whether an extra user-created volume or old macOS install is taking space.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'one-container-several-volumes',
@@ -474,13 +477,14 @@ export const systemFolderGuides: Guide[] = [
   },
   {
     slug: 'mac-storage-calculating',
-    title: 'Mac storage stuck on Calculating: what to try',
+    title: 'Mac Storage Stuck on “Calculating…”? Why & How to Fix It',
+    h1: 'Mac storage stuck on Calculating: why it happens and what to do',
     description:
-      'Mac Storage settings stuck on Calculating, or Photos still calculating? Wait for indexing, restart, try safe mode, and get the numbers you need meanwhile.',
+      'Mac storage stuck on “Calculating…” in System Settings? Check free space immediately with df -h /, let Spotlight finish indexing, or restart in Safe Mode.',
     summary:
-      'Storage settings measures each category before it shows sizes, and on a full or busy Mac that can take a while. Give it time, let Spotlight and Photos finish their work, then restart. Safe mode and reindexing come after that, not before.',
+      'When Mac storage is stuck on “Calculating…” in System Settings → General → Storage, macOS is still scanning folder sizes across the drive or waiting on Spotlight and Photos indexing. Check your real available space immediately in Disk Utility or with df -h / in Terminal, then restart your Mac if the category bar still does not finish.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'give-it-time',
@@ -650,13 +654,14 @@ export const systemFolderGuides: Guide[] = [
   },
   {
     slug: 'private-var-folders-mac',
-    title: '/private/var/folders on Mac: large and safe to clear?',
+    title: 'What Is /private/var/folders on Mac? Safe Cleanup Guide',
+    h1: 'What is /private/var/folders on Mac, and is it safe to delete?',
     description:
-      'What /private/var/folders holds on a Mac: per-user temporary files and caches. How macOS cleans it, how to measure yours, and why not to delete it by hand.',
+      'What is /private/var/folders on Mac? Measure per-user DARWIN_USER_CACHE_DIR and temp folders safely, see how Safe Mode clears them, and avoid sudo rm.',
     summary:
-      '/private/var/folders holds each user’s temporary files and system-managed caches. Temporary items and caches have different cleanup rules. Measure the folders you can read, keep any permission errors visible, and investigate the app responsible before considering cleanup.',
+      '/private/var/folders on Mac stores per-user temporary files and system-managed app caches inside Darwin user directories. Never delete /private/var/folders manually with sudo; instead, measure your user cache folder with getconf DARWIN_USER_CACHE_DIR and restart your Mac or boot once into Safe Mode so macOS clears it cleanly.',
     published: '2026-09-24',
-    updated: '2026-10-09',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'what-lives-there',
@@ -761,13 +766,14 @@ export const systemFolderGuides: Guide[] = [
   },
   {
     slug: 'library-caches-folder-mac',
-    title: 'The Library Caches folder on Mac, folder by folder',
+    title: '~/Library/Caches on Mac: What Is Safe to Delete?',
+    h1: 'Is it safe to delete files in ~/Library/Caches on Mac?',
     description:
-      'What ~/Library/Caches and /Library/Caches hold, how to identify and measure app caches without hiding errors, and which folders to leave to macOS.',
+      'Is ~/Library/Caches safe to delete on Mac? Measure app cache subfolders with du -h -d 1, identify bundle IDs, and clear app caches without breaking macOS.',
     summary:
-      'Start with ~/Library/Caches to inspect your account’s app caches. Identify the app and use its own cleanup controls where available. A folder name alone does not establish that deletion is safe. Shared caches in /Library/Caches and macOS files in /System/Library/Caches need different handling.',
+      'Files inside ~/Library/Caches on Mac are per-user application caches that apps can recreate, but you should remove specific app subfolders rather than deleting the entire Caches directory at once. Quit the target app first, use its built-in cache clear setting when available, and leave /System/Library/Caches untouched.',
     published: '2026-09-24',
-    updated: '2026-10-12',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'three-caches-folders',
@@ -865,13 +871,14 @@ export const systemFolderGuides: Guide[] = [
   },
   {
     slug: 'mac-log-files',
-    title: 'Mac log files: where they are and when to clear them',
+    title: 'Mac Log Files: Check & Clear ~/Library/Logs and /var/log',
+    h1: 'Where Mac log files live and which ones you can clear',
     description:
-      'Where Mac log files live: ~/Library/Logs, /Library/Logs, /var/log and the unified log. How to read them in Console, measure them, and deal with a large one.',
+      'Where Mac log files live: inspect ~/Library/Logs, /Library/Logs, and /private/var/log in Console or Terminal, and safely remove runaway app log files.',
     summary:
-      'Mac logs live in ~/Library/Logs, /Library/Logs and /private/var/log, while most system messages go to the unified log that Console reads. Measure them before clearing anything. If one keeps growing, identify the app writing it and keep the evidence needed to investigate the fault.',
+      'Mac log files live in ~/Library/Logs for user apps, /Library/Logs for shared software, and /private/var/log for system logs, while macOS unified logs are managed in Console. Measure ~/Library/Logs first and remove only specific runaway app logs or old crash reports after quitting the app that wrote them.',
     published: '2026-09-24',
-    updated: '2026-10-18',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'where-logs-live',
@@ -961,7 +968,7 @@ export const systemFolderGuides: Guide[] = [
     ],
     related: [
       'library-caches-folder-mac',
-      'system-data-keeps-growing',
+      'clear-system-data-on-mac',
       'what-is-system-data-on-mac',
       'show-library-folder-mac',
     ],
@@ -983,13 +990,14 @@ export const systemFolderGuides: Guide[] = [
   },
   {
     slug: 'mac-folder-structure-explained',
-    title: 'Mac folder structure explained: what’s yours to clean',
+    title: 'macOS Folder Structure Explained: Users, Library & System',
+    h1: 'macOS folder structure explained',
     description:
-      'How a Mac’s disk is organized: the sealed system volume, the Data volume, /System, /Library, ~/Library and /private, and which parts are yours to clean.',
+      'macOS folder structure explained: how Macintosh HD and Macintosh HD - Data split /System, /Library, /Users, ~/Library, and /private, and what you can clean.',
     summary:
-      'A Mac’s disk looks like one Macintosh HD but is two volumes: a sealed, read-only system volume and a Data volume with your files and apps. Your home folder and the apps you installed are yours to manage; /System, /private and most of /Library belong to macOS.',
+      'The macOS folder structure splits your startup disk into a sealed, read-only System volume (/System) and a read-write Data volume (/Users, /Applications, /Library, and /private) joined by firmlinks. Your home folder (~/Downloads, ~/Library/Caches) and installed apps are yours to manage, while /System and /private belong to macOS.',
     published: '2026-09-24',
-    updated: '2026-09-24',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'two-volumes',

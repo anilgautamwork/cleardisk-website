@@ -38,7 +38,8 @@ export default async function FaqTopicPage({ params }: Props) {
           <h1>{faq.title}</h1>
           <p className="guide-summary">{faq.intro}</p>
           <p className="guide-meta">
-            Updated <time dateTime={faq.updated}>{faq.updated}</time>
+            Updated <time dateTime={faq.updated}>{faq.updated}</time> · Complete
+            guide: <Link href={faq.pillar.href}>{faq.pillar.label}</Link>
           </p>
         </header>
         <div className="guide-layout">
@@ -61,13 +62,21 @@ export default async function FaqTopicPage({ params }: Props) {
                 <section id={q.id} key={q.id}>
                   <h2>{q.question}</h2>
                   <p>{q.answer}</p>
-                  {guide && (
-                    <p>
-                      <Link className="text-link" href={'/' + guide.slug}>
-                        Read the guide: {guide.title} <ArrowRight size={14} />
+                  <p>
+                    {guide && (
+                      <>
+                        <Link className="text-link" href={'/' + guide.slug}>
+                          Read the guide: {guide.title} <ArrowRight size={14} />
+                        </Link>
+                        {'/' + guide.slug !== faq.pillar.href && ' · '}
+                      </>
+                    )}
+                    {(!guide || '/' + guide.slug !== faq.pillar.href) && (
+                      <Link className="text-link" href={faq.pillar.href}>
+                        Main guide: {faq.pillar.label} <ArrowRight size={14} />
                       </Link>
-                    </p>
-                  )}
+                    )}
+                  </p>
                 </section>
               );
             })}

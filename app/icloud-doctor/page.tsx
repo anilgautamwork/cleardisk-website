@@ -6,8 +6,8 @@ import { icloudGuides } from '@/lib/guides-icloud';
 import { pageMetadata, canonical, SITE_URL } from '@/lib/seo';
 
 export const metadata = pageMetadata(
-  'iCloud Doctor for Mac — inside ClearDisk',
-  'Understand iCloud Drive sync problems and the space local copies use. Inspect file states, request downloads, and archive verified copies inside ClearDisk.',
+  'iCloud Drive Not Syncing on Mac? Diagnose It | iCloud Doctor',
+  'iCloud Drive not syncing or stuck uploading on your Mac? Use iCloud Doctor in ClearDisk to inspect sync states, pending transfers, local copies, and archives.',
   '/icloud-doctor',
 );
 
@@ -22,15 +22,16 @@ export default function ICloudDoctor() {
           <span aria-current="page">iCloud Doctor</span>
         </nav>
         <header className="icloud-heading">
-          <span className="eyebrow">ICLOUD DOCTOR · INSIDE CLEARDISK 1.1</span>
+          <span className="eyebrow">ICLOUD DOCTOR · INSIDE CLEARDISK 2.2.1</span>
           <h1>
-            A clearer view
+            iCloud Doctor: see what iCloud Drive
             <br />
-            of your iCloud Drive.
+            is doing on your Mac
           </h1>
           <p>
-            Understand sync problems and the space local copies use. See what
-            macOS reports. Choose the next step with confidence.
+            Diagnose when iCloud Drive is not syncing on your Mac and see the
+            space local copies use. Inspect what macOS reports and choose the
+            next step with confidence.
           </p>
           <div className="hero-ctas">
             <DownloadButton />
@@ -165,6 +166,14 @@ export default function ICloudDoctor() {
             For local SSD usage, begin with{' '}
             <Link href="/icloud-drive-taking-up-space-on-mac">
               why iCloud Drive takes up space on your Mac
+            </Link>
+            ,{' '}
+            <Link href="/cloud-drive-taking-up-space-on-mac">
+              how third-party cloud drives use Mac storage
+            </Link>
+            , or{' '}
+            <Link href="/com-apple-bird-taking-space">
+              what com.apple.bird is doing in your Library
             </Link>
             .
           </p>

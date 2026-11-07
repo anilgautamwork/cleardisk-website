@@ -3,8 +3,8 @@ import { Header, Footer, DownloadButton } from '@/components/brand';
 import { pageMetadata } from '@/lib/seo';
 import { visitorPrice } from '@/lib/visitor-price';
 export const metadata = pageMetadata(
-  'ClearDisk pricing — free scanning, $10 once',
-  'Free Mac scans and performance diagnostics. Pay $10 once for cleanup, iCloud actions, app quit and browser tab tools on three personal Macs. No subscription.',
+  'ClearDisk Pricing: $10 Once, No Subscription',
+  'ClearDisk pricing: free Mac storage scans and performance diagnostics, then a $10 one-time purchase for cleanup, iCloud Doctor and Why Slow on 3 Macs.',
   '/pricing',
 );
 export default async function Pricing() {
@@ -13,11 +13,7 @@ export default async function Pricing() {
     <>
       <Header />
       <main id="main-content" tabIndex={-1} className="wrap product-page">
-        <h1>
-          See the problem for free.
-          <br />
-          Pay once for guided actions.
-        </h1>
+        <h1>One license. No subscription.</h1>
         <p>
           Explore your storage and performance before buying. One license covers
           cleanup, iCloud Doctor actions and the new WhySlow actions inside

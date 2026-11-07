@@ -6,6 +6,10 @@ export const SITE_URL = 'https://cleardisk.app';
 export const OG_IMAGE = SITE_URL + '/og.png';
 // Vite replaces this exact expression at build time; preview defaults closed.
 export const INDEXABLE = process.env.SITE_INDEXABLE === 'true';
+export const mergedGuideRedirects: Record<string, string> = {
+  '/system-data-too-large': '/clear-system-data-on-mac',
+  '/system-data-keeps-growing': '/clear-system-data-on-mac',
+};
 export const publicPaths = [
   '/',
   '/guides',
@@ -73,26 +77,40 @@ export function pageMetadata(
 }
 export function sitemapEntries(indexable = INDEXABLE) {
   if (!indexable) return [];
+  const latestGuideUpdate = guides.reduce(
+    (max, g) => (g.updated > max ? g.updated : max),
+    '2026-11-07',
+  );
+  const latestBlogUpdate = blogPosts.reduce(
+    (max, p) => (p.updated > max ? p.updated : max),
+    '2026-11-07',
+  );
+  const latestFaqUpdate = faqTopics.reduce(
+    (max, t) => (t.updated > max ? t.updated : max),
+    '2026-11-07',
+  );
+  const coreLastModified: Record<string, string> = {
+    '/': '2026-11-07',
+    '/guides': latestGuideUpdate,
+    '/blog': latestBlogUpdate,
+    '/icloud-doctor': '2026-11-07',
+    '/download': '2026-11-07',
+    '/about': '2026-10-15',
+    '/press': '2026-10-15',
+    '/features': '2026-11-07',
+    '/pricing': '2026-11-07',
+    '/support': '2026-10-15',
+  };
   return [
-    ...[
-      '/',
-      '/guides',
-      '/blog',
-      '/icloud-doctor',
-      '/download',
-      '/about',
-      '/press',
-      '/features',
-      '/pricing',
-      '/support',
-    ].map((path) => ({
+    ...Object.entries(coreLastModified).map(([path, lastModified]) => ({
       url: canonical(path),
+      lastModified,
     })),
     ...[...guides, ...blogPosts].map((guide) => ({
       url: canonical('/' + guide.slug),
       lastModified: guide.updated,
     })),
-    { url: canonical('/faq') },
+    { url: canonical('/faq'), lastModified: latestFaqUpdate },
     ...faqTopics.map((topic) => ({
       url: canonical('/faq/' + topic.slug),
       lastModified: topic.updated,
@@ -107,6 +125,9 @@ const organization = {
   '@type': 'Organization',
   '@id': SITE_URL + '/#organization',
   name: 'ClearDisk',
+  alternateName: 'ClearDisk for Mac',
+  description:
+    'ClearDisk is a native macOS disk cleaner, System Data analyzer, Why Slow performance monitor, and iCloud Drive diagnostic app.',
   url: SITE_URL,
   logo: { '@type': 'ImageObject', url: SITE_URL + '/icon.svg' },
   email: 'hello@cleardisk.app',
@@ -118,7 +139,10 @@ const organization = {
     addressLocality: 'Mohali',
     addressCountry: 'IN',
   },
-  sameAs: ['https://github.com/anilgautamwork/cleardisk-app'],
+  sameAs: [
+    'https://github.com/anilgautamwork/cleardisk-app',
+    'https://github.com/anilgautamwork/cleardisk-website',
+  ],
 };
 // Lets Google pick "ClearDisk" as the site name in results.
 export const websiteSchema = {
@@ -126,6 +150,7 @@ export const websiteSchema = {
   '@type': 'WebSite',
   '@id': SITE_URL + '/#website',
   name: 'ClearDisk',
+  alternateName: 'ClearDisk for Mac',
   url: SITE_URL,
   publisher: { '@id': SITE_URL + '/#organization' },
 };
@@ -137,11 +162,15 @@ export const softwareSchema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
   name: 'ClearDisk',
+  alternateName: 'ClearDisk Mac Cleaner',
+  description:
+    'Mac cleaner, System Data storage scanner, CPU and memory menu-bar monitor, and iCloud Drive diagnostic utility for macOS 15 or later.',
   operatingSystem: 'macOS 15 or later',
   applicationCategory: 'UtilitiesApplication',
   softwareVersion: '2.2.1',
   url: SITE_URL,
   downloadUrl: SITE_URL + '/download',
+  fileSize: '4.4MB',
   image: OG_IMAGE,
   publisher: organization,
   offers: {

@@ -3,13 +3,14 @@ import type { Guide } from './guides.ts';
 export const developerGuides: Guide[] = [
   {
     slug: 'clear-xcode-derived-data',
-    title: 'How to clear Xcode Derived Data on Mac',
+    title: 'How to Clear Xcode Derived Data on Mac (Safe Cleanup)',
+    h1: 'How to clear Xcode Derived Data on Mac',
     description:
-      'Find and measure Xcode Derived Data on Mac, review one project before removal, and keep release archives, debug symbols and source files out of cleanup.',
+      'Learn how to clear Xcode Derived Data on Mac in ~/Library/Developer/Xcode/DerivedData, reclaim gigabytes of build cache, and keep archives and dSYMs safe.',
     summary:
-      'To clear Xcode Derived Data, confirm its path in Xcode → Settings → Locations, save your work and quit Xcode, then review one inactive project’s generated folder in Finder before moving it to Trash. Keep your source files and release archives.',
+      'To clear Xcode Derived Data on Mac, check its path in Xcode → Settings → Locations (usually ~/Library/Developer/Xcode/DerivedData), quit Xcode, and move inactive project build folders to the Trash while keeping release archives intact.',
     published: '2026-09-05',
-    updated: '2026-09-29',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'understand-the-tradeoff',
@@ -58,6 +59,10 @@ export const developerGuides: Guide[] = [
             label: 'Review simulator devices and runtimes separately',
             href: '/remove-unused-ios-simulators',
           },
+          {
+            label: 'Can you delete the Xcode .xip installer after extracting?',
+            href: '/xcode-xip-file-mac',
+          },
         ],
       },
       {
@@ -88,10 +93,11 @@ export const developerGuides: Guide[] = [
       },
     ],
     related: [
-      'clear-cocoapods-cache-mac',
+      'developer-storage-on-mac',
       'remove-unused-ios-simulators',
+      'xcode-xip-file-mac',
+      'clear-cocoapods-cache-mac',
       'clean-homebrew-cache-mac',
-      'system-data-keeps-growing',
       'clear-system-data-on-mac',
     ],
     sources: [
@@ -188,7 +194,8 @@ export const developerGuides: Guide[] = [
     ],
     related: [
       'clear-xcode-derived-data',
-      'system-data-too-large',
+      'developer-storage-on-mac',
+      'clear-system-data-on-mac',
       'mac-storage-full',
     ],
     sources: [
@@ -204,13 +211,14 @@ export const developerGuides: Guide[] = [
   },
   {
     slug: 'clean-docker-disk-space-mac',
-    title: 'How to clean up Docker disk space on Mac',
+    title: 'Clean Up Docker Disk Space on Mac (Prune & Docker.raw)',
+    h1: 'How to clean up Docker disk space on Mac',
     description:
-      'Clean up Docker disk space on Mac: inspect Docker Desktop storage, review containers and images, and separate disposable build cache from volumes.',
+      'Clean up Docker disk space on Mac safely: inspect docker system df, prune unused containers and build cache, and shrink Docker.raw without losing volumes.',
     summary:
-      'Use Docker’s own storage information before touching Docker.raw. Review unused objects individually, and protect volumes and container data that cannot be rebuilt.',
+      'To clean up Docker disk space on Mac, run docker system df -v to measure images, containers, volumes, and build cache before pruning, so you reclaim space inside Docker.raw without deleting persistent database volumes.',
     published: '2026-09-05',
-    updated: '2026-09-05',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'measure-docker',
@@ -234,6 +242,28 @@ export const developerGuides: Guide[] = [
         paragraphs: [
           'Open the Containers view, inspect a project you no longer use, and check its mounts and retained files before selecting its removal action. Then review the Images view for images you can recreate. Docker Desktop’s interface and available controls vary by version, so read each confirmation for the objects affected.',
           'Treat the Volumes view as a separate review. Docker documents inspection and export options there; some actions have account or subscription requirements. A volume named after an abandoned Compose project may still contain your only local database. Keep it until the data is backed up or explicitly no longer needed.',
+        ],
+        links: [
+          {
+            label: 'Delete unused Docker images on Mac',
+            href: '/delete-docker-images-mac',
+          },
+          {
+            label: 'Remove stopped Docker containers safely',
+            href: '/remove-docker-containers-mac',
+          },
+          {
+            label: 'Inspect and remove Docker volumes without losing databases',
+            href: '/remove-docker-volumes-mac',
+          },
+          {
+            label: 'Clear Docker build cache (BuildKit) on Mac',
+            href: '/clear-docker-build-cache-mac',
+          },
+          {
+            label: 'Why Docker.raw stays large and how to shrink it',
+            href: '/docker-raw-file-mac',
+          },
         ],
       },
       {
@@ -272,10 +302,12 @@ export const developerGuides: Guide[] = [
       },
     ],
     related: [
+      'developer-storage-on-mac',
+      'delete-docker-images-mac',
+      'remove-docker-volumes-mac',
+      'docker-raw-file-mac',
       'find-node-modules-folders-mac',
       'clean-homebrew-cache-mac',
-      'system-data-keeps-growing',
-      'mac-storage-full',
     ],
     sources: [
       {
@@ -460,8 +492,8 @@ export const developerGuides: Guide[] = [
       },
     ],
     related: [
+      'clear-cache-on-mac',
       'mac-storage-full',
-      'system-data-keeps-growing',
       'clear-system-data-on-mac',
     ],
     sources: [
@@ -485,13 +517,14 @@ export const developerGuides: Guide[] = [
   },
   {
     slug: 'photoshop-scratch-disk-full-mac',
-    title: 'Photoshop scratch disk full on Mac: what to check',
+    title: 'Photoshop Scratch Disk Full on Mac? 6 Fixes That Work',
+    h1: 'Photoshop scratch disk full on Mac',
     description:
-      'Check Photoshop scratch disk space on Mac, find the selected drive, and choose another disk if Photoshop will not open. Keep your project and recovery files.',
+      'Fix Photoshop scratch disk full on Mac: check your selected scratch drive, hold Cmd + Option on launch, clear temp files, and free 100GB+ of working space.',
     summary:
-      'To check scratch disk space on a Mac, open Photoshop → Settings → Scratch Disks, note the selected drive, then check that same drive in Finder. Save any open work before changing settings or removing files.',
+      'To fix “Photoshop scratch disk full” on a Mac, check which drive is selected in Photoshop → Settings → Scratch Disks (or hold Command + Option while launching Photoshop), then free working room on that drive or add an APFS external SSD.',
     published: '2026-09-05',
-    updated: '2026-09-28',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'protect-open-work',
@@ -581,9 +614,11 @@ export const developerGuides: Guide[] = [
       },
     ],
     related: [
+      'free-up-space-on-mac',
+      'adobe-creative-cloud-space-mac',
+      'clear-premiere-pro-media-cache-mac',
       'mac-storage-full',
-      'system-data-too-large',
-      'system-data-keeps-growing',
+      'clear-system-data-on-mac',
     ],
     sources: [
       {
@@ -615,13 +650,14 @@ export const developerGuides: Guide[] = [
   },
   {
     slug: 'clean-homebrew-cache-mac',
-    title: 'Clean the Homebrew cache on Mac with brew cleanup',
+    title: 'Clean Homebrew Cache on Mac: brew cleanup & --prune=all',
+    h1: 'How to clean the Homebrew cache on Mac with brew cleanup',
     description:
-      'Measure Homebrew’s download cache and old versions, preview what brew cleanup would remove, run it safely, and keep the cache from growing back on your Mac.',
+      'Clean Homebrew cache on Mac using brew cleanup -n and brew cleanup --prune=all. Reclaim gigabytes in ~/Library/Caches/Homebrew and remove old formulae.',
     summary:
-      'Homebrew keeps downloads and old versions around by design. brew cleanup removes them, and its dry run shows the size before anything changes.',
+      'To clean the Homebrew cache on Mac, run brew cleanup -n in Terminal to preview what will be removed, then run brew cleanup --prune=all to clear cached downloads in ~/Library/Caches/Homebrew and old formula versions.',
     published: '2026-09-06',
-    updated: '2026-09-06',
+    updated: '2026-11-07',
     sections: [
       {
         id: 'find-and-measure-the-cache',
@@ -691,6 +727,8 @@ export const developerGuides: Guide[] = [
       },
     ],
     related: [
+      'homebrew-list-installed-packages',
+      'uninstall-homebrew-mac',
       'clear-npm-cache-mac',
       'find-node-modules-folders-mac',
       'clear-xcode-derived-data',
