@@ -1,3 +1,7 @@
+## Current website verification — 9 November 2026
+
+Production is Worker **269254dd-26fe-438f-b14e-9fe209b6698b** from the November 7 release, with source registry fa7f555 and 173 sitemap URLs. Rosetta corrections are live; old pending-publication notes below are historical. Fresh 178-route live HTTP checks pass. Two new accuracy corrections to cache/free-space guide introductions are tested locally but await desktop/narrow visual review; no browser connection is available. See [Monday review](seo/2026-11-09-monday-search-review.md) for exact validation and next steps. Do not deploy or add another content batch without accounting for those pending changes. Released app and payment/license behavior remain unchanged.
+
 ## Latest website publication — 4 November 2026
 
 Reviewed cache-cleanup and slow-Mac guides plus About disclosures are live from source **14add60**; Worker **cd40ddb6-e724-42f4-8bab-956f59269148**. 58 unit tests, lint/typecheck, 177-pair production build, owner visual review, 180 local and 180 live HTTP SEO checks completed. Guide sitemap dates are November 4. ClearDisk 2.2.1 (14), download checksum, updater, payment/license behavior and anonymous analytics protection are preserved. Publication is verified, not Google indexing or recovery. Details and next actions: [SEO progress](seo/progress.md) and [recovery queue](seo/recovery-review.md). Pending guide publication and GitHub-push blocker notes below are historical and resolved for this batch.

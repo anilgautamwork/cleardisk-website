@@ -541,3 +541,12 @@ No source edit or deployment. Rosetta revision remains **improved locally, unpub
 [Aggregate observation](evidence/2026-11-07-aggregate-metrics.json) at 2026-11-07T13:31:41.303Z: completed UTC November 6 contains 2 arrival events, 1 download request, 0 finished-transfer events and 0 checkouts. These are events/requests, not unique people, installs, organic conversions or sales. A request without a completion event does not establish a download outage; the live download HEAD succeeds. No trend diagnosis from one day. No credentials exposed.
 
 Next daily check November 8; complete equal-window Search Console review November 9. Await the existing visual check before Rosetta publication and full live verification. No new article, consolidation, deletion, noindex or redirect.
+
+
+## November 9 — demand refresh and accuracy corrections prepared
+
+[Review, sources, checks and limits](2026-11-09-monday-search-review.md). Fresh free Query Mine estimates confirm existing cache/slow-Mac demand (22,200/5,400 US monthly searches; history Oct 2025–Sep 2026), not site performance. GSC unavailable because no browser connection is exposed; no current account-loss or recovery claim. No new guide or keyword variant.
+
+**Improved locally, unpublished:** /free-up-space-on-mac removes the unsupported “12 steps ranked by GB saved” promise; /clear-cache-on-mac restores app-documentation conditions and corrects “quit closed apps.” **Kept:** current slow-Mac and published Rosetta revisions. No new consolidation/noindex/redirect. The November 7 deployment is verified as Worker 269254dd-26fe-438f-b14e-9fe209b6698b; the earlier Rosetta-pending notes are historical. Current sitemap is 173 URLs after that separate release's two System Data redirects.
+
+58 full unit tests passed, 0 failed/skipped/cancelled/todo; lint/typecheck passed; 175 snapshot pairs built; 178 local HTTP SEO checks passed. Current production also passed 178 HTTP SEO checks before editing, with download HEAD 200 and anonymous analytics 401/no-store/noindex. Final diff/FAQ/schema/link implications reviewed. Browser preview unavailable, so desktop/narrow visual verification and today's publication remain incomplete. Preview runs on localhost:3115 for the two changed guides. Source retained locally; unrelated edits preserved. No new deployment or indexing request. Fresh aggregate metrics and source-fetch limitations are recorded in the review. Next daily review November 10; next Monday November 16.

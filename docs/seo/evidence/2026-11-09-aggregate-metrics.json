@@ -1,0 +1,39 @@
+{
+  "observed_at": "2026-11-09T06:35:23.232604+00:00",
+  "source": "authenticated ClearDisk aggregate analytics",
+  "windows": [
+    {
+      "start": "2026-10-26",
+      "end": "2026-11-01",
+      "counts": {
+        "visits": 83,
+        "downloads": 27,
+        "downloads-done": 22,
+        "checkouts": 4
+      },
+      "rows": {
+        "visits": 7,
+        "downloads": 7,
+        "downloads-done": 7,
+        "checkouts": 7
+      }
+    },
+    {
+      "start": "2026-11-02",
+      "end": "2026-11-08",
+      "counts": {
+        "visits": 62,
+        "downloads": 9,
+        "downloads-done": 8,
+        "checkouts": 0
+      },
+      "rows": {
+        "visits": 7,
+        "downloads": 7,
+        "downloads-done": 7,
+        "checkouts": 7
+      }
+    }
+  ],
+  "limits": "Events and requests, not unique people, installs, sales or organic conversions. Checkout includes test mode."
+}

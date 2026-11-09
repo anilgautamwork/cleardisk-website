@@ -1,0 +1,406 @@
+{
+  "at": "2026-11-09T06:32:27.765Z",
+  "source": "Google Ads API",
+  "country": "us",
+  "network": "Google Search",
+  "language": "English",
+  "mode": "metrics",
+  "rows": [
+    {
+      "keyword": "how to clear cache on mac",
+      "groupTerm": "how to clear cache on mac",
+      "closeVariants": [],
+      "volume": 22200,
+      "competition": "LOW",
+      "competitionIndex": 7,
+      "bidLow": 12.225623,
+      "bidHigh": 164.524933,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 22200
+        },
+        {
+          "month": "2025-11",
+          "searches": 22200
+        },
+        {
+          "month": "2025-12",
+          "searches": 18100
+        },
+        {
+          "month": "2026-01",
+          "searches": 33100
+        },
+        {
+          "month": "2026-02",
+          "searches": 22200
+        },
+        {
+          "month": "2026-03",
+          "searches": 27100
+        },
+        {
+          "month": "2026-04",
+          "searches": 22200
+        },
+        {
+          "month": "2026-05",
+          "searches": 18100
+        },
+        {
+          "month": "2026-06",
+          "searches": 18100
+        },
+        {
+          "month": "2026-07",
+          "searches": 18100
+        },
+        {
+          "month": "2026-08",
+          "searches": 18100
+        },
+        {
+          "month": "2026-09",
+          "searches": 22200
+        }
+      ],
+      "trend": {
+        "percent": 0,
+        "previous": 19466.666666666668,
+        "recent": 19466.666666666668,
+        "through": "2026-09"
+      }
+    },
+    {
+      "keyword": "why is my mac so slow",
+      "groupTerm": "why is my mac so slow",
+      "closeVariants": [],
+      "volume": 5400,
+      "competition": "LOW",
+      "competitionIndex": 16,
+      "bidLow": 5.461011,
+      "bidHigh": 160.261493,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 6600
+        },
+        {
+          "month": "2025-11",
+          "searches": 5400
+        },
+        {
+          "month": "2025-12",
+          "searches": 4400
+        },
+        {
+          "month": "2026-01",
+          "searches": 5400
+        },
+        {
+          "month": "2026-02",
+          "searches": 5400
+        },
+        {
+          "month": "2026-03",
+          "searches": 5400
+        },
+        {
+          "month": "2026-04",
+          "searches": 5400
+        },
+        {
+          "month": "2026-05",
+          "searches": 4400
+        },
+        {
+          "month": "2026-06",
+          "searches": 4400
+        },
+        {
+          "month": "2026-07",
+          "searches": 4400
+        },
+        {
+          "month": "2026-08",
+          "searches": 5400
+        },
+        {
+          "month": "2026-09",
+          "searches": 6600
+        }
+      ],
+      "trend": {
+        "percent": 15,
+        "previous": 4733.333333333333,
+        "recent": 5466.666666666667,
+        "through": "2026-09"
+      }
+    },
+    {
+      "keyword": "external hard drive not showing up mac",
+      "groupTerm": "external hard drive not showing up mac",
+      "closeVariants": [],
+      "volume": 1000,
+      "competition": "LOW",
+      "competitionIndex": 21,
+      "bidLow": 7.520231,
+      "bidHigh": 202.696138,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 1000
+        },
+        {
+          "month": "2025-11",
+          "searches": 880
+        },
+        {
+          "month": "2025-12",
+          "searches": 1300
+        },
+        {
+          "month": "2026-01",
+          "searches": 1300
+        },
+        {
+          "month": "2026-02",
+          "searches": 1000
+        },
+        {
+          "month": "2026-03",
+          "searches": 1000
+        },
+        {
+          "month": "2026-04",
+          "searches": 1000
+        },
+        {
+          "month": "2026-05",
+          "searches": 1000
+        },
+        {
+          "month": "2026-06",
+          "searches": 880
+        },
+        {
+          "month": "2026-07",
+          "searches": 1000
+        },
+        {
+          "month": "2026-08",
+          "searches": 1000
+        },
+        {
+          "month": "2026-09",
+          "searches": 1300
+        }
+      ],
+      "trend": {
+        "percent": 15,
+        "previous": 960,
+        "recent": 1100,
+        "through": "2026-09"
+      }
+    },
+    {
+      "keyword": "photos library taking up space mac",
+      "groupTerm": "photos library taking up space mac",
+      "closeVariants": [],
+      "volume": 10,
+      "competition": "LOW",
+      "competitionIndex": 2,
+      "bidLow": null,
+      "bidHigh": null,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 10
+        },
+        {
+          "month": "2025-11",
+          "searches": 10
+        },
+        {
+          "month": "2025-12",
+          "searches": 10
+        },
+        {
+          "month": "2026-01",
+          "searches": 10
+        },
+        {
+          "month": "2026-02",
+          "searches": 10
+        },
+        {
+          "month": "2026-03",
+          "searches": 10
+        },
+        {
+          "month": "2026-04",
+          "searches": 10
+        },
+        {
+          "month": "2026-05",
+          "searches": 10
+        },
+        {
+          "month": "2026-06",
+          "searches": 10
+        },
+        {
+          "month": "2026-07",
+          "searches": 10
+        },
+        {
+          "month": "2026-08",
+          "searches": 10
+        },
+        {
+          "month": "2026-09",
+          "searches": 10
+        }
+      ],
+      "trend": {
+        "percent": 0,
+        "previous": 10,
+        "recent": 10,
+        "through": "2026-09"
+      }
+    },
+    {
+      "keyword": "uninstall rosetta 2 mac",
+      "groupTerm": "uninstall rosetta 2 mac",
+      "closeVariants": [],
+      "volume": 10,
+      "competition": "LOW",
+      "competitionIndex": 1,
+      "bidLow": null,
+      "bidHigh": null,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 10
+        },
+        {
+          "month": "2025-11",
+          "searches": 10
+        },
+        {
+          "month": "2025-12",
+          "searches": 10
+        },
+        {
+          "month": "2026-01",
+          "searches": 10
+        },
+        {
+          "month": "2026-02",
+          "searches": 10
+        },
+        {
+          "month": "2026-03",
+          "searches": 10
+        },
+        {
+          "month": "2026-04",
+          "searches": 10
+        },
+        {
+          "month": "2026-05",
+          "searches": 10
+        },
+        {
+          "month": "2026-06",
+          "searches": 10
+        },
+        {
+          "month": "2026-07",
+          "searches": 10
+        },
+        {
+          "month": "2026-08",
+          "searches": 10
+        },
+        {
+          "month": "2026-09",
+          "searches": 20
+        }
+      ],
+      "trend": {
+        "percent": 33,
+        "previous": 10,
+        "recent": 13.333333333333334,
+        "through": "2026-09"
+      }
+    },
+    {
+      "keyword": "clear system data on mac",
+      "groupTerm": "clear system data on mac",
+      "closeVariants": [],
+      "volume": 390,
+      "competition": "MEDIUM",
+      "competitionIndex": 37,
+      "bidLow": 40.317669,
+      "bidHigh": 380.192547,
+      "monthly": [
+        {
+          "month": "2025-10",
+          "searches": 320
+        },
+        {
+          "month": "2025-11",
+          "searches": 320
+        },
+        {
+          "month": "2025-12",
+          "searches": 390
+        },
+        {
+          "month": "2026-01",
+          "searches": 390
+        },
+        {
+          "month": "2026-02",
+          "searches": 390
+        },
+        {
+          "month": "2026-03",
+          "searches": 390
+        },
+        {
+          "month": "2026-04",
+          "searches": 390
+        },
+        {
+          "month": "2026-05",
+          "searches": 320
+        },
+        {
+          "month": "2026-06",
+          "searches": 390
+        },
+        {
+          "month": "2026-07",
+          "searches": 320
+        },
+        {
+          "month": "2026-08",
+          "searches": 390
+        },
+        {
+          "month": "2026-09",
+          "searches": 390
+        }
+      ],
+      "trend": {
+        "percent": 0,
+        "previous": 366.6666666666667,
+        "recent": 366.6666666666667,
+        "through": "2026-09"
+      }
+    }
+  ]
+}
