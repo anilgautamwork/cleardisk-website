@@ -1,0 +1,11 @@
+{
+  "observed_at": "2026-11-10T10:50:32.097699+00:00",
+  "complete_utc_day": "2026-11-09",
+  "counts": {
+    "visits": 2,
+    "downloads": 0,
+    "downloads-done": 0,
+    "checkouts": 0
+  },
+  "limits": "Events and requests, not unique visitors, installs, sales or organic conversions. Checkout includes test mode. No trend inferred from one day."
+}
