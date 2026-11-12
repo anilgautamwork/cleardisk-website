@@ -1154,3 +1154,7 @@ Nine fresh live sample checks passed: those five guides return 200, index/follow
 [Aggregate evidence](evidence/2026-11-10-aggregate-metrics.json), observed 2026-11-10T10:50:32.097699Z: complete UTC November 9 contains 2 arrival events, 0 download requests, 0 finished-transfer events and 0 checkouts. These are event/request counters, not people, installs, sales or Google conversions. No trend or outage inferred from a single day; download delivery remains available. No credentials exposed. Weekly keyword and GSC evidence dates remain unchanged; any future Google account access must first verify the owner's requested anilgautam.work@gmail.com profile.
 
 Unrelated audit changes and .impeccable preserved. Next daily review November 11; next Monday review November 16. No repeated notification for the unchanged publication prerequisite.
+
+## November 11 recovery review — Photos library
+
+Prepared a source-checked correction covering iCloud deletion above the storage limit. Kept the separate library migration guide. The revised Photos, free-space and cache pages passed 58 unit tests, lint, typecheck, production build and 178 local HTTP checks. Publication awaits desktop and narrow preview because the browser denied the local origin. [Review, primary sources and preview links](recovery-review.md#november-11-review-completed-november-12--photos-storage)
