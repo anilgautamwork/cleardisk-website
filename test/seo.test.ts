@@ -63,9 +63,13 @@ await test('all published problems have complete discoverable guides', () => {
     'clear-downloads-folder-mac',
     'application-support-folder-mac',
     'containers-folder-mac',
+    'install-homebrew-mac',
+    'cleanmymac-alternative',
+    'cleardisk-vs-cleanmymac',
+    'daisydisk-alternative',
   ];
   for (const slug of required) assert.ok(getGuide(slug));
-  assert.equal(guides.length, 151);
+  assert.equal(guides.length, 154);
   assert.equal(getGuide('system-data-too-large'), undefined);
   assert.equal(getGuide('system-data-keeps-growing'), undefined);
   assert.equal(
@@ -172,6 +176,19 @@ await test('guide schema derives HowTo steps only from numbered sections', () =>
     explainer.some((s) => s['@type'] === 'HowTo'),
     false,
   );
+  for (const slug of ['cleanmymac-alternative', 'daisydisk-alternative']) {
+    const comp = guideSchema(getGuide(slug)!);
+    assert.equal(
+      comp.some((s) => s['@type'] === 'HowTo'),
+      false,
+      slug + ': comparison is not HowTo',
+    );
+    assert.equal(
+      comp.some((s) => s['@type'] === 'ItemList'),
+      true,
+      slug + ': comparison emits ItemList',
+    );
+  }
 });
 await test('faq topics are unique, link to real guides and sit in the sitemap', () => {
   assert.equal(new Set(faqTopics.map((t) => t.slug)).size, faqTopics.length);

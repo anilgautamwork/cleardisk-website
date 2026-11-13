@@ -85,6 +85,21 @@ export default async function Pricing() {
               <Link href="/support">Contact support</Link> or read the{' '}
               <Link href="/terms">license terms and refund policy</Link>.
             </p>
+            <p>
+              Comparing Mac cleaners or visual disk scanners? Read{' '}
+              <Link href="/cleardisk-vs-cleanmymac">
+                ClearDisk vs CleanMyMac
+              </Link>
+              ,{' '}
+              <Link href="/cleanmymac-alternative">
+                7 CleanMyMac alternatives
+              </Link>
+              , or{' '}
+              <Link href="/daisydisk-alternative">
+                6 DaisyDisk alternatives
+              </Link>
+              .
+            </p>
           </section>
         </div>
       </main>

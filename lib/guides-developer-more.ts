@@ -1209,6 +1209,8 @@ export const moreDeveloperGuides: Guide[] = [
       },
     ],
     related: [
+      'daisydisk-alternative',
+      'install-homebrew-mac',
       'check-disk-space-mac-terminal',
       'disk-space-analyzer-mac',
       'find-large-files-on-mac',

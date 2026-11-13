@@ -139,6 +139,8 @@ export const blogPosts: Guide[] = [
       },
     ],
     related: [
+      'cleanmymac-alternative',
+      'cleardisk-vs-cleanmymac',
       'uninstall-apps-on-mac',
       'best-free-mac-cleaner',
       'what-is-system-data-on-mac',
@@ -217,6 +219,14 @@ export const blogPosts: Guide[] = [
           {
             label: 'Compare free Mac cleaner apps by the job they do',
             href: '/best-free-mac-cleaner',
+          },
+          {
+            label: 'ClearDisk vs CleanMyMac: features and 3-year cost compared',
+            href: '/cleardisk-vs-cleanmymac',
+          },
+          {
+            label: '7 CleanMyMac alternatives with no subscription',
+            href: '/cleanmymac-alternative',
           },
         ],
       },

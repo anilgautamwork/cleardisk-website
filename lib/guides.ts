@@ -14,6 +14,7 @@ import { devQaGuides } from './guides-dev-qa.ts';
 import { fileQaGuides } from './guides-qa-files.ts';
 import { systemQaGuides } from './guides-qa-system.ts';
 import { spaceQaGuides } from './guides-qa-space.ts';
+import { comparisonGuides } from './guides-comparisons.ts';
 export type GuideSection = {
   id: string;
   title: string;
@@ -38,6 +39,7 @@ export type Guide = {
   summary: string;
   published: string;
   updated: string;
+  itemList?: { name: string; items: string[] };
   sections: GuideSection[];
   // Short answers to the searches people make around this topic. Rendered as
   // a "Common questions" section with one heading per question and emitted
@@ -475,6 +477,7 @@ export const guides: Guide[] = [
   ...fileQaGuides,
   ...systemQaGuides,
   ...spaceQaGuides,
+  ...comparisonGuides,
 ];
 
 export function getGuide(slug: string): Guide | undefined {
@@ -868,7 +871,12 @@ export const guideGroups: GuideGroup[] = [
       href: '/',
       label: 'ClearDisk Mac cleaner',
     },
-    guides: bySlugs(['best-free-mac-cleaner']),
+    guides: bySlugs([
+      'best-free-mac-cleaner',
+      'cleanmymac-alternative',
+      'cleardisk-vs-cleanmymac',
+      'daisydisk-alternative',
+    ]),
   },
 ];
 

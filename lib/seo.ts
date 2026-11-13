@@ -254,6 +254,20 @@ export function guideSchema(
           },
         ]
       : []),
+    ...(guide.itemList
+      ? [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: guide.itemList.name,
+            itemListElement: guide.itemList.items.map((name, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name,
+            })),
+          },
+        ]
+      : []),
   ] as const;
 }
 export function faqSchema(topic: FaqTopic) {
