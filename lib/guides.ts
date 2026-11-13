@@ -649,6 +649,7 @@ export const guideGroups: GuideGroup[] = [
       'remove-unused-ios-simulators',
       'clean-docker-disk-space-mac',
       'find-node-modules-folders-mac',
+      'install-homebrew-mac',
       'clean-homebrew-cache-mac',
       'clear-npm-cache-mac',
       'clear-gradle-cache-mac',

@@ -727,6 +727,7 @@ export const developerGuides: Guide[] = [
       },
     ],
     related: [
+      'install-homebrew-mac',
       'homebrew-list-installed-packages',
       'uninstall-homebrew-mac',
       'clear-npm-cache-mac',

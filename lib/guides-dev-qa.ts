@@ -343,6 +343,7 @@ export const devQaGuides: Guide[] = [
       },
     ],
     related: [
+      'install-homebrew-mac',
       'homebrew-list-installed-packages',
       'clean-homebrew-cache-mac',
       'uninstall-node-js-mac',
@@ -473,6 +474,7 @@ export const devQaGuides: Guide[] = [
       },
     ],
     related: [
+      'install-homebrew-mac',
       'clean-homebrew-cache-mac',
       'uninstall-homebrew-mac',
       'developer-storage-on-mac',
@@ -814,6 +816,7 @@ export const devQaGuides: Guide[] = [
       },
     ],
     related: [
+      'install-homebrew-mac',
       'developer-storage-on-mac',
       'xcode-xip-file-mac',
       'uninstall-homebrew-mac',
@@ -831,6 +834,291 @@ export const devQaGuides: Guide[] = [
       {
         label: 'Apple Developer: Xcode resources',
         url: 'https://developer.apple.com/xcode/resources/',
+      },
+    ],
+  },
+  {
+    slug: 'install-homebrew-mac',
+    title: 'How to Install Homebrew on Mac (2026 Step-by-Step Guide)',
+    h1: 'How to install Homebrew on Mac (2026): step by step for Apple silicon and Intel',
+    description:
+      'Install Homebrew on Mac with the official command, add brew to your PATH, and fix “command not found: brew”. Covers Apple silicon, Intel and .pkg.',
+    summary:
+      'To install Homebrew on Mac, open Terminal, paste the official install command from brew.sh, press Return, and confirm when the script asks. Then run the 2 or 3 “Next steps” lines it prints so your shell can find brew, and finish with brew doctor. Setup usually takes a few minutes—longer if your Mac needs to download Apple’s Command Line Tools.',
+    published: '2026-11-13',
+    updated: '2026-11-13',
+    sections: [
+      {
+        id: 'key-takeaways',
+        title: 'Key takeaways',
+        paragraphs: [
+          'Here is the official one-line Homebrew install command from brew.sh. The rest of this guide covers what that command does, the PATH step people miss, and how to fix the errors you are most likely to hit.',
+        ],
+        code: [
+          '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
+        ],
+        items: [
+          'Homebrew officially supports Apple silicon Macs on macOS 15 (Sequoia) or later. Intel Macs still work, on a lower support tier.',
+          'The install script shows you what it will do and waits for your confirmation before changing anything.',
+          'If you see “zsh: command not found: brew” after installing, you skipped the PATH step. It is a one-minute fix.',
+          'On Apple silicon, Homebrew lives in /opt/homebrew. You do not need sudo to install packages after setup.',
+        ],
+      },
+      {
+        id: 'requirements',
+        title: 'Before you start: Homebrew requirements',
+        paragraphs: [
+          'Homebrew’s requirements have shifted recently, so check your Mac and macOS version against Homebrew’s current installation policy before running the script. Not sure which chip you have? Click Apple menu → About This Mac and look at the Chip or Processor line.',
+          'Alongside a compatible macOS release, you need an administrator account for the standard install (non-admin setups exist, though they are an advanced path). The installer command invokes /bin/bash directly, so it works out of the box even though your Mac’s default login shell is zsh. On Apple silicon, prebuilt packages (bottles) and apps (casks) install without developer tools; Intel Macs need Command Line Tools for Xcode for bottles too, and anyone building from source needs them—the installer downloads them automatically if they are missing.',
+        ],
+        items: [
+          'Apple silicon, macOS 15 (Sequoia) to 27: fully supported.',
+          'Apple silicon, macOS 11 (Big Sur) to 14 (Sonoma): unsupported, though it may work.',
+          'Any Intel Mac: Tier 3 support—works, with limited support.',
+          'macOS 10.15 (Catalina) or older: will not run Homebrew.',
+        ],
+        links: [
+          {
+            label: 'Homebrew official installation requirements',
+            href: 'https://docs.brew.sh/Installation',
+          },
+        ],
+      },
+      {
+        id: 'open-terminal',
+        title: '1. Open Terminal',
+        paragraphs: [
+          'Press Command + Space, type Terminal, and press Return. You will see a window with a shell prompt ending in %.',
+        ],
+      },
+      {
+        id: 'run-install-command',
+        title: '2. Run the Homebrew install command',
+        paragraphs: [
+          'Copy the official command from brew.sh (or from below), paste it into Terminal, and press Return. If you are curious about what you are running, the script’s source is public on GitHub—reading an install script before piping it into bash is a good habit.',
+        ],
+        code: [
+          '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
+        ],
+        items: [
+          'Password prompt: type your Mac login password and press Return. Nothing appears as you type; that is normal.',
+          'A list of what the script will do: it shows the folders it will create and the files it will install, then waits for you to confirm before starting.',
+          'Press Return to continue: the script downloads Homebrew and, if needed, the Command Line Tools. This is the slow part.',
+          '“Installation successful!” followed by a Next steps section: keep Terminal open so you can copy those lines next.',
+        ],
+        links: [
+          {
+            label: 'Inspect the Homebrew install script on GitHub',
+            href: 'https://github.com/Homebrew/install',
+          },
+        ],
+      },
+      {
+        id: 'add-to-path',
+        title: '3. Add Homebrew to your PATH (don’t skip this)',
+        paragraphs: [
+          'This is the step most guides rush past, and it is the reason for most “brew not found” errors. Homebrew’s documentation is blunt about it: if you do not follow the post-install directions, Homebrew will not work.',
+          'On an Apple silicon Mac using the default zsh shell, the Next steps section asks you to run the 3 lines below. The first 2 lines add Homebrew to your shell’s startup file (~/.zprofile) so it loads in every new Terminal window. The third loads it in the window you have open right now.',
+          'If the lines your installer printed differ from these, use the installer’s version—it builds them from your actual install location and shell. On an Intel Mac, Homebrew has traditionally lived in /usr/local, which is usually already on your PATH, so you may not see this step at all.',
+        ],
+        code: [
+          'echo >> ~/.zprofile',
+          'echo \'eval "$(/opt/homebrew/bin/brew shellenv)"\' >> ~/.zprofile',
+          'eval "$(/opt/homebrew/bin/brew shellenv)"',
+        ],
+      },
+      {
+        id: 'verify-install',
+        title: '4. Check that Homebrew works',
+        paragraphs: [
+          'Run brew --version and brew doctor. brew --version prints a version number, and brew doctor checks your setup and ends with “Your system is ready to brew.” when all is well. If it lists warnings, read them—most include the exact command to fix the issue.',
+        ],
+        code: ['brew --version', 'brew doctor'],
+      },
+      {
+        id: 'first-package',
+        title: '5. Install your first package',
+        paragraphs: [
+          'Formulae are command-line tools, and casks are Mac apps. Try installing one of each with the commands below. ncdu is a compact disk-usage tool you can use to find what is filling your drive, and brew list shows everything you have installed later.',
+        ],
+        code: [
+          'brew install ncdu',
+          'brew install --cask visual-studio-code',
+        ],
+        links: [
+          {
+            label: 'How to use ncdu on Mac to find what is filling your drive',
+            href: '/ncdu-on-mac',
+          },
+          {
+            label: 'How to list installed Homebrew packages and sizes (brew list)',
+            href: '/homebrew-list-installed-packages',
+          },
+        ],
+      },
+      {
+        id: 'pkg-installer',
+        title: 'Alternative: the Homebrew .pkg installer',
+        paragraphs: [
+          'If you would rather not use the command line for setup, Homebrew offers a standard macOS .pkg installer on its latest GitHub release. Download it, double-click, and follow the prompts. It is mainly built for IT teams deploying Homebrew through MDM, though it works fine for a single Mac.',
+        ],
+        items: [
+          'The .pkg installer supports Apple silicon only.',
+          'It installs to the same default location, /opt/homebrew. You still need to add Homebrew to your PATH (Step 3) if brew is not found afterward.',
+        ],
+        links: [
+          {
+            label: 'Download the official Homebrew .pkg installer on GitHub',
+            href: 'https://github.com/Homebrew/brew/releases/latest',
+          },
+        ],
+      },
+      {
+        id: 'where-homebrew-installs',
+        title: 'Where Homebrew installs on your Mac',
+        paragraphs: [
+          'Run brew --prefix to see your active install prefix. Command-line tools stay inside that prefix, which is why everyday brew install commands do not need sudo. In our read-only check on an Apple silicon Mac running macOS 27.0.1 with Homebrew 7.0.12 in November 2026, brew --prefix resolved to /opt/homebrew and brew --cache resolved to ~/Library/Caches/Homebrew.',
+        ],
+        code: ['brew --prefix'],
+        items: [
+          'Apple silicon (M1 and later): prefix /opt/homebrew, with packages in /opt/homebrew/Cellar.',
+          'Intel Macs: prefix /usr/local, with packages in /usr/local/Cellar.',
+          'Casks (Mac apps): install to /Applications, with downloads cached in ~/Library/Caches/Homebrew.',
+        ],
+      },
+      {
+        id: 'common-errors',
+        title: 'Fixing common Homebrew install errors',
+        paragraphs: [
+          'Most Homebrew setup problems come down to a missing PATH line, a stuck Command Line Tools prompt, or folder permissions. Check the exact message in Terminal before trying again.',
+        ],
+        code: ['ls /opt/homebrew/bin/brew'],
+        items: [
+          '“zsh: command not found: brew”: Homebrew installed fine, and your shell cannot find it yet. Confirm the binary exists on Apple silicon with ls /opt/homebrew/bin/brew—if that prints the path, run the Step 3 commands and open a new Terminal window.',
+          '“Command Line Tools are already installed” or a stuck CLT install: if the installer loops on Command Line Tools or Xcode complains they are already there, check your active developer path or remove and reinstall the standalone tools cleanly.',
+          'Permission denied or “Operation not permitted”: do not try to fix this with sudo brew—Homebrew’s FAQ explains why running brew as root is a bad idea. Run brew doctor and follow its suggested fix, or check macOS Terminal folder permissions if Terminal itself is blocked.',
+          'Homebrew warns that your macOS version is unsupported: on Apple silicon, macOS 11 to 14 are unsupported even when packages still run; updating to macOS 15 or later is the clean fix. On Intel Macs, expect occasional Tier 3 warnings while most packages still install.',
+          'The install is very slow or fails to download: the script pulls from GitHub. Check your connection, turn off any VPN that blocks GitHub, and run the command again—it is safe to re-run the installer over an existing install.',
+        ],
+        links: [
+          {
+            label: 'Reinstall Command Line Tools on Mac (“already installed” fix)',
+            href: '/reinstall-command-line-tools-mac',
+          },
+          {
+            label: 'Fix “Operation not permitted” in Terminal on Mac',
+            href: '/operation-not-permitted-terminal-mac',
+          },
+        ],
+      },
+      {
+        id: 'basic-commands',
+        title: 'Basic brew commands you’ll use',
+        paragraphs: [
+          'Once brew is on your PATH, these everyday commands handle installing command-line tools and Mac apps, updating your formulae, and keeping old downloads tidy.',
+        ],
+        code: [
+          'brew install <name>          # Install a command-line tool',
+          'brew install --cask <name>   # Install a Mac app',
+          'brew list                    # See what is installed',
+          'brew update                  # Refresh Homebrew’s package list',
+          'brew upgrade                 # Upgrade installed packages',
+          'brew uninstall <name>        # Remove a package',
+          'brew cleanup                 # Delete old versions and downloads',
+          'brew doctor                  # Check your setup for problems',
+        ],
+      },
+      {
+        id: 'disk-space',
+        title: 'Keep Homebrew from eating your disk',
+        paragraphs: [
+          'Homebrew keeps downloaded installers and old package versions around. On a Mac that has been using brew for a year or two, that cache can add up to several GB inside System Data.',
+          'Check the size of the download cache with du -sh "$(brew --cache)", then run brew cleanup to clear old versions and stale downloads. If you also use Xcode, Node, or Docker, Homebrew is rarely the biggest culprit—a free ClearDisk scan shows tool caches like these alongside the rest of your System Data.',
+        ],
+        code: ['du -sh "$(brew --cache)"', 'brew cleanup'],
+        links: [
+          {
+            label: 'Homebrew cache cleanup guide (brew cleanup & --prune=all)',
+            href: '/clean-homebrew-cache-mac',
+          },
+          {
+            label: 'What Developer storage on Mac is and how to reclaim it',
+            href: '/developer-storage-on-mac',
+          },
+        ],
+      },
+      {
+        id: 'uninstall',
+        title: 'How to uninstall Homebrew (and the bottom line)',
+        paragraphs: [
+          'If you ever want Homebrew gone, Homebrew provides an official uninstall script. Our step-by-step uninstall Homebrew guide covers the command, previewing with --dry-run, and removing leftover folders and shell profile lines.',
+          'That is how to install Homebrew on Mac in 2026: paste the official command, press Return, and do not skip the PATH lines the installer prints. Run brew doctor, and you are done. A few months in, run brew cleanup now and then so old downloads do not quietly fill your drive.',
+        ],
+        links: [
+          {
+            label: 'Step-by-step guide to uninstalling Homebrew on Mac',
+            href: '/uninstall-homebrew-mac',
+          },
+        ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Is Homebrew safe to install?',
+        a: 'Homebrew is a widely used open-source project. According to brew.sh, packages in its core repositories require human review before they are accepted or changed, and the install script shows what it will do and asks for confirmation. As with any software, install packages you recognize from sources you trust.',
+      },
+      {
+        q: 'Is Homebrew free?',
+        a: 'Yes. Homebrew is free and open source. The project accepts donations and charges nothing to install or use on your Mac.',
+      },
+      {
+        q: 'Do I need Xcode to install Homebrew?',
+        a: 'You do not need the full Xcode app. On Apple silicon, Homebrew installs prebuilt packages and apps without developer tools. Intel Macs, and anyone building packages from source, need the Command Line Tools, which the installer can download for you.',
+      },
+      {
+        q: 'Does Homebrew work on Intel Macs?',
+        a: 'Yes, though Intel Macs are now a Tier 3 configuration in Homebrew’s support policy. Most packages still install, with limited upstream support if something breaks.',
+      },
+      {
+        q: 'Where is Homebrew installed on an M1, M2, M3 or M4 Mac?',
+        a: 'On Apple silicon Macs (M1, M2, M3, M4 and later), Homebrew installs into /opt/homebrew by default, with formulae under /opt/homebrew/Cellar. Run brew --prefix in Terminal to confirm your path.',
+      },
+      {
+        q: 'Why does Terminal say “command not found: brew” after installing?',
+        a: 'Your shell does not know where Homebrew is yet because /opt/homebrew/bin is not on your PATH. Run the brew shellenv lines from Step 3 (or the ones your installer printed), then open a new Terminal window.',
+      },
+      {
+        q: 'Can I install Homebrew without admin rights?',
+        a: 'Homebrew’s documentation describes a non-admin setup, though it requires a writable install location prepared in advance or the .pkg installer configured for that user. For most people, using an admin account is simpler.',
+      },
+    ],
+    related: [
+      'uninstall-homebrew-mac',
+      'clean-homebrew-cache-mac',
+      'homebrew-list-installed-packages',
+      'reinstall-command-line-tools-mac',
+      'developer-storage-on-mac',
+    ],
+    sources: [
+      {
+        label: 'Homebrew: the missing package manager for macOS (brew.sh)',
+        url: 'https://brew.sh/',
+      },
+      {
+        label: 'Homebrew Documentation: installation and system requirements',
+        url: 'https://docs.brew.sh/Installation',
+      },
+      {
+        label: 'Homebrew FAQ: why does Homebrew say sudo is bad?',
+        url: 'https://docs.brew.sh/FAQ#why-does-homebrew-say-sudo-is-bad',
+      },
+      {
+        label: 'GitHub: Homebrew/install official installation script',
+        url: 'https://github.com/Homebrew/install',
+      },
+      {
+        label: 'GitHub: Homebrew latest release and macOS .pkg installer',
+        url: 'https://github.com/Homebrew/brew/releases/latest',
       },
     ],
   },

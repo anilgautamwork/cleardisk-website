@@ -65,7 +65,7 @@ await test('all published problems have complete discoverable guides', () => {
     'containers-folder-mac',
   ];
   for (const slug of required) assert.ok(getGuide(slug));
-  assert.equal(guides.length, 150);
+  assert.equal(guides.length, 151);
   assert.equal(getGuide('system-data-too-large'), undefined);
   assert.equal(getGuide('system-data-keeps-growing'), undefined);
   assert.equal(
