@@ -89,3 +89,24 @@ Source checks and limitations remain in the preceding November 4 entry (fresh Ch
 **Improved locally, unpublished:** /free-up-space-on-mac removes the unsupported “12 steps ranked by GB saved” promise; /clear-cache-on-mac restores app-documentation conditions and corrects “quit closed apps.” **Kept:** current slow-Mac and published Rosetta revisions. No new consolidation/noindex/redirect. The November 7 deployment is verified as Worker 269254dd-26fe-438f-b14e-9fe209b6698b; the earlier Rosetta-pending notes are historical. Current sitemap is 173 URLs after that separate release's two System Data redirects.
 
 58 full unit tests passed, 0 failed/skipped/cancelled/todo; lint/typecheck passed; 175 snapshot pairs built; 178 local HTTP SEO checks passed. Current production also passed 178 HTTP SEO checks before editing, with download HEAD 200 and anonymous analytics 401/no-store/noindex. Final diff/FAQ/schema/link implications reviewed. Browser preview unavailable, so desktop/narrow visual verification and today's publication remain incomplete. Preview runs on localhost:3115 for the two changed guides. Source retained locally; unrelated edits preserved. No new deployment or indexing request. Fresh aggregate metrics and source-fetch limitations are recorded in the review. Next daily review November 10; next Monday November 16.
+
+## November 16 — brand queries account for most visible impressions
+
+The authenticated Web report for the ClearDisk URL-prefix property showed 24 impressions and 2 clicks for October 31–November 6, followed by 10 impressions and 0 clicks for November 7–13. Verified the work Gmail identity and both seven-day ranges in the report. The latest week averaged 1.4 impressions a day against the owner's target of 100. The counts are too small to explain the decline or evaluate the November 13 publications.
+
+| Search Console row | Earlier impressions | Later impressions | Earlier clicks | Later clicks |
+| --- | ---: | ---: | ---: | ---: |
+| Query “cleardisk” | 6 | 7 | 0 | 0 |
+| Query “clear disk” | 0 | 1 | 0 | 0 |
+| Homepage | 11 | 9 | 0 | 0 |
+| /mac-recovery-partition | 2 | 1 | 0 | 0 |
+| /download | 6 | 0 | 1 | 0 |
+| /show-hidden-files-mac | 1 | 0 | 1 | 0 |
+| /time-machine-snapshots | 4 | 0 | 0 | 0 |
+| /stop-mac-hidden-files-on-usb | 3 | 0 | 0 | 0 |
+
+Both visible query rows are included above, alongside selected page rows from the first ten of 33 comparison rows. They are separate views. The query behind the Recovery impression was not identified. Google omits anonymized queries from the query table. [Google’s explanation of report totals](https://support.google.com/webmasters/answer/17010575)
+
+**Keep the Recovery guide.** A public search for the Mac recovery partition and whether to delete it led to Apple's Recovery and Disk Utility instructions. The existing guide already gives startup steps for both chip families, a way to confirm the utilities opened, two read-only disk listings, and guidance to keep Recovery when freeing space. A second article would repeat those steps. The USB guide already has a pending correction for the duplicate track names readers see on media players. Homebrew installation, package inventory and cleaner comparisons also have dedicated routes. The November 9 Keyword Planner estimates retain their original observation date. This week's query rows supply no new nonbrand topic to publish. [Apple’s Recovery guide](https://support.apple.com/guide/mac-help/macos-recovery-a-mac-apple-silicon-mchl82829c17/mac)
+
+**Publication and checks.** Zero public URLs changed. The existing Worker d5fc9998-c0e7-4b84-b77e-d58f76c3b328 serves 100% of production. Four live page checks passed for the homepage, Recovery, snapshots and USB guides, each with HTTP 200, a matching canonical and index/follow. The sitemap returned 177 URLs. November 15's clean production registry passed 182 live HTTP route checks. Only the two review logs changed today, so there was no new unit, lint, typecheck, build or visual run. The earlier free-space, cache, Photos and USB drafts still await desktop and narrow preview. Indexing was not separately inspected. Next Monday review November 23. Compare the next complete weeks and revisit any nonbrand question that the existing pages leave unanswered.

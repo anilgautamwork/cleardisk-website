@@ -1158,3 +1158,7 @@ Unrelated audit changes and .impeccable preserved. Next daily review November 11
 ## November 11 recovery review — Photos library
 
 Prepared a source-checked correction covering iCloud deletion above the storage limit. Kept the separate library migration guide. The revised Photos, free-space and cache pages passed 58 unit tests, lint, typecheck, production build and 178 local HTTP checks. Publication awaits desktop and narrow preview because the browser denied the local origin. [Review, primary sources and preview links](recovery-review.md#november-11-review-completed-november-12--photos-storage)
+
+## November 16 — weekly Search Console comparison
+
+Web impressions went from 24 to 10 and clicks from 2 to 0 across October 31–November 6 and November 7–13. Eight of the later impressions came from the two visible brand queries. Kept the existing Mac Recovery guide and published zero new pages. Four sampled live routes passed and the sitemap contained 177 URLs. Next weekly review November 23. [Page and query evidence, sources and publication status](monday-publishing.md#november-16--brand-queries-account-for-most-visible-impressions)
