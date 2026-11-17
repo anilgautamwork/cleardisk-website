@@ -481,6 +481,12 @@ export const systemQaGuides: Guide[] = [
           "system_profiler SPApplicationsDataType | awk '/^    [^ ].*:$/ {app=$0} /Kind: Intel/ {print app}'",
           "brew config | grep -E 'HOMEBREW_PREFIX|Rosetta'",
         ],
+        links: [
+          {
+            label: '5 ways to find Intel apps on Mac before macOS 28 drops Rosetta',
+            href: '/find-intel-apps-on-mac',
+          },
+        ],
       },
       {
         id: 'check-after-updating',
@@ -511,6 +517,7 @@ export const systemQaGuides: Guide[] = [
       },
     ],
     related: [
+      'find-intel-apps-on-mac',
       'find-large-files-on-mac',
       'uninstall-apps-on-mac',
       'delete-built-in-apps-mac',

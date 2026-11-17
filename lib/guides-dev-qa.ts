@@ -291,6 +291,12 @@ export const devQaGuides: Guide[] = [
           'brew uninstall $(brew list --formula)',
           'brew list',
         ],
+        links: [
+          {
+            label: 'Only want one package gone? brew uninstall for formulae and casks',
+            href: '/brew-uninstall-package',
+          },
+        ],
       },
       {
         id: 'preview-the-script',
@@ -343,6 +349,7 @@ export const devQaGuides: Guide[] = [
       },
     ],
     related: [
+      'brew-uninstall-package',
       'install-homebrew-mac',
       'homebrew-list-installed-packages',
       'clean-homebrew-cache-mac',
@@ -416,6 +423,12 @@ export const devQaGuides: Guide[] = [
           'brew deps --tree node',
           'brew uses --installed openssl@3',
         ],
+        links: [
+          {
+            label: 'brew uninstall: how to remove a Homebrew formula or cask safely',
+            href: '/brew-uninstall-package',
+          },
+        ],
       },
       {
         id: 'sizes',
@@ -474,6 +487,7 @@ export const devQaGuides: Guide[] = [
       },
     ],
     related: [
+      'brew-uninstall-package',
       'install-homebrew-mac',
       'clean-homebrew-cache-mac',
       'uninstall-homebrew-mac',
@@ -1056,6 +1070,10 @@ export const devQaGuides: Guide[] = [
         ],
         links: [
           {
+            label: 'brew uninstall: how to remove a single Homebrew package or cask',
+            href: '/brew-uninstall-package',
+          },
+          {
             label: 'Step-by-step guide to uninstalling Homebrew on Mac',
             href: '/uninstall-homebrew-mac',
           },
@@ -1093,6 +1111,7 @@ export const devQaGuides: Guide[] = [
       },
     ],
     related: [
+      'brew-uninstall-package',
       'uninstall-homebrew-mac',
       'clean-homebrew-cache-mac',
       'homebrew-list-installed-packages',

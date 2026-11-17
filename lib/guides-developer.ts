@@ -698,6 +698,12 @@ export const developerGuides: Guide[] = [
           'Check before uninstalling a runtime such as Python, Node or Ruby: scripts and editors outside Homebrew may rely on it even when no formula does. Casks are ordinary apps; removing one with brew uninstall is the same decision as dragging the app to the Trash.',
         ],
         code: ['brew leaves', 'brew autoremove -n', 'brew autoremove'],
+        links: [
+          {
+            label: 'brew uninstall: how to remove a Homebrew formula or cask (--zap)',
+            href: '/brew-uninstall-package',
+          },
+        ],
       },
       {
         id: 'keep-it-from-growing-back',
@@ -727,6 +733,7 @@ export const developerGuides: Guide[] = [
       },
     ],
     related: [
+      'brew-uninstall-package',
       'install-homebrew-mac',
       'homebrew-list-installed-packages',
       'uninstall-homebrew-mac',

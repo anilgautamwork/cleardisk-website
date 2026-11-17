@@ -15,6 +15,7 @@ import { fileQaGuides } from './guides-qa-files.ts';
 import { systemQaGuides } from './guides-qa-system.ts';
 import { spaceQaGuides } from './guides-qa-space.ts';
 import { comparisonGuides } from './guides-comparisons.ts';
+import { novGapGuides } from './guides-nov-gaps.ts';
 export type GuideSection = {
   id: string;
   title: string;
@@ -253,6 +254,10 @@ const foundationGuides: Guide[] = [
             label: 'Understand Application Support data',
             href: '/application-support-folder-mac',
           },
+          {
+            label: 'How much storage Apple Intelligence takes under macOS',
+            href: '/apple-intelligence-storage-mac',
+          },
         ],
       },
       {
@@ -478,6 +483,7 @@ export const guides: Guide[] = [
   ...systemQaGuides,
   ...spaceQaGuides,
   ...comparisonGuides,
+  ...novGapGuides,
 ];
 
 export function getGuide(slug: string): Guide | undefined {
@@ -519,6 +525,7 @@ export const guideGroups: GuideGroup[] = [
     guides: bySlugs([
       'clear-system-data-on-mac',
       'what-is-system-data-on-mac',
+      'apple-intelligence-storage-mac',
       'mac-storage-glossary',
       'purgeable-space-on-mac',
       'other-storage-on-mac',
@@ -653,6 +660,7 @@ export const guideGroups: GuideGroup[] = [
       'clean-docker-disk-space-mac',
       'find-node-modules-folders-mac',
       'install-homebrew-mac',
+      'brew-uninstall-package',
       'clean-homebrew-cache-mac',
       'clear-npm-cache-mac',
       'clear-gradle-cache-mac',
@@ -726,6 +734,7 @@ export const guideGroups: GuideGroup[] = [
     },
     guides: bySlugs([
       'uninstall-apps-on-mac',
+      'find-intel-apps-on-mac',
       'remove-background-items-mac',
       'uninstall-rosetta-2-mac',
       'delete-built-in-apps-mac',

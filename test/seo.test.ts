@@ -67,9 +67,12 @@ await test('all published problems have complete discoverable guides', () => {
     'cleanmymac-alternative',
     'cleardisk-vs-cleanmymac',
     'daisydisk-alternative',
+    'brew-uninstall-package',
+    'apple-intelligence-storage-mac',
+    'find-intel-apps-on-mac',
   ];
   for (const slug of required) assert.ok(getGuide(slug));
-  assert.equal(guides.length, 154);
+  assert.equal(guides.length, 157);
   assert.equal(getGuide('system-data-too-large'), undefined);
   assert.equal(getGuide('system-data-keeps-growing'), undefined);
   assert.equal(
@@ -189,6 +192,25 @@ await test('guide schema derives HowTo steps only from numbered sections', () =>
       slug + ': comparison emits ItemList',
     );
   }
+  for (const slug of ['brew-uninstall-package', 'find-intel-apps-on-mac']) {
+    const howToGuide = guideSchema(getGuide(slug)!);
+    assert.equal(
+      howToGuide.some((s) => s['@type'] === 'HowTo'),
+      true,
+      slug + ': emits HowTo',
+    );
+    assert.equal(
+      howToGuide.some((s) => s['@type'] === 'FAQPage'),
+      true,
+      slug + ': emits FAQPage',
+    );
+  }
+  const aiStorageSchema = guideSchema(getGuide('apple-intelligence-storage-mac')!);
+  assert.equal(
+    aiStorageSchema.some((s) => s['@type'] === 'FAQPage'),
+    true,
+    'apple-intelligence-storage-mac: emits FAQPage',
+  );
 });
 await test('faq topics are unique, link to real guides and sit in the sitemap', () => {
   assert.equal(new Set(faqTopics.map((t) => t.slug)).size, faqTopics.length);

@@ -322,6 +322,12 @@ export const systemFolderGuides: Guide[] = [
           'Apple’s Storage settings guide says the macOS category contains macOS system applications and files, with Mail, Terminal and Calculator as examples. It groups macOS with Other Users and System Data as categories that only show how much space they occupy: you can’t select and delete files in them.',
           'On macOS Big Sur and earlier the same category was called System, and Apple’s guide for those versions listed Time Machine local snapshots among its contents. That is one reason screenshots from older Macs show a much larger System figure than a current Mac shows for macOS. The categories don’t map one to one across versions.',
         ],
+        links: [
+          {
+            label: 'How much storage Apple Intelligence takes inside the macOS category',
+            href: '/apple-intelligence-storage-mac',
+          },
+        ],
       },
       {
         id: 'why-it-has-a-floor',
@@ -376,6 +382,7 @@ export const systemFolderGuides: Guide[] = [
       },
     ],
     related: [
+      'apple-intelligence-storage-mac',
       'what-is-system-data-on-mac',
       'other-volumes-in-container',
       'mac-storage-full-after-macos-update',
