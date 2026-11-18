@@ -1,3 +1,9 @@
+## Current website verification — 18 November 2026
+
+Production is Worker **3fb6002e-d606-4f02-b5f3-e987635aa469** from the separate November 17 release, source **620af60**, with 180 sitemap URLs. Fresh checks against that committed registry passed all 185 live HTML routes. The Homebrew package removal, Apple Intelligence storage and Intel-app guides are live. This confirms publication, not Google indexing.
+
+Six corrections remain local in guides-maintenance.ts, guides-storage.ts and guides-qa-files.ts: free space, cache cleanup, Photos storage, USB hidden files, iPhone backups and macOS installers. Desktop/narrow visual review remains outstanding under the recorded local-origin denial. Preserve these drafts and unrelated changes. Their November 17 validation predates the new guides; run the full current suite and rebuild before release. See the [recovery review](seo/recovery-review.md#november-18--production-reconciliation-and-delivery-verification). App 2.2.1 (14), payment/license behavior and private analytics remain unchanged. Earlier current-state headings below are historical.
+
 ## Current website verification — 9 November 2026
 
 Production is Worker **269254dd-26fe-438f-b14e-9fe209b6698b** from the November 7 release, with source registry fa7f555 and 173 sitemap URLs. Rosetta corrections are live; old pending-publication notes below are historical. Fresh 178-route live HTTP checks pass. Two new accuracy corrections to cache/free-space guide introductions are tested locally but await desktop/narrow visual review; no browser connection is available. See [Monday review](seo/2026-11-09-monday-search-review.md) for exact validation and next steps. Do not deploy or add another content batch without accounting for those pending changes. Released app and payment/license behavior remain unchanged.
