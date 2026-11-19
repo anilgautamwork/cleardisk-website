@@ -205,133 +205,172 @@ export const serpGapGuides: Guide[] = [
   },
   {
     slug: 'reindex-spotlight-mac',
-    title: 'How to Reindex Spotlight on Mac (Settings or Terminal)',
-    h1: 'How to reindex Spotlight on Mac using System Settings or Terminal (mdutil)',
+    title: 'How to Reindex Spotlight on Mac (and When You Shouldn’t)',
+    h1: 'How to reindex Spotlight on Mac (and when you shouldn’t)',
     description:
-      'Reindex Spotlight on Mac when search misses files or stalls: follow Apple’s Search Privacy steps or run sudo mdutil -E / in Terminal, plus check progress.',
+      'Rebuild the Spotlight index on Mac with Apple’s Search Privacy trick or sudo mdutil -E /, plus how to tell when you shouldn’t reindex and how long it takes.',
     summary:
-      'To reindex Spotlight on Mac, either add Macintosh HD to System Settings → Spotlight → Search Privacy, wait 30 seconds, and remove it (Apple’s recommended GUI method), or run sudo mdutil -E / in Terminal to erase and rebuild the startup volume’s index. Keep your Mac awake on power while mds_stores rebuilds the index.',
+      'To reindex Spotlight on Mac, open System Settings → Spotlight (or Siri & Spotlight), click Search Privacy, add Macintosh HD, wait a few seconds, remove it, and click Done—or run sudo mdutil -E / in Terminal. Before rebuilding, confirm the index is actually damaged: forcing a reindex while Spotlight is still finishing normal post-update indexing just resets the clock.',
     published: '2026-11-19',
     updated: '2026-11-19',
     sections: [
       {
-        id: 'when-to-reindex',
-        title: 'When you actually need to reindex Spotlight',
+        id: 'do-you-need-to-reindex',
+        title: 'Do you actually need to reindex Spotlight?',
         paragraphs: [
-          'Rebuilding the Spotlight index fixes search when Command + Space fails to find apps or files you know exist, Finder searches return blank results, Mail search misses recent messages, or System Settings Storage stays stuck on “Calculating…”.',
-          'Do not delete the hidden .Spotlight-V100 folder by hand in Finder or Terminal. macOS protects that directory, and both supported methods below safely erase and recreate it without touching your files.',
+          'Rebuilding the Spotlight index has become the default advice for every Spotlight symptom, yet often it is the wrong move. Howard Oakley of The Eclectic Light Company notes that the only real reason to rebuild is when the index is known to be damaged or corrupted: forcing a rebuild while Spotlight is still working through normal background indexing resets the clock without telling you how close it was to finishing.',
+          'Apple’s Spotlight indexing guidance explains that indexing runs after initial Mac setup, after every macOS software update or upgrade, and whenever large amounts of data change—and that a full first pass can take hours or even days. Mail and Calendar in-app search also use a separate part of Spotlight, so a disk reindex frequently will not fix them.',
         ],
         items: [
-          'Command + Space cannot find installed apps in /Applications or recent documents.',
-          'Finder search returns zero hits inside folders you know contain matching text.',
-          'Spotlight indexing (mds_stores) has stayed stuck at high CPU for more than 24–48 hours after an update.',
-          'An external drive never shows up in Spotlight or Finder search results.',
+          'Files you know exist never show up days after you created them (damaged index) → Reindex: Yes.',
+          'Search keeps showing files you deleted long ago (stale index) → Reindex: Yes.',
+          'Spotlight finds apps but shows nothing for files → Check Spotlight settings first, then Reindex: Yes.',
+          'mds_stores or mdworker using high CPU after an update, or Spotlight shows “Indexing…” (normal indexing) → Reindex: No, wait.',
+          'One specific result type (Mail, Contacts, PDFs) is missing (category unchecked in Settings) → Reindex: No, turn the category on.',
+          'Search inside Mail or Calendar is broken (separate in-app search) → Reindex usually won’t help.',
+          'Spotlight window won’t open at all (crashed process or OS bug) → Restart and update macOS first.',
+        ],
+      },
+      {
+        id: 'before-you-rebuild',
+        title: 'Before you rebuild: 3 quick checks',
+        paragraphs: [
+          'Before erasing your index, run three fast checks. You can also test whether the index itself is healthy by pressing Command + F inside a Finder window and searching for a known file by its exact name: if Finder finds it while the Spotlight menu does not, the index is likely fine and the issue is the Spotlight interface.',
+        ],
+        items: [
+          '1. Update macOS: Apple’s first recommendation for odd Spotlight behavior is installing the latest point update (several early macOS 26 Tahoe Spotlight bugs were resolved in later updates).',
+          '2. Check Spotlight categories: open System Settings → Spotlight and confirm Documents, Applications, Folders, and PDFs are checked—unchecked categories never appear regardless of index health.',
+          '3. Check Search Privacy: click Search Privacy at the bottom of Spotlight settings and confirm the folder or disk you are searching is not intentionally excluded.',
         ],
       },
       {
         id: 'system-settings-method',
-        title: '1. Reindex Spotlight using System Settings (Apple’s GUI method)',
+        title: '1. Reindex Spotlight in System Settings (Apple’s method)',
         paragraphs: [
-          'Apple’s official method works on macOS Ventura, Sonoma, Sequoia, Tahoe, and macOS 27 Golden Gate without typing commands. Adding a volume to Search Privacy tells macOS to discard its current index; removing it immediately starts a clean rebuild.',
+          'Apple documents the Search Privacy add-and-remove method for macOS Ventura 13 and later, including Sequoia, Tahoe, and macOS 27 Golden Gate (older releases use System Preferences → Spotlight → Privacy). To reindex just one stubborn project folder instead of the whole drive, add and remove only that folder—it finishes much faster.',
+          'If macOS shows an “unknown” or permissions error when adding a disk or folder, your user account may not own some items inside it; Apple’s Mac User Guide covers correcting folder ownership and permissions.',
         ],
         items: [
-          'Open Apple menu → System Settings.',
-          'Scroll down and click Spotlight (labeled Siri & Spotlight on macOS 13–14).',
-          'Scroll to the bottom and click Search Privacy (or Spotlight Privacy on older releases).',
-          'Click the + button (or drag Macintosh HD from Finder into the list), select your startup disk or specific folder, and click Choose, then Done.',
-          'Wait about 30 seconds so macOS clears the old index.',
-          'Open Search Privacy again, select the drive you just added, click the − (Remove) button, and click Done.',
+          'Click Apple menu → System Settings.',
+          'Select Spotlight in the sidebar (labeled Siri & Spotlight on macOS 13–14).',
+          'Scroll to the bottom and click Search Privacy (or Spotlight Privacy).',
+          'Click the add (+) button and choose Macintosh HD, or drag a specific disk or folder into the list.',
+          'Wait a few seconds so macOS clears the existing index.',
+          'Select the item you just added, click the remove (−) button, then click Done and quit System Settings.',
         ],
       },
       {
         id: 'terminal-mdutil-method',
-        title: '2. Reindex Spotlight in Terminal with sudo mdutil -E',
+        title: '2. Reindex Spotlight in Terminal with mdutil',
         paragraphs: [
-          'If you prefer Terminal—or need to reindex an external drive directly—macOS ships with mdutil (verified on macOS 27.0.1). Run sudo mdutil -E / to erase and rebuild the startup volume index, or target a specific external volume under /Volumes/.',
-          'When Terminal prompts for your Mac login password, no characters or dots appear as you type; that is normal security behavior. Type your password and press Return.',
+          'If the System Settings method does not take—or you are troubleshooting an external volume or remote Mac—use macOS’s built-in mdutil utility (verified on macOS 27.0.1). Per the mdutil manual page, sudo mdutil -E / erases local index stores on the startup disk and immediately rebuilds them without needing to disable indexing first.',
+          'Some users on recent macOS releases report that sudo mdutil -E / alone did not clear stubborn search issues while rebuilding all mounted volumes with sudo mdutil -aE did; use -aE only if the single-volume rebuild did not help, because it takes longer. Older guides also mention -X, which deletes the index directory outright—Oakley notes -E is enough for a rebuild, and if you ever run -X or -i off, you must run sudo mdutil -i on / afterward to turn indexing back on.',
         ],
         code: [
           'sudo mdutil -E /',
-          'sudo mdutil -E "/Volumes/YourDriveName"',
           'mdutil -s /',
-        ],
-        items: [
-          'sudo mdutil -E /: erases the current index on Macintosh HD and triggers a fresh rebuild.',
-          'mdutil -s /: prints whether Spotlight indexing is currently enabled on your startup disk.',
-          'sudo mdutil -i on /: turns Spotlight indexing back on if mdutil -s reports “Indexing disabled.”',
-          'ClearDisk license holders can also trigger a Spotlight reindex from ClearDisk’s maintenance tools without typing sudo commands.',
+          'sudo mdutil -i on /',
+          'sudo mdutil -E "/Volumes/YourDriveName"',
+          'sudo mdutil -aE',
         ],
       },
       {
-        id: 'check-progress',
-        title: '3. Check indexing progress and wait on power',
+        id: 'reindex-with-cleardisk',
+        title: '3. Reindex Spotlight with ClearDisk',
         paragraphs: [
-          'Press Command + Space and type any word. While Spotlight is actively rebuilding, a slim progress bar or “Indexing…” label appears beneath the search field. Depending on how many files sit on your SSD, a full reindex can take anywhere from 15 minutes to several hours.',
-          'Plug your Mac into power and avoid putting it to sleep repeatedly—interrupted indexing takes much longer. Expect mds_stores and mdworker_shared to use noticeable CPU temporarily while the rebuild runs.',
+          'ClearDisk includes Spotlight reindexing as a guided action in its $10 one-time license alongside cleanup and app-quit tools—a quicker route if you prefer not to dig through System Settings or run sudo commands in Terminal. The same rule still applies: reindex when search is genuinely broken, and leave it alone when Spotlight is simply finishing normal post-update work.',
         ],
         links: [
           {
-            label: 'Why mds_stores uses high CPU during indexing and when to exclude noisy folders',
+            label: 'See all features included in ClearDisk 2.2.1',
+            href: '/features',
+          },
+        ],
+      },
+      {
+        id: 'how-long-it-takes',
+        title: '4. How long Spotlight reindexing takes (and how to check progress)',
+        paragraphs: [
+          'There is no fixed duration: Apple notes a full pass can take hours or even days depending on how much data sits on your SSD. Modern macOS also extracts text (OCR) from images and scanned PDFs and classifies photo content, which takes far longer than plain filenames. Keep your Mac awake, plugged into power, and connected to Wi-Fi or Ethernet so it finishes sooner.',
+          'Watch out for a misleading progress bar: Apple notes an indexing indicator may appear at the top of the Spotlight window, yet Oakley found that bar only covers the phase when search is unavailable—heavy background indexing often continues after it vanishes. To see whether indexing is truly still running, open Activity Monitor → CPU tab and look for mds, mds_stores, and mdworker (on Apple silicon, these run mostly on efficiency cores so they rarely bog down normal work).',
+        ],
+        links: [
+          {
+            label: 'mds_stores staying high for days? Fix Spotlight high CPU on Mac',
             href: '/mds-stores-high-cpu-mac',
           },
           {
-            label: 'Fix Mac storage stuck on “Calculating…” after an update',
+            label: 'Mac storage stuck on “Calculating…”? Fixes that work',
             href: '/mac-storage-calculating',
           },
         ],
       },
       {
-        id: 'if-reindex-fails',
-        title: '4. Fix Spotlight if reindexing stalls or says “Indexing disabled”',
+        id: 'if-reindexing-didnt-fix-it',
+        title: 'If reindexing didn’t fix it (and how big .Spotlight-V100 is)',
         paragraphs: [
-          'The mdutil manual notes that very low free disk space can delay or stall Spotlight indexing because the metadata store needs working room to write its database. If your startup disk is nearly full, free at least 15–20 GB before rebuilding.',
-          'If sudo mdutil -E / prints “Indexing and searching disabled,” run sudo mdutil -i on / first, then rerun sudo mdutil -E /. Also confirm your drive is not still listed under System Settings → Spotlight → Search Privacy.',
+          'Spotlight stores its metadata inside a hidden .Spotlight-V100 folder at the root of each indexed volume. It is normally a small fraction of your disk and grows with the volume of text, PDFs, and photos macOS indexes—never delete .Spotlight-V100 manually; use Search Privacy or mdutil instead.',
+          'Reindex when Spotlight is truly broken—missing files it should know about or surfacing files deleted long ago. Use Apple’s Search Privacy trick first, sudo mdutil -E / second, and give it time on power. If Spotlight is simply busy after an update, the fastest fix is leaving it alone.',
         ],
-        code: ['sudo mdutil -i on /', 'sudo mdutil -E /'],
+        items: [
+          'The same file keeps crashing indexing: a malformed document or PDF can crash an importer repeatedly; reindex that single folder and move suspicious files out.',
+          'Mail or Calendar search still fails: in-app search uses a separate Spotlight component; Oakley recommends contacting Apple Support for persistent Mail/Calendar search failures.',
+          'Cloud sync folders cause endless reindexing: iCloud Drive, Dropbox, and OneDrive generate constant file churn; test excluding a busy sync folder in Search Privacy temporarily.',
+          'Search works but feels sluggish: very low free disk space slows everything, including Spotlight—keep enough free working room on your SSD.',
+          'Index keeps disappearing alongside crashes: run Disk Utility First Aid and verify your Time Machine backups are current.',
+        ],
         links: [
           {
-            label: 'Mac storage full? What to delete first safely',
-            href: '/mac-storage-full',
+            label: 'Cloud drives taking up space and churning on Mac',
+            href: '/cloud-drive-taking-up-space-on-mac',
           },
           {
-            label: 'Find Intel apps on Mac (uses Spotlight mdfind queries)',
-            href: '/find-intel-apps-on-mac',
+            label: 'How much free space should you keep on a Mac?',
+            href: '/how-much-free-space-to-keep-mac',
+          },
+          {
+            label: 'Run Disk Utility First Aid on Mac to check volume health',
+            href: '/disk-utility-first-aid-mac',
+          },
+          {
+            label: 'What is System Data on Mac and where the bigger culprits live',
+            href: '/what-is-system-data-on-mac',
           },
         ],
       },
     ],
     questions: [
       {
-        q: 'Does reindexing Spotlight delete any of my files?',
-        a: 'No. Reindexing Spotlight only erases and rebuilds Spotlight’s hidden search catalog of your files. Your documents, apps, photos, and settings remain completely untouched.',
+        q: 'How do I rebuild the Spotlight index on a Mac?',
+        a: 'Open System Settings, go to Spotlight, click Search Privacy, add Macintosh HD, wait a few seconds, remove it, and click Done. You can also run sudo mdutil -E / in Terminal to trigger the same rebuild.',
+      },
+      {
+        q: 'Is it safe to reindex Spotlight on Mac?',
+        a: 'Yes. Reindexing only erases and rebuilds Spotlight’s hidden search catalog so your documents, apps, and photos are never touched. Search results will simply be incomplete until the rebuild finishes.',
       },
       {
         q: 'How long does it take to reindex Spotlight on a Mac?',
-        a: 'A full Spotlight reindex typically takes anywhere from 15 minutes on a lightly used SSD to several hours on a Mac with hundreds of thousands of files. Leaving the Mac awake and plugged into power helps it finish faster.',
+        a: 'Reindexing can take anywhere from a few minutes for a single folder to several hours or days for a full disk with large photo libraries and scanned PDFs. Keeping your Mac awake, plugged into power, and online helps it finish faster.',
       },
       {
-        q: 'What does sudo mdutil -E / do on Mac?',
-        a: 'In macOS Terminal, sudo mdutil -E / erases the existing Spotlight metadata store for your startup volume (/) and immediately instructs macOS to rebuild a fresh index in the background.',
+        q: 'Why is Spotlight not finding my files on Mac?',
+        a: 'First check that the file category is turned on in System Settings under Spotlight and that the folder is not excluded in Search Privacy. If both look right and files more than a day old are still missing, the index is likely damaged and needs a rebuild.',
       },
       {
-        q: 'Why does Spotlight say “Indexing disabled” when I run mdutil?',
-        a: 'That message means Spotlight indexing was previously switched off for that volume. Run sudo mdutil -i on / to re-enable indexing, verify it is not excluded in Search Privacy, and then run sudo mdutil -E /.',
+        q: 'Should I reindex Spotlight after a macOS update?',
+        a: 'Usually no. macOS automatically reindexes after software updates, so forcing a manual rebuild while it is still working just resets the clock. Give your Mac a day or two on power, and rebuild only if search still misses files afterward.',
       },
       {
-        q: 'Can I reindex just one folder or external drive instead of my whole Mac?',
-        a: 'Yes. In System Settings, Spotlight, Search Privacy, add and then remove just that single folder or external drive—or run sudo mdutil -E "/Volumes/DriveName" in Terminal for an external disk.',
-      },
-      {
-        q: 'Why is my Mac fan loud or warm right after reindexing Spotlight?',
-        a: 'Spotlight runs mds_stores and mdworker_shared across your files to rebuild its search database, which temporarily raises CPU usage. Usage should return to normal once the Indexing bar finishes.',
+        q: 'What is the difference between mdutil -E and mdutil -X?',
+        a: 'mdutil -E erases the existing Spotlight index and automatically starts rebuilding it, which is all you need for a normal rebuild. mdutil -X removes the index directory completely and requires running sudo mdutil -i on afterward to restart indexing.',
       },
     ],
     related: [
       'mds-stores-high-cpu-mac',
       'mac-storage-calculating',
-      'mac-running-slow-low-storage',
-      'mac-storage-full',
-      'find-intel-apps-on-mac',
+      'cloud-drive-taking-up-space-on-mac',
+      'disk-utility-first-aid-mac',
+      'what-is-system-data-on-mac',
     ],
     sources: [
       {
@@ -339,11 +378,19 @@ export const serpGapGuides: Guide[] = [
         url: 'https://support.apple.com/en-us/102321',
       },
       {
-        label: 'Apple Support: prevent Spotlight searches in specific folders or disks',
-        url: 'https://support.apple.com/guide/mac-help/mchl1bb43b84/mac',
+        label: 'Apple Mac User Guide: change permissions for files, folders, or disks on Mac',
+        url: 'https://support.apple.com/guide/mac-help/mchlp1203/mac',
       },
       {
-        label: 'MacRumors: how to rebuild the Spotlight index on Mac',
+        label: 'The Eclectic Light Company (Howard Oakley): when and how to rebuild Spotlight indexes',
+        url: 'https://eclecticlight.co/2024/11/19/when-and-how-to-rebuild-spotlight-indexes/',
+      },
+      {
+        label: 'The Eclectic Light Company (Howard Oakley): in the background — Spotlight indexing (2026)',
+        url: 'https://eclecticlight.co/2026/02/10/in-the-background-spotlight-indexing/',
+      },
+      {
+        label: 'MacRumors: how to rebuild the Spotlight search index on Mac',
         url: 'https://www.macrumors.com/how-to/rebuild-spotlight-search-index-on-mac/',
       },
     ],
