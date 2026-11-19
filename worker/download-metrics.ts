@@ -1,5 +1,9 @@
 import { DurableObject } from 'cloudflare:workers';
-import { sources, type Source } from '../lib/download-metrics';
+import {
+  normalizePagePath,
+  sources,
+  type Source,
+} from '../lib/download-metrics';
 /** One small counter object per UTC day. No individual request data is persisted. */
 export class DownloadMetrics extends DurableObject<unknown> {
   constructor(ctx: DurableObjectState, env: unknown) {
@@ -8,9 +12,13 @@ export class DownloadMetrics extends DurableObject<unknown> {
       'CREATE TABLE IF NOT EXISTS counts (source TEXT PRIMARY KEY, count INTEGER NOT NULL)',
     );
   }
-  /** A fixed source label, or a two-letter Cloudflare country code for '<kind>-country' objects. */
+  /** A fixed source label, two-letter Cloudflare country code, or normalized public page path. */
   async record(source: string) {
-    if (!sources.includes(source as Source) && !/^[A-Z][A-Z0-9]$/.test(source))
+    if (
+      !sources.includes(source as Source) &&
+      !/^[A-Z][A-Z0-9]$/.test(source) &&
+      normalizePagePath(source) !== source
+    )
       throw new Error('Unknown source');
     // Install expiry before writing; expired objects contain no request history.
     if ((await this.ctx.storage.getAlarm()) === null)

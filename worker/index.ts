@@ -4,15 +4,18 @@ import { mergedGuideRedirects } from '../lib/seo';
 import { DownloadMetrics } from './download-metrics';
 import {
   aggregateDays,
+  aggregateTopSources,
   authorized,
   downloadEvent,
   kinds,
+  parseStatsDays,
   recentDays,
   visitEvent,
   type Kind,
   type Source,
 } from '../lib/download-metrics';
 import { dashboard, type DashboardData } from './dashboard';
+import { publicStatsPage, type PublicStatsData } from './public-stats';
 export { DownloadMetrics };
 type Env = {
   ASSETS: Fetcher;
@@ -67,6 +70,19 @@ const privateHeaders = {
   'Referrer-Policy': 'no-referrer',
   Vary: 'Authorization',
 };
+const publicStatsHeaders = {
+  'Cache-Control': 'public, max-age=30',
+  'X-Robots-Tag': 'noindex, nofollow',
+  'X-Content-Type-Options': 'nosniff',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+};
+function countPage(env: Env, ctx: ExecutionContext, pagePath: string) {
+  ctx.waitUntil(
+    env.DOWNLOAD_METRICS.getByName('pages:' + today())
+      .record(pagePath)
+      .catch(() => console.error('Metrics write failed: pages')),
+  );
+}
 async function githubCount(): Promise<number | null> {
   try {
     const response = await fetch(
@@ -103,6 +119,106 @@ const worker = {
     ctx: ExecutionContext,
   ): Promise<Response> {
     const path = new URL(request.url).pathname;
+    if (path === '/stats' || path === '/api/public-stats') {
+      if (!['GET', 'HEAD'].includes(request.method))
+        return new Response('Method not allowed', {
+          status: 405,
+          headers: { ...publicStatsHeaders, Allow: 'GET, HEAD' },
+        });
+      if (request.method === 'HEAD')
+        return new Response(null, { headers: publicStatsHeaders });
+      try {
+        const rangeDays = parseStatsDays(
+          new URL(request.url).searchParams.get('days'),
+        );
+        const days = recentDays(rangeDays);
+        const [series, pageCounts, github, purchases] = await Promise.all([
+          Promise.all(
+            kinds.map(async (kind) => [
+              kind,
+              aggregateDays(
+                days,
+                await Promise.all(
+                  days.map((day) =>
+                    env.DOWNLOAD_METRICS.getByName(kind + ':' + day).counts(),
+                  ),
+                ),
+              ),
+            ]),
+          ),
+          Promise.all(
+            days.map((day) =>
+              env.DOWNLOAD_METRICS.getByName('pages:' + day).counts(),
+            ),
+          ),
+          githubCount(),
+          purchaseCount(env.LICENSES),
+        ]);
+        const byKind = Object.fromEntries(series) as Record<
+          Kind,
+          ReturnType<typeof aggregateDays>
+        >;
+        const pages = aggregateDays(days, pageCounts);
+        const sum = (s: ReturnType<typeof aggregateDays>) =>
+          s.reduce((total, d) => total + d.count, 0);
+        const daily = days.map((day, i) => ({
+          day,
+          visits: byKind.visits[i].count,
+          pageviews: pages[i].count,
+          downloads: byKind.downloads[i].count,
+          downloads_done: byKind['downloads-done'][i].count,
+          checkouts: byKind.checkouts[i].count,
+        }));
+        const latest = daily.at(-1) ?? {
+          visits: 0,
+          pageviews: 0,
+          downloads: 0,
+          downloads_done: 0,
+          checkouts: 0,
+        };
+        const stats: PublicStatsData = {
+          range_days: rangeDays,
+          totals: {
+            visits: sum(byKind.visits),
+            pageviews: sum(pages),
+            downloads: sum(byKind.downloads),
+            downloads_done: sum(byKind['downloads-done']),
+            checkouts: sum(byKind.checkouts),
+            purchases,
+            github,
+          },
+          today: {
+            visits: latest.visits,
+            pageviews: latest.pageviews,
+            downloads: latest.downloads,
+            downloads_done: latest.downloads_done,
+            checkouts: latest.checkouts,
+          },
+          daily,
+          top_pages: aggregateTopSources(pages, 15).map((p) => ({
+            path: p.source,
+            views: p.count,
+          })),
+          sources: aggregateTopSources(byKind.visits, 12),
+          updated: new Date().toISOString(),
+        };
+        if (path === '/api/public-stats')
+          return Response.json(stats, { headers: publicStatsHeaders });
+        return new Response(publicStatsPage(stats), {
+          headers: {
+            ...publicStatsHeaders,
+            'Content-Type': 'text/html; charset=utf-8',
+            'Content-Security-Policy':
+              "default-src 'none'; style-src 'unsafe-inline'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'",
+          },
+        });
+      } catch {
+        return new Response(
+          'Public stats are temporarily unavailable. Please try again.',
+          { status: 503, headers: publicStatsHeaders },
+        );
+      }
+    }
     if (path === '/analytics' || path === '/api/analytics') {
       if (!['GET', 'HEAD'].includes(request.method))
         return new Response('Method not allowed', {
@@ -128,7 +244,7 @@ const worker = {
       try {
         const days = recentDays();
         // ponytail: 4 kinds x 30 days = 120 small reads; fold into one object per day if this gets slow.
-        const [series, github, purchases] = await Promise.all([
+        const [series, pageCounts, github, purchases] = await Promise.all([
           Promise.all(
             kinds.map(async (kind) => [
               kind,
@@ -141,6 +257,11 @@ const worker = {
                 ),
               ),
             ]),
+          ),
+          Promise.all(
+            days.map((day) =>
+              env.DOWNLOAD_METRICS.getByName('pages:' + day).counts(),
+            ),
           ),
           githubCount(),
           purchaseCount(env.LICENSES),
@@ -167,6 +288,7 @@ const worker = {
             Kind,
             ReturnType<typeof aggregateDays>
           >),
+          pages: aggregateDays(days, pageCounts),
           github,
           purchases,
           countries,
@@ -212,7 +334,10 @@ const worker = {
     }
     if (path === '/api/visit') {
       const event = await visitEvent(request);
-      if (event) count(env, ctx, 'visits', event.source, request);
+      if (event) {
+        if (event.arrival) count(env, ctx, 'visits', event.source, request);
+        if (event.path) countPage(env, ctx, event.path);
+      }
       return new Response(null, { status: 204, headers: privateHeaders });
     }
     const redirectTarget = mergedGuideRedirects[path];

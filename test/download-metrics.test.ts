@@ -6,6 +6,9 @@ import {
   authorized,
   recentDays,
   aggregateDays,
+  normalizePagePath,
+  parseStatsDays,
+  aggregateTopSources,
 } from '../lib/download-metrics.ts';
 const url = 'https://cleardisk.app/ClearDisk.dmg';
 await test('only successful full GET downloads count; probes, resumes and known bots do not', () => {
@@ -108,5 +111,60 @@ await test('visit beacons count only same-origin, non-bot POSTs and reduce to a 
   assert.equal(
     await visitEvent(new Request('https://cleardisk.app/api/visit')),
     null,
+  );
+  const internalPage = await beacon({
+    host: '',
+    path: '/Clear-System-Data-On-Mac/?utm_source=x',
+    arrival: false,
+  });
+  assert.deepEqual(internalPage, {
+    source: 'Direct / unknown',
+    path: '/clear-system-data-on-mac',
+    arrival: false,
+  });
+  assert.equal(
+    await beacon({ host: '', path: '/analytics', arrival: false }),
+    null,
+  );
+});
+await test('page path normalization, stats window parsing and top-page aggregation stay bounded', () => {
+  assert.equal(normalizePagePath('/'), '/');
+  assert.equal(normalizePagePath('/guides/'), '/guides');
+  assert.equal(normalizePagePath('/blog/appcleaner-os-x?ref=1'), '/blog/appcleaner-os-x');
+  for (const bad of [
+    '/analytics',
+    '/stats',
+    '/thanks',
+    '/recover',
+    '/buy-now',
+    '/api/visit',
+    '/a/b/c',
+    'https://evil.test/',
+    '/bad path',
+  ])
+    assert.equal(normalizePagePath(bad), null, bad);
+  assert.equal(parseStatsDays('7'), 7);
+  assert.equal(parseStatsDays('14'), 14);
+  assert.equal(parseStatsDays('30'), 30);
+  assert.equal(parseStatsDays('999'), 30);
+  assert.equal(parseStatsDays(null), 30);
+  assert.deepEqual(
+    aggregateTopSources(
+      aggregateDays(
+        ['2026-11-18', '2026-11-19'],
+        [
+          [
+            { source: '/guides', count: 3 },
+            { source: '/', count: 5 },
+          ],
+          [{ source: '/guides', count: 4 }],
+        ],
+      ),
+      2,
+    ),
+    [
+      { source: '/guides', count: 7 },
+      { source: '/', count: 5 },
+    ],
   );
 });

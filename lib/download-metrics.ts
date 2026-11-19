@@ -35,6 +35,45 @@ export const kinds = [
   'checkouts',
 ] as const;
 export type Kind = (typeof kinds)[number];
+const privatePagePrefixes = [
+  '/api',
+  '/analytics',
+  '/stats',
+  '/buy-now',
+  '/thanks',
+  '/recover',
+];
+/** Normalizes a public page path for aggregate Top Pages counting; rejects private or malformed paths. */
+export function normalizePagePath(value: unknown): string | null {
+  if (typeof value !== 'string' || !value.startsWith('/') || value.length > 100)
+    return null;
+  const clean = value.split(/[?#]/, 1)[0].toLowerCase().replace(/\/+$/, '') || '/';
+  if (
+    privatePagePrefixes.some(
+      (prefix) => clean === prefix || clean.startsWith(prefix + '/'),
+    )
+  )
+    return null;
+  return /^\/([a-z0-9-]+(\/[a-z0-9-]+)?)?$/.test(clean) ? clean : null;
+}
+export function parseStatsDays(value: string | null): 7 | 14 | 30 {
+  if (value === '7') return 7;
+  if (value === '14') return 14;
+  return 30;
+}
+export function aggregateTopSources(
+  series: ReturnType<typeof aggregateDays>,
+  limit = 15,
+): Count[] {
+  const totals: Record<string, number> = {};
+  for (const day of series)
+    for (const row of day.sources)
+      totals[row.source] = (totals[row.source] || 0) + row.count;
+  return Object.entries(totals)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, limit)
+    .map(([source, count]) => ({ source, count }));
+}
 const automated = (request: Request) =>
   /bot|crawler|spider|preview|headless|monitor|cleardisk-qa/i.test(
     request.headers.get('user-agent') || '',
@@ -86,10 +125,10 @@ export function downloadEvent(
     source: classify(new URL(request.url).searchParams.get('source'), host),
   };
 }
-/** A same-origin beacon sent once per arrival from outside the site. */
+/** A same-origin beacon sent for external arrivals and public page views. */
 export async function visitEvent(
   request: Request,
-): Promise<{ source: Source } | null> {
+): Promise<{ source: Source; path: string | null; arrival: boolean } | null> {
   if (
     request.method !== 'POST' ||
     automated(request) ||
@@ -101,11 +140,16 @@ export async function visitEvent(
     const body = JSON.parse(await request.text()) as {
       host?: unknown;
       source?: unknown;
+      path?: unknown;
+      arrival?: unknown;
     };
     const host =
       typeof body.host === 'string' && body.host.length < 256 ? body.host : '';
     const source = typeof body.source === 'string' ? body.source : null;
-    return { source: classify(source, host.toLowerCase()) };
+    const path = normalizePagePath(body.path);
+    const arrival = body.arrival !== false;
+    if (!arrival && !path) return null;
+    return { source: classify(source, host.toLowerCase()), path, arrival };
   } catch {
     return null;
   }
