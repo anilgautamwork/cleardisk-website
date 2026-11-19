@@ -63,6 +63,10 @@ export const icloudGuides: Guide[] = [
         q: 'Should I sign out of iCloud to fix a stuck upload?',
         a: "No. Avoid erasing hidden sync databases, repeatedly signing out, or deleting the original file to force a retry. Instead, preserve a copy of important unsynced work and check Apple's System Status page for reported incidents.",
       },
+      {
+        q: 'Is iCloud down, or is iCloud Drive just stuck on my Mac?',
+        a: "Check Apple's System Status page first for an active iCloud Drive incident. If Apple reports all services operational and your internet connection works, compare the file's iCloud Status in Finder List view over time and verify your iCloud storage quota is not full.",
+      },
     ],
     related: [
       'com-apple-bird-taking-space',

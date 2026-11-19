@@ -200,6 +200,8 @@ export const systemQaGuides: Guide[] = [
       },
     ],
     related: [
+      'reindex-spotlight-mac',
+      'windowserver-high-cpu-mac',
       'mac-slow-after-macos-update',
       'mac-running-slow-low-storage',
       'mac-storage-full',

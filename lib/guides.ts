@@ -16,6 +16,7 @@ import { systemQaGuides } from './guides-qa-system.ts';
 import { spaceQaGuides } from './guides-qa-space.ts';
 import { comparisonGuides } from './guides-comparisons.ts';
 import { novGapGuides } from './guides-nov-gaps.ts';
+import { serpGapGuides } from './guides-serp-gaps.ts';
 export type GuideSection = {
   id: string;
   title: string;
@@ -484,6 +485,7 @@ export const guides: Guide[] = [
   ...spaceQaGuides,
   ...comparisonGuides,
   ...novGapGuides,
+  ...serpGapGuides,
 ];
 
 export function getGuide(slug: string): Guide | undefined {
@@ -816,6 +818,7 @@ export const guideGroups: GuideGroup[] = [
       'clear-spotify-cache-mac',
       'clear-slack-cache-mac',
       'clear-teams-cache-mac',
+      'clear-outlook-cache-mac',
       'apple-tv-downloads-mac',
       'apple-music-downloads-mac',
       'podcasts-taking-up-space-mac',
@@ -837,6 +840,8 @@ export const guideGroups: GuideGroup[] = [
       'mac-swap-memory',
       'mac-slow-after-macos-update',
       'mds-stores-high-cpu-mac',
+      'reindex-spotlight-mac',
+      'windowserver-high-cpu-mac',
       'free-command-on-mac',
       'purge-command-mac-memory',
       'operation-not-permitted-terminal-mac',
@@ -885,6 +890,7 @@ export const guideGroups: GuideGroup[] = [
       'cleanmymac-alternative',
       'cleardisk-vs-cleanmymac',
       'daisydisk-alternative',
+      'omnidisksweeper-alternative',
     ]),
   },
 ];

@@ -842,6 +842,7 @@ export const comparisonGuides: Guide[] = [
       },
     ],
     related: [
+      'omnidisksweeper-alternative',
       'disk-space-analyzer-mac',
       'find-large-files-on-mac',
       'cleanmymac-alternative',

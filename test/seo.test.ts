@@ -70,9 +70,13 @@ await test('all published problems have complete discoverable guides', () => {
     'brew-uninstall-package',
     'apple-intelligence-storage-mac',
     'find-intel-apps-on-mac',
+    'omnidisksweeper-alternative',
+    'reindex-spotlight-mac',
+    'windowserver-high-cpu-mac',
+    'clear-outlook-cache-mac',
   ];
   for (const slug of required) assert.ok(getGuide(slug));
-  assert.equal(guides.length, 157);
+  assert.equal(guides.length, 161);
   assert.equal(getGuide('system-data-too-large'), undefined);
   assert.equal(getGuide('system-data-keeps-growing'), undefined);
   assert.equal(
@@ -179,7 +183,11 @@ await test('guide schema derives HowTo steps only from numbered sections', () =>
     explainer.some((s) => s['@type'] === 'HowTo'),
     false,
   );
-  for (const slug of ['cleanmymac-alternative', 'daisydisk-alternative']) {
+  for (const slug of [
+    'cleanmymac-alternative',
+    'daisydisk-alternative',
+    'omnidisksweeper-alternative',
+  ]) {
     const comp = guideSchema(getGuide(slug)!);
     assert.equal(
       comp.some((s) => s['@type'] === 'HowTo'),
@@ -192,7 +200,13 @@ await test('guide schema derives HowTo steps only from numbered sections', () =>
       slug + ': comparison emits ItemList',
     );
   }
-  for (const slug of ['brew-uninstall-package', 'find-intel-apps-on-mac']) {
+  for (const slug of [
+    'brew-uninstall-package',
+    'find-intel-apps-on-mac',
+    'reindex-spotlight-mac',
+    'windowserver-high-cpu-mac',
+    'clear-outlook-cache-mac',
+  ]) {
     const howToGuide = guideSchema(getGuide(slug)!);
     assert.equal(
       howToGuide.some((s) => s['@type'] === 'HowTo'),
