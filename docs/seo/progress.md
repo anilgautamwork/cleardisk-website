@@ -1162,3 +1162,8 @@ Prepared a source-checked correction covering iCloud deletion above the storage 
 ## November 16 — weekly Search Console comparison
 
 Web impressions went from 24 to 10 and clicks from 2 to 0 across October 31–November 6 and November 7–13. Eight of the later impressions came from the two visible brand queries. Kept the existing Mac Recovery guide and published zero new pages. Four sampled live routes passed and the sitemap contained 177 URLs. Next weekly review November 23. [Page and query evidence, sources and publication status](monday-publishing.md#november-16--brand-queries-account-for-most-visible-impressions)
+
+
+## November 19 — delivery verification and Homebrew follow-up
+
+Kept Steam storage guidance and queued a Homebrew inventory summary correction: a Brewfile records packages, not an entire setup backup. No new guide or source edit from this run. Verified the separate November 19 release at 5acf6f9 with 189 live HTTP routes, 184 sitemap URLs, working download HEAD routes and protected analytics. Pending drafts and their visual-review requirement are preserved. [Evidence, primary sources and next review](recovery-review.md#november-19--homebrew-inventory-follow-up-and-release-reconciliation).

@@ -1,8 +1,8 @@
-## Current website verification — 18 November 2026
+## Current website verification — 19 November 2026
 
-Production is Worker **3fb6002e-d606-4f02-b5f3-e987635aa469** from the separate November 17 release, source **620af60**, with 180 sitemap URLs. Fresh checks against that committed registry passed all 185 live HTML routes. The Homebrew package removal, Apple Intelligence storage and Intel-app guides are live. This confirms publication, not Google indexing.
+Production is Worker **43c812c1-a539-4d48-aa1d-aeeb931c87f5** from the separate November 19 release, source **5acf6f9**, with 184 sitemap URLs. Fresh checks against that committed registry passed all 189 live HTML routes. OmniDiskSweeper alternatives, Spotlight reindexing, WindowServer CPU and Outlook cache guides are live. This confirms delivery, not their editorial review or Google indexing.
 
-Six corrections remain local in guides-maintenance.ts, guides-storage.ts and guides-qa-files.ts: free space, cache cleanup, Photos storage, USB hidden files, iPhone backups and macOS installers. Desktop/narrow visual review remains outstanding under the recorded local-origin denial. Preserve these drafts and unrelated changes. Their November 17 validation predates the new guides; run the full current suite and rebuild before release. See the [recovery review](seo/recovery-review.md#november-18--production-reconciliation-and-delivery-verification). App 2.2.1 (14), payment/license behavior and private analytics remain unchanged. Earlier current-state headings below are historical.
+Six corrections remain local in guides-maintenance.ts, guides-storage.ts and guides-qa-files.ts: free space, cache cleanup, Photos storage, USB hidden files, iPhone backups and macOS installers. Desktop/narrow visual review remains outstanding under the recorded local-origin denial. Preserve these drafts and unrelated changes. Their November 17 validation predates the new guides; run the full current suite and rebuild before release. The [recovery review](seo/recovery-review.md#november-19--homebrew-inventory-follow-up-and-release-reconciliation) also records a proposed Homebrew summary correction that has not been applied. App 2.2.1 (14), payment/license behavior and private analytics remain unchanged. Earlier current-state headings below are historical.
 
 ## Current website verification — 9 November 2026
 
