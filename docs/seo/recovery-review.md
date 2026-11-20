@@ -670,3 +670,16 @@ Eleven live sample checks passed: the two reviewed guides, four new routes, site
 The six pending source corrections and unrelated edits are preserved. No source/test edit, unit/lint/typecheck/build rerun, browser-policy bypass or deployment in this run. Last local draft validation is November 17, before both subsequent guide additions; it is not validation of the current combined draft. Desktop/narrow review remains outstanding. No new GSC comparison or indexing claim. Next daily review November 20; next complete-window comparison November 23.
 
 Fresh full HTTP verification against a clean archive of 5acf6f9 passed all 189 HTML routes plus metadata, schema, related links, 404, sitemap, robots and asset checks under Node 22.23.4. No persistent HTTP failure appeared in this pass. This is delivery validation, not a fresh unit suite or evidence of Google indexing.
+
+
+## November 20 — quiet delivery verification
+
+**Kept:** /operation-not-permitted-terminal-mac and /private-var-folders-mac. Both still serve 200, index/follow and self-canonicals. Their historical priority evidence remains October 9–15 versus October 16–22: 209 to 3 impressions and 129 to 4 respectively. No new editorial defect or changed reader intent was established today. The November 16 complete-window Search Console comparison remains the latest measurement; next refresh November 23. No source-check date, search-loss figure or indexing status was advanced from HTTP results.
+
+Production has advanced through separate work to source 848cce3 and Worker 538ae6cb-f7ce-424a-86a8-f8bae26f6064, created November 19 at 13:02 UTC and serving 100%. This includes the Spotlight guide revision and the preceding public stats addition. No application, analytics or guide source was changed by this run. Eight live sample checks passed: the two priority guides, Spotlight guide, 184-URL sitemap, both download HEAD routes and both private analytics endpoints. The six unpublished correction dates remain unchanged in the live sitemap. Both /analytics and /api/analytics return 401 with private/no-store and noindex/nofollow. The released download alias and immutable 2.2.1 (14) archive answer HEAD with 200. The current source still excludes ClearDisk-QA; verification used that user agent and no binary GET.
+
+At 09:56:43 UTC the owner report recorded 24 arrival events and zero download requests, finished-transfer events and checkouts for the complete UTC day November 19. These are counters, not distinct visitors, installs or sales; no trend was inferred from a day containing a measurement-code release. No credentials were recorded.
+
+Pending source corrections, the Homebrew summary recommendation, unrelated audit edits and .impeccable are preserved. Desktop/narrow review remains outstanding under the previously recorded browser-origin denial. No fresh source/test edit, unit/lint/typecheck/build run, visual inspection or deployment today. Prior draft test counts predate the subsequent source additions and cannot validate the current combined draft. Next daily review November 21.
+
+The full live HTTP suite against a clean archive of 848cce3 passed 189 HTML routes plus metadata, schema, related links, 404, sitemap, robots and asset checks under Node 22.23.4. This pass did not test the separate public stats interface or establish Google indexing.
