@@ -33,7 +33,7 @@ export default function Faq() {
               href={'/faq/' + topic.slug}
               key={topic.slug}
             >
-              <h3>{topic.title}</h3>
+              <h2>{topic.title}</h2>
               <p>{topic.description}</p>
               <span>
                 {topic.questions.length} questions <ArrowRight size={16} />

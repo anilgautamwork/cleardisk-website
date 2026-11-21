@@ -1,0 +1,37 @@
+# ClearDisk
+
+> ClearDisk is a native macOS disk cleaner, System Data analyzer, Why Slow performance monitor, and iCloud Drive diagnostic app built by TechMarbles Web Solutions Pvt. Ltd. Scans run locally on macOS 15 or later (Apple silicon and Intel) and are free; a $10 one-time license (no subscription) covers up to three Macs for cleanup, iCloud Doctor, and performance actions.
+
+## Core Product Pages
+- [Home](https://cleardisk.app): Overview, live interactive demo, System Data breakdown, and Why Slow performance monitor.
+- [Features](https://cleardisk.app/features): Visual storage treemap, System Data analyzer, developer cache finder, iCloud Doctor, Intel app finder, Apple Intelligence footprint check, and Why Slow CPU/memory menu-bar monitor.
+- [Pricing](https://cleardisk.app/pricing): Free local scans and diagnostics; $10 one-time cleanup license for up to 3 Macs with a 30-day refund policy.
+- [Download](https://cleardisk.app/download): Signed and notarized macOS DMG (v2.2.1), SHA-256 verification, and system requirements (macOS 15+).
+- [iCloud Doctor](https://cleardisk.app/icloud-doctor): Local iCloud Drive storage analysis, stuck-upload detection, safe Remove Download, and Archive to Mac.
+- [About](https://cleardisk.app/about): Maker details (Anil Gautam / TechMarbles Web Solutions Pvt. Ltd.) and product principles.
+- [Privacy](https://cleardisk.app/privacy): Local-first file scanning (files and scan results are never uploaded), license activation, and update handling.
+- [Support](https://cleardisk.app/support): Troubleshooting help and contact (`hello@cleardisk.app`).
+- [Press Kit](https://cleardisk.app/press): Reviewer notes, release facts, artwork, and sample screenshots.
+
+## Guides, Comparisons & FAQ Hubs
+- [All Mac Storage & Performance Guides](https://cleardisk.app/guides): Complete index of 163 technical guides.
+- [Mac Storage FAQ](https://cleardisk.app/faq): Short answers grouped by System Data, full disk, caches, app removal, backups/cloud, and ClearDisk.
+- [Blog](https://cleardisk.app/blog): Deep-dive macOS maintenance and performance articles.
+
+## Key Pillar Guides & Comparisons
+- [How to Clear System Data on Mac](https://cleardisk.app/clear-system-data-on-mac)
+- [What Is System Data on Mac?](https://cleardisk.app/what-is-system-data-on-mac)
+- [Mac Storage Full: What to Delete First](https://cleardisk.app/mac-storage-full)
+- [CleanMyMac Alternative (No Subscription)](https://cleardisk.app/cleanmymac-alternative)
+- [ClearDisk vs CleanMyMac](https://cleardisk.app/cleardisk-vs-cleanmymac)
+- [DaisyDisk Alternative](https://cleardisk.app/daisydisk-alternative)
+- [OmniDiskSweeper Alternative](https://cleardisk.app/omnidisksweeper-alternative)
+- [Best Free Mac Cleaner](https://cleardisk.app/best-free-mac-cleaner)
+- [How to Clear Xcode Derived Data](https://cleardisk.app/clear-xcode-derived-data)
+- [Developer Storage on Mac](https://cleardisk.app/developer-storage-on-mac)
+- [Apple Intelligence Storage on Mac](https://cleardisk.app/apple-intelligence-storage-mac)
+- [How to Find Intel Apps on Mac](https://cleardisk.app/find-intel-apps-on-mac)
+- [WindowServer High CPU on Mac](https://cleardisk.app/windowserver-high-cpu-mac)
+- [Mac Background Processes Explained](https://cleardisk.app/mac-processes-explained)
+- [dasd High CPU and Memory Leak on Mac (macOS 27)](https://cleardisk.app/dasd-high-cpu-memory-mac)
+- [How to Reindex Spotlight on Mac](https://cleardisk.app/reindex-spotlight-mac)

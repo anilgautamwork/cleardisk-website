@@ -119,7 +119,7 @@ const foundationGuides: Guide[] = [
         title: '3. Remove a small, understood selection',
         paragraphs: [
           'Close the app that owns the files before cleanup. Review the selected paths, keep a backup of anything irreplaceable, and begin with items you know you can replace or no longer need.',
-          'ClearDisk’s review dialog offers Move to Trash and Remove Permanently. Choose Move to Trash if you want the option to undo while the files remain there. In ClearDisk 2.0.0, permanent removal requires typing delete, then clicking the red Remove Permanently button. It skips the Trash and cannot be undone. Scanning is free; the cleanup license costs $10 once.',
+          'ClearDisk’s review dialog offers Move to Trash and Remove Permanently. Choose Move to Trash if you want the option to undo while the files remain there. In ClearDisk, permanent removal requires typing delete, then clicking the red Remove Permanently button. It skips the Trash and cannot be undone. Scanning is free; the cleanup license costs $10 once.',
         ],
       },
       {
@@ -197,7 +197,7 @@ const foundationGuides: Guide[] = [
       },
       {
         q: 'Can ClearDisk permanently delete System Data files?',
-        a: 'Yes. In ClearDisk 2.0.0, Remove Permanently requires typing delete and clicking the red button, and it skips the Trash entirely, so the removal cannot be undone. Move to Trash is the reversible option, and the cleanup license itself costs $10 once after a free scan.',
+        a: 'Yes. In ClearDisk, Remove Permanently requires typing delete and clicking the red button, and it skips the Trash entirely, so the removal cannot be undone. Move to Trash is the reversible option, and the cleanup license itself costs $10 once after a free scan.',
       },
     ],
     related: [
@@ -205,6 +205,7 @@ const foundationGuides: Guide[] = [
       'mac-storage-full',
       'check-disk-space-mac-terminal',
       'delete-iphone-backups-on-mac',
+      'omnidisksweeper-alternative',
     ],
     sources: [storage, definition, snapshots],
   },
@@ -418,6 +419,14 @@ const foundationGuides: Guide[] = [
           {
             label: 'Compare built-in tools, file scanners and Mac cleaners',
             href: '/best-free-mac-cleaner',
+          },
+          {
+            label: 'How should I clean my Mac? A safe monthly checklist',
+            href: '/blog/how-should-i-clean-my-mac',
+          },
+          {
+            label: 'Compare OmniDiskSweeper alternatives and visual disk analyzers',
+            href: '/omnidisksweeper-alternative',
           },
         ],
       },

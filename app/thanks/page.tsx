@@ -3,7 +3,7 @@ import { Header, Footer, DownloadButton } from '@/components/brand';
 import { PaymentResult } from '@/components/payment-result';
 export const metadata = pageMetadata(
   'ClearDisk — Your license key',
-  'Your ClearDisk 1.0 license key and how to activate it on up to three Macs.',
+  'Your ClearDisk license key and how to activate it on up to three Macs.',
   '/thanks',
 );
 export default async function Thanks({

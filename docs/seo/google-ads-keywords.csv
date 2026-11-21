@@ -4,11 +4,11 @@ CD-Search-SystemData,Clear System Data,how to clear system data on mac,phrase,ht
 CD-Search-SystemData,Clear System Data,delete system data mac,exact,https://cleardisk.app/clear-system-data-on-mac?source=google,how-to,P1,EN+IN,
 CD-Search-SystemData,Clear System Data,reduce system data mac,exact,https://cleardisk.app/clear-system-data-on-mac?source=google,how-to,P1,EN+IN,
 CD-Search-SystemData,Clear System Data,clear system storage mac,exact,https://cleardisk.app/clear-system-data-on-mac?source=google,how-to,P1,EN+IN,
-CD-Search-SystemData,System Data Too Large,system data 100gb mac,phrase,https://cleardisk.app/system-data-too-large?source=google,troubleshooting,P1,EN+IN,covers 150gb/200gb variants through close matching
-CD-Search-SystemData,System Data Too Large,mac system data huge,exact,https://cleardisk.app/system-data-too-large?source=google,troubleshooting,P1,EN+IN,
+CD-Search-SystemData,System Data Too Large,system data 100gb mac,phrase,https://cleardisk.app/clear-system-data-on-mac?source=google,troubleshooting,P1,EN+IN,covers 150gb/200gb variants through close matching
+CD-Search-SystemData,System Data Too Large,mac system data huge,exact,https://cleardisk.app/clear-system-data-on-mac?source=google,troubleshooting,P1,EN+IN,
 CD-Search-SystemData,System Data Too Large,why is system data so high on mac,phrase,https://cleardisk.app/what-is-system-data-on-mac?source=google,explanation,P2,EN+IN,
-CD-Search-SystemData,System Data Keeps Growing,system data keeps growing mac,phrase,https://cleardisk.app/system-data-keeps-growing?source=google,troubleshooting,P1,EN+IN,
-CD-Search-SystemData,System Data Keeps Growing,mac storage filling up by itself,phrase,https://cleardisk.app/system-data-keeps-growing?source=google,troubleshooting,P2,EN+IN,
+CD-Search-SystemData,System Data Keeps Growing,system data keeps growing mac,phrase,https://cleardisk.app/clear-system-data-on-mac?source=google,troubleshooting,P1,EN+IN,
+CD-Search-SystemData,System Data Keeps Growing,mac storage filling up by itself,phrase,https://cleardisk.app/clear-system-data-on-mac?source=google,troubleshooting,P2,EN+IN,
 CD-Search-StorageFull,Storage Full,mac storage full,exact,https://cleardisk.app/mac-storage-full?source=google,urgent,P1,EN+IN,
 CD-Search-StorageFull,Storage Full,macbook storage full,exact,https://cleardisk.app/mac-storage-full?source=google,urgent,P1,EN+IN,
 CD-Search-StorageFull,Storage Full,startup disk full mac,phrase,https://cleardisk.app/mac-storage-full?source=google,urgent,P1,EN+IN,

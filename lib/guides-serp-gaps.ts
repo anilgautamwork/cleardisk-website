@@ -582,8 +582,8 @@ export const serpGapGuides: Guide[] = [
         url: 'https://community.adobe.com/bug-reports-711/p-macos26-photoshop-v27-5-later-extremely-high-gpu-usage-from-the-windowserver-process-1558221/index3.html',
       },
       {
-        label: 'Adobe Community: Illustrator high WindowServer GPU usage fix notes',
-        url: 'https://community.adobe.com/bug-reports-711/high-windowserver-gpu-usage-on-macos-tahoe-same-issue-as-illustrator-fixed-in-illustrator-beta-30-8-72-1635569',
+        label: 'Adobe Help: Configure GPU performance settings in Illustrator',
+        url: 'https://helpx.adobe.com/illustrator/kb/gpu-performance-preview-improvements.html',
       },
       {
         label: 'Mole: WindowServer high CPU troubleshooting guide',

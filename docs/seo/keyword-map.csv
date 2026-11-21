@@ -12,20 +12,20 @@ P1,system-data-definition,/what-is-system-data-on-mac,Explanation,what does syst
 P1,system-data-definition,/what-is-system-data-on-mac,Explanation,why is system data so high on mac,Apple Storage settings documentation,,,,,Unmeasured
 P1,system-data-definition,/what-is-system-data-on-mac,Explanation,is system data safe to delete,Apple Storage settings documentation,,,,,Unmeasured
 P1,system-data-definition,/what-is-system-data-on-mac,Explanation,mac other storage vs system data,Apple Storage settings documentation,,,,,Unmeasured
-P1,system-data-large,/system-data-too-large,Troubleshooting,mac system data too large,Shared chat; Apple Community recurring reports,,,,,Unmeasured
-P1,system-data-large,/system-data-too-large,Troubleshooting,mac system data huge,Shared chat; Apple Community recurring reports,,,,,Unmeasured
-P1,system-data-large,/system-data-too-large,Troubleshooting,system data taking up 100gb mac,Shared chat; Apple Community recurring reports,,,,,Unmeasured
-P1,system-data-large,/system-data-too-large,Troubleshooting,why is system data 200gb mac,Shared chat; Apple Community recurring reports,,,,,Unmeasured
-P1,system-data-large,/system-data-too-large,Troubleshooting,system data taking up half my storage,Shared chat; Apple Community recurring reports,,,,,Unmeasured
-P1,system-data-large,/system-data-too-large,Troubleshooting,macbook air system data too large,Shared chat; Apple Community recurring reports,,,,,Unmeasured
-P1,system-data-large,/system-data-too-large,Troubleshooting,system data 150gb mac,Shared chat; Apple Community recurring reports,,,,,Unmeasured
-P1,system-data-large,/system-data-too-large,Troubleshooting,system data taking all storage mac,Shared chat; Apple Community recurring reports,,,,,Unmeasured
-P1,system-data-growth,/system-data-keeps-growing,Troubleshooting,mac system data keeps growing,Apple Community thread 256249051,,,,,Unmeasured
-P1,system-data-growth,/system-data-keeps-growing,Troubleshooting,why does system data keep increasing mac,Apple Community thread 256249051,,,,,Unmeasured
-P1,system-data-growth,/system-data-keeps-growing,Troubleshooting,system data fills up again after deleting,Apple Community thread 256249051,,,,,Unmeasured
-P1,system-data-growth,/system-data-keeps-growing,Troubleshooting,mac storage filling up by itself,Apple Community thread 256249051,,,,,Unmeasured
-P1,system-data-growth,/system-data-keeps-growing,Troubleshooting,system data keeps growing macbook air,Apple Community thread 256249051,,,,,Unmeasured
-P1,system-data-growth,/system-data-keeps-growing,Troubleshooting,system data grows after clearing cache,Apple Community thread 256249051,,,,,Unmeasured
+P1,system-data-large,/clear-system-data-on-mac,Troubleshooting,mac system data too large,Shared chat; Apple Community recurring reports,,,,,Unmeasured
+P1,system-data-large,/clear-system-data-on-mac,Troubleshooting,mac system data huge,Shared chat; Apple Community recurring reports,,,,,Unmeasured
+P1,system-data-large,/clear-system-data-on-mac,Troubleshooting,system data taking up 100gb mac,Shared chat; Apple Community recurring reports,,,,,Unmeasured
+P1,system-data-large,/clear-system-data-on-mac,Troubleshooting,why is system data 200gb mac,Shared chat; Apple Community recurring reports,,,,,Unmeasured
+P1,system-data-large,/clear-system-data-on-mac,Troubleshooting,system data taking up half my storage,Shared chat; Apple Community recurring reports,,,,,Unmeasured
+P1,system-data-large,/clear-system-data-on-mac,Troubleshooting,macbook air system data too large,Shared chat; Apple Community recurring reports,,,,,Unmeasured
+P1,system-data-large,/clear-system-data-on-mac,Troubleshooting,system data 150gb mac,Shared chat; Apple Community recurring reports,,,,,Unmeasured
+P1,system-data-large,/clear-system-data-on-mac,Troubleshooting,system data taking all storage mac,Shared chat; Apple Community recurring reports,,,,,Unmeasured
+P1,system-data-growth,/clear-system-data-on-mac,Troubleshooting,mac system data keeps growing,Apple Community thread 256249051,,,,,Unmeasured
+P1,system-data-growth,/clear-system-data-on-mac,Troubleshooting,why does system data keep increasing mac,Apple Community thread 256249051,,,,,Unmeasured
+P1,system-data-growth,/clear-system-data-on-mac,Troubleshooting,system data fills up again after deleting,Apple Community thread 256249051,,,,,Unmeasured
+P1,system-data-growth,/clear-system-data-on-mac,Troubleshooting,mac storage filling up by itself,Apple Community thread 256249051,,,,,Unmeasured
+P1,system-data-growth,/clear-system-data-on-mac,Troubleshooting,system data keeps growing macbook air,Apple Community thread 256249051,,,,,Unmeasured
+P1,system-data-growth,/clear-system-data-on-mac,Troubleshooting,system data grows after clearing cache,Apple Community thread 256249051,,,,,Unmeasured
 P1,storage-full,/mac-storage-full,Urgent troubleshooting,mac storage full,Apple free-storage guidance; current search results,,,,,Unmeasured
 P1,storage-full,/mac-storage-full,Urgent troubleshooting,mac startup disk almost full,Apple free-storage guidance; current search results,,,,,Unmeasured
 P1,storage-full,/mac-storage-full,Urgent troubleshooting,your disk is almost full mac,Apple free-storage guidance; current search results,,,,,Unmeasured
@@ -60,12 +60,12 @@ P2,snapshots,/time-machine-snapshots,Explanation / troubleshooting,delete time m
 P2,snapshots,/time-machine-snapshots,Explanation / troubleshooting,purgeable space mac,Apple local snapshots documentation,,,,,Unmeasured
 P2,snapshots,/time-machine-snapshots,Explanation / troubleshooting,why storage not freed after emptying trash mac,Apple local snapshots documentation,,,,,Unmeasured
 P2,snapshots,/time-machine-snapshots,Explanation / troubleshooting,time machine local snapshots safe to delete,Apple local snapshots documentation,,,,,Unmeasured
-P2,xcode,/xcode-storage,Developer cleanup,xcode taking up space mac,Current Xcode search results; Apple developer docs required for publication,,,,,Unmeasured
-P2,xcode,/xcode-storage,Developer cleanup,clear xcode derived data,Current Xcode search results; Apple developer docs required for publication,,,,,Unmeasured
-P2,xcode,/xcode-storage,Developer cleanup,delete xcode simulator runtimes,Current Xcode search results; Apple developer docs required for publication,,,,,Unmeasured
-P2,xcode,/xcode-storage,Developer cleanup,xcode cache taking up space,Current Xcode search results; Apple developer docs required for publication,,,,,Unmeasured
-P2,xcode,/xcode-storage,Developer cleanup,xcode device support safe to delete,Current Xcode search results; Apple developer docs required for publication,,,,,Unmeasured
-P2,xcode,/xcode-storage,Developer cleanup,xcode archives taking up space,Current Xcode search results; Apple developer docs required for publication,,,,,Unmeasured
+P2,xcode,/clear-xcode-derived-data,Developer cleanup,xcode taking up space mac,Current Xcode search results; Apple developer docs required for publication,,,,,Unmeasured
+P2,xcode,/clear-xcode-derived-data,Developer cleanup,clear xcode derived data,Current Xcode search results; Apple developer docs required for publication,,,,,Unmeasured
+P2,xcode,/remove-unused-ios-simulators,Developer cleanup,delete xcode simulator runtimes,Current Xcode search results; Apple developer docs required for publication,,,,,Unmeasured
+P2,xcode,/clear-xcode-derived-data,Developer cleanup,xcode cache taking up space,Current Xcode search results; Apple developer docs required for publication,,,,,Unmeasured
+P2,xcode,/clear-xcode-derived-data,Developer cleanup,xcode device support safe to delete,Current Xcode search results; Apple developer docs required for publication,,,,,Unmeasured
+P2,xcode,/clear-xcode-derived-data,Developer cleanup,xcode archives taking up space,Current Xcode search results; Apple developer docs required for publication,,,,,Unmeasured
 P2,device-backups,/delete-iphone-backups-on-mac,How-to,delete iphone backups on mac,Apple backup management docs required for publication,,,,,Unmeasured
 P2,device-backups,/delete-iphone-backups-on-mac,How-to,ios backups taking up space mac,Apple backup management docs required for publication,,,,,Unmeasured
 P2,device-backups,/delete-iphone-backups-on-mac,How-to,where are iphone backups stored on mac,Apple backup management docs required for publication,,,,,Unmeasured
@@ -78,11 +78,11 @@ P2,analyzer,/disk-space-analyzer-mac,Commercial investigation,free disk space an
 P2,analyzer,/disk-space-analyzer-mac,Commercial investigation,mac disk space visualizer,Shared chat; product fit; official competitors to verify before comparison,,,,,Unmeasured
 P2,analyzer,/disk-space-analyzer-mac,Commercial investigation,mac cleaner one time purchase,Shared chat; product fit; official competitors to verify before comparison,,,,,Unmeasured
 P2,analyzer,/disk-space-analyzer-mac,Commercial investigation,mac cleaner without subscription,Shared chat; product fit; official competitors to verify before comparison,,,,,Unmeasured
-P3,comparisons,/compare,Commercial investigation,cleardisk vs daisydisk,Research backlog; no current comparative testing,,,,,Unmeasured
-P3,comparisons,/compare,Commercial investigation,daisydisk alternative,Research backlog; no current comparative testing,,,,,Unmeasured
-P3,comparisons,/compare,Commercial investigation,cleanmymac alternative one time purchase,Research backlog; no current comparative testing,,,,,Unmeasured
-P3,comparisons,/compare,Commercial investigation,grandperspective alternative,Research backlog; no current comparative testing,,,,,Unmeasured
-P3,comparisons,/compare,Commercial investigation,best mac disk space analyzer,Research backlog; no current comparative testing,,,,,Unmeasured
+P3,comparisons,/daisydisk-alternative,Commercial investigation,cleardisk vs daisydisk,Research backlog; no current comparative testing,,,,,Unmeasured
+P3,comparisons,/daisydisk-alternative,Commercial investigation,daisydisk alternative,Research backlog; no current comparative testing,,,,,Unmeasured
+P3,comparisons,/cleanmymac-alternative,Commercial investigation,cleanmymac alternative one time purchase,Research backlog; no current comparative testing,,,,,Unmeasured
+P3,comparisons,/omnidisksweeper-alternative,Commercial investigation,grandperspective alternative,Research backlog; no current comparative testing,,,,,Unmeasured
+P3,comparisons,/disk-space-analyzer-mac,Commercial investigation,best mac disk space analyzer,Research backlog; no current comparative testing,,,,,Unmeasured
 Exclude,off-product,,Different product / unsupported promise,clear ram on mac,Shared chat separates SyncDoctor; native app feature scope,,,,,Unmeasured
 Exclude,off-product,,Different product / unsupported promise,mac memory cleaner,Shared chat separates SyncDoctor; native app feature scope,,,,,Unmeasured
 Exclude,off-product,,Different product / unsupported promise,icloud storage full,Shared chat separates SyncDoctor; native app feature scope,,,,,Unmeasured

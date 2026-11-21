@@ -92,7 +92,7 @@ export const performancePosts: Guide[] = [
         id: 'cleardisk-browser',
         title: 'Review browser activity inside ClearDisk',
         paragraphs: [
-          'ClearDisk 2.2.0 includes the WhySlow performance tools. Performance readings and local usage charts are free. Its browser panel supports Chrome, Brave and Edge with optional macOS Automation access; private windows are excluded.',
+          'ClearDisk includes the WhySlow performance tools. Performance readings and local usage charts are free. Its browser panel supports Chrome, Brave and Edge with optional macOS Automation access; private windows are excluded.',
           'An existing ClearDisk license covers confirmed duplicate-tab closure and window merging. Review the selected tabs and save work before closing them. Tab and extension memory figures in ClearDisk are estimates, so use Chrome’s own readings when investigating a specific tab.',
           'We make ClearDisk. You can follow all the built-in checks above without buying it. ClearDisk brings that investigation alongside disk scans and iCloud diagnostics; it does not guarantee a faster browser.',
         ],
@@ -202,7 +202,7 @@ export const performancePosts: Guide[] = [
         id: 'where-cleardisk-fits',
         title: 'Where ClearDisk helps, and where it stops',
         paragraphs: [
-          'In ClearDisk 2.2.0, open Performance → Processes to inspect running work and explanations of known processes. Overview and Usage give you CPU and memory context. These views are available alongside the storage tools; you do not need to delete files to use them.',
+          'In ClearDisk, open Performance → Processes to inspect running work and explanations of known processes. Overview and Usage give you CPU and memory context. These views are available alongside the storage tools; you do not need to delete files to use them.',
           'ClearDisk protects kernel_task and other core system processes from its quit actions. It does not disable thermal protection, repair cooling hardware or promise that freeing storage will fix high CPU. If storage is also low, investigate it as a separate issue rather than emptying caches as a heat remedy.',
           'We make ClearDisk. The steps above can be followed with Apple’s built-in tools without buying it.',
         ],
@@ -314,7 +314,7 @@ export const performancePosts: Guide[] = [
         id: 'cleardisk-internet-view',
         title: 'The same investigation inside ClearDisk',
         paragraphs: [
-          'ClearDisk 2.2.0 brings the WhySlow performance tools into the app. Open Performance → Internet to see connection information and available per-app traffic readings. Its optional speed test calls Apple’s built-in tool against Apple’s servers after confirmation; it is not an independent second benchmark.',
+          'ClearDisk brings the WhySlow performance tools into the app. Open Performance → Internet to see connection information and available per-app traffic readings. Its optional speed test calls Apple’s built-in tool against Apple’s servers after confirmation; it is not an independent second benchmark.',
           'A Wi-Fi link rate is the connection between the Mac and router, not a measurement of internet download speed. Per-app traffic is a sample rather than a monthly usage bill. Missing readings and failed tests should be treated as unknown, not healthy.',
           'You can run the Terminal version above without ClearDisk or a license. We make ClearDisk and offer its interface as another way to inspect the problem, not as a promise to speed up the internet.',
         ],

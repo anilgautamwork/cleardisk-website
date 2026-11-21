@@ -123,13 +123,17 @@ export const blogPosts: Guide[] = [
         paragraphs: [
           'Use a storage scan when you need to find what is large across your Mac. ClearDisk’s free local scan includes a visual map, a large-file list and a System Data breakdown. File names and scan results stay on your Mac; protected locations may require macOS permission.',
           'ClearDisk requires macOS 15 or later. It does not run on older OS X releases, so it is not a download option for every reader using an older AppCleaner build.',
-          'On a supported Mac, scan first and inspect the results. The cleanup license is $10 once. ClearDisk 2.0.0 offers Move to Trash with undo while items remain in Trash, or Remove Permanently after typing delete and clicking the red button. Permanent removal cannot be undone.',
+          'On a supported Mac, scan first and inspect the results. The cleanup license is $10 once. ClearDisk offers Move to Trash with undo while items remain in Trash, or Remove Permanently after typing delete and clicking the red button. Permanent removal cannot be undone.',
           'If uninstalling the app already gave you enough room, you can stop there. A second cleanup tool is useful only if there is still a storage problem to investigate.',
         ],
         links: [
           {
             label: 'What ClearDisk’s storage scan shows',
             href: '/disk-space-analyzer-mac',
+          },
+          {
+            label: 'How should I clean my Mac? A safe monthly checklist',
+            href: '/blog/how-should-i-clean-my-mac',
           },
           {
             label: 'Download ClearDisk for macOS 15 or later',
@@ -297,7 +301,7 @@ export const blogPosts: Guide[] = [
         paragraphs: [
           'If you already know which download to remove, Finder may be all you need. If you cannot explain the storage total, a visual map and a largest-files list can help you decide where to look next.',
           'ClearDisk offers free local scans, a visual storage map and a System Data breakdown. Scanned file names and results stay on your Mac. Reading protected locations can require permission from macOS. The app needs macOS 15 or later.',
-          'The cleanup license is $10 once. In ClearDisk 2.0.0, the review dialog offers Move to Trash and Remove Permanently. Permanent removal requires typing delete and clicking the red button; it skips Trash and cannot be undone. Choose Trash if you want the option to undo while the items remain there.',
+          'The cleanup license is $10 once. In ClearDisk, the review dialog offers Move to Trash and Remove Permanently. Permanent removal requires typing delete and clicking the red button; it skips Trash and cannot be undone. Choose Trash if you want the option to undo while the items remain there.',
           'Try the scan before paying. It should help you understand your own files; there is no fixed number of gigabytes every Mac can reclaim.',
         ],
         links: [

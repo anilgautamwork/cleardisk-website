@@ -48,7 +48,7 @@ export default function Press() {
           <Image
             unoptimized
             className="press-app-icon"
-            src="/press/cleardisk-app-icon.png"
+            src="/press/cleardisk-app-icon-preview.png"
             alt="ClearDisk app icon: a white C and sparkle on purple"
             width="192"
             height="192"
@@ -133,10 +133,10 @@ export default function Press() {
           <div className="press-artwork">
             <Image
               unoptimized
-              src="/press/cleardisk-app-icon.png"
+              src="/press/cleardisk-app-icon-preview.png"
               width="96"
               height="96"
-              alt=""
+              alt="ClearDisk app icon preview"
               loading="lazy"
             />
             <div>

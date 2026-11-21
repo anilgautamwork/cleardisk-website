@@ -34,7 +34,7 @@ export const icloudGuides: Guide[] = [
         title: 'Compare observations before calling it stuck',
         paragraphs: [
           'Leave the Mac connected and compare the same file later. There is no universal waiting period that proves failure: a large transfer and a small edited note have different circumstances. Record whether the status changes, new edits occur, or other files complete.',
-          'ClearDisk 1.1’s iCloud Doctor uses comparable local scan history to flag potentially stuck items. That phrase describes repeated matching pending observations, not continuous monitoring or a guaranteed diagnosis. Unknown metadata and incomplete scans cannot establish a healthy account.',
+          'ClearDisk’s iCloud Doctor uses comparable local scan history to flag potentially stuck items. That phrase describes repeated matching pending observations, not continuous monitoring or a guaranteed diagnosis. Unknown metadata and incomplete scans cannot establish a healthy account.',
         ],
       },
       {
@@ -57,7 +57,7 @@ export const icloudGuides: Guide[] = [
       },
       {
         q: 'Can ClearDisk tell me for certain that an iCloud upload is stuck?',
-        a: "Not with certainty. ClearDisk 1.1's iCloud Doctor uses comparable local scan history to flag potentially stuck items, based on repeated matching pending observations rather than continuous monitoring or a guaranteed diagnosis.",
+        a: "Not with certainty. ClearDisk's iCloud Doctor uses comparable local scan history to flag potentially stuck items, based on repeated matching pending observations rather than continuous monitoring or a guaranteed diagnosis.",
       },
       {
         q: 'Should I sign out of iCloud to fix a stuck upload?',
@@ -297,7 +297,7 @@ export const icloudGuides: Guide[] = [
         title: 'Avoid unsafe substitutes',
         paragraphs: [
           'Do not drag the item to Trash or delete files from hidden synchronization directories to mimic Remove Download. Those operations have different consequences. Keep the document intact while you determine why the supported control is unavailable.',
-          'ClearDisk 1.1 rechecks metadata before requesting local eviction and refuses unsafe or uncertain states. A refusal protects work that may not be uploaded. It is not evidence that bypassing the check through another tool is safe.',
+          'ClearDisk rechecks metadata before requesting local eviction and refuses unsafe or uncertain states. A refusal protects work that may not be uploaded. It is not evidence that bypassing the check through another tool is safe.',
         ],
       },
       {
@@ -320,7 +320,7 @@ export const icloudGuides: Guide[] = [
       },
       {
         q: 'Does requesting a local removal in ClearDisk free the space right away?',
-        a: "Not necessarily. ClearDisk 1.1 rechecks metadata before requesting local eviction and refuses unsafe or uncertain states, but a request being accepted doesn't mean it's completed; check the file's new status and available space afterward.",
+        a: "Not necessarily. ClearDisk rechecks metadata before requesting local eviction and refuses unsafe or uncertain states, but a request being accepted doesn't mean it's completed; check the file's new status and available space afterward.",
       },
       {
         q: 'Will opening a file after removing its local download use space again?',
@@ -367,7 +367,7 @@ export const icloudGuides: Guide[] = [
         title: 'Choose the right Finder control',
         paragraphs: [
           'Open Finder and select iCloud Drive in the sidebar. Control-click an online-only file and choose Download Now to retrieve it. To retain a file or folder when Optimize Mac Storage is enabled, Control-click it and choose Keep Downloaded. Look for the Keep Downloaded icon beside its name. Available controls depend on your macOS version and the current file state.',
-          'In ClearDisk 2.1.0, Download Now requests retrieval through macOS. A successful request does not establish that the download has finished or set Keep Downloaded. It also does not set an expiry at the end of the app session. Scan again to observe progress, and use Finder to choose ongoing local retention.',
+          'In ClearDisk, Download Now requests retrieval through macOS. A successful request does not establish that the download has finished or set Keep Downloaded. It also does not set an expiry at the end of the app session. Scan again to observe progress, and use Finder to choose ongoing local retention.',
           'If a control is missing, first check that the selected item is in iCloud Drive and consult Apple’s guide for your macOS version. An already downloaded file may not offer Download Now. Do not turn off iCloud Drive or move the original out of it just to make a menu option appear.',
         ],
       },
@@ -398,7 +398,7 @@ export const icloudGuides: Guide[] = [
       },
       {
         q: "Does ClearDisk's download feature keep files downloaded permanently?",
-        a: "No. ClearDisk 2.1.0 requests a download through macOS, without setting Keep Downloaded or an app-session expiry. Check that retrieval finishes, then use Finder’s Keep Downloaded option if you need ongoing local retention.",
+        a: "No. ClearDisk requests a download through macOS, without setting Keep Downloaded or an app-session expiry. Check that retrieval finishes, then use Finder’s Keep Downloaded option if you need ongoing local retention.",
       },
       {
         q: 'How do I prepare iCloud files for offline use before traveling?',
@@ -460,7 +460,7 @@ export const icloudGuides: Guide[] = [
         title: 'Verify the archive, including its limits',
         paragraphs: [
           'Open the copied document from the destination path and check the content you need. For a collection, compare the expected members rather than judging success from one folder name or matching total size. Keep an independent backup of the archive if it matters.',
-          'ClearDisk 1.1’s Archive to Mac workflow copies supported documents and data-only folders or document packages into ~/ClearDisk Archives. It verifies bytes and source stability and retains the cloud original. Close the owning app first. Executable files and unsupported file metadata are refused with Finder guidance. The destination excludes known cloud locations; check that no other sync client watches it. An incomplete copy is not a verified archive.',
+          'ClearDisk’s Archive to Mac workflow copies supported documents and data-only folders or document packages into ~/ClearDisk Archives. It verifies bytes and source stability and retains the cloud original. Close the owning app first. Executable files and unsupported file metadata are refused with Finder guidance. The destination excludes known cloud locations; check that no other sync client watches it. An incomplete copy is not a verified archive.',
         ],
       },
       {
@@ -475,7 +475,7 @@ export const icloudGuides: Guide[] = [
     questions: [
       {
         q: 'Where does ClearDisk save archived iCloud files?',
-        a: "ClearDisk 1.1's Archive to Mac workflow copies supported documents, data-only folders or document packages into a folder called ~/ClearDisk Archives, verifying the bytes and source stability while keeping the cloud original in place.",
+        a: "ClearDisk's Archive to Mac workflow copies supported documents, data-only folders or document packages into a folder called ~/ClearDisk Archives, verifying the bytes and source stability while keeping the cloud original in place.",
       },
       {
         q: 'Does archiving a file to my Mac free up iCloud storage?',

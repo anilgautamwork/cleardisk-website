@@ -1,5 +1,12 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Header, Footer } from '@/components/brand';
+export const metadata: Metadata = {
+  title: 'Page Not Found — ClearDisk',
+  description:
+    'This page does not exist on ClearDisk. Browse our Mac storage and performance guides instead.',
+  robots: { index: false, follow: true },
+};
 export default function NotFound() {
   return (
     <>

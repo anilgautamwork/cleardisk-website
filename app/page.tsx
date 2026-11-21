@@ -16,7 +16,17 @@ import {
 import { Header, Footer, DownloadButton, Mark } from '@/components/brand';
 import { visitorPrice } from '@/lib/visitor-price';
 import { JsonLd } from '@/components/json-ld';
-import { softwareSchema, websiteSchema, SITE_URL } from '@/lib/seo';
+import {
+  pageMetadata,
+  softwareSchema,
+  websiteSchema,
+  SITE_URL,
+} from '@/lib/seo';
+export const metadata = pageMetadata(
+  'Mac Cleaner: Free Storage Scan & Performance Monitor | ClearDisk',
+  'Mac cleaner with free storage scans, System Data breakdown, CPU and memory menu-bar monitoring, and iCloud Drive diagnostics. $10 one-time license for actions.',
+  '/',
+);
 import { MonitorPreview } from '@/components/monitor-preview';
 import { StoragePreview } from '@/components/storage-preview';
 import { PageMotion } from '@/components/motion';

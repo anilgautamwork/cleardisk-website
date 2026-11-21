@@ -755,9 +755,9 @@ export const developerGuides: Guide[] = [
   },
   {
     slug: 'clear-npm-cache-mac',
-    title: 'Clear the npm cache on Mac, plus pnpm, Yarn and pip',
+    title: 'How to Clear npm Cache on Mac (Verify, Clean, Size)',
     description:
-      'Where npm, pnpm, Yarn and pip keep their caches on a Mac, how to measure each one, the commands their own docs give for clearing them, and what grows back.',
+      'How to clear the npm cache on Mac safely: locate ~/.npm, measure cache size with du -sh, run npm cache verify or clean --force, and check Yarn or pnpm.',
     summary:
       'Package caches are meant to be disposable: every manager documents a command that empties or prunes its own. Measure first, use the documented command, and expect the folder to refill on the next install.',
     published: '2026-09-06',

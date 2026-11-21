@@ -63,18 +63,38 @@ async function purchaseCount(kv?: KVNamespace): Promise<number | null> {
     return null;
   }
 }
+const securityHeaders: Record<string, string> = {
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+  'X-Content-Type-Options': 'nosniff',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'X-Frame-Options': 'DENY',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+};
+function withSecurityHeaders(response: Response): Response {
+  const headers = new Headers(response.headers);
+  for (const [k, v] of Object.entries(securityHeaders)) {
+    if (!headers.has(k)) headers.set(k, v);
+  }
+  if (response.status === 404 && !headers.has('X-Robots-Tag')) {
+    headers.set('X-Robots-Tag', 'noindex');
+  }
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
 const privateHeaders = {
+  ...securityHeaders,
   'Cache-Control': 'private, no-store',
   'X-Robots-Tag': 'noindex, nofollow',
-  'X-Content-Type-Options': 'nosniff',
   'Referrer-Policy': 'no-referrer',
   Vary: 'Authorization',
 };
 const publicStatsHeaders = {
-  'Cache-Control': 'public, max-age=30',
+  ...securityHeaders,
+  'Cache-Control': 'public, max-age=60, stale-while-revalidate=300',
   'X-Robots-Tag': 'noindex, nofollow',
-  'X-Content-Type-Options': 'nosniff',
-  'Referrer-Policy': 'strict-origin-when-cross-origin',
 };
 function countPage(env: Env, ctx: ExecutionContext, pagePath: string) {
   ctx.waitUntil(
@@ -347,11 +367,11 @@ const worker = {
       return Response.redirect(url.toString(), 301);
     }
     const snapshot = await publicSnapshot(request, env.ASSETS);
-    if (snapshot) return snapshot;
+    if (snapshot) return withSecurityHeaders(snapshot);
     const response = await handler.fetch(request, env, ctx);
     if (path === '/api/checkout' && request.method === 'POST' && response.ok)
       count(env, ctx, 'checkouts', 'Website', request);
-    return response;
+    return withSecurityHeaders(response);
   },
 };
 

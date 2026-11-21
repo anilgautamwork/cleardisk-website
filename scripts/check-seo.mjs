@@ -262,6 +262,11 @@ for (const [from, to] of Object.entries(mergedGuideRedirects)) {
 }
 const missing = await fetch(new URL('/not-a-real-guide', origin));
 assert.equal(missing.status, 404);
+const missingHtml = await missing.text();
+assert.ok(
+  !missingHtml.includes('rel="canonical"'),
+  '404 must not inherit homepage canonical',
+);
 const missingBlog = await fetch(new URL('/blog/not-a-real-article', origin));
 assert.equal(missingBlog.status, 404);
 const sitemap = await fetch(new URL('/sitemap.xml', origin));
@@ -293,7 +298,13 @@ for (const path of [
 const robots = await fetch(new URL('/robots.txt', origin));
 assert.equal(robots.status, 200);
 assert.ok((await robots.text()).includes('Disallow: /api/'));
-for (const asset of ['/ClearDisk.dmg', '/SHA256SUMS.txt', '/og.png']) {
+for (const asset of [
+  '/ClearDisk.dmg',
+  '/SHA256SUMS.txt',
+  '/og.png',
+  '/favicon.ico',
+  '/llms.txt',
+]) {
   const response = await fetch(new URL(asset, origin), { method: 'HEAD' });
   assert.equal(response.status, 200, asset);
 }

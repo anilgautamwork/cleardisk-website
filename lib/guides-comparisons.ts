@@ -269,6 +269,10 @@ export const comparisonGuides: Guide[] = [
             label: 'Download ClearDisk and run a free System Data scan',
             href: '/download',
           },
+          {
+            label: 'Safe monthly Mac cleanup checklist (without paid cleaners)',
+            href: '/blog/how-should-i-clean-my-mac',
+          },
         ],
       },
     ],
@@ -301,6 +305,7 @@ export const comparisonGuides: Guide[] = [
     related: [
       'cleardisk-vs-cleanmymac',
       'daisydisk-alternative',
+      'omnidisksweeper-alternative',
       'best-free-mac-cleaner',
       'what-is-system-data-on-mac',
       'uninstall-apps-on-mac',
@@ -536,6 +541,10 @@ export const comparisonGuides: Guide[] = [
             href: '/free-up-space-on-mac',
           },
           {
+            label: 'How should I clean my Mac? A safe monthly checklist',
+            href: '/blog/how-should-i-clean-my-mac',
+          },
+          {
             label: 'Download ClearDisk (free scan for macOS 15+)',
             href: '/download',
           },
@@ -572,6 +581,7 @@ export const comparisonGuides: Guide[] = [
       'cleanmymac-alternative',
       'best-free-mac-cleaner',
       'daisydisk-alternative',
+      'omnidisksweeper-alternative',
       'what-is-system-data-on-mac',
       'clear-system-data-on-mac',
       'developer-storage-on-mac',

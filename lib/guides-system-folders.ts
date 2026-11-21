@@ -944,7 +944,7 @@ export const systemFolderGuides: Guide[] = [
         title: 'What to leave alone',
         paragraphs: [
           'Don’t empty /private/var/log wholesale or try to clear the unified log store with sudo commands. macOS manages both, and the history they hold is what Apple Support or a developer will ask for when you report a fault. Removing that history can make the fault harder to investigate and does not fix the process producing new logs.',
-          'ClearDisk 2.1.0 shows a Logs group from the scanned user Library. That figure is not a complete inventory of every system log or the unified log store. Its Safe label does not establish that every report is disposable or free of personal information. Review the files and keep evidence you still need.',
+          'ClearDisk shows a Logs group from the scanned user Library. That figure is not a complete inventory of every system log or the unified log store. Its Safe label does not establish that every report is disposable or free of personal information. Review the files and keep evidence you still need.',
         ],
       },
       {
