@@ -842,6 +842,8 @@ export const guideGroups: GuideGroup[] = [
       'mds-stores-high-cpu-mac',
       'reindex-spotlight-mac',
       'windowserver-high-cpu-mac',
+      'mac-processes-explained',
+      'dasd-high-cpu-memory-mac',
       'free-command-on-mac',
       'purge-command-mac-memory',
       'operation-not-permitted-terminal-mac',

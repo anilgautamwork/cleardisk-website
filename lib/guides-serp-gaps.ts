@@ -397,115 +397,100 @@ export const serpGapGuides: Guide[] = [
   },
   {
     slug: 'windowserver-high-cpu-mac',
-    title: 'WindowServer High CPU on Mac: 7 Fixes That Actually Work',
-    h1: 'WindowServer high CPU on Mac: why it spikes and 7 fixes to try in order',
+    title: 'WindowServer High CPU on Mac: What It Means & 9 Fixes',
+    h1: 'WindowServer high CPU on Mac: what it means and how to fix it',
     description:
-      'Fix WindowServer high CPU on Mac in 7 steps: reduce transparency, clear Desktop icons, check external display scaling, close heavy tabs, and test Safe Mode.',
+      'Why WindowServer uses so much CPU on your Mac (displays, windows, Stage Manager, transparency) and 9 fixes, from Activity Monitor to display settings.',
     summary:
-      'WindowServer is the core macOS process that draws every window, desktop icon, menu bar, and blur effect on screen—you cannot quit it without logging out. When WindowServer stays above 30–40% CPU at idle, work through these 7 ordered fixes: close heavy browser/Electron tabs, enable Reduce transparency, declutter Desktop icons, check external display scaling, stop screen sharing, restart or test Safe Mode, and update macOS.',
+      'WindowServer is the core macOS process (owned by _windowserver) that draws everything you see on screen—so its CPU spikes whenever lots of windows/tabs, external or scaled displays, Liquid Glass transparency, Stage Manager, Spaces, or a runaway app ask it to keep redrawing. Measure % CPU and GPU History in Activity Monitor first, quit apps one at a time to isolate the driver, and never force-quit WindowServer itself.',
     published: '2026-11-19',
-    updated: '2026-11-19',
+    updated: '2026-11-21',
     sections: [
       {
         id: 'what-is-windowserver',
-        title: 'What WindowServer is (and what CPU % is normal)',
+        title: 'What WindowServer is (and when high CPU is normal)',
         paragraphs: [
-          'WindowServer is macOS’s display compositor: every pixel drawn by every open app, animated browser tab, transparent sidebar, Desktop thumbnail, and external monitor passes through WindowServer. That is why Activity Monitor attributes graphics-pipeline overhead to WindowServer even when a misbehaving browser tab or Electron app is causing the work.',
-          'Brief spikes to 20–50% while dragging windows, scrolling high-refresh-rate displays, or playing video are normal. Sustained usage above 30–60% while your Mac is sitting idle—causing lag, hot fans, or fast battery drain—points to one of the 7 triggers below. Never force-quit WindowServer in Activity Monitor; doing so immediately logs you out and closes unsaved work.',
+          'Every app draws its own windows, and WindowServer stacks them into the single image your display shows. Howard Oakley of The Eclectic Light Company describes it as the master compositor: it starts at the login window and runs until shutdown as the _windowserver system user alongside distnoted. It also manages Spaces, window tabs, multiple displays, screenshots, and routing clicks and keystrokes to the right app. It is a core macOS process, never a virus.',
+          'Activity Monitor reports CPU per core, so 120% to 150% means roughly one to one and a half cores out of the 8 to 16 cores on most Apple silicon Macs. Brief spikes past 100% are normal while dragging windows across displays, connecting monitors, sharing your screen, scrolling heavy web pages, or opening Mission Control. It becomes a problem when usage stays elevated at idle alongside lag, loud fans, or fast battery drain. Never force-quit WindowServer—doing so logs you out or freezes macOS and discards unsaved work.',
         ],
         items: [
-          'Check live usage in Applications → Utilities → Activity Monitor → CPU tab, sorted by % CPU.',
-          'Or keep ClearDisk’s Why Slow menu-bar monitor running to spot CPU and memory pressure spikes without leaving Activity Monitor open.',
-        ],
-        links: [
-          {
-            label: 'See ClearDisk’s Why Slow menu-bar CPU & memory monitor',
-            href: '/features',
-          },
-          {
-            label: 'Why is my Mac running slow? Full CPU, memory & storage triage',
-            href: '/mac-running-slow-low-storage',
-          },
+          'Core macOS compositor owned by _windowserver (runs alongside distnoted).',
+          'Short spikes past 100% during window drags, screen sharing, or display switches are normal.',
+          'CPU % in Activity Monitor is per core (150% = ~1.5 cores active).',
+          'Adobe users on macOS 26 Tahoe and macOS 27 Golden Gate have also reported heavy WindowServer GPU load with Photoshop/Illustrator on 4K external displays.',
         ],
       },
       {
-        id: 'close-heavy-tabs',
-        title: '1. Close heavy browser tabs and Electron apps',
+        id: 'measure-first',
+        title: '1. Measure WindowServer CPU and GPU History before changing anything',
         paragraphs: [
-          'Web browsers (Chrome, Edge, Arc, Firefox) and Electron desktop apps (Slack, Discord, VS Code, Notion) are the #1 hidden trigger behind WindowServer spikes because animated web pages, WebGL canvases, and GPU-accelerated video keep asking macOS to repaint frames nonstop.',
-          'Quit apps one by one while watching WindowServer’s % CPU in Activity Monitor. When WindowServer suddenly drops from 60% to single digits right after quitting Chrome or Slack, you have found the culprit.',
+          'Write down your baseline first. Every fix below is a controlled test: change one setting, wait 30 seconds, and keep the change only when both Activity Monitor’s number and the lag actually improve.',
+        ],
+        items: [
+          'Open Activity Monitor from Applications → Utilities.',
+          'Click the CPU tab and type WindowServer in the search bar.',
+          'Note its % CPU with your usual apps open and the Mac idle for one minute.',
+          'Open Window → GPU History to see how hard the GPU side is working.',
+        ],
+      },
+      {
+        id: 'find-the-driver-app',
+        title: '2. Find the app making WindowServer work overtime',
+        paragraphs: [
+          'WindowServer’s load almost always belongs to another open app. Quit apps one at a time while watching Activity Monitor: when WindowServer drops sharply after quitting one app, you have found the driver—update that app, check its hardware-acceleration setting, or close it when idle.',
+        ],
+        items: [
+          'Browsers with dozens of open tabs (Chrome and Safari alike), especially video, animated ads, or WebGL canvases.',
+          'Electron desktop apps such as Slack, Discord, Microsoft Teams, and code editors.',
+          'Screen capture and sharing apps: Zoom, Teams, OBS, Loom, screenshot tools, and anything holding Screen Recording permission.',
+          'Creative apps with GPU-heavy canvases (Photoshop, Illustrator, video editors).',
+          'Menu-bar utilities with animated icons or rapidly polling live graphs.',
         ],
         links: [
           {
-            label: 'Why Chrome uses so much memory and CPU on Mac (and how to tame it)',
+            label: 'Why Google Chrome uses so much memory and CPU on Mac',
             href: '/blog/chrome-using-too-much-memory-mac',
           },
         ],
       },
       {
-        id: 'reduce-transparency',
-        title: '2. Turn on Reduce transparency and Reduce motion',
+        id: 'reduce-drawing-work',
+        title: '3. Reduce what WindowServer has to draw (Fixes 1–4)',
         paragraphs: [
-          'Translucent sidebars, menu-bar blur, glass effects, and window animations force WindowServer to composite layered pixels continuously. Turning off transparency frequently cuts idle WindowServer CPU immediately—especially on older Macs or multi-monitor setups.',
+          'Even minimized windows, cluttered Desktop icons, Liquid Glass blur effects, Stage Manager groups, and extra Spaces still cost WindowServer CPU and memory to manage. Work through these four display-compositing trims:',
         ],
         items: [
-          'Open Apple menu → System Settings → Accessibility → Display.',
-          'Toggle on Reduce transparency.',
-          'Optionally toggle on Reduce motion under Accessibility → Motion to stop continuous desktop-switching animations.',
-        ],
-      },
-      {
-        id: 'clean-desktop-icons',
-        title: '3. Clean up cluttered Desktop files and screenshots',
-        paragraphs: [
-          'macOS treats every individual icon, screenshot, and preview thumbnail sitting directly on your Desktop as its own window object that WindowServer tracks and redraws. Hundreds of screenshots on the Desktop quietly inflate WindowServer’s CPU and RAM footprint.',
-          'Move loose files into a single folder inside Documents (or enable Finder’s Use Stacks by right-clicking the Desktop), then check Activity Monitor again.',
+          'Fix 1 — Close unused windows, tabs, and Desktop clutter: Oakley notes hidden/minimized windows are not free, and macOS tracks every loose Desktop icon as a window object.',
+          'Fix 2 — Turn on Reduce transparency: open System Settings → Accessibility → Display and enable Reduce transparency. On macOS 26 Tahoe and macOS 27 Golden Gate, Liquid Glass adds extra blur layers, so this toggle cuts real compositing load.',
+          'Fix 3 — Turn off Stage Manager and trim unused Spaces: Stage Manager can substantially raise WindowServer CPU and memory. Switch it off in Control Center or System Settings → Desktop & Dock, and remove unused desktops in Mission Control.',
+          'Fix 4 — Switch off animated wallpapers and enable Reduce motion: replace dynamic/aerial wallpapers with a static image for a day and toggle on Reduce motion under Accessibility → Display (or Motion).',
         ],
         links: [
           {
-            label: 'Change where macOS saves screenshots so your Desktop stays clean',
+            label: 'Change where macOS saves screenshots so your Desktop stays clutter-free',
             href: '/change-screenshot-location-mac',
           },
         ],
       },
       {
-        id: 'external-displays',
-        title: '4. Check external monitors, scaled resolutions, and separate Spaces',
+        id: 'check-external-displays',
+        title: '4. Check external monitors, scaling, refresh rate, and Adobe 4K bugs (Fixes 5–8)',
         paragraphs: [
-          'High-DPI external monitors running non-integer scaled resolutions (for example, “Looks like 2560 × 1440” on a 4K display) force macOS to render an oversized framebuffer (5120 × 2880) and downscale every frame in real time—multiplying WindowServer’s workload.',
+          'External 4K and 5K displays are among the single biggest WindowServer loads because each screen requires its own composited framebuffer, and non-native scaled resolutions force macOS to render an oversized image and downscale every frame.',
+          'Known Adobe issue: since macOS 26, Photoshop and Illustrator users on 4K/5K external monitors have reported extreme WindowServer GPU load even with no document open—tracked across Adobe’s community bug threads into macOS 27 Golden Gate (with Illustrator beta fixes rolling out). Keep Adobe apps updated before tearing apart macOS display settings.',
         ],
         items: [
-          'Test by unplugging external displays for 30 seconds: if WindowServer CPU drops immediately, the display configuration is the trigger.',
-          'Open System Settings → Displays and test the default native resolution or a 60 Hz refresh rate instead of aggressive scaling.',
-          'Open System Settings → Desktop & Dock, scroll to Mission Control, and test toggling off “Displays have separate Spaces” (requires logging out and back in).',
+          'Fix 5 — Test by disconnecting one external display: if WindowServer drops immediately in Activity Monitor, the monitor setup is the primary cost.',
+          'Fix 6 — Switch to Default for display or native resolution: in System Settings → Displays, avoid non-integer “Looks like” scaling modes and compare.',
+          'Fix 7 — Lower refresh rate to 60 Hz: on 120 Hz+ external displays, testing 60 Hz halves the compositing frame rate.',
+          'Fix 8 — Test turning off “Displays have separate Spaces”: under System Settings → Desktop & Dock → Mission Control (requires logging out and back in; only keep it off if you do not rely on per-display Spaces).',
         ],
       },
       {
-        id: 'screen-sharing-recording',
-        title: '5. Stop screen sharing, recording, AirPlay, or virtual displays',
+        id: 'update-and-restart',
+        title: '5. Install macOS and app updates, then restart (Fix 9)',
         paragraphs: [
-          'Active screen capture—Zoom, Microsoft Teams, Google Meet, Loom, OBS, Sidecar, AirPlay mirroring, or third-party virtual-display utilities—locks WindowServer into continuously copying and encoding screen frames. Quit any lingering capture or menu-bar recording apps when you are not actively sharing.',
-        ],
-      },
-      {
-        id: 'restart-safe-mode',
-        title: '6. Restart your Mac (and test Safe Mode if it returns)',
-        paragraphs: [
-          'WindowServer can accumulate graphics-memory leaks over weeks of uptime without a reboot. A normal restart clears stuck compositing threads immediately.',
-          'If high WindowServer CPU returns right after rebooting with no apps open, start up in Safe Mode once (hold the power button on Apple silicon until Loading startup options appears, select your volume, hold Shift, and click Continue in Safe Mode). Safe Mode clears system graphics caches and blocks third-party login items so you can tell whether a background utility is causing the spike.',
-        ],
-        links: [
-          {
-            label: 'Remove unnecessary background items and login agents on Mac',
-            href: '/remove-background-items-mac',
-          },
-        ],
-      },
-      {
-        id: 'update-macos-apps',
-        title: '7. Update macOS and GPU-heavy apps',
-        paragraphs: [
-          'WindowServer regressions are frequently fixed in point updates to macOS and in framework updates to Electron apps (Slack, Discord, VS Code, Figma). Open System Settings → General → Software Update and update your heaviest daily apps if the spike began right after an OS upgrade.',
+          'Graphics and compositing regressions are regularly patched in macOS point updates. Check System Settings → General → Software Update and update the heavy apps you isolated in Step 2, then reboot. WindowServer’s memory footprint creeps up over long uptimes without restarts; if the spike only appears after days of uptime, restarting clears the leak.',
         ],
         links: [
           {
@@ -513,46 +498,77 @@ export const serpGapGuides: Guide[] = [
             href: '/mac-slow-after-macos-update',
           },
           {
+            label: 'Mac background processes explained (distnoted, kernel_task, dasd & more)',
+            href: '/mac-processes-explained',
+          },
+        ],
+      },
+      {
+        id: 'windowserver-memory-and-crashes',
+        title: 'WindowServer high memory, crashes, and checking with ClearDisk',
+        paragraphs: [
+          'High WindowServer RAM follows the same triggers as CPU—every window, tab, Space, Stage Manager group, and external monitor consumes unified memory on Apple silicon, which can push an 8 GB Mac straight into swap. If WindowServer itself crashes, the screen freezes and clicks stop responding; on modern macOS, Oakley notes that typically leads to a kernel panic or requires a forced shutdown. Repeated crashes point to a dock, cable, display adapter, or graphics driver—test with all external displays unplugged, try Safe Mode, and submit Console crash reports via Feedback Assistant.',
+          'Because WindowServer is a symptom, spotting which app is driving it is what saves time. ClearDisk’s Why Slow view surfaces live CPU load, memory pressure, and your 5 heaviest apps in one place alongside a menu-bar monitor so you can watch metrics while testing fixes. Viewing is free; quitting apps inside ClearDisk is part of the $10 one-time license and always asks before acting.',
+        ],
+        links: [
+          {
+            label: 'Understand Mac swap memory and Memory Pressure in Activity Monitor',
+            href: '/mac-swap-memory',
+          },
+          {
             label: 'Fix “Your system has run out of application memory” on Mac',
             href: '/mac-out-of-application-memory',
+          },
+          {
+            label: 'kernel_task high CPU on Mac: causes and fixes',
+            href: '/blog/kernel-task-high-cpu-mac',
+          },
+          {
+            label: 'See ClearDisk’s Why Slow CPU & memory menu-bar monitor',
+            href: '/features',
           },
         ],
       },
     ],
     questions: [
       {
-        q: 'Is WindowServer a virus or malware on Mac?',
-        a: 'No. WindowServer is a legitimate, essential core macOS process built by Apple that draws all application windows, menus, icons, and visual effects on your screen.',
+        q: 'What is WindowServer on my Mac?',
+        a: 'WindowServer is the essential core macOS compositor process that combines every open app’s windows into the image shown on your display, manages Spaces and external monitors, and routes clicks and keystrokes to the right app.',
       },
       {
-        q: 'Can I force quit WindowServer in Activity Monitor?',
-        a: 'Do not force quit WindowServer. Because it manages your entire graphical login session, killing WindowServer immediately logs you out of macOS and closes all open apps without saving unsaved work.',
+        q: 'Is it safe to force quit WindowServer?',
+        a: 'No. Force-quitting WindowServer immediately logs you out or freezes your Mac, causing you to lose unsaved work, and the process restarts with the same load. Find and quit the app driving it instead.',
       },
       {
-        q: 'What is normal WindowServer CPU usage on a Mac?',
-        a: 'At idle on a single screen, WindowServer normally stays between 1% and 15% CPU, spiking briefly to 30–50% while scrolling or dragging windows. Sustained usage above 30–50% while idle indicates a heavy app, display scaling issue, or graphics leak.',
+        q: 'Why is WindowServer using so much CPU?',
+        a: 'Something on your Mac is asking it to redraw continuously: dozens of browser tabs, external 4K/5K or scaled displays, Liquid Glass transparency, Stage Manager, extra Spaces, screen sharing, or a GPU-heavy app. Quit apps one at a time in Activity Monitor to isolate which one.',
       },
       {
-        q: 'Why does WindowServer CPU jump when I plug in an external monitor?',
-        a: 'Driving an external 4K or ultrawide display—especially at a non-native scaled resolution or high refresh rate—forces WindowServer to render and downscale far more pixels per second.',
+        q: 'Does an external monitor make WindowServer use more CPU?',
+        a: 'Yes. Every external display needs its own composited framebuffer, and 4K or 5K monitors running non-native scaled resolutions or high refresh rates multiply the work. Unplugging the monitor for 30 seconds is the fastest way to test it.',
       },
       {
-        q: 'Does Reduce transparency actually lower WindowServer CPU?',
-        a: 'Yes. Enabling Reduce transparency under System Settings, Accessibility, Display turns off continuous background blur compositing across windows and menus, which noticeably reduces WindowServer CPU and GPU load.',
+        q: 'Is WindowServer worse on macOS Tahoe and macOS 27?',
+        a: 'Many Mac users noticed higher WindowServer CPU and GPU load after upgrading to macOS 26 Tahoe and macOS 27 because the Liquid Glass interface adds heavier transparency and blur effects. Turning on Reduce transparency and installing the latest macOS updates are the best first fixes.',
       },
       {
-        q: 'Why does WindowServer use gigabytes of RAM as well as CPU?',
-        a: 'Every open window, browser tab, and Desktop icon allocates graphics buffers inside WindowServer. Over long uptimes without rebooting, memory leaks in apps or macOS can bloat WindowServer’s memory until you close heavy apps or restart.',
+        q: 'What is a normal WindowServer CPU percentage?',
+        a: 'There is no single fixed number because it depends on your displays, resolution scaling, and open windows. Measure WindowServer at idle with your normal setup in Activity Monitor, then compare after each fix—short spikes while moving windows or switching Spaces are expected.',
       },
     ],
     related: [
+      'mac-processes-explained',
+      'dasd-high-cpu-memory-mac',
       'mac-running-slow-low-storage',
       'mac-out-of-application-memory',
-      'mac-slow-after-macos-update',
+      'mac-swap-memory',
       'mds-stores-high-cpu-mac',
-      'remove-background-items-mac',
     ],
     sources: [
+      {
+        label: 'The Eclectic Light Company (Howard Oakley): Explainer — WindowServer',
+        url: 'https://eclecticlight.co/2025/12/13/explainer-windowserver-2/',
+      },
       {
         label: 'Apple Support: start up your Mac in safe mode (116946)',
         url: 'https://support.apple.com/en-us/116946',
@@ -562,8 +578,16 @@ export const serpGapGuides: Guide[] = [
         url: 'https://support.apple.com/guide/mac-help/change-display-settings-for-accessibility-unac089/mac',
       },
       {
-        label: 'Apple Support: view CPU activity in Activity Monitor on Mac',
-        url: 'https://support.apple.com/guide/activity-monitor/view-cpu-activity-actmntr43452/mac',
+        label: 'Adobe Community: macOS 26/27 Photoshop high WindowServer GPU usage on 4K displays',
+        url: 'https://community.adobe.com/bug-reports-711/p-macos26-photoshop-v27-5-later-extremely-high-gpu-usage-from-the-windowserver-process-1558221/index3.html',
+      },
+      {
+        label: 'Adobe Community: Illustrator high WindowServer GPU usage fix notes',
+        url: 'https://community.adobe.com/bug-reports-711/high-windowserver-gpu-usage-on-macos-tahoe-same-issue-as-illustrator-fixed-in-illustrator-beta-30-8-72-1635569',
+      },
+      {
+        label: 'Mole: WindowServer high CPU troubleshooting guide',
+        url: 'https://mole.fit/blog/windowserver-high-cpu-mac',
       },
     ],
   },
@@ -712,6 +736,362 @@ export const serpGapGuides: Guide[] = [
       {
         label: 'Apple Support: free up storage space on Mac',
         url: 'https://support.apple.com/en-us/102624',
+      },
+    ],
+  },
+  {
+    slug: 'mac-processes-explained',
+    title: 'Mac Background Processes Explained (Activity Monitor Guide)',
+    h1: 'Mac background processes explained: what’s safe in Activity Monitor',
+    description:
+      'What kernel_task, WindowServer, mds_stores, distnoted, coresymbolicationd, dyld, bird, dasd, photoanalysisd and other Mac processes do, and when to worry.',
+    summary:
+      'Most unfamiliar names in Activity Monitor are core macOS services doing normal work: kernel_task manages heat, WindowServer draws your display, mds_stores runs Spotlight, bird syncs iCloud Drive, distnoted routes notifications, and dasd schedules background tasks. Investigate a process only when it stays above 50% CPU for hours, returns after restart, or runs outside /System/ and /usr/.',
+    published: '2026-11-21',
+    updated: '2026-11-21',
+    sections: [
+      {
+        id: 'how-to-check-a-process',
+        title: 'Key takeaways and how to check what any process is',
+        paragraphs: [
+          'Before assuming an unfamiliar process is malware or forcing it to quit, inspect who owns it and where its executable lives. A path starting with /System/, /usr/libexec/, or /usr/sbin/ belongs to macOS; a path inside ~/Library/ or /Library/ belongs to third-party software you installed.',
+          'Never force-quit system processes owned by root or system accounts like _windowserver or _spotlight: most relaunch immediately, and killing WindowServer logs you out or freezes the Mac. To stop a third-party app helper you recognize, select it in Activity Monitor, click the Stop (X) button, and choose Quit before Force Quit.',
+        ],
+        items: [
+          'Open Activity Monitor (Applications → Utilities), select the process, and click the info (i) button.',
+          'Check Parent Process and User (root, _windowserver, _spotlight, or _distnote indicate macOS services).',
+          'Open the Open Files and Ports tab to verify the binary path (/System/ or /usr/ vs ~/Library/ or /tmp).',
+          'Spikes for 24–48 hours after a macOS update are normal as Spotlight, Photos, shared caches, and iCloud catch up.',
+          'Never delete system caches manually to quiet a process; booting into Safe Mode once clears them the supported way.',
+        ],
+        links: [
+          {
+            label: 'Where third-party login items and launch agents live on Mac',
+            href: '/remove-background-items-mac',
+          },
+        ],
+      },
+      {
+        id: 'quick-reference',
+        title: 'Quick reference: 17 common Mac processes in Activity Monitor',
+        paragraphs: [
+          'Use this quick index to tell normal background work apart from a genuine runaway process:',
+        ],
+        items: [
+          'kernel_task — macOS kernel & CPU thermal throttling (normal when warm/charging; investigate if high while cool).',
+          'WindowServer — composites every window on screen (normal during window drags/external displays; investigate if high at idle).',
+          'mds, mds_stores, mdworker — Spotlight indexing (normal after updates/large copies; investigate if high for days).',
+          'corespotlightd — in-app Spotlight index for Mail and Messages (normal after large syncs; investigate if constantly pegged).',
+          'distnoted — distributed system notification server (normal briefly; investigate if one copy stays stuck high for hours).',
+          'coresymbolicationd — symbol cache for crash reports & debugging (normal during Xcode/crashes; investigate if cache grows to gigabytes).',
+          'dyld / update_dyld_shared_cache — dynamic linker & shared library cache builder (normal right after macOS/Xcode updates).',
+          'dasd — Duet Activity Scheduler Daemon for deferred tasks (normal at ~0% CPU / ~40 MB RAM; investigate if leaking 10–70 GB RAM on macOS 27).',
+          'bird, cloudd, fileproviderd — iCloud Drive and cloud file sync (normal while uploading/downloading; investigate if stuck for days).',
+          'photoanalysisd, mediaanalysisd — Photos face, object, and OCR analysis (normal after big photo imports; runs when idle on power).',
+          'backupd — Time Machine backup engine (normal during active backups; investigate if backups never finish).',
+          'softwareupdated — checks and downloads macOS updates (normal during downloads; investigate if stuck for hours).',
+          'trustd, syspolicyd — certificate and Gatekeeper signature checks (normal when browsing or launching newly downloaded apps).',
+          'nsurlsessiond — background downloads for iCloud, App Store, and apps (investigate if consuming data with nothing syncing).',
+          'oahd — Rosetta 2 translation service for Intel apps (normal on first launch of an Intel app).',
+          'logd — unified macOS system logger (investigate if a noisy app causes logs to bloat disk space).',
+          'ReportCrash — writes crash logs (normal right after a crash; if constant, an app is crash-looping).',
+        ],
+      },
+      {
+        id: 'top-slowdown-processes',
+        title: 'The processes behind most “why is my Mac slow” searches',
+        paragraphs: [
+          'kernel_task is the macOS kernel itself; Apple’s support documentation explains that one of its visible jobs is managing CPU temperature by making CPU time less available to hot, intense apps until the Mac cools down. Give the Mac airflow, close the real heavy app, and avoid charging on soft surfaces.',
+          'WindowServer draws every window, Space, transparent layer, and external monitor onto your screen—never force-quit it. mds, mds_stores, mdworker, and corespotlightd power Spotlight; Howard Oakley notes modern Spotlight also runs OCR on images and PDFs plus photo classification, which takes far longer than plain text after updates.',
+          'On macOS 27 Golden Gate, users have also encountered a runaway dasd (Duet Activity Scheduler Daemon) memory leak and 90–100% CPU loop—covered in our dedicated dasd guide linked below.',
+        ],
+        links: [
+          {
+            label: 'kernel_task high CPU on Mac: causes and fixes',
+            href: '/blog/kernel-task-high-cpu-mac',
+          },
+          {
+            label: 'WindowServer high CPU on Mac: what it means and 9 fixes',
+            href: '/windowserver-high-cpu-mac',
+          },
+          {
+            label: 'mds_stores high CPU on Mac & how to reindex Spotlight safely',
+            href: '/mds-stores-high-cpu-mac',
+          },
+          {
+            label: 'How to reindex Spotlight on Mac (and when you shouldn’t)',
+            href: '/reindex-spotlight-mac',
+          },
+          {
+            label: 'dasd high CPU and memory leak on macOS 27: how to fix it',
+            href: '/dasd-high-cpu-memory-mac',
+          },
+        ],
+      },
+      {
+        id: 'processes-looked-up-by-name',
+        title: 'Processes people look up by name: distnoted, coresymbolicationd, dyld, bird, oahd, logd',
+        paragraphs: [
+          'distnoted is macOS’s distributed notification server, broadcasting small system events (“network changed,” “file saved”) between apps—you will normally see multiple copies (for each user, root, and _windowserver alongside WindowServer). If one copy spikes, check its User column and quit recently opened apps one at a time, or restart.',
+          'coresymbolicationd manages the OS library symbol cache at /System/Library/Caches/com.apple.coresymbolicationd/ so crash logs show readable function names. Usually a few hundred MB, it has been reported growing to 7 GB or even 33 GB on Macs with repeated crashes or heavy Xcode use. Do not delete that system folder manually—boot into Safe Mode once to clear system caches cleanly, and check Console → Crash Reports if it fills back up.',
+          'dyld is the dynamic linker; its helpers update_dyld_shared_cache and update_dyld_sim_shared_cache spike briefly after macOS or Xcode/simulator updates. Removing old iOS simulator runtimes cuts both simulator-cache churn and tens of gigabytes of disk space. Elsewhere in Activity Monitor: bird/cloudd/fileproviderd sync iCloud Drive, photoanalysisd/mediaanalysisd index Photos when idle on power, oahd translates Intel apps via Rosetta 2, and logd writes unified system logs.',
+        ],
+        links: [
+          {
+            label: 'Remove unused iOS simulators to stop update_dyld_sim_shared_cache churn',
+            href: '/remove-unused-ios-simulators',
+          },
+          {
+            label: 'com.apple.bird taking up space & iCloud Drive stuck uploading',
+            href: '/com-apple-bird-taking-space',
+          },
+          {
+            label: 'Find Intel apps on Mac (what triggers oahd / Rosetta 2)',
+            href: '/find-intel-apps-on-mac',
+          },
+          {
+            label: 'Inspect Mac log files when logd grows large',
+            href: '/mac-log-files',
+          },
+        ],
+      },
+      {
+        id: 'suspicious-sounding-safe-processes',
+        title: 'Processes that sound suspicious—and when to actually worry',
+        paragraphs: [
+          'Several normal macOS daemons have alarming names: trustd verifies TLS/app certificates, syspolicyd runs Gatekeeper checks on newly opened apps, nsurlsessiond manages background system/iCloud downloads, rapportd and sharingd power AirDrop/Handoff/Universal Clipboard, and launchd (PID 1) launches every other process—never quit launchd. All of them run from /System/ or /usr/.',
+          'Watch for four warning signs instead: a process stays above 50% CPU for hours at idle, returns immediately after restarting, runs from ~/Library, /tmp, or an unrecognized directory, or uses a misspelled near-miss of a real macOS process name. Restart first, install macOS and app updates, test in Safe Mode to isolate login items, and uninstall any unwanted third-party software cleanly.',
+          'If Activity Monitor’s hundreds of rows feel overwhelming, ClearDisk’s free Why Slow view trims the noise down to live CPU load, memory pressure, and your 5 heaviest apps with a menu-bar monitor (quitting apps from ClearDisk uses the $10 license and always prompts to confirm).',
+        ],
+        links: [
+          {
+            label: 'Why is my Mac running slow? Full CPU, memory & storage checklist',
+            href: '/mac-running-slow-low-storage',
+          },
+          {
+            label: 'How to uninstall unwanted Mac apps and their leftovers completely',
+            href: '/uninstall-apps-on-mac',
+          },
+          {
+            label: 'Photos library taking up space while photoanalysisd runs',
+            href: '/photos-library-taking-up-space-mac',
+          },
+        ],
+      },
+    ],
+    questions: [
+      {
+        q: 'Is it safe to quit background processes on a Mac?',
+        a: 'Quitting third-party app helpers you recognize is safe, though you should fix the parent app if it keeps respawning. Never force-quit macOS system processes owned by root or system accounts like _windowserver, since most relaunch immediately and some log you out or freeze the Mac.',
+      },
+      {
+        q: 'How do I know if a Mac process is a virus?',
+        a: 'Select the process in Activity Monitor, click the info button, and inspect Open Files and Ports. Legitimate macOS system processes run from /System/ or /usr/, whereas an unrecognized binary running from ~/Library, /tmp, or an odd folder with a misspelled name deserves investigation.',
+      },
+      {
+        q: 'What is distnoted and why is it using CPU?',
+        a: 'distnoted is macOS’s distributed notification server that relays small events between apps and system services. High CPU on one copy usually means an app is flooding it with notifications—quit recently opened apps one at a time or restart your Mac.',
+      },
+      {
+        q: 'Can I delete the coresymbolicationd cache on Mac?',
+        a: 'It is a rebuildable system cache, but do not delete /System/Library/Caches/com.apple.coresymbolicationd/ by hand. Start up in Safe Mode once and restart normally to clear system caches the supported way, then check Console Crash Reports if it grows back fast.',
+      },
+      {
+        q: 'Why do background processes use more CPU after a macOS update?',
+        a: 'Right after a macOS update, Spotlight reindexes files, Photos reanalyzes faces and text, dyld rebuilds shared library caches, and iCloud catches up. Leaving your Mac awake, plugged into power, and on Wi-Fi lets it settle within a day or two.',
+      },
+      {
+        q: 'What does kernel_task do on a Mac?',
+        a: 'Among its core operating-system jobs, kernel_task helps regulate CPU temperature by limiting how much CPU busy apps can claim when the chip gets warm. High kernel_task usage usually reflects heat and backs off once the Mac cools down.',
+      },
+    ],
+    related: [
+      'windowserver-high-cpu-mac',
+      'dasd-high-cpu-memory-mac',
+      'mds-stores-high-cpu-mac',
+      'mac-running-slow-low-storage',
+      'remove-background-items-mac',
+      'reindex-spotlight-mac',
+    ],
+    sources: [
+      {
+        label: 'Apple Support: if kernel_task is using a large percentage of your Mac CPU (102172)',
+        url: 'https://support.apple.com/en-nz/102172',
+      },
+      {
+        label: 'Apple Platform Support: check app installation and processes on Mac',
+        url: 'https://support.apple.com/guide/platform-support/check-app-installation-and-processes-on-mac-supd2dffe733/web',
+      },
+      {
+        label: 'The Eclectic Light Company (Howard Oakley): when and how to rebuild Spotlight indexes',
+        url: 'https://eclecticlight.co/2024/11/19/when-and-how-to-rebuild-spotlight-indexes/',
+      },
+      {
+        label: 'The Eclectic Light Company (Howard Oakley): Explainer — WindowServer',
+        url: 'https://eclecticlight.co/2025/12/13/explainer-windowserver-2/',
+      },
+      {
+        label: 'Apple Discussions: com.apple.coresymbolicationd cache growing to 7 GB',
+        url: 'https://discussions.apple.com/thread/7175297',
+      },
+      {
+        label: 'MacRumors Forums: coresymbolicationd cache reaching 33 GB and safe-mode cleanup',
+        url: 'https://forums.macrumors.com/threads/is-it-safe-to-delete-the-com-apple-coresymbolicationd-folder-from-system-cache-mine-is-33gb.2156172',
+      },
+    ],
+  },
+  {
+    slug: 'dasd-high-cpu-memory-mac',
+    title: 'dasd High CPU and Memory Leak on Mac (macOS 27 Fix)',
+    h1: 'dasd high CPU and memory leak on Mac: what it is and how to fix it',
+    description:
+      'Fix dasd high CPU and 20–70 GB memory leaks on macOS 27 Golden Gate: inspect Activity Monitor, update macOS, test Safe Mode, and check PowerLog safely.',
+    summary:
+      'dasd (Duet Activity Scheduler Daemon, /usr/libexec/dasd) is Apple’s core macOS background-task scheduler—normally quiet at near 0% CPU and ~40 MB of RAM. On macOS 27 Golden Gate, a widely reported bug can trap dasd in an endless task-scoring loop, driving 90–100% CPU and leaking 20–70 GB of RAM into swap. Confirm it in Activity Monitor, update macOS, test Safe Mode, and only inspect/reset the corrupted PowerLog database with a full Time Machine backup first.',
+    published: '2026-11-21',
+    updated: '2026-11-21',
+    sections: [
+      {
+        id: 'what-is-dasd',
+        title: 'What dasd is (and why it leaks memory on macOS 27)',
+        paragraphs: [
+          'dasd stands for Duet Activity Scheduler Daemon, running from /usr/libexec/dasd as root (verified read-only on macOS 27.0.1, where idle usage sits near 0.0% CPU and ~40 MB of RAM). Apps and macOS services register deferred work—such as cloud sync, Spotlight maintenance, analytics, and backups—through Apple’s NSBackgroundActivityScheduler / DAS-CTS framework, and dasd decides when those tasks should run based on power, thermals, and user activity.',
+          'Following macOS 27 Golden Gate releases, users reported a severe regression where dasd locks a core at 90% to 100% CPU and balloons from tens of megabytes to 20–70 GB of memory, filling SSD swap and triggering “Your system has run out of application memory” alerts. Diagnostics traced repeated loops to a stuck or corrupted PerfPowerTelemetry background-processing SQLite database under /private/var/db/powerlog/.',
+        ],
+      },
+      {
+        id: 'confirm-dasd',
+        title: '1. Confirm dasd is the real culprit in Activity Monitor',
+        paragraphs: [
+          'Before changing system settings, verify whether dasd is genuinely leaking RAM or pegging CPU—and confirm it is Apple’s legitimate /usr/libexec/dasd binary rather than a lookalike.',
+        ],
+        code: ['ps -eo pid,user,pcpu,rss,comm | grep "[/]usr/libexec/dasd"'],
+        items: [
+          'Open Activity Monitor (Applications → Utilities), select the Memory tab, and search for dasd (normal idle is roughly 20–80 MB; multi-gigabyte growth confirms a leak).',
+          'Switch to the CPU tab and check whether dasd sits pinned near 90–100% while the Mac is idle.',
+          'Click the info (i) button → Open Files and Ports to verify the binary path is /usr/libexec/dasd owned by root.',
+          'Check Swap Used and Memory Pressure at the bottom of the Memory tab.',
+        ],
+        links: [
+          {
+            label: 'Fix “Your system has run out of application memory” on Mac',
+            href: '/mac-out-of-application-memory',
+          },
+          {
+            label: 'Understand Mac swap memory and yellow/red Memory Pressure',
+            href: '/mac-swap-memory',
+          },
+        ],
+      },
+      {
+        id: 'update-and-restart',
+        title: '2. Restart and install the latest macOS 27 point update first',
+        paragraphs: [
+          'First, save your work and restart your Mac normally. On an isolated scheduling glitch, a reboot resets dasd back to ~40 MB immediately. Next, open System Settings → General → Software Update and install any available macOS 27 point release (such as 27.1 or 27.2.x)—Apple frequently ships silent fixes for early background-scheduler regressions in point updates.',
+        ],
+      },
+      {
+        id: 'safe-mode-and-free-space',
+        title: '3. Test in Safe Mode and ensure 15–20% free SSD space',
+        paragraphs: [
+          'If dasd spikes again right after rebooting, boot once into Safe Mode (on Apple silicon: shut down, hold the power button until Loading startup options appears, select your startup volume, hold Shift, and click Continue in Safe Mode). Safe Mode clears system caches and pauses third-party launch agents so you can tell whether a misbehaving third-party background agent is flooding dasd.',
+          'Also check System Settings → General → Storage: when a leaking process pushes macOS into swap on a nearly full drive, low free SSD space amplifies the freeze. Keep at least 15–20% free working space while troubleshooting.',
+        ],
+        links: [
+          {
+            label: 'Mac storage full? What to clear safely first',
+            href: '/mac-storage-full',
+          },
+          {
+            label: 'Remove suspicious or noisy third-party background items on Mac',
+            href: '/remove-background-items-mac',
+          },
+        ],
+      },
+      {
+        id: 'inspect-powerlog-db',
+        title: '4. Inspect the PerfPowerTelemetry database (read-only check first)',
+        paragraphs: [
+          'If dasd still hits 90–100% CPU or multi-gigabyte memory immediately after updating and testing Safe Mode, check whether the reported PerfPowerTelemetry background-processing database exists and is unusually large on your Mac. Start with a read-only check—this deletes nothing.',
+        ],
+        code: [
+          'ls -lh /private/var/db/powerlog/Library/PerfPowerTelemetry/BackgroundProcessing/ 2>&1',
+        ],
+      },
+      {
+        id: 'reset-corrupted-bgsql-carefully',
+        title: '5. Last resort: back up before resetting a corrupted BGSQL file',
+        paragraphs: [
+          'Take a complete Time Machine backup before touching anything inside /private/var/db/powerlog/, and do not run system-directory edits on an IT-managed work Mac without admin approval. Community workarounds for a confirmed macOS 27 dasd telemetry loop back up and remove only the specific CurrentBackgroundProcessingDB.BGSQL* files (rather than wiping all of /private/var/db/powerlog blindly), then reboot immediately so macOS creates a fresh database.',
+          'After rebooting, verify dasd returns to near 0% CPU and ~40 MB RAM in Activity Monitor (or keep ClearDisk’s free Why Slow menu-bar monitor open to catch any recurrence early). If the leak returns even on a fresh database, file a sysdiagnose through Apple’s Feedback Assistant so Apple can patch the underlying daemon bug.',
+        ],
+        code: [
+          'sudo mkdir -p ~/Desktop/PowerLog-Backup',
+          'sudo cp -p /private/var/db/powerlog/Library/PerfPowerTelemetry/BackgroundProcessing/CurrentBackgroundProcessingDB.BGSQL* ~/Desktop/PowerLog-Backup/',
+          'sudo rm /private/var/db/powerlog/Library/PerfPowerTelemetry/BackgroundProcessing/CurrentBackgroundProcessingDB.BGSQL*',
+        ],
+        links: [
+          {
+            label: 'Mac background processes explained (full Activity Monitor guide)',
+            href: '/mac-processes-explained',
+          },
+          {
+            label: 'See ClearDisk’s Why Slow CPU & memory pressure menu-bar monitor',
+            href: '/features',
+          },
+        ],
+      },
+    ],
+    questions: [
+      {
+        q: 'What is the dasd process on Mac?',
+        a: 'dasd is Apple’s Duet Activity Scheduler Daemon (/usr/libexec/dasd), a built-in macOS background service owned by root that schedules deferred tasks like cloud sync, indexing, and maintenance based on battery, CPU load, and thermal conditions.',
+      },
+      {
+        q: 'Is dasd malware or safe to force quit?',
+        a: 'dasd is a legitimate macOS system daemon, not malware. Force-quitting it in Activity Monitor is only a temporary band-aid because launchd immediately relaunches it—if its scheduling database is stuck, the CPU and memory spike quickly returns.',
+      },
+      {
+        q: 'Why is dasd using 20 GB to 70 GB of RAM on macOS 27?',
+        a: 'Users on macOS 27 Golden Gate reported a regression where a corrupted PerfPowerTelemetry background-processing database traps dasd in an infinite task-scoring loop, leaking tens of gigabytes into RAM and SSD swap.',
+      },
+      {
+        q: 'What is normal dasd CPU and memory usage on Mac?',
+        a: 'On a healthy macOS 27 Mac at idle, /usr/libexec/dasd sits near 0% CPU and roughly 20 to 80 MB of memory. Sustained 90–100% CPU or multi-gigabyte memory growth indicates a stuck scheduling loop or memory leak.',
+      },
+      {
+        q: 'Does Safe Mode fix dasd high CPU on Mac?',
+        a: 'Safe Mode clears system caches and disables third-party login items so you can rule out third-party apps flooding the scheduler. If the underlying PowerLog telemetry database itself is corrupted, updating macOS or resetting that file after a backup may still be needed.',
+      },
+      {
+        q: 'Should I delete the entire /private/var/db/powerlog folder?',
+        a: 'No—avoid blindly wiping the entire /private/var/db/powerlog directory. Back up with Time Machine first, install the latest macOS point update, and if you use the terminal workaround, back up and remove only the specific CurrentBackgroundProcessingDB.BGSQL* files before rebooting.',
+      },
+    ],
+    related: [
+      'mac-processes-explained',
+      'mac-out-of-application-memory',
+      'mac-swap-memory',
+      'windowserver-high-cpu-mac',
+      'mac-slow-after-macos-update',
+      'mac-running-slow-low-storage',
+    ],
+    sources: [
+      {
+        label: 'Apple Developer Documentation: NSBackgroundActivityScheduler',
+        url: 'https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler',
+      },
+      {
+        label: 'Apple Support: start up your Mac in safe mode (116946)',
+        url: 'https://support.apple.com/en-us/116946',
+      },
+      {
+        label: 'Apple Support: view memory usage in Activity Monitor on Mac',
+        url: 'https://support.apple.com/guide/activity-monitor/view-memory-usage-actmntr1004/mac',
+      },
+      {
+        label: 'Apple Platform Support: check app installation and processes on Mac',
+        url: 'https://support.apple.com/guide/platform-support/check-app-installation-and-processes-on-mac-supd2dffe733/web',
       },
     ],
   },

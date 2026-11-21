@@ -74,9 +74,11 @@ await test('all published problems have complete discoverable guides', () => {
     'reindex-spotlight-mac',
     'windowserver-high-cpu-mac',
     'clear-outlook-cache-mac',
+    'mac-processes-explained',
+    'dasd-high-cpu-memory-mac',
   ];
   for (const slug of required) assert.ok(getGuide(slug));
-  assert.equal(guides.length, 161);
+  assert.equal(guides.length, 163);
   assert.equal(getGuide('system-data-too-large'), undefined);
   assert.equal(getGuide('system-data-keeps-growing'), undefined);
   assert.equal(
@@ -206,6 +208,7 @@ await test('guide schema derives HowTo steps only from numbered sections', () =>
     'reindex-spotlight-mac',
     'windowserver-high-cpu-mac',
     'clear-outlook-cache-mac',
+    'dasd-high-cpu-memory-mac',
   ]) {
     const howToGuide = guideSchema(getGuide(slug)!);
     assert.equal(
@@ -219,12 +222,17 @@ await test('guide schema derives HowTo steps only from numbered sections', () =>
       slug + ': emits FAQPage',
     );
   }
-  const aiStorageSchema = guideSchema(getGuide('apple-intelligence-storage-mac')!);
-  assert.equal(
-    aiStorageSchema.some((s) => s['@type'] === 'FAQPage'),
-    true,
-    'apple-intelligence-storage-mac: emits FAQPage',
-  );
+  for (const slug of [
+    'apple-intelligence-storage-mac',
+    'mac-processes-explained',
+  ]) {
+    const faqOnlySchema = guideSchema(getGuide(slug)!);
+    assert.equal(
+      faqOnlySchema.some((s) => s['@type'] === 'FAQPage'),
+      true,
+      slug + ': emits FAQPage',
+    );
+  }
 });
 await test('faq topics are unique, link to real guides and sit in the sitemap', () => {
   assert.equal(new Set(faqTopics.map((t) => t.slug)).size, faqTopics.length);

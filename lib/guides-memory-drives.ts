@@ -218,6 +218,8 @@ export const memoryDriveGuides: Guide[] = [
       },
     ],
     related: [
+      'dasd-high-cpu-memory-mac',
+      'mac-processes-explained',
       'mac-swap-memory',
       'mac-running-slow-low-storage',
       'mac-storage-full',
@@ -453,6 +455,8 @@ export const memoryDriveGuides: Guide[] = [
       },
     ],
     related: [
+      'dasd-high-cpu-memory-mac',
+      'mac-processes-explained',
       'mds-stores-high-cpu-mac',
       'mac-running-slow-low-storage',
       'mac-storage-full-after-macos-update',
